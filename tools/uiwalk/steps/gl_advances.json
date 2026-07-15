@@ -1,0 +1,338 @@
+[
+  {
+    "do": "wait_stable",
+    "ms": 15000
+  },
+  {
+    "do": "key",
+    "keys": "ctrl+5"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 8000
+  },
+  {
+    "do": "shot",
+    "name": "gl_open"
+  },
+  {
+    "do": "click",
+    "x": 246,
+    "y": 94
+  },
+  {
+    "do": "key",
+    "keys": "backspace",
+    "times": 25
+  },
+  {
+    "do": "type",
+    "text": "Chaos Adept"
+  },
+  {
+    "do": "key",
+    "keys": "enter"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "assert",
+    "name": "chaos_adept",
+    "golden": "cell_62",
+    "region": [
+      340,
+      80,
+      320,
+      230
+    ],
+    "threshold": 0.75,
+    "scales": [
+      1.0,
+      1.15,
+      1.3,
+      1.5
+    ]
+  },
+  {
+    "do": "click",
+    "x": 246,
+    "y": 94
+  },
+  {
+    "do": "key",
+    "keys": "backspace",
+    "times": 25
+  },
+  {
+    "do": "type",
+    "text": "Chaos Magic"
+  },
+  {
+    "do": "key",
+    "keys": "enter"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "assert",
+    "name": "chaos_magic",
+    "golden": "cell_62",
+    "region": [
+      340,
+      80,
+      320,
+      230
+    ],
+    "threshold": 0.75,
+    "scales": [
+      1.0,
+      1.15,
+      1.3,
+      1.5
+    ]
+  },
+  {
+    "do": "click",
+    "x": 246,
+    "y": 94
+  },
+  {
+    "do": "key",
+    "keys": "backspace",
+    "times": 25
+  },
+  {
+    "do": "type",
+    "text": "Death Adept"
+  },
+  {
+    "do": "key",
+    "keys": "enter"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "assert",
+    "name": "death_adept",
+    "golden": "cell_46",
+    "region": [
+      340,
+      80,
+      320,
+      230
+    ],
+    "threshold": 0.75,
+    "scales": [
+      1.0,
+      1.15,
+      1.3,
+      1.5
+    ]
+  },
+  {
+    "do": "click",
+    "x": 246,
+    "y": 94
+  },
+  {
+    "do": "key",
+    "keys": "backspace",
+    "times": 25
+  },
+  {
+    "do": "type",
+    "text": "Alchemy"
+  },
+  {
+    "do": "key",
+    "keys": "enter"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "assert",
+    "name": "alchemy",
+    "golden": "cell_44",
+    "region": [
+      340,
+      80,
+      320,
+      230
+    ],
+    "threshold": 0.75,
+    "scales": [
+      1.0,
+      1.15,
+      1.3,
+      1.5
+    ]
+  },
+  {
+    "do": "click",
+    "x": 246,
+    "y": 94
+  },
+  {
+    "do": "key",
+    "keys": "backspace",
+    "times": 25
+  },
+  {
+    "do": "type",
+    "text": "Astrology"
+  },
+  {
+    "do": "key",
+    "keys": "enter"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "assert",
+    "name": "astrology",
+    "golden": "cell_44",
+    "region": [
+      340,
+      80,
+      320,
+      230
+    ],
+    "threshold": 0.75,
+    "scales": [
+      1.0,
+      1.15,
+      1.3,
+      1.5
+    ]
+  },
+  {
+    "do": "click",
+    "x": 246,
+    "y": 94
+  },
+  {
+    "do": "key",
+    "keys": "backspace",
+    "times": 25
+  },
+  {
+    "do": "type",
+    "text": "Banking"
+  },
+  {
+    "do": "key",
+    "keys": "enter"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "assert",
+    "name": "banking",
+    "golden": "cell_10",
+    "region": [
+      340,
+      80,
+      320,
+      230
+    ],
+    "threshold": 0.75,
+    "scales": [
+      1.0,
+      1.15,
+      1.3,
+      1.5
+    ]
+  },
+  {
+    "do": "click",
+    "x": 246,
+    "y": 94
+  },
+  {
+    "do": "key",
+    "keys": "backspace",
+    "times": 25
+  },
+  {
+    "do": "type",
+    "text": "Nature Magic"
+  },
+  {
+    "do": "key",
+    "keys": "enter"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "assert",
+    "name": "nature_magic",
+    "golden": "cell_40",
+    "region": [
+      340,
+      80,
+      320,
+      230
+    ],
+    "threshold": 0.75,
+    "scales": [
+      1.0,
+      1.15,
+      1.3,
+      1.5
+    ]
+  },
+  {
+    "do": "click",
+    "x": 246,
+    "y": 94
+  },
+  {
+    "do": "key",
+    "keys": "backspace",
+    "times": 25
+  },
+  {
+    "do": "type",
+    "text": "Future Technology"
+  },
+  {
+    "do": "key",
+    "keys": "enter"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "assert",
+    "name": "future_technology",
+    "golden": "cell_66",
+    "region": [
+      340,
+      80,
+      320,
+      230
+    ],
+    "threshold": 0.75,
+    "scales": [
+      1.0,
+      1.15,
+      1.3,
+      1.5
+    ]
+  }
+]

@@ -1,0 +1,117 @@
+{
+  "status": "modified",
+  "rel": "Improve.txt",
+  "parser": "ctp2",
+  "summary": {
+    "blocks_added": 18,
+    "blocks_removed": 34,
+    "blocks_modified": 0
+  },
+  "blocks_added": [
+    "IMPROVE_BARRACKS",
+    "IMPROVE_BEACON_OF_WISDOM",
+    "IMPROVE_COASTAL_FORTRESS",
+    "IMPROVE_COLOSSEUM",
+    "IMPROVE_FANTASTIC_STABLE",
+    "IMPROVE_GRANARY",
+    "IMPROVE_HARBOR",
+    "IMPROVE_MARKETPLACE",
+    "IMPROVE_MECHANICIANS_GUILD",
+    "IMPROVE_MERCHANTS_GUILD",
+    "IMPROVE_PORT",
+    "IMPROVE_PRIMAL_SOURCE",
+    "IMPROVE_SAM_MISSILE_BATTERY",
+    "IMPROVE_SEA_MINES",
+    "IMPROVE_SEWER_SYSTEM",
+    "IMPROVE_SOLAR_HARNESS",
+    "IMPROVE_TEST",
+    "IMPROVE_TRANSPORTER"
+  ],
+  "blocks_added_data": {
+    "IMPROVE_BARRACKS": [],
+    "IMPROVE_BEACON_OF_WISDOM": [
+      [
+        "kv",
+        "ADVANCE_Fli",
+        "OBSOLETE_ADVANCE"
+      ]
+    ],
+    "IMPROVE_COASTAL_FORTRESS": [
+      [
+        "kv",
+        "ADVANCE_no",
+        "OBSOLETE_ADVANCE"
+      ]
+    ],
+    "IMPROVE_COLOSSEUM": [],
+    "IMPROVE_FANTASTIC_STABLE": [],
+    "IMPROVE_GRANARY": [],
+    "IMPROVE_HARBOR": [],
+    "IMPROVE_MARKETPLACE": [],
+    "IMPROVE_MECHANICIANS_GUILD": [],
+    "IMPROVE_MERCHANTS_GUILD": [],
+    "IMPROVE_PORT": [],
+    "IMPROVE_PRIMAL_SOURCE": [],
+    "IMPROVE_SAM_MISSILE_BATTERY": [
+      [
+        "kv",
+        "ADVANCE_no",
+        "OBSOLETE_ADVANCE"
+      ]
+    ],
+    "IMPROVE_SEA_MINES": [],
+    "IMPROVE_SEWER_SYSTEM": [],
+    "IMPROVE_SOLAR_HARNESS": [
+      [
+        "kv",
+        "ADVANCE_Rec",
+        "OBSOLETE_ADVANCE"
+      ]
+    ],
+    "IMPROVE_TEST": [],
+    "IMPROVE_TRANSPORTER": [
+      [
+        "kv",
+        "ADVANCE_no",
+        "OBSOLETE_ADVANCE"
+      ]
+    ]
+  },
+  "blocks_removed": [
+    "IMPROVE_ACADEMY",
+    "IMPROVE_AIRPORT",
+    "IMPROVE_AQUEDUCT",
+    "IMPROVE_ARCOLOGIES",
+    "IMPROVE_ARTIFICIAL_WOMB_COMPLEX",
+    "IMPROVE_BANK",
+    "IMPROVE_BEEF_VAT",
+    "IMPROVE_BIO_WARFARE_FILTERS",
+    "IMPROVE_BODY_EXCHANGE",
+    "IMPROVE_CAPITOL",
+    "IMPROVE_CATHEDRAL",
+    "IMPROVE_CITY_WALLS",
+    "IMPROVE_COMPUTER_CENTER",
+    "IMPROVE_DRUG_STORE",
+    "IMPROVE_EMBEDDED_KNOWLEDGE_CHIP",
+    "IMPROVE_FACTORY",
+    "IMPROVE_FORCEFIELD",
+    "IMPROVE_FUSION_PLANT",
+    "IMPROVE_HOUSE_OF_FREEZING",
+    "IMPROVE_MILL",
+    "IMPROVE_MIND_CONTROL_EMITTER",
+    "IMPROVE_MOVIE_PALACE",
+    "IMPROVE_NANITE_FACTORY",
+    "IMPROVE_NUCLEAR_PLANT",
+    "IMPROVE_OIL_REFINERY",
+    "IMPROVE_POPULATION_MONITOR",
+    "IMPROVE_RAIL_LAUNCHER",
+    "IMPROVE_RECYCLING_PLANT",
+    "IMPROVE_ROBOTIC_PLANT",
+    "IMPROVE_SDI",
+    "IMPROVE_TELEVISION",
+    "IMPROVE_THEATER",
+    "IMPROVE_WATER_TRANSFORMER",
+    "IMPROVE_ZERO_EMISSION_VEHICLES"
+  ],
+  "blocks_modified": []
+}

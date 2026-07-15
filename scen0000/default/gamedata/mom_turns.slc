@@ -1,0 +1,33 @@
+// MoM sphere per-turn income -- all five spheres (Phase B1b, fanned out from the
+// proven Life element in B1a).
+//
+// The BeginTurn event-local player is player[0] (NOT `playerTurn`, which is an
+// undefined symbol). player[0] used in an integer context yields the turn player's
+// index (reference scenarios do `if(player[0] == 1)`); AddGold takes that integer
+// index, NOT a player[] object. No latch is needed: this is intended once-per-
+// player-per-turn income (unlike Message, AddGold does not flood the event queue).
+// Each player only takes its own sphere's branch, so every faction (human + AI) is paid.
+
+HandleEvent(BeginTurn) 'MomSphereTurnBlessings' post {
+    int_t p;
+    int_t turnGold;
+
+    p = player[0];
+    turnGold = 0;
+
+    if (MomPlayerIsLife(p)) {
+        turnGold = 6 + player[p].cities * 3 + MomCountLifeBlessings(p) * 4;
+    } elseif (MomPlayerIsNature(p)) {
+        turnGold = 4 + player[p].cities * 2 + MomCountNatureFoci(p) * 3;
+    } elseif (MomPlayerIsSorcery(p)) {
+        turnGold = 4 + player[p].cities * 2 + MomCountSorceryFoci(p) * 3;
+    } elseif (MomPlayerIsDeath(p)) {
+        turnGold = 4 + player[p].cities * 2 + (player[p].units / 3);
+    } elseif (MomPlayerIsChaos(p)) {
+        turnGold = 4 + Random(6 + player[p].cities * 10);
+    }
+
+    if (turnGold > 0) {
+        AddGold(p, turnGold);
+    }
+}

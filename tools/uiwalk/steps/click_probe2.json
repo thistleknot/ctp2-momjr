@@ -1,0 +1,16 @@
+[
+  {"do": "wait", "ms": 90000},
+  {"do": "wait_stable", "ms": 15000},
+  {"do": "click", "x": 515, "y": 736},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "book_bottom"},
+  {"do": "click", "x": 471, "y": 626},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "book_upperleft_spoke"},
+  {"do": "click", "x": 356, "y": 5},
+  {"do": "wait", "ms": 2000},
+  {"do": "shot", "name": "stats_menu"},
+  {"do": "click", "x": 436, "y": 5},
+  {"do": "wait", "ms": 2000},
+  {"do": "shot", "name": "options_menu"}
+]

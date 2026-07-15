@@ -1,0 +1,1924 @@
+{
+  "_meta": {
+    "description": "AE building removal manifest for MoM scenario. Each ae-classified building must be removed from all 10 files per HARNESS.md Critic 3.",
+    "harness_ref": "HARNESS.md#critic-3-building-removal-checklist",
+    "counts": {
+      "mom_keep": 25,
+      "ae_removed": 52,
+      "ae_pending": 0,
+      "total": 77
+    }
+  },
+  "schema": {
+    "files": {
+      "buildings_txt": "Scenarios/mom/scen0000/default/gamedata/buildings.txt",
+      "uniticon_txt": "Scenarios/mom/scen0000/default/gamedata/uniticon.txt",
+      "improveicon_txt": "Scenarios/mom/scen0000/default/gamedata/improveicon.txt",
+      "Great_Library_txt": "Scenarios/mom/scen0000/english/gamedata/Great_Library.txt",
+      "WAW_Great_Library_txt": "Scenarios/mom/scen0000/english/gamedata/WAW_Great_Library.txt",
+      "gl_str_txt": "Scenarios/mom/scen0000/english/gamedata/gl_str.txt",
+      "junk_str_txt": "Scenarios/mom/scen0000/english/gamedata/junk_str.txt",
+      "feat_txt": "Scenarios/mom/scen0000/default/gamedata/feat.txt",
+      "Units_txt": "Scenarios/mom/scen0000/default/gamedata/Units.txt",
+      "BuildingBuildLists_txt": "Scenarios/mom/scen0000/default/aidata/BuildingBuildLists.txt"
+    },
+    "notes": [
+      "WAW_Great_Library.txt must stay CRLF or parchment falls back to wicker",
+      "If IMPROVE_X is the last entry in an advance Gives: block, remove the Gives: heading too",
+      "After each removal, grep both Scenarios/mom AND ctp2_data to confirm no residual refs",
+      "BuildingBuildLists.txt must be updated even if building only appears in one list"
+    ]
+  },
+  "buildings": [
+    {
+      "key": "IMPROVE_ACADEMY",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [
+          "UNIT_SEA_ENGINEER",
+          "UNIT_URBAN_PLANNER"
+        ],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_SCIENCE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_AERIAL_WARDING",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_AIRPORT",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_ALCHEMIST_GUILD",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_ANIMISTS_GUILD",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_ANTI_BALLISTIC_MISSILES",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_DEFENSE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_AQUA_FILTER",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_DEFENSE",
+          "BUILDING_BUILD_LIST_MAXIUM_SIZED_CITIES"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_AQUEDUCT",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GROWTH",
+          "BUILDING_BUILD_LIST_MAXIUM_SIZED_CITIES"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_ARCOLOGIES",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GROWTH",
+          "BUILDING_BUILD_LIST_MAXIUM_SIZED_CITIES"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_ARENA",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_ARTISANS_GUILD",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_AVIARY",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_BALLISTA_TOWERS",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_DEFENSE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_BANK",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_BASCILICA",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_BATTLEMENTS",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_DEFENSE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_BAZAAR",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_BEHAVIORAL_MOD_CENTER",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_BODY_EXCHANGE",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_BROKERAGE",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [
+          "FEAT_BROKERAGES"
+        ],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_CAPITOL",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_MISC"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_CATHEDRAL",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_CITY_LIGHTING_ALCHEMICAL",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_CITY_LIGHTING_CHAOS_MAGIC",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_CITY_LIGHTING_NATURAL_MGC",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_CITY_LIGHTING_SPELLCRAFT",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_CITY_MILITIA",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_CITY_TROLLEY_SYSTEM",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_CITY_WALLS",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_OFFENSE",
+          "BUILDING_BUILD_LIST_DEFENSE",
+          "BUILDING_BUILD_LIST_SMALL_CITIES",
+          "BUILDING_BUILD_LIST_SMALL_CITIES_MILITARIST_STOP"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_CITY_WIDE_WARD_SPELL",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_COASTAL_FORTRESS",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_COMPUTER_CENTER",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [
+          "FEAT_INTERNET"
+        ],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_SCIENCE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_CORNUCOPIC_VAT",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": false,
+          "HISTORICAL": false,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": false,
+          "HISTORICAL": false,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GROWTH"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_CORRECTIONAL_FACILITY",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_COURTHOUSE",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [
+          "UNIT_SEA_ENGINEER",
+          "UNIT_URBAN_PLANNER"
+        ],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_DRUG_STORE",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GROWTH"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_ECO_TRANSIT",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS",
+          "BUILDING_BUILD_LIST_GROWTH",
+          "BUILDING_BUILD_LIST_PRODUCTION",
+          "BUILDING_BUILD_LIST_DIRTY_CITIES"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_EXPLORER_CREW",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_EXPLORER_EXTRAPLANAR_DRV",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_EXPLORER_HULL",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_E_BANK",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_FACTORY",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_PRODUCTION"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_FLAK_TOWERS",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_DEFENSE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_FOOD_SILO",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GROWTH"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_FORCEFIELD",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_DEFENSE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_FUSION_PLANT",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_PRODUCTION"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_GAIA_COMPUTER",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_SCIENCE",
+          "BUILDING_BUILD_LIST_ENDGAME"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_GRANARY",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [
+          "UNIT_SEA_ENGINEER",
+          "UNIT_URBAN_PLANNER"
+        ],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GROWTH",
+          "BUILDING_BUILD_LIST_SMALL_CITIES",
+          "BUILDING_BUILD_LIST_SMALL_CITIES_MILITARIST_STOP"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_HARBOR",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_HOSPITAL",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GROWTH"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_INCUBATION_CENTER",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GROWTH"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_MAGIC_RECHARGING_CENTER",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_MAGIC_ROADWAYS",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_MATTER_DECOMPILER",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS",
+          "BUILDING_BUILD_LIST_GROWTH",
+          "BUILDING_BUILD_LIST_PRODUCTION",
+          "BUILDING_BUILD_LIST_DIRTY_CITIES"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_MERCHANTS_GUILD",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_MICRO_DEFENSE",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_DEFENSE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_MILL",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_PRODUCTION"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_MOVIE_PALACE",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_NANITE_FACTORY",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_PRODUCTION"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_NUCLEAR_PLANT",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_PRODUCTION"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_OFFSHORE_TRADING_CENTER",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_OIL_REFINERY",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_PRODUCTION"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_ORBITAL_LABORATORY",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [
+          "FEAT_ORBITAL_LABS"
+        ],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_SCIENCE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_PORT_FACILITY",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_POWER_SATELLITE",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_SCIENCE",
+          "BUILDING_BUILD_LIST_ENDGAME"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_PUBLIC_TRANSPORTATION",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS",
+          "BUILDING_BUILD_LIST_GROWTH",
+          "BUILDING_BUILD_LIST_PRODUCTION",
+          "BUILDING_BUILD_LIST_DIRTY_CITIES"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_PUBLISHING_HOUSE",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_SCIENCE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_RECYCLING_PLANT",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS",
+          "BUILDING_BUILD_LIST_GROWTH",
+          "BUILDING_BUILD_LIST_PRODUCTION",
+          "BUILDING_BUILD_LIST_DIRTY_CITIES"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_ROBOTIC_PLANT",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_PRODUCTION"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_SAGES_GUILD",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_SECURITY_MONITOR",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_SEWER_SYSTEM",
+      "classification": "mom",
+      "status": "keep"
+    },
+    {
+      "key": "IMPROVE_SHRINE",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [
+          "UNIT_SEA_ENGINEER",
+          "UNIT_URBAN_PLANNER"
+        ],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS",
+          "BUILDING_BUILD_LIST_SMALL_CITIES"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_TELEVISION",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [
+          "FEAT_SYNDICATE"
+        ],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS",
+          "BUILDING_BUILD_LIST_GOLD"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_THEATER",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": false,
+        "uniticon_txt": false,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": false,
+          "HISTORICAL": false,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": false,
+          "HISTORICAL": false,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": false,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [
+          "FEAT_THEATERS"
+        ],
+        "settle_building_units": [
+          "UNIT_SEA_ENGINEER",
+          "UNIT_URBAN_PLANNER"
+        ],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_UNIVERSITY",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": true,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_SCIENCE"
+        ]
+      }
+    },
+    {
+      "key": "IMPROVE_VR_AMUSEMENT_PARK",
+      "classification": "ae",
+      "status": "removed",
+      "files": {
+        "buildings_txt": true,
+        "uniticon_txt": true,
+        "improveicon_txt": false,
+        "Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "WAW_Great_Library_txt": {
+          "GAMEPLAY": true,
+          "HISTORICAL": true,
+          "STRATEGIES": false,
+          "TEXT": false
+        },
+        "gl_str_txt": true,
+        "junk_str_txt": {
+          "DESCRIPTION": false,
+          "PREREQ": false
+        },
+        "advance_statistics": [],
+        "feat_blocks": [],
+        "settle_building_units": [],
+        "ai_build_lists": [
+          "BUILDING_BUILD_LIST_HAPPINESS"
+        ]
+      }
+    }
+  ]
+}

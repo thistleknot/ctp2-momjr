@@ -1,0 +1,70 @@
+[
+  {
+    "do": "wait",
+    "ms": 90000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 25000
+  },
+  {
+    "do": "shot",
+    "name": "main_map"
+  },
+  {
+    "do": "key",
+    "keys": "ctrl+5"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 8000
+  },
+  {
+    "do": "shot",
+    "name": "great_library"
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 4000
+  },
+  {
+    "do": "shot",
+    "name": "after_gl"
+  },
+  {
+    "do": "key",
+    "keys": "ctrl+1"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "shot",
+    "name": "civ_status"
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "key",
+    "keys": "ctrl+2"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 5000
+  },
+  {
+    "do": "shot",
+    "name": "city_status"
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  }
+]

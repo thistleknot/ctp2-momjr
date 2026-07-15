@@ -1,0 +1,199 @@
+#----------------------------------------------------------------------------
+#
+# MoM scenario override -- generator-owned.
+# Keep AI production on visible MoM units; do not inherit stock CTP2 lists.
+#
+#----------------------------------------------------------------------------
+
+# 22
+
+## 1 #########################################################
+UNIT_BUILD_LIST_AIR {
+  Unit UNIT_AIRSHIP
+  Unit UNIT_GRIFFIN
+  Unit UNIT_AIR_ELEMENTAL
+  Unit UNIT_UNDEAD_DRAGON
+  Unit UNIT_GARGOYLE
+  Unit UNIT_DEMON
+  Unit UNIT_PEGASUS
+  Unit UNIT_COCKATRICE
+  Unit UNIT_ARCHANGEL
+  Unit UNIT_STORM_DRAKE
+  Unit UNIT_WYVERN
+  Unit UNIT_INFERNAL_DEVICE
+}
+
+## 2 #########################################################
+UNIT_BUILD_LIST_AIR_TRANSPORT {
+  Unit UNIT_AIRSHIP
+}
+
+## 3 #########################################################
+UNIT_BUILD_LIST_DEFENSE {
+  Unit UNIT_SPEARMEN
+  Unit UNIT_CENTAURS
+  Unit UNIT_SWORDSMEN
+  Unit UNIT_MINION
+  Unit UNIT_MINOTAUR
+  Unit UNIT_ELVEN_ARCHERS
+  Unit UNIT_ARIEL
+  Unit UNIT_MAGE
+  Unit UNIT_FREYA
+  Unit UNIT_KNIGHTS
+  Unit UNIT_CATAPULT
+  Unit UNIT_CARAVAN
+  Unit UNIT_PALADINS
+  Unit UNIT_TAURON
+  Unit UNIT_SERENA
+  Unit UNIT_JAFAR
+  Unit UNIT_WAR_TROLL
+  Unit UNIT_RJAK
+  Unit UNIT_WAR_MAMMOTH
+  Unit UNIT_WARLOCK
+  Unit UNIT_GUARDIAN_SPIRIT
+  Unit UNIT_ZOMBIES
+  Unit UNIT_PHANTOM_WARRIORS
+  Unit UNIT_WARBEARS
+  Unit UNIT_IRON_GOLEM
+  Unit UNIT_UNICORN
+  Unit UNIT_HELL_HOUNDS
+  Unit UNIT_WRAITH
+  Unit UNIT_BEHEMOTH
+  Unit UNIT_EFREET
+  Unit UNIT_STORM_GIANT
+  Unit UNIT_HYDRA
+  Unit UNIT_GREAT_WYRM
+  Unit UNIT_ALORRA
+  Unit UNIT_MALLEUS
+  Unit UNIT_SALAMANDER
+  Unit UNIT_WARRAX
+  Unit UNIT_STEAM_CANNON
+}
+
+## 4 #########################################################
+UNIT_BUILD_LIST_FREIGHT {
+  Unit UNIT_CARAVAN
+}
+
+## 5 #########################################################
+UNIT_BUILD_LIST_LAND_SETTLER {
+  Unit UNIT_PEASANTS
+}
+
+## 6 #########################################################
+UNIT_BUILD_LIST_NAVAL_SPECIAL {
+  Unit UNIT_GALLEY
+  Unit UNIT_WARSHIP
+}
+
+## 7 #########################################################
+UNIT_BUILD_LIST_OFFENSE {
+  Unit UNIT_SPEARMEN
+  Unit UNIT_CENTAURS
+  Unit UNIT_SWORDSMEN
+  Unit UNIT_MINOTAUR
+  Unit UNIT_ELVEN_ARCHERS
+  Unit UNIT_ARIEL
+  Unit UNIT_MAGE
+  Unit UNIT_FREYA
+  Unit UNIT_KNIGHTS
+  Unit UNIT_CATAPULT
+  Unit UNIT_PALADINS
+  Unit UNIT_TAURON
+  Unit UNIT_SERENA
+  Unit UNIT_JAFAR
+  Unit UNIT_WAR_TROLL
+  Unit UNIT_RJAK
+  Unit UNIT_WAR_MAMMOTH
+  Unit UNIT_WARLOCK
+  Unit UNIT_GUARDIAN_SPIRIT
+  Unit UNIT_ZOMBIES
+  Unit UNIT_PHANTOM_WARRIORS
+  Unit UNIT_WARBEARS
+  Unit UNIT_IRON_GOLEM
+  Unit UNIT_UNICORN
+  Unit UNIT_HELL_HOUNDS
+  Unit UNIT_WRAITH
+  Unit UNIT_BEHEMOTH
+  Unit UNIT_EFREET
+  Unit UNIT_STORM_GIANT
+  Unit UNIT_HYDRA
+  Unit UNIT_GREAT_WYRM
+  Unit UNIT_ALORRA
+  Unit UNIT_MALLEUS
+  Unit UNIT_SALAMANDER
+  Unit UNIT_WARRAX
+  Unit UNIT_STEAM_CANNON
+}
+
+## 8 #########################################################
+UNIT_BUILD_LIST_RANGED {
+  Unit UNIT_MAGE
+  Unit UNIT_CATAPULT
+  Unit UNIT_WARLOCK
+  Unit UNIT_STEAM_CANNON
+  Unit UNIT_INFERNAL_DEVICE
+}
+
+## 9 #########################################################
+UNIT_BUILD_LIST_SEA {
+  Unit UNIT_GALLEY
+  Unit UNIT_MERFOLK
+  Unit UNIT_WARSHIP
+}
+
+## 10 #########################################################
+UNIT_BUILD_LIST_SEA_SETTLER {
+}
+
+## 11 #########################################################
+UNIT_BUILD_LIST_SEA_TRANSPORT {
+  Unit UNIT_GALLEY
+  Unit UNIT_WARSHIP
+}
+
+## 12 #########################################################
+UNIT_BUILD_LIST_SPECIAL_ANTISLAVERY {
+}
+
+## 13 #########################################################
+UNIT_BUILD_LIST_SPECIAL_DIPLOMACY {
+}
+
+## 14 #########################################################
+UNIT_BUILD_LIST_SPECIAL_DIPLOMATIC {
+}
+
+## 15 #########################################################
+UNIT_BUILD_LIST_SPECIAL_ECONOMIC {
+}
+
+## 16 #########################################################
+UNIT_BUILD_LIST_SPECIAL_ECOTOPIAN {
+}
+
+## 17 #########################################################
+UNIT_BUILD_LIST_SPECIAL_MILITARIST {
+}
+
+## 18 #########################################################
+UNIT_BUILD_LIST_SPECIAL_MISSIONARY {
+}
+
+## 19 #########################################################
+UNIT_BUILD_LIST_SPECIAL_NUCLEAR {
+}
+
+## 20 #########################################################
+UNIT_BUILD_LIST_SPECIAL_SCIENTIST {
+}
+
+## 21 #########################################################
+UNIT_BUILD_LIST_SPECIAL_SLAVERY {
+}
+
+## 22 #########################################################
+UNIT_BUILD_LIST_SPECIAL_SPY {
+}
+
+### ALL UNITS DONE ###

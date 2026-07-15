@@ -1,0 +1,3 @@
+Masters of Magic for CTP2
+Master of Magic units, advances, buildings, and wonders ported from Civ2 MoMJR.
+Based on Apolyton Edition with MoM magic paths and fantasy gameplay.

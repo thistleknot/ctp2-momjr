@@ -1,0 +1,45 @@
+// MoM sphere milestone events -- Life element first (Phase B2a). Fan out to the other
+// four spheres in B2b. Kept separate from the turn loop; #included after mom_turns.slc.
+//
+// Event-local API (base-verified, stock tut2_main.slc):
+//   GrantAdvance : player = player[0]; granted advance = value[0]
+//                  (advance[0] = value[0]; advance[0].type == AdvanceDB(...)).
+//   CreateBuilding: city = city[0]; built improvement = value[0]; player = city[0].owner
+//                  (building[0] = value[0]; building[0].type == BuildingDB(...)).
+//   AddGold takes the INTEGER player index. No latch needed: GrantAdvance fires once per
+//   advance per player; the CreateBuilding burst is a per-completion AddGold (no flood).
+
+HandleEvent(GrantAdvance) 'MomSphereAdvanceBlessings' post {
+    int_t p;
+
+    p = player[0];
+    advance[0] = value[0];
+
+    if (advance[0] != 0) {
+        if (MomPlayerIsLife(p) && advance[0].type == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
+            MomGrantLifeBlessing(p);
+            MomSpawnSphereUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT));
+        }
+    }
+}
+
+HandleEvent(CreateBuilding) 'MomSphereCityEffects' post {
+    int_t p;
+    int_t burstGold;
+
+    p = city[0].owner;
+    building[0] = value[0];
+    burstGold = 0;
+
+    if (MomPlayerIsLife(p)) {
+        if (building[0].type == BuildingDB(IMPROVE_TEMPLE)
+        || building[0].type == BuildingDB(IMPROVE_CITY_WALLS)
+        || building[0].type == BuildingDB(IMPROVE_WIZARDS_FORTRESS)) {
+            burstGold = 30;
+        }
+    }
+
+    if (burstGold > 0) {
+        AddGold(p, burstGold);
+    }
+}

@@ -1,0 +1,170 @@
+#----------------------------------------------------------------------------
+#
+# Project      : Call To Power 2
+# File type    : Text file
+# Description  : The build build lists for the AIs and mayors
+# Id           : $Id:$
+#
+#----------------------------------------------------------------------------
+#
+# Disclaimer
+#
+# THIS FILE IS NOT GENERATED OR SUPPORTED BY ACTIVISION.
+#
+# This material has been developed at apolyton.net by the Apolyton CtP2 
+# Source Code Project. Contact the authors at ctp2source@apolyton.net.
+#
+#----------------------------------------------------------------------------
+#
+# Modifications from the original Activision code:
+#
+# - Added build lists for small cities and for cities at their maximum size. (20-Aug-2009 Martin G�hmann)
+# - Added a build list for the end game. (16-Feb-2019 Martin G�hmann)
+#
+#----------------------------------------------------------------------------
+
+# 11
+
+##  0 ##########################################################
+
+BUILDING_BUILD_LIST_HAPPINESS {
+  Building IMPROVE_TEMPLE
+  Building IMPROVE_COLOSSEUM
+  Building IMPROVE_COLOSSEUM
+  Building IMPROVE_CATHEDRAL
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+}
+
+##  1 ##########################################################
+
+BUILDING_BUILD_LIST_GROWTH {
+  Building IMPROVE_GRANARY
+  Building IMPROVE_AQUEDUCT
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+}
+
+##  2 ##########################################################
+
+BUILDING_BUILD_LIST_PRODUCTION {
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+}
+
+##  3 ##########################################################
+
+BUILDING_BUILD_LIST_OFFENSE {
+  Building IMPROVE_CITY_WALLS
+}
+
+##  4 ##########################################################
+
+BUILDING_BUILD_LIST_DEFENSE {
+  Building IMPROVE_CITY_WALLS
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+}
+
+##  5 ##########################################################
+
+BUILDING_BUILD_LIST_SCIENCE {
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_UNIVERSITY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+}
+
+##  6 ##########################################################
+
+BUILDING_BUILD_LIST_GOLD {
+  Building IMPROVE_GRANARY
+  Building IMPROVE_COURTHOUSE
+  Building IMPROVE_MERCHANTS_GUILD
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY	
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+}
+
+##  7 ##########################################################
+
+BUILDING_BUILD_LIST_SMALL_CITIES {
+  Building IMPROVE_CITY_WALLS
+  Building IMPROVE_GRANARY
+  Building IMPROVE_TEMPLE
+}
+
+##  8 ##########################################################
+
+BUILDING_BUILD_LIST_MAXIUM_SIZED_CITIES {
+  Building IMPROVE_AQUEDUCT
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+}
+
+##  9 ##########################################################
+
+BUILDING_BUILD_LIST_DIRTY_CITIES {
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+}
+
+## 10 ##########################################################
+
+BUILDING_BUILD_LIST_SMALL_CITIES_MILITARIST_STOP
+{
+  Building IMPROVE_CITY_WALLS
+  Building IMPROVE_GRANARY
+}
+
+## 11 ##########################################################
+
+BUILDING_BUILD_LIST_MISC {
+  Building IMPROVE_GRANARY
+}
+
+## 12 ##########################################################
+
+BUILDING_BUILD_LIST_ENDGAME {
+  Building IMPROVE_GRANARY
+  Building IMPROVE_GRANARY
+}
+
+### ALL BUILDINGS DONE ###

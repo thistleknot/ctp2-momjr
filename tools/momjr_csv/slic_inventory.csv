@@ -1,0 +1,18 @@
+module,kind,name,signature,purpose,phase,status
+scenario.slc,handler,MomSlicAlive,HandleEvent(BeginTurn) post,one-shot liveness probe; DisableTrigger self,A,ACTIVE
+tutorial.slc,override,-,-,retires stock tut2_main.slc tutorial triggers,A,ACTIVE
+mom_func.slc,function,MomPlayerIsLife,int_f(int_t p),faction predicate p==1 (Life),B,ACTIVE
+mom_func.slc,function,MomPlayerIsNature,int_f(int_t p),faction predicate p==2 (Nature),B,ACTIVE
+mom_func.slc,function,MomPlayerIsSorcery,int_f(int_t p),faction predicate p==3 (Sorcery),B,ACTIVE
+mom_func.slc,function,MomPlayerIsDeath,int_f(int_t p),faction predicate p==4 (Death),B,ACTIVE
+mom_func.slc,function,MomPlayerIsChaos,int_f(int_t p),faction predicate p==5 (Chaos),B,ACTIVE
+mom_func.slc,function,MomCountLifeBlessings,int_f(int_t p),weighted count of Life buildings (TEMPLE/CITY_WALLS/WIZARDS_FORTRESS),B,ACTIVE
+mom_func.slc,function,MomCountNatureFoci,int_f(int_t p),weighted count of Nature buildings (GRANARY/PRIMAL_SOURCE/FANTASTIC_STABLE),B,ACTIVE
+mom_func.slc,function,MomCountSorceryFoci,int_f(int_t p),weighted count of Sorcery buildings (LIBRARY/BEACON_OF_WISDOM),B,ACTIVE
+mom_func.slc,function,MomGrantSphereBuilding,void_f(int_t p; int_t buildingType),grant a themed building in the player's first city if absent,B,ACTIVE
+mom_func.slc,function,MomSpawnSphereUnit,void_f(int_t p; int_t unitType),CreateUnit in first city (integer player index),B,ACTIVE
+mom_turns.slc,handler,MomSphereTurnBlessings,HandleEvent(BeginTurn) post,per-turn sphere gold income by faction,B,ACTIVE
+mom_city_effects.slc,handler,MomSphereAdvanceBlessings,HandleEvent(GrantAdvance) post,sphere magic-advance milestone: grant blessing building + spawn sphere unit (Chaos = random gold),B,ACTIVE
+mom_city_effects.slc,handler,MomSphereCityEffects,HandleEvent(CreateBuilding) post,+30 burst gold on themed building completion,B,ACTIVE
+mom_msg.slc,handler,MomSphereBlessingMessages,HandleEvent(GrantAdvance) post,per-sphere blessing popup on the magic advance (human-only; base Message plumbing),C,ACTIVE
+mom_magic.slc,module,-,-,MoM magic system (power pool / school multipliers / spells / mana nodes / AI) per specs/slic-magic-system.md — built on base-verified SLIC,M,PLANNED

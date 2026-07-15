@@ -1,0 +1,24 @@
+mom surrogate register
+
+Primary structured source: H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\momjr_csv
+
+Hidden surrogate-backed tile improvements retained only for compatibility:
+- TILEIMP_ADVANCED_UNDERSEA_MINES: Stock deep-ocean production surrogate retained for compatibility only; hidden because MoMJR has no direct tile-improvement counterpart for this CTP2 lane.
+- TILEIMP_AIR_BASES: Stock air-logistics tile improvement retained for compatibility only; hidden because MoMJR does not define an airbase tile-improvement lane.
+- TILEIMP_AUTOMATED_FISHERIES: Stock ocean-food surrogate retained for compatibility only; hidden because MoMJR does not define this fisheries upgrade lane.
+- TILEIMP_DRILLING_PLATFORM: Stock offshore-oil surrogate retained for compatibility only; hidden because MoMJR has no drilling-platform tile-improvement analogue.
+- TILEIMP_FISHERIES: Stock fisheries surrogate retained for compatibility only; hidden because MoMJR does not define this tile-improvement lane.
+- TILEIMP_LISTENING_POSTS: Stock detector tile improvement retained for compatibility only; hidden because MoMJR does not define this listening-post lane.
+- TILEIMP_MAGLEV: Stock transport upgrade retained only as a hidden residue; MoMJR uses the remapped Enchanted Road lane instead.
+- TILEIMP_MEGA_MINES: Stock late-industrial mining surrogate retained for compatibility only; hidden because MoMJR does not define this CTP2 mega-mine lane.
+- TILEIMP_MEGA_UNDERSEA_MINES: Stock deep-ocean production surrogate retained for compatibility only; hidden because MoMJR has no mega undersea-mine tile-improvement analogue.
+- TILEIMP_PORT: Stock ocean-port surrogate retained for compatibility only; hidden because MoMJR's Port is sourced from a city improvement rather than a tile-improvement lane.
+- TILEIMP_RADAR_STATIONS: Stock detector tile improvement retained for compatibility only; hidden because MoMJR does not define this radar-station lane.
+- TILEIMP_SONAR_BUOYS: Stock ocean-detector surrogate retained for compatibility only; hidden because MoMJR does not define this sonar-buoy lane.
+- TILEIMP_UNDERSEA_MINES: Stock undersea-mine surrogate retained for compatibility only; hidden because MoMJR has no direct tile-improvement counterpart for this CTP2 lane.
+
+Visible remaps:
+- TILEIMP_RAILROAD: remapped to Enchanted Road and ADVANCE_GREATER_ENCHANTMENTS.
+
+Dynamic logic donor references live under:
+- H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\slic_translation_artifacts

@@ -1,0 +1,116 @@
+unit_id,block_text
+UNIT_SETTLER,"UNIT_SETTLER {
+   Description DESCRIPTION_UNIT_SETTLER
+   DefaultIcon ICON_UNIT_SETTLER
+   DefaultSprite SPRITE_SETTLER
+   Category UNIT_CATEGORY_SETTLER
+   Attack 0
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 740
+   PowerPoints 400
+   ShieldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 1
+   ObsoleteAdvance ADVANCE_ADV_URBAN_PLANNING
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   NoZoc
+   SettleCityType UNIT_CITY
+   SettleSize 1
+   CanBeExpelled
+   CantCaptureCity
+   DeathEffectsHappy
+   BuildingRemovesAPop
+   OnlyBuildOne
+   IsSpecialForces
+   Civilian
+   CantBuild
+   GLHidden
+   InvisibleForGlobeSat
+   SoundSelect1 SOUND_SELECT1_SETTLER
+   SoundSelect2 SOUND_SELECT2_SETTLER
+   SoundMove SOUND_MOVE_SETTLER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_SETTLER
+   SoundCantMove SOUND_CANTMOVE_SETTLER
+   SoundAttack SOUND_ATTACK_SETTLER
+   SoundWork SOUND_WORK_SETTLER
+   SoundVictory SOUND_VICTORY_SETTLER
+   SoundDeath SOUND_DEATH_SETTLER
+
+   CanSee: Standard
+   CanSee: Stealth
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Stealth
+}
+"
+UNIT_PEASANTS,"UNIT_PEASANTS {
+   Description DESCRIPTION_UNIT_PEASANTS
+   DefaultIcon ICON_UNIT_PEASANTS
+   DefaultSprite SPRITE_PEASANTS
+   Category UNIT_CATEGORY_SETTLER
+   Attack 0
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 270
+   PowerPoints 135
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_WARRIOR_CODE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   NoZoc
+   SettleCityType UNIT_CITY
+   SettleSize 1
+   CanBeExpelled
+   CantCaptureCity
+   DeathEffectsHappy
+   BuildingRemovesAPop
+   OnlyBuildOne
+   IsSpecialForces
+   Civilian
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Settle: Land
+   Settle: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+"

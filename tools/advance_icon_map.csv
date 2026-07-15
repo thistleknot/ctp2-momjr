@@ -1,0 +1,100 @@
+line_pos,name,epoch,category,icon_idx,grid_col,grid_row
+0,Alchemy,0,3,3,3,0
+1,Alphabet,0,3,3,3,0
+2,Animism,0,3,3,3,0
+3,Astrology,0,3,3,3,0
+4,Eldritch Lore,0,3,3,3,0
+5,User Def Tech A,0,0,0,0,0
+6,Banking,0,1,1,1,0
+7,Bridge Building,0,4,4,4,0
+8,Bronze Working,0,4,4,4,0
+9,Ceremonial Burial,0,2,2,2,0
+10,Greater Fauna Lore,0,3,3,3,0
+11,Chivalry,0,0,0,0,0
+12,Code of Laws,0,2,2,2,0
+13,Healing,0,3,3,3,0
+14,Lesser Enchanments,0,3,3,3,0
+15,Extra Advance 4,0,0,0,0,0
+16,Metamorphosis,0,3,3,3,0
+17,Extra Advance 6,0,0,0,0,0
+18,Construction,0,4,4,4,0
+19,Pantheism,0,3,3,3,0
+20,Currency,0,1,1,1,0
+21,Extra Advance 5,0,0,0,0,0
+23,Rune Lore,0,3,3,3,0
+24,User Def Tech C,0,0,0,0,0
+25,Sea Mastery,0,3,3,3,0
+26,Shamanism,0,3,3,3,0
+27,Thaumaturgy,0,3,3,3,0
+28,Tactics,0,0,0,0,0
+29,Feudalism,0,0,0,0,0
+30,Wizardry,0,3,3,3,0
+31,Extra Advance 3,0,0,0,0,0
+32,Glyphs,0,3,3,3,0
+33,Life Magic,1,2,7,2,1
+34,User Def Tech B,0,0,0,0,0
+35,Chaos Magic,1,0,5,0,1
+36,Sorcery,1,4,9,4,1
+37,Extra Advance 1,0,0,0,0,0
+38,Life Lore,1,2,7,2,1
+39,Iron Working,0,4,4,4,0
+40,Life Adept,1,2,7,2,1
+41,Life Mage,1,2,7,2,1
+42,Holy Warriors,0,0,0,0,0
+43,Literacy,0,3,3,3,0
+44,Life Wizard,1,2,7,2,1
+45,Life Master,1,2,7,2,1
+46,Map Making,0,1,1,1,0
+47,Masonry,0,4,4,4,0
+48,Chaos Lore,1,0,5,0,1
+49,Mathematics,0,3,3,3,0
+50,Chaos Adept,1,0,5,0,1
+51,Chaos Mage,1,0,5,0,1
+52,Chaos Wizard,1,0,5,0,1
+53,Chaos Master,1,0,5,0,1
+54,Monarchy,0,2,2,2,0
+55,Theology,0,2,2,2,0
+56,Mysticism,0,2,2,2,0
+57,Navigation,0,1,1,1,0
+58,Grand Mastery,0,0,0,0,0
+59,Sorcery Mage,1,4,9,4,1
+60,Philosophy,0,2,2,2,0
+61,Sorcery Wizard,1,4,9,4,1
+62,Sorcery Master,1,4,9,4,1
+63,Nature Lore,1,1,6,1,1
+64,Nature Adept,1,1,6,1,1
+65,Pottery,0,1,1,1,0
+66,Nature Mage,1,1,6,1,1
+67,Greater Enchantments,0,3,3,3,0
+68,Nature Wizard,1,1,6,1,1
+69,Nature Master,1,1,6,1,1
+70,Death Lore,1,3,8,3,1
+71,The Republic,0,2,2,2,0
+72,Death Adept,1,3,8,3,1
+73,Extra Advance 2,0,0,0,0,0
+74,Sanitation,0,1,1,1,0
+75,Seafaring,0,1,1,1,0
+76,Death Mage,1,3,8,3,1
+77,Death Wizard,1,3,8,3,1
+78,Death Master,1,3,8,3,1
+79,blah,0,4,4,4,0
+80,blah,0,3,3,3,0
+81,Leadership,0,0,0,0,0
+82,Sorcerous Lore,1,4,9,4,1
+83,Blah,0,3,3,3,0
+84,Trade,0,1,1,1,0
+85,University,0,3,3,3,0
+86,Warrior Code,0,0,0,0,0
+87,blah,0,4,4,4,0
+88,Writing,0,3,3,3,0
+89,Future Technology,3,3,18,3,3
+90,Forces of Nature,0,3,3,3,0
+91,Death Magic,1,3,8,3,1
+92,Sea Lore,0,3,3,3,0
+93,Nature Magic,1,1,6,1,1
+94,Sorcery Adept,1,4,9,4,1
+95,Artificing,0,3,3,3,0
+96,Lesser Fauna Lore,0,3,3,3,0
+97,Pyrotechnics,0,3,3,3,0
+98,Occult Studies,0,3,3,3,0
+99,Extra Advance 7,0,0,0,0,0

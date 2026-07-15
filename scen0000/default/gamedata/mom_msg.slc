@@ -1,0 +1,39 @@
+// MoM sphere event messages (Phase C). Included LAST in the entry-point chain, after
+// mom_city_effects.slc. Announces each faction's one-time sphere blessing as a popup.
+//
+// Design (source: the original MoM magic-system script at h:\games\ctp2\mom, which
+// popped a "You have chosen the X school of magic!" message on the school-defining
+// advance): the popup fires on the sphere's MAGIC ADVANCE only -- the milestone worth
+// announcing -- NOT on every burst-building completion (that stays quiet gold), so
+// there is no message spam and no flood risk.
+//
+// Plumbing is the base-verified Message(g.player, 'KEY') form + scen_str.txt keys (the
+// momjr NotifyPlayer/ShowMessageBox/inline-string forms are the UNVERIFIED kind and are
+// deliberately not reused). This is a SEPARATE GrantAdvance handler from the blessing-
+// grant handler in mom_city_effects.slc; CTP2 supports multiple handlers per event.
+//
+// No latch is needed: GrantAdvance for a given advance fires once per player, so each
+// blessing message shows once (unlike an unlatched BeginTurn Message, which floods the
+// queue -> 0xC0000005). The IsHumanPlayer guard keeps AI factions' blessings off the
+// human's screen -- you only see your own sphere's blessing.
+
+HandleEvent(GrantAdvance) 'MomSphereBlessingMessages' post {
+    int_t p;
+
+    p = player[0];
+    advance[0] = value[0];
+
+    if (advance[0] != 0 && IsHumanPlayer(p)) {
+        if (MomPlayerIsLife(p) && advance[0].type == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
+            Message(g.player, 'MomBlessLife');
+        } elseif (MomPlayerIsNature(p) && advance[0].type == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
+            Message(g.player, 'MomBlessNature');
+        } elseif (MomPlayerIsSorcery(p) && advance[0].type == AdvanceDB(ADVANCE_SORCERY)) {
+            Message(g.player, 'MomBlessSorcery');
+        } elseif (MomPlayerIsDeath(p) && advance[0].type == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
+            Message(g.player, 'MomBlessDeath');
+        } elseif (MomPlayerIsChaos(p) && advance[0].type == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
+            Message(g.player, 'MomBlessChaos');
+        }
+    }
+}

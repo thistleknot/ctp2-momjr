@@ -1,0 +1,11 @@
+key,field_type,ae_count,cradle_count,aom_count,uses,sample
+FirstFrame,kv,546,939,951,2436,"""ADVresearch.tga"""
+Gameplay,kv,546,939,951,2436,"""ADVANCE_ADVANCED_COMPOSITES_GAMEPLAY"""
+Historical,kv,546,939,951,2436,"""ADVANCE_ADVANCED_COMPOSITES_HISTORICAL"""
+Icon,kv,546,939,951,2436,"""ADVresearch.tga"""
+LargeIcon,kv,546,939,951,2436,""""""
+Movie,kv,546,939,951,2436,"""Agriculture.avi"""
+Prereq,kv,546,939,951,2436,"""ADVANCE_ADVANCED_COMPOSITES_PREREQ"""
+SmallIcon,kv,546,939,951,2436,""""""
+StatText,kv,546,939,959,2436,"""ADVANCE_ADVANCED_COMPOSITES_PREREQ"""
+Vari,kv,546,939,951,2436,"""ADVANCE_ADVANCED_COMPOSITES_STATISTICS"""

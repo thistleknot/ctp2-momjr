@@ -1,0 +1,82 @@
+// MoM sphere milestone events -- all five spheres (Phase B2b, fanned out from the
+// proven Life element in B2a). Kept separate from the turn loop; #included after
+// mom_turns.slc.
+//
+// Event-local API (base-verified, stock tut2_main.slc):
+//   GrantAdvance : player = player[0]; granted advance = value[0]
+//                  (advance[0] = value[0]; advance[0].type == AdvanceDB(...)).
+//   CreateBuilding: city = city[0]; built improvement = value[0]; player = city[0].owner
+//                  (building[0] = value[0]; building[0].type == BuildingDB(...)).
+//   AddGold takes the INTEGER player index. No latch needed: GrantAdvance fires once per
+//   advance per player; the CreateBuilding burst is a per-completion AddGold (no flood).
+//
+// Per-sphere mapping (derived from the mom_turns.slc B1 themes + DB-verified symbols;
+// CLERIC/SOLAR_HARNESS/ACADEMY from the old spec checklist do NOT exist and are omitted):
+//   Sphere   Advance        Blessing (building + unit)            Burst buildings (+30 each)
+//   Life     LIFE_MAGIC     TEMPLE   + GUARDIAN_SPIRIT            TEMPLE, CITY_WALLS, WIZARDS_FORTRESS
+//   Nature   NATURE_MAGIC   GRANARY  + WARBEARS                   GRANARY, PRIMAL_SOURCE, FANTASTIC_STABLE
+//   Sorcery  SORCERY        LIBRARY  + MAGE                       LIBRARY, BEACON_OF_WISDOM
+//   Death    DEATH_MAGIC    BARRACKS + ZOMBIES                    BARRACKS, MECHANICIANS_GUILD
+//   Chaos    CHAOS_MAGIC    random gold windfall (no bldg/unit)   -- (matches its B1 random-gold theme)
+
+HandleEvent(GrantAdvance) 'MomSphereAdvanceBlessings' post {
+    int_t p;
+
+    p = player[0];
+    advance[0] = value[0];
+
+    if (advance[0] != 0) {
+        if (MomPlayerIsLife(p) && advance[0].type == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
+            MomGrantSphereBuilding(p, BuildingDB(IMPROVE_TEMPLE));
+            MomSpawnSphereUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT));
+        } elseif (MomPlayerIsNature(p) && advance[0].type == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
+            MomGrantSphereBuilding(p, BuildingDB(IMPROVE_GRANARY));
+            MomSpawnSphereUnit(p, UnitDB(UNIT_WARBEARS));
+        } elseif (MomPlayerIsSorcery(p) && advance[0].type == AdvanceDB(ADVANCE_SORCERY)) {
+            MomGrantSphereBuilding(p, BuildingDB(IMPROVE_LIBRARY));
+            MomSpawnSphereUnit(p, UnitDB(UNIT_MAGE));
+        } elseif (MomPlayerIsDeath(p) && advance[0].type == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
+            MomGrantSphereBuilding(p, BuildingDB(IMPROVE_BARRACKS));
+            MomSpawnSphereUnit(p, UnitDB(UNIT_ZOMBIES));
+        } elseif (MomPlayerIsChaos(p) && advance[0].type == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
+            AddGold(p, 50 + Random(100));
+        }
+    }
+}
+
+HandleEvent(CreateBuilding) 'MomSphereCityEffects' post {
+    int_t p;
+    int_t burstGold;
+
+    p = city[0].owner;
+    building[0] = value[0];
+    burstGold = 0;
+
+    if (MomPlayerIsLife(p)) {
+        if (building[0].type == BuildingDB(IMPROVE_TEMPLE)
+        || building[0].type == BuildingDB(IMPROVE_CITY_WALLS)
+        || building[0].type == BuildingDB(IMPROVE_WIZARDS_FORTRESS)) {
+            burstGold = 30;
+        }
+    } elseif (MomPlayerIsNature(p)) {
+        if (building[0].type == BuildingDB(IMPROVE_GRANARY)
+        || building[0].type == BuildingDB(IMPROVE_PRIMAL_SOURCE)
+        || building[0].type == BuildingDB(IMPROVE_FANTASTIC_STABLE)) {
+            burstGold = 30;
+        }
+    } elseif (MomPlayerIsSorcery(p)) {
+        if (building[0].type == BuildingDB(IMPROVE_LIBRARY)
+        || building[0].type == BuildingDB(IMPROVE_BEACON_OF_WISDOM)) {
+            burstGold = 30;
+        }
+    } elseif (MomPlayerIsDeath(p)) {
+        if (building[0].type == BuildingDB(IMPROVE_BARRACKS)
+        || building[0].type == BuildingDB(IMPROVE_MECHANICIANS_GUILD)) {
+            burstGold = 30;
+        }
+    }
+
+    if (burstGold > 0) {
+        AddGold(p, burstGold);
+    }
+}

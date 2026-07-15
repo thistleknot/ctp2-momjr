@@ -1,0 +1,16 @@
+lane,domain,rule,match,threshold,result
+sprite,2,attack_ge,,35,SPRITE_GALLEY
+sprite,2,default,,,SPRITE_FIRE_TRIREME
+sprite,1,name,device,,SPRITE_CRUISE_MISSILE
+sprite,1,default,,,SPRITE_FIGHTER
+sprite,,name,archer|bow|elven,,SPRITE_LONGBOWMAN
+sprite,,name,cannon|steam,,SPRITE_CANNON
+sprite,,name,catapult,,SPRITE_CANNON
+sprite,,name,mammoth,,SPRITE_ELEPHANT_WARRIOR
+sprite,,name,cavalry|unicorn|paladin|horseman,,SPRITE_CAVALRY
+sprite,,name,peasant|settler,,SPRITE_SETTLER
+sprite,,attack_ge,,40,SPRITE_KNIGHT
+sprite,,attack_ge,,20,SPRITE_HOPLITE
+size,,name,giant|wyrm|dragon|behemoth|mammoth,,Large
+size,,hp_ge,,3,Medium
+size,,default,,,Small

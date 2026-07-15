@@ -1,0 +1,18 @@
+id,reason,note
+TILEIMP_ADVANCED_UNDERSEA_MINES,surrogate,Stock deep-ocean production surrogate retained for compatibility only; hidden because MoMJR has no direct tile-improvement counterpart for this CTP2 lane.
+TILEIMP_AIR_BASES,surrogate,Stock air-logistics tile improvement retained for compatibility only; hidden because MoMJR does not define an airbase tile-improvement lane.
+TILEIMP_AUTOMATED_FISHERIES,surrogate,Stock ocean-food surrogate retained for compatibility only; hidden because MoMJR does not define this fisheries upgrade lane.
+TILEIMP_DRILLING_PLATFORM,surrogate,Stock offshore-oil surrogate retained for compatibility only; hidden because MoMJR has no drilling-platform tile-improvement analogue.
+TILEIMP_FISHERIES,surrogate,Stock fisheries surrogate retained for compatibility only; hidden because MoMJR does not define this tile-improvement lane.
+TILEIMP_LISTENING_POSTS,surrogate,Stock detector tile improvement retained for compatibility only; hidden because MoMJR does not define this listening-post lane.
+TILEIMP_MAGLEV,surrogate,Stock transport upgrade retained only as a hidden residue; MoMJR uses the remapped Enchanted Road lane instead.
+TILEIMP_MEGA_MINES,surrogate,Stock late-industrial mining surrogate retained for compatibility only; hidden because MoMJR does not define this CTP2 mega-mine lane.
+TILEIMP_MEGA_UNDERSEA_MINES,surrogate,Stock deep-ocean production surrogate retained for compatibility only; hidden because MoMJR has no mega undersea-mine tile-improvement analogue.
+TILEIMP_PORT,surrogate,Stock ocean-port surrogate retained for compatibility only; hidden because MoMJR's Port is sourced from a city improvement rather than a tile-improvement lane.
+TILEIMP_RADAR_STATIONS,surrogate,Stock detector tile improvement retained for compatibility only; hidden because MoMJR does not define this radar-station lane.
+TILEIMP_SONAR_BUOYS,surrogate,Stock ocean-detector surrogate retained for compatibility only; hidden because MoMJR does not define this sonar-buoy lane.
+TILEIMP_UNDERSEA_MINES,surrogate,Stock undersea-mine surrogate retained for compatibility only; hidden because MoMJR has no direct tile-improvement counterpart for this CTP2 lane.
+TILEIMP_HYDROPONIC_FARMS,out_of_genre,
+TILEIMP_OUTLET_MALL,out_of_genre,
+TILEIMP_PROCESSING_TOWER,out_of_genre,
+TILEIMP_UNDERSEA_TUNNEL,out_of_genre,

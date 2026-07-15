@@ -1,0 +1,27 @@
+ctp2_ident,entity_type,civ2_source_bmp,civ2_cell_index,ctp2_output_tga,status,notes
+IDENT,UNIT / IMPROVE / WONDER / ADVANCE,"e.g., UNITS.BMP / ICONS.BMP","e.g., 1, 2, 3...","e.g., UPLG001.TGA",PENDING / CONVERTED / VERIFIED,"Any extraction quirks, padding, or alpha issues"
+UNIT_PEASANTS,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_ZOMBIES,UNIT,UNITS.BMP,1,SPRITE_ZOMBIES.tga,CONVERTED,"cell row0/col1; black bg; near-black->(16,16,16) preserves feet shadow; body-column centering; scale to 118px; v6 2026-07-03"
+UNIT_SPEARMEN,UNIT,UNITS.BMP,2,SPRITE_SPEARMEN.tga,CONVERTED,"cell row0/col2; black bg; near-black->(16,16,16) preserves feet shadow; body-column centering; scale to 118px; v6 2026-07-03"
+UNIT_SWORDSMEN,UNIT,UNITS.BMP,3,SPRITE_SWORDSMEN.tga,CONVERTED,"cell row0/col3; black bg; near-black->(16,16,16) preserves feet shadow; body-column centering; scale to 118px; v6 2026-07-03"
+UNIT_PHANTOM_WARRIORS,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_HELL_HOUNDS,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_WARBEARS,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_WARLOCK,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_ARIEL,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_JAFAR,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_RJAK,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_TAURON,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_SERENA,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_FREYA,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+UNIT_ALORRA,UNIT,UNITS.BMP,,,PENDING,Requires 1px black outline removal
+IMPROVE_WIZARD'S_FORTRESS,IMPROVE,ICONS.BMP,,,PENDING,
+IMPROVE_BARRACKS,IMPROVE,ICONS.BMP,,,PENDING,
+IMPROVE_GRANARY,IMPROVE,ICONS.BMP,,,PENDING,
+IMPROVE_TEMPLE,IMPROVE,ICONS.BMP,,,PENDING,
+IMPROVE_LIBRARY,IMPROVE,ICONS.BMP,,,PENDING,
+IMPROVE_COURTHOUSE,IMPROVE,ICONS.BMP,,,PENDING,
+IMPROVE_CITY_WALLS,IMPROVE,ICONS.BMP,,,PENDING,
+IMPROVE_AQUEDUCT,IMPROVE,ICONS.BMP,,,PENDING,
+IMPROVE_CATHEDRAL,IMPROVE,ICONS.BMP,,,PENDING,
+IMPROVE_UNIVERSITY,IMPROVE,ICONS.BMP,,,PENDING,

@@ -1,0 +1,2756 @@
+
+
+
+UNIT_ZOMBIES {
+   Description DESCRIPTION_UNIT_ZOMBIES
+   DefaultIcon ICON_UNIT_ZOMBIES
+   DefaultSprite SPRITE_ZOMBIES
+   Category UNIT_CATEGORY_ATTACK
+   Attack 10
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 460
+   PowerPoints 230
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_DEATH_LORE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_SPEARMEN {
+   Description DESCRIPTION_UNIT_SPEARMEN
+   DefaultIcon ICON_UNIT_SPEARMEN
+   DefaultSprite SPRITE_SPEARMEN
+   Category UNIT_CATEGORY_ATTACK
+   Attack 5
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 150
+   PowerPoints 100
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_WARRIOR_CODE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_SWORDSMEN {
+   Description DESCRIPTION_UNIT_SWORDSMEN
+   DefaultIcon ICON_UNIT_SWORDSMEN
+   DefaultSprite SPRITE_SWORDSMEN
+   Category UNIT_CATEGORY_ATTACK
+   Attack 10
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 190
+   PowerPoints 100
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_BRONZE_WORKING
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_PHANTOM_WARRIORS {
+   Description DESCRIPTION_UNIT_PHANTOM_WARRIORS
+   DefaultIcon ICON_UNIT_PHANTOM_WARRIORS
+   DefaultSprite SPRITE_PHANTOM_WARRIORS
+   Category UNIT_CATEGORY_ATTACK
+   Attack 15
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 460
+   PowerPoints 230
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_SORCEROUS_LORE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_HELL_HOUNDS {
+   Description DESCRIPTION_UNIT_HELL_HOUNDS
+   DefaultIcon ICON_UNIT_HELL_HOUNDS
+   DefaultSprite SPRITE_HELL_HOUNDS
+   Category UNIT_CATEGORY_ATTACK
+   Attack 20
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_CHAOS_LORE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_WARBEARS {
+   Description DESCRIPTION_UNIT_WARBEARS
+   DefaultIcon ICON_UNIT_WARBEARS
+   DefaultSprite SPRITE_WARBEARS
+   Category UNIT_CATEGORY_ATTACK
+   Attack 15
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 460
+   PowerPoints 230
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_NATURE_LORE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_WARLOCK {
+   Description DESCRIPTION_UNIT_WARLOCK
+   DefaultIcon ICON_UNIT_WARLOCK
+   DefaultSprite SPRITE_WARLOCK
+   Category UNIT_CATEGORY_ATTACK
+   Attack 60
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 440
+   PowerPoints 220
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_ALCHEMY
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_ARIEL {
+   Description DESCRIPTION_UNIT_ARIEL
+   DefaultIcon ICON_UNIT_ARIEL
+   DefaultSprite SPRITE_ARIEL
+   Category UNIT_CATEGORY_ATTACK
+   Attack 15
+   Defense 40
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 270
+   PowerPoints 135
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_JAFAR {
+   Description DESCRIPTION_UNIT_JAFAR
+   DefaultIcon ICON_UNIT_JAFAR
+   DefaultSprite SPRITE_JAFAR
+   Category UNIT_CATEGORY_ATTACK
+   Attack 30
+   Defense 20
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 350
+   PowerPoints 175
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 400
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_RJAK {
+   Description DESCRIPTION_UNIT_RJAK
+   DefaultIcon ICON_UNIT_RJAK
+   DefaultSprite SPRITE_RJAK
+   Category UNIT_CATEGORY_ATTACK
+   Attack 30
+   Defense 30
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 430
+   PowerPoints 215
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_TAURON {
+   Description DESCRIPTION_UNIT_TAURON
+   DefaultIcon ICON_UNIT_TAURON
+   DefaultSprite SPRITE_TAURON
+   Category UNIT_CATEGORY_ATTACK
+   Attack 40
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 3
+   Armor 1
+   MaxHP 10
+   ShieldCost 310
+   PowerPoints 155
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_SERENA {
+   Description DESCRIPTION_UNIT_SERENA
+   DefaultIcon ICON_UNIT_SERENA
+   DefaultSprite SPRITE_SERENA
+   Category UNIT_CATEGORY_ATTACK
+   Attack 15
+   Defense 20
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 350
+   PowerPoints 175
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_FREYA {
+   Description DESCRIPTION_UNIT_FREYA
+   DefaultIcon ICON_UNIT_FREYA
+   DefaultSprite SPRITE_FREYA
+   Category UNIT_CATEGORY_ATTACK
+   Attack 20
+   Defense 25
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 270
+   PowerPoints 135
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 300
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_ALORRA {
+   Description DESCRIPTION_UNIT_ALORRA
+   DefaultIcon ICON_UNIT_ALORRA
+   DefaultSprite SPRITE_ALORRA
+   Category UNIT_CATEGORY_ATTACK
+   Attack 30
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 500
+   PowerPoints 250
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_CENTAURS {
+   Description DESCRIPTION_UNIT_CENTAURS
+   DefaultIcon ICON_UNIT_CENTAURS
+   DefaultSprite SPRITE_CENTAURS
+   Category UNIT_CATEGORY_ATTACK
+   Attack 10
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 190
+   PowerPoints 100
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_SHAMANISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_ELVEN_ARCHERS {
+   Description DESCRIPTION_UNIT_ELVEN_ARCHERS
+   DefaultIcon ICON_UNIT_ELVEN_ARCHERS
+   DefaultSprite SPRITE_ELVEN_ARCHERS
+   Category UNIT_CATEGORY_ATTACK
+   Attack 15
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 230
+   PowerPoints 115
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_PANTHEISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_MAGE {
+   Description DESCRIPTION_UNIT_MAGE
+   DefaultIcon ICON_UNIT_MAGE
+   DefaultSprite SPRITE_MAGE
+   Category UNIT_CATEGORY_ATTACK
+   Attack 15
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 270
+   PowerPoints 135
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_OCCULT_STUDIES
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_WYVERN {
+   Description DESCRIPTION_UNIT_WYVERN
+   DefaultIcon ICON_UNIT_WYVERN
+   DefaultSprite SPRITE_WYVERN
+   Category UNIT_CATEGORY_AERIAL
+   Attack 40
+   Defense 20
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 580
+   PowerPoints 290
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 300
+   VisionRange 2
+   EnableAdvance ADVANCE_GREATER_FAUNA_LORE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_KNIGHTS {
+   Description DESCRIPTION_UNIT_KNIGHTS
+   DefaultIcon ICON_UNIT_KNIGHTS
+   DefaultSprite SPRITE_KNIGHTS
+   Category UNIT_CATEGORY_ATTACK
+   Attack 20
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 270
+   PowerPoints 135
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_CHIVALRY
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_PALADINS {
+   Description DESCRIPTION_UNIT_PALADINS
+   DefaultIcon ICON_UNIT_PALADINS
+   DefaultSprite SPRITE_PALADINS
+   Category UNIT_CATEGORY_ATTACK
+   Attack 30
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 310
+   PowerPoints 155
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_HOLY_WARRIORS
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_UNICORN {
+   Description DESCRIPTION_UNIT_UNICORN
+   DefaultIcon ICON_UNIT_UNICORN
+   DefaultSprite SPRITE_UNICORN
+   Category UNIT_CATEGORY_ATTACK
+   Attack 15
+   Defense 30
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 300
+   VisionRange 2
+   EnableAdvance ADVANCE_LIFE_ADEPT
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_IRON_GOLEM {
+   Description DESCRIPTION_UNIT_IRON_GOLEM
+   DefaultIcon ICON_UNIT_IRON_GOLEM
+   DefaultSprite SPRITE_IRON_GOLEM
+   Category UNIT_CATEGORY_ATTACK
+   Attack 40
+   Defense 25
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 460
+   PowerPoints 230
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_THAUMATURGY
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Medium
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_CATAPULT {
+   Description DESCRIPTION_UNIT_CATAPULT
+   DefaultIcon ICON_UNIT_CATAPULT
+   DefaultSprite SPRITE_CATAPULT
+   Category UNIT_CATEGORY_ATTACK
+   Attack 30
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 270
+   PowerPoints 135
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_MATHEMATICS
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_STEAM_CANNON {
+   Description DESCRIPTION_UNIT_STEAM_CANNON
+   DefaultIcon ICON_UNIT_STEAM_CANNON
+   DefaultSprite SPRITE_STEAM_CANNON
+   Category UNIT_CATEGORY_ATTACK
+   Attack 50
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 580
+   PowerPoints 290
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_ARTIFICING
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_EFREET {
+   Description DESCRIPTION_UNIT_EFREET
+   DefaultIcon ICON_UNIT_EFREET
+   DefaultSprite SPRITE_EFREET
+   Category UNIT_CATEGORY_ATTACK
+   Attack 35
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_CHAOS_MAGE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_WRAITH {
+   Description DESCRIPTION_UNIT_WRAITH
+   DefaultIcon ICON_UNIT_WRAITH
+   DefaultSprite SPRITE_WRAITH
+   Category UNIT_CATEGORY_ATTACK
+   Attack 20
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_DEATH_ADEPT
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_GRIFFIN {
+   Description DESCRIPTION_UNIT_GRIFFIN
+   DefaultIcon ICON_UNIT_GRIFFIN
+   DefaultSprite SPRITE_GRIFFIN
+   Category UNIT_CATEGORY_AERIAL
+   Attack 20
+   Defense 20
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 350
+   PowerPoints 175
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 400
+   VisionRange 2
+   EnableAdvance ADVANCE_LESSER_FAUNA_LORE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_PEGASUS {
+   Description DESCRIPTION_UNIT_PEGASUS
+   DefaultIcon ICON_UNIT_PEGASUS
+   DefaultSprite SPRITE_PEGASUS
+   Category UNIT_CATEGORY_AERIAL
+   Attack 25
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 500
+   VisionRange 2
+   EnableAdvance ADVANCE_LIFE_MAGE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_GALLEY {
+   Description DESCRIPTION_UNIT_GALLEY
+   DefaultIcon ICON_UNIT_GALLEY
+   DefaultSprite SPRITE_GALLEY
+   Category UNIT_CATEGORY_NAVAL
+   Attack 5
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 270
+   PowerPoints 135
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 300
+   VisionRange 2
+   EnableAdvance ADVANCE_MAP_MAKING
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanPirate
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Sea
+   CanAttack: ShallowWater
+   CanSee: Standard
+   MovementType: Sea
+   MovementType: ShallowWater
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_WARSHIP {
+   Description DESCRIPTION_UNIT_WARSHIP
+   DefaultIcon ICON_UNIT_WARSHIP
+   DefaultSprite SPRITE_WARSHIP
+   Category UNIT_CATEGORY_NAVAL
+   Attack 35
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 430
+   PowerPoints 215
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 400
+   VisionRange 2
+   EnableAdvance ADVANCE_SEA_MASTERY
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanPirate
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Sea
+   CanAttack: ShallowWater
+   CanSee: Standard
+   MovementType: Sea
+   MovementType: ShallowWater
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_HYDRA {
+   Description DESCRIPTION_UNIT_HYDRA
+   DefaultIcon ICON_UNIT_HYDRA
+   DefaultSprite SPRITE_HYDRA
+   Category UNIT_CATEGORY_ATTACK
+   Attack 60
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 480
+   PowerPoints 240
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_CHAOS_MASTER
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Medium
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_AIRSHIP {
+   Description DESCRIPTION_UNIT_AIRSHIP
+   DefaultIcon ICON_UNIT_AIRSHIP
+   DefaultSprite SPRITE_AIRSHIP
+   Category UNIT_CATEGORY_AERIAL
+   Attack 25
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 270
+   PowerPoints 135
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 600
+   VisionRange 2
+   EnableAdvance ADVANCE_ARTIFICING
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_MINOTAUR {
+   Description DESCRIPTION_UNIT_MINOTAUR
+   DefaultIcon ICON_UNIT_MINOTAUR
+   DefaultSprite SPRITE_MINOTAUR
+   Category UNIT_CATEGORY_ATTACK
+   Attack 5
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 230
+   PowerPoints 115
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_WARRIOR_CODE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_WAR_TROLL {
+   Description DESCRIPTION_UNIT_WAR_TROLL
+   DefaultIcon ICON_UNIT_WAR_TROLL
+   DefaultSprite SPRITE_WAR_TROLL
+   Category UNIT_CATEGORY_ATTACK
+   Attack 35
+   Defense 25
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 390
+   PowerPoints 195
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_LEADERSHIP
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Medium
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_GARGOYLE {
+   Description DESCRIPTION_UNIT_GARGOYLE
+   DefaultIcon ICON_UNIT_GARGOYLE
+   DefaultSprite SPRITE_GARGOYLE
+   Category UNIT_CATEGORY_AERIAL
+   Attack 10
+   Defense 20
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_CHAOS_ADEPT
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_GUARDIAN_SPIRIT {
+   Description DESCRIPTION_UNIT_GUARDIAN_SPIRIT
+   DefaultIcon ICON_UNIT_GUARDIAN_SPIRIT
+   DefaultSprite SPRITE_GUARDIAN_SPIRIT
+   Category UNIT_CATEGORY_ATTACK
+   Attack 5
+   Defense 25
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 460
+   PowerPoints 230
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_LIFE_LORE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Medium
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_COCKATRICE {
+   Description DESCRIPTION_UNIT_COCKATRICE
+   DefaultIcon ICON_UNIT_COCKATRICE
+   DefaultSprite SPRITE_COCKATRICE
+   Category UNIT_CATEGORY_AERIAL
+   Attack 30
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 3
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_NATURE_ADEPT
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_SALAMANDER {
+   Description DESCRIPTION_UNIT_SALAMANDER
+   DefaultIcon ICON_UNIT_SALAMANDER
+   DefaultSprite SPRITE_SALAMANDER
+   Category UNIT_CATEGORY_ATTACK
+   Attack 50
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 500
+   PowerPoints 250
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_PYROTECHNICS
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_INFERNAL_DEVICE {
+   Description DESCRIPTION_UNIT_INFERNAL_DEVICE
+   DefaultIcon ICON_UNIT_INFERNAL_DEVICE
+   DefaultSprite SPRITE_INFERNAL_DEVICE
+   Category UNIT_CATEGORY_AERIAL
+   Attack 495
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 740
+   PowerPoints 370
+   ShieldHunger 3
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 1000
+   VisionRange 2
+   EnableAdvance ADVANCE_GRAND_MASTERY
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_MINION {
+   Description DESCRIPTION_UNIT_MINION
+   DefaultIcon ICON_UNIT_MINION
+   DefaultSprite SPRITE_MINION
+   Category UNIT_CATEGORY_ATTACK
+   Attack 0
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 230
+   PowerPoints 115
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_WRITING
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_DEMON {
+   Description DESCRIPTION_UNIT_DEMON
+   DefaultIcon ICON_UNIT_DEMON
+   DefaultSprite SPRITE_DEMON
+   Category UNIT_CATEGORY_AERIAL
+   Attack 20
+   Defense 25
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_DEATH_MAGE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_CARAVAN {
+   Description DESCRIPTION_UNIT_CARAVAN
+   DefaultIcon ICON_UNIT_CARAVAN
+   DefaultSprite SPRITE_CARAVAN
+   Category UNIT_CATEGORY_ATTACK
+   Attack 0
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 310
+   PowerPoints 155
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_TRADE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_WAR_MAMMOTH {
+   Description DESCRIPTION_UNIT_WAR_MAMMOTH
+   DefaultIcon ICON_UNIT_WAR_MAMMOTH
+   DefaultSprite SPRITE_WAR_MAMMOTH
+   Category UNIT_CATEGORY_ATTACK
+   Attack 50
+   Defense 25
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 430
+   PowerPoints 215
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_TACTICS
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Large
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_STORM_GIANT {
+   Description DESCRIPTION_UNIT_STORM_GIANT
+   DefaultIcon ICON_UNIT_STORM_GIANT
+   DefaultSprite SPRITE_STORM_GIANT
+   Category UNIT_CATEGORY_ATTACK
+   Attack 40
+   Defense 20
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_SORCERY_MAGE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Large
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_AIR_ELEMENTAL {
+   Description DESCRIPTION_UNIT_AIR_ELEMENTAL
+   DefaultIcon ICON_UNIT_AIR_ELEMENTAL
+   DefaultSprite SPRITE_AIR_ELEMENTAL
+   Category UNIT_CATEGORY_AERIAL
+   Attack 30
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 460
+   PowerPoints 230
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 800
+   VisionRange 2
+   EnableAdvance ADVANCE_SORCERY_ADEPT
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_STORM_DRAKE {
+   Description DESCRIPTION_UNIT_STORM_DRAKE
+   DefaultIcon ICON_UNIT_STORM_DRAKE
+   DefaultSprite SPRITE_STORM_DRAKE
+   Category UNIT_CATEGORY_AERIAL
+   Attack 60
+   Defense 30
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 480
+   PowerPoints 240
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 500
+   VisionRange 2
+   EnableAdvance ADVANCE_SORCERY_MASTER
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Medium
+   VisionClass: Standard
+}
+
+UNIT_WARRAX {
+   Description DESCRIPTION_UNIT_WARRAX
+   DefaultIcon ICON_UNIT_WARRAX
+   DefaultSprite SPRITE_WARRAX
+   Category UNIT_CATEGORY_ATTACK
+   Attack 40
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 580
+   PowerPoints 290
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_UNDEAD_DRAGON {
+   Description DESCRIPTION_UNIT_UNDEAD_DRAGON
+   DefaultIcon ICON_UNIT_UNDEAD_DRAGON
+   DefaultSprite SPRITE_UNDEAD_DRAGON
+   Category UNIT_CATEGORY_AERIAL
+   Attack 60
+   Defense 30
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 460
+   PowerPoints 230
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 300
+   VisionRange 2
+   EnableAdvance ADVANCE_DEATH_MASTER
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Large
+   VisionClass: Standard
+}
+
+UNIT_GREAT_WYRM {
+   Description DESCRIPTION_UNIT_GREAT_WYRM
+   DefaultIcon ICON_UNIT_GREAT_WYRM
+   DefaultSprite SPRITE_GREAT_WYRM
+   Category UNIT_CATEGORY_ATTACK
+   Attack 75
+   Defense 45
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 480
+   PowerPoints 240
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_NATURE_MASTER
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Large
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_BEHEMOTH {
+   Description DESCRIPTION_UNIT_BEHEMOTH
+   DefaultIcon ICON_UNIT_BEHEMOTH
+   DefaultSprite SPRITE_BEHEMOTH
+   Category UNIT_CATEGORY_ATTACK
+   Attack 25
+   Defense 20
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_NATURE_MAGE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Large
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_MALLEUS {
+   Description DESCRIPTION_UNIT_MALLEUS
+   DefaultIcon ICON_UNIT_MALLEUS
+   DefaultSprite SPRITE_MALLEUS
+   Category UNIT_CATEGORY_ATTACK
+   Attack 40
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 500
+   PowerPoints 250
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_MERFOLK {
+   Description DESCRIPTION_UNIT_MERFOLK
+   DefaultIcon ICON_UNIT_MERFOLK
+   DefaultSprite SPRITE_MERFOLK
+   Category UNIT_CATEGORY_NAVAL
+   Attack 20
+   Defense 15
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 310
+   PowerPoints 155
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 400
+   VisionRange 2
+   EnableAdvance ADVANCE_SEA_LORE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanPirate
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Sea
+   CanAttack: ShallowWater
+   CanSee: Standard
+   MovementType: Sea
+   MovementType: ShallowWater
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_ARCHANGEL {
+   Description DESCRIPTION_UNIT_ARCHANGEL
+   DefaultIcon ICON_UNIT_ARCHANGEL
+   DefaultSprite SPRITE_ARCHANGEL
+   Category UNIT_CATEGORY_AERIAL
+   Attack 60
+   Defense 60
+   ZBRangeAttack 0
+   Firepower 2
+   Armor 1
+   MaxHP 10
+   ShieldCost 480
+   PowerPoints 240
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 400
+   VisionRange 2
+   EnableAdvance ADVANCE_LIFE_MASTER
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Small
+   VisionClass: Standard
+}
+
+UNIT_SETTLER {
+   Description DESCRIPTION_UNIT_SETTLER
+   DefaultIcon ICON_UNIT_SETTLER
+   DefaultSprite SPRITE_SETTLER
+   Category UNIT_CATEGORY_SETTLER
+   Attack 0
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 740
+   PowerPoints 400
+   ShieldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 1
+   ObsoleteAdvance ADVANCE_ADV_URBAN_PLANNING
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   NoZoc
+   SettleCityType UNIT_CITY
+   SettleSize 1
+   CanBeExpelled
+   CantCaptureCity
+   DeathEffectsHappy
+   BuildingRemovesAPop
+   OnlyBuildOne
+   IsSpecialForces
+   Civilian
+   CantBuild
+   GLHidden
+   InvisibleForGlobeSat
+   SoundSelect1 SOUND_SELECT1_SETTLER
+   SoundSelect2 SOUND_SELECT2_SETTLER
+   SoundMove SOUND_MOVE_SETTLER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_SETTLER
+   SoundCantMove SOUND_CANTMOVE_SETTLER
+   SoundAttack SOUND_ATTACK_SETTLER
+   SoundWork SOUND_WORK_SETTLER
+   SoundVictory SOUND_VICTORY_SETTLER
+   SoundDeath SOUND_DEATH_SETTLER
+
+   CanSee: Standard
+   CanSee: Stealth
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Stealth
+}
+
+UNIT_PEASANTS {
+   Description DESCRIPTION_UNIT_PEASANTS
+   DefaultIcon ICON_UNIT_PEASANTS
+   DefaultSprite SPRITE_PEASANTS
+   Category UNIT_CATEGORY_SETTLER
+   Attack 0
+   Defense 5
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 270
+   PowerPoints 135
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_WARRIOR_CODE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   NoZoc
+   SettleCityType UNIT_CITY
+   SettleSize 1
+   CanBeExpelled
+   CantCaptureCity
+   DeathEffectsHappy
+   BuildingRemovesAPop
+   OnlyBuildOne
+   IsSpecialForces
+   Civilian
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Settle: Land
+   Settle: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_CITY {
+   Description DESCRIPTION_UNIT_CITY
+   DefaultIcon ICON_UNIT_CITY
+   DefaultSprite SPRITE_CITY
+   Category UNIT_CATEGORY_GENERIC
+   Attack 0
+   Defense 0
+   ZBRangeAttack 0
+   Firepower 0
+   Armor 0
+   MaxHP 0
+   ShieldCost 0
+   PowerPoints 1000
+   ShieldHunger 0
+   FoodHunger 0
+   MaxMovePoints 0
+   VisionRange 2
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   HasPopAndCanBuild
+   CantBuild
+   CityGrowthCoefficient 1
+   NoIndex
+   GLHidden
+   CantCaptureCity
+   NeedsNoSupport
+   SoundSelect1 SOUND_SELECT1_CITY
+   SoundSelect2 SOUND_SELECT2_CITY
+   SoundMove SOUND_MOVE_CITY
+   SoundAcknowledge SOUND_ACKNOWLEDGE_CITY
+   SoundCantMove SOUND_CANTMOVE_CITY
+   SoundAttack SOUND_ATTACK_CITY
+   SoundWork SOUND_WORK_CITY
+   SoundVictory SOUND_VICTORY_CITY
+   SoundDeath SOUND_DEATH_CITY
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Medium
+   VisionClass: Standard
+
+   Revolution {
+      Sound SOUND_ID_REVOLUTION
+      Effect SPECEFFECT_REVOLUTION
+   }
+}
+
+

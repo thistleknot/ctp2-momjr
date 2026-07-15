@@ -1,0 +1,10 @@
+// MoM endgame / victory condition. CTP2 falls back to the stock EndGameObjects
+// when this file is absent; that stock file requires base wonders/buildings the
+// MoM dimension set does not define. This MoM-authored file references only a
+// wonder that exists in the MoM scenario.
+
+ENDGAME_MOM_MASTERY {
+    Wonder WONDER_RUNE_OF_RULERSHIP
+
+    TurnsToActivate 10
+}

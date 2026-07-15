@@ -1,0 +1,83 @@
+{
+  "mod_pairs": [
+    {
+      "id": "civ2-momjr",
+      "parser": "civ2",
+      "baseline": "H:\\Games\\civ2",
+      "mod": "H:\\Games\\civ2\\MOMJR\\MOMJR",
+      "notes": "CIV2 vanilla vs MoM Junior mod"
+    },
+    {
+      "id": "ctp2-ae-mom",
+      "parser": "ctp2",
+      "baseline": "H:\\Program Files(x86)\\Activision\\Call To Power 2\\ctp2_data\\default\\gamedata",
+      "mod": "H:\\Program Files(x86)\\Activision\\Call To Power 2\\Scenarios\\mom\\scen0000\\default\\gamedata",
+      "notes": "CTP2 AE baseline vs MoM CTP2 port (gamedata layer only)"
+    },
+    {
+      "id": "ctp2-ae-mom-english",
+      "parser": "ctp2",
+      "baseline": "H:\\Program Files(x86)\\Activision\\Call To Power 2\\ctp2_data\\english\\gamedata",
+      "mod": "H:\\Program Files(x86)\\Activision\\Call To Power 2\\Scenarios\\mom\\scen0000\\english\\gamedata",
+      "notes": "CTP2 AE vs MoM: English strings and Great Library"
+    },
+    {
+      "id": "ctp2-ae-cradle",
+      "parser": "ctp2",
+      "baseline": "H:\\Program Files(x86)\\Activision\\Call To Power 2\\ctp2_data\\default\\gamedata",
+      "mod": "H:\\Games\\ctp2\\Cradle of Civilization-20260424T030028Z-3-001\\Cradle of Civilization",
+      "notes": "CTP2 AE vs Cradle of Civilization mod (verify path after zip extract)"
+    },
+    {
+      "id": "ctp2-ae-aom",
+      "parser": "ctp2",
+      "baseline": "H:\\Program Files(x86)\\Activision\\Call To Power 2\\ctp2_data\\default\\gamedata",
+      "mod": "H:\\Games\\ctp2\\Ages of Man-20260424T030047Z-3-001\\Ages of Man",
+      "notes": "CTP2 AE vs Ages of Man mod (verify path after zip extract)"
+    }
+  ],
+  "cross_game_map": [
+    {
+      "civ2_section": "@UNITS",
+      "ctp2_files": ["gamedata/Units.txt", "gamedata/uniticon.txt", "english/gamedata/gl_str.txt", "english/gamedata/Great_Library.txt"],
+      "entity_type": "unit",
+      "notes": "One CIV2 @UNITS row → one Units.txt block + icon + strings + GL"
+    },
+    {
+      "civ2_section": "@IMPROVE",
+      "ctp2_files": ["gamedata/buildings.txt", "gamedata/improveicon.txt", "gamedata/uniticon.txt", "english/gamedata/gl_str.txt", "english/gamedata/Great_Library.txt"],
+      "entity_type": "improvement",
+      "notes": "CIV2 @IMPROVE slots 0-39 map to improvements; 40+ are wonders"
+    },
+    {
+      "civ2_section": "@WONDER",
+      "ctp2_files": ["gamedata/Wonder.txt", "gamedata/wondericon.txt", "gamedata/uniticon.txt", "english/gamedata/gl_str.txt", "english/gamedata/Great_Library.txt"],
+      "entity_type": "wonder",
+      "notes": "CIV2 wonders embedded in @IMPROVE; CTP2 has separate Wonder.txt"
+    },
+    {
+      "civ2_section": "@ADVANCE",
+      "ctp2_files": ["gamedata/Advance.txt", "gamedata/advanceicon.txt", "gamedata/uniticon.txt", "english/gamedata/gl_str.txt", "english/gamedata/Great_Library.txt"],
+      "entity_type": "advance",
+      "notes": "CIV2 @ADVANCE rows → CTP2 Advance.txt blocks; icon entry mandatory"
+    },
+    {
+      "civ2_section": "@TERRAIN",
+      "ctp2_files": ["gamedata/terrain.txt", "gamedata/terrainicon.txt"],
+      "entity_type": "terrain",
+      "notes": "Terrain type definitions"
+    },
+    {
+      "civ2_section": "@GOVERNMENTS",
+      "ctp2_files": ["gamedata/govern.txt", "gamedata/governicon.txt"],
+      "entity_type": "government",
+      "notes": "Government type definitions"
+    },
+    {
+      "civ2_section": "PEDIA",
+      "ctp2_files": ["english/gamedata/Great_Library.txt", "english/gamedata/WAW_Great_Library.txt"],
+      "entity_type": "gl_entry",
+      "notes": "Civilopedia text entries → Great Library sections"
+    }
+  ]
+}

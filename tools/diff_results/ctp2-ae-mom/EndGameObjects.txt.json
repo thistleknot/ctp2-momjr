@@ -1,0 +1,206 @@
+{
+  "status": "modified",
+  "rel": "EndGameObjects.txt",
+  "parser": "ctp2",
+  "summary": {
+    "blocks_added": 0,
+    "blocks_removed": 3,
+    "blocks_modified": 2
+  },
+  "blocks_added": [],
+  "blocks_added_data": {},
+  "blocks_removed": [
+    "ENDGAME_GAIA_COMPUTER",
+    "ENDGAME_GAIA_CONTROLLER_CORE",
+    "ENDGAME_POWER_SATELLITE"
+  ],
+  "blocks_modified": [
+    {
+      "block_id": "ENDGAME_PROCESSING_TOWER",
+      "fields_added": [],
+      "fields_removed": [
+        [
+          "flag",
+          "are",
+          ""
+        ],
+        [
+          "flag",
+          "area",
+          ""
+        ],
+        [
+          "flag",
+          "built",
+          ""
+        ],
+        [
+          "flag",
+          "covered",
+          ""
+        ],
+        [
+          "flag",
+          "map",
+          ""
+        ],
+        [
+          "flag",
+          "max",
+          ""
+        ],
+        [
+          "flag",
+          "min",
+          ""
+        ],
+        [
+          "flag",
+          "need",
+          ""
+        ],
+        [
+          "flag",
+          "of",
+          ""
+        ],
+        [
+          "flag",
+          "power",
+          ""
+        ],
+        [
+          "flag",
+          "radius",
+          ""
+        ],
+        [
+          "flag",
+          "sources",
+          ""
+        ],
+        [
+          "flag",
+          "the",
+          ""
+        ],
+        [
+          "flag",
+          "to",
+          ""
+        ],
+        [
+          "flag",
+          "use",
+          ""
+        ],
+        [
+          "flag",
+          "when",
+          ""
+        ],
+        [
+          "kv",
+          "PowerSource",
+          "ENDGAME_POWER_SATELLITE"
+        ],
+        [
+          "kv",
+          "have",
+          "60%"
+        ]
+      ]
+    },
+    {
+      "block_id": "ENDGAME_WORLD_UNION",
+      "fields_added": [],
+      "fields_removed": [
+        [
+          "flag",
+          "alliance",
+          ""
+        ],
+        [
+          "flag",
+          "before",
+          ""
+        ],
+        [
+          "flag",
+          "complete",
+          ""
+        ],
+        [
+          "flag",
+          "in",
+          ""
+        ],
+        [
+          "flag",
+          "is",
+          ""
+        ],
+        [
+          "flag",
+          "need",
+          ""
+        ],
+        [
+          "flag",
+          "of",
+          ""
+        ],
+        [
+          "flag",
+          "our",
+          ""
+        ],
+        [
+          "flag",
+          "population",
+          ""
+        ],
+        [
+          "flag",
+          "the",
+          ""
+        ],
+        [
+          "flag",
+          "to",
+          ""
+        ],
+        [
+          "flag",
+          "turns",
+          ""
+        ],
+        [
+          "flag",
+          "union",
+          ""
+        ],
+        [
+          "flag",
+          "world",
+          ""
+        ],
+        [
+          "flag",
+          "worlds",
+          ""
+        ],
+        [
+          "kv",
+          "Wonder",
+          "WONDER_WORLD_COUNCIL"
+        ],
+        [
+          "kv",
+          "have",
+          "100%"
+        ]
+      ]
+    }
+  ]
+}

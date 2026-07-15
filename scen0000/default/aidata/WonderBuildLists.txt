@@ -1,0 +1,34 @@
+#----------------------------------------------------------------------------
+#
+# MoM scenario override -- do not edit ctp2_data version for scenario changes.
+# Sync this file whenever the scenario wonder lane changes.
+#
+# The current MOMJR translation owns a 28-entry WonderDB lane. Keep these lists
+# empty so the engine does not fall back to stock aidata wonder references.
+#
+#----------------------------------------------------------------------------
+
+# 7
+
+WONDER_BUILD_LIST_HAPPINESS {
+}
+
+WONDER_BUILD_LIST_GROWTH {
+}
+
+WONDER_BUILD_LIST_PRODUCTION {
+}
+
+WONDER_BUILD_LIST_GOLD {
+}
+
+WONDER_BUILD_LIST_OFFENSE {
+}
+
+WONDER_BUILD_LIST_DEFENSE {
+}
+
+WONDER_BUILD_LIST_SCIENCE {
+}
+
+### ALL WONDERS DONE ###

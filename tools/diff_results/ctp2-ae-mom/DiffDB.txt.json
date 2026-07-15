@@ -1,0 +1,14 @@
+{
+  "status": "modified",
+  "rel": "DiffDB.txt",
+  "parser": "ctp2",
+  "summary": {
+    "blocks_added": 0,
+    "blocks_removed": 0,
+    "blocks_modified": 0
+  },
+  "blocks_added": [],
+  "blocks_added_data": {},
+  "blocks_removed": [],
+  "blocks_modified": []
+}

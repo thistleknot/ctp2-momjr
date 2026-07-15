@@ -1,0 +1,11 @@
+[
+  {"do": "wait", "ms": 90000},
+  {"do": "wait_stable", "ms": 15000},
+  {"do": "shot", "name": "before_click"},
+  {"do": "click", "x": 516, "y": 734},
+  {"do": "wait", "ms": 4000},
+  {"do": "shot", "name": "after_gl_click"},
+  {"do": "click", "x": 656, "y": 610},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "after_empire_tab"}
+]

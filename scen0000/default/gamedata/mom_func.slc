@@ -1,0 +1,158 @@
+// MoM sphere helpers -- all five spheres (Phase B1b, fanned out from the proven
+// Life element in B1a).
+//
+// SLIC API (base-verified against ctp2.map builtins + reference scenarios):
+//   - faction check: NUMERIC player index. TRIBES_* are civilisation-DB record names,
+//     NOT SLIC symbols -- SLIC cannot resolve them ("Symbol TRIBES_LIFE is undefined").
+//     Seating convention: player N = civ N (Life 1, Nature 2, Sorcery 3, Death 4,
+//     Chaos 5), matching the reference-scenario idiom `player[0] == 1`.
+//   - iterate a player's cities: GetCityByIndex(player[p], i, tmpCity) guarded by
+//     CityIsValid(tmpCity).
+//   - membership: CityHasBuilding(city, BuildingDB(...)) -- a BuildingDB() reference,
+//     NOT a quoted string.
+//   Helpers take int_t p (a player index); callers pass the event-local player[0].
+
+int_f MomPlayerIsLife(int_t p)
+{
+    // Player 1 == Tribes of Life (civ #1). Numeric index, not TRIBES_LIFE (undefined in SLIC).
+    if (p == 1) {
+        return 1;
+    }
+    return 0;
+}
+
+int_f MomPlayerIsNature(int_t p)
+{
+    if (p == 2) {
+        return 1;
+    }
+    return 0;
+}
+
+int_f MomPlayerIsSorcery(int_t p)
+{
+    if (p == 3) {
+        return 1;
+    }
+    return 0;
+}
+
+int_f MomPlayerIsDeath(int_t p)
+{
+    if (p == 4) {
+        return 1;
+    }
+    return 0;
+}
+
+int_f MomPlayerIsChaos(int_t p)
+{
+    if (p == 5) {
+        return 1;
+    }
+    return 0;
+}
+
+int_f MomCountLifeBlessings(int_t p)
+{
+    int_t i;
+    int_t blessingCount;
+    city_t tmpCity;
+
+    blessingCount = 0;
+    for (i = 0; i < player[p].cities; i = i + 1) {
+        GetCityByIndex(player[p], i, tmpCity);
+        if (CityIsValid(tmpCity)) {
+            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_TEMPLE))) {
+                blessingCount = blessingCount + 1;
+            }
+            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_CITY_WALLS))) {
+                blessingCount = blessingCount + 1;
+            }
+            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_WIZARDS_FORTRESS))) {
+                blessingCount = blessingCount + 1;
+            }
+        }
+    }
+    return blessingCount;
+}
+
+int_f MomCountNatureFoci(int_t p)
+{
+    int_t i;
+    int_t focusCount;
+    city_t tmpCity;
+
+    // NOTE: the original design also counted Gaia's Shrine, but the fugly fix made it a
+    // WONDER (removed from buildings.txt), so it is no longer a city improvement. Dropped
+    // here to keep only verified improvement refs; it could be re-added later via a
+    // CityHasWonder/WonderDB check if that focus is wanted.
+    focusCount = 0;
+    for (i = 0; i < player[p].cities; i = i + 1) {
+        GetCityByIndex(player[p], i, tmpCity);
+        if (CityIsValid(tmpCity)) {
+            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_GRANARY))) {
+                focusCount = focusCount + 1;
+            }
+            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_PRIMAL_SOURCE))) {
+                focusCount = focusCount + 2;
+            }
+            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_FANTASTIC_STABLE))) {
+                focusCount = focusCount + 1;
+            }
+        }
+    }
+    return focusCount;
+}
+
+int_f MomCountSorceryFoci(int_t p)
+{
+    int_t i;
+    int_t focusCount;
+    city_t tmpCity;
+
+    focusCount = 0;
+    for (i = 0; i < player[p].cities; i = i + 1) {
+        GetCityByIndex(player[p], i, tmpCity);
+        if (CityIsValid(tmpCity)) {
+            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_LIBRARY))) {
+                focusCount = focusCount + 1;
+            }
+            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_BEACON_OF_WISDOM))) {
+                focusCount = focusCount + 2;
+            }
+        }
+    }
+    return focusCount;
+}
+
+// --- Milestone-event helpers (Phase B2) ---
+// Grant a one-time blessing building in the player's first city (if absent), and spawn
+// a sphere unit there. CreateUnit/CreateBuilding take base-verified forms: CreateUnit's
+// first arg is the INTEGER player index (NOT player[p]); membership uses BuildingDB().
+// Both are generic over the DB reference so every sphere reuses one proven code path
+// (fanned out from the Life element in B2a: Life passed IMPROVE_TEMPLE / UNIT_GUARDIAN_SPIRIT).
+
+void_f MomGrantSphereBuilding(int_t p, int_t buildingType)
+{
+    city_t tmpCity;
+
+    if (player[p].cities) {
+        GetCityByIndex(player[p], 0, tmpCity);
+        if (CityIsValid(tmpCity) && !CityHasBuilding(tmpCity, buildingType)) {
+            CreateBuilding(tmpCity, buildingType);
+        }
+    }
+}
+
+void_f MomSpawnSphereUnit(int_t p, int_t unitType)
+{
+    city_t tmpCity;
+
+    if (player[p].cities) {
+        GetCityByIndex(player[p], 0, tmpCity);
+        if (CityIsValid(tmpCity)) {
+            CreateUnit(p, unitType, tmpCity.location, 1);
+        }
+    }
+}

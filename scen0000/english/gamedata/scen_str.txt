@@ -1,0 +1,21 @@
+#----------------------------------------------------------------------------
+#
+# Project      : Call To Power 2 -- Master of Magic
+# File type    : String text file
+# Description  : MoM scenario strings (English)
+#
+#----------------------------------------------------------------------------
+
+MomSlicAlive		"Master of Magic: sphere-magic SLIC layer online."
+
+# Phase C -- sphere blessing popups (fired once when a faction researches its magic
+# advance). Voice adapted from the original MoM magic-system script (h:\games\ctp2\mom).
+MomBlessLife		"The Life sphere blesses your realm. A Temple rises in your capital, and a Guardian Spirit manifests to watch over your people."
+MomBlessNature		"Gaia's magic quickens your land. A Granary swells with plenty, and War Bears rally to your banner."
+MomBlessSorcery		"The arcane secrets of Sorcery are yours. A Library is founded, and a Mage enters your service."
+MomBlessDeath		"The Death sphere answers your call. A Barracks is raised, and the risen dead march at your command."
+MomBlessChaos		"Chaos magic floods your coffers with an unpredictable windfall of gold. Fortune favors the mad."
+
+# M1 magic-power pool -- dynamic numbers via {var} interpolation of the file-scope arrays
+# (index = MomMagicMsgP, set immediately before the Message). NOT string concatenation.
+MomMagicPower		"Magic Power: {MomMagicCurDisp} / {MomMagicMaxDisp}  (+{MomMagicGenDisp} per turn)"

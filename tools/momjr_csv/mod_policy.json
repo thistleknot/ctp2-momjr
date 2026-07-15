@@ -1,0 +1,117 @@
+{
+  "start_government_advance": "ADVANCE_MONARCHY",
+  "start_guaranteed_advances": [
+    "ADVANCE_MONARCHY",
+    "ADVANCE_WARRIOR_CODE"
+  ],
+  "epoch_age_map": {
+    "0": "AGE_ONE",
+    "1": "AGE_TWO",
+    "2": "AGE_THREE",
+    "3": "AGE_THREE"
+  },
+  "retire_sentinel_prefix": "X",
+  "retire_sentinel_obsolete_advance": "ADVANCE_WARRIOR_CODE",
+  "advance_cost_scaling": {
+    "weight_min": 2,
+    "weight_max": 62,
+    "prereq_factor": 0.15,
+    "round_to": 5
+  },
+  "branch_fallback_weights": {
+    "0": 2,
+    "1": 10,
+    "2": 7,
+    "3": 44,
+    "4": 56
+  },
+  "mod_display_name": "Master of Magic",
+  "unit_stat_scaling": {
+    "attack_mult": 5,
+    "defense_mult": 5,
+    "defense_min": 5,
+    "shield_cost_mult": 100,
+    "shield_hunger_div": 5,
+    "shield_hunger_min": 1,
+    "hp": 10,
+    "firepower_min": 1,
+    "default_advance": "ADVANCE_WARRIOR_CODE",
+    "air_sound_set": "FIGHTER",
+    "land_sound_set": "WARRIOR"
+  },
+  "settler_category_units": [
+    "Peasants"
+  ],
+  "improvement_cost_mult": 100,
+  "improvement_merge": {
+    "fallback_advance": "ADVANCE_ALPHABET",
+    "prereq_remap": {
+      "ADVANCE_ENGINEERING": "ADVANCE_CONSTRUCTION",
+      "ADVANCE_COMMUNE_WITH_GODS": "ADVANCE_THEOLOGY"
+    }
+  },
+  "building_ref_fallback": "IMPROVE_GRANARY",
+  "unit_roles": {
+    "ranged": [
+      "UNIT_CATAPULT",
+      "UNIT_STEAM_CANNON",
+      "UNIT_MAGE",
+      "UNIT_WARLOCK",
+      "UNIT_INFERNAL_DEVICE"
+    ],
+    "freight": [
+      "UNIT_CARAVAN"
+    ],
+    "land_settlers": [
+      "UNIT_PEASANTS"
+    ],
+    "sea_transports": [
+      "UNIT_GALLEY",
+      "UNIT_WARSHIP"
+    ],
+    "air_transports": [
+      "UNIT_AIRSHIP"
+    ]
+  },
+  "icon_bad_tokens": [
+    "\"CM2_Upap001l.tga\"",
+    "\"CM2_UPAP001L.TGA\""
+  ],
+  "icon_placeholder": "\"UPLG001.TGA\"",
+  "masked_building_icons": [
+    "ICON_IMPROVE_XWOMENS_SUFFRAGE"
+  ],
+  "order_strings": {
+    "ORDER_AIRLIFT": "Airlift",
+    "ORDER_ENSLAVE_SETTLER": "Enslave",
+    "ORDER_INVESTIGATE_READINESS": "Investigate Readiness"
+  },
+  "gl_string_overrides": {
+    "TILEIMP_RAILROAD": "Enchanted Road"
+  },
+  "tips_string_overrides": {
+    "TOOLTIP_TILEIMP_SELECT_ROAD2_BUTTON": "Enchanted Road",
+    "STATUSBAR_TILEIMP_SELECT_ROAD2_BUTTON": "Enchanted Roads can be placed on any land tile."
+  },
+  "db_text_swaps": [
+    {
+      "file": "default/gamedata/Advance.txt",
+      "find": "   Prerequisites ADVANCE_RAILROAD\n",
+      "replace": "   Prerequisites ADVANCE_GREATER_ENCHANTMENTS\n",
+      "count": 1
+    },
+    {
+      "file": "default/gamedata/Wonder.txt",
+      "find": "   ObsoleteAdvance ADVANCE_RAILROAD\n",
+      "replace": "   ObsoleteAdvance ADVANCE_GREATER_ENCHANTMENTS\n",
+      "count": 1
+    }
+  ],
+  "tileimp_block_swaps": [
+    {
+      "id": "TILEIMP_RAILROAD",
+      "find": "EnableAdvance ADVANCE_RAILROAD",
+      "replace": "EnableAdvance ADVANCE_GREATER_ENCHANTMENTS"
+    }
+  ]
+}

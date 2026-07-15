@@ -1,0 +1,12 @@
+//=============================================================================
+// tutorial.slc -- Master of Magic override: stock tutorial SLIC RETIRED
+//=============================================================================
+// The base ctp2_data/default/gamedata/tutorial.slc does
+//   #include "tut2_main.slc"
+// which activates Activision's stock tutorial triggers (TStartGame etc.) --
+// unwanted inside a total-conversion fantasy scenario. This scenario-level
+// override shadows the base file and includes nothing.
+//
+// tut2_main.slc is intentionally left on disk untouched; it simply no longer
+// loads. Remove this file to restore the stock tutorial behaviour.
+//=============================================================================

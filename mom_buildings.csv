@@ -1,0 +1,26 @@
+key,display_name,cluster,advance_key,gl_sections,gl_str,waw_sections,status,notes
+IMPROVE_ALCHEMIST_GUILD,Alchemist Guild,Pilot,ADVANCE_ALCHEMY,YES,YES,no,in_game,Phase 1 pilot building
+IMPROVE_MAGIC_RECHARGING_CENTER,Magic Recharging Center,1-Magic & Arcane,ADVANCE_HYBRID_MONSTERS,YES,YES,no,in_game,
+IMPROVE_CITY_LIGHTING_SPELLCRAFT,City Lighting-Spellcraft,1-Magic & Arcane,ADVANCE_SPELLCRAFT,YES,YES,no,in_game,
+IMPROVE_CITY_LIGHTING_CHAOS_MAGIC,City Lighting-Chaos Magic,1-Magic & Arcane,ADVANCE_SORCERY,YES,YES,no,in_game,
+IMPROVE_ARTISANS_GUILD,Artisans Guild,2-Guilds & Economy,ADVANCE_TRADE,YES,YES,no,in_game,
+IMPROVE_MERCHANTS_GUILD,Merchants Guild,2-Guilds & Economy,ADVANCE_ECONOMICS,YES,YES,no,in_game,
+IMPROVE_SAGES_GUILD,Sages Guild,2-Guilds & Economy,ADVANCE_ARTIFACTS,YES,YES,no,in_game,
+IMPROVE_ANIMISTS_GUILD,Animists Guild,2-Guilds & Economy,ADVANCE_NATURALISM,YES,YES,no,in_game,
+IMPROVE_SEWER_SYSTEM,Sewer System,3-City Infrastructure,ADVANCE_MEDICINE,YES,YES,no,in_game,
+IMPROVE_CITY_WIDE_WARD_SPELL,Citywide Ward Spell,3-City Infrastructure,ADVANCE_CITY_WIDE_ENCHANTMENT,YES,YES,no,in_game,
+IMPROVE_CITY_LIGHTING_ALCHEMICAL,City Lighting-Alchemical,3-City Infrastructure,ADVANCE_PERMANENT_ENCHNTMNT,YES,YES,no,in_game,
+IMPROVE_CITY_LIGHTING_NATURAL_MGC,City Lighting-Natural Magic,3-City Infrastructure,ADVANCE_NATURE_MAGIC,YES,YES,no,in_game,Name fixed: "Mgc"->"Magic"
+IMPROVE_CITY_MILITIA,City Militia,3-City Infrastructure,ADVANCE_COMMUNISM,YES,YES,no,in_game,
+IMPROVE_HARBOR,Harbor,4-Trade & Exploration,ADVANCE_SEAFARING,YES,YES,no,in_game,
+IMPROVE_PORT_FACILITY,Port Facility,4-Trade & Exploration,ADVANCE_NAVAL_WARFARE,YES,YES,no,in_game,
+IMPROVE_OFFSHORE_TRADING_CENTER,Offshore Trading Center,4-Trade & Exploration,ADVANCE_MASS_PRODUCE_MAGIC,YES,YES,no,in_game,
+IMPROVE_MAGIC_ROADWAYS,Magic Roadways,4-Trade & Exploration,ADVANCE_ENGINEERING,YES,YES,no,in_game,
+IMPROVE_EXPLORER_HULL,Explorer: Hull,4-Trade & Exploration,ADVANCE_PLANAR_TRAVEL,YES,YES,no,in_game,
+IMPROVE_EXPLORER_CREW,Explorer: Crew & Equipment,4-Trade & Exploration,ADVANCE_PLANAR_MAGIC,YES,YES,no,in_game,Name fixed: "Equipmnt"->"Equipment"
+IMPROVE_EXPLORER_EXTRAPLANAR_DRV,Explorer: Extraplanar Drive,4-Trade & Exploration,ADVANCE_MAGICAL_ENGINEERING,YES,YES,no,in_game,Name fixed: "Drv"->"Drive"
+IMPROVE_COASTAL_FORTRESS,Coastal Fortress,5-Defense & Special,ADVANCE_MASONRY,YES,YES,no,in_game,gl_str Block 2 entry; Block 1 added this session
+IMPROVE_AERIAL_WARDING,Aerial Warding,5-Defense & Special,ADVANCE_WINGS_OF_AHZRA,YES,YES,no,in_game,gl_str Block 2 entry; Block 1 added this session
+IMPROVE_AVIARY,Aviary,5-Defense & Special,ADVANCE_AVIARY,YES,YES,no,in_game,gl_str Block 2 entry; Block 1 added this session
+IMPROVE_CATHEDRAL,Cathedral,5-Defense & Special,ADVANCE_THEOLOGY,YES,YES,YES,in_game,Only building with WAW sections; gl_str Block 2 entry; Block 1 added this session
+IMPROVE_CITY_TROLLEY_SYSTEM,City Trolley System,5-Defense & Special,ADVANCE_MASS_TRANSIT,YES,YES,no,in_game,gl_str Block 2 entry; Block 1 added this session

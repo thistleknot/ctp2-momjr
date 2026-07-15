@@ -1,0 +1,25 @@
+library,section,action,find,content
+gl,TILEIMP_RAILROAD_PREREQ,set,,"Requires:
+<L:DATABASE_ADVANCES,ADVANCE_GREATER_ENCHANTMENTS>Greater Enchantments<e>"
+gl,TILEIMP_RAILROAD_GAMEPLAY,set,,"Enchanted Roads reduce the movement cost for units.  They are an improvement on <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e>, and allow units to travel greater distances in a single turn.  Build them on any land tile."
+gl,ADVANCE_OIL_REFINING_PREREQ,set,,"Requires:
+<L:DATABASE_ADVANCES,ADVANCE_INDUSTRIAL_REVOLUTION>Industrial Revolution<e>
+<L:DATABASE_ADVANCES,ADVANCE_GREATER_ENCHANTMENTS>Greater Enchantments<e>"
+gl,TERRAIN_SWAMP_GAMEPLAY,replace,"<L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e>, <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_RAILROAD>Railroads<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MAGLEV>Maglevs<e>","<L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_RAILROAD>Enchanted Roads<e>"
+gl,TILEIMP_MAGLEV_PREREQ,pop,,
+gl,TILEIMP_MAGLEV_STATISTICS,pop,,
+gl,TILEIMP_MAGLEV_GAMEPLAY,pop,,
+gl,TILEIMP_MAGLEV_HISTORICAL,pop,,
+gl,ADVANCE_HT_SUPERCONDUCTOR_STATISTICS,replace,"
+<L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MAGLEV>Maglevs<e>",
+gl,ADVANCE_HT_SUPERCONDUCTOR_GAMEPLAY,replace,"
+
+Magnetic Levitation Trains, or <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MAGLEV>Maglevs<e>, are transit systems that whiz along the surface of the earth at speeds well in excess of any other form of land transportation.  As a <L:DATABASE_CONCEPTS,CONCEPT_TILE_IMPROVEMENTS>Tile Improvement<e>, they are the fastest way to get around, dramatically reducing the movement costs associated with any terrain they are built on.",
+waw,TILEIMP_RAILROAD_PREREQ,set,,"Requires:
+<L:DATABASE_ADVANCES,ADVANCE_GREATER_ENCHANTMENTS>Greater Enchantments<e>"
+waw,TILEIMP_RAILROAD_GAMEPLAY,set,,"Enchanted Roads reduce the movement cost for units.  They are an improvement on <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e>, and allow units to travel greater distances in a single turn.  Build them on any land tile."
+waw,TERRAIN_SWAMP_GAMEPLAY,replace,"<L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e>, <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_RAILROAD>Railroads<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MAGLEV>Maglevs<e>","<L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_RAILROAD>Enchanted Roads<e>"
+waw,TILEIMP_MAGLEV_PREREQ,pop,,
+waw,TILEIMP_MAGLEV_STATISTICS,pop,,
+waw,TILEIMP_MAGLEV_GAMEPLAY,pop,,
+waw,TILEIMP_MAGLEV_HISTORICAL,pop,,

@@ -1,0 +1,5 @@
+sheet_key,bmp_file,offset_x,offset_y,pitch_w,pitch_h,cell_w,cell_h,n_cols,n_rows,border_inset_lead,border_inset_trail,notes
+advances,Improvements.bmp,0,0,73,41,73,41,8,9,3,3,MOMJR advance portraits; 8x9 grid; pitch 73x41; content 67x35 at 3px inset; cell_index=@CIVILIZE line position
+improvements,Improvements.bmp,0,0,73,41,73,41,8,9,3,2,MoMJR improvement portraits; 8x9 grid; lead=3 trail=2
+wonder_atlas,Improvements.bmp,0,0,73,41,73,41,8,9,3,2,MoMJR wonder portraits; 8x9 grid; lead=3 trail=2
+units,Units.bmp,0,0,64,48,64,48,10,0,0,0,DEPRECATED geometry — SPRITE_*.tga now uses extract_units_sprites() gutter detection (real grid is 9col x 7row irregular pitch, not 10x64x48); this row is no longer consulted

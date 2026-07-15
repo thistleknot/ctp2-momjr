@@ -1,0 +1,20 @@
+# Force LF line endings for CTP2 game data files (adapted from the working
+# install's rules — paths here are repo-root relative).
+#
+# The CTP2 engine parses these files expecting LF (Unix) line endings. CRLF
+# introduces \r into key/value strings, breaking lookups: blank Great Library
+# list items, corrupted sprite/icon/GL references, rainbow "fuglies", and LDL
+# parser failures. autocrlf on a fresh clone will corrupt the scenario unless
+# these rules are in place. Do not remove.
+scen0000/**/*.txt eol=lf
+scen0000/**/*.slc eol=lf
+
+# The zip snapshot and all game art are binary.
+*.zip binary
+*.tga binary
+*.TGA binary
+*.spr binary
+*.SPR binary
+*.xlsx binary
+*.png binary
+*.bmp binary
