@@ -334,6 +334,25 @@ class UnitsFile:
             self._unit_ids.add(ident)
             self._text = self._text.rstrip('\n') + "\n\n" + block_text + "\n"
 
+    def block_text(self, ident: str) -> str:
+        """Return a unit's complete block text (nested sub-blocks included).
+
+        Require: ident is a unit ID. Guarantee: returns the verbatim block, or
+        "" when the unit is missing or its block is malformed (unclosed).
+        """
+        match = re.search(rf'^{re.escape(ident)}\s*\{{', self._text, re.MULTILINE)
+        if not match:
+            return ""
+        line_start = self._text.rfind('\n', 0, match.start()) + 1
+        depth = 0
+        block_lines = []
+        for index, line in enumerate(self._text[line_start:].splitlines(keepends=True)):
+            depth += line.count('{') - line.count('}')
+            block_lines.append(line)
+            if index > 0 and depth <= 0:
+                return ''.join(block_lines)
+        return ""
+
     def ensure_flags(self, ident: str, flags: List[str]) -> bool:
         """
         Insert bare unit flags into an existing Units.txt block.
@@ -614,6 +633,25 @@ class AdvanceFile:
         if not removed:
             return False
         self._text = self._text[:block_start] + ''.join(kept_lines) + self._text[block_end:]
+        return True
+
+    def ensure_prerequisite(self, ident: str, prereq: str) -> bool:
+        """Insert ``Prerequisites <prereq>`` into an advance block if absent.
+
+        Require: ident is an advance ID present in the file. Guarantee: returns
+        True only when the line was newly inserted before the closing brace;
+        existing block text is otherwise preserved verbatim. Failure modes:
+        missing/malformed blocks are left unchanged (returns False).
+        """
+        located = self._locate_block(ident)
+        if located is None:
+            return False
+        block_start, block_end, block_lines, close_index = located
+        block_text = ''.join(block_lines)
+        if re.search(rf'^\s*Prerequisites\s+{re.escape(prereq)}\s*$', block_text, re.MULTILINE):
+            return False
+        block_lines[close_index:close_index] = [f"   Prerequisites {prereq}\n"]
+        self._text = self._text[:block_start] + ''.join(block_lines) + self._text[block_end:]
         return True
 
     def ensure_self_prerequisite(self, ident: str) -> bool:

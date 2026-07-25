@@ -6,16 +6,48 @@
 #
 #----------------------------------------------------------------------------
 
-MomSlicAlive		"Master of Magic: sphere-magic SLIC layer online."
+MOM_MSG_SLIC_ALIVE		"Master of Magic: sphere-magic SLIC layer online."
 
 # Phase C -- sphere blessing popups (fired once when a faction researches its magic
 # advance). Voice adapted from the original MoM magic-system script (h:\games\ctp2\mom).
-MomBlessLife		"The Life sphere blesses your realm. A Temple rises in your capital, and a Guardian Spirit manifests to watch over your people."
-MomBlessNature		"Gaia's magic quickens your land. A Granary swells with plenty, and War Bears rally to your banner."
-MomBlessSorcery		"The arcane secrets of Sorcery are yours. A Library is founded, and a Mage enters your service."
-MomBlessDeath		"The Death sphere answers your call. A Barracks is raised, and the risen dead march at your command."
-MomBlessChaos		"Chaos magic floods your coffers with an unpredictable windfall of gold. Fortune favors the mad."
+MOM_MSG_BLESS_LIFE		"The Life sphere blesses your realm. A Temple rises in your capital, and a Guardian Spirit manifests to watch over your people."
+MOM_MSG_BLESS_NATURE		"Gaia's magic quickens your land. A Granary swells with plenty, and War Bears rally to your banner."
+MOM_MSG_BLESS_SORCERY		"The arcane secrets of Sorcery are yours. A Library is founded, and a Mage enters your service."
+MOM_MSG_BLESS_DEATH		"The Death sphere answers your call. A Barracks is raised, and the risen dead march at your command."
+MOM_MSG_BLESS_CHAOS		"Chaos magic floods your coffers with an unpredictable windfall of gold. Fortune favors the mad."
 
 # M1 magic-power pool -- dynamic numbers via {var} interpolation of the file-scope arrays
 # (index = MomMagicMsgP, set immediately before the Message). NOT string concatenation.
-MomMagicPower		"Magic Power: {MomMagicCurDisp} / {MomMagicMaxDisp}  (+{MomMagicGenDisp} per turn)"
+MOM_MSG_MAGIC_POWER		"Magic Power: {MomMagicCurDisp} / {MomMagicMaxDisp}  (+{MomMagicGenDisp} per turn)"
+
+# Interactive magic menu (hotkey 'j' -> keypress.cpp hook -> SLIC segment 'MagicMenu')
+MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome: +{MomMagicGenDisp} per turn"
+
+# Phase D -- spellbook (mom_spells.slc). Added 2026-07-25: all nine were referenced
+# by messagebox Text()/Button() blocks but never defined. NOTE the two syntax rules
+# this file enforces and that a first append got wrong (measured: the load hung at
+# the Loading bar): comments are '#', NOT '//'. The '//' form hangs the load at the Loading bar.
+# THIRD syntax rule, measured 2026-07-25: a string value must sit on ONE line.
+# These three were authored with real embedded newlines; the parser treats the
+# opening quote as unterminated and swallows the following lines, and the game
+# dies with 0xC0000005 the moment the segment is shown (no SLIC error dialog --
+# it is not a SLIC diagnostic, it is a bad string table). Use \n escapes, as
+# MOM_MSG_MAGIC_MENU above already does.
+MOM_MSG_SPELLBOOK		"SPELLBOOK\n\nMana: {MomSpellCurDisp} / {MomSpellMaxDisp}\n\nChoose a working, or store your power for later."
+MOM_MSG_BTN_FLAME		"Flame Strike (50)"
+MOM_MSG_BTN_DEMON		"Demon Strike (100)"
+MOM_MSG_BTN_STORE		"Store Power"
+MOM_MSG_FLAME_CAST		"Flame Strike! Your sphere creature manifests beside the nearest enemy city.\n\nMana remaining: {MomSpellCurDisp} / {MomSpellMaxDisp}"
+MOM_MSG_DEMON_CAST		"Demon Strike! A demon tears into being beside the nearest enemy city.\n\nMana remaining: {MomSpellCurDisp} / {MomSpellMaxDisp}"
+MOM_MSG_NO_TARGET		"Your magic finds no enemy city to strike. The power is retained."
+MOM_MSG_NO_MANA		"You lack the mana to complete this working."
+MOM_MSG_NOT_CHAOS		"Only a Chaos mage may summon demons."
+
+# Interactivity link 7 -- an alertbox arm places a summon ORDER, and the BeginTurn
+# consumer in mom_msg.slc fills it on the FOLLOWING turn. Two arms, two distinct
+# result popups: with one arm, "the ordered unit appeared" could not be told apart
+# from "the handler always summons that unit".
+MOM_MSG_BTN_SUMMON_GUARD	"Summon Guardian"
+MOM_MSG_BTN_SUMMON_ZOMBIE	"Summon Zombies"
+MOM_MSG_SUMMON_GUARD		"Your working completes. A Guardian Spirit manifests in your capital."
+MOM_MSG_SUMMON_ZOMBIE		"Your working completes. Zombies claw their way up in your capital."

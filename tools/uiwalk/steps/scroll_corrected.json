@@ -1,0 +1,91 @@
+[
+  {
+    "do": "wait",
+    "ms": 6000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 30000
+  },
+  {
+    "do": "press",
+    "path": "InitPlayWindow.NewGameButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.ScenarioButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "0_base"
+  },
+  {
+    "do": "click",
+    "x": 996,
+    "y": 562
+  },
+  {
+    "do": "wait",
+    "ms": 1800
+  },
+  {
+    "do": "shot",
+    "name": "1_trough562"
+  },
+  {
+    "do": "click",
+    "x": 996,
+    "y": 475
+  },
+  {
+    "do": "wait",
+    "ms": 1800
+  },
+  {
+    "do": "shot",
+    "name": "2_trough475"
+  },
+  {
+    "do": "drag",
+    "x1": 996,
+    "y1": 337,
+    "x2": 996,
+    "y2": 575
+  },
+  {
+    "do": "wait",
+    "ms": 1800
+  },
+  {
+    "do": "shot",
+    "name": "3_dragthumb"
+  }
+]

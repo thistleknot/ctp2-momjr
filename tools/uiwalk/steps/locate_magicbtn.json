@@ -1,0 +1,4 @@
+[
+  {"do": "wait_stable", "ms": 30000},
+  {"do": "shot", "name": "clean_view"}
+]

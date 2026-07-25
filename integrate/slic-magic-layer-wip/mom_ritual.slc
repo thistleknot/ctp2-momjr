@@ -1,0 +1,180 @@
+// MoM interaction layer (Phase E) -- trigger improvements instead of keys.
+// Humans get INPUTS (dialogs from things they deliberately build); AIs get
+// PROCEDURE (mom_spells.slc auto-cast). No engine patch required: both hooks
+// are engine-verified events already exercised by this scenario's SLIC.
+//
+//   RITUAL TOWER (tileimp, repurposed TILEIMP_PROCESSING_TOWER, gated on
+//   Alchemy): completing one opens a casting dialog; the spell erupts AT THE
+//   TOWER'S TILE. HandleEvent(ImprovementComplete) carries location[0],
+//   player[0], value[0]=tileimp type (GameEventDescription.h "%I&l&P&i").
+//
+//   AUDIENCE HALL (city building): cities with a hall receive PETITIONS --
+//   chained messagebox dialogs with choices (Slic_Message CopyFromBuiltins
+//   carries context into the popup; button bodies are ordinary statements,
+//   the tut2 base-verified form).
+//
+// SLIC NAMESPACE IS FLAT: handlers MomRitual*/MomPetition*/MomHall*,
+// messageboxes MomMsg*, string keys MOM_MSG_*. PURE ASCII ONLY.
+
+location_t MomRitualLoc;      // tile of the most recently completed Ritual Tower
+int_t MomRitualArmed;         // one cast per completed tower
+int_t MomPetitionStage[31];   // 0 = none pending; petition tick sets 1
+
+// Cast at the armed ritual site. isDemon: 1 = Demon Strike (Chaos, 100),
+// 0 = Flame Strike (sphere creature, 50). Disarms the site on success.
+void_f MomCastAtSite(int_t p, int_t isDemon)
+{
+    int_t summon;
+    int_t cost;
+
+    if (p >= 1 && MomRitualArmed == 1) {
+        summon = 0;
+        cost = 0;
+        if (isDemon == 1) {
+            if (MomPlayerIsChaos(p) == 0) {
+                Message(g.player, 'MomMsgNotChaos');
+            } else {
+                summon = UnitDB(UNIT_DEMON);
+                cost = 100;
+            }
+        } else {
+            summon = MomSphereSummonUnit(p);
+            cost = 50;
+        }
+        if (summon != 0 && cost > 0) {
+            if (MomMagicCur[p] >= cost) {
+                MomMagicCur[p] = MomMagicCur[p] - cost;
+                MomRitualArmed = 0;
+                CreateUnit(p, summon, MomRitualLoc, 1);
+                MomSpellCurDisp = MomMagicCur[p];
+                MomSpellMaxDisp = MomMagicMax[p];
+                Message(g.player, 'MomMsgSiteCast');
+            } else {
+                Message(g.player, 'MomMsgNoMana');
+            }
+        }
+    }
+}
+
+HandleEvent(ImprovementComplete) 'MomRitualComplete' post {
+    int_t p;
+
+    p = player[0];
+    if (p >= 1 && IsHumanPlayer(p)) {
+        if (value[0] == TerrainImprovementDB(TILEIMP_PROCESSING_TOWER)) {
+            MomRitualLoc = location[0];
+            MomRitualArmed = 1;
+            MomSpellCurDisp = MomMagicCur[p];
+            MomSpellMaxDisp = MomMagicMax[p];
+            Message(g.player, 'MomMsgRitualTower');
+        }
+    }
+}
+
+// Audience Hall completion: announce that this city now hears petitions.
+HandleEvent(CreateBuilding) 'MomHallBuilt' post {
+    int_t p;
+
+    p = city[0].owner;
+    if (p >= 1 && IsHumanPlayer(p)) {
+        if (value[0] == BuildingDB(IMPROVE_AUDIENCE_HALL)) {
+            Message(g.player, 'MomMsgHallBuilt');
+        }
+    }
+}
+
+// Petition tick: every 10 rounds (offset 5 so it never stacks on the magic
+// status popup at r%10==0), a city with an Audience Hall receives a petition.
+HandleEvent(BeginTurn) 'MomPetitionTick' post {
+    int_t p;
+    int_t r;
+    int_t i;
+    int_t hasHall;
+    city_t tmpCity;
+
+    p = player[0];
+    if (p >= 1 && IsHumanPlayer(p) && player[0].cities > 0) {
+        r = GetCurrentRound();
+        if (r - (r / 10) * 10 == 5) {
+            hasHall = 0;
+            for (i = 0; i < player[0].cities; i = i + 1) {
+                GetCityByIndex(player[0], i, tmpCity);
+                if (CityIsValid(tmpCity) && hasHall == 0) {
+                    if (CityHasBuilding(tmpCity, "IMPROVE_AUDIENCE_HALL")) {
+                        hasHall = 1;
+                    }
+                }
+            }
+            if (hasHall == 1) {
+                Message(g.player, 'MomMsgPetition1');
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Dialogs. A button body is ordinary SLIC; chaining Message() from a button
+// is the tut2 conversation-tree form.
+// ---------------------------------------------------------------------------
+
+messagebox 'MomMsgRitualTower' {
+    Show();
+    Text(ID_MOM_MSG_RITUAL_TOWER);
+    Button(ID_MOM_MSG_BTN_SITE_FLAME) {
+        MomCastAtSite(g.player, 0);
+        Kill();
+    }
+    Button(ID_MOM_MSG_BTN_SITE_DEMON) {
+        MomCastAtSite(g.player, 1);
+        Kill();
+    }
+    Button(ID_MOM_MSG_BTN_STORE) {
+        Kill();
+    }
+}
+
+messagebox 'MomMsgSiteCast' {
+    Show();
+    Text(ID_MOM_MSG_SITE_CAST);
+}
+
+messagebox 'MomMsgHallBuilt' {
+    Show();
+    Text(ID_MOM_MSG_HALL_BUILT);
+}
+
+messagebox 'MomMsgPetition1' {
+    Show();
+    Text(ID_MOM_MSG_PETITION_1);
+    Button(ID_MOM_MSG_BTN_HEAR) {
+        Message(g.player, 'MomMsgPetition2');
+        Kill();
+    }
+    Button(ID_MOM_MSG_BTN_DISMISS) {
+        Kill();
+    }
+}
+
+messagebox 'MomMsgPetition2' {
+    Show();
+    Text(ID_MOM_MSG_PETITION_2);
+    Button(ID_MOM_MSG_BTN_GRANT) {
+        AddGold(g.player, -100);
+        Message(g.player, 'MomMsgPetitionThanks');
+        Kill();
+    }
+    Button(ID_MOM_MSG_BTN_REFUSE) {
+        Message(g.player, 'MomMsgPetitionAngry');
+        Kill();
+    }
+}
+
+messagebox 'MomMsgPetitionThanks' {
+    Show();
+    Text(ID_MOM_MSG_PETITION_THANKS);
+}
+
+messagebox 'MomMsgPetitionAngry' {
+    Show();
+    Text(ID_MOM_MSG_PETITION_ANGRY);
+}

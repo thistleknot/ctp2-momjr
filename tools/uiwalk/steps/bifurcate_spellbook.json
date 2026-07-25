@@ -1,0 +1,18 @@
+[
+  {"do": "wait_stable", "ms": 28000},
+  {"do": "type", "text": "'"},
+  {"do": "wait", "ms": 800},
+  {"do": "type", "text": "/reloadslic"},
+  {"do": "wait", "ms": 300},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait", "ms": 2500},
+  {"do": "shot", "name": "after_reloadslic"},
+  {"do": "fire", "control": "ControlPanelWindow.ControlPanel.ShortcutPad.MagicButton"},
+  {"do": "wait", "ms": 4000},
+  {"do": "shot", "name": "after_fire"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait", "ms": 6000},
+  {"do": "shot", "name": "after_endturn"},
+  {"do": "wait", "ms": 6000},
+  {"do": "shot", "name": "after_endturn_12s"}
+]

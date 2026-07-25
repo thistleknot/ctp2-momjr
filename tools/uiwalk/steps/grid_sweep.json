@@ -1,0 +1,518 @@
+[
+  {
+    "do": "wait",
+    "ms": 6000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 30000
+  },
+  {
+    "do": "press",
+    "path": "InitPlayWindow.NewGameButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.ScenarioButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "G000_base"
+  },
+  {
+    "do": "click",
+    "x": 250,
+    "y": 200
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G001_x250_y200"
+  },
+  {
+    "do": "click",
+    "x": 400,
+    "y": 200
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G002_x400_y200"
+  },
+  {
+    "do": "click",
+    "x": 550,
+    "y": 200
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G003_x550_y200"
+  },
+  {
+    "do": "click",
+    "x": 700,
+    "y": 200
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G004_x700_y200"
+  },
+  {
+    "do": "click",
+    "x": 780,
+    "y": 200
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G005_x780_y200"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 200
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G006_x797_y200"
+  },
+  {
+    "do": "click",
+    "x": 250,
+    "y": 240
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G007_x250_y240"
+  },
+  {
+    "do": "click",
+    "x": 400,
+    "y": 240
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G008_x400_y240"
+  },
+  {
+    "do": "click",
+    "x": 550,
+    "y": 240
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G009_x550_y240"
+  },
+  {
+    "do": "click",
+    "x": 700,
+    "y": 240
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G010_x700_y240"
+  },
+  {
+    "do": "click",
+    "x": 780,
+    "y": 240
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G011_x780_y240"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 240
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G012_x797_y240"
+  },
+  {
+    "do": "click",
+    "x": 250,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G013_x250_y300"
+  },
+  {
+    "do": "click",
+    "x": 400,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G014_x400_y300"
+  },
+  {
+    "do": "click",
+    "x": 550,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G015_x550_y300"
+  },
+  {
+    "do": "click",
+    "x": 700,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G016_x700_y300"
+  },
+  {
+    "do": "click",
+    "x": 780,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G017_x780_y300"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G018_x797_y300"
+  },
+  {
+    "do": "click",
+    "x": 250,
+    "y": 370
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G019_x250_y370"
+  },
+  {
+    "do": "click",
+    "x": 400,
+    "y": 370
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G020_x400_y370"
+  },
+  {
+    "do": "click",
+    "x": 550,
+    "y": 370
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G021_x550_y370"
+  },
+  {
+    "do": "click",
+    "x": 700,
+    "y": 370
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G022_x700_y370"
+  },
+  {
+    "do": "click",
+    "x": 780,
+    "y": 370
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G023_x780_y370"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 370
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G024_x797_y370"
+  },
+  {
+    "do": "click",
+    "x": 250,
+    "y": 450
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G025_x250_y450"
+  },
+  {
+    "do": "click",
+    "x": 400,
+    "y": 450
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G026_x400_y450"
+  },
+  {
+    "do": "click",
+    "x": 550,
+    "y": 450
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G027_x550_y450"
+  },
+  {
+    "do": "click",
+    "x": 700,
+    "y": 450
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G028_x700_y450"
+  },
+  {
+    "do": "click",
+    "x": 780,
+    "y": 450
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G029_x780_y450"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 450
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G030_x797_y450"
+  },
+  {
+    "do": "click",
+    "x": 250,
+    "y": 520
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G031_x250_y520"
+  },
+  {
+    "do": "click",
+    "x": 400,
+    "y": 520
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G032_x400_y520"
+  },
+  {
+    "do": "click",
+    "x": 550,
+    "y": 520
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G033_x550_y520"
+  },
+  {
+    "do": "click",
+    "x": 700,
+    "y": 520
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G034_x700_y520"
+  },
+  {
+    "do": "click",
+    "x": 780,
+    "y": 520
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G035_x780_y520"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 520
+  },
+  {
+    "do": "wait",
+    "ms": 900
+  },
+  {
+    "do": "shot",
+    "name": "G036_x797_y520"
+  }
+]

@@ -7517,166 +7517,166 @@ Requires:
 [IMPROVE_XHYDRO_PLANT_STATISTICS]
 <L:DATABASE_BUILDINGS,IMPROVE_XHYDRO_PLANT>Xhydro Plant<e>
 [END]
-[UNIT_WRAITH_SUMMARY]
-Summary of Wraith.
-[END]
-[UNIT_DEMON_SUMMARY]
-Summary of Demon.
-[END]
-[UNIT_ZOMBIES_SUMMARY]
-Summary of Zombies.
-[END]
-[UNIT_SALAMANDER_SUMMARY]
-Summary of Salamander.
-[END]
-[UNIT_CATAPULT_SUMMARY]
-Summary of Catapult.
-[END]
-[UNIT_COCKATRICE_SUMMARY]
-Summary of Cockatrice.
-[END]
-[UNIT_RJAK_SUMMARY]
-Summary of Rjak.
-[END]
-[UNIT_EFREET_SUMMARY]
-Summary of Efreet.
-[END]
-[UNIT_MERFOLK_SUMMARY]
-Summary of Merfolk.
-[END]
-[UNIT_ALORRA_SUMMARY]
-Summary of Alorra.
-[END]
-[UNIT_PEGASUS_SUMMARY]
-Summary of Pegasus.
-[END]
-[UNIT_STORM_DRAKE_SUMMARY]
-Summary of Storm Drake.
-[END]
-[UNIT_HELL_HOUNDS_SUMMARY]
-Summary of Hell Hounds.
-[END]
-[UNIT_ARCHANGEL_SUMMARY]
-Summary of Archangel.
-[END]
-[UNIT_GRIFFIN_SUMMARY]
-Summary of Griffin.
-[END]
-[UNIT_PEASANTS_SUMMARY]
-Summary of Peasants.
-[END]
-[UNIT_GARGOYLE_SUMMARY]
-Summary of Gargoyle.
-[END]
-[UNIT_CENTAURS_SUMMARY]
-Summary of Centaurs.
-[END]
-[UNIT_HYDRA_SUMMARY]
-Summary of Hydra.
-[END]
 [UNIT_AIRSHIP_SUMMARY]
 Summary of Airship.
-[END]
-[UNIT_STORM_GIANT_SUMMARY]
-Summary of Storm Giant.
-[END]
-[UNIT_WARBEARS_SUMMARY]
-Summary of Warbears.
-[END]
-[UNIT_UNDEAD_DRAGON_SUMMARY]
-Summary of Undead Dragon.
-[END]
-[UNIT_WARRAX_SUMMARY]
-Summary of Warrax.
-[END]
-[UNIT_ELVEN_ARCHERS_SUMMARY]
-Summary of Elven Archers.
-[END]
-[UNIT_WAR_TROLL_SUMMARY]
-Summary of War Troll.
-[END]
-[UNIT_SPEARMEN_SUMMARY]
-Summary of Spearmen.
-[END]
-[UNIT_ARIEL_SUMMARY]
-Summary of Ariel.
-[END]
-[UNIT_PALADINS_SUMMARY]
-Summary of Paladins.
-[END]
-[UNIT_KNIGHTS_SUMMARY]
-Summary of Knights.
-[END]
-[UNIT_CARAVAN_SUMMARY]
-Summary of Caravan.
-[END]
-[UNIT_SERENA_SUMMARY]
-Summary of Serena.
-[END]
-[UNIT_FREYA_SUMMARY]
-Summary of Freya.
-[END]
-[UNIT_WYVERN_SUMMARY]
-Summary of Wyvern.
-[END]
-[UNIT_GREAT_WYRM_SUMMARY]
-Summary of Great Wyrm.
-[END]
-[UNIT_STEAM_CANNON_SUMMARY]
-Summary of Steam Cannon.
-[END]
-[UNIT_PHANTOM_WARRIORS_SUMMARY]
-Summary of Phantom Warriors.
-[END]
-[UNIT_MALLEUS_SUMMARY]
-Summary of Malleus.
-[END]
-[UNIT_GALLEY_SUMMARY]
-Summary of Galley.
-[END]
-[UNIT_INFERNAL_DEVICE_SUMMARY]
-Summary of Infernal Device.
 [END]
 [UNIT_AIR_ELEMENTAL_SUMMARY]
 Summary of Air Elemental.
 [END]
-[UNIT_WAR_MAMMOTH_SUMMARY]
-Summary of War Mammoth.
+[UNIT_ALORRA_SUMMARY]
+Summary of Alorra.
 [END]
-[UNIT_WARLOCK_SUMMARY]
-Summary of Warlock.
+[UNIT_ARCHANGEL_SUMMARY]
+Summary of Archangel.
 [END]
-[UNIT_MAGE_SUMMARY]
-Summary of Mage.
-[END]
-[UNIT_TAURON_SUMMARY]
-Summary of Tauron.
-[END]
-[UNIT_MINION_SUMMARY]
-Summary of Minion.
+[UNIT_ARIEL_SUMMARY]
+Summary of Ariel.
 [END]
 [UNIT_BEHEMOTH_SUMMARY]
 Summary of Behemoth.
 [END]
-[UNIT_SWORDSMEN_SUMMARY]
-Summary of Swordsmen.
+[UNIT_CARAVAN_SUMMARY]
+Summary of Caravan.
 [END]
-[UNIT_IRON_GOLEM_SUMMARY]
-Summary of Iron Golem.
+[UNIT_CATAPULT_SUMMARY]
+Summary of Catapult.
+[END]
+[UNIT_CENTAURS_SUMMARY]
+Summary of Centaurs.
+[END]
+[UNIT_COCKATRICE_SUMMARY]
+Summary of Cockatrice.
+[END]
+[UNIT_DEMON_SUMMARY]
+Summary of Demon.
+[END]
+[UNIT_EFREET_SUMMARY]
+Summary of Efreet.
+[END]
+[UNIT_ELVEN_ARCHERS_SUMMARY]
+Summary of Elven Archers.
+[END]
+[UNIT_FREYA_SUMMARY]
+Summary of Freya.
+[END]
+[UNIT_GALLEY_SUMMARY]
+Summary of Galley.
+[END]
+[UNIT_GARGOYLE_SUMMARY]
+Summary of Gargoyle.
+[END]
+[UNIT_GREAT_WYRM_SUMMARY]
+Summary of Great Wyrm.
+[END]
+[UNIT_GRIFFIN_SUMMARY]
+Summary of Griffin.
 [END]
 [UNIT_GUARDIAN_SPIRIT_SUMMARY]
 Summary of Guardian Spirit.
 [END]
+[UNIT_HELL_HOUNDS_SUMMARY]
+Summary of Hell Hounds.
+[END]
+[UNIT_HYDRA_SUMMARY]
+Summary of Hydra.
+[END]
+[UNIT_INFERNAL_DEVICE_SUMMARY]
+Summary of Infernal Device.
+[END]
+[UNIT_IRON_GOLEM_SUMMARY]
+Summary of Iron Golem.
+[END]
 [UNIT_JAFAR_SUMMARY]
 Summary of Jafar.
 [END]
-[UNIT_UNICORN_SUMMARY]
-Summary of Unicorn.
+[UNIT_KNIGHTS_SUMMARY]
+Summary of Knights.
+[END]
+[UNIT_MAGE_SUMMARY]
+Summary of Mage.
+[END]
+[UNIT_MALLEUS_SUMMARY]
+Summary of Malleus.
+[END]
+[UNIT_MERFOLK_SUMMARY]
+Summary of Merfolk.
+[END]
+[UNIT_MINION_SUMMARY]
+Summary of Minion.
 [END]
 [UNIT_MINOTAUR_SUMMARY]
 Summary of Minotaur.
 [END]
+[UNIT_PALADINS_SUMMARY]
+Summary of Paladins.
+[END]
+[UNIT_PEASANTS_SUMMARY]
+Summary of Peasants.
+[END]
+[UNIT_PEGASUS_SUMMARY]
+Summary of Pegasus.
+[END]
+[UNIT_PHANTOM_WARRIORS_SUMMARY]
+Summary of Phantom Warriors.
+[END]
+[UNIT_RJAK_SUMMARY]
+Summary of Rjak.
+[END]
+[UNIT_SALAMANDER_SUMMARY]
+Summary of Salamander.
+[END]
+[UNIT_SERENA_SUMMARY]
+Summary of Serena.
+[END]
+[UNIT_SPEARMEN_SUMMARY]
+Summary of Spearmen.
+[END]
+[UNIT_STEAM_CANNON_SUMMARY]
+Summary of Steam Cannon.
+[END]
+[UNIT_STORM_DRAKE_SUMMARY]
+Summary of Storm Drake.
+[END]
+[UNIT_STORM_GIANT_SUMMARY]
+Summary of Storm Giant.
+[END]
+[UNIT_SWORDSMEN_SUMMARY]
+Summary of Swordsmen.
+[END]
+[UNIT_TAURON_SUMMARY]
+Summary of Tauron.
+[END]
+[UNIT_UNDEAD_DRAGON_SUMMARY]
+Summary of Undead Dragon.
+[END]
+[UNIT_UNICORN_SUMMARY]
+Summary of Unicorn.
+[END]
+[UNIT_WARBEARS_SUMMARY]
+Summary of Warbears.
+[END]
+[UNIT_WARLOCK_SUMMARY]
+Summary of Warlock.
+[END]
+[UNIT_WARRAX_SUMMARY]
+Summary of Warrax.
+[END]
 [UNIT_WARSHIP_SUMMARY]
 Summary of Warship.
+[END]
+[UNIT_WAR_MAMMOTH_SUMMARY]
+Summary of War Mammoth.
+[END]
+[UNIT_WAR_TROLL_SUMMARY]
+Summary of War Troll.
+[END]
+[UNIT_WRAITH_SUMMARY]
+Summary of Wraith.
+[END]
+[UNIT_WYVERN_SUMMARY]
+Summary of Wyvern.
+[END]
+[UNIT_ZOMBIES_SUMMARY]
+Summary of Zombies.
 [END]
 

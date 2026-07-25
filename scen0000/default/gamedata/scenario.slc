@@ -38,7 +38,7 @@ HandleEvent(BeginTurn) 'MomSlicAlive' post {
 	if (IsHumanPlayer(player[0])) {
 		if (MomSlicAliveLatch == 0) {
 			MomSlicAliveLatch = 1;
-			Message(g.player, 'MomSlicAlive');
+			Message(g.player, 'MomMsgSlicAlive');
 			DisableTrigger('MomSlicAlive');
 		}
 	}
@@ -53,3 +53,12 @@ HandleEvent(BeginTurn) 'MomSlicAlive' post {
 #include "mom_city_effects.slc"
 #include "mom_msg.slc"
 #include "mom_magic.slc"
+// B2 spellbook. Wired 2026-07-25 -- the file was complete but never included, so
+// its MagicButton trigger (already referenced at controlpanel.ldl:774) had no
+// handler behind it. Included LAST: it reads the MomMagic* file-scope globals
+// declared in mom_func.slc, so declaration-before-use requires func to load first.
+// Pre-checked static name collisions across all six modules: 24 segments, 0 dups
+// (segment/segment duplication is the documented load-AV class). Every other
+// repeated identifier (p, i, j, summon, focusCount) is indented, i.e. declared
+// inside a handler body and therefore segment-local, not file scope.
+#include "mom_spells.slc"

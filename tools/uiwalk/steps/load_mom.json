@@ -1,0 +1,124 @@
+[
+  {
+    "do": "wait",
+    "ms": 6000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 30000
+  },
+  {
+    "do": "press",
+    "path": "InitPlayWindow.NewGameButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.ScenarioButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "select",
+    "path": "ScenarioWindow.AvailableListBox",
+    "index": 3
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "press",
+    "path": "ScenarioWindow.LoadButton"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "A_pack_contents"
+  },
+  {
+    "do": "select",
+    "path": "ScenarioWindow.AvailableListBox",
+    "index": 0
+  },
+  {
+    "do": "wait",
+    "ms": 1800
+  },
+  {
+    "do": "shot",
+    "name": "B_inner_selected"
+  },
+  {
+    "do": "press",
+    "path": "ScenarioWindow.LoadButton"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "C_scenario_confirmed"
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.StartButton"
+  },
+  {
+    "do": "wait",
+    "ms": 10000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 120000
+  },
+  {
+    "do": "shot",
+    "name": "D_after_launch"
+  },
+  {
+    "do": "wait",
+    "ms": 8000
+  },
+  {
+    "do": "shot",
+    "name": "E_settled"
+  }
+]

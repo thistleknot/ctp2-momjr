@@ -1,0 +1,102 @@
+[
+  {
+    "do": "wait",
+    "ms": 6000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 30000
+  },
+  {
+    "do": "press",
+    "path": "InitPlayWindow.NewGameButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.ScenarioButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "P0_base"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 200
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "shot",
+    "name": "P1_x797_y200"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "shot",
+    "name": "P2_x797_y300"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 400
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "shot",
+    "name": "P3_x797_y400"
+  },
+  {
+    "do": "click",
+    "x": 797,
+    "y": 500
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "shot",
+    "name": "P4_x797_y500"
+  }
+]

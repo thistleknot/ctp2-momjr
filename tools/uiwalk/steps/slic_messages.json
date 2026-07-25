@@ -1,0 +1,20 @@
+[
+  {"do": "wait_stable", "ms": 20000},
+  {"do": "shot", "name": "loaded"},
+  {"do": "type", "text": "'"},
+  {"do": "wait", "ms": 800},
+  {"do": "shot", "name": "console_open"},
+  {"do": "type", "text": "/reloadslic"},
+  {"do": "wait", "ms": 300},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait", "ms": 1500},
+  {"do": "shot", "name": "after_reloadslic"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait", "ms": 1000},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 12000},
+  {"do": "shot", "name": "after_end_turn"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 12000},
+  {"do": "shot", "name": "after_end_turn2"}
+]

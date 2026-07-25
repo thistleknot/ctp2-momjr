@@ -1,0 +1,10 @@
+[preflight] launch candidate: H:\Games\civctp2\ctp2_code\ctp\ctp2.exe (16,468,480 bytes)
+[preflight] marker 'MagicMenu': FOUND
+Traceback (most recent call last):
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 609, in <module>
+    sys.exit(main())
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 582, in main
+    results = run_steps(game, inp, steps, run_dir, args.baseline, args.dry)
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 465, in run_steps
+    verb = step["do"]
+KeyError: 'do'

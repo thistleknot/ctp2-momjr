@@ -1,0 +1,57 @@
+//=============================================================================
+// scenario.slc - Master of Magic scenario SLIC entry point (Phase A baseline)
+//=============================================================================
+// Loaded because base ctp2_data/default/gamedata/script.slc does
+//   #include "scenario.slc"
+// and this scenario-level file shadows the (intentionally empty) base stub.
+//
+// INCLUDE ORDER CONTRACT (later phases):
+//   1. mom_func.slc         helpers/predicates ONLY (no handlers)
+//   2. mom_turns.slc        BeginTurn sphere income
+//   3. mom_city_effects.slc GrantAdvance / CreateBuilding milestone rewards
+//   4. mom_msg.slc          messagebox blocks LAST
+//
+// RULES (see lessons_learned.md [SLIC] and specs/slic-sphere-layer.md):
+//   - PURE ASCII ONLY in .slc files (the SLIC lexer chokes on multi-byte).
+//   - Faction check: NUMERIC player index (p == 1 = Life). TRIBES_* are civ-DB
+//     record names, NOT SLIC symbols -- SLIC cannot resolve them.
+//   - playerTurn is EVENT-LOCAL: helpers take int_t p as an argument.
+//   - No hardcoded player[0]/unit[0]/city[0] as a civ assumption.
+//   - Every UNIT_/IMPROVE_/ADVANCE_/WONDER_ symbol must exist in the DBs
+//     (engine silently auto-creates unknowns). Run validate_all_surfaces.py.
+//=============================================================================
+
+// Phase A liveness probe: on the human player's first BeginTurn, show a one-time
+// proof-of-life message, then latch off -- proving the scenario SLIC layer parsed
+// and its handlers execute. (Message string: scen_str.txt 'MomSlicAlive'.)
+//
+// player[0] is the BeginTurn event-local player (stock tut2_main.slc uses exactly
+// this; `playerTurn` is NOT a base SLIC symbol -- it is undefined, and the parked
+// git-history module that used it never actually ran). MomSlicAliveLatch is declared
+// at file scope (int_t, 0 by default -- same idiom as base script.slc globals) and is
+// the real one-shot guard: DisableTrigger ALONE did not stop the re-fire, and an
+// unlatched Message in BeginTurn floods the queue -> 0xC0000005. A single Message is
+// safe (stock TStartGame does exactly this).
+int_t MomSlicAliveLatch;
+
+HandleEvent(BeginTurn) 'MomSlicAlive' post {
+	if (IsHumanPlayer(player[0])) {
+		if (MomSlicAliveLatch == 0) {
+			MomSlicAliveLatch = 1;
+			Message(g.player, 'MomMsgSlicAlive');
+			DisableTrigger('MomSlicAlive');
+		}
+	}
+}
+
+// Phase B1 sphere-magic modules. Include order (func before turns): mom_func.slc
+// defines the helpers that mom_turns.slc's BeginTurn handler calls. B1a wires the
+// Life sphere only; B1b fans out to the other spheres, and B2/Phase C add
+// mom_city_effects.slc and mom_msg.slc (last) per the entry-point contract.
+#include "mom_func.slc"
+#include "mom_turns.slc"
+#include "mom_city_effects.slc"
+#include "mom_msg.slc"
+#include "mom_magic.slc"
+#include "mom_spells.slc"
+#include "mom_ritual.slc"

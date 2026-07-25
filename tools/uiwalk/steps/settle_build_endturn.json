@@ -1,0 +1,21 @@
+[
+  {"do": "wait_stable", "ms": 30000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 600},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 600},
+  {"do": "key", "keys": "b"},
+  {"do": "wait_stable", "ms": 6000},
+  {"do": "shot", "name": "city_founded"},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait_stable", "ms": 4000},
+  {"do": "shot", "name": "build_closed"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 15000},
+  {"do": "shot", "name": "after_end1"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 15000},
+  {"do": "shot", "name": "after_end2"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "final"}
+]

@@ -1,0 +1,15 @@
+WARN: run aborted (game window gone and did not reappear); retrying once after relaunch
+Traceback (most recent call last):
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 510, in <module>
+    sys.exit(main())
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 483, in main
+    results = run_steps(game, inp, steps, run_dir, args.baseline, args.dry)
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 393, in run_steps
+    cv2.imwrite(str(run_dir / f"{shot_n:02d}_{step['name']}.png"), game.screenshot())
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 282, in screenshot
+    ox, oy = self.client_origin()
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 259, in client_origin
+    return win32gui.ClientToScreen(self.get_hwnd(), (0, 0))
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 256, in get_hwnd
+    raise RuntimeError("game window gone and did not reappear")
+RuntimeError: game window gone and did not reappear

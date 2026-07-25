@@ -1,0 +1,19 @@
+[
+  {"do": "wait_stable", "ms": 30000},
+  {"do": "shot", "name": "loaded"},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 600},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 600},
+  {"do": "key", "keys": "b"},
+  {"do": "wait_stable", "ms": 6000},
+  {"do": "shot", "name": "after_settle"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait", "ms": 1500},
+  {"do": "shot", "name": "after_enter_a"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 15000},
+  {"do": "shot", "name": "after_endturn"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "turn2_check"}
+]

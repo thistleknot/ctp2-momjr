@@ -4,9 +4,9 @@
 //
 // Event-local API (base-verified, stock tut2_main.slc):
 //   GrantAdvance : player = player[0]; granted advance = value[0]
-//                  (advance[0] = value[0]; advance[0].type == AdvanceDB(...)).
+//                  (advance[0] = value[0]; value[0] == AdvanceDB(...)).
 //   CreateBuilding: city = city[0]; built improvement = value[0]; player = city[0].owner
-//                  (building[0] = value[0]; building[0].type == BuildingDB(...)).
+//                  (building[0] = value[0]; value[0] == BuildingDB(...)).
 //   AddGold takes the INTEGER player index. No latch needed: GrantAdvance fires once per
 //   advance per player; the CreateBuilding burst is a per-completion AddGold (no flood).
 //
@@ -23,22 +23,25 @@ HandleEvent(GrantAdvance) 'MomSphereAdvanceBlessings' post {
     int_t p;
 
     p = player[0];
-    advance[0] = value[0];
 
-    if (advance[0] != 0) {
-        if (MomPlayerIsLife(p) && advance[0].type == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
-            MomGrantSphereBuilding(p, BuildingDB(IMPROVE_TEMPLE));
+    // See mom_magic.slc 'MomMagicSchoolGrant': advance[] is NOT populated by
+    // GrantAdvance, and assigning value[0] into it does not make it readable
+    // (MEASURED 2026-07-25 -- this line errored here too). value[0] IS the
+    // granted advance index; compare it to AdvanceDB() directly.
+    if (value[0] != 0) {
+        if (MomPlayerIsLife(p) && value[0] == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
+            MomGrantLifeBuilding(p);
             MomSpawnSphereUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT));
-        } elseif (MomPlayerIsNature(p) && advance[0].type == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
-            MomGrantSphereBuilding(p, BuildingDB(IMPROVE_GRANARY));
+        } elseif (MomPlayerIsNature(p) && value[0] == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
+            MomGrantNatureBuilding(p);
             MomSpawnSphereUnit(p, UnitDB(UNIT_WARBEARS));
-        } elseif (MomPlayerIsSorcery(p) && advance[0].type == AdvanceDB(ADVANCE_SORCERY)) {
-            MomGrantSphereBuilding(p, BuildingDB(IMPROVE_LIBRARY));
+        } elseif (MomPlayerIsSorcery(p) && value[0] == AdvanceDB(ADVANCE_SORCERY)) {
+            MomGrantSorceryBuilding(p);
             MomSpawnSphereUnit(p, UnitDB(UNIT_MAGE));
-        } elseif (MomPlayerIsDeath(p) && advance[0].type == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
-            MomGrantSphereBuilding(p, BuildingDB(IMPROVE_BARRACKS));
+        } elseif (MomPlayerIsDeath(p) && value[0] == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
+            MomGrantDeathBuilding(p);
             MomSpawnSphereUnit(p, UnitDB(UNIT_ZOMBIES));
-        } elseif (MomPlayerIsChaos(p) && advance[0].type == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
+        } elseif (MomPlayerIsChaos(p) && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
             AddGold(p, 50 + Random(100));
         }
     }
@@ -49,29 +52,32 @@ HandleEvent(CreateBuilding) 'MomSphereCityEffects' post {
     int_t burstGold;
 
     p = city[0].owner;
-    building[0] = value[0];
     burstGold = 0;
 
+    // Same class as the GrantAdvance handlers above: CreateBuilding does not
+    // populate building[], and assigning value[0] into it does not make it
+    // readable. value[0] IS the improvement index -- compare it directly.
+
     if (MomPlayerIsLife(p)) {
-        if (building[0].type == BuildingDB(IMPROVE_TEMPLE)
-        || building[0].type == BuildingDB(IMPROVE_CITY_WALLS)
-        || building[0].type == BuildingDB(IMPROVE_WIZARDS_FORTRESS)) {
+        if (value[0] == BuildingDB(IMPROVE_TEMPLE)
+        || value[0] == BuildingDB(IMPROVE_CITY_WALLS)
+        || value[0] == BuildingDB(IMPROVE_WIZARDS_FORTRESS)) {
             burstGold = 30;
         }
     } elseif (MomPlayerIsNature(p)) {
-        if (building[0].type == BuildingDB(IMPROVE_GRANARY)
-        || building[0].type == BuildingDB(IMPROVE_PRIMAL_SOURCE)
-        || building[0].type == BuildingDB(IMPROVE_FANTASTIC_STABLE)) {
+        if (value[0] == BuildingDB(IMPROVE_GRANARY)
+        || value[0] == BuildingDB(IMPROVE_PRIMAL_SOURCE)
+        || value[0] == BuildingDB(IMPROVE_FANTASTIC_STABLE)) {
             burstGold = 30;
         }
     } elseif (MomPlayerIsSorcery(p)) {
-        if (building[0].type == BuildingDB(IMPROVE_LIBRARY)
-        || building[0].type == BuildingDB(IMPROVE_BEACON_OF_WISDOM)) {
+        if (value[0] == BuildingDB(IMPROVE_LIBRARY)
+        || value[0] == BuildingDB(IMPROVE_BEACON_OF_WISDOM)) {
             burstGold = 30;
         }
     } elseif (MomPlayerIsDeath(p)) {
-        if (building[0].type == BuildingDB(IMPROVE_BARRACKS)
-        || building[0].type == BuildingDB(IMPROVE_MECHANICIANS_GUILD)) {
+        if (value[0] == BuildingDB(IMPROVE_BARRACKS)
+        || value[0] == BuildingDB(IMPROVE_MECHANICIANS_GUILD)) {
             burstGold = 30;
         }
     }

@@ -21,19 +21,188 @@ HandleEvent(GrantAdvance) 'MomSphereBlessingMessages' post {
     int_t p;
 
     p = player[0];
-    advance[0] = value[0];
 
-    if (advance[0] != 0 && IsHumanPlayer(p)) {
-        if (MomPlayerIsLife(p) && advance[0].type == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
+    // GrantAdvance does NOT populate advance[], and assigning value[0] into it
+    // does not make it readable -- MEASURED three times now, in three files
+    // (mom_magic.slc, mom_city_effects.slc, and here). value[0] IS the granted
+    // advance index; compare it to AdvanceDB() directly and never touch advance[].
+    if (value[0] != 0 && IsHumanPlayer(p)) {
+        if (MomPlayerIsLife(p) && value[0] == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
             Message(g.player, 'MomBlessLife');
-        } elseif (MomPlayerIsNature(p) && advance[0].type == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
+        } elseif (MomPlayerIsNature(p) && value[0] == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
             Message(g.player, 'MomBlessNature');
-        } elseif (MomPlayerIsSorcery(p) && advance[0].type == AdvanceDB(ADVANCE_SORCERY)) {
+        } elseif (MomPlayerIsSorcery(p) && value[0] == AdvanceDB(ADVANCE_SORCERY)) {
             Message(g.player, 'MomBlessSorcery');
-        } elseif (MomPlayerIsDeath(p) && advance[0].type == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
+        } elseif (MomPlayerIsDeath(p) && value[0] == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
             Message(g.player, 'MomBlessDeath');
-        } elseif (MomPlayerIsChaos(p) && advance[0].type == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
+        } elseif (MomPlayerIsChaos(p) && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
             Message(g.player, 'MomBlessChaos');
         }
     }
+}
+
+// ---------------------------------------------------------------------------
+// LINK 7 CONSUMER: reads the order a MagicMenu arm placed LAST turn, spawns the
+// chosen unit, and clears the order.
+//
+// ZERO user-function calls by construction. GetCityByIndex / CityIsValid /
+// CreateUnit / UnitDB / AddGold / IsHumanPlayer are all builtins, so this
+// handler sits at call depth 0 and cannot hit the Class 1 crash -- which is why
+// the spawn is NOT routed through MomSpawnSphereUnit even though that helper
+// exists (MomMagicPoolTick already spends its budget on two user calls).
+//
+// The AddGold sentinel is the readable half of the verdict: unit sprites are
+// hard for the harness to identify, a gold delta is a number on the HUD.
+// 111 vs 222 vs "no change" are mutually exclusive readings, so one screenshot
+// settles which arm ran, that it ran ONCE, and that it ran on the FOLLOWING
+// turn rather than at click time.
+//
+// player[0] is the turn player -- never player[p], see mom_func.slc.
+// ---------------------------------------------------------------------------
+
+HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
+    int_t p;
+    city_t tmpCity;
+
+    p = player[0];
+    if (p >= 1 && MomSummonChoice[p] != 0 && player[0].cities > 0) {
+        GetCityByIndex(player[0], 0, tmpCity);
+        if (CityIsValid(tmpCity)) {
+            if (MomSummonChoice[p] == 1) {
+                CreateUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT), tmpCity.location, 1);
+                AddGold(p, 111);
+                Message(p, 'MomSummonGuard');
+            } elseif (MomSummonChoice[p] == 2) {
+                CreateUnit(p, UnitDB(UNIT_ZOMBIES), tmpCity.location, 1);
+                AddGold(p, 222);
+                Message(p, 'MomSummonZombie');
+            }
+        }
+        // Cleared unconditionally: an order that could not be filled (no valid
+        // city) must not silently re-fire on a later turn, or "it spawned" would
+        // no longer pin WHICH turn consumed the click.
+        MomSummonChoice[p] = 0;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// MESSAGEBOX SEGMENTS (engine ground truth, slicfunc.cpp Slic_Message::Call):
+// Message(player, 'Key') requires 'Key' to be a DEFINED SEGMENT -- with no
+// messagebox block the call fails SFN_ERROR_NOT_SEGMENT and NOTHING displays.
+// The scen_str.txt keys alone were never enough; these blocks are the missing
+// half. Base-verified form (script.slc): Show() pops the window immediately,
+// Text(ID_<key>) resolves the string DB key verbatim (tut2 convention:
+// Text(ID_T_TURN_0) <-> tut2_str.txt key T_TURN_0). MessageType is optional
+// (24 base messageboxes omit it) and is deliberately omitted here.
+// ---------------------------------------------------------------------------
+
+messagebox 'MomMsgSlicAlive' {
+	Show();
+	Text(ID_MOM_MSG_SLIC_ALIVE);
+}
+
+messagebox 'MomBlessLife' {
+	Show();
+	Text(ID_MOM_MSG_BLESS_LIFE);
+}
+
+messagebox 'MomBlessNature' {
+	Show();
+	Text(ID_MOM_MSG_BLESS_NATURE);
+}
+
+messagebox 'MomBlessSorcery' {
+	Show();
+	Text(ID_MOM_MSG_BLESS_SORCERY);
+}
+
+messagebox 'MomBlessDeath' {
+	Show();
+	Text(ID_MOM_MSG_BLESS_DEATH);
+}
+
+messagebox 'MomBlessChaos' {
+	Show();
+	Text(ID_MOM_MSG_BLESS_CHAOS);
+}
+
+// Link-7 result popups. A distinct segment per arm is what makes the readout
+// DISCRIMINATING: the harness compares the two runs' captured frames, so the two
+// texts must differ, and neither may be reachable from the other arm.
+messagebox 'MomSummonGuard' {
+	Show();
+	Text(ID_MOM_MSG_SUMMON_GUARD);
+}
+
+messagebox 'MomSummonZombie' {
+	Show();
+	Text(ID_MOM_MSG_SUMMON_ZOMBIE);
+}
+
+messagebox 'MomMagicPower' {
+	Show();
+	Text(ID_MOM_MSG_MAGIC_POWER);
+}
+
+// Interactive test: fired directly from keypress.cpp on 'j' (the stock
+// TRIGGER_LIST_KEY_PRESSED path is dead in this build, so C++ executes
+// this segment by name via SlicObject("MagicMenu")).
+// INTERACTIVITY BATTERY (links 5 and 6).
+//
+// Established as of 2026-07-24, do not re-test: input REACHES a button on this
+// surface and the button's SLIC block EXECUTES (links 3+4, proven by clicking
+// Close and watching Kill() run). What that did NOT prove is that a button body
+// can MUTATE state (link 5) and that the mutation PERSISTS and is observable
+// when the box is reopened (link 6) -- Kill() is message lifecycle, not game
+// state, so it can never speak to either.
+//
+// Three arms, each producing a DISTINCT observable so no two outcomes can be
+// confused, exercised ONE PER RUN:
+//   Random   -> sets the display scalar to a sentinel  -> reopen reads "Mana: 42"
+//   Research -> spends 3 from the REAL per-player pool -> reopen reads "Mana: 7"
+//   Goal     -> AddGold, i.e. real ENGINE state        -> HUD gold delta
+// Baseline is "Mana: 10", so 42 / 7 / 10 are mutually exclusive readings.
+//
+// Random vs Research is the load-bearing distinction: MomMagicCurDisp is only a
+// render scalar, so mutating it alone would leave a skeptic room to say nothing
+// in the game model changed. Research writes MomMagicCur[], the actual backing
+// array, and then mirrors it into the scalar purely so the change is visible.
+//
+// Do NOT end a turn between clicking an arm and reopening: MomMagicPoolTick
+// recomputes the Disp scalars every BeginTurn and would overwrite the result,
+// which would look exactly like "the mutation did not persist".
+//
+// Declaration order is safe: MomMagicCur/MomMagicCurDisp live in mom_func.slc,
+// which loads before this file. Nothing here calls into mom_magic.slc, which
+// loads after -- that is what the old "display only" note was guarding against.
+alertbox 'MagicMenu' {
+	Show();
+	Text(ID_MOM_MSG_MAGIC_MENU);
+
+	// ARM 1 -- LINK 7: place a summon ORDER. The body only writes a global; the
+	// spawn happens next BeginTurn in MomSummonOrderTick. Two arms, not one:
+	// with a single arm, "the ordered unit appeared" is indistinguishable from
+	// "the handler always spawns that unit", so the choice would prove nothing.
+	// Bodies stay assignment-only -- a button body carries the same nested-call
+	// budget as a HandleEvent body (Class 1), so no user-function calls here.
+	Button(ID_MOM_MSG_BTN_SUMMON_GUARD) {
+		MomSummonChoice[g.player] = 1;
+		Kill();
+	}
+
+	// ARM 2 -- the discriminating alternative.
+	Button(ID_MOM_MSG_BTN_SUMMON_ZOMBIE) {
+		MomSummonChoice[g.player] = 2;
+		Kill();
+	}
+
+	// ARM 3 -- SLIC->engine boundary: AddGold is base-verified (AlexanderTheGreat).
+	Button(ID_BUTTON_GOAL) {
+		AddGold(g.player, 500);
+		Kill();
+	}
+
+	Button(ID_BUTTON_CLOSE) {
+		Kill();
+	}
 }

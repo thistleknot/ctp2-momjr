@@ -5,16 +5,9 @@
 // NOTE: includes the sphere-guard crash fix (p < 1 return) that was in progress when
 // the filesystem corrupted -- the turn-10 crash was this handler running for player 0.
 
-int_t MomMagicCur[31];       // current magic power per player
-int_t MomMagicMax[31];       // max storage per player (a school sets this in M2)
-int_t MomMagicPerTurn[31];   // last computed per-turn generation
-int_t MomMagicCurDisp;       // plain display scalars for the popup: {scalar} is base-verified
-int_t MomMagicMaxDisp;       // (AlexanderTheGreat {cityScore}); array-indexed {Arr[Idx]} is
-int_t MomMagicGenDisp;       // unsupported and silently drops the whole message
-int_t MomMagicShownTurn[31]; // per-round re-entry latch for the popup (flood safety)
-int_t MomMagicSchoolPct[31]; // per-turn multiplier as integer percent (M2); 0 read as 100
+// (magic power declarations live in mom_func.slc -- loaded first)
 
-int_f MomRecalcMagicPerTurn(int_t p)
+int_f MomRecalcMagicPerTurn(int_t mp_1)
 {
     int_t i;
     int_t j;
@@ -27,8 +20,10 @@ int_f MomRecalcMagicPerTurn(int_t p)
 
     gen = 10;
     nodes = 0;
-    for (i = 0; i < player[p].cities; i = i + 1) {
-        GetCityByIndex(player[p], i, tmpCity);
+    // NEVER player[mp_1]: player[N] indexes the event ARG array (size 1), so mp_1>=1
+    // throws "Array index 1 out of bounds". The turn player is player[0].
+    for (i = 0; i < player[0].cities; i = i + 1) {
+        GetCityByIndex(player[0], i, tmpCity);
         if (CityIsValid(tmpCity)) {
             gen = gen + tmpCity.population * 2;
             // M4 mana nodes: good-bearing tiles in the city inner radius (center + 8 neighbors).
@@ -45,7 +40,7 @@ int_f MomRecalcMagicPerTurn(int_t p)
         }
     }
     gen = gen + nodes * 5;   // MANA_NODE_BONUS = 5 per node, before school scaling
-    pct = MomMagicSchoolPct[p];
+    pct = MomMagicSchoolPct[mp_1];
     if (pct == 0) {
         pct = 100;
     }
@@ -54,21 +49,30 @@ int_f MomRecalcMagicPerTurn(int_t p)
 }
 
 // M3: the creature a player's sphere summons on pool overflow (reuses the blessing units).
-int_f MomSphereSummonUnit(int_t p)
+int_f MomSphereSummonUnit(int_t mp_2)
 {
-    if (MomPlayerIsLife(p)) {
+    // FLATTENED 2026-07-25. This is called FROM the MomMagicPoolTick handler
+    // body, so calling MomPlayerIsLife() here made a 2-level user-function
+    // chain -- the documented 0xC0000005 class. MEASURED: gating the caller
+    // (the pool-overflow block) took the run from 7/25 to 14/25, and this is
+    // the only 2-level chain in that handler (MomRecalcMagicPerTurn calls
+    // builtins only), and it fires exactly when the pool first caps -- which
+    // is why the crash tracked the cap turn and moved when unrelated code
+    // changed the accrual. MomPlayerIsX(p) is literally p == N, so comparing
+    // numerically is semantically identical at zero call depth.
+    if (mp_2 == 1) {
         return UnitDB(UNIT_GUARDIAN_SPIRIT);
     }
-    if (MomPlayerIsNature(p)) {
+    if (mp_2 == 2) {
         return UnitDB(UNIT_WARBEARS);
     }
-    if (MomPlayerIsSorcery(p)) {
+    if (mp_2 == 3) {
         return UnitDB(UNIT_MAGE);
     }
-    if (MomPlayerIsDeath(p)) {
+    if (mp_2 == 4) {
         return UnitDB(UNIT_ZOMBIES);
     }
-    if (MomPlayerIsChaos(p)) {
+    if (mp_2 == 5) {
         return UnitDB(UNIT_HELL_HOUNDS);
     }
     return 0;
@@ -98,10 +102,19 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
         // M3 pool-overflow auto-summon: when the pool caps, discharge into the sphere creature.
         if (MomMagicMax[p] > 0 && MomMagicCur[p] >= MomMagicMax[p]) {
             summon = MomSphereSummonUnit(p);
-            if (summon != 0 && player[p].cities > 0) {
+            if (summon != 0 && player[0].cities > 0) {
                 MomMagicCur[p] = 0;
                 MomSpawnSphereUnit(p, summon);
             }
+        }
+
+        // Refresh the display scalars EVERY turn so the 'j' magic menu
+        // (alertbox 'MagicMenu') always shows current values, not just on
+        // the 10-round popup cadence below.
+        if (IsHumanPlayer(p)) {
+            MomMagicCurDisp = MomMagicCur[p];
+            MomMagicMaxDisp = MomMagicMax[p];
+            MomMagicGenDisp = MomMagicPerTurn[p];
         }
 
         // Periodic popup every 10 rounds (0,10,20,...). Latch prevents same-round re-fire flood.
@@ -129,23 +142,32 @@ HandleEvent(GrantAdvance) 'MomMagicSchoolGrant' post {
     p = player[0];
     granted = 0;
 
-    if (MomPlayerIsLife(p) && advance[0].type == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
+    // MEASURED 2026-07-25, twice. GrantAdvance does NOT populate advance[], so
+    // reading advance[0].type is "Array index 0 out of bounds". The first fix
+    // copied value[0] into advance[0] first (the idiom the sibling handler in
+    // mom_city_effects.slc used) -- that ALSO errored, at the same line, which
+    // falsified it: the assignment does not make advance[0] readable. The
+    // granted advance IS value[0], an advance index, directly comparable to
+    // AdvanceDB(). The advance[] array is not used at all now.
+    if (value[0] != 0) {
+
+    if (MomPlayerIsLife(p) && value[0] == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
         MomMagicSchoolPct[p] = 100;
         MomMagicMax[p] = 200;
         granted = 1;
-    } elseif (MomPlayerIsNature(p) && advance[0].type == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
+    } elseif (MomPlayerIsNature(p) && value[0] == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
         MomMagicSchoolPct[p] = 110;
         MomMagicMax[p] = 220;
         granted = 1;
-    } elseif (MomPlayerIsSorcery(p) && advance[0].type == AdvanceDB(ADVANCE_SORCERY)) {
+    } elseif (MomPlayerIsSorcery(p) && value[0] == AdvanceDB(ADVANCE_SORCERY)) {
         MomMagicSchoolPct[p] = 125;
         MomMagicMax[p] = 260;
         granted = 1;
-    } elseif (MomPlayerIsDeath(p) && advance[0].type == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
+    } elseif (MomPlayerIsDeath(p) && value[0] == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
         MomMagicSchoolPct[p] = 115;
         MomMagicMax[p] = 240;
         granted = 1;
-    } elseif (MomPlayerIsChaos(p) && advance[0].type == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
+    } elseif (MomPlayerIsChaos(p) && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
         MomMagicSchoolPct[p] = 140;
         MomMagicMax[p] = 300;
         granted = 1;
@@ -158,4 +180,6 @@ HandleEvent(GrantAdvance) 'MomMagicSchoolGrant' post {
         MomMagicGenDisp = MomMagicPerTurn[p];
         Message(g.player, 'MomMagicPower');
     }
+
+    }   // advance[0] != 0
 }

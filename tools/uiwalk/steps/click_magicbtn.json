@@ -1,0 +1,13 @@
+[
+  {"do": "wait_stable", "ms": 20000},
+  {"do": "type", "text": "'"},
+  {"do": "wait", "ms": 800},
+  {"do": "type", "text": "/reloadslic"},
+  {"do": "wait", "ms": 300},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait", "ms": 1500},
+  {"do": "shot", "name": "after_reloadslic"},
+  {"do": "click", "x": 507, "y": 719},
+  {"do": "wait", "ms": 2000},
+  {"do": "shot", "name": "after_click_507_719"}
+]

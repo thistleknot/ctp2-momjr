@@ -1,0 +1,10 @@
+[
+  {"do": "wait_stable", "ms": 25000},
+  {"do": "type", "text": "'"},
+  {"do": "wait", "ms": 500},
+  {"do": "type", "text": "/reloadslic"},
+  {"do": "wait", "ms": 300},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 6000},
+  {"do": "shot", "name": "ready"}
+]

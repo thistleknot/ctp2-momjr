@@ -1,0 +1,22 @@
+[
+  {"do": "wait_stable", "ms": 45000},
+  {"do": "shot", "name": "01_loaded"},
+  {"do": "key", "keys": "apostrophe"},
+  {"do": "wait", "ms": 1500},
+  {"do": "shot", "name": "02_console"},
+  {"do": "type", "text": "/reloadslic"},
+  {"do": "wait", "ms": 800},
+  {"do": "shot", "name": "03_typed"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 20000},
+  {"do": "shot", "name": "04_after_reloadslic"},
+  {"do": "key", "keys": "j"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "05_MAGIC_MENU"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait", "ms": 1500},
+  {"do": "shot", "name": "06_after_dismiss"},
+  {"do": "key", "keys": "j"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "07_MAGIC_MENU_again"}
+]

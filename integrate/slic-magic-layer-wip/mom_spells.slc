@@ -1,0 +1,264 @@
+// MoM spellcasting layer (Phase D) -- imports the momjr-source spell features
+// (Demon Strike, Flame Strike, on-demand magic info, AI spellcasting) onto
+// base-verified plumbing. #included from scenario.slc AFTER mom_magic.slc.
+//
+// FIDELITY NOTE (engine ground truth): the momjr original bound spells to
+// HandleEvent(KeyPress) with g.key -- that event DOES NOT EXIST in this
+// engine, and TRIGGER_LIST_KEY_PRESSED has zero subscribers engine-wide
+// (SlicEngine.cpp: dead machinery), so the original's keypress casting could
+// never have fired. The importable feature is the SPELL, not the key:
+//   - player casting = spellbook choice popup (messagebox Buttons, the tut2
+//     base-verified form) offered when the mana pool crosses 60% of max
+//   - targeting = nearest enemy city to the caster's capital (the original's
+//     FindEnemyTarget was an explicit placeholder returning no target)
+//   - AI casting = at >= 75% pool, same targeting, no popups
+//   - magic info = the spellbook popup shows the pool; mom_magic's 10-round
+//     status popup stays
+//
+// Base-verified forms used: Distance(loc,loc) (slicfunc.cpp Slic_Distance),
+// CreateUnit(player,int,loc,int) (Slic_CreateUnit, 4 args), UnitDB(),
+// GetCityByIndex/CityIsValid (mom_func), messagebox Button(ID_X){...}
+// (tut2_msg.slc), Message(g.player,'Segment'), {scalar} interpolation.
+// SLIC NAMESPACE IS FLAT: handlers MomSpell*, messageboxes MomMsg*,
+// string keys MOM_MSG_* -- grep uniq -d before adding names.
+
+int_t MomSpellPromptArmed[31];   // re-arm below threshold, fire once on crossing
+int_t MomSpellCurDisp;           // display scalars for the spellbook popup
+int_t MomSpellMaxDisp;
+
+// Cost table (pool caps are 100-300 per school, mom_magic M2):
+//   Flame Strike 50, Demon Strike 100 -- literals below, documented here.
+
+// Cast at the nearest enemy city: scan every other player's cities, pick the
+// closest to the caster's capital, spawn the unit beside it (CreateUnit
+// distance 2). Deducts cost only on success. Humans get a result popup; the
+// no-target case refunds silently for AI.
+void_f MomCastAtNearestEnemy(int_t p, int_t unitType, int_t cost, int_t isDemon)
+{
+    int_t i;
+    int_t j;
+    int_t best;
+    int_t d;
+    int_t found;
+    city_t homeCity;
+    city_t tmpCity;
+    location_t homeLoc;
+    location_t bestLoc;
+
+    found = 0;
+    best = 999999;
+
+    // player[N] indexes the event ARG array, not global players. Assign the
+    // player index we want into a spare slot (grows the array), then read it.
+    // Slot 1 = the caster p; slot 2 = each candidate enemy i (reassigned in the
+    // loop). Bare player[p]/player[i] reads throw "Array index out of bounds".
+    player[1] = p;
+    if (player[1].cities > 0 && MomMagicCur[p] >= cost && unitType != 0) {
+        GetCityByIndex(player[1], 0, homeCity);
+        if (CityIsValid(homeCity)) {
+            homeLoc = homeCity.location;
+            for (i = 1; i < 31; i = i + 1) {
+                player[2] = i;
+                if (i != p && player[2].cities > 0) {
+                    for (j = 0; j < player[2].cities; j = j + 1) {
+                        GetCityByIndex(player[2], j, tmpCity);
+                        if (CityIsValid(tmpCity)) {
+                            d = Distance(homeLoc, tmpCity.location);
+                            if (d < best) {
+                                best = d;
+                                bestLoc = tmpCity.location;
+                                found = 1;
+                            }
+                        }
+                    }
+                }
+            }
+            if (found == 1) {
+                MomMagicCur[p] = MomMagicCur[p] - cost;
+                CreateUnit(p, unitType, bestLoc, 2);
+                if (IsHumanPlayer(p)) {
+                    MomSpellCurDisp = MomMagicCur[p];
+                    MomSpellMaxDisp = MomMagicMax[p];
+                    if (isDemon == 1) {
+                        Message(g.player, 'MomMsgDemonCast');
+                    } else {
+                        Message(g.player, 'MomMsgFlameCast');
+                    }
+                }
+            } else {
+                if (IsHumanPlayer(p)) {
+                    Message(g.player, 'MomMsgNoTarget');
+                }
+            }
+        }
+    }
+}
+
+// Flame Strike: any sphere; projects the caster's sphere creature at the
+// nearest enemy city. Cost 50.
+void_f MomCastFlameStrike(int_t p)
+{
+    int_t summon;
+
+    if (p >= 1) {
+        if (MomMagicCur[p] >= 50) {
+            summon = MomSphereSummonUnit(p);
+            MomCastAtNearestEnemy(p, summon, 50, 0);
+        } else {
+            if (IsHumanPlayer(p)) {
+                Message(g.player, 'MomMsgNoMana');
+            }
+        }
+    }
+}
+
+// Demon Strike: Chaos school only (original rule). Cost 100.
+void_f MomCastDemonStrike(int_t p)
+{
+    if (p >= 1) {
+        if (MomPlayerIsChaos(p) == 0) {
+            if (IsHumanPlayer(p)) {
+                Message(g.player, 'MomMsgNotChaos');
+            }
+        } else {
+            if (MomMagicCur[p] >= 100) {
+                MomCastAtNearestEnemy(p, UnitDB(UNIT_DEMON), 100, 1);
+            } else {
+                if (IsHumanPlayer(p)) {
+                    Message(g.player, 'MomMsgNoMana');
+                }
+            }
+        }
+    }
+}
+
+// Show the spellbook popup for player p (pool status + cast buttons).
+void_f MomSpellShowBook(int_t p)
+{
+    if (p >= 1) {
+        MomSpellCurDisp = MomMagicCur[p];
+        MomSpellMaxDisp = MomMagicMax[p];
+        if (MomPlayerIsChaos(p)) {
+            Message(g.player, 'MomMsgSpellbookChaos');
+        } else {
+            Message(g.player, 'MomMsgSpellbook');
+        }
+    }
+}
+
+// Player spellbook: offered once each time the pool crosses 60% of max
+// (re-armed when it drops back below). Chaos gets the extra Demon button.
+// (On-demand access will come from the Ritual Circle trigger improvement.)
+HandleEvent(BeginTurn) 'MomSpellMenuTick' post {
+    int_t p;
+    int_t threshold;
+
+    p = player[0];
+    if (p >= 1 && IsHumanPlayer(p)) {   // TEMP PROBE: show book every turn
+        MomSpellShowBook(p);
+    }
+    if (p >= 1 && IsHumanPlayer(p) && MomMagicMax[p] > 0) {
+        threshold = (MomMagicMax[p] * 3) / 5;
+        if (MomMagicCur[p] < threshold) {
+            MomSpellPromptArmed[p] = 1;
+        }
+        if (MomSpellPromptArmed[p] == 1 && MomMagicCur[p] >= threshold) {
+            MomSpellPromptArmed[p] = 0;
+            MomSpellShowBook(p);
+        }
+    }
+}
+
+// On-demand access: a native SLIC UI-component trigger, NOT a keypress.
+// REVERTED (2026-07-18): the keyboard path (SetActionKey/RunKeyboardTrigger
+// ActionKey<N> dispatch, an engine C++ patch) worked mechanically but froze
+// the game on first real test, AND 'm' collides with the base game's own
+// keymap.txt binding (m -> MOVE_ORDER) -- a real player loses unit-move
+// orders for as long as this scenario is loaded. No engine patch needed for
+// this at all: `trigger 'X' on "LDL.Control.Path" when(cond) {...}` is a
+// standard, ALREADY-WORKING SLIC mechanism (fires via
+// HandleGameSpecificLeftClick -> SlicEngine::RunUITriggers for any
+// LDL-defined clickable control; 15+ proven examples in base
+// ctp2_data/default/gamedata/tut2_main.slc, e.g. 'TSPScience' on
+// "ControlPanelWindow.ControlPanel.ShortcutPad.ScienceButton"). Event-driven
+// (fires once per real click) and repeatable (omitting DisableTrigger(), as
+// the base one-shot tutorial triggers deliberately call it and we don't).
+trigger 'MomOpenSpellbook' on "ControlPanelWindow.ControlPanel.ShortcutPad.MagicButton" when (1) {
+    MomSpellShowBook(g.player);
+}
+
+// AI spellcasting (the momjr original gated at 75% of max but its targeting
+// was a placeholder that never found a target): at >= 75% pool the AI casts
+// for real -- Chaos AIs prefer Demon Strike, everyone else Flame Strike.
+HandleEvent(BeginTurn) 'MomSpellAICast' post {
+    int_t p;
+
+    p = player[0];
+    if (p >= 1 && IsHumanPlayer(p) == 0 && MomMagicMax[p] > 0) {
+        if (MomMagicCur[p] * 4 >= MomMagicMax[p] * 3) {
+            if (MomPlayerIsChaos(p) && MomMagicCur[p] >= 100) {
+                MomCastDemonStrike(p);
+            } else {
+                MomCastFlameStrike(p);
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Messagebox segments (see lessons_learned 2026-07-17: Message() requires a
+// DEFINED segment; names must not collide with handlers or string keys).
+// ---------------------------------------------------------------------------
+
+messagebox 'MomMsgSpellbook' {
+    Show();
+    Text(ID_MOM_MSG_SPELLBOOK);
+    Button(ID_MOM_MSG_BTN_FLAME) {
+        MomCastFlameStrike(g.player);
+        Kill();
+    }
+    Button(ID_MOM_MSG_BTN_STORE) {
+        Kill();
+    }
+}
+
+messagebox 'MomMsgSpellbookChaos' {
+    Show();
+    Text(ID_MOM_MSG_SPELLBOOK);
+    Button(ID_MOM_MSG_BTN_DEMON) {
+        MomCastDemonStrike(g.player);
+        Kill();
+    }
+    Button(ID_MOM_MSG_BTN_FLAME) {
+        MomCastFlameStrike(g.player);
+        Kill();
+    }
+    Button(ID_MOM_MSG_BTN_STORE) {
+        Kill();
+    }
+}
+
+messagebox 'MomMsgDemonCast' {
+    Show();
+    Text(ID_MOM_MSG_DEMON_CAST);
+}
+
+messagebox 'MomMsgFlameCast' {
+    Show();
+    Text(ID_MOM_MSG_FLAME_CAST);
+}
+
+messagebox 'MomMsgNoTarget' {
+    Show();
+    Text(ID_MOM_MSG_NO_TARGET);
+}
+
+messagebox 'MomMsgNoMana' {
+    Show();
+    Text(ID_MOM_MSG_NO_MANA);
+}
+
+messagebox 'MomMsgNotChaos' {
+    Show();
+    Text(ID_MOM_MSG_NOT_CHAOS);
+}

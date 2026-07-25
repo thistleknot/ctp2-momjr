@@ -1,0 +1,5 @@
+[
+  {"_comment": "Minimal capture-health probe. No input, no navigation. Boots to the main menu and takes one frame. PASS condition is not a golden score -- it is the FRAME GEOMETRY: 1280x960 (engine 1024x768 x1.25 per L1) with many colors = capture healthy. 1080x1920 single-color = the window was created at primary-display size and rendered nothing, which is the open regression."},
+  {"do": "wait", "ms": 14000},
+  {"do": "shot", "name": "geom"}
+]

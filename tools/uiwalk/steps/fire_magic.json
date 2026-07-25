@@ -1,0 +1,13 @@
+[
+  {"do": "wait_stable", "ms": 25000},
+  {"do": "type", "text": "'"},
+  {"do": "wait", "ms": 800},
+  {"do": "type", "text": "/reloadslic"},
+  {"do": "wait", "ms": 300},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 8000},
+  {"do": "shot", "name": "after_reloadslic"},
+  {"do": "fire", "control": "ControlPanelWindow.ControlPanel.ShortcutPad.MagicButton"},
+  {"do": "wait", "ms": 2500},
+  {"do": "shot", "name": "after_fire_trigger"}
+]

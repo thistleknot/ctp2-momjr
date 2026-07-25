@@ -1,0 +1,12 @@
+[
+  {"do": "wait", "ms": 8000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 4000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 4000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait_stable", "ms": 30000},
+  {"do": "click", "x": 215, "y": 590},
+  {"do": "wait_stable", "ms": 20000},
+  {"do": "shot", "name": "after_new_game"}
+]

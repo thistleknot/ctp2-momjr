@@ -2744,6 +2744,8 @@ UNIT_CITY {
    CanSee: Standard
    MovementType: Land
    MovementType: Mountain
+   MovementType: Sea
+   MovementType: ShallowWater
    Size: Medium
    VisionClass: Standard
 

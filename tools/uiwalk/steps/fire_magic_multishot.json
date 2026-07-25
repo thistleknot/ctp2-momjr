@@ -1,0 +1,11 @@
+[
+  {"do": "wait_stable", "ms": 28000},
+  {"do": "shot", "name": "loaded"},
+  {"do": "fire", "control": "ControlPanelWindow.ControlPanel.ShortcutPad.MagicButton"},
+  {"do": "wait", "ms": 2000},
+  {"do": "shot", "name": "after_fire_2s"},
+  {"do": "wait", "ms": 4000},
+  {"do": "shot", "name": "after_fire_6s"},
+  {"do": "wait", "ms": 6000},
+  {"do": "shot", "name": "after_fire_12s"}
+]

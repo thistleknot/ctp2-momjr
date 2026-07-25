@@ -1,0 +1,164 @@
+// MoM magic system (M1-M4) -- reconstructed from session log after H: FS corruption.
+// #included LAST in scenario.slc, after mom_msg.slc. Base-verified SLIC only.
+// M1 per-player magic-power pool, M2 school multipliers, M3 pool-overflow summon,
+// M4 mana nodes. Popup uses base-verified {scalar} interpolation (NOT {Arr[Idx]}).
+// NOTE: includes the sphere-guard crash fix (p < 1 return) that was in progress when
+// the filesystem corrupted -- the turn-10 crash was this handler running for player 0.
+
+int_t MomMagicCur[31];       // current magic power per player
+int_t MomMagicMax[31];       // max storage per player (a school sets this in M2)
+int_t MomMagicPerTurn[31];   // last computed per-turn generation
+int_t MomMagicCurDisp;       // plain display scalars for the popup: {scalar} is base-verified
+int_t MomMagicMaxDisp;       // (AlexanderTheGreat {cityScore}); array-indexed {Arr[Idx]} is
+int_t MomMagicGenDisp;       // unsupported and silently drops the whole message
+int_t MomMagicShownTurn[31]; // per-round re-entry latch for the popup (flood safety)
+int_t MomMagicSchoolPct[31]; // per-turn multiplier as integer percent (M2); 0 read as 100
+
+int_f MomRecalcMagicPerTurn(int_t p)
+{
+    int_t i;
+    int_t j;
+    int_t gen;
+    int_t pct;
+    int_t nodes;
+    city_t tmpCity;
+    location_t cloc;
+    location_t nloc;
+
+    gen = 10;
+    nodes = 0;
+    // Assign p into a spare builtin slot (grows the arg array) before reading;
+    // bare player[p] would throw "Array index out of bounds".
+    player[1] = p;
+    for (i = 0; i < player[1].cities; i = i + 1) {
+        GetCityByIndex(player[1], i, tmpCity);
+        if (CityIsValid(tmpCity)) {
+            gen = gen + tmpCity.population * 2;
+            // M4 mana nodes: good-bearing tiles in the city inner radius (center + 8 neighbors).
+            cloc = tmpCity.location;
+            if (HasGood(cloc) >= 0) {
+                nodes = nodes + 1;
+            }
+            for (j = 0; j < 8; j = j + 1) {
+                GetNeighbor(cloc, j, nloc);
+                if (HasGood(nloc) >= 0) {
+                    nodes = nodes + 1;
+                }
+            }
+        }
+    }
+    gen = gen + nodes * 5;   // MANA_NODE_BONUS = 5 per node, before school scaling
+    pct = MomMagicSchoolPct[p];
+    if (pct == 0) {
+        pct = 100;
+    }
+    gen = gen * pct / 100;
+    return gen;
+}
+
+// M3: the creature a player's sphere summons on pool overflow (reuses the blessing units).
+int_f MomSphereSummonUnit(int_t p)
+{
+    if (MomPlayerIsLife(p)) {
+        return UnitDB(UNIT_GUARDIAN_SPIRIT);
+    }
+    if (MomPlayerIsNature(p)) {
+        return UnitDB(UNIT_WARBEARS);
+    }
+    if (MomPlayerIsSorcery(p)) {
+        return UnitDB(UNIT_MAGE);
+    }
+    if (MomPlayerIsDeath(p)) {
+        return UnitDB(UNIT_ZOMBIES);
+    }
+    if (MomPlayerIsChaos(p)) {
+        return UnitDB(UNIT_HELL_HOUNDS);
+    }
+    return 0;
+}
+
+HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
+    int_t p;
+    int_t r;
+    int_t summon;
+
+    p = player[0];
+
+    // CRASH FIX (turn-10): magic is for sphere players 1..5 only. Player 0 (barbarians) and
+    // any non-sphere player must skip. SLIC 'post' handlers cannot bare-return, so gate the
+    // whole body with an if (this handler running for player 0 was the turn-10 crash).
+    if (p >= 1) {
+        if (MomMagicMax[p] == 0) {
+            MomMagicMax[p] = 100;
+        }
+
+        MomMagicPerTurn[p] = MomRecalcMagicPerTurn(p);
+        MomMagicCur[p] = MomMagicCur[p] + MomMagicPerTurn[p];
+        if (MomMagicCur[p] > MomMagicMax[p]) {
+            MomMagicCur[p] = MomMagicMax[p];
+        }
+
+        // M3 pool-overflow auto-summon: when the pool caps, discharge into the sphere creature.
+        if (MomMagicMax[p] > 0 && MomMagicCur[p] >= MomMagicMax[p]) {
+            summon = MomSphereSummonUnit(p);
+            if (summon != 0 && player[0].cities > 0) {
+                MomMagicCur[p] = 0;
+                MomSpawnSphereUnit(p, summon);
+            }
+        }
+
+        // Periodic popup every 10 rounds (0,10,20,...). Latch prevents same-round re-fire flood.
+        if (IsHumanPlayer(p)) {
+            r = GetCurrentRound();
+            if (r - (r / 10) * 10 == 0) {
+                if (MomMagicShownTurn[p] != r + 1) {
+                    MomMagicShownTurn[p] = r + 1;
+                    MomMagicCurDisp = MomMagicCur[p];
+                    MomMagicMaxDisp = MomMagicMax[p];
+                    MomMagicGenDisp = MomMagicPerTurn[p];
+                    Message(g.player, 'MomMagicPower');
+                }
+            }
+        }
+    }
+}
+
+// M2 school multipliers -- set the player's per-turn multiplier + pool cap on their sphere's
+// magic advance. Separate named GrantAdvance handler (coexists with blessing handlers).
+HandleEvent(GrantAdvance) 'MomMagicSchoolGrant' post {
+    int_t p;
+    int_t granted;
+
+    p = player[0];
+    granted = 0;
+
+    if (MomPlayerIsLife(p) && advance[0].type == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
+        MomMagicSchoolPct[p] = 100;
+        MomMagicMax[p] = 200;
+        granted = 1;
+    } elseif (MomPlayerIsNature(p) && advance[0].type == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
+        MomMagicSchoolPct[p] = 110;
+        MomMagicMax[p] = 220;
+        granted = 1;
+    } elseif (MomPlayerIsSorcery(p) && advance[0].type == AdvanceDB(ADVANCE_SORCERY)) {
+        MomMagicSchoolPct[p] = 125;
+        MomMagicMax[p] = 260;
+        granted = 1;
+    } elseif (MomPlayerIsDeath(p) && advance[0].type == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
+        MomMagicSchoolPct[p] = 115;
+        MomMagicMax[p] = 240;
+        granted = 1;
+    } elseif (MomPlayerIsChaos(p) && advance[0].type == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
+        MomMagicSchoolPct[p] = 140;
+        MomMagicMax[p] = 300;
+        granted = 1;
+    }
+
+    if (granted && IsHumanPlayer(p)) {
+        MomMagicPerTurn[p] = MomRecalcMagicPerTurn(p);
+        MomMagicCurDisp = MomMagicCur[p];
+        MomMagicMaxDisp = MomMagicMax[p];
+        MomMagicGenDisp = MomMagicPerTurn[p];
+        Message(g.player, 'MomMagicPower');
+    }
+}

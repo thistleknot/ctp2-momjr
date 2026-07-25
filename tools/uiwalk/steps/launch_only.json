@@ -1,0 +1,10 @@
+[
+  {"do": "wait", "ms": 1500},
+  {"do": "shot", "name": "config"},
+  {"do": "click", "x": 508, "y": 652},
+  {"do": "wait", "ms": 12000},
+  {"do": "wait_stable", "ms": 60000},
+  {"do": "shot", "name": "loaded"},
+  {"do": "wait", "ms": 5000},
+  {"do": "shot", "name": "spellbook"}
+]

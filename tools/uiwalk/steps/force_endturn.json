@@ -1,0 +1,12 @@
+[
+  {"do": "wait", "ms": 2000},
+  {"do": "shot", "name": "before"},
+  {"do": "key", "keys": "shift+a"},
+  {"do": "wait", "ms": 5000},
+  {"do": "shot", "name": "after_endturn_a"},
+  {"do": "wait", "ms": 6000},
+  {"do": "shot", "name": "after_endturn_a2"},
+  {"do": "key", "keys": "shift+a"},
+  {"do": "wait", "ms": 6000},
+  {"do": "shot", "name": "after_endturn_a3"}
+]

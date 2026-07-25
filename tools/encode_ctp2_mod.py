@@ -193,11 +193,18 @@ def main() -> int:
     for idx, (ident, f) in enumerate(adv_blocks):
         name = names.get(ident, humanize(ident, "ADVANCE_"))
         age = first(f, "Age", "AGE_ONE")
+        # 'category' = the science-screen BRANCH, a numeric index into branchID.txt
+        # (the generator writes it verbatim as the advance's `Branch` line). The
+        # AGE goes in 'epoch' instead (generator maps epoch->AGE via epoch_age_map).
+        # Emitting the AGE_* string here produces `Branch AGE_FOUR`, which the
+        # engine rejects: "<name> not found in AdvanceBranch database". Carry the
+        # source's own numeric Branch (default 0 = unbranched, always valid).
+        branch = num(first(f, "Branch", "0"))
         prereqs = f.get("Prerequisites", [])
         p1 = prereqs[0] if len(prereqs) > 0 else "nil"
         p2 = prereqs[1] if len(prereqs) > 1 else "nil"
         adv_rows.append([str(idx), name, ident, p1, p2, str(AGE_TO_EPOCH.get(age, 0)),
-                         age, first(f, "Icon", f"ICON_ADVANCE_{ident[len('ADVANCE_'):]}"),
+                         str(branch), first(f, "Icon", f"ICON_ADVANCE_{ident[len('ADVANCE_'):]}"),
                          f"{ident}_GAMEPLAY", f"{ident}_HISTORICAL",
                          f"{ident}_PREREQ", f"{ident}_STATISTICS", f"{ident}_STATISTICS"])
         code_rows.append(["prereq", ident, ident])
@@ -208,9 +215,19 @@ def main() -> int:
                "prereq_str", "vari_str", "stattext_str"], adv_rows)
 
     # --- units ---
+    # Skip engine-STRUCTURAL placeholder units (not buildable mod content): the
+    # city unit (UNIT_CITY) carries HasPopAndCanBuild and exists in every ctp2
+    # mod's gamedata as scaffolding. Emitting it as a "City" unit collides with
+    # the base mod's unit_block_overrides UNIT_CITY (which supplies
+    # HasPopAndCanBuild + GLHidden), clobbering it and crashing city founding
+    # (GetLandCity/GetSeaCity return index 0). Filter by flag, not name, so any
+    # mod's city-type placeholder is caught.
+    STRUCTURAL_UNITS = {"UNIT_CITY"}
     unit_blocks = dedup_last_wins(parse_blocks(read_dimension(gd, "Units.txt")))
     urows = []
     for idx, (ident, f) in enumerate(unit_blocks):
+        if ident in STRUCTURAL_UNITS or "HasPopAndCanBuild" in f:
+            continue
         name = names.get(ident, humanize(ident, "UNIT_"))
         atk = num(first(f, "Attack", "0")) // DEFAULT_ATTACK_SCALE
         dfn = num(first(f, "Defense", "0")) // DEFAULT_ATTACK_SCALE

@@ -1,0 +1,89 @@
+[
+  {
+    "do": "wait",
+    "ms": 6000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 30000
+  },
+  {
+    "do": "press",
+    "path": "InitPlayWindow.NewGameButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.ScenarioButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "0_base"
+  },
+  {
+    "do": "click",
+    "x": 625,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "shot",
+    "name": "1_predict_row1"
+  },
+  {
+    "do": "click",
+    "x": 996,
+    "y": 690
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "shot",
+    "name": "2_predict_downarrow"
+  },
+  {
+    "do": "click",
+    "x": 996,
+    "y": 690
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "shot",
+    "name": "3_downarrow_again"
+  }
+]

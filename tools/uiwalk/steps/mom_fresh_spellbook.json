@@ -1,0 +1,21 @@
+[
+  {"do": "wait", "ms": 2500},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 1500},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait_stable", "ms": 30000},
+  {"do": "click", "x": 215, "y": 590},
+  {"do": "wait", "ms": 4000},
+  {"do": "click", "x": 363, "y": 495},
+  {"do": "wait", "ms": 5000},
+  {"do": "click", "x": 500, "y": 367},
+  {"do": "wait", "ms": 1500},
+  {"do": "click", "x": 765, "y": 581},
+  {"do": "wait", "ms": 4000},
+  {"do": "click", "x": 508, "y": 652},
+  {"do": "wait", "ms": 12000},
+  {"do": "wait_stable", "ms": 60000},
+  {"do": "shot", "name": "turn1_loaded"},
+  {"do": "wait", "ms": 4000},
+  {"do": "shot", "name": "turn1_spellbook"}
+]

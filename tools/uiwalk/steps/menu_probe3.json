@@ -1,0 +1,19 @@
+[
+  {"do": "wait", "ms": 8000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 4000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait_stable", "ms": 30000},
+  {"do": "click", "x": 215, "y": 590},
+  {"do": "wait", "ms": 1000},
+  {"do": "shot", "name": "plus1s"},
+  {"do": "click", "x": 215, "y": 590},
+  {"do": "click", "x": 215, "y": 590},
+  {"do": "wait", "ms": 5000},
+  {"do": "shot", "name": "plus5s_dblclick"},
+  {"do": "click", "x": 789, "y": 320},
+  {"do": "wait", "ms": 2000},
+  {"do": "click", "x": 215, "y": 590},
+  {"do": "wait", "ms": 5000},
+  {"do": "shot", "name": "after_sp_tab_newgame"}
+]

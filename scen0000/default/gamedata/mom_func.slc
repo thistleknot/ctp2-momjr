@@ -8,68 +8,70 @@
 //     Chaos 5), matching the reference-scenario idiom `player[0] == 1`.
 //   - iterate a player's cities: GetCityByIndex(player[p], i, tmpCity) guarded by
 //     CityIsValid(tmpCity).
-//   - membership: CityHasBuilding(city, BuildingDB(...)) -- a BuildingDB() reference,
-//     NOT a quoted string.
+//   - membership: CityHasBuilding(city, "IMPROVE_X") -- the engine REQUIRES a hard
+//     quoted string literal (slicfunc.cpp: SA_TYPE_HARD_STRING, looked up via StringDB).
+//     BuildingDB() refs or variables raise "Wrong type of argument".
 //   Helpers take int_t p (a player index); callers pass the event-local player[0].
 
-int_f MomPlayerIsLife(int_t p)
+int_f MomPlayerIsLife(int_t p_1)
 {
     // Player 1 == Tribes of Life (civ #1). Numeric index, not TRIBES_LIFE (undefined in SLIC).
-    if (p == 1) {
+    if (p_1 == 1) {
         return 1;
     }
     return 0;
 }
 
-int_f MomPlayerIsNature(int_t p)
+int_f MomPlayerIsNature(int_t p_2)
 {
-    if (p == 2) {
+    if (p_2 == 2) {
         return 1;
     }
     return 0;
 }
 
-int_f MomPlayerIsSorcery(int_t p)
+int_f MomPlayerIsSorcery(int_t p_3)
 {
-    if (p == 3) {
+    if (p_3 == 3) {
         return 1;
     }
     return 0;
 }
 
-int_f MomPlayerIsDeath(int_t p)
+int_f MomPlayerIsDeath(int_t p_4)
 {
-    if (p == 4) {
+    if (p_4 == 4) {
         return 1;
     }
     return 0;
 }
 
-int_f MomPlayerIsChaos(int_t p)
+int_f MomPlayerIsChaos(int_t p_5)
 {
-    if (p == 5) {
+    if (p_5 == 5) {
         return 1;
     }
     return 0;
 }
 
-int_f MomCountLifeBlessings(int_t p)
+int_f MomCountLifeBlessings(int_t p_6)
 {
     int_t i;
     int_t blessingCount;
     city_t tmpCity;
 
     blessingCount = 0;
-    for (i = 0; i < player[p].cities; i = i + 1) {
-        GetCityByIndex(player[p], i, tmpCity);
+    // player[0] is the event player. NEVER player[1] -- see MomSpawnSphereUnit.
+    for (i = 0; i < player[0].cities; i = i + 1) {
+        GetCityByIndex(player[0], i, tmpCity);
         if (CityIsValid(tmpCity)) {
-            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_TEMPLE))) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_TEMPLE")) {
                 blessingCount = blessingCount + 1;
             }
-            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_CITY_WALLS))) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_CITY_WALLS")) {
                 blessingCount = blessingCount + 1;
             }
-            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_WIZARDS_FORTRESS))) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_WIZARDS_FORTRESS")) {
                 blessingCount = blessingCount + 1;
             }
         }
@@ -77,7 +79,7 @@ int_f MomCountLifeBlessings(int_t p)
     return blessingCount;
 }
 
-int_f MomCountNatureFoci(int_t p)
+int_f MomCountNatureFoci(int_t p_7)
 {
     int_t i;
     int_t focusCount;
@@ -88,16 +90,16 @@ int_f MomCountNatureFoci(int_t p)
     // here to keep only verified improvement refs; it could be re-added later via a
     // CityHasWonder/WonderDB check if that focus is wanted.
     focusCount = 0;
-    for (i = 0; i < player[p].cities; i = i + 1) {
-        GetCityByIndex(player[p], i, tmpCity);
+    for (i = 0; i < player[0].cities; i = i + 1) {
+        GetCityByIndex(player[0], i, tmpCity);
         if (CityIsValid(tmpCity)) {
-            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_GRANARY))) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_GRANARY")) {
                 focusCount = focusCount + 1;
             }
-            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_PRIMAL_SOURCE))) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_PRIMAL_SOURCE")) {
                 focusCount = focusCount + 2;
             }
-            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_FANTASTIC_STABLE))) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_FANTASTIC_STABLE")) {
                 focusCount = focusCount + 1;
             }
         }
@@ -105,20 +107,20 @@ int_f MomCountNatureFoci(int_t p)
     return focusCount;
 }
 
-int_f MomCountSorceryFoci(int_t p)
+int_f MomCountSorceryFoci(int_t p_8)
 {
     int_t i;
     int_t focusCount;
     city_t tmpCity;
 
     focusCount = 0;
-    for (i = 0; i < player[p].cities; i = i + 1) {
-        GetCityByIndex(player[p], i, tmpCity);
+    for (i = 0; i < player[0].cities; i = i + 1) {
+        GetCityByIndex(player[0], i, tmpCity);
         if (CityIsValid(tmpCity)) {
-            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_LIBRARY))) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_LIBRARY")) {
                 focusCount = focusCount + 1;
             }
-            if (CityHasBuilding(tmpCity, BuildingDB(IMPROVE_BEACON_OF_WISDOM))) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_BEACON_OF_WISDOM")) {
                 focusCount = focusCount + 2;
             }
         }
@@ -130,29 +132,100 @@ int_f MomCountSorceryFoci(int_t p)
 // Grant a one-time blessing building in the player's first city (if absent), and spawn
 // a sphere unit there. CreateUnit/CreateBuilding take base-verified forms: CreateUnit's
 // first arg is the INTEGER player index (NOT player[p]); membership uses BuildingDB().
-// Both are generic over the DB reference so every sphere reuses one proven code path
-// (fanned out from the Life element in B2a: Life passed IMPROVE_TEMPLE / UNIT_GUARDIAN_SPIRIT).
+// NOTE: CityHasBuilding requires a HARD STRING LITERAL (variable args return
+// SFN_ERROR at runtime), so the grant helper is fanned out per sphere instead of
+// being generic over a BuildingDB() variable. CreateBuilding itself is fine with
+// a variable (engine takes an int), but we still guard to avoid re-running
+// AddImprovement side effects (capitol designation / border regeneration).
 
-void_f MomGrantSphereBuilding(int_t p, int_t buildingType)
+void_f MomGrantLifeBuilding(int_t p_9)
 {
     city_t tmpCity;
 
-    if (player[p].cities) {
-        GetCityByIndex(player[p], 0, tmpCity);
-        if (CityIsValid(tmpCity) && !CityHasBuilding(tmpCity, buildingType)) {
-            CreateBuilding(tmpCity, buildingType);
+    if (player[0].cities) {
+        GetCityByIndex(player[0], 0, tmpCity);
+        if (CityIsValid(tmpCity) && !CityHasBuilding(tmpCity, "IMPROVE_TEMPLE")) {
+            CreateBuilding(tmpCity, BuildingDB(IMPROVE_TEMPLE));
         }
     }
 }
 
-void_f MomSpawnSphereUnit(int_t p, int_t unitType)
+void_f MomGrantNatureBuilding(int_t p_10)
 {
     city_t tmpCity;
 
-    if (player[p].cities) {
-        GetCityByIndex(player[p], 0, tmpCity);
+    if (player[0].cities) {
+        GetCityByIndex(player[0], 0, tmpCity);
+        if (CityIsValid(tmpCity) && !CityHasBuilding(tmpCity, "IMPROVE_GRANARY")) {
+            CreateBuilding(tmpCity, BuildingDB(IMPROVE_GRANARY));
+        }
+    }
+}
+
+void_f MomGrantSorceryBuilding(int_t p_11)
+{
+    city_t tmpCity;
+
+    if (player[0].cities) {
+        GetCityByIndex(player[0], 0, tmpCity);
+        if (CityIsValid(tmpCity) && !CityHasBuilding(tmpCity, "IMPROVE_LIBRARY")) {
+            CreateBuilding(tmpCity, BuildingDB(IMPROVE_LIBRARY));
+        }
+    }
+}
+
+void_f MomGrantDeathBuilding(int_t p_12)
+{
+    city_t tmpCity;
+
+    if (player[0].cities) {
+        GetCityByIndex(player[0], 0, tmpCity);
+        if (CityIsValid(tmpCity) && !CityHasBuilding(tmpCity, "IMPROVE_BARRACKS")) {
+            CreateBuilding(tmpCity, BuildingDB(IMPROVE_BARRACKS));
+        }
+    }
+}
+
+void_f MomSpawnSphereUnit(int_t p_13, int_t unitType)
+{
+    city_t tmpCity;
+
+    // NEVER player[1]: player[] is the event ARG array (size 1), so player[1] is
+    // out of bounds -- the same rule mom_turns.slc documents. It did not raise a
+    // SLIC error here because the write silently no-ops and the .cities read then
+    // returns 0, so this function quietly spawned NOTHING on every call. Every
+    // caller passes the handler's own player, which IS player[0].
+    if (player[0].cities) {
+        GetCityByIndex(player[0], 0, tmpCity);
         if (CityIsValid(tmpCity)) {
-            CreateUnit(p, unitType, tmpCity.location, 1);
+            CreateUnit(p_13, unitType, tmpCity.location, 1);
         }
     }
 }
+
+// Magic power state (used by mom_magic.slc, declared here because mom_func.slc
+// loads first -- keeps declaration-before-use across the include order).
+int_t MomMagicCur[31];       // current magic power per player
+int_t MomMagicMax[31];       // max storage per player (a school sets this in M2)
+int_t MomMagicPerTurn[31];   // last computed per-turn generation
+int_t MomMagicCurDisp;       // plain display scalars for the popup: {scalar} is base-verified
+int_t MomMagicMaxDisp;       // (AlexanderTheGreat {cityScore}); array-indexed {Arr[Idx]} is
+int_t MomMagicGenDisp;       // unsupported and silently drops the whole message
+
+// Phase D spellbook globals (mom_spells.slc). They live HERE, not there, for the
+// same reason MomMagic*Disp does: mom_func.slc is the FIRST include, and a
+// messagebox/alertbox segment that interpolates a global declared in a
+// later-loading file is the documented MagicMenu failure mode.
+int_t MomSpellPromptArmed[31];   // re-arm below threshold, fire once on crossing
+int_t MomSpellCurDisp;           // display scalars for the spellbook popup
+int_t MomSpellMaxDisp;
+// INTERACTIVITY LINK 7 (the last open link): does a button-body mutation SURVIVE
+// a turn boundary and get CONSUMED by a handler that changes ENGINE state?
+// Links 3-6 (click reaches the button, body executes, mutates, mutation is
+// readable on reopen) were closed 2026-07-24; all of that happened inside one
+// turn, so none of it speaks to persistence across BeginTurn.
+// 0 = no pending order. Set by an alertbox arm, consumed and cleared by
+// MomSummonOrderTick in mom_msg.slc.
+int_t MomSummonChoice[31];
+int_t MomMagicShownTurn[31]; // per-round re-entry latch for the popup (flood safety)
+int_t MomMagicSchoolPct[31]; // per-turn multiplier as integer percent (M2); 0 read as 100

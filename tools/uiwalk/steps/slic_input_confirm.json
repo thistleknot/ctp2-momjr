@@ -1,0 +1,20 @@
+[
+  {"do": "wait", "ms": 2500},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 1500},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait_stable", "ms": 30000},
+  {"do": "shot", "name": "main_menu"},
+  {"do": "fire", "control": "press:InitPlayWindow.NewGameButton"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "newgame_screen"},
+  {"do": "fire", "control": "press:SPNewGameWindow.ScenarioButton"},
+  {"do": "wait", "ms": 12000},
+  {"do": "wait_stable", "ms": 90000},
+  {"do": "shot", "name": "loaded_turn1"},
+  {"do": "fire", "control": "ControlPanelWindow.ControlPanel.ShortcutPad.MagicButton"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "spellbook_opened"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "spellbook_opened_2"}
+]

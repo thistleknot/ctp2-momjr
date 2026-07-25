@@ -1,0 +1,22 @@
+[
+  {"do": "wait_stable", "ms": 30000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 600},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 600},
+  {"do": "key", "keys": "b"},
+  {"do": "wait_stable", "ms": 6000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait_stable", "ms": 4000},
+  {"do": "key", "keys": "a"},
+  {"do": "wait", "ms": 2000},
+  {"do": "shot", "name": "after_A"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 15000},
+  {"do": "shot", "name": "after_A_confirm"},
+  {"do": "key", "keys": "a"},
+  {"do": "wait", "ms": 1500},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 15000},
+  {"do": "shot", "name": "final_year"}
+]

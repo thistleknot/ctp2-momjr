@@ -1,0 +1,246 @@
+[
+ {
+  "_comment": "COORD RULE (CORRECTED 2026-07-25 -- the old blanket 'send cx*1.25' here was wrong). GEOMETRY: the engine blits its 1024x768 surface UNSCALED into the client's top-left, so capture coords ARE engine coords, 1:1 (measured content bbox 0,0-1021,759). The SEND scale is NOT derived from that geometry -- it is empirical and PER-SURFACE: message = x0.80, alertbox = x1.25. x1.25 on the MESSAGE surface is process-lethal (0xC0000005, 2/2 runs). Buttons/lists prefer the injection hook (press:/select:), which needs no coords at all. Full element map: ../ui_map.json"
+ },
+ {
+  "do": "wait",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 30000
+ },
+ {
+  "do": "shot",
+  "name": "main_menu"
+ },
+ {
+  "do": "assert",
+  "name": "main_menu_check",
+  "golden": "main_menu",
+  "region": [
+   110,
+   70,
+   800,
+   610
+  ],
+  "threshold": 0.9
+ },
+ {
+  "do": "press",
+  "path": "InitPlayWindow.NewGameButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "shot",
+  "name": "new_game_screen"
+ },
+ {
+  "do": "assert",
+  "name": "new_game_check",
+  "golden": "new_game_screen",
+  "region": [
+   110,
+   75,
+   800,
+   600
+  ],
+  "threshold": 0.9
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.ScenarioButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "shot",
+  "name": "scenario_select"
+ },
+ {
+  "do": "assert",
+  "name": "scenario_select_check",
+  "golden": "scenario_select",
+  "region": [
+   190,
+   135,
+   640,
+   465
+  ],
+  "threshold": 0.9
+ },
+ {
+  "_comment": "page down: trough below thumb, capture (797,450) -> send (996,562). VERIFIED. NOTE: this is COSMETIC - the select-by-index step below does not need the row visible."
+ },
+ {
+  "do": "wait",
+  "ms": 2000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 10000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 3
+ },
+ {
+  "do": "wait",
+  "ms": 2000
+ },
+ {
+  "do": "shot",
+  "name": "mom_selected"
+ },
+ {
+  "_comment": "OK == ScenarioWindow.LoadButton (str_ldl_SCEN_LOAD); drills into the MoM pack"
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "shot",
+  "name": "pack_contents"
+ },
+ {
+  "do": "assert",
+  "name": "pack_contents_check",
+  "golden": "pack_contents",
+  "region": [
+   222,
+   175,
+   562,
+   130
+  ],
+  "threshold": 0.9
+ },
+ {
+  "_comment": "FRONTIER E1: confirm the pack. select inner row 0 then OK. PREDICTION: panel closes -> back at new_game with scenario set."
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "shot",
+  "name": "pack_confirmed"
+ },
+ {
+  "_comment": "FRONTIER E2: LAUNCH. PREDICTION: long load then the map screen. SLIC only enters scope here (L5)."
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.StartButton"
+ },
+ {
+  "do": "wait",
+  "ms": 15000
+ },
+ {
+  "do": "shot",
+  "name": "loading_1"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 90000
+ },
+ {
+  "do": "shot",
+  "name": "in_game_mom"
+ },
+ {
+  "_comment": "BROKEN PROBE, measured 2026-07-25 -- do not trust unit_1..3 from this walk. 'n' does NOT cycle units in-game (L7: keyboard is dead on in-game surfaces); captures came back byte-identical, 57157 bytes each. The control panel also captures pure BLACK under PrintWindow, so even a working cycle would not photograph the unit preview. Sprite-preview defects are verified at ARTIFACT level instead (build_sprites._facing_images bbox gate). Left as a placeholder until a working unit-selection probe exists."
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "key",
+  "keys": "n"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "shot",
+  "name": "unit_1"
+ },
+ {
+  "do": "key",
+  "keys": "n"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "shot",
+  "name": "unit_2"
+ },
+ {
+  "do": "key",
+  "keys": "n"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "shot",
+  "name": "unit_3"
+ }
+]

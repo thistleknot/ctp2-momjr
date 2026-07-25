@@ -1,0 +1,255 @@
+[
+  {
+    "_comment": "COORD RULE (confirmed 2026-07-24): the engine scales incoming click coords by 0.8 (1024/1280). To hit something seen at capture (cx,cy) SEND (cx*1.25, cy*1.25). Buttons/lists prefer the injection hook (press:/select:), which needs no coords. Full element map: ../ui_map.json"
+  },
+  {
+    "do": "wait",
+    "ms": 6000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 30000
+  },
+  {
+    "do": "shot",
+    "name": "main_menu"
+  },
+  {
+    "do": "assert",
+    "name": "main_menu_check",
+    "golden": "main_menu",
+    "region": [
+      110,
+      70,
+      800,
+      610
+    ],
+    "threshold": 0.9
+  },
+  {
+    "do": "press",
+    "path": "InitPlayWindow.NewGameButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "new_game_screen"
+  },
+  {
+    "do": "assert",
+    "name": "new_game_check",
+    "golden": "new_game_screen",
+    "region": [
+      110,
+      75,
+      800,
+      600
+    ],
+    "threshold": 0.9
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.ScenarioButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "scenario_select"
+  },
+  {
+    "do": "assert",
+    "name": "scenario_select_check",
+    "golden": "scenario_select",
+    "region": [
+      190,
+      135,
+      640,
+      465
+    ],
+    "threshold": 0.9
+  },
+  {
+    "_comment": "REMOVED 2026-07-25: a scrollbar click at (996,562) plus a scrolled_to_mom assert. Law L7 -- clicks are DEAD in CTP2 menus (aui polls GetCursorPos; measured 0/36 on a grid sweep). Measured proof: the list was still at the TOP of the scenario list (Apolyton/Alexander/Sieben) while the golden showed the scrolled view, so the click never landed and the old VERIFIED comment was wrong. The scroll was purely cosmetic -- SelectItem below is index-based and needs no visible row -- and the assert tested a state this harness cannot produce headlessly."
+  },
+  {
+    "do": "wait",
+    "ms": 2000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 10000
+  },
+  {
+    "_comment": "MoM is selected by INDEX INJECTION (aui_ListBox::SelectItem), not by a click - it works regardless of scroll position. A coordinate click on a row worked BEFORE a scroll but not AFTER one (unexplained)."
+  },
+  {
+    "do": "select",
+    "path": "ScenarioWindow.AvailableListBox",
+    "index": 3
+  },
+  {
+    "do": "wait",
+    "ms": 2000
+  },
+  {
+    "do": "shot",
+    "name": "mom_selected"
+  },
+  {
+    "_comment": "OK == ScenarioWindow.LoadButton (str_ldl_SCEN_LOAD); drills into the MoM pack"
+  },
+  {
+    "do": "press",
+    "path": "ScenarioWindow.LoadButton"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "pack_contents"
+  },
+  {
+    "do": "assert",
+    "name": "pack_contents_check",
+    "golden": "pack_contents",
+    "region": [
+      222,
+      175,
+      562,
+      130
+    ],
+    "threshold": 0.9
+  },
+  {
+    "_comment": "FRONTIER E1: confirm the pack. select inner row 0 then OK. PREDICTION: panel closes -> back at new_game with scenario set."
+  },
+  {
+    "do": "select",
+    "path": "ScenarioWindow.AvailableListBox",
+    "index": 0
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "press",
+    "path": "ScenarioWindow.LoadButton"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "pack_confirmed"
+  },
+  {
+    "_comment": "FRONTIER E2: LAUNCH. PREDICTION: long load then the map screen. SLIC only enters scope here (L5)."
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.StartButton"
+  },
+  {
+    "do": "wait",
+    "ms": 15000
+  },
+  {
+    "do": "shot",
+    "name": "loading_1"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 90000
+  },
+  {
+    "do": "shot",
+    "name": "in_game_mom"
+  },
+  {
+    "_comment": "OBJECTIVE: fire the j hotkey and capture the MagicMenu alertbox. L5 satisfied - SLIC compiled fresh by this new game (confirmed: the BeginTurn 'Magic Power' box is already on screen)."
+  },
+  {
+    "_comment": "Baseline shot immediately before the key, so the L4 delta isolates j's effect alone."
+  },
+  {
+    "do": "shot",
+    "name": "pre_j"
+  },
+  {
+    "do": "key",
+    "keys": "j"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "shot",
+    "name": "post_j"
+  },
+  {
+    "_comment": "PREDICTION: delta ~180k (panel opened) and a MAGIC STATUS alertbox visible. delta 0 => key never landed OR the on-screen message box ate it; delta ~477k => crash."
+  },
+  {
+    "do": "wait",
+    "ms": 2000
+  },
+  {
+    "do": "shot",
+    "name": "post_j_settled"
+  },
+  {
+    "_comment": "Assert ONLY the alertbox region: the map is generated per run, so any golden covering terrain would be flaky by construction. The alertbox is deterministic."
+  },
+  {
+    "do": "assert",
+    "name": "magic_menu_check",
+    "golden": "post_j_settled",
+    "region": [
+      10,
+      228,
+      372,
+      186
+    ],
+    "threshold": 0.9,
+    "_comment": "RE-BASELINED 2026-07-25: the alertbox gained the Random/Research/Goal battery buttons (links 5+6), so the old one-button golden was legitimately stale. Cropped tight to the box -- the old 394-tall crop trailed ~200 rows of black that padded the score."
+  }
+]

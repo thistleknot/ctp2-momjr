@@ -1,3 +1,791 @@
+## 2026-07-25 -- The 1.25 ratio, corrected: geometry is real, the SEND scale is not derived from it
+
+The user asked me to "be aware of how you resized things ... and adjust your 1.25
+ratio accordingly". Doing that properly reversed a conclusion I had written down
+one session earlier. Both halves matter, and they are separate facts.
+
+**Half 1 -- the GEOMETRY. Measured, and it is the unscaled-blit model.**
+PrintWindow captures the engine's own 1024x768 surface blitted UNSCALED into the
+TOP-LEFT of the client, black margins right and bottom. On `peek_unit_01.png` at a
+1280x960 client the content bbox is `(0,0)-(1021,759)` -- i.e. 1024x768.
+So **capture coordinates ARE engine coordinates, 1:1.** My previous note calling
+the unscaled-blit reading "FALSIFIED" was itself wrong.
+
+**Half 2 -- the SEND transform is NOT a function of that geometry.**
+`content_scale()` derives x1.25 from the bbox correctly. Sending x1.25 on the
+MESSAGE surface **killed the process with 0xC0000005, twice**:
+
+| run | how x1.25 was reached | result |
+|---|---|---|
+| `20260725-120046` | seeded first from the derived value | 0xC0000005, 0/7 turns |
+| `20260725-120210` | reached as the 3rd battery candidate | 0xC0000005, 0/7 turns |
+
+The scale is **empirically PER-SURFACE**, latched in one successful run
+(`20260725-115723`, 7/7): **message = x0.80, alertbox = x1.25.** A derived value
+is a hypothesis, and this one is lethal. The battery now carries per-surface
+candidate lists with x1.25 BANNED on the message surface, cheapest-safe first,
+and x0.80 tried twice (it does not always register on the first post -- repeating
+a known-safe candidate is free; advancing to the lethal one ends the run).
+
+**Absolute capture constants are the recurring defect class.** `alert_box_open`
+sampled the single absolute pixel `ALERT_PROBE_CAPTURE = (160,384)` -- the FOURTH
+such constant in this one file to go stale. At the restored geometry the box is
+`(15,237)-(360,386)`, so that probe sat 2px inside the bottom border: one extra
+caption line moves the box and the probe reads the map instead, reporting "still
+open" on an arm click that worked. That was the entire `SUMMON_ARM_CLICK_FAILED_AT_3`
+signature. Fix: `alert_box_open` now reuses the same connected-region finder the
+click target comes from, so "is it open" and "where do I click" cannot disagree.
+
+**Success predicates are per-surface too:**
+- alertbox -> the box is **GONE**. Every arm ends in `Kill()`, and a MISS lands on
+  the map, whose repaint can move the connected region and so flip a
+  signature-changed test. That false positive is what latched x1.00 and then
+  reported `closed=False` one line later.
+- message -> the signature **CHANGED**. Unread SLIC messages QUEUE, so closing the
+  top one reveals the next; "no box" is the wrong test there.
+
+**Tooling gotcha:** `cv2.imwrite` **silently fails** on Git-Bash-style `/c/...`
+paths -- no write, no exception, no return check that fires. Pass Windows paths.
+
+## 2026-07-25 -- Sprite preview overflow: normalise CONTENT EXTENT, not canvas size
+
+The user: "the guardian spirit looked weird in the bottom ui (not on the map) ...
+too big for the unit preview ui". Only in the box, never on the map -- that split
+is the whole diagnosis. The map has no viewport; the control panel does.
+
+`build_sprites._facing_images` did a bare `resize((96,72))`. That fixes the CANVAS
+size and preserves whatever framing the source TGA happened to have, so a source
+framed edge-to-edge fills the canvas and overflows the fixed ~77x65 preview
+viewport (0.80 w / 0.90 h of the canvas).
+
+Measured post-keying bbox fractions over all 62 `SPRITE_*.tga` sources: median
+h-frac 0.944. **The defect is WIDTH, not height** -- 0.97 h is the established
+norm and renders fine; anything past 0.80 w overflows. Fix is `_fit_content`:
+crop to the opaque bbox, uniform downscale only if it exceeds the bound, re-paste
+bottom-centred (a unit stands on the ground; centring vertically floats it),
+scale clamped to <=1 so conforming sprites come back byte-identical.
+
+**Do not call Guardian Spirit an outlier -- I did, and the measurement says no.**
+21 of 62 sources exceed the bound. Guardian (0.875 w) is 14th worst; nine units
+sit at 0.948 w. It is simply the one the user happened to click.
+
+**The verification channel for this defect is DEAD, and that has to be said out
+loud rather than papered over.** PrintWindow captures the control panel as pure
+black (same artifact class as the map), and `n` does not cycle units in-game
+(`peek_unit_01..04.png` are byte-identical, 57157 bytes each -- consistent with
+L7: keyboard is dead on in-game surfaces). So the gate is ARTIFACT-level: run the
+real `_facing_images` path over every source and assert the bbox fraction. Gate
+tolerance must be ONE PIXEL per axis -- the bound is pixel-quantised
+(0.80 * 96 = 76.8 -> 77px = 0.8021), so a float-exact test can never pass.
+
+## 2026-07-25 -- The engine reads the PRIMARY display, so a desktop change breaks the harness
+
+Two harness runs died at 0xC0000005 immediately after a sprite rebuild. Obvious
+suspect: the sprites. **Wrong.** Rebuilding with the change disabled
+(`MOM_SPRITE_MAX_W_FRAC=1.0`, a no-op) crashed identically -- hypothesis rejected
+in one run because the bound was made env-overridable specifically so it could be
+bisected without hand-editing the file. Make your change revertible by a flag and
+the bisect costs one run instead of an argument.
+
+The real variable was the desktop, and it moved BETWEEN runs:
+
+```
+12:14 run  preflight: \.\DISPLAY1 1920x1080 orient=0   capture 1280x960
+12:16 run  preflight: \.\DISPLAY4 1080x1920 orient=1   capture 1080x1920
+```
+
+Enumerated after the fact:
+
+```
+\.\DISPLAY4 PRIMARY=True   1080x1920 orient=1  1024x768_legal=False
+\.\DISPLAY5 PRIMARY=False  1920x1080 orient=0  1024x768_legal=True
+```
+
+`display_IsLegalResolution()` honours `userprofile.txt`'s `ScreenRes*` only on an
+EXACT match in the **primary** display's mode list. 1024x768 is not legal on a
+portrait primary, so the engine discards the profile, falls back to a head mode,
+and letterboxes its fixed UI at an unknown offset. Goldens still match (template
+search is padded) but **click coords are not padded** -- the harness aims at a
+fraction-derived point, the click lands somewhere else, and the process AVs.
+
+Consequence for the harness: `1024x768: LEGAL on the primary display` in preflight
+is not decoration, it is a GATE. A run that starts with it False is not a valid
+observation of anything. And the fix is a change to the user's desktop
+(primary-display assignment / rotation) -- surface it, never do it silently.
+## 2026-07-25 -- INTERACTIVE SLIC CLOSED (link 7): choice survives a turn boundary
+
+The `/goal`'s "including interactive" clause is now green. Links 3-6 (click reaches
+the button, body executes, mutates state, mutation readable on reopen) closed
+2026-07-24 but ALL of it happened inside one turn, so none of it spoke to
+persistence. Link 7 is the one that mattered.
+
+**Shape (the user's):** a MagicMenu arm places a summon ORDER; the next BeginTurn
+fills it. TWO arms, not one -- with a single arm, "the ordered unit appeared" is
+indistinguishable from "the handler always summons that unit". The choice must be
+the discriminator or the test proves nothing.
+
+**Measured, both headless, both `VERDICT OK 6/6 slic_errors=0`:**
+
+| arm | popup | unit stack at Eudoria |
+|-----|-------|----------------------|
+| 1 (Summon Guardian) | "A Guardian Spirit manifests in your capital." | 1 -> 2 |
+| 2 (Summon Zombies)  | "Zombies claw their way up in your capital."    | 1 -> 3 |
+
+**SLIC rules confirmed, not new but now load-bearing:**
+- A `Button` body carries the same Class 1 nested-call budget as a `HandleEvent`
+  body. Arm bodies are assignment-only; the consumer calls ZERO user functions by
+  construction (that is why the spawn is NOT routed through `MomSpawnSphereUnit`).
+- The consumer clears the order UNCONDITIONALLY, including when it could not be
+  filled. Otherwise an unfillable order silently re-fires later and "it spawned"
+  no longer pins WHICH turn consumed the click.
+
+**Harness lessons (turnloop.py):**
+- Alertbox geometry is now DERIVED: parchment via connected components, buttons via
+  dark column runs in the bottom band. Absolute capture constants are the documented
+  recurring defect class in this file -- this is the fifth instance avoided rather
+  than repeated. Proof it mattered: changing the button CAPTIONS moved every button
+  (x=159/206/263/330 -> 54/101/181/300), so box-relative fractions would have missed
+  all four arms.
+- The engine renders alertbox buttons in REVERSE declaration order. Declaration
+  index i is `detected[-(i+1)]`.
+- The alertbox latched `send = capture x1.25` here, contradicting the older note that
+  this surface is 1:1. `_calibrate` is the authority; a note is not evidence.
+- **The bug was mine, and it was a PHASE error, not a SLIC failure.** The readout
+  fired at `summon_turn+1` and reported `msg_box=None`. The arm is clicked at the END
+  of iteration N, i.e. AFTER that iteration's `end_turn` has already run the next
+  BeginTurn -- so the first BeginTurn that can see the order is the one `end_turn`
+  fires in iteration N+1, and its popup is on screen at N+2. I nearly went hunting in
+  the consumer's guards. Checking the captured FRAME first (`turn_004.png` plainly
+  showed the popup and the new unit) settled it in one read. Instrument before
+  environment; artifact before theory.
+
+## 2026-07-25 -- SLIC playthrough clean to turn 25: two defect classes, both mechanical
+
+Headless `turnloop.py --turns 25` went 7/25 -> 25/25, slic_errors=0. Two root causes,
+each a one-line class, each previously mis-diagnosed as something exotic.
+
+### 1. A 2-level user-function chain from a HandleEvent body is a deterministic 0xC0000005
+
+`MomSphereSummonUnit()` was called from the `MomMagicPoolTick` HandleEvent body and
+itself called `MomPlayerIsLife()`. That second level of *user* function is the crash.
+Builtins (`UnitDB`, `IsHumanPlayer`, `GetCityByIndex`, `CreateUnit`, ...) cost nothing.
+The budget is per ENTRY POINT, not global.
+
+Fix: flatten. `MomPlayerIsX(p)` is literally `p == N`, so numeric comparison is
+semantically identical at zero call depth.
+
+Why it looked nondeterministic: the summon fires the first turn the magic pool CAPS.
+Any edit that perturbs accrual moves the cap turn, so the crash "moved" between turns
+6/7/8 with unrelated changes. **A crash that moves when you change unrelated code is a
+threshold-crossing trigger, not a turn-N logic bug.**
+
+### 2. SLIC event arg arrays are NOT populated for secondary args
+
+`HandleEvent(GrantAdvance)` gives you `value[0]` (an advance index). Reading
+`advance[0].type` is "Array index 0 out of bounds". **Assigning `advance[0] = value[0]`
+first does NOT fix it** -- measured twice, in two different files, erroring at the same
+line each time. That idiom was in the codebase and was simply wrong.
+
+Correct form: compare `value[0] == AdvanceDB(ADVANCE_X)` directly; never touch `advance[]`.
+Same for `building[0]` in `HandleEvent(CreateBuilding)` -> `value[0] == BuildingDB(IMPROVE_X)`.
+
+### Falsified along the way
+
+- AI spellcasting as the crash cause: negative control (gating `MomSpellAICast`) gave
+  6/25, WORSE than the 7/25 with it enabled. Reverted.
+- Stack overflow: parsed the PE optional header in Python -- reserve is 8388608 (8 MB).
+  The documented fix is already in this binary. (`dumpbin /headers` silently produced
+  nothing without the VC env; the Python PE parse was the working instrument.)
+- WER/crash dumps: every entry was Jul 24, `0xc0000374`, and a *different* exe path.
+  None from these runs. The dump trail was noise.
+
+### Open
+
+- `dismiss message -> closed=False` on most turns; the loop advances anyway, so the
+  message window is not blocking, but it is also not closing. Not yet diagnosed.
+- Auto-summon surviving the cap is necessary but not sufficient -- no spawned unit has
+  been directly observed yet.
+
+## 2026-07-25 — THE PATTERN: instrument before environment (read this before debugging anything)
+
+The padding bug below is not the lesson. The lesson is the **shape of the
+excuse** I reach for, because it has now cost this project five separate times.
+
+**The failure mode.** When a check fails I explain it with an unmeasured story
+about the ENVIRONMENT — the display, the OS, the engine, "how this was authored"
+— instead of checking the INSTRUMENT I control. Environment stories sound like
+domain expertise and cost hours. Instrument checks are arithmetic.
+
+**Priced record, all the same shape:**
+
+| Story told | What it actually was |
+|---|---|
+| "goldens are stale / monitor was landscape" | comparator had zero search slack |
+| "the launcher is the culprit" | my own argument quoting; confounded test |
+| "monitor orientation causes the black capture" | accelerated SDL surface + intro movie |
+| "clicks can't work (GetCursorPos/atomic)" | clicks DO register; per-surface |
+| "SLIC is broken" (five days) | stale binary — never asserted the exe |
+
+**The tells. If I write one of these, stop and measure:**
+- "was authored when / must have been / presumably / at the time" — I am
+  reconstructing a process I never observed. **That is fabrication.**
+- "stale", applied to an artifact I did not measure
+- naming an external mechanism before producing a number
+- citing a `VERIFIED` or `CONFIRMED` comment as evidence. A comment is a claim.
+- treating N identical failures as N observations. It is ONE observation.
+
+**The fixed order — instrument outward:**
+1. My argv / invocation (flags, defaults, quoting, paths)
+2. My comparator / measuring code (crop, region, threshold, search slack, scale)
+3. The artifact under test (is the binary the one I think it is? is the golden
+   content still current?)
+4. The environment. **Last, and only with a number in hand.**
+
+**The cheap falsifier first.** Before theorising, ask: what single number would
+make me wrong? Compute that. Golden regions fit inside 1024x768 (110+800=910) —
+one sum killed "authored at 1280x960", and I skipped it to tell a story.
+
+**In one line:** state the thesis, name the measurement that falsifies it, run
+it, then speak. No nameable measurement means no thesis — say "I don't know
+yet" and go measure.
+
+## 2026-07-25 — "The goldens are stale" was fabricated; the bug was zero search slack
+
+**Retracted.** I reported that the uiwalk goldens were stale because they were
+"authored when the primary display was LANDSCAPE, giving a 1280x960 client."
+I did not measure that. I constructed it to explain 0/6 failing asserts. The
+operator called it: *"that's bullshit, you obviously couldn't reconstruct the
+former process and need to revise your hypothesis."* Correct.
+
+**What measurement showed.**
+- Every golden region fits inside 1024x768 (110+800=910, 70+610=680). It could
+  never have been authored at 1280x960. One arithmetic check falsified it.
+- Full-frame template matching scored **exactly 1.000** for main_menu,
+  new_game, scenario_select and pack_contents. The goldens were never stale.
+
+**The real defect.** `match_template` cropped the search area to exactly the
+step's `region`, and every region is authored at exactly its golden's size.
+Zero slack, so any translation scored ~0. The engine letterboxes its fixed UI
+inside whatever legal window size the primary display allows. Added `pad=320`:
+0/6 -> 4/5, four checks at 1.000.
+
+**The letterbox offset is PER-SURFACE, not global.** At a 1024x1280 client the
+menus sit at (+2,+264) and the in-game magic alertbox at (+2,+8). Do not
+hardcode one offset. An assert should ask "is this UI present", not "is it at
+this exact pixel" -- padding buys exactly that, and it is why goldens survive a
+window-size change at all.
+
+**Second falsification, same run.** The scenario-list scrollbar click at
+(996,562) carried a `VERIFIED` comment. It does not work: after the click the
+list was still at the TOP (Apolyton / Alexander / Sieben) while the golden
+showed the scrolled view. That is law L7 -- clicks are dead in CTP2 menus. The
+step and its assert are removed; scrolling was cosmetic because `SelectItem` is
+index-based. A comment saying VERIFIED is not evidence.
+
+**Also re-baselined.** `post_j_settled` was legitimately stale -- the alertbox
+gained the Random/Research/Goal battery buttons from the links 5+6 work. Cropped
+tight to the box (372x186); the old 394-tall crop trailed ~200 rows of black
+that padded the score. Walk is now **5/5, every check 1.000**.
+
+**Rule.** When an assert fails, measure the assert before theorising about the
+world. The comparator is part of the chain and it is the cheapest link to check
+-- same lesson as diagnosing my own argv first, one layer out.
+
+## 2026-07-24 — Interactive SLIC alertboxes CONFIRMED (links 5 and 6), and the capture regression was never what I said it was
+
+**Result.** A SLIC `alertbox` button body runs arbitrary statements and its
+mutations persist. Three arms, one per run, each a separate new game:
+
+| Arm | Button | Body | Read on reopen | Verdict |
+|---|---|---|---|---|
+| 1 | Random | `MomMagicCurDisp = 42` | `Mana: 42 / 100` | link 5 (scalar) + 6 |
+| 2 | Research | `MomMagicCur[g.player] -= 3` | `Mana: 7 / 100` | link 5 at MODEL level |
+| 3 | Goal | `AddGold(g.player, 500)` | HUD gold 106 -> 606 | SLIC -> engine boundary |
+
+Baseline is 10, so 42 / 7 / 10 are mutually exclusive readings by construction.
+No turn was ended between clicking and reopening — `MomMagicPoolTick` recomputes
+the display scalars every BeginTurn and would have mimicked "did not persist".
+Control: the BeginTurn message box in the *same frame* still read 10, so this is
+a specific SLIC-global mutation, not a global repaint.
+
+**The capture regression had two causes, and neither was the one I announced.**
+
+1. `SDL_CreateRenderer(window,-1,0)` picks an accelerated backend whose surface
+   GDI `PrintWindow` cannot read. Forcing `SDL_RENDER_DRIVER=software` +
+   `SDL_FRAMEBUFFER_ACCELERATION=0` took an identical frame from 61,040 to
+   151,173 non-black pixels.
+2. `civapp.cpp:594` plays a ~40 s intro cinematic over the whole client area.
+   Every "black/garbage" capture for days was *that movie*. `civ3_main.cpp:1104`
+   clears `g_useIntroMovie` on the `nointromovie` argument.
+
+Both are now baked into `uiwalk.Game.launch`.
+
+**What I got wrong, in the order it cost time.**
+
+- I declared the portrait primary monitor the root cause. The mechanism is real
+  (`display.cpp` `display_EnumerateDisplayModes` enumerates display 0 only, so
+  `userprofile.txt ScreenRes*` is honoured only when it names a mode of the
+  *primary* display) — but it explains window SIZE, not blackness. A legal,
+  honoured 1024x1280 window was still black. I had already written a hard
+  `SystemExit` preflight around this falsified cause; it aborted every run
+  before launch and produced zero observations. It is now a warning.
+- I spent the whole regression reading *statistics about the frame* — non-black
+  counts, colour histograms, md5s — instead of opening the PNG. The moment I
+  looked at one, it was the Activision splash. Same failure as the launcher
+  episode: escalating to low-information forensic channels while skipping the
+  highest-information one.
+- The very first battery run walked the main menu while the game loaded a save,
+  because `--save` defaults to `uiwalk_start` and I did not pass `--save none`.
+  My own argv, again. That is the cheapest link in the chain and I still did not
+  check it first.
+
+**Coordinate note.** At the current 1024-wide client, alertbox clicks were 1:1
+with capture coords — the L1 x1.25 factor did NOT apply. The scale factor is a
+property of the window/display pairing, not a constant. Verify it per surface;
+a miss lands on empty map and is a safe no-op, so both candidates can be tried
+in one run.
+
+## 2026-07-24 - R11: four diagnostic failures that turned my own bad CLI flag into a six-run "engine crash"
+
+Recorded at the operator's request, because the next session WILL resume from a
+JSON step file and can walk straight back into all four.
+
+**What actually happened.** Six consecutive `uiwalk.py` runs died ~1.5s after
+window creation with WER `0xC0000374` (heap corruption). Real cause: `--save`
+DEFAULTS to `uiwalk_start`, so a menu-entry walk silently appended
+`-l"<path with a space>"`; the quotes got re-escaped on direct argv, the engine
+received `H:\Program`, raised `Could not open`, and blocked on a modal.
+**The fix was `--save none`.** Nothing was wrong with the engine or the launcher.
+
+**1. A stated prediction does not make a test clean - one variable does.**
+I predicted direct-launch would also crash; it survived; I announced "the
+PowerShell launcher is the culprit." But direct launch changed TWO things:
+bypassing PowerShell AND changing how `-l` got quoted. The survival came from
+the second. I credited the first. The one-variable rule exists precisely so a
+confounded result cannot be laundered into a causal claim by having predicted it.
+
+**2. Six identical failures is ONE observation, not six.**
+Repeating the same wrong invocation six times establishes that the defect is
+REPRODUCIBLE. It says nothing about WHERE it lives. I read "deterministic, not
+the documented intermittent" as narrowing the search space; it narrowed nothing.
+Determinism is a property of my input, not evidence about the engine.
+
+**3. I read exit codes while the process was printing English on screen.**
+`0xC0000374`, WER signatures, md5 comparisons, pixel deltas - the whole time a
+dialog read `Could not open "H:\Program`. One operator screenshot solved what
+six runs had not. The lesson is NOT "look at screenshots." It is that I escalated
+to LOW-information forensic channels while skipping the HIGHEST-information one,
+because heap-corruption codes FELT like real debugging. They were noise generated
+downstream of a truncated path. Rank channels by information content, not by how
+technical they feel.
+
+**4. The backward walk must start at MY command line.**
+"Walk back to the earliest broken link" - I started at the launcher and worked
+outward, having silently excluded my own invocation from the search space. The
+earliest broken link was the default value of a flag I typed. **My own inputs are
+part of the chain, and they are the cheapest link in it to check.** Check argv,
+defaults, and cwd BEFORE any binary, launcher, or engine hypothesis.
+
+**Compressed:** a crash signature proves the process died, not that the engine is
+broken. When a harness/invocation defect and a WER signature coexist, the
+harness is both likelier and cheaper to falsify - eliminate it first.
+
+## 2026-07-24 — R9: headless `j` -> MagicMenu alertbox VERIFIED end-to-end
+
+**STATE** in_game_mom (MoM scenario, 4000BC, fresh new game).
+**ACTION** synthetic `j` via PostMessage, window stashed off-screen.
+**OBSERVED** pixel delta 69,465; `MAGIC STATUS / Mana: 10 / 100 / Income: +10 per
+turn / Close` alertbox. Re-run from root on a NEWLY GENERATED map: 0.992/0.90 PASS.
+**IMPLIES** the full chain works: key delivery -> segment lookup -> SLIC execution
+-> alertbox render -> correct interpolated scalars. The five-day "SLIC is broken"
+saga was never SLIC. Scope: DISPLAY-only box; interactive spell buttons untested.
+
+Repeat with one command (nothing required from the user):
+`python uiwalk.py --run steps/magic_j_e2e.json --marker MagicMenu --save none`
+
+## 2026-07-24 — R10: two harness defects that masqueraded as engine crashes
+
+**1. `--save` defaults to `uiwalk_start`.** Every run silently passed
+`-l"<save>"`. The save path contains a space (`H:\Program Files(x86)\...`), and on
+a direct-argv launch the pre-embedded quotes get re-escaped, so the engine received
+a path truncated at the first space -> `Could not open "H:\Program` modal -> the
+process blocked/died ~1.5s after window creation. This produced SIX consecutive
+`0xC0000374` heap-corruption WER signatures that I attributed to the PowerShell
+launcher. **The launcher was innocent.** Menu-entry walks must pass `--save none`.
+Fix: build `-l<path>` UNQUOTED for direct argv; subprocess quotes list elements.
+
+**2. The headless stash was event-driven, not an invariant.** `_stash_offscreen`
+ran only at window DISCOVERY and re-ran only if the handle DIED. The engine
+repositions its window on-screen during the scenario-load video-mode change while
+KEEPING the handle alive -> a visible window, twice, in front of the user. Fix:
+`_start_stash_watchdog()`, a 150ms daemon thread forcing every matching window
+off-screen, plus a re-stash on every `get_hwnd()`. Headless is an absolute
+constraint, so it is now enforced as a continuous invariant rather than by hoping
+each code path calls in.
+
+**IMPLIES (general):** when a WER signature and a harness defect coexist, the
+harness is the cheaper hypothesis to eliminate first. A crash signature is not
+evidence of an engine bug — it is evidence that the process died.
+
+# lessons_learned.md — SUPERVISED DATASET
+
+FORMAT (all new entries use this). Each record is an observation, not a story:
+
+    STATE    where we were (a node in ui_map.json state_graph)
+    ACTION   exactly what was done (with coords/paths as sent)
+    OBSERVED measured outcome — pixel delta, log line, screenshot. NOT a vibe.
+    IMPLIES  the law it supports, or the thesis it FALSIFIED
+
+Laws live in `tools/uiwalk/ui_map.json -> environment_model` (L1..L6).
+Per-state pixel tables are DERIVED from the laws, never the other way round.
+A law is only real if it predicts a state never visited.
+
+---
+
+## Records — 2026-07-24 (newest first)
+
+**R8** STATE scenario_select after Back→reopen · ACTION click send(625,300) ·
+OBSERVED 0 px · IMPLIES unexplained. PARKED (workaround: L3 injection).
+
+**R7** STATE scenario_select · ACTION `select AvailableListBox,4` ·
+OBSERVED crash 0xC0000005 · IMPLIES `aui_ListBox::SelectItem` has NO bounds
+check. Guard added to the hook; out-of-range now logs and no-ops.
+
+**R6** STATE scenario_select (fresh) · ACTION `select AvailableListBox,3` then
+`press LoadButton`, NO scroll · OBSERVED reached pack_contents ("Masters of Magic
+for CTP2") · IMPLIES **L3** — selection is independent of scroll/visibility;
+indices are stable regardless of view.
+
+**R5** STATE scenario_select · ACTION battery {click row, click trough, click row}
+WITH release-at-previous-position · OBSERVED 5180 / 79455 / 4338 px = 3 of 3
+landed, reproduced exactly · IMPLIES **L2 CONFIRMED**. Row clicking works
+post-scroll after all.
+
+**R4** STATE scenario_select · ACTION same battery, release posted at the NEW
+position · OBSERVED 5180 / 0 / 0 px · IMPLIES mechanism guess "button latched,
+release anywhere" **FALSIFIED**. The grab is held at the PREVIOUS position.
+
+**R3** STATE scenario_select · ACTION any 2nd/3rd click after a first click ·
+OBSERVED 0 px every time, across 4 runs · IMPLIES thesis "only the FIRST
+synthetic click registers" — which retro-explains R2.
+
+**R2** STATE scenario_select · ACTION 36-point click grid sweep · OBSERVED 0 of 36
+responded · IMPLIES (at the time) "clicks never work in menus" — **LATER
+FALSIFIED**. Real cause: the sweep's first click landed on empty space and burned
+the single working click (see R3). A null result explained by the wrong model.
+
+**R1** STATE scenario_select · ACTION click send(625,300), predicted BEFORE running
+via capture×1.25 · OBSERVED 5180 px, row 1 selected + OK enabled · IMPLIES **L1
+CONFIRMED** by prediction, not post-hoc fitting. Also retro-explains (797,450)→row2
+and (797,555)→row3: x=797 scales to 638, inside the list, never the scrollbar.
+
+**R0** STATE any · ACTION run the harness at all · OBSERVED it executed a Jul-22
+`ctp2-dbg.exe` with none of the changes in it · IMPLIES **L6** — build.bat builds
+only Final-SDL (ctp2.exe); the launcher re-stages ctp2-dbg.exe over manual copies
+every run. Cost ~5 days of "SLIC bugs" that were a stale binary. Now enforced by
+`preflight_exe()`.
+
+---
+
+## [SETTLED - DO NOT RE-LITIGATE] Menus are driven by INJECTION, never by clicks; screenshots are 1:1 with engine coords (2026-07-24)
+
+**PostMessage clicks DO NOT WORK anywhere in the CTP2 menus. Measured, not guessed:
+a 36-point grid sweep across the Scenario Selection panel produced 0 responses.**
+aui polls GetCursorPos, so synthetic WM_LBUTTONDOWN/WM_MOUSEMOVE are invisible to
+these controls. Both coordinate conventions were tested on a known-good button
+(Back) and both changed exactly 0 pixels. STOP tuning x/y when a click does
+nothing -- the channel is wrong, not the coordinates.
+
+**Screenshot space IS engine space, 1:1.** userprofile has ScreenResWidth=1024 /
+ScreenResHeight=768; the window client is 1280x960, and the engine draws the
+1024x768 surface UNSCALED into the top-left with black padding right/bottom.
+Proof from LDL geometry, independent of any screenshot: `ScenarioWindow` is
+640x480 `xanchor/yanchor center` in 1024x768 -> origin (192,144); its
+`AvailableListBox` sits at +(32,43) size 564x378 -> logical x224-788, y187-565.
+Measured in a uiwalk capture: x222-784, y175-559. Identical.
+=> uiwalk captures can be measured directly for coordinates. The 1.25x ratio
+(1280/1024 = 960/768) applies ONLY between a maximized/scaled window view (what
+a human screenshots) and the capture -- never between capture and engine.
+
+**How to actually drive the menus: the injection hook** (MoM_WindowsMessageHook,
+aui_sdl.cpp; write payload to H:\mom_inject.txt then PostMessage WM_APP+100):
+- `press:<LDL path>`  -> aui_Button::InjectPress()      (menu buttons)
+- `select:<LDL path>,<index>` -> aui_ListBox::SelectItem()  (ADDED 2026-07-24)
+- bare name           -> g_slicEngine->RunUITriggers()  (in-game SLIC uitriggers)
+
+`CTP2_LISTBOX` is declared `atomic true`, so list ROWS and its SCROLLBAR have no
+addressable LDL path -- `press:` cannot reach them and clicks cannot either.
+Index selection is the ONLY way to pick a list row, and it needs no scrolling.
+
+**Verified headless walk to the MoM scenario** (uiwalk, window off-screen):
+```
+esc,esc                                   -> main menu
+press InitPlayWindow.NewGameButton        -> New Game
+press SPNewGameWindow.ScenarioButton      -> Scenario Selection
+select ScenarioWindow.AvailableListBox,3  -> The Masters of Magic Mod
+press ScenarioWindow.LoadButton           -> MoM pack contents
+```
+Top-level pack order: 0 Apolyton, 1 Alexander the Great, 2 Sieben Samurai,
+3 **Masters of Magic**.
+
+**HAZARD: aui_ListBox::SelectItem has NO bounds check.** `select:...,4` crashed
+the game outright (0xC0000005). Guard the index before injecting.
+
+**Attribution discipline:** diff consecutive screenshots to infer what a step did,
+and treat ONE observed change as a hypothesis, not proof. A row-highlight was
+attributed to a click here; a controlled rerun (base state byte-identical to
+unselected, 4 further clicks inert) disproved it. Byte-identical successive
+screenshots = the input never landed, or a modal ate it.
+
+## [PROCESS - CONFIRMED WORKING] Headless verification: preflight the binary, then build golden checkpoints (2026-07-24)
+
+**The bug that burned five days was never SLIC — it was a stale binary.**
+`build.bat` builds ONLY `Configuration=Final-SDL`, which produces `ctp2.exe`.
+`ctp2-dbg.exe` is the `Debug-SDL` artifact and `build.bat` NEVER refreshes it.
+Meanwhile `uiwalk.py`'s `EXE_CANDIDATES` is dead code: launching delegates to
+`run-ctp2-dbg-crashcapture.ps1`, whose default order prefers `ctp2-dbg.exe`, and
+which re-stages that exe from `H:\Games\civctp2\ctp2_code\ctp` on EVERY launch
+and restores backups on exit — silently clobbering any manual `cp`. So every
+headless run executed a Jul-22 binary with none of the changes under test, and
+the "crashes" observed were the old bugs in the old build.
+
+FIX (landed): `uiwalk.py` gained `preflight_exe()` — it resolves the exe that will
+ACTUALLY launch and aborts unless a marker string is present in it
+(`--marker MagicMenu`, `none` to skip), and threads `-PreferRelease` into the
+launcher so `ctp2.exe` (the one build.bat refreshes) wins. `--use-debug-exe` opts
+back into Debug-SDL. Sample preflight line:
+`[preflight] launch candidate: ...ctp2.exe (16,468,480 bytes) / marker 'MagicMenu': FOUND`
+
+**RULE: never trust "I rebuilt it" — assert a marker string in the launched exe.**
+
+**METHOD (adopt for all in-game verification): incremental golden checkpoints, not
+one big end-to-end walk.** Get ONE small state verified headless, freeze it as a
+steps JSON + golden, then extend from there. First checkpoint landed and green:
+`steps/checkpoint_main_menu.json` (wait -> esc -> wait -> esc -> wait_stable ->
+shot -> assert vs `goldens/main_menu.png`) => `main_menu_check 1.000 0.90 PASS`,
+exit 0, run headless with the window off-screen.
+Command: `python uiwalk.py --run steps/checkpoint_main_menu.json --save none`
+
+**Harness gotchas that each cost real time:**
+- `esc` while in-game opens the **modal Options window**, which swallows every
+  later key (console, `/reloadslic`, hotkeys). Diagnostic signature: all
+  subsequent screenshots are BYTE-IDENTICAL. That means "a modal ate the input",
+  NOT "nothing happened". Do not send a speculative `esc` to "clear popups".
+- `assert`'s `golden` field must NOT include `.png` — uiwalk appends it
+  (`GOLDENS / f"{step['golden']}.png"`), else you get `main_menu.png.png`.
+- `VK` map lacked the console key; added `apostrophe` (VK_OEM_7) + tilde/minus/equals.
+- Window is stashed off-screen at -32000,-32000 (`_stash_offscreen`;
+  `UIWALK_VISIBLE=1` overrides). `PrintWindow(PW_RENDERFULLCONTENT)` captures fine
+  off-screen, but the `mss` desktop-grab fallback and `--global-input` do NOT —
+  they need the window on-screen, and off-screen they yield black/garbage that
+  looks exactly like "the UI never appeared".
+- `wait_stable` is pixel-EXACT identity and silently degrades to a plain wait on
+  timeout (no error).
+- `save/games/uiwalk_start` is a **MoM** save ("Tribes of Life"), not vanilla —
+  boot with `--save uiwalk_start` to skip the crash-prone New Game menu walk.
+  Saves cache compiled SLIC, so edited .slc needs `/reloadslic` (apostrophe
+  console) — or start a NEW game, which compiles fresh.
+
+**STANDING OPERATING RULE: Claude launches the game and drives the test; the user
+verifies nothing by hand, and should not have to see the window.**
+
+
+## [CONFIRMED WORKING] SLIC messages display in-game — the missing half was segments (2026-07-17)
+
+USER-CONFIRMED: the turn-1 "sphere-magic SLIC layer online" popup renders in a new
+MoM game. The display path (Message -> messagebox segment -> scen_str string) is now
+proven end-to-end; blessings + magic-power popups ride the same plumbing.
+
+Three defects stood between "SLIC verified clean" and a visible message — all the
+same root lesson: **SLIC has ONE flat global namespace** (handler names, messagebox
+names, and ID_-stripped string keys all resolve through the same symbol table).
+
+1. **No messagebox segments existed.** Message(player,'Key') requires 'Key' to be a
+   DEFINED SEGMENT (slicfunc.cpp Slic_Message: SFN_ERROR_NOT_SEGMENT otherwise —
+   silently, no dialog). scen_str keys alone display nothing. Fix: 7 messagebox
+   blocks in mom_msg.slc (base form: Show(); Text(ID_KEY); MessageType optional).
+2. **String key == segment name -> "X is not a string variable" SLIC Error at load.**
+   slicif_find_string strips ID_ and GetOrMakeSymbol()s the rest; if that symbol is
+   already a segment, compile errors. Fix: string keys live in their own namespace
+   (MOM_MSG_*).
+3. **Messagebox name == handler name -> load-time CRASH (0xC0000005/0xC000041D in
+   setup, mimics the intermittent!).** scenario.slc's BeginTurn handler 'MomSlicAlive'
+   + messagebox 'MomSlicAlive' = duplicate segment definition. Fix: messagebox renamed
+   'MomMsgSlicAlive'. RULE: before adding any named segment, grep all slc for the name
+   (uniq -d over handler+messagebox names).
+- Diagnosis rule sharpened: TWO consecutive "intermittent-looking" setup crashes right
+  after a SLIC edit = the edit, not the intermittent.
+- uiwalk hardening landed en route: crashcapture-wrapper launch, SDL focus spoofing,
+  window re-resolve, GlobalInput foreground workaround (ALT tap), retry-once-on-
+  intermittent. Menu automation needs --global-input (real cursor: aui polls
+  GetCursorPos; PostMessage clicks are invisible to menus) — get user OK first.
+
+## [CIV EXCLUSIVITY] Sphere-home gating: tribes now own their rosters (2026-07-17)
+
+The repeated user requirement ("separate your civilizations") is now mechanical, not
+curatorial. Architecture = the LotR source idiom, done deliberately:
+
+- **mod_policy `sphere_home_exclusivity`** (SMM on, MoM off): generator creates 5
+  unresearchable ADVANCE_HOME_<SPHERE> (self-prereq + GLHidden + GoodyHutExcluded)
+  and wires `Prerequisites ADVANCE_HOME_<X>` onto all 25 sphere-ladder advances.
+  Ladders become walkable ONLY by the tribe holding the home.
+- **SLIC grant** (generator-emitted `mom_sphere_home.slc`, included from
+  scenario.slc): BeginTurn + per-player latch grants each tribe its home by NUMERIC
+  player index (1 Life .. 5 Chaos — the established scenario contract). GrantAdvance
+  (player, AdvanceDB(...)) is engine-verified (slicfunc.cpp) and BYPASSES prereqs —
+  self-prereq blocks research, not grants. Non-tribe civs get no home → pure
+  human/neutral roster.
+- **Whitelist rule**: SLIC-granted advances (ADVANCE_HOME_*) must be exempt from BOTH
+  the sever pass (else the wiring is severed on regen 2) and the closed-set
+  propagation (else all 5 ladders + rosters go hidden). "Unresearchable" ≠ "closed"
+  when SLIC grants it.
+- **Merge clobber trap**: base donates mod_policy.json on EVERY re-merge — flags set
+  in the merged dir silently vanish. merge_control_planes gained `--policy-set
+  KEY=JSON` (use it in the documented re-merge command).
+- Also this wave: H. Warriors = HOBGOBLINS (user-confirmed) → chaos; theme-aware
+  proxy buckets (donor icon classified by its own name's sphere — no more dragon
+  Engineers); UNIT_*_SUMMARY backfill (529 SMM / 55 MoM, raw-ID box fix); art-matcher
+  pedia token bug ('06warriorlarge' glued suffix); 3 era-leak units genre-masked
+  (Biplane, Flying Fortress, Eisenhower); MoM resynced + validated.
+- **Playtest contract**: exclusivity is SLIC → NEW GAME only (save-cache), and the
+  human player's sphere = their PLAYER SLOT (1-5), not the civ name they picked.
+
+## [GL HYGIENE] Closed-gate content must be GLHidden — dormant ≠ invisible (2026-07-16)
+
+GL screenshot showed Angmar H1..H4 + faction variants as browsable dead records with
+wrong art and empty prose. Unbuildable (gate closed) does NOT remove a unit from the
+Great Library index — that's a separate flag.
+
+- **New generator pass** (after the base auto-hide): compute the transitively CLOSED
+  advance set — self-prereq roots, propagated over AND-semantics Prerequisites (any
+  closed prereq closes the advance) — then GLHidden+GoodyHutExcluded the closed
+  advances and NoIndex+GLHidden every unit whose EnableAdvance is closed. SMM: 266
+  advances + 291 units hidden; MoM byte-gate strict no-op. Works IN-PLACE (fixpoint
+  reads current self-prereqs; no full rebuild needed).
+- Discriminator that matters: a unit the sphere pass re-gated (e.g. Archer Orcs →
+  Chaos ladder) is OPEN and stays visible — the junk test is "gate unreachable",
+  not "name looks like junk".
+- Parser gained `UnitsFile.block_text(ident)` (brace-walk accessor).
+- **Art batch 2**: the remaining fugly surface = VISIBLE units wearing proxies (114
+  found). ~74 curated aliases added (shared art across siblings per the MoM
+  shared-icon precedent): orc line → HoMM orc art, medieval infantry → knight art,
+  ships → carrack/galleon, Cleric → Monk, Necromancer → LichePriest. 159/477 mapped
+  total. Spot-check before ship caught nothing this round (3/3 good).
+- STILL OPEN: aom era-leaks visible in roster (Biplane, Flying Fortress, 'Dwight
+  Eisenhower') — epoch→age squash (epoch_age_map caps AGE_THREE) let them past the
+  era gate; they're genre_mask candidates for the next re-merge. Collapse decision
+  (52+21 candidate groups) still pending user review.
+
+## [ART PASS v1] Real unit icons from CoMM3: 85 HoMM portraits replace proxies (2026-07-16)
+
+User verdict on proxy art: garbage. First real-art slice shipped same session.
+
+- **Pipeline**: `build_unit_icon_art.py --csv <csv> --archive CoMM3.7z --out art/pictures`
+  → matches units.csv names to CoMM3 art (token matcher + curated alias table, e.g.
+  Phoenix→PheonixRecolor [sic], Treefolk→Treeman, Lich→UndeadLiche, Elf→Elven_Bowman),
+  renders CTP2 ICON TGAs, writes the reviewable `csv/unit_art_map.csv` staging sheet
+  (existing rows never overwritten). `assign_proxy_art.py --art-dir` installs real art
+  BEFORE the proxy pass. Durable home: `Scenarios/smm/art/pictures/` (git-tracked).
+- **ICON format ground truth** (from shipped files, NOT the 0x21 helper): 160x120,
+  TGA type 2, 16-bit RGB555 ((r>>3)<<10|(g>>3)<<5|(b>>3), little-endian), BOTTOM-origin
+  desc 0x00, no footer, exactly 38418 bytes. desc is per texture family — read the
+  real files first.
+- **Two source kinds**: Civilopedia `*Large.pcx` portraits (cover-crop) and unit-dir
+  FLC first frames via ffmpeg (chroma-scrub magenta/green → bbox-crop → fit-pad;
+  WITHOUT the bbox crop an FLC icon is a dot in a black field — observer spot-check
+  caught it). Always decode-and-LOOK at N samples before shipping art.
+- v1 coverage: 85/477 (57 pedia + 28 flc), fantasy core (homm2/midgard) first;
+  unmapped units keep proxies. Extend by editing unit_art_map.csv + `--force`.
+
+## [FIXED — new defect class] Severed unreachable-gates rootify: "H units buildable" + two-pass convergence (2026-07-16)
+
+User playtest: starting civ could build "H <faction>" units (56 LotR hero slots, wearing
+hobgoblin proxy sprites). Root-cause walk surfaced a defect CLASS plus a pipeline rule.
+
+- **Source idiom**: mods gate scenario-granted content behind an UNREACHABLE prereq
+  (LotR racial advances + Hextapul + AoM governments all prereq
+  ADVANCE_GAIA_CONTROLLER; the source's SLIC grants them per civ). 25 merged advances
+  carried such gates.
+- **Defect**: the generator's fantasy-tree isolation pass severs prereq edges pointing
+  at foreign (non-control-plane) advances. When ALL of an advance's prereqs were
+  foreign, severing promoted it to a FREE RESEARCHABLE ROOT (Hextapul: AGE_ONE, 600)
+  — silently un-gating its whole downstream family (56 heroes, faction trees).
+- **Fix (ctp2_generator.py sever loop)**: if severing removed every prereq the advance
+  had, re-gate it with the engine-sanctioned self-prerequisite (Advances.cpp:498
+  CanResearch=FALSE; block stays in DB, refs resolve). SMM full rebuild: 74 edges
+  severed, **38 advances kept closed** (25 gaia-gated + 13 more). MoM byte-gate: change
+  is a NO-OP on MoM (verified via stash A/B regen).
+- **The state trap**: the sever fires ONCE (first generation from a fresh base); later
+  in-place regens see already-severed blocks. Data fixes at this layer need the FULL
+  rebuild (rm scen0000 → copy base → proxy art → generator), not an in-place regen.
+- **Two-pass convergence rule (pre-existing, now documented)**: after a FULL rebuild the
+  first generator pass is NOT the fixed point — advance costs are scaled from pre-sever
+  prereq counts, AdvanceLists/gl ordering settles on pass 2. **Run the generator TWICE
+  after any full rebuild** (pass 3 = pass 2, verified byte-identical). In-place regens
+  on a converged tree are stable in one pass.
+- Both trees resynced + validated: live MoM scen0000 had ALSO drifted (missing the
+  committed coastal-settle MovementType fix!) — regenerated to fixed point; SMM fully
+  rebuilt + converged; validate_scenario passes on both.
+
+## [VERIFIED + 2 AUDIT SURFACES] SMM 7-source merge: collapse layer confirmed, ledgers added (2026-07-16)
+
+Full verification pass on the in-flight 7-source merge (base/homm2/midgard/crusades +
+new cradle/aom/lotr via the ctp2-native importer): 591 advances / 539 units.
+
+- **What "collapsing" actually is (precision matters):** the union layer
+  (`merge_control_planes.py`) is a DETERMINISTIC first-wins union on sanitized name +
+  `tag:code` namespacing — no LLM in the mechanical pipeline. The REDUCE is the curated
+  staging sheets (genre_mask, unit_factions) edited between merge passes. The skill's
+  "not naive first-wins" describes the whole workflow, not the union primitive.
+- **Verdict: the mechanical layer works.** Gates run and PASSED: (1) validate_scenario
+  on live scen0000, exit 0; (2) merge determinism — scratch re-merge byte-identical to
+  live csv for advances/improvements/advance_code_map, and byte-identical for
+  units.csv + unit_factions.csv after replaying assign_unit_factions over the curated
+  sheet; (3) generator determinism — two independent scratch regens byte-identical.
+  Referential integrity: 0 dangling prereq/unit/gate/improve refs, 0 dup idents,
+  0 masked base rows (f978fd5 protection holds).
+- **STALE-TREE TRAP (new gate habit):** live scen0000 had drifted from the csv in 5
+  files — incl. aidata/AdvanceLists.txt missing ALL 473 merged advances (AI would
+  never research them) and Advance.txt costs. A tracked gamedata file being "recently
+  modified" is NOT proof the tree matches the current csv+generator — the regen
+  byte-diff is. Fixed by regenerating live scen0000 (now matches verified scratch,
+  validate passes).
+- **New audit surface 1 — `csv/collision_ledger.csv`:** merge_control_planes.py now
+  persists every first-wins-dropped row (dimension, name, kept/dropped source, code).
+  SMM: 788 drops (416 advances / 266 units / 106 improvements, 0 code-map conflicts).
+  Deterministic across runs.
+- **New audit surface 2 — `csv/collapse_candidates.csv`:** new tool
+  `audit_collapse_candidates.py --csv <dir>` derives faction-suffix tokens FROM the
+  data (trailing word whose removal lands on another entry's name, ≥2 hits), stems,
+  groups. SMM: 52 advance groups (Archery ×5, Architecture ×4 …, mostly lotr
+  per-faction variants vs cradle/base) + 21 unit groups (Hoplite/Legion/Spearman ×4
+  cross-source). AWAITING USER DECISION: collapse vs keep — nothing collapsed yet.
+  Known limit: plural stems not unified (KNIGHT vs KNIGHTS are separate groups).
+- Deferred (user-decided): epoch_age_map still caps at AGE_THREE (Hellas design pass).
+
+## [GATE + 2 FIXES] SMM first-playtest failures: generator exit-0 is NOT a gate (2026-07-15)
+
+Two in-game failures right out of the gate on the merged Super Magic scenario, both
+foreseeable data-defect classes discovered via live dialogs — the exact anti-pattern the
+quality-gates rule forbids. Both root-fixed + a mandatory gate added (commits 7e62afb,
+531376e).
+
+1. **Engine reserved-token collision**: a unit literally named "Sprite" → id
+   `UNIT_SPRITE` — a tokenizer KEYWORD (Token.cpp g_allTokens, sprite-file format
+   tokens). StringDB lexes ids through the tokenizer → "Missing string id" →
+   scenario-load exit. Fix: renamed source unit (Faerie Sprite); merge tool refuses
+   any UNIT_/ADVANCE_/IMPROVE_ ident in `engine_reserved_tokens.txt` (all 76 keywords
+   extracted from engine source).
+2. **Unsanitized sprite names**: `_pick_sprite`'s fallback used a bare space-replace,
+   so "Water/Air Elementals" leaked `SPRITE_WATER/AIR_ELEMENTALS` into Units.txt +
+   newsprite.txt → "newsprite.txt:140: Expected integer" dialog. FOUR such names
+   (the dialog only shows the first). Fix: fallback uses sanitize(); MoM regen
+   byte-gate re-verified.
+- **THE RULE**: every generated scenario runs `validate_scenario.py --scenario <dir>`
+  BEFORE playtest — newsprite grammar, ident charset, reserved-token scan, gl_str
+  grammar. Battery-proven: catches all 4 defects on the broken tree, passes working
+  MoM, passes the fixed SMM. Generator exit-0 only means the PYTHON ran; the engine's
+  parsers are the real contract.
 
 ## [PIPELINE] Universal mod encoder: civ2 → xlsx/csv control plane → ctp2, proven on HoMM2 (2026-07-15)
 

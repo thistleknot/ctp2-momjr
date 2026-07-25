@@ -1,0 +1,9 @@
+[
+  {"do": "wait_stable", "ms": 20000},
+  {"do": "key", "keys": "space"},
+  {"do": "wait", "ms": 1000},
+  {"do": "shot", "name": "after_skip"},
+  {"do": "click", "x": 1002, "y": 644},
+  {"do": "wait", "ms": 2000},
+  {"do": "shot", "name": "after_click_END2"}
+]

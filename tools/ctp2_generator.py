@@ -220,7 +220,9 @@ def _pick_sprite(name: str, domain: int, attack: int) -> str:
     valid). Prefer it. The domain/attack proxy heuristics below are the fallback for units
     that have no custom art (so they still get a sensible base sprite, not a broken ref).
     """
-    real = f"SPRITE_{name.upper().replace('UNIT_', '').replace(' ', '_')}"
+    # sanitize(), not a bare space-replace: names like "Water/Air Elementals"
+    # must never leak '/' into DefaultSprite/newsprite (Expected-integer error).
+    real = f"SPRITE_{sanitize(name.replace('UNIT_', ''))}"
     if real in _available_custom_sprites():
         return real
     # Proxy heuristics are per-mod policy: sprite_pick_rules.csv (lane=sprite).
@@ -521,6 +523,16 @@ def _merge_mom_improvements_into_buildings() -> int:
                 # a buildable improvement called "Hide Supermarket".
                 if name.upper().startswith("HIDE ") or row.get("cell_index", "").strip() == "999":
                     print(f"  - mask directive row skipped: {name!r}")
+                    continue
+                # civ2 spaceship parts ('SS ') and 'Nothing' are never content
+                # (matching the Improve.txt emitter). A block emitted here
+                # without GL surfaces has a dangling Description ref ->
+                # "Expected string ID" -> game exits at scenario load.
+                # NOTE: 'x'-prefixed sentinels are deliberately KEPT in this
+                # lane — _retire_x_sentinels needs them in the DB (index
+                # stability), and their GL surfaces exist.
+                if name == 'Nothing' or 'SS ' in name:
+                    print(f"  - non-content improvement row skipped: {name!r}")
                     continue
                 # Wonder rows (cell_index >= 40) belong ONLY in Wonder.txt. Emitting an
                 # IMPROVE_ twin double-loads the concept into BOTH the improvement and
@@ -2902,15 +2914,28 @@ def main():
     momjr_visible_idents = _load_momjr_advance_idents()
 
     severed_edges = 0
+    kept_closed = 0
     for ident in sorted(momjr_visible_idents & set(adv_file.blocks)):
+        all_prereqs = adv_file.get_prerequisites(ident)
         foreign_prereqs = [
-            pr for pr in adv_file.get_prerequisites(ident)
+            pr for pr in all_prereqs
             if pr not in momjr_visible_idents
+            and not pr.startswith("ADVANCE_HOME_")  # SLIC-granted sphere homes
         ]
         if foreign_prereqs and adv_file.remove_prerequisites(ident, foreign_prereqs):
             severed_edges += len(foreign_prereqs)
+            # Source mods gate scenario-granted content behind an unreachable
+            # prerequisite (e.g. LotR racial advances -> ADVANCE_GAIA_CONTROLLER).
+            # When EVERY prerequisite was foreign, severing must keep the advance
+            # closed — not promote it to a free researchable root that un-gates
+            # its whole downstream family (56 hero units in SMM).
+            if len(foreign_prereqs) == len(all_prereqs) \
+                    and adv_file.ensure_self_prerequisite(ident):
+                kept_closed += 1
     if severed_edges:
         print(f"  + severed {severed_edges} fantasy->foreign prerequisite edge(s)")
+    if kept_closed:
+        print(f"  + kept {kept_closed} unreachable-gated advance(s) closed (self-prereq)")
 
     hidden_advances = 0
     goody_excluded_advances = 0
@@ -2930,6 +2955,80 @@ def main():
         print(f"  + excluded {goody_excluded_advances} foreign advance(s) from goody-hut rewards")
     if unresearchable_foreign:
         print(f"  + made {unresearchable_foreign} foreign advance(s) unresearchable (self-prereq)")
+
+    # Sphere-home exclusivity (mod_policy "sphere_home_exclusivity"): each
+    # magic sphere's research ladder additionally requires an unresearchable
+    # ADVANCE_HOME_<SPHERE>, granted per player by SLIC at game start — so a
+    # tribe can only ever walk ITS OWN sphere's ladder (civ-exclusive rosters),
+    # while neutral/human content stays open to everyone. The HOME advances
+    # are whitelisted in the sever pass and the closed-gate hygiene pass:
+    # self-prereq blocks RESEARCH, but SLIC GrantAdvance bypasses prereqs.
+    if MOD_POLICY.get("sphere_home_exclusivity"):
+        _SPHERE_LADDER_IDENTS = {
+            "LIFE":    ["ADVANCE_LIFE_LORE", "ADVANCE_LIFE_ADEPT", "ADVANCE_LIFE_MAGE",
+                        "ADVANCE_LIFE_WIZARD", "ADVANCE_LIFE_MASTER"],
+            "NATURE":  ["ADVANCE_NATURE_LORE", "ADVANCE_NATURE_ADEPT", "ADVANCE_NATURE_MAGE",
+                        "ADVANCE_NATURE_WIZARD", "ADVANCE_NATURE_MASTER"],
+            "SORCERY": ["ADVANCE_SORCEROUS_LORE", "ADVANCE_SORCERY_ADEPT", "ADVANCE_SORCERY_MAGE",
+                        "ADVANCE_SORCERY_WIZARD", "ADVANCE_SORCERY_MASTER"],
+            "DEATH":   ["ADVANCE_DEATH_LORE", "ADVANCE_DEATH_ADEPT", "ADVANCE_DEATH_MAGE",
+                        "ADVANCE_DEATH_WIZARD", "ADVANCE_DEATH_MASTER"],
+            "CHAOS":   ["ADVANCE_CHAOS_LORE", "ADVANCE_CHAOS_ADEPT", "ADVANCE_CHAOS_MAGE",
+                        "ADVANCE_CHAOS_WIZARD", "ADVANCE_CHAOS_MASTER"],
+        }
+        homes_created = 0
+        wired = 0
+        for sphere, ladder in _SPHERE_LADDER_IDENTS.items():
+            home = f"ADVANCE_HOME_{sphere}"
+            if home not in adv_file.blocks:
+                P.ModAdvance(home, f"{sphere.title()} Homeland", "999999",
+                             "0", "AGE_ONE", icon="ICON_ADVANCE_DEFAULT").register(reg)
+                homes_created += 1
+            adv_file = reg.load("default/gamedata/Advance.txt")
+            adv_file.ensure_self_prerequisite(home)
+            adv_file.ensure_flags(home, ["GLHidden"])
+            adv_file.ensure_flags(home, ["GoodyHutExcluded"])
+            for ladder_ident in ladder:
+                if ladder_ident in adv_file.blocks \
+                        and adv_file.ensure_prerequisite(ladder_ident, home):
+                    wired += 1
+        print(f"  + sphere-home exclusivity: {homes_created} HOME advance(s) created, "
+              f"{wired} ladder prereq(s) wired")
+
+        # SLIC start-of-game grants: player index -> sphere is the scenario
+        # contract (players.csv order: 1 Life, 2 Nature, 3 Sorcery, 4 Death,
+        # 5 Chaos). GrantAdvance(player, AdvanceDB(...)) is engine-verified
+        # (slicfunc.cpp Slic_GrantAdvance). BeginTurn + per-player latch is
+        # the base-verified one-shot idiom (scenario.slc MomSlicAliveLatch).
+        _HOME_SLC = "\n".join([
+            "// GENERATOR-OWNED (sphere_home_exclusivity): per-tribe sphere HOME grants.",
+            "// Regenerated by ctp2_generator.py -- edit mod_policy.json, not this file.",
+            "int_t SmmHomeGrantLatch[31];",
+            "",
+            "HandleEvent(BeginTurn) 'SmmSphereHomeGrant' pre {",
+            "\tint_t p;",
+            "\tp = player[0];",
+            "\tif (p >= 1) {",
+            "\t\tif (p <= 5) {",
+            "\t\t\tif (SmmHomeGrantLatch[p] == 0) {",
+            "\t\t\t\tSmmHomeGrantLatch[p] = 1;",
+            "\t\t\t\tif (p == 1) { GrantAdvance(player[0], AdvanceDB(ADVANCE_HOME_LIFE)); }",
+            "\t\t\t\tif (p == 2) { GrantAdvance(player[0], AdvanceDB(ADVANCE_HOME_NATURE)); }",
+            "\t\t\t\tif (p == 3) { GrantAdvance(player[0], AdvanceDB(ADVANCE_HOME_SORCERY)); }",
+            "\t\t\t\tif (p == 4) { GrantAdvance(player[0], AdvanceDB(ADVANCE_HOME_DEATH)); }",
+            "\t\t\t\tif (p == 5) { GrantAdvance(player[0], AdvanceDB(ADVANCE_HOME_CHAOS)); }",
+            "\t\t\t}",
+            "\t\t}",
+            "\t}",
+            "}",
+            "",
+        ])
+        _write_rel("default/gamedata/mom_sphere_home.slc", _HOME_SLC)
+        _scen_slc = _read_rel("default/gamedata/scenario.slc")
+        if '#include "mom_sphere_home.slc"' not in _scen_slc:
+            _write_rel("default/gamedata/scenario.slc",
+                       _scen_slc.rstrip("\n") + '\n#include "mom_sphere_home.slc"\n')
+            print("  + scenario.slc: included mom_sphere_home.slc")
 
     # --- Units from units.csv ---
     adv_db = reg.load("default/gamedata/Advance.txt")
@@ -3100,6 +3199,8 @@ def main():
    CanSee: Standard
    MovementType: Land
    MovementType: Mountain
+   MovementType: Sea
+   MovementType: ShallowWater
    Size: Medium
    VisionClass: Standard
 
@@ -3172,6 +3273,17 @@ def main():
     if added_unit_strings:
         print(f"  + added {added_unit_strings} unit display string(s) to gl_str.txt")
 
+    # Backfill missing UNIT_*_SUMMARY strings — the Build Manager summary box
+    # renders the raw string ID (e.g. "UNIT_WARRIOR_SUMMARY") when absent.
+    added_unit_summaries = 0
+    for _uid, _display in sorted(mom_unit_display_names.items()):
+        _sid = f"{_uid}_SUMMARY"
+        if _sid not in _unit_gl_str.entries:
+            _unit_gl_str.entries[_sid] = f"Summary of {_display}."
+            added_unit_summaries += 1
+    if added_unit_summaries:
+        print(f"  + added {added_unit_summaries} unit summary string(s) to gl_str.txt")
+
     # Auto-hide all base CTP2 units that are not MoM CSV units.
     # Engine-required slots (UNIT_CITY etc.) are exempt.
     # This is generator-owned so regeneration never reintroduces GL entries.
@@ -3186,6 +3298,45 @@ def main():
             hidden_count += 1
     if hidden_count:
         print(f"  + hid {hidden_count} base CTP2 unit(s) from Great Library index")
+
+    # Closed-gate GL hygiene: an advance is CLOSED when it can never be
+    # researched — it self-prereqs (unreachable-gate idiom kept closed by the
+    # sever pass) or ANY of its prerequisites is closed (Prerequisites are AND).
+    # Content gated on closed advances is permanently dormant; without this
+    # pass it still clutters the Great Library index (LotR "Angmar H1..H4"
+    # hero slots, per-faction tech variants) as browsable dead records.
+    adv_closed_file = reg.load("default/gamedata/Advance.txt")
+    _prereq_map = {a: adv_closed_file.get_prerequisites(a)
+                   for a in adv_closed_file.blocks}
+    _closed = {a for a, pr in _prereq_map.items()
+               if a in pr and not a.startswith("ADVANCE_HOME_")}
+    _grew = True
+    while _grew:
+        _grew = False
+        for a, pr in _prereq_map.items():
+            if a.startswith("ADVANCE_HOME_"):
+                continue  # SLIC-granted at game start — an open root, not a wall
+            if a not in _closed and pr and any(p in _closed for p in pr):
+                _closed.add(a)
+                _grew = True
+    closed_adv_hidden = 0
+    for a in sorted(_closed):
+        flagged = adv_closed_file.ensure_flags(a, ["GLHidden"])
+        flagged = adv_closed_file.ensure_flags(a, ["GoodyHutExcluded"]) or flagged
+        if flagged:
+            closed_adv_hidden += 1
+    closed_unit_hidden = 0
+    for ident in sorted(uni._unit_ids):
+        if ident in _ENGINE_REQUIRED_UNITS:
+            continue
+        _m = re.search(r'^\s*EnableAdvance\s+(ADVANCE_[A-Z0-9_]+)\s*$',
+                       uni.block_text(ident), re.MULTILINE)
+        if _m and _m.group(1) in _closed \
+                and uni.ensure_flags(ident, ["NoIndex", "GLHidden"]):
+            closed_unit_hidden += 1
+    if closed_adv_hidden or closed_unit_hidden:
+        print(f"  + closed-gate GL hygiene: hid {closed_adv_hidden} advance(s), "
+              f"{closed_unit_hidden} unit(s) gated on unresearchable advances")
 
     # Remove stock CTP2 / test units listed in unit_mask.csv using the
     # proper nested-brace-aware parser.  Never use regex for block removal.
@@ -4003,6 +4154,73 @@ def main():
     # the authored MoM improvements into buildings.txt (AE schema) and drop Improve.txt.
     # Done before save_all so the dead Improve.txt is never written.
     _merge_mom_improvements_into_buildings()
+
+    # Icon-DB backfill: the runtime Icon database is uniticon.txt (civapp.cpp
+    # g_theIconDB->Parse(g_uniticondb_filename) — one DB for unit AND building
+    # icons; improveicon.txt is a separate export, NOT consulted here). Every
+    # DefaultIcon in buildings.txt must have an ICON_IMPROVE block in uniticon
+    # or BuildingRecord::ResolveDBReferences raises "not found in Icon
+    # database" and the game exits. Merged-source improvements have no curated
+    # icon block — synthesize one pointing FirstFrame/Icon at the placeholder
+    # TGA and the GL fields at the building's own runtime GL surfaces.
+    _uic = reg.load("default/gamedata/uniticon.txt")
+    _bld_final = _read_rel("default/gamedata/buildings.txt")
+    _icon_refs = set(re.findall(r"DefaultIcon\s+(ICON_IMPROVE_[A-Z0-9_]+)", _bld_final))
+    _placeholder_tga = MOD_POLICY["icon_placeholder"]
+    synthesized_improve_icons = 0
+    for icon_id in sorted(_icon_refs):
+        if icon_id in _uic.blocks:
+            continue
+        # Retired X-sentinels are never rendered; MoM baseline ships them
+        # without icon blocks — leave alone so the byte gate holds.
+        if re.match(r"ICON_IMPROVE_X[A-Z]", icon_id):
+            continue
+        imp_id = "IMPROVE_" + icon_id[len("ICON_IMPROVE_"):]
+        _uic.blocks[icon_id] = {
+            "FirstFrame": _placeholder_tga,
+            "Movie": '"NULL"',
+            "Gameplay": f'"{imp_id}_GAMEPLAY"',
+            "Historical": f'"{imp_id}_HISTORICAL"',
+            "Prereq": f'"{imp_id}_PREREQ"',
+            "Vari": f'"{imp_id}_STATISTICS"',
+            "Icon": _placeholder_tga,
+            "LargeIcon": '"NULL"',
+            "SmallIcon": '"NULL"',
+            "StatText": f'"{imp_id}_STATISTICS"',
+        }
+        synthesized_improve_icons += 1
+    if synthesized_improve_icons:
+        print(f"  + synthesized {synthesized_improve_icons} placeholder improvement icon block(s) in uniticon.txt")
+
+    # Cap Prerequisites per advance at the engine's k_MAX_Prerequisites (4,
+    # AdvanceRecord.h). Merged/remapped advances can accumulate more (e.g. the
+    # Enchanted Road remap collapses several base RAILROAD prereqs to identical
+    # GREATER_ENCHANTMENTS lines); a 5th entry triggers "Advance.txt:N too many
+    # entries". Truncate to the first 4 (NOT dedupe — MoM ships legal 4-identical
+    # blocks and the byte gate must hold); this only trims the genuine overflow.
+    K_MAX_PREREQUISITES = 4
+    _adv = reg.load("default/gamedata/Advance.txt")
+    _capped_adv = 0
+
+    def _cap_prereqs(m: "re.Match[str]") -> str:
+        body = m.group(2)
+        lines = body.split("\n")
+        kept, seen_prereq = [], 0
+        for ln in lines:
+            if re.match(r"\s*Prerequisites\s+", ln):
+                seen_prereq += 1
+                if seen_prereq > K_MAX_PREREQUISITES:
+                    continue
+            kept.append(ln)
+        new_body = "\n".join(kept)
+        if new_body != body:
+            nonlocal _capped_adv
+            _capped_adv += 1
+        return f"{m.group(1)}{{{new_body}}}"
+
+    _adv._text = re.sub(r"(ADVANCE_\w+ )\{(.*?)\}", _cap_prereqs, _adv._text, flags=re.S)
+    if _capped_adv:
+        print(f"  + capped Prerequisites to {K_MAX_PREREQUISITES} on {_capped_adv} advance(s)")
 
     reg.save_all()
     final_gl_scrubbed = 0

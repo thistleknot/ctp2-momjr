@@ -1,0 +1,134 @@
+[
+  {
+    "do": "wait",
+    "ms": 6000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 30000
+  },
+  {
+    "do": "press",
+    "path": "InitPlayWindow.NewGameButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.ScenarioButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "A0_fresh"
+  },
+  {
+    "do": "click",
+    "x": 625,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 1800
+  },
+  {
+    "do": "shot",
+    "name": "A1_click_prescroll"
+  },
+  {
+    "do": "click",
+    "x": 996,
+    "y": 562
+  },
+  {
+    "do": "wait",
+    "ms": 2000
+  },
+  {
+    "do": "shot",
+    "name": "A2_scrolled"
+  },
+  {
+    "do": "click",
+    "x": 625,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 1800
+  },
+  {
+    "do": "shot",
+    "name": "A3_click_postscroll"
+  },
+  {
+    "do": "press",
+    "path": "ScenarioWindow.CancelButton"
+  },
+  {
+    "do": "wait",
+    "ms": 2500
+  },
+  {
+    "do": "wait_stable",
+    "ms": 15000
+  },
+  {
+    "do": "shot",
+    "name": "A4_back"
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.ScenarioButton"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 15000
+  },
+  {
+    "do": "shot",
+    "name": "A5_reopened"
+  },
+  {
+    "do": "click",
+    "x": 625,
+    "y": 300
+  },
+  {
+    "do": "wait",
+    "ms": 1800
+  },
+  {
+    "do": "shot",
+    "name": "A6_click_after_reopen"
+  }
+]

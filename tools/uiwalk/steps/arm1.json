@@ -1,0 +1,254 @@
+[
+  {
+    "_comment": "ARM 1 (link 5+6). Click Random -> MomMagicCurDisp=42; Kill(). Then reopen with j. PREDICTION: box closes, reopen reads Mana: 42. Reads 10 => body did not run or did not persist. Two click coords tried (1:1 then x1.25); a miss lands on empty map = no-op, so both are safe in one run. NO turn ended between click and reopen (MomMagicPoolTick would recompute Disp and mimic non-persistence)."
+  },
+  {
+    "_comment": "COORD RULE (confirmed 2026-07-24): the engine scales incoming click coords by 0.8 (1024/1280). To hit something seen at capture (cx,cy) SEND (cx*1.25, cy*1.25). Buttons/lists prefer the injection hook (press:/select:), which needs no coords. Full element map: ../ui_map.json"
+  },
+  {
+    "do": "wait",
+    "ms": 6000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "key",
+    "keys": "esc"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 30000
+  },
+  {
+    "do": "shot",
+    "name": "main_menu"
+  },
+  {
+    "do": "press",
+    "path": "InitPlayWindow.NewGameButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "new_game_screen"
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.ScenarioButton"
+  },
+  {
+    "do": "wait",
+    "ms": 4000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "scenario_select"
+  },
+  {
+    "_comment": "page down: trough below thumb, capture (797,450) -> send (996,562). VERIFIED. NOTE: this is COSMETIC - the select-by-index step below does not need the row visible."
+  },
+  {
+    "do": "wait",
+    "ms": 2000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 10000
+  },
+  {
+    "do": "shot",
+    "name": "scrolled_to_mom"
+  },
+  {
+    "_comment": "MoM is selected by INDEX INJECTION (aui_ListBox::SelectItem), not by a click - it works regardless of scroll position. A coordinate click on a row worked BEFORE a scroll but not AFTER one (unexplained)."
+  },
+  {
+    "do": "select",
+    "path": "ScenarioWindow.AvailableListBox",
+    "index": 3
+  },
+  {
+    "do": "wait",
+    "ms": 2000
+  },
+  {
+    "do": "shot",
+    "name": "mom_selected"
+  },
+  {
+    "_comment": "OK == ScenarioWindow.LoadButton (str_ldl_SCEN_LOAD); drills into the MoM pack"
+  },
+  {
+    "do": "press",
+    "path": "ScenarioWindow.LoadButton"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "pack_contents"
+  },
+  {
+    "_comment": "FRONTIER E1: confirm the pack. select inner row 0 then OK. PREDICTION: panel closes -> back at new_game with scenario set."
+  },
+  {
+    "do": "select",
+    "path": "ScenarioWindow.AvailableListBox",
+    "index": 0
+  },
+  {
+    "do": "wait",
+    "ms": 1500
+  },
+  {
+    "do": "press",
+    "path": "ScenarioWindow.LoadButton"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 20000
+  },
+  {
+    "do": "shot",
+    "name": "pack_confirmed"
+  },
+  {
+    "_comment": "FRONTIER E2: LAUNCH. PREDICTION: long load then the map screen. SLIC only enters scope here (L5)."
+  },
+  {
+    "do": "press",
+    "path": "SPNewGameWindow.StartButton"
+  },
+  {
+    "do": "wait",
+    "ms": 15000
+  },
+  {
+    "do": "shot",
+    "name": "loading_1"
+  },
+  {
+    "do": "wait_stable",
+    "ms": 90000
+  },
+  {
+    "do": "shot",
+    "name": "in_game_mom"
+  },
+  {
+    "_comment": "OBJECTIVE: fire the j hotkey and capture the MagicMenu alertbox. L5 satisfied - SLIC compiled fresh by this new game (confirmed: the BeginTurn 'Magic Power' box is already on screen)."
+  },
+  {
+    "_comment": "Baseline shot immediately before the key, so the L4 delta isolates j's effect alone."
+  },
+  {
+    "do": "shot",
+    "name": "pre_j"
+  },
+  {
+    "do": "key",
+    "keys": "j"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "shot",
+    "name": "post_j"
+  },
+  {
+    "_comment": "PREDICTION: delta ~180k (panel opened) and a MAGIC STATUS alertbox visible. delta 0 => key never landed OR the on-screen message box ate it; delta ~477k => crash."
+  },
+  {
+    "do": "wait",
+    "ms": 2000
+  },
+  {
+    "do": "shot",
+    "name": "post_j_settled"
+  },
+  {
+    "_comment": "Assert ONLY the alertbox region: the map is generated per run, so any golden covering terrain would be flaky by construction. The alertbox is deterministic."
+  },
+  {
+    "_comment": "RECON for the interactivity battery. Objective: confirm the 4-button MagicMenu compiled and LOCATE each button, so the arm runs can click by coordinate. PREDICTION: MAGIC STATUS box, 'Mana: 10 / 100', four buttons Random/Research/Goal/Close. No box (delta ~0) => SLIC compile failure, bisect the arms."
+  },
+  {
+    "do": "wait_stable",
+    "ms": 8000
+  },
+  {
+    "do": "shot",
+    "name": "battery_recon"
+  },
+  {
+    "do": "click",
+    "x": 331,
+    "y": 385
+  },
+  {
+    "do": "wait",
+    "ms": 2500
+  },
+  {
+    "do": "shot",
+    "name": "arm1_click_1to1"
+  },
+  {
+    "do": "click",
+    "x": 414,
+    "y": 481
+  },
+  {
+    "do": "wait",
+    "ms": 2500
+  },
+  {
+    "do": "shot",
+    "name": "arm1_click_125"
+  },
+  {
+    "do": "key",
+    "keys": "j"
+  },
+  {
+    "do": "wait",
+    "ms": 3000
+  },
+  {
+    "do": "wait_stable",
+    "ms": 8000
+  },
+  {
+    "do": "shot",
+    "name": "arm1_reopen"
+  }
+]

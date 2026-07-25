@@ -1,0 +1,16 @@
+[
+  {"do": "wait_stable", "ms": 40000},
+  {"do": "shot", "name": "loaded_save"},
+  {"do": "key", "keys": "shift+2"},
+  {"do": "wait", "ms": 1000},
+  {"do": "type", "text": "/reloadslic"},
+  {"do": "wait", "ms": 500},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 8000},
+  {"do": "shot", "name": "after_reloadslic"},
+  {"do": "fire", "control": "ControlPanelWindow.ControlPanel.ShortcutPad.MagicButton"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "spellbook"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "spellbook_2"}
+]

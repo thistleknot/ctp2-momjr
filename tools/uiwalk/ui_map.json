@@ -1,0 +1,506 @@
+{
+  "_purpose": "Element -> pixel/handle map for CTP2 menus. Look up the current state, then use the element's preferred method. Prevents rediscovering coordinates every session.",
+  "environment_model": {
+    "_purpose": "PRIMARY: how the environment works. The per-state pixel tables below are DERIVED from these laws, not independent facts. A law is only useful if it predicts behaviour in states never visited -- test it that way.",
+    "L1_coordinate_transform": {
+      "law": "send = capture * 1.25  (engine renders 1024x768, client is 1280x960; incoming click coords are scaled by 0.8)",
+      "scope": "expected GLOBAL - every state, including unvisited ones",
+      "evidence": "predicted row1 needs send(625,300) BEFORE running it; ran it; row1 selected. Also retro-explains (797,450)->row2 and (797,555)->row3.",
+      "status": "CONFIRMED IN-GAME 2026-07-24 -- the generalisation test PASSED. Close button at capture(335,376); L1 predicted send(419,470); that click dismissed the alertbox. Falsification control (identical walk, click removed, equal wait) left the box OPEN. L1 is a real law, not scenario_select trivia."
+    },
+    "L2_click_protocol": {
+      "law": "Before each click, move to and post WM_LBUTTONUP at the PREVIOUS click position. Otherwise the first click grabs a control that is never released and every later click is swallowed.",
+      "scope": "expected GLOBAL - it is an input-protocol property, not panel-specific",
+      "evidence": "same battery: 1/3 clicks landed before the fix, 3/3 after (5180 / 79455 / 4338 px, reproduced exactly). Releasing at the NEW position was tested and FALSIFIED.",
+      "status": "confirmed in scenario_select; in-game click landed with the protocol in force"
+    },
+    "L3_injection_channel": {
+      "law": "press:<ldl>/select:<ldl>,<idx> call InjectPress/SelectItem in C++ - no cursor, no coords, no grab, and works regardless of scroll position or visibility.",
+      "scope": "any control with an LDL path; CTP2_LISTBOX is atomic so rows/scrollbar have NO path and need L1+L2 clicks",
+      "status": "confirmed"
+    },
+    "L4_observation_decoder": {
+      "law": "pixel delta between consecutive shots classifies the outcome",
+      "table": {
+        "0": "input never landed / modal ate it",
+        "~4-5k": "row selected or button enabled",
+        "~75-80k": "list scrolled a page",
+        "~180k": "panel opened/closed",
+        "~477k": "whole screen: crash or blank, NOT a UI response"
+      },
+      "status": "confirmed across many runs"
+    },
+    "L5_slic_persistence": {
+      "law": "CTP2 serializes compiled SLIC into saves; a loaded save ignores edited .slc until /reloadslic. A NEW game compiles fresh.",
+      "scope": "governs which entry path can test a SLIC change at all",
+      "status": "confirmed (prior sessions)"
+    },
+    "L6_binary_identity": {
+      "law": "The exe under test must be asserted, not assumed - build.bat builds only Final-SDL (ctp2.exe); the launcher re-stages ctp2-dbg.exe over manual copies every run.",
+      "status": "confirmed; enforced by preflight_exe()"
+    },
+    "L7_input_reach_by_surface": {
+      "law": "Which input channels reach a control depends on the SURFACE, not on CTP2 globally.",
+      "table": {
+        "main-menu aui screens": "PostMessage clicks DEAD (0/36 measured); use L3 injection",
+        "in-game SLIC message/alertbox": "PostMessage clicks WORK (measured 2026-07-24); keyboard does NOT (enter/space/esc all delta 0 on the box)"
+      },
+      "evidence": "close_armA_key.json enter=0 space=0 esc=0-on-box; close_armB_click.json scaled click killed the box; close_armC_control.json no-click left it open.",
+      "status": "confirmed",
+      "correction": "supersedes the unscoped belief that clicks never work in CTP2. That was true of MENUS only.",
+      "scroll_click_falsified_20260725": "The scenario-list scrollbar click at (996,562), commented VERIFIED, does NOT work. Measured: after the click the list was still at the TOP (Apolyton/Alexander/Sieben) while the golden showed the scrolled view. Consistent with L7 -- clicks are dead in menus. The step and its assert were REMOVED from magic_j_e2e.json; scrolling was cosmetic because SelectItem is index-based."
+    },
+    "L8_capture_health": {
+      "law": "A readable capture requires TWO things: SDL_RENDER_DRIVER=software (+SDL_FRAMEBUFFER_ACCELERATION=0) and the nointromovie arg. Both are now baked into uiwalk.Game.launch.",
+      "why": "The default accelerated SDL backend creates a surface GDI PrintWindow cannot read (61,040 -> 151,173 non-black pixels on an identical frame when forced to software). Separately, civapp.cpp:594 plays a ~40s cinematic over the whole client; civ3_main.cpp:1104 clears g_useIntroMovie on the nointromovie arg.",
+      "falsified_root_causes": [
+        "Primary-monitor orientation / display mode. REAL mechanism (display.cpp display_EnumerateDisplayModes reads display 0 only, so userprofile ScreenRes* is honoured only if it names a primary-display mode) but it explains window SIZE ONLY. A legal, honoured 1024x1280 window was still black.",
+        "Stash position. -1500,-1500 gives byte-identical output to -32000,-32000.",
+        "A modal error dialog. Only SDL_app / MSCTFIME UI / IME exist on the PID."
+      ],
+      "golden_geometry_CORRECTED_20260725": "RETRACTED: an earlier note here claimed the goldens were authored at a 1280x960 landscape client and were therefore stale, and told the future not to re-baseline. BOTH premises are false. MEASURED: every golden region fits inside 1024x768 (110+800=910, 70+610=680), and full-frame template matching scores EXACTLY 1.000 for main_menu / new_game / scenario_select / pack_contents. The goldens were never stale. The real defect was in match_template: it cropped the search area to exactly the region, which is exactly the golden size, leaving ZERO slack, so any translation scored ~0. Fixed with pad=320 -> 0/6 became 4/5 with four checks at 1.000.",
+      "letterbox_is_PER_SURFACE": "The engine draws its fixed UI inside whatever legal window size the primary display allows, and the offset DIFFERS BY SURFACE. Measured at a 1024x1280 client: menus sit at (+2,+264); the in-game magic alertbox sits at (+2,+8) (anchor match 1.000). Do NOT hardcode one offset. Asserts must ask \"is this UI present\", not \"is it at this exact pixel\" -- that is what the search padding buys."
+    },
+    "L9_alertbox_interactivity": {
+      "law": "A SLIC alertbox button body executes arbitrary statements, and its mutations persist across close/reopen. Links 3-6 all CONFIRMED 2026-07-24.",
+      "evidence": {
+        "link3_4": "Close -> Kill() runs, box closes.",
+        "link5_scalar": "ARM 1 Random -> MomMagicCurDisp=42; reopen via j reads Mana: 42 (baseline 10).",
+        "link5_model": "ARM 2 Research -> MomMagicCur[g.player]-=3; reopen reads Mana: 7.",
+        "link6": "Both survive Kill() + reopen with NO turn ended in between.",
+        "link5_engine": "ARM 3 Goal -> AddGold(g.player,500); HUD gold 106 -> 606."
+      },
+      "control": "The BeginTurn message box in the same frame still read 10, so the change is a specific SLIC-global mutation, not a repaint artifact.",
+      "coords": "At the current 1024-wide client, alertbox clicks are 1:1 with capture coords -- the x1.25 L1 factor did NOT apply. Verify per surface."
+    }
+  },
+  "coord_rule": {
+    "confirmed": "2026-07-24",
+    "engine_render": "1024x768 (userprofile ScreenResWidth/Height)",
+    "capture_client": "1280x960 (uiwalk PrintWindow crop)",
+    "rule": "The engine scales incoming click coords by 0.8. To hit something SEEN at capture (cx,cy) you must SEND (cx*1.25, cy*1.25).",
+    "evidence": "Predicted row1 needs (625,300); ran it; row1 selected. Also explains (797,450)->row2 and (797,555)->row3, i.e. x=797 scales to 638 which is INSIDE the list, never on the scrollbar.",
+    "capture_is_1to1_with_logical": "Yes - LDL geometry (ScenarioWindow 640x480 centered -> listbox logical x224-788,y187-565) matches measured capture x222-784,y175-559. Only the SEND path is scaled."
+  },
+  "methods": {
+    "press": "injection hook: write 'press:<ldl path>' to H:\\mom_inject.txt, PostMessage WM_APP+100 -> aui_Button::InjectPress. No coords. MOST RELIABLE for buttons.",
+    "select": "injection hook: 'select:<ldl path>,<index>' -> aui_ListBox::SelectItem. Index-based, no coords, no scrolling needed. Bounds-guarded since 2026-07-24.",
+    "click": "PostMessage WM_LBUTTON* with SEND coords (capture*1.25). Required for things with no LDL handle, e.g. the scrollbar trough."
+  },
+  "states": {
+    "main_menu": {
+      "identify": "goldens/main_menu.png (region 110,70,800,610)",
+      "elements": {
+        "new_game": {
+          "method": "press",
+          "ldl": "InitPlayWindow.NewGameButton",
+          "capture": [
+            216,
+            590
+          ],
+          "send": [
+            270,
+            738
+          ]
+        },
+        "load_game": {
+          "method": "click",
+          "capture": [
+            516,
+            590
+          ],
+          "send": [
+            645,
+            738
+          ]
+        },
+        "tutorial": {
+          "method": "click",
+          "capture": [
+            805,
+            590
+          ],
+          "send": [
+            1006,
+            738
+          ]
+        },
+        "options": {
+          "method": "click",
+          "capture": [
+            216,
+            651
+          ],
+          "send": [
+            270,
+            814
+          ]
+        },
+        "credits": {
+          "method": "click",
+          "capture": [
+            516,
+            651
+          ],
+          "send": [
+            645,
+            814
+          ]
+        },
+        "quit": {
+          "method": "click",
+          "capture": [
+            805,
+            651
+          ],
+          "send": [
+            1006,
+            814
+          ]
+        }
+      }
+    },
+    "new_game": {
+      "identify": "goldens/new_game_screen.png (region 110,75,800,600)",
+      "elements": {
+        "select_scenario": {
+          "method": "press",
+          "ldl": "SPNewGameWindow.ScenarioButton",
+          "capture": [
+            364,
+            495
+          ],
+          "send": [
+            455,
+            619
+          ]
+        },
+        "launch": {
+          "method": "press",
+          "ldl": "SPNewGameWindow.StartButton",
+          "capture": [
+            510,
+            653
+          ],
+          "send": [
+            637,
+            816
+          ]
+        },
+        "quit": {
+          "method": "press",
+          "ldl": "SPNewGameWindow.QuitButton",
+          "capture": [
+            805,
+            653
+          ],
+          "send": [
+            1006,
+            816
+          ]
+        }
+      }
+    },
+    "scenario_select": {
+      "identify": "goldens/scenario_select.png (region 190,135,640,465)",
+      "listbox": {
+        "ldl": "ScenarioWindow.AvailableListBox",
+        "item_count": 7,
+        "rows_visible": 3,
+        "row_bounds_capture": {
+          "x": [
+            222,
+            784
+          ],
+          "row1_y": [
+            175,
+            305
+          ],
+          "row2_y": [
+            305,
+            431
+          ],
+          "row3_y": [
+            431,
+            559
+          ]
+        },
+        "row_centres_send": {
+          "row1": [
+            625,
+            300
+          ],
+          "row2": [
+            625,
+            460
+          ],
+          "row3": [
+            625,
+            619
+          ]
+        },
+        "indices": {
+          "0": "Apolyton Edition Mod Pack",
+          "1": "Alexander the Great",
+          "2": "Sieben Samurai",
+          "3": "The Masters of Magic Mod"
+        },
+        "note": "Row clicking WORKS post-scroll since the multi-click fix (see click_multi_fix): after scrolling, click send(625,300) selects row 1 = MoM. Index injection (select:) remains the most reliable path and needs no scroll at all."
+      },
+      "scrollbar": {
+        "capture_x": [
+          790,
+          805
+        ],
+        "send_x": 996,
+        "thumb_capture_y": [
+          187,
+          357
+        ],
+        "trough_below_thumb_capture_y": [
+          359,
+          541
+        ],
+        "down_arrow_capture_y": [
+          544,
+          565
+        ],
+        "page_down": {
+          "method": "click",
+          "capture": [
+            797,
+            450
+          ],
+          "send": [
+            996,
+            562
+          ],
+          "verified": true,
+          "effect": "scrolls one page; MoM becomes row 1. COSMETIC ONLY - not required to select MoM."
+        },
+        "down_arrow": {
+          "method": "click",
+          "send": [
+            996,
+            690
+          ],
+          "verified": false,
+          "note": "no response; arrow y estimate likely wrong"
+        },
+        "drag_thumb": {
+          "method": "drag",
+          "send_from": [
+            996,
+            337
+          ],
+          "send_to": [
+            996,
+            575
+          ],
+          "verified": false,
+          "note": "no response"
+        }
+      },
+      "elements": {
+        "ok": {
+          "method": "press",
+          "ldl": "ScenarioWindow.LoadButton",
+          "capture": [
+            764,
+            581
+          ],
+          "send": [
+            955,
+            726
+          ],
+          "effect": "drills into the selected pack"
+        },
+        "back": {
+          "method": "press",
+          "ldl": "ScenarioWindow.CancelButton",
+          "capture": [
+            254,
+            581
+          ],
+          "send": [
+            317,
+            726
+          ]
+        }
+      }
+    },
+    "scenario_pack_contents": {
+      "identify": "single row 'Masters of Magic for CTP2'; OK greyed until a row is selected",
+      "listbox": {
+        "ldl": "ScenarioWindow.AvailableListBox",
+        "item_count": 1,
+        "indices": {
+          "0": "Masters of Magic for CTP2"
+        }
+      },
+      "elements": {
+        "ok": {
+          "method": "press",
+          "ldl": "ScenarioWindow.LoadButton"
+        },
+        "back": {
+          "method": "press",
+          "ldl": "ScenarioWindow.CancelButton"
+        }
+      }
+    }
+  },
+  "verified_walk_to_mom": [
+    "esc, esc                                   -> main_menu",
+    "press InitPlayWindow.NewGameButton         -> new_game",
+    "press SPNewGameWindow.ScenarioButton       -> scenario_select",
+    "click send(996,562)                        -> scrolled one page, MoM is row 1",
+    "select ScenarioWindow.AvailableListBox,3   -> MoM selected, OK enabled",
+    "press ScenarioWindow.LoadButton            -> scenario_pack_contents",
+    "NEXT (untested): select index 0, press LoadButton, then press SPNewGameWindow.StartButton to LAUNCH"
+  ],
+  "click_multi_fix": {
+    "confirmed": "2026-07-24",
+    "problem": "Only the FIRST synthetic click registered; every later click was swallowed. This also explains the 36-click grid sweep that showed 0 responses - its first click landed on empty space and burned the one working click.",
+    "cause_thesis": "The first click grabs a control that is never released, so later clicks are delivered to the grabbed control and do nothing visible.",
+    "fix": "Before each click, move to and post WM_LBUTTONUP at the PREVIOUS click position, then click. Releasing at the NEW position does NOT work (tested and falsified).",
+    "evidence": "Same step battery: before fix 1 of 3 clicks landed; after fix 3 of 3 landed (select row -> scroll -> select row post-scroll).",
+    "parked_gap": "After Back -> reopen of the scenario panel, the next click still does nothing. Unexplained. Workaround: use press:/select: injection, which is unaffected."
+  },
+  "state_graph": {
+    "_purpose": "Search tree. Nodes = UI states, edges = actions. Sparse reward: only reaching the next preferable state pays. Backtrack (Back/relaunch) is a legal move to re-test from a trusted node.",
+    "goal": "in_game_mom  ->  then press 'j' to exercise the MagicMenu SLIC hotkey (the actual objective)",
+    "root": "launch + esc,esc  ->  main_menu   (deterministic, ~40s, golden-verified)",
+    "nodes": {
+      "main_menu": {
+        "verified": true,
+        "golden": "main_menu"
+      },
+      "new_game": {
+        "verified": true,
+        "golden": "new_game_screen"
+      },
+      "scenario_select": {
+        "verified": true,
+        "golden": "scenario_select"
+      },
+      "scenario_select_scrolled": {
+        "verified": true,
+        "golden": "scrolled_to_mom"
+      },
+      "scenario_pack_contents": {
+        "verified": true,
+        "golden": "pack_contents"
+      },
+      "in_game_mom": {
+        "verified": true,
+        "reached": "2026-07-24 via steps/reach_in_game.json, headless, first attempt",
+        "evidence": "runs/20260724-185730/14_in_game_mom.png - MoM map 4000BC, Peasants selected, control panel live",
+        "note": "Map terrain is GENERATED PER RUN - never golden a region containing terrain. UI chrome and SLIC alertboxes are deterministic."
+      },
+      "magic_menu_open": {
+        "verified": true,
+        "from": "in_game_mom via key 'j'",
+        "evidence": "runs/20260724-190214 magic_menu_check 0.992/0.90 PASS on an independently generated map",
+        "golden": "goldens/post_j_settled.png region [10,228,372,394]",
+        "content": "MAGIC STATUS / Mana: 10 / 100 / Income: +10 per turn / Close",
+        "scope": "DISPLAY-ONLY alertbox. Interactive spell buttons NOT yet tested."
+      }
+    },
+    "edges": [
+      {
+        "from": "main_menu",
+        "to": "new_game",
+        "action": "press InitPlayWindow.NewGameButton",
+        "verified": true
+      },
+      {
+        "from": "new_game",
+        "to": "scenario_select",
+        "action": "press SPNewGameWindow.ScenarioButton",
+        "verified": true
+      },
+      {
+        "from": "scenario_select",
+        "to": "scenario_select_scrolled",
+        "action": "click send(996,562)",
+        "verified": true
+      },
+      {
+        "from": "scenario_select",
+        "to": "scenario_pack_contents",
+        "action": "select AvailableListBox,3 + press LoadButton",
+        "verified": true,
+        "note": "no scroll needed"
+      },
+      {
+        "from": "scenario_select_scrolled",
+        "to": "scenario_pack_contents",
+        "action": "click send(625,300) then press LoadButton",
+        "verified": "partial",
+        "note": "row click confirmed post-scroll since multi-click fix; LoadButton after it untested"
+      },
+      {
+        "from": "scenario_pack_contents",
+        "to": "?",
+        "action": "select AvailableListBox,0 + press LoadButton",
+        "verified": false,
+        "note": "FRONTIER: expected to confirm scenario and return to new_game"
+      },
+      {
+        "from": "new_game",
+        "to": "in_game_mom",
+        "action": "press SPNewGameWindow.StartButton (LAUNCH)",
+        "verified": false,
+        "note": "FRONTIER: long load; SLIC only enters scope HERE"
+      },
+      {
+        "from": "scenario_select",
+        "to": "new_game",
+        "action": "press ScenarioWindow.CancelButton (Back)",
+        "verified": true,
+        "note": "BACKTRACK edge"
+      },
+      {
+        "from": "scenario_pack_contents",
+        "to": "new_game",
+        "action": "select AvailableListBox,0 then press ScenarioWindow.LoadButton",
+        "verified": true,
+        "note": "E1 - confirmed 2026-07-24"
+      },
+      {
+        "from": "new_game",
+        "to": "in_game_mom",
+        "action": "press SPNewGameWindow.StartButton",
+        "verified": true,
+        "note": "E2 - confirmed 2026-07-24. Load completes well inside a 90s wait_stable."
+      },
+      {
+        "from": "in_game_mom",
+        "to": "magic_menu_open",
+        "action": "key j",
+        "verified": true,
+        "delta": 69465,
+        "note": "L4 addendum: ~69k = mid-size alertbox. Predicted ~180k; prediction was WRONG in magnitude, right in kind."
+      }
+    ],
+    "known_dead_edges": [
+      {
+        "action": "click down-arrow send(996,690)",
+        "result": "no response - arrow y estimate likely wrong"
+      },
+      {
+        "action": "drag thumb send(996,337)->(996,575)",
+        "result": "no response"
+      },
+      {
+        "action": "keys in scenario panel",
+        "result": "no response (user-observed)"
+      },
+      {
+        "action": "any click after Back->reopen",
+        "result": "no response - PARKED, workaround = injection"
+      }
+    ]
+  }
+}

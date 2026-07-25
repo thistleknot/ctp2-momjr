@@ -1,0 +1,9 @@
+[preflight] launch candidate: H:\Games\civctp2\ctp2_code\ctp\ctp2.exe (16,468,480 bytes)
+[preflight] marker 'MagicMenu': FOUND
+
+CHECK                             SCORE   THR  RESULT
+main_menu_check                   1.000  0.90  PASS
+new_game_check                    1.000  0.90  PASS
+scenario_select_check             1.000  0.90  PASS
+
+3/3 passed; artifacts in H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\runs\20260724-175034

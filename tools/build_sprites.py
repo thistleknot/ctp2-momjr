@@ -59,6 +59,35 @@ BG_KEY_TOLERANCE = 24     # Manhattan distance for border flood-fill background 
 DARK_FLOOR       = 8      # remap surviving pure-black art to this so makespr keeps it opaque
 MIN_OPAQUE_WARN  = 50     # fewer surviving pixels than this => likely near-blank source (H1)
 
+# Content-extent bounds inside the 96x72 sprite canvas, as a fraction of it.
+# The control-panel unit-preview box is a FIXED viewport (~77x65 of the 96x72
+# canvas => 0.80 w, 0.90 h). A bare resize((96,72)) preserves whatever framing
+# the source TGA happened to have, so a source framed edge-to-edge fills the
+# canvas and overflows that viewport, while the map -- which has no box -- draws
+# it fine. That is exactly the "Guardian Spirit too big in the bottom UI" report.
+#
+# MEASURED 2026-07-25 over all 62 SPRITE_*.tga sources (post-keying bbox as a
+# fraction of the canvas): median h-frac 0.944; comparable units (STORM_GIANT,
+# PEGASUS, JAFAR, HYDRA, FREYA, ELVEN_ARCHERS) sit at 0.97 h / 0.73 w;
+# GUARDIAN_SPIRIT is the outlier at 0.89 h / 0.88 w; SPEARMEN 0.94 h / 0.56 w.
+#
+# So the defect is WIDTH, not height: 0.97 h is the established norm and looks
+# correct on screen, but anything past 0.80 w overflows the viewport. Bound width
+# at the viewport fraction and leave height at the norm.
+#
+# SCOPE, measured -- do not repeat the mistake of calling Guardian Spirit an
+# "outlier": 21 of the 62 sources exceed the width bound and are downscaled.
+# GUARDIAN_SPIRIT (0.875 w) is only 14th worst; nine units (WYVERN, UNDEAD_DRAGON,
+# STORM_DRAKE, STEAM_CANNON, MINOTAUR, MERFOLK, IRON_GOLEM, COCKATRICE, BEHEMOTH)
+# sit at 0.948 w. Guardian Spirit is simply the one the user happened to click.
+# The other 41 sources already conform and come back byte-identical.
+#
+# Both are overridable via env so the change can be BISECTED against a harness
+# run without hand-editing this file: set both to 1.0 and rebuild --force to
+# reproduce the pre-fix artifacts exactly (_fit_content is a no-op at 1.0).
+CONTENT_MAX_W_FRAC = float(os.environ.get("MOM_SPRITE_MAX_W_FRAC", 0.80))
+CONTENT_MAX_H_FRAC = float(os.environ.get("MOM_SPRITE_MAX_H_FRAC", 0.97))
+
 # SPRITE_ names whose extracted source art faces LEFT and must be flipped to face
 # right (else the unit appears to walk backwards when moving left/right — Kull #2b).
 LEFT_FACING: set[str] = set()
@@ -187,6 +216,51 @@ def _key_background(img: "Image.Image", tol: int = BG_KEY_TOLERANCE) -> int:
     return opaque
 
 
+def _fit_content(img: "Image.Image") -> "Image.Image":
+    """
+    Bound a keyed sprite's opaque content to CONTENT_MAX_*_FRAC of its canvas.
+
+    Require : `img` is RGBA and already keyed (background alpha==0), any size.
+    Guarantee: returns a same-size RGBA image whose opaque bbox is <= the bound
+               in both axes, aspect preserved, bottom-centred on the canvas.
+    Maintain : scale is clamped to <=1.0, so content is never blown UP -- an
+               already-conforming sprite comes back byte-identical.
+    Failure  : a fully transparent image (no bbox) is returned unchanged.
+    """
+    box = img.getbbox()          # bbox of non-zero alpha
+    if box is None:
+        return img
+    cw, ch = img.size
+    x0, y0, x1, y1 = box
+    bw, bh = x1 - x0, y1 - y0
+    if bw <= 0 or bh <= 0:
+        return img
+
+    scale = min(1.0,
+                (cw * CONTENT_MAX_W_FRAC) / bw,
+                (ch * CONTENT_MAX_H_FRAC) / bh)
+    if scale >= 0.999:
+        return img               # already inside the bound; do not resample
+
+    content = img.crop(box).resize(
+        (max(1, int(round(bw * scale))), max(1, int(round(bh * scale)))),
+        Image.LANCZOS)
+    out = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+    out.paste(content,
+              ((cw - content.width) // 2, ch - content.height),   # bottom-centred
+              content)
+    # LANCZOS blends toward the transparent (0,0,0,0) surround, so a downscale can
+    # manufacture opaque-but-pure-black edge pixels. makespr's chromakey test would
+    # eat those, punching holes in the silhouette -- re-apply the DARK_FLOOR nudge.
+    px = out.load()
+    for y in range(ch):
+        for x in range(cw):
+            r, g, b, a = px[x, y]
+            if a and r == 0 and g == 0 and b == 0:
+                px[x, y] = (DARK_FLOOR, DARK_FLOOR, DARK_FLOOR, a)
+    return out
+
+
 def _facing_images(tga: Path, flip: bool) -> list["Image.Image"]:
     """
     Return one keyed 96×72 RGBA image per facing (N,NE,E,SE,S).
@@ -195,11 +269,19 @@ def _facing_images(tga: Path, flip: bool) -> list["Image.Image"]:
     N_FACINGS (a 1:n mapping). This is the single unroll point: when per-facing art
     exists later, load each facing's own source here and return n distinct images
     (n:n) — nothing else in the pipeline needs to change.
+
+    Content extent is NORMALISED after keying (added 2026-07-25): the opaque
+    content is cropped to its bounding box, uniformly downscaled if it exceeds
+    CONTENT_MAX_*_FRAC of the canvas, and re-pasted bottom-centred. Bottom-anchored
+    because a unit stands on the ground -- centring vertically would float it.
+    Aspect ratio is preserved and the scale is never >1, so a source that already
+    fits is returned pixel-identical to the old bare-resize path.
     """
     img = Image.open(str(tga)).convert("RGBA").resize((96, 72), Image.LANCZOS)
     if flip:
         img = img.transpose(Image.FLIP_LEFT_RIGHT)   # left-facing source -> right-facing
     _key_background(img)
+    img = _fit_content(img)
     return [img] * N_FACINGS   # 1:n cast; replace with n distinct images for true facings
 
 
@@ -328,8 +410,17 @@ def main() -> int:
 
         nn = f"{num:02d}"
         spr = SPRITES_DIR / f"GU{nn}.SPR"
-        if spr.exists() and not args.force:
-            continue   # already built
+        # Presence is NOT proof we built it. The MoM range starts at 91, but base
+        # CTP2 already ships GU91/92/93/95 (and others) into the same directory, so
+        # a bare exists() check silently adopted stock art for SPRITE_ZOMBIES,
+        # SPRITE_SPEARMEN, SPRITE_SWORDSMEN and SPRITE_WARBEARS -- the map drew a
+        # stock CTP2 unit while the UI drew MoM's icon. Use make-style staleness
+        # instead: rebuild whenever the source TGA is newer than the SPR. Stock
+        # files are dated 2000-11-01, so every collision resolves in our favour and
+        # the check self-heals on any future art edit.
+        if (spr.exists() and not args.force
+                and spr.stat().st_mtime >= tga.stat().st_mtime):
+            continue   # up to date
 
         to_build.append((name, num, tga))
 

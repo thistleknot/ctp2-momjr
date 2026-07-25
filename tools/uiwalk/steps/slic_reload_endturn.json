@@ -1,0 +1,17 @@
+[
+  {"do": "wait_stable", "ms": 40000},
+  {"do": "shot", "name": "loaded_save"},
+  {"do": "key", "keys": "apostrophe"},
+  {"do": "wait", "ms": 1200},
+  {"do": "shot", "name": "chat_open"},
+  {"do": "type", "text": "/reloadslic"},
+  {"do": "wait", "ms": 600},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait_stable", "ms": 10000},
+  {"do": "shot", "name": "after_reloadslic"},
+  {"do": "key", "keys": "enter"},
+  {"do": "wait", "ms": 4000},
+  {"do": "shot", "name": "after_endturn_1"},
+  {"do": "wait", "ms": 6000},
+  {"do": "shot", "name": "after_endturn_2"}
+]
