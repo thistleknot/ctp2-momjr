@@ -92,16 +92,22 @@ the forward dimensions and does not know about SLIC.
 
 ## The two artifacts
 
-This repo carries TWO artifacts side by side, on purpose:
+The mod and the code, kept separate on purpose:
 
-## 1. `mom.zip` — the drop-in snapshot
+## 1. `mom.zip` — the mod
 
-A zip of this whole repo under a top-level `mom/` prefix, so the mod can be
-handed to someone as one file: unzip it into `Scenarios\` and the scenario is
-installed. Rebuilt from the tree, not hand-maintained.
+What a player installs. Unzip into `Scenarios\` and the scenario is there.
 
-The earlier, pre-control-plane frozen snapshot that used to live at this path is
-still in git history if a regression ever needs diffing against it.
+It carries **only** what the engine loads — `packicon.tga`, `packlist.txt` and
+`scen0000/`, the same shape as the scenarios that ship with the game — under a
+top-level `mom/` prefix. No tooling, no control plane, no docs: **the repo holds
+the code, the zip holds the mod.** Rebuilt from the tree, never hand-maintained:
+
+```
+python tools\ctp2_generator.py    # control plane -> scenario
+python tools\mom_audit.py         # validate
+python tools\build_mod_zip.py     # package
+```
 
 ## 2. The repo tree — the control-plane version
 
