@@ -1,5 +1,8 @@
 [
  {
+  "_comment": "Verify SPRITE_HOT_POINTS fix: units must sit centred on their tile anchor, not low-left. Derived from peek_units.json with the documented-broken n-cycle tail removed."
+ },
+ {
   "_comment": "COORD RULE (CORRECTED 2026-07-25 -- the old blanket 'send cx*1.25' here was wrong). GEOMETRY: the engine blits its 1024x768 surface UNSCALED into the client's top-left, so capture coords ARE engine coords, 1:1 (measured content bbox 0,0-1021,759). The SEND scale is NOT derived from that geometry -- it is empirical and PER-SURFACE: message = x0.80, alertbox = x1.25. x1.25 on the MESSAGE surface is process-lethal (0xC0000005, 2/2 runs). Buttons/lists prefer the injection hook (press:/select:), which needs no coords at all. Full element map: ../ui_map.json"
  },
  {
@@ -201,46 +204,30 @@
   "name": "in_game_mom"
  },
  {
-  "_comment": "BROKEN PROBE, measured 2026-07-25 -- do not trust unit_1..3 from this walk. 'n' does NOT cycle units in-game (L7: keyboard is dead on in-game surfaces); captures came back byte-identical, 57157 bytes each. CORRECTION 2026-07-25: an earlier version of this note claimed the control panel also captures pure BLACK under PrintWindow -- FALSIFIED. It photographs fine (the Peasants preview was fully legible in 12_in_game_mom.png, and the icon over-zoom fix was confirmed live from that capture). Only the unit-cycling input is broken, not the capture. Sprite-preview defects are ALSO verified at ARTIFACT level (build_sprites._facing_images bbox gate). Left as a placeholder until a working unit-selection probe exists."
+  "_comment": "Dismiss the BeginTurn Magic Power box so the map viewport paints. This is a MESSAGE surface: send = capture x0.80 (x1.25 on a message is process-lethal, 2/2 AVs). Close X seen at capture (494,52) -> send (395,42)."
+ },
+ {
+  "do": "click",
+  "x": 395,
+  "y": 42
  },
  {
   "do": "wait",
-  "ms": 4000
- },
- {
-  "do": "key",
-  "keys": "n"
- },
- {
-  "do": "wait",
-  "ms": 3000
+  "ms": 2500
  },
  {
   "do": "shot",
-  "name": "unit_1"
+  "name": "map_after_dismiss"
  },
  {
-  "do": "key",
-  "keys": "n"
+  "_comment": "Centre the view on the active unit so its tile is mid-screen and measurable."
  },
  {
-  "do": "wait",
-  "ms": 3000
- },
- {
-  "do": "shot",
-  "name": "unit_2"
- },
- {
-  "do": "key",
-  "keys": "n"
- },
- {
-  "do": "wait",
-  "ms": 3000
+  "do": "wait_stable",
+  "ms": 15000
  },
  {
   "do": "shot",
-  "name": "unit_3"
+  "name": "map_settled"
  }
 ]

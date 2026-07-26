@@ -82,11 +82,25 @@ MIN_OPAQUE_WARN  = 50     # fewer surviving pixels than this => likely near-blan
 # sit at 0.948 w. Guardian Spirit is simply the one the user happened to click.
 # The other 41 sources already conform and come back byte-identical.
 #
-# Both are overridable via env so the change can be BISECTED against a harness
-# run without hand-editing this file: set both to 1.0 and rebuild --force to
-# reproduce the pre-fix artifacts exactly (_fit_content is a no-op at 1.0).
-CONTENT_MAX_W_FRAC = float(os.environ.get("MOM_SPRITE_MAX_W_FRAC", 0.80))
-CONTENT_MAX_H_FRAC = float(os.environ.get("MOM_SPRITE_MAX_H_FRAC", 0.97))
+# REVERTED TO 1.0 / 1.0 on 2026-07-25 -- the bound above was a CATEGORY ERROR,
+# confirmed in-game ("unit is still off center, too far lower left"). The 0.80 w
+# figure was derived from the CONTROL-PANEL PREVIEW viewport (~77x65), and was
+# then applied to the MAP sprite, which has no such box. Consequences, measured:
+#   * 50 of 62 sources are rescaled at 0.80 w / 0.97 h -- not the 21 the earlier
+#     note claimed. That count was width-only; the 0.97 h bound binds too.
+#   * Sources are ALREADY centred and floor-pinned in their 96x72 canvas
+#     (median dx -0.5 px from centre, median gap below content 2 px), so there
+#     was no placement defect in the art to begin with.
+#   * makespr encodes the FULL 96x72 canvas per frame (no bbox crop, no per-frame
+#     offset -- move_offsets is written as zeros), so canvas placement maps 1:1
+#     to the map. Shrinking content inside a fixed canvas therefore does not just
+#     make the unit smaller, it MOVES it away from the engine's draw anchor: the
+#     unit reads as sitting small and low-left in the tile diamond.
+# The preview-overflow defect is real but must be fixed on the PREVIEW side, not
+# by shrinking the shared source art the map also consumes. At 1.0/1.0
+# _fit_content is a no-op and every SPR is byte-identical to the pre-fix build.
+CONTENT_MAX_W_FRAC = float(os.environ.get("MOM_SPRITE_MAX_W_FRAC", 1.0))
+CONTENT_MAX_H_FRAC = float(os.environ.get("MOM_SPRITE_MAX_H_FRAC", 1.0))
 
 # SPRITE_ names whose extracted source art faces LEFT and must be flipped to face
 # right (else the unit appears to walk backwards when moving left/right — Kull #2b).
@@ -96,7 +110,27 @@ LEFT_FACING: set[str] = set()
 _FRPS_TAG  = 0x53505246
 _EMPTY_ROW = 0xFFFF
 
-# Minimal single-frame unit sprite script (move-only, 5 static facings)
+# Minimal single-frame unit sprite script (move-only, 5 static facings).
+#
+# {HOTPOINTS} is substituted per sprite by _build_spr(). It used to be five
+# hard-coded literals copied verbatim out of vanilla GU01.SPR:
+#     49 54 / 43 51 / 50 48 / 58 38 / 74 53
+# THAT WAS THE OFF-CENTRE BUG (root-caused 2026-07-25). The hot point is the
+# engine's draw anchor: the frame is blitted so that its hot-point pixel lands on
+# the tile's anchor, so a wrong hot point TRANSLATES the unit — it does not
+# resize it. Two things were wrong at once:
+#   1. Those five points differ per facing because vanilla GU01's five facings
+#      are five DIFFERENT drawings. MoM casts ONE still image across all five
+#      facings (_facing_images returns [img] * N_FACINGS), so identical art was
+#      being anchored at five different places — the unit visibly jumped as the
+#      facing changed.
+#   2. Even facing 0 was wrong. Measured across all 62 MoM sources, our keyed
+#      content sits at centre-x ~47, bottom-y ~69; vanilla's points average
+#      (55, 49). Facing 4 (74,53) put the unit 27 px LEFT and 16 px LOW of the
+#      tile anchor — exactly the reported "too far lower left".
+# Correct value: the content's own anchor — horizontal centre of the opaque
+# bounding box, and its bottom edge (where the unit's feet meet the ground) —
+# the same point for all five facings, since all five frames are the same image.
 _GU_SCRIPT = """\
 0
 
@@ -109,11 +143,7 @@ UNIT_SPRITE
         SPRITE_WIDTH         96
         SPRITE_HEIGHT        72
         SPRITE_HOT_POINTS
-            49 54
-            43 51
-            50 48
-            58 38
-            74 53
+{HOTPOINTS}
     }
 
     ANIM    1
@@ -222,7 +252,9 @@ def _fit_content(img: "Image.Image") -> "Image.Image":
 
     Require : `img` is RGBA and already keyed (background alpha==0), any size.
     Guarantee: returns a same-size RGBA image whose opaque bbox is <= the bound
-               in both axes, aspect preserved, bottom-centred on the canvas.
+               in both axes, aspect preserved, and scaled ABOUT ITS ORIGINAL
+               ANCHOR -- the content's centre-x and bottom edge are unchanged,
+               so authored placement on the canvas survives.
     Maintain : scale is clamped to <=1.0, so content is never blown UP -- an
                already-conforming sprite comes back byte-identical.
     Failure  : a fully transparent image (no bbox) is returned unchanged.
@@ -246,9 +278,17 @@ def _fit_content(img: "Image.Image") -> "Image.Image":
         (max(1, int(round(bw * scale))), max(1, int(round(bh * scale)))),
         Image.LANCZOS)
     out = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
-    out.paste(content,
-              ((cw - content.width) // 2, ch - content.height),   # bottom-centred
-              content)
+    # ANCHOR-PRESERVING, not canvas-centred (corrected 2026-07-25). An earlier
+    # version pasted bottom-CENTRED on the canvas, which silently RE-POSITIONED
+    # every sprite whose content was deliberately off-centre or not floor-pinned
+    # -- units rendered off-centre on the map. The frame's placement is authored;
+    # only its SIZE was the defect. So scale about the original bbox anchor:
+    # keep the content's centre-x and its bottom edge (the feet) where they were.
+    px_ = int(round((x0 + x1) / 2.0 - content.width / 2.0))
+    py_ = int(round(y1 - content.height))
+    px_ = max(0, min(cw - content.width, px_))
+    py_ = max(0, min(ch - content.height, py_))
+    out.paste(content, (px_, py_), content)
     # LANCZOS blends toward the transparent (0,0,0,0) surround, so a downscale can
     # manufacture opaque-but-pure-black edge pixels. makespr's chromakey test would
     # eat those, punching holes in the silhouette -- re-apply the DARK_FLOOR nudge.
@@ -270,12 +310,12 @@ def _facing_images(tga: Path, flip: bool) -> list["Image.Image"]:
     exists later, load each facing's own source here and return n distinct images
     (n:n) — nothing else in the pipeline needs to change.
 
-    Content extent is NORMALISED after keying (added 2026-07-25): the opaque
-    content is cropped to its bounding box, uniformly downscaled if it exceeds
-    CONTENT_MAX_*_FRAC of the canvas, and re-pasted bottom-centred. Bottom-anchored
-    because a unit stands on the ground -- centring vertically would float it.
-    Aspect ratio is preserved and the scale is never >1, so a source that already
-    fits is returned pixel-identical to the old bare-resize path.
+    Content extent normalisation (_fit_content) is INERT by default: both
+    CONTENT_MAX_*_FRAC are 1.0, so the image is returned pixel-identical to the
+    bare-resize path. It was briefly bound to 0.80/0.97 on 2026-07-25 and reverted
+    the same day -- shrinking the shared source art also moved the unit off the
+    map's draw anchor. Placement is governed by SPRITE_HOT_POINTS instead (see the
+    _GU_SCRIPT comment), which is the engine's actual anchor mechanism.
     """
     img = Image.open(str(tga)).convert("RGBA").resize((96, 72), Image.LANCZOS)
     if flip:
@@ -285,12 +325,35 @@ def _facing_images(tga: Path, flip: bool) -> list["Image.Image"]:
     return [img] * N_FACINGS   # 1:n cast; replace with n distinct images for true facings
 
 
+def _content_anchor(img: "Image.Image") -> tuple[int, int]:
+    """
+    Return the (x, y) draw anchor of a keyed facing image: the horizontal centre
+    of its opaque bounding box, and the box's bottom row (the unit's feet).
+
+    Require:   img is RGBA, already background-keyed (transparent surround).
+    Guarantee: the returned point lies inside the image bounds.
+    Failure:   a fully transparent image has no content, so it falls back to the
+               canvas floor-centre — a blank frame draws nothing either way, and
+               _spr_move_nonempty_rows already hard-fails that case downstream.
+    """
+    box = img.getbbox()
+    if box is None:
+        return (img.width // 2, img.height - 1)
+    x0, y0, x1, y1 = box                      # getbbox is right/bottom-EXCLUSIVE
+    return (int(round((x0 + x1 - 1) / 2.0)), y1 - 1)
+
+
 def _convert_tga_to_tifs(tga: Path, num: int, work_dir: Path, flip: bool = False) -> int:
     """
     Write N_FACINGS facing TIF files into work_dir/{num}/ using Pillow.
     Naming: GU{num:02d}MA{f}.0.TIF  — matches makespr.py's unit_image_path().
     Background is keyed to alpha=0 via border flood-fill; interior art is preserved.
-    Returns the surviving opaque-pixel count of the source (for H1 near-blank warning).
+
+    Returns (opaque_pixel_count, anchor):
+      * opaque_pixel_count — surviving opaque pixels (H1 near-blank warning).
+      * anchor — the (x, y) draw anchor measured from the keyed art, to be written
+        as all five SPRITE_HOT_POINTS. Measured here rather than assumed, because
+        this is the only place the final keyed image exists.
     """
     facing_dir = work_dir / str(num)
     facing_dir.mkdir(exist_ok=True)
@@ -302,7 +365,7 @@ def _convert_tga_to_tifs(tga: Path, num: int, work_dir: Path, flip: bool = False
     for f, img in enumerate(images, start=1):
         out = facing_dir / f"GU{nn}MA{f}.0.TIF"
         img.save(str(out), format="TIFF")
-    return opaque
+    return opaque, _content_anchor(images[0])
 
 
 def _spr_move_nonempty_rows(spr: Path) -> "int | None":
@@ -343,11 +406,19 @@ def _spr_move_nonempty_rows(spr: Path) -> "int | None":
     return nonempty
 
 
-def _build_spr(num: int, work_dir: Path) -> Path:
-    """Write GU###.TXT and invoke makespr.py -u {num} in work_dir."""
+def _build_spr(num: int, work_dir: Path, anchor: tuple[int, int]) -> Path:
+    """
+    Write GU###.TXT and invoke makespr.py -u {num} in work_dir.
+
+    Require: anchor is the measured content draw anchor from _content_anchor();
+             it is written as all five SPRITE_HOT_POINTS because all five facings
+             share one image. See the _GU_SCRIPT comment for why the old vanilla
+             GU01 literals put units low and to the left.
+    """
     nn = f"{num:02d}"
     txt = work_dir / f"GU{nn}.TXT"
-    txt.write_text(_GU_SCRIPT, encoding="latin-1")
+    hot = "\n".join(f"            {anchor[0]} {anchor[1]}" for _ in range(N_FACINGS))
+    txt.write_text(_GU_SCRIPT.replace("{HOTPOINTS}", hot), encoding="latin-1")
 
     subprocess.run(
         [sys.executable, str(MAKESPR_PY), "-u", str(num)],
@@ -464,11 +535,13 @@ def main() -> int:
             nn = f"{num:02d}"
             print(f"\n  [{name}] GU{nn}.SPR ...")
             try:
-                opaque = _convert_tga_to_tifs(tga, num, work, flip=(name in LEFT_FACING))
+                opaque, anchor = _convert_tga_to_tifs(tga, num, work,
+                                                      flip=(name in LEFT_FACING))
+                print(f"    hot point (all {N_FACINGS} facings): {anchor[0]},{anchor[1]}")
                 if opaque < MIN_OPAQUE_WARN:
                     print(f"    WARNING: only {opaque} opaque pixels after keying — source "
                           f"art may be near-blank/dark (H1). See tools/diagnose_spr.py.")
-                spr = _build_spr(num, work)
+                spr = _build_spr(num, work, anchor)
                 rows = _spr_move_nonempty_rows(spr)
                 if rows == 0:
                     raise ValueError(

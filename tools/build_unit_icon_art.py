@@ -46,6 +46,13 @@ from PIL import Image
 
 ICON_W, ICON_H = 160, 120
 
+# Largest fraction of the 160x120 icon frame a unit's content may occupy. The
+# bottom-UI preview draws this icon into a 96x72 box (controlpanel.ldl), so an
+# icon whose content runs to the frame edge has no margin left and reads as
+# oversized -- and anything protruding past the edge is simply cut off. 0.80
+# matches the framing the SPRITE art already uses on the map. See fit_pad().
+ICON_CONTENT_MAX_FRAC = 0.80
+
 # Unit name (normalized) -> archive art key (normalized dir or pedia base name).
 # Judgment calls mapping merged-mod creatures onto the HoMM3/CoMM3 roster;
 # reviewable/overridable per row in unit_art_map.csv once generated.
@@ -279,9 +286,32 @@ def cover_crop(im: Image.Image) -> Image.Image:
     return im.crop((left, top, left + ICON_W, top + ICON_H))
 
 
-def fit_pad(im: Image.Image) -> Image.Image:
-    """Scale to fit inside 160x120, pad black (sprite-frame sources)."""
-    scale = min(ICON_W / im.width, ICON_H / im.height)
+def fit_pad(im: Image.Image, max_frac: float = 1.0) -> Image.Image:
+    """
+    Scale to fit inside 160x120, pad black (sprite-frame sources).
+
+    Require:   max_frac in (0, 1] -- the largest fraction of the icon frame the
+               image is allowed to occupy on either axis.
+    Guarantee: returns a 160x120 RGB canvas with the image centred on it.
+    Failure:   none; a max_frac of 1.0 reproduces the original fill-the-frame
+               behaviour exactly.
+
+    max_frac exists because of the OVER-ZOOM BUG (root-caused 2026-07-25). This
+    was called as fit_pad(crop_to_content(im)): crop tight to the content, then
+    scale that crop up until it fills 160x120. Every unit therefore rendered at
+    the same 0.95 content extent regardless of its natural proportion -- measured
+    across all 55 MoM icons, the height extent was EXACTLY 0.95 for every single
+    one, while the same units' SPRITE art sat at a median 0.66. Two visible
+    symptoms, one cause:
+      * broad figures (GUARDIAN_SPIRIT) overran the bottom-UI preview box and
+        clipped at the frame edge -- "too big for the unit preview ui";
+      * thin figures with a protruding weapon (SPEARMEN) had the tip severed by
+        the frame, leaving a floating sliver -- the icon no longer matched the
+        map sprite, "the carpet doesn't match the drapes".
+    ICON_CONTENT_MAX_FRAC leaves the frame margin the preview box needs, and
+    keeps relative unit sizing intact instead of normalising it away.
+    """
+    scale = min(ICON_W * max_frac / im.width, ICON_H * max_frac / im.height)
     im = im.resize((max(1, round(im.width * scale)),
                     max(1, round(im.height * scale))), Image.LANCZOS)
     canvas = Image.new("RGB", (ICON_W, ICON_H), (0, 0, 0))
@@ -340,7 +370,7 @@ def convert(kind: str, src: Path) -> Image.Image:
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(src),
                     "-frames:v", "1", str(png)], check=True)
     im = scrub_chroma(Image.open(png).convert("RGB"))
-    return fit_pad(crop_to_content(im))
+    return fit_pad(crop_to_content(im), ICON_CONTENT_MAX_FRAC)
 
 
 def main() -> int:

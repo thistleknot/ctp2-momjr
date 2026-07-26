@@ -5,3 +5,7 @@ tools/uiwalk/runs/
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# Pre-reframe ICON_UNIT originals saved by tools/reframe_unit_icons.py.
+# Redundant with git history (the icons themselves are tracked); local safety net only.
+scen0000/default/graphics/pictures/_icon_backup/
