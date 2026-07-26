@@ -83,7 +83,10 @@ def strip_markup(text: str) -> str:
     """Reduce a GL section to the prose a player would actually read."""
     if text is None:
         return ""
-    return re.sub(r"<e>", "", re.sub(r"<L:[^>]*>", "", text)).strip()
+    # Every hypertext control tag: <L:db,ident> links, <e> end, and the single
+    # letter formatting tags <c:r,g,b> <h:r,g,b> <t:font> <p:n> <b:n> <i:n>
+    # <s:n> <u:n> that ctp2_HyperTextBox::ParseText consumes without drawing.
+    return re.sub(r"<e>", "", re.sub(r"<[A-Za-z]:[^>]*>", "", text)).strip()
 
 
 # The exact stub an earlier pass writes when it believes an element has no
@@ -581,6 +584,33 @@ def _build_context(live: dict, strings) -> dict:
     }
 
 
+# Body text colour for every Great Library section.
+#
+# ctp2_HyperTextBox::InitCommon hardcodes m_hyperColor = RGB(50,50,50) and
+# never reads the LDL fontcolor* attributes, so the dark grey CANNOT be changed
+# from ctp_template.ldl or greatlibrary.ldl -- measured: a widthpix marker in
+# the same template applied while the colour did not. The one supported
+# override is the in-text <c:r,g,b> tag the parser handles. MoM's article pane
+# is a dark brown pattern, so grey-on-brown is nearly unreadable; near-white
+# with a black shadow reads cleanly.
+_TEXT_COLOR = "<c:245,240,225><h:0,0,0>"
+
+
+def apply_text_color(gl_library, tag: str = _TEXT_COLOR) -> int:
+    """Prefix every section with the body-colour tag. Idempotent."""
+    changed = 0
+    for key, text in list((getattr(gl_library, "sections", None) or {}).items()):
+        text = text or ""
+        if text.startswith(tag) or not text.strip():
+            continue
+        # Drop any colour tag a previous run wrote before re-stamping, so the
+        # output stays byte-stable when the constant changes.
+        text = re.sub(r"^(?:<[ch]:\d+,\d+,\d+>)+", "", text)
+        gl_library.sections[key] = tag + text
+        changed += 1
+    return changed
+
+
 def apply_descriptions(load_text, gl_library, gl_strings, csv_dir, verbose=True) -> dict:
     """Write GAMEPLAY and HISTORICAL for every live element. Overwrites filler.
 
@@ -645,7 +675,9 @@ def apply_descriptions(load_text, gl_library, gl_strings, csv_dir, verbose=True)
                     f"Requires:\n<L:DATABASE_ADVANCES,{enabler}>{label}<e>")
                 written += 1
 
+    recolored = apply_text_color(gl_library)
     if verbose:
+        print(f"GL descriptions: {recolored} sections recoloured")
         print(f"GL descriptions: {written} sections written "
               f"({derived} derived, {auth} authored), {len(missing)} still missing")
     return {"written": written, "derived": derived, "authored": auth, "missing": sorted(missing)}
