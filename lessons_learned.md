@@ -1,3 +1,38 @@
+## 2026-07-26 — Two repos: ctp2-modding is the HARNESS, ctp2-momjr is the MOD
+
+I merged the game tree into `ctp2-modding`'s `main` and destroyed the toolkit
+repo: no README, no `wiki/`, no `memory-bank/`, no control-plane scripts. The
+mistake was treating one checkout as one project. It is two.
+
+- **`ctp2-modding`** holds the *code*: `tools/` (pipeline + `tools/uiwalk/`),
+  `docs/`, `wiki/lessons_learned.md`, `memory-bank/`, and
+  `examples/<mod>/control-plane/` with a README **pointing at** the mod's repo.
+  Scenario data never lands here; `.gitignore` blocks `Scenarios/` and
+  `scen0000/`.
+- **`ctp2-momjr`** *is* `Scenarios\mom` — the scenario, the workbook, `mom.zip`.
+  There is no separate `Scenarios/momjr` folder.
+
+Recovery only worked because `archive/toolkit-main` (`123db97`) still held the
+original layout. It was restored as `92d3e1d` **on top of** the bad merge, so
+history is intact and only the tree changed: 267 files.
+
+What made it recoverable, and what would have made it avoidable:
+
+- Archive a branch before doing anything structural to it. That one branch was
+  the difference between a bad afternoon and losing the harness.
+- `git remote -v` in **both** repos before any push. The parent checkout had
+  picked up a `momjr` remote and had been pushing the entire game install into
+  the scenario repo.
+- **Never `git checkout` a small branch in the parent** — its working tree *is*
+  the game install, so checkout would delete it. `git commit-tree` builds a
+  commit from a chosen tree with chosen parents and touches zero working files.
+  That is the tool for merging across trees you cannot afford to materialise.
+- Harness-vs-live file comparisons are mostly CRLF noise. `diff
+  --strip-trailing-cr` cut 40-odd "changed" tools down to the 8 that really
+  were.
+- Curate, never bulk-copy. `tools/uiwalk/runs/` alone is 1.8 GB of captures and
+  logs. Scripts, step JSON and goldens are tracked; run output is ignored.
+
 ## 2026-07-26 — SLIC is a control-plane dimension, and it flows BACKWARD
 
 The control plane is `mom_dimension_inventory.xlsx`: one tab per dimension, and
