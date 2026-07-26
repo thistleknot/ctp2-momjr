@@ -31,10 +31,26 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
             if (HasGood(cloc) >= 0) {
                 nodes = nodes + 1;
             }
+            // GetNeighbor's return value MUST gate the read of its out-arg.
+            // At a map edge it returns 0 and does NOT write nloc, so the
+            // ungated form below fed HasGood() an uninitialised location_t --
+            // a hard 0xC0000005, no SLIC error dialog, because it is a bad
+            // pointer inside a builtin rather than a SLIC diagnostic. It is the
+            // same defect already fixed in MomSpawnSphereUnit (mom_func.slc) on
+            // 2026-07-25 -- that fix was applied at one call site and missed
+            // this one.
+            //
+            // CORRECTION 2026-07-26: an earlier version of this comment claimed
+            // this gate explained the found-a-city end-turn 0xC0000005. That is
+            // FALSIFIED -- the crash survived this fix, survived neutering all
+            // four MoM BeginTurn handlers, and survived disabling every scenario
+            // SLIC include. This is a real latent defect on the map edge, and
+            // nothing more. Do not re-attribute the end-turn crash to it.
             for (j = 0; j < 8; j = j + 1) {
-                GetNeighbor(cloc, j, nloc);
-                if (HasGood(nloc) >= 0) {
-                    nodes = nodes + 1;
+                if (GetNeighbor(cloc, j, nloc)) {
+                    if (HasGood(nloc) >= 0) {
+                        nodes = nodes + 1;
+                    }
                 }
             }
         }
@@ -48,40 +64,14 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
     return gen;
 }
 
-// M3: the creature a player's sphere summons on pool overflow (reuses the blessing units).
-int_f MomSphereSummonUnit(int_t mp_2)
-{
-    // FLATTENED 2026-07-25. This is called FROM the MomMagicPoolTick handler
-    // body, so calling MomPlayerIsLife() here made a 2-level user-function
-    // chain -- the documented 0xC0000005 class. MEASURED: gating the caller
-    // (the pool-overflow block) took the run from 7/25 to 14/25, and this is
-    // the only 2-level chain in that handler (MomRecalcMagicPerTurn calls
-    // builtins only), and it fires exactly when the pool first caps -- which
-    // is why the crash tracked the cap turn and moved when unrelated code
-    // changed the accrual. MomPlayerIsX(p) is literally p == N, so comparing
-    // numerically is semantically identical at zero call depth.
-    if (mp_2 == 1) {
-        return UnitDB(UNIT_GUARDIAN_SPIRIT);
-    }
-    if (mp_2 == 2) {
-        return UnitDB(UNIT_WARBEARS);
-    }
-    if (mp_2 == 3) {
-        return UnitDB(UNIT_MAGE);
-    }
-    if (mp_2 == 4) {
-        return UnitDB(UNIT_ZOMBIES);
-    }
-    if (mp_2 == 5) {
-        return UnitDB(UNIT_HELL_HOUNDS);
-    }
-    return 0;
-}
+// MomSphereSummonUnit() was REMOVED 2026-07-26 along with its only caller, the
+// pool-overflow auto-summon below. The sphere -> creature mapping now lives
+// inlined at each spend site (mom_msg.slc MomSummonOrderTick, mom_spells.slc
+// MomCastFlameStrike), which is where the Class-1 nested-call budget requires
+// it anyway -- so nothing was lost but a level of indirection.
 
 HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
     int_t p;
-    int_t r;
-    int_t summon;
 
     p = player[0];
 
@@ -99,14 +89,14 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
             MomMagicCur[p] = MomMagicMax[p];
         }
 
-        // M3 pool-overflow auto-summon: when the pool caps, discharge into the sphere creature.
-        if (MomMagicMax[p] > 0 && MomMagicCur[p] >= MomMagicMax[p]) {
-            summon = MomSphereSummonUnit(p);
-            if (summon != 0 && player[0].cities > 0) {
-                MomMagicCur[p] = 0;
-                MomSpawnSphereUnit(p, summon);
-            }
-        }
+        // M3 pool-overflow auto-summon: REMOVED 2026-07-26. It zeroed the pool the
+        // moment it capped, so mana could never sit at the cap and the 50/100-cost
+        // workings in mom_spells.slc were unreachable by construction -- the pool
+        // was a sawtooth, not a resource. The pool now simply clamps at max and the
+        // player spends it deliberately (Summon 75, Flame Strike 50, Demon 100).
+        // MomSphereSummonUnit() existed only to serve this block and is gone too;
+        // the same mapping is inlined at each spend site for the Class-1 nested-call
+        // budget (see mom_spells.slc:41).
 
         // Refresh the display scalars EVERY turn so the 'j' magic menu
         // (alertbox 'MagicMenu') always shows current values, not just on
@@ -117,19 +107,17 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
             MomMagicGenDisp = MomMagicPerTurn[p];
         }
 
-        // Periodic popup every 10 rounds (0,10,20,...). Latch prevents same-round re-fire flood.
-        if (IsHumanPlayer(p)) {
-            r = GetCurrentRound();
-            if (r - (r / 10) * 10 == 0) {
-                if (MomMagicShownTurn[p] != r + 1) {
-                    MomMagicShownTurn[p] = r + 1;
-                    MomMagicCurDisp = MomMagicCur[p];
-                    MomMagicMaxDisp = MomMagicMax[p];
-                    MomMagicGenDisp = MomMagicPerTurn[p];
-                    Message(g.player, 'MomMagicPower');
-                }
-            }
-        }
+        // Periodic popup every 10 rounds: REMOVED 2026-07-25, redundant and harmful.
+        //
+        // Redundant: the display scalars are refreshed EVERY turn just above, so
+        // the 'j' MagicMenu alertbox already reports current values on demand.
+        // Harmful: a Message window is an aui surface and aui polls GetCursorPos,
+        // so a posted click can never close one -- it stayed pinned over the
+        // top-left of the map from round 0 onward, and each dismissal attempt fell
+        // through onto the map and scrolled the view. Status belongs on the
+        // alertbox, which both a human and the harness can actually dismiss.
+        // MomMagicShownTurn[] is left declared -- it is the re-entry latch idiom
+        // and a school popup may want it again.
     }
 }
 

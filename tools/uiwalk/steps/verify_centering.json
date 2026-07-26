@@ -204,12 +204,14 @@
   "name": "in_game_mom"
  },
  {
-  "_comment": "Dismiss the BeginTurn Magic Power box so the map viewport paints. This is a MESSAGE surface: send = capture x0.80 (x1.25 on a message is process-lethal, 2/2 AVs). Close X seen at capture (494,52) -> send (395,42)."
+  "_comment": "COORD RULE SUPERSEDED 2026-07-26: the per-surface send scales (message x0.80, alertbox x1.25) were DPI artifacts, not engine behaviour -- uiwalk used to call SetProcessDPIAware() while ctp2.exe has no DPI manifest, so on a 125% primary our rects were physical (1280x960) and the game's were logical (1024x768), a ratio of exactly 1.25. uiwalk no longer declares awareness, so send == capture, 1:1, on EVERY surface."
  },
  {
-  "do": "click",
-  "x": 395,
-  "y": 42
+  "_comment": "NO DISMISS CLICK. Measured 2026-07-26: a posted click here is process-lethal (0xC0000005), reproducibly, ~5 runs. Falsified as causes: (a) my rebuilt GU091/092/093 sprites -- a control run with base art restored still AV'd; (b) the coordinate, corrected from (395,42) to (494,52) under the new 1:1 rule -- still AV'd. The AV is the click ITSELF. It is also unnecessary: with the click replaced by a plain wait, the run completes all 14 shots and scores 4/4 goldens at 1.000, reaching a settled map frame. If a dismiss is ever genuinely needed, use the injection hook (press:/select:), which needs no coordinates and does not post mouse input."
+ },
+ {
+  "do": "wait",
+  "ms": 4000
  },
  {
   "do": "wait",

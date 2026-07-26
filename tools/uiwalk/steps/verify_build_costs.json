@@ -1,0 +1,57 @@
+[
+ {"_comment": "PURPOSE: OBSERVE the user's actual symptom -- 'why are all my buildings 1 turn' -- on the Build Manager surface itself. The cost-ordering fix was previously reported CLOSED on menu goldens + validator gates, neither of which can see a turn count. Menu-walk prefix is verify_centering.json verbatim (4/4 at 1.000). Run with --save none."},
+
+ {"do": "wait", "ms": 6000},
+ {"do": "key", "keys": "esc"},
+ {"do": "wait", "ms": 3000},
+ {"do": "key", "keys": "esc"},
+ {"do": "wait_stable", "ms": 30000},
+ {"do": "shot", "name": "main_menu"},
+
+ {"do": "press", "path": "InitPlayWindow.NewGameButton"},
+ {"do": "wait", "ms": 4000},
+ {"do": "wait_stable", "ms": 20000},
+
+ {"do": "press", "path": "SPNewGameWindow.ScenarioButton"},
+ {"do": "wait", "ms": 4000},
+ {"do": "wait_stable", "ms": 20000},
+
+ {"do": "select", "path": "ScenarioWindow.AvailableListBox", "index": 3},
+ {"do": "wait", "ms": 2000},
+ {"do": "press", "path": "ScenarioWindow.LoadButton"},
+ {"do": "wait", "ms": 3000},
+ {"do": "wait_stable", "ms": 20000},
+
+ {"do": "select", "path": "ScenarioWindow.AvailableListBox", "index": 0},
+ {"do": "wait", "ms": 1500},
+ {"do": "press", "path": "ScenarioWindow.LoadButton"},
+ {"do": "wait", "ms": 3000},
+ {"do": "wait_stable", "ms": 20000},
+
+ {"do": "press", "path": "SPNewGameWindow.StartButton"},
+ {"do": "wait", "ms": 15000},
+ {"do": "wait_stable", "ms": 90000},
+ {"do": "shot", "name": "in_game_mom"},
+
+ {"_comment": "NO posted click anywhere in this file: a posted in-game click is process-lethal (0xC0000005, ~5 runs). Injection only."},
+ {"do": "wait", "ms": 4000},
+ {"do": "wait_stable", "ms": 15000},
+
+ {"_comment": "Found a city with the starting peasant. MoM has no settler unit; peasants found cities. MEASURED 2026-07-26: founding opens the Build Manager (BuildEditorWindow) automatically, on the Units tab."},
+ {"do": "key", "keys": "b"},
+ {"do": "wait_stable", "ms": 15000},
+ {"do": "shot", "name": "city_founded_units_tab"},
+
+ {"_comment": "Switch to Buildings. Tab checkboxes live under the ItemsBox group, not directly on the window: BuildEditorWindow.ItemsBox.BuildingsButton. The list's 'Time' column (str_ldl_Time, switch1) is the number the user photographed."},
+ {"do": "press", "path": "BuildEditorWindow.ItemsBox.BuildingsButton"},
+ {"do": "wait_stable", "ms": 8000},
+ {"do": "shot", "name": "build_manager_buildings"},
+
+ {"do": "wait", "ms": 2000},
+ {"do": "shot", "name": "build_manager_buildings_settled"},
+
+ {"_comment": "Wonders too -- their retune was never broken, so this is the control arm: if wonder turn counts look sane and buildings do not, the fix did not land."},
+ {"do": "press", "path": "BuildEditorWindow.ItemsBox.WondersButton"},
+ {"do": "wait_stable", "ms": 8000},
+ {"do": "shot", "name": "build_manager_wonders"}
+]

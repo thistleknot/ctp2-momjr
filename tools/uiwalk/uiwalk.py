@@ -161,8 +161,36 @@ def _child_env():
     return env
 
 
-def preflight_display(want=(1024, 768)):
+def profile_screen_res(default=(1024, 768)):
+    """The ScreenResWidth/Height the engine will actually ASK for.
+
+    MEASURED 2026-07-26: the preflight used to hardcode (1024, 768), which asks
+    the wrong question. The engine's gate is "is the PROFILE's mode legal on the
+    primary display", not "is 1024x768 legal" -- so a profile edited to a mode
+    that IS legal on a portrait primary (e.g. 1024x1280) was still reported as
+    an abort. Read the value the engine reads."""
+    prof = EXE_DIR / "userprofile.txt"
+    w = h = None
+    try:
+        for line in prof.read_text(errors="ignore").splitlines():
+            k, _, v = line.partition("=")
+            k = k.strip()
+            if k == "ScreenResWidth":
+                w = int(v.strip())
+            elif k == "ScreenResHeight":
+                h = int(v.strip())
+    except Exception:
+        return default
+    if w and h:
+        return (w, h)
+    return default
+
+
+def preflight_display(want=None):
     """ABORT when the PRIMARY display cannot supply `want`.
+
+    `want` defaults to whatever userprofile.txt asks for -- see
+    profile_screen_res(). Passing an explicit tuple is for tests only.
 
     This is a GATE, not decoration. The condition it detects is NOT what makes
     captures black (see _child_env) -- but it IS what makes coordinate clicks
@@ -193,6 +221,9 @@ def preflight_display(want=(1024, 768)):
     which is fatal -- hence the abort.
     """
     import ctypes.wintypes
+
+    if want is None:
+        want = profile_screen_res()
 
     class DEVMODE(ctypes.Structure):
         _fields_ = [("dmDeviceName", ctypes.c_wchar * 32),
@@ -281,13 +312,13 @@ def preflight_display(want=(1024, 768)):
         f"  CTP2 enumerates legal modes from display 0 only (display.cpp\n"
         f"  display_EnumerateDisplayModes), so userprofile ScreenResWidth/Height\n"
         f"  is honoured only if it names a mode of THAT display. The window will\n"
-        f"  be some other legal size, and the engine LETTERBOXES its fixed UI inside\n"
-        f"  it at a per-surface offset (measured: menus +2,+264; in-game alertbox\n"
-        f"  +2,+8). Goldens authored at 1024x768 still match at 1.000 because\n"
-        f"  match_template searches with padding -- an assert asks 'is this UI\n"
-        f"  present', not 'is it at this exact pixel'. CLICK coords are NOT padded,\n"
-        f"  so coordinate clicks are the thing this window size actually breaks.\n"
-        f"  Captures are still READABLE (software renderer) -- not a blocker."
+        f"  be some other legal size, and the engine REFLOWS its in-game UI to the\n"
+        f"  client (it does NOT letterbox a fixed surface), so every constant and\n"
+        f"  every height-fraction aim point authored at 1024x768 is wrong.\n"
+        f"  Goldens still match at 1.000 because match_template searches with\n"
+        f"  padding -- an assert asks 'is this UI present', not 'is it at this\n"
+        f"  exact pixel'. Captures are READABLE (software renderer).\n"
+        f"  Captures are fine; POINTING is what breaks."
     )
     # RE-UPGRADED TO AN ABORT 2026-07-25, on a causal chain that is now measured
     # rather than assumed. The 2026-07-24 downgrade was correct about what it
@@ -295,18 +326,32 @@ def preflight_display(want=(1024, 768)):
     # radius: three runs on a PORTRAIT primary (\\.\DISPLAY4 1080x1920, where
     # 1024x768 is illegal) all died 0xC0000005 at turns_reached=0 on the FIRST
     # coordinate click, while a sprite-rebuild bisect at identical artifacts
-    # crashed too -- falsifying the only competing hypothesis. Letterboxing
-    # moves every fraction-derived aim point, the click lands off-target, and
-    # the process AVs. Goldens still PASS (padded search), so a run in this
-    # state looks healthy right up until it dies: it is not a valid observation
-    # of anything. Fixing it means changing the USER's desktop (primary-display
-    # assignment or rotation), which is theirs to do -- so abort and say so.
+    # crashed too -- falsifying the only competing hypothesis.
+    #
+    # CORRECTED TWICE. First correction (right): nothing LETTERBOXES -- the
+    # engine reflows its in-game UI to the client size -- so aim points authored
+    # at 1024x768 are wrong here because the widgets genuinely moved.
+    # Second correction (2026-07-26, replacing a wrong one): the claim that "a
+    # posted mouse BUTTON is process-lethal at this client on ANY pixel" is
+    # FALSIFIED. All three 0xC0000005 deaths behind it were sends produced by
+    # turnloop's calibration battery at x0.80 -- i.e. MISSES -- before that
+    # battery tried the identity factor first. With identity-first ordering, a
+    # click on a frame-measured arm centre lands cleanly (runs/20260725-232412:
+    # Summon arm pressed, arm body ran, 6/6 turns, 0 SLIC errors).
+    #
+    # So the ABORT stands, for the ORIGINAL reason only: authored aim points are
+    # off at a reflowed client, and a miss on this surface is what kills. Aim
+    # that is DERIVED from the live frame is safe; aim that is PINNED is not.
+    # Goldens still PASS (padded search), so a run in this state looks healthy
+    # right up until it dies. Fixing it means changing the USER's desktop
+    # (primary-display assignment or rotation), which is theirs to do.
     if os.environ.get("UIWALK_ALLOW_ILLEGAL_RES") == "1":
         print("[preflight] UIWALK_ALLOW_ILLEGAL_RES=1 -- continuing anyway "
               "(coordinate clicks are expected to miss).")
         return
     raise SystemExit(
-        f"[preflight] ABORT: coordinate clicks cannot be aimed at this geometry.\n"
+        f"[preflight] ABORT: this geometry is not a valid test surface (the UI\n"
+        f"  reflows, so every PINNED aim point is off, and a miss AVs here).\n"
         f"  Make a display with a legal {want[0]}x{want[1]} mode PRIMARY (or rotate\n"
         f"  {primary} back to landscape), then re-run. Set\n"
         f"  UIWALK_ALLOW_ILLEGAL_RES=1 to proceed anyway for capture-only work."
@@ -316,8 +361,35 @@ LAUNCH_TIMEOUT_S = 90
 GOLDENS = TOOL_DIR / "goldens"
 RUNS = TOOL_DIR / "runs"
 
+def _stash_position() -> tuple[int, int]:
+    """Top-left corner to park the game window at: just past the RIGHT edge of
+    the whole virtual desktop, vertically aligned with its top.
+
+    NOT (-32000, -32000).  That pair is Windows' *minimized* sentinel, and a
+    window parked there can be treated as minimized.  Note the honest history:
+    this was first written up as the cause of a run whose 14 shots were all
+    BYTE-IDENTICAL on the startup "Loading..." frame -- that attribution was
+    FALSIFIED (re-running from this position froze identically).  The actual
+    cause was a modal 'Load save game Error' dialog (class #32770) blocking the
+    engine ~2s after launch, raised because --save defaults to the nonexistent
+    save "uiwalk_start"; see Game.launch().  Found by enumerating the process's
+    top-level windows, not by reasoning about coordinates.
+
+    The position is kept anyway on its own merits, not on that false story:
+    just past the virtual right edge is equally invisible to the user (no
+    monitor covers it) but is an ordinary coordinate, so it carries no
+    minimized semantics at all.
+
+    Guarantee: returned x is >= the right edge of every monitor.
+    """
+    x = (win32api.GetSystemMetrics(win32con.SM_XVIRTUALSCREEN)
+         + win32api.GetSystemMetrics(win32con.SM_CXVIRTUALSCREEN))
+    y = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN)
+    return x + 8, y
+
+
 def _stash_offscreen(hwnd):
-    """Move the game window far off-screen so runs are invisible to the user.
+    """Move the game window off every monitor so runs are invisible to the user.
     Safe: input is PostMessage with CLIENT-relative coords and capture is
     PrintWindow, so neither depends on the window being on-screen or focused.
     Set UIWALK_VISIBLE=1 to keep it on-screen for debugging."""
@@ -325,7 +397,8 @@ def _stash_offscreen(hwnd):
     if os.environ.get("UIWALK_VISIBLE") == "1":
         return
     try:
-        win32gui.SetWindowPos(hwnd, 0, -32000, -32000, 0, 0,
+        x, y = _stash_position()
+        win32gui.SetWindowPos(hwnd, 0, x, y, 0, 0,
                               win32con.SWP_NOSIZE | win32con.SWP_NOZORDER
                               | win32con.SWP_NOACTIVATE)
     except Exception:
@@ -460,6 +533,12 @@ VK = {
     "tab": win32con.VK_TAB, "space": win32con.VK_SPACE, "ctrl": win32con.VK_CONTROL,
     "shift": win32con.VK_SHIFT, "alt": win32con.VK_MENU,
     "apostrophe": 0xDE, "tilde": 0xC0, "minus": 0xBD, "equals": 0xBB,
+    # Arrow keys scroll the map view. Added 2026-07-26: the in-game viewport only
+    # paints damaged regions, so a freshly loaded map is BLACK under intact chrome
+    # until something forces a redraw -- scrolling is the cheapest trigger, and
+    # without these a map frame cannot be captured at all.
+    "left": win32con.VK_LEFT, "right": win32con.VK_RIGHT,
+    "up": win32con.VK_UP, "down": win32con.VK_DOWN,
     **{c: ord(c.upper()) for c in "abcdefghijklmnopqrstuvwxyz0123456789"},
 }
 
@@ -729,10 +808,56 @@ class Game:
             time.sleep(1.0)
         raise TimeoutError(f"'{WINDOW_TITLE}' window not found within {LAUNCH_TIMEOUT_S}s")
 
+    def _assert_no_blocking_modal(self):
+        """Fail loudly if the engine has raised a native Win32 modal dialog.
+
+        A modal dialog blocks the engine's message pump, so it stops presenting
+        frames and PrintWindow returns the LAST PAINTED bitmap forever.  The
+        symptom is byte-identical captures across an entire run -- which reads
+        as "the game hung" or "our capture is stale" and sends you hunting in
+        the wrong layer.  Measured 2026-07-26: 14/14 identical shots, all on the
+        startup "Loading..." frame, caused by a 'Load save game Error' (#32770)
+        raised ~3s after launch because --save defaulted to a save the engine
+        could not load.  Nothing about the game or the capture path was wrong.
+
+        Checked on EVERY handle access rather than once at launch, because a
+        modal can appear at any point (a load error, an assert box).  Our stash
+        watchdog also parks the dialog off-screen, so it is invisible to a human
+        watching the run -- this check is the only thing that can see it.
+
+        Require: self.proc is the game process.
+        Guarantee: returns None, or raises RuntimeError naming the dialog.
+        """
+        if self.proc is None:
+            return
+        found = []
+
+        def cb(hwnd, _):
+            try:
+                if win32gui.GetClassName(hwnd) != "#32770":
+                    return
+                _, pid = win32process.GetWindowThreadProcessId(hwnd)
+                if pid == self.proc.pid:
+                    found.append(win32gui.GetWindowText(hwnd))
+            except Exception:
+                pass
+        try:
+            win32gui.EnumWindows(cb, None)
+        except Exception:
+            return
+        if found:
+            raise RuntimeError(
+                f"game is blocked on a native modal dialog: {found!r}. "
+                "The engine's message pump is stopped, so every capture from "
+                "here on would be a byte-identical stale frame. Common cause: "
+                "--save names a save the engine cannot load (it defaults to "
+                "'uiwalk_start'); pass --save none for a menu-entry walk.")
+
     def get_hwnd(self):
         """Return a live window handle; the engine destroys and recreates its
         window between the loading phase and the main game — re-find by title
         whenever the cached handle dies."""
+        self._assert_no_blocking_modal()
         if self.hwnd and win32gui.IsWindow(self.hwnd):
             # HEADLESS INVARIANT: re-assert on EVERY access, not just discovery.
             # The engine repositions its window on-screen during scenario load
@@ -1011,7 +1136,14 @@ def main():
     if not args.skip_display_check and not args.attach:
         preflight_display()
 
-    ctypes.windll.user32.SetProcessDPIAware()
+    # Deliberately NOT SetProcessDPIAware().  ctp2.exe has no DPI manifest, so
+    # on a scaled primary (125% here) Windows virtualizes it.  If WE are aware
+    # and the game is not, GetClientRect hands back PHYSICAL pixels (1280x960
+    # for a 1024x768 client) and PrintWindow reads across the virtualization
+    # boundary -- measured 2026-07-26 as 12 BYTE-IDENTICAL frames in one run
+    # (all still on the startup "Loading..." dialog while the game had walked
+    # to the map).  Staying unaware puts us in the same coordinate space as the
+    # game, so rects are logical and the captured bitmap is the live one.
     game = Game()
     if args.attach or args.record:
         wins = [w for w in pygetwindow.getWindowsWithTitle(WINDOW_TITLE) if w.title == WINDOW_TITLE]

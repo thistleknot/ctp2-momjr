@@ -1,0 +1,226 @@
+{
+  "mom_city_effects.slc:-": {
+    "purpose": "MoM sphere milestone events -- all five spheres (Phase B2b, fanned out from the",
+    "status": "ACTIVE"
+  },
+  "mom_city_effects.slc:MomSphereAdvanceBlessings": {
+    "purpose": "sphere magic-advance milestone: grant blessing building + spawn sphere unit (Chaos = random gold)",
+    "status": "ACTIVE"
+  },
+  "mom_city_effects.slc:MomSphereCityEffects": {
+    "purpose": "+30 burst gold on themed building completion",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:-": {
+    "purpose": "MoM sphere helpers -- all five spheres (Phase B1b, fanned out from the proven",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomCountLifeBlessings": {
+    "purpose": "weighted count of Life buildings (TEMPLE/CITY_WALLS/WIZARDS_FORTRESS)",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomCountNatureFoci": {
+    "purpose": "weighted count of Nature buildings (GRANARY/PRIMAL_SOURCE/FANTASTIC_STABLE)",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomCountSorceryFoci": {
+    "purpose": "weighted count of Sorcery buildings (LIBRARY/BEACON_OF_WISDOM)",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomGrantDeathBuilding": {
+    "purpose": "grant the Death-sphere themed building in the player's first city",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomGrantLifeBuilding": {
+    "purpose": "grant the Life-sphere themed building in the player's first city",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomGrantNatureBuilding": {
+    "purpose": "grant the Nature-sphere themed building in the player's first city",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomGrantSorceryBuilding": {
+    "purpose": "grant the Sorcery-sphere themed building in the player's first city",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomPlayerIsChaos": {
+    "purpose": "faction predicate p==5 (Chaos)",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomPlayerIsDeath": {
+    "purpose": "faction predicate p==4 (Death)",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomPlayerIsLife": {
+    "purpose": "faction predicate p==1 (Life)",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomPlayerIsNature": {
+    "purpose": "faction predicate p==2 (Nature)",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomPlayerIsSorcery": {
+    "purpose": "faction predicate p==3 (Sorcery)",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomSpawnSphereUnit": {
+    "purpose": "CreateUnit in first city (integer player index)",
+    "status": "ACTIVE"
+  },
+  "mom_magic.slc:-": {
+    "purpose": "MoM magic system (M1-M4) -- reconstructed from session log after H: FS corruption.",
+    "status": "ACTIVE"
+  },
+  "mom_magic.slc:MomMagicPoolTick": {
+    "purpose": "per-turn mana accrual into MomMagicCur, capped at the 100 pool ceiling",
+    "status": "ACTIVE"
+  },
+  "mom_magic.slc:MomMagicSchoolGrant": {
+    "purpose": "apply per-school mana multipliers when a magic advance is granted",
+    "status": "ACTIVE"
+  },
+  "mom_magic.slc:MomRecalcMagicPerTurn": {
+    "purpose": "recompute a player's mana income from cities + owned mana nodes (base 10/turn)",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:-": {
+    "purpose": "MoM sphere event messages (Phase C). Included LAST in the entry-point chain, after",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MagicMenu": {
+    "purpose": "INTERACTIVE: MAGIC STATUS alertbox; Summon arm (75 mana) writes an order global that survives the turn boundary",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomBlessChaos": {
+    "purpose": "segment: Chaos sphere blessing popup",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomBlessDeath": {
+    "purpose": "segment: Death sphere blessing popup",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomBlessLife": {
+    "purpose": "segment: Life sphere blessing popup",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomBlessNature": {
+    "purpose": "segment: Nature sphere blessing popup",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomBlessSorcery": {
+    "purpose": "segment: Sorcery sphere blessing popup",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomMagicPower": {
+    "purpose": "segment: mana pool / income readout body",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomMsgSlicAlive": {
+    "purpose": "segment: SLIC liveness confirmation text",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomSphereBlessingMessages": {
+    "purpose": "per-sphere blessing popup on the magic advance (human-only; base Message plumbing)",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomSummonBear": {
+    "purpose": "segment: Nature summon result (War Bear)",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomSummonGuard": {
+    "purpose": "segment: Life summon result (Guardian Spirit) -- names the creature, so one frame settles which branch ran",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomSummonHound": {
+    "purpose": "segment: Chaos summon result (Hell Hound)",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomSummonMage": {
+    "purpose": "segment: Sorcery summon result (Mage)",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomSummonNoMana": {
+    "purpose": "segment: insufficient-mana answer for the Summon arm; messagebox NOT alertbox, so no modal stacks on the Kill() path",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomSummonOrderTick": {
+    "purpose": "spawn the creature ordered last turn, resolved from the CASTER'S OWN sphere; debits 75 mana",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomSummonZombie": {
+    "purpose": "segment: Death summon result (Zombies)",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:-": {
+    "purpose": "MoM spellcasting layer (Phase D) -- imports the momjr-source spell features",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomCastDemonStrike": {
+    "purpose": "Death spell: damage the nearest enemy unit; targeting scan inlined for the same reason",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomCastFlameStrike": {
+    "purpose": "Chaos spell: damage the nearest enemy unit; targeting scan inlined to stay inside the Class 1 call budget",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomMsgDemonCast": {
+    "purpose": "segment: Demon Strike cast confirmation",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomMsgFlameCast": {
+    "purpose": "segment: Flame Strike cast confirmation",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomMsgNoMana": {
+    "purpose": "segment: insufficient mana for a spell (alertbox; distinct from mom_msg's summon variant)",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomMsgNoTarget": {
+    "purpose": "segment: no enemy unit in range",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomMsgNotChaos": {
+    "purpose": "segment: caster's sphere does not grant this spell",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomMsgSpellbook": {
+    "purpose": "segment: generic spellbook menu",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomMsgSpellbookChaos": {
+    "purpose": "segment: Chaos-specific spellbook menu",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomOpenSpellbook": {
+    "purpose": "UI trigger bound to the control-panel MagicButton",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomSpellAICast": {
+    "purpose": "let AI players cast their sphere's spell when mana allows",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomSpellMenuTick": {
+    "purpose": "per-turn tick that resolves a queued spellbook selection",
+    "status": "ACTIVE"
+  },
+  "mom_spells.slc:MomSpellShowBook": {
+    "purpose": "open the spellbook popup, choosing the per-sphere variant at call time",
+    "status": "ACTIVE"
+  },
+  "mom_turns.slc:-": {
+    "purpose": "MoM sphere per-turn income -- all five spheres (Phase B1b, fanned out from the",
+    "status": "ACTIVE"
+  },
+  "mom_turns.slc:MomSphereTurnBlessings": {
+    "purpose": "per-turn sphere gold income by faction",
+    "status": "ACTIVE"
+  },
+  "scenario.slc:-": {
+    "purpose": "=============================================================================",
+    "status": "ACTIVE"
+  },
+  "tutorial.slc:-": {
+    "purpose": "retires stock tut2_main.slc tutorial triggers",
+    "status": "ACTIVE"
+  }
+}

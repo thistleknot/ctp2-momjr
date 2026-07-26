@@ -85,6 +85,14 @@ _UNITS_BAND_MIN_FG = 20       # min foreground px in a column/row to count as co
 _UNITS_BAND_MIN_LEN = 10      # min contiguous px for a content band (drops header noise)
 _UNITS_MIN_FIGURE_PX = 20     # cells with fewer figure px are empty placeholders (B3..B9)
 
+# ICON_UNIT_*.tga framing. These MUST stay equal to build_unit_icon_art's
+# ICON_CONTENT_MAX_FRAC and reframe_unit_icons' FLOOR_MARGIN: the extractor, the
+# icon builder and the one-shot repair tool are three producers of the same
+# durable artifact, and a regen that reframes differently silently un-repairs
+# the shipped icons.
+ICON_CONTENT_MAX_FRAC = 0.80  # content occupies at most 80% of the 160x120 frame
+ICON_FLOOR_MARGIN = 6         # px of floor under the figure's feet
+
 # Sheet grid layouts are loaded from sprite_atlas_config.csv at import time.
 # Fallback hardcoded layouts are kept here only for backward compatibility when
 # the config file is absent.
@@ -633,26 +641,60 @@ def _alpha_bbox(arr: "np.ndarray", padding: int = 3) -> tuple | None:
     return left, top, right, bottom
 
 
-def _scale_rgba_to_canvas(img_rgba: "Image.Image", target_w: int, target_h: int, margin: int = 2) -> "Image.Image":
+def _scale_rgba_to_canvas(
+    img_rgba: "Image.Image",
+    target_w: int,
+    target_h: int,
+    margin: int = 2,
+    max_frac: float | None = None,
+    floor_margin: int | None = None,
+) -> "Image.Image":
     """
     Scale an RGBA sprite to a fixed canvas while preserving aspect ratio.
 
     Require: img_rgba contains the already-cropped sprite art.
     Guarantee: returns an RGBA image exactly target_w × target_h.
+
+    Two framings, and the caller must pick deliberately:
+
+    * max_frac=None — fit-to-fill: the art is scaled until it touches the
+      margin. Correct for SPRITE_*.tga, whose consumer (build_sprites.py) does
+      its own 96x72 fit and needs the largest clean source it can get.
+    * max_frac set — capped: the content is scaled to that fraction of the frame
+      and stands floor_margin px above the bottom edge. Required for
+      ICON_UNIT_*.tga. Fit-to-fill on icons is the measured cause of two
+      reported defects (figures overrunning the 96x72 unit-preview box;
+      protruding weapons severed by the frame) — the tell was a content extent
+      of EXACTLY 0.95 on all 55 files, which is deterministic normalization,
+      not source variance. This mirrors build_unit_icon_art's
+      ICON_CONTENT_MAX_FRAC and reframe_unit_icons.reframe, so a regen
+      reproduces the repaired framing instead of re-inflating it.
+
+      Note the one deliberate divergence from reframe_unit_icons: that tool
+      clamps scale at 1.0 because it reframes an already-160x120 icon. Here the
+      input is a native atlas cell roughly 40px tall, so clamping would leave
+      every figure at ~0.28 of the frame — measured, 2026-07-26. Upscaling is
+      required and uses NEAREST to keep the pixel art crisp.
     """
-    max_w = target_w - margin * 2
-    max_h = target_h - margin * 2
     cw, ch = img_rgba.size
     if cw == 0 or ch == 0:
         return Image.new("RGBA", (target_w, target_h), (0, 0, 0, 0))
 
-    scale = min(max_w / cw, max_h / ch)
+    if max_frac is None:
+        max_w = target_w - margin * 2
+        max_h = target_h - margin * 2
+        scale = min(max_w / cw, max_h / ch)
+    else:
+        scale = min(target_w * max_frac / cw, target_h * max_frac / ch)
+
     new_w = max(1, int(cw * scale))
     new_h = max(1, int(ch * scale))
     scaled = img_rgba.resize((new_w, new_h), Image.NEAREST)
 
     canvas = Image.new("RGBA", (target_w, target_h), (0, 0, 0, 0))
-    canvas.paste(scaled, ((target_w - new_w) // 2, (target_h - new_h) // 2), scaled)
+    top = ((target_h - new_h) // 2 if floor_margin is None
+           else target_h - floor_margin - new_h)
+    canvas.paste(scaled, ((target_w - new_w) // 2, top), scaled)
     return canvas
 
 
@@ -811,7 +853,10 @@ def extract_icon_units(identifiers: list, dry_run: bool, output_dir: Path) -> tu
             continue
 
         sprite = _compose_units_slot_sprite(sheet_arr, slots.get((slot_row, slot_col), []))
-        icon = _scale_rgba_to_canvas(sprite, 160, 120)
+        icon = _scale_rgba_to_canvas(
+            sprite, 160, 120,
+            max_frac=ICON_CONTENT_MAX_FRAC, floor_margin=ICON_FLOOR_MARGIN,
+        )
         dest = output_dir / f"{ident}.tga"
         save_tga_rgb555(icon, dest, dry_run)
         if not dry_run:
@@ -871,10 +916,17 @@ def extract_units_sprites(identifiers: list, dry_run: bool, output_dir: Path) ->
     Extract map sprites (SPRITE_*.tga) from Units.bmp using the real, detected
     9-column x 7-row content grid rather than a rigid pitch.
 
-    Each identifier is (cell_index, sprite_id, name); cell_index is the unit's
-    sequential position in units.csv, which equals the RULES.TXT @UNITS order,
-    which equals the sheet's row-major cell order. That index is mapped directly
-    into the detected grid: (cell_index // n_cols, cell_index % n_cols).
+    Each identifier is (cell_index, sprite_id, name), where the index came from
+    units.csv's 'art_cell_index' column. It is the unit's sequential position in
+    units.csv, which equals the RULES.TXT @UNITS order, which equals the sheet's
+    row-major cell order. That index is mapped directly into the detected grid:
+    (cell_index // n_cols, cell_index % n_cols).
+
+    Do NOT fall back to units.csv's 'cell_index' here: that column is the
+    generator's cost/order weight, is non-monotonic, and contains duplicates
+    (Zombies and Spearmen both carry 1). Extracting on it shifts every sprite
+    after Zombies by one — verified 2026-07-26 by rendering the sheet cells
+    against the on-disk TGAs, which match row order, not cell_index.
 
     Require: Units.bmp exists; identifiers are in sheet order.
     Guarantee: writes one 160x120 RGB555 TGA per non-empty unit cell; empty

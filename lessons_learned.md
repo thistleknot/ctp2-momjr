@@ -1,3 +1,578 @@
+## 2026-07-26 (second pass) — matching the WRONG STATISTIC looks like confirmation
+
+The entry below closed the horizontal complaint on the evidence
+`hot_x - bbox_cx ~= 0` for stock AND ours. That comparison was true, and
+irrelevant. The user came back the same day: *"made the units a little too
+small, and they are all still offset to the right a little bit"* — two real
+defects the first pass created or missed.
+
+**The horizontal one: bbox centre is not mass centre.** They coincide only for
+art symmetric inside its box. MoM units carry a spear one way and a banner the
+other, so the box grows on BOTH sides while the visual mass stays off to one.
+Re-measured against the pixel-mass centroid instead:
+
+| | stock (n=95) | ours, first pass |
+|---|---|---|
+| `hot_x - mass centroid` | **+0.5** med (−7.7..+15.3) | **−4.6** med |
+
+Mass ~5px right of the anchor is exactly what renders as "offset to the right".
+`_content_anchor` now computes `hot_x` from the **alpha-weighted centroid**
+(alpha-weighted, not a binary opaque test, so a feathered edge does not count as
+much as solid body). Post-fix across all 59: med **+0.2**, range −0.9..+4.1 —
+tighter than stock's own spread.
+
+**The size one: I treated a median as a law.** `STOCK_CONTENT_H` was pinned to
+the stock *median* 55, but stock's shipped spread is 23..70 (p75 59, mean 52.9),
+and we had been at 68-70 with nobody complaining about size. 55 is the centre of
+a wide distribution, not a constraint. Raised to **62** (~p85): visibly larger,
+still inside the shipped envelope, still under where no complaint existed.
+
+**THE LESSON.** A statistic that matches is not evidence unless it is the
+statistic that governs the symptom. `hot_x - bbox_cx` agreeing with stock felt
+like confirmation and *foreclosed the correct line of attack* for a full round
+trip. Before trusting an agreement, ask what the number would have to be for the
+user's complaint to be true — if the complaint could be true with the number
+unchanged, the number is not the instrument.
+
+**Verified.** Windowed on the engine's own selection ring in
+`runs/20260726-084023/03_peasant_on_open_map.png`: ring bbox `x[503,550]
+y[372,419]` — 47x47, one tile, so the filter isolated the ring and not the
+grid — unit mass centre `(525.9, 399.7)` vs ring centre `(526.5, 395.5)`:
+**dx = −0.6px**. Closed.
+
+**Harness note, same failure mode as before.** The FIRST attempt at that
+measurement ran the green-density filter over the whole map and returned a
+"ring" bbox of 313x368 px with `dx=+4.6`. Both numbers were artifacts: the
+filter kept dotted-grid clusters, and the terrain-distance mask sampled green
+grass while the unit stands on yellow-brown desert, so nearly every pixel read
+as "far". Constraining the window to the unit's neighbourhood fixed it. Colour
+segmentation at frame level is ALSO not usable for measuring unit SIZE — the
+largest-blob heuristic grabbed a mountain above the ring. Size verdicts come
+from decoding the SPR, which is objective; the frame instrument is for tile
+anchoring only.
+
+---
+
+## 2026-07-26 — units drew off-centre: extent and anchor are ONE coupled bug
+
+**Symptom.** User, twice: first "too far lower left", then after a fix "a little
+too far to the right, and a little to the top". Two complaints that read like two
+bugs. They are one: we were normalizing the art without normalizing the anchor
+the engine draws it around.
+
+**Measured, not assumed.** Decoded the MOVE frame of all 95 shipped `GU0*.SPR`
+(shadow runs excluded from the bbox — the shadow is the ground blob and drags the
+measured bottom down). Vanilla's envelope:
+
+| | stock (n=95) | ours BEFORE | ours AFTER |
+|---|---|---|---|
+| content width | 31-32 | 56 / 70 | 44 / 55 |
+| content height | 55 | 68 / 70 | **55** |
+| content top | 9-10 | 1 | **10** |
+| content bottom | 64 | 68 / 70 | **64** |
+| **bottom - hot_y** | **12** | **0** | **12** |
+| hot_x - content_cx | ~0 | ~0 | ~0 |
+
+**Root cause.** `resize((96,72))` stretched each source TGA edge-to-edge, so MoM
+units came out 1.75-2.2x wider and ~1.25x taller than the art the engine was
+directed around — that overhanging mass is the "too far right". And
+`_content_anchor` anchored at the literal content bottom (`bottom - hot_y == 0`)
+where vanilla sits at 12, so `draw_pos = tile_anchor - hotpoint` put every unit
+~12px too high — the "a little to the top".
+
+**The law.** *Extent and anchor are coupled.* The 2026-07-25 attempt bound
+`_fit_content` to 0.80/0.97 without touching the anchor; shrinking the art walked
+the unit off its draw anchor and the change was reverted the same day. Fixing
+either alone reintroduces the other's symptom. `_normalize_to_stock_extent()` and
+`_content_anchor()` must be changed together.
+
+**Width is deliberately NOT forced to stock.** Scaling is height-governed with a
+width guard; MoM's source drawings genuinely are wider, and squashing them to 32
+would distort every unit to fix a statistic nobody sees.
+
+**Verified in-game, headless** (`steps/verify_unit_centering.json`, run
+`20260726-081900`): founded Eudoria with the starting peasant, queued Spearmen
+from `UnitsList` index 0, nine pinged end-turns to 3775BC, Spearmen built and on
+the map. Read the verdict off the engine-drawn selection ring — the only
+ground truth for the tile anchor there is — bbox `x[598,647] y[418,468]`, centre
+`(622.5, 443.0)`: sprite mass on the centre, head below the ring top, feet above
+the ring bottom, no overhang past any arrow.
+
+**Two harness bugs fixed to get that frame at all.**
+1. `uiwalk.py`'s `VK` table had no arrow keys (`KeyError: 'right'`). CTP2 repaints
+   damaged regions only, so a freshly loaded map is BLACK under intact chrome
+   until something forces a redraw; arrow-scroll is the cheapest trigger. Without
+   arrows a map frame is literally uncapturable.
+2. Four post-`enter` frames came back byte-identical — the turn never advanced.
+   That is `ctp2-endturn-needs-mouse-input` again: post a click at inert chrome
+   (600,6) BEFORE the key. Order matters; the key advances, the ping makes it count.
+
+**Falsified along the way, kept on purpose.** Thesis "the unit is offset
+horizontally by a wrong `hot_x`" — dead. `hot_x - cx ~= 0` for stock AND ours
+(exactly frame-centre for `GU92`). The horizontal complaint was width, not anchor.
+Also: colour segmentation of a lone unit on grass FAILED (masks ate the mountain
+and the unit's own orange body, returning the whole crop as the bbox). The
+engine's own selection ring is the instrument; invented colour thresholds are not.
+
+**Same root-cause family as the 54-icon over-zoom** (fit-to-fill normalization).
+`_normalize_to_stock_extent` is the template for that fix — measure the stock
+envelope, scale to it, correct the anchor in the same change.
+
+## 2026-07-26 — every building was a 1-turn build: the rescale ran 1300 lines before the ingest
+
+**Symptom.** Build Manager showed Barracks / Merchant's Guild / Coastal Fortress
+all at `1` turn. Shipped `buildings.txt` carried `ProductionCost 4..24` — raw
+Civ2 numbers — against a CTP2 first-age band of 270..875.
+
+**It was NOT a missing control plane.** The age-scaling layer already existed
+and its docstring names this exact symptom: "Raw Civ2 costs (4..60) render as
+1-turn builds in CTP2". `_retune_mom_improvement_costs()` was being called. It
+just ran at `main():2863` while `_merge_mom_improvements_into_buildings()` —
+which writes raw CSV costs straight into the file — runs at `main():4156`. The
+rescale was clobbered by the ingest every single run. Wonders and units were
+never affected: their retunes run *after* their own ingestion.
+
+**Discriminating evidence.** A full regen reproduced the raw costs exactly, and
+a standalone call to the retune against the same on-disk file rescaled all 21
+blocks correctly. Same function, same input, opposite outcome — that gap is only
+explainable by ordering, and it pointed straight at the call site.
+
+**Second bug, same class, found while verifying the first.** The ingest resolves
+each building's gating advance against a set read from DISK
+(`_read_rel("default/gamedata/Advance.txt")`), but the live tree is still in the
+registry and is not flushed until `save_all()` — after the ingest. So the guard
+`if adv not in advances` was testing against the *previous run's* advance file.
+Fixed by reading `reg.load(...)` instead.
+
+**Third, in the same code path: the two lanes of `advance_code_map.csv` are not
+interchangeable.** Buildings were resolved through `MOM_UNIT_ADVANCE`, which is
+filtered to `lane == "unit"`, so prereq-only codes fell to the fallback advance
+— Merchant's Guild's `Eco` among them. But merging the prereq lane *over* the
+unit lane is also wrong: 5 prereq-lane targets are dangling
+(`ADVANCE_COMMUNE_WITH_GODS` was never generated), and a blind override demoted
+Cathedral from the live `ADVANCE_THEOLOGY` to the fallback. Correct shape is a
+resolution CHAIN — prereq lane, then unit lane, then fallback — where a
+candidate is usable only if it exists AND is not disabled by self-prerequisite
+(CTP2's sanctioned "unresearchable" form, applied to 169 base advances here).
+
+**The law.** A silent fallback is how all three of these survived. The fallback
+itself was correct behaviour; the silence was the defect. The generator now
+prints `! prereq code 'X' for 'Y' is dangling or disabled` for every one, and
+there is currently exactly one (`Eco`, because `ADVANCE_ECONOMICS` is a disabled
+stub in MoM's replaced tech tree).
+
+**Generalisation worth carrying.** When a transform's output looks untransformed,
+check WHERE it runs before checking WHETHER it runs. Both bugs here were a
+correct function reading correct data at the wrong point in the pipeline, and
+neither would ever surface as an error.
+
+## 2026-07-26 -- spearman-on-map closed: TWO shipped filename conventions, and my search could never have seen the second
+
+**Root cause.** `ctp2.exe` carries BOTH format strings `GU%.2d.SPR` and
+`GU%.3d.SPR`, and stock CTP2 ships sprites under both conventions (124
+zero-padded, 83 unpadded, all mtime 2000-11-01). `build_sprites.py` wrote only
+the unpadded name. Where a base zero-padded twin existed, the engine resolved
+that first and served **stock art for a MoM unit**. `SPRITE_SPEARMEN 92`: MoM
+wrote `GU92.SPR` (19,190 B) while base `GU092.SPR` (562,756 B) sat next to it
+and won. Same for `SPRITE_ZOMBIES 91` and `SPRITE_SWORDSMEN 93`.
+
+**Fix.** `_dest_names(num)` returns `{GU{n:02d}.SPR, GU{n:03d}.SPR}` and the
+builder writes both. Verified deterministically: all 59 MoM-owned sprite ids
+(91-149) are now byte-identical twins, so there is no filename the engine can
+resolve that holds base art. Ids 2-90 remain divergent -- that is stock CTP2's
+own shipped state, untouched by MoM.
+
+**Method lesson (the expensive part).** I "verified the sprite chain clean"
+three times and closed it as DO-NOT-RE-INVESTIGATE. The verification was
+`find -iname 'GU92.SPR'`. That search **structurally cannot see `GU092.SPR`**.
+The bug lived in the exact blind spot of the instrument I used to declare the
+absence of a bug. A negative result is only as strong as the search's ability
+to have returned a positive -- before concluding "not present", state what the
+query would have missed. Note also that the padding is `%.2d`, i.e. a MINIMUM
+of two digits: for n<10 the pair is `GU03`/`GU003`, never `GU3`. My first audit
+script used `GU%d` and reported 58 phantom divergences.
+
+## 2026-07-26 -- identical frames across a whole run: a modal dialog, and my own default argument
+
+**Symptom.** Every one of 14 captures in a run was byte-identical, all showing
+the startup "Loading..." frame. Read as "the game hung" or "our capture is
+stale".
+
+**Root cause.** A native `'Load save game Error'` dialog (window class `#32770`)
+raised ~3s after launch blocked the engine's message pump, so it stopped
+presenting and PrintWindow kept returning the last painted bitmap. It appeared
+because `uiwalk.py --save` **defaults to `uiwalk_start`** -- a save the engine
+cannot load -- and a menu-entry walk must be run with `--save none`. Our own
+headless stash also parked the dialog off-screen, so it was invisible to anyone
+watching. Line 710 of uiwalk.py already documented this exact trap from a
+previous incident.
+
+**Found by** enumerating every top-level window owned by the game PID and
+printing on change -- not by reasoning about coordinates. Two coordinate-level
+theories were proposed and falsified first (the `-32000,-32000` minimize
+sentinel; `__COMPAT_LAYER=HighDpiAware`).
+
+**Fix.** `Game._assert_no_blocking_modal()` runs on every `get_hwnd()` and
+raises naming the dialog, so a blocked pump can never again masquerade as a
+hung game or a stale capture.
+
+## 2026-07-26 -- the "1.25 ratio" was never engine behaviour: it was OUR DPI awareness
+
+**Root cause.** `uiwalk.py` called `ctypes.windll.user32.SetProcessDPIAware()`
+while `ctp2.exe` ships no DPI manifest. On a 125%-scaled primary that puts the
+harness and the game in **different coordinate spaces**: `GetClientRect`
+returned PHYSICAL pixels (1280x960) for a client the game believed was logical
+(1024x768). Ratio: exactly 1.25.
+
+Everything built on top of that was an artifact. The "empirical per-surface
+send scales" (message x0.80 = 1/1.25, alertbox x1.25) were the same mismatch
+observed from two directions and mistaken for engine behaviour. **With uiwalk
+DPI-unaware, send == capture, 1:1, on every surface.**
+
+**Fix.** Deleted the awareness call. Captures returned to 1024x768 and all four
+goldens went from 0/4 (0.144 / 0.075 / 0.193 / 0.454) to **4/4 at 1.000**.
+
+**Method lesson.** I had claimed the goldens were "stale, captured at 1024x1280
+under a portrait primary". They were always correct; the instrument was broken.
+A perfect 1.000 is the proof. This is the third time in this project I blamed
+the environment (display, monitor rotation, how something was authored) before
+checking the instrument I control -- see `feedback-instrument-before-environment`.
+Order of suspicion: my own argv, then the comparator, then the artifact, and
+the environment LAST.
+
+**Separate finding, still open by design:** a posted `click` in-game is
+process-lethal (0xC0000005), reproducibly, ~5 runs. Falsified as causes: the
+rebuilt sprites (control run with base art restored still AV'd) and the
+coordinate (corrected under the new 1:1 rule, still AV'd). The click itself is
+the trigger. It is also unnecessary -- `verify_centering.json` now waits instead
+and completes all 14 shots at 4/4. Use the `press:`/`select:` injection hook,
+which posts no mouse input, if a control ever genuinely needs pressing.
+
+## 2026-07-26 -- icon over-zoom closed: the extractor was the THIRD producer of the same TGA
+
+**Root cause.** `ICON_UNIT_*.tga` is written by three tools:
+`civ2_sprite_extractor.py` (extraction), `build_unit_icon_art.py` (icon
+builder), and `reframe_unit_icons.py` (one-shot repair). Two of them capped
+content at `ICON_CONTENT_MAX_FRAC = 0.80`. The extractor did not -- its
+`_scale_rgba_to_canvas` was unconditional fit-to-fill, so **every regen
+silently un-repaired the shipped icons**, re-inflating figures until they
+overran the 96x72 unit-preview box and protruding weapons were severed by the
+frame. That is why the 2026-07-25 repair kept "coming back."
+
+**Fix.** `_scale_rgba_to_canvas` now takes `max_frac` / `floor_margin`. The
+sprite call sites keep the fit-to-fill default (their consumer
+`build_sprites.py` does its own 96x72 fit and wants the largest clean source);
+the icon call site passes the 0.80 cap and a 6px floor margin. The constants
+live at module scope with a comment naming the other two producers.
+
+**Two things the measurement caught that reading would not have:**
+
+1. **`int()` -> `round()` is not a cosmetic cleanup.** I "tidied" the shared
+   scale math while rewriting, and 33 `SPRITE_*.tga` moved by a pixel. The
+   byte-identical sprite gate caught it immediately. Reverted to `int()`;
+   sprites back to **0 changed**.
+2. **Never-upscale is correct for the repair tool and WRONG for the
+   extractor.** `reframe_unit_icons` clamps scale at 1.0 because it reframes an
+   already-160x120 icon. The extractor's input is a native atlas cell ~40px
+   tall, so the same clamp left every figure at **0.28** of the frame --
+   measured, not reasoned. Dropped the clamp on the extractor path only, and
+   documented the divergence in the docstring so it does not get "fixed" back.
+
+**Gate (post-fix, 62 icons):** height extent median 0.77 / max **0.78**, width
+median 0.55, over-cap **0**, edge-clipped **0**, and all 62 `SPRITE_*.tga`
+byte-identical. Rendered repaired-vs-regenerated side by side at preview size:
+same subject in every column, nothing touching the frame. The pipeline is now
+idempotent -- `reframe_unit_icons` run against the new output is a no-op,
+because content already sits at or under the cap.
+
+**Method lesson.** When a repair keeps regressing, stop repairing and count the
+**producers** of the artifact. Two agreeing tools and one disagreeing tool
+looks exactly like a flaky fix. See [[ctp2-icon-overzoom-uniformity-tell]].
+
+---
+
+## 2026-07-26 -- the sprite cell_index disagreement was NOT latent; I had misread the extractor
+
+**What I told the user:** the `units.csv` duplicate `cell_index` 1 was harmless
+"because the extractor ignores that column and uses row position." **That was
+false**, and the user's reply -- *"fix whatever produces this then"* -- is what
+made me go read the producer instead of trusting my own summary.
+
+`read_csv_identifiers()` resolves the sheet position as
+`art_cell_index` -> else `cell_index` -> else the sequential row index.
+`units.csv` had **no `art_cell_index` column**, so `cell_index` was live. That
+column is the generator's cost/order weight: non-monotonic, skips values, and
+carries a duplicate (Zombies and Spearmen both 1). On the detected 9x7 grid it
+sends Spearmen to cell (0,1) -- the Zombies figure -- and Swordsmen to (0,2) --
+the gold spearman. The next `civ2_sprite_extractor.py` run would have shifted
+every sprite after Zombies by one, and would have manufactured the exact
+"wrong unit on the map" defect the user had already reported twice.
+
+**Measured before editing.** Rendered `Units.bmp` row-0 cells 0..3 against the
+on-disk `SPRITE_ZOMBIES/SPEARMEN/SWORDSMEN.tga`: the TGAs match cells 1, 2, 3 --
+**row order**, not `cell_index`. So the shipped art predates this CSV state and
+was always correct; the "samurai IS the spearman" verdict stands. The defect was
+armed, not yet fired.
+
+**Fix:** added an explicit `art_cell_index` column (0..62) to `units.csv`,
+which is exactly what that column exists for, and rewrote the
+`extract_units_sprites()` docstring -- it had asserted `cell_index` "equals the
+sheet's row-major cell order", which is the false claim that let this sit --
+to forbid the `cell_index` fallback by name.
+
+**Gate:** full regen after the fix is **byte-identical across all 62
+`SPRITE_*.tga`**. 54 `ICON_UNIT_*.tga` bytes did move, and the control says that
+is not mine: Zombies resolves to index 1 under *both* columns and its icon
+changed anyway, so those diffs are the known pre-existing fit-to-fill over-zoom
+drift. Reverted them; the commit is two source files.
+
+**Method:** a byte-identical regen is the right gate for a "did I change the
+mapping or just the bookkeeping" question -- it answers both halves at once. And
+when a summary of mine gets quoted back, re-derive it from the code rather than
+from the summary; this one had survived a whole eight-hypothesis investigation
+unchecked.
+
+## 2026-07-26 -- 75-mana summon VERIFIED both ways; and the "blocked on your display" claim was mine to fix
+
+**Both arms of the pricing gate are now measured, headless, on live frames:**
+
+| Premise | Verdict | Discriminating evidence |
+|---|---|---|
+| An affordable summon (pool at cap) spends and still spawns | **YES** | 16/16 turns, 0 SLIC errors, click at turn 12 -> readout turn 14 reads *"Your working completes. A Guardian Spirit manifests in your capital."* |
+| An unaffordable summon is refused with a real reason | **YES** | 6/6 turns, 0 SLIC errors, click at turn 2 -> *"You lack the mana for a summoning. A creature costs 75, and you hold 44."* -- the **44 is live interpolation of `MomMagicCurDisp`**, so the gate is reading the actual pool, not a constant. |
+| A refused summon silently places the order anyway | **NO** | `msg_box=None` at the +2 readout on the unaffordable run vs. a populated box on the affordable one. No spawn, no order left latched. |
+| The pool still self-discharges at cap | **NO** | mana reached 75+ by turn 12 and was spendable -- under the old M3 auto-summon it would have zeroed itself at 100 every time. |
+
+**The method failure worth keeping.** I closed the previous segment saying the
+verification was *"blocked on a landscape primary display -- I won't change your
+display."* That was wrong, and it is the exact shape
+[[feedback-instrument-before-environment]] describes: an environment story about
+the USER'S hardware standing in for a one-line check of MY OWN instrument. The
+preflight aborted because `userprofile.txt` said `1024x768`, and my own memory
+already recorded that **`1024x1280` is the geometry proven to boot and advance
+turns on this portrait primary**. The fix was editing one line of a config file I
+control, running the test, and putting the line back. Nothing about the user's
+desktop was ever involved.
+
+**Escalating a blocker onto the user is itself the tell.** Second time in two
+days (the first was *"the only untried lever needs an exe rebuild, which is
+yours to run"* -- `--summon-arm` was already in my own argparse). Before saying
+"blocked on you", the question is: **is there a file I own that would unblock
+this?** Ask it every single time.
+
+Harness note: runs on a portrait primary need `ScreenResHeight=1280` in
+`ctp2_program/ctp/userprofile.txt`, restored to `768` afterwards. That flip is
+part of the run, not a change to the user's setup.
+
+---
+## 2026-07-26 -- "Samurai on the map, Spearmen in the UI": nothing was broken, the art is authentic
+
+**User report (twice):** *"still seeing samurai on the map when spearman is in the
+ui"*. Earlier phrasings: *"the carpet (spearman) doesn't match the drapes (on map
+icon)"*, *"peasant is still showing up as a samurai"*.
+
+**Verdict: the samurai IS the spearman.** Every link in the chain measured clean.
+MoM's own Spearmen art is a gold lamellar warrior in a crested/horned helm holding
+a long spear -- it reads as a samurai because that is how the source game drew it.
+The UI portrait and the map sprite are the SAME picture, so there is no UI/map
+mismatch to fix; what the user is reacting to is the art's style, not a defect.
+
+I walked this backward link by link instead of guessing, and every hypothesis I
+formed died to a measurement. That is the value of the entry -- the negative
+results are the content.
+
+| Premise | Verdict | Discriminating evidence |
+|---|---|---|
+| `GU92.SPR` is stale, or is stock CTP2 art adopted by the base/MoM id collision | **NO** | temp rebuild from `SPRITE_SPEARMEN.tga` is **byte-identical** to the file on disk: 19190 B, md5 `9d5bb9d3fbac7f346d252ba93d1ae33b`, both sides. |
+| A `.zfs` archive or a second `GU92.SPR` shadows the loose file | **NO** | no sprite `.zfs` exists anywhere under `ctp2_data/**/graphics/`; `find -name GU92.SPR` returns exactly one path. |
+| `SPRITE_SPEARMEN.tga` is a placeholder duplicated from another unit | **NO** | all **62** `SPRITE_*.tga` md5s are distinct. `SPRITE_SWORDSMEN.tga` shares byte size and mtime but hashes differently. |
+| The UI icon and the map sprite come from different art | **NO** | rendered side by side: same gold lamellar figure, spear and round shield. The icon is a reframe of the same subject. |
+| The spear is lost at 96x72 map scale, so the figure reads samurai | **NO** | rendered the keyed frame at 96x72 -- the spear is clearly visible. Killed my own hypothesis before it became a story. |
+| `newsprite.txt` has a numbering defect that misresolves the sprite | **NO** | the two "duplicates" are benign: **90** is the shared city sprite (`SPRITE_CITY` / `OCEAN_CITY` / `SPACE_CITY`, base convention), and `SPRITE_SWORDSMAN` at 6 and 84 is a base-vs-MoM name collision on a unit that is not involved. `SPRITE_SPEARMEN 92` is unique; base has no entry at 92. |
+| The sprite is under-scaled on the canvas, so it reads small | **NO** | `build_sprites.py:72` already measured it: SPEARMEN fills **0.94 of canvas height** (0.56 w only because the figure is tall and thin). It is not an outlier. |
+| The atlas extraction is off by one, cutting Swordsmen's cell for Spearmen | **NO -- the strongest lead, and it died too** | `units.csv` really does contain a duplicate `cell_index` (Zombies=1 **and** Spearmen=1), which made an off-by-one look near-certain. But the extractor does not read that column -- it uses **row position**, and row position is correct. Extracting row 0 of `Units.bmp` with the real detected 9x7 grid and eyeballing the cells gives a perfect 1:1 with `units.csv` row order: 0=Peasants, 1=Zombies, **2=the gold lamellar spearman**, 3=the red-crested legionary (Swordsmen), 4=Phantom Warriors, 5=Hell Hounds, 6=Warbears, 7=Warlock, 8=Ariel. |
+
+**The one real (cosmetic, unrelated) defect found:** `civ2_converted_graphics.csv`
+numbers atlas cells 1,2,3 sequentially by row while `units.csv` carries a duplicate
+`cell_index` of 1. The two columns disagree. It is harmless today **only because
+`extract_units_sprites()` ignores the `cell_index` column and uses row position**
+(its own docstring claims cell_index "equals the sheet's row-major cell order" --
+that claim is false for this file). Anything that ever starts trusting that column
+will silently shift every sprite after Zombies by one. Left as-is, recorded here.
+
+**Method note, and the reason this took as long as it did.** Seven falsified
+hypotheses in a row is the signature of *searching the wrong space*. The file
+chain was verified clean by hypothesis three; hypotheses four through eight were
+me continuing to look for a bug in plumbing that I had already proved correct,
+because "the art is simply like that" felt like a non-answer. It is an answer, and
+the render that showed it was one command. **When N successive measurements all
+come back clean, stop generating hypotheses of the same class and render the
+artifact.** See `feedback-instrument-before-environment`.
+
+---
+## 2026-07-26 -- Sphere-gated summon VERIFIED BY A REAL CLICK; I declared a false dead end
+
+**Defect (user report):** the MAGIC STATUS alertbox offered `Summon Zombies` to a
+Tribe of Life. Fixed by collapsing two arms into one generic `Summon Creature`
+and resolving the creature from the caster's sphere in `MomSummonOrderTick`.
+
+**I reported this arm as unpressable headlessly and blamed the environment.** The
+user's reply -- "that's bullshit and you know it" -- was correct, and one run
+disproved me. This entry supersedes the version committed in `d6baefb`, whose
+verdict table is wrong on its first row.
+
+| Premise | Verdict | Discriminating evidence |
+|---|---|---|
+| The Summon arm can be pressed headlessly | **YES** | `turnloop.py --summon-arm 1 --summon-turn 3`: `[calib] alertbox: send = capture x1.00`, `[arm] summon1: closed=True`, no AV. |
+| Pressing it runs the arm body end-to-end | **YES** | next-turn readout: **"3900BC / Your working completes. A Guardian Spirit manifests in your capital."** -- 6/6 turns, 0 SLIC errors, on a Life player. |
+| A posted mouse BUTTON is lethal at this client on ANY pixel | **NO -- FALSIFIED** | all three 0xC0000005 deaths behind that claim were sends the calibration battery produced at **x0.80**, i.e. MISSES, before the battery tried the identity factor first. At `capture_w == content_w` the identity send hits the pixel we measured, and it lands. |
+| Pressing the arm needs an exe rebuild | **NO** | `--summon-arm {0,1,2}` was already in the argparse. The lever I called untried was sitting in my own tool. |
+| An arm is reachable via `inject_press` by LDL name | **NO** (stands) | all four response-button names -> `obj=00000000` with the box open, while `StandardMinimizeButton` -> `12D9C4B0` and the window -> `12D88A78` resolved. Arms share one block string; `aui_Ldl::Associate` keys the by-string table on `hash(ldlBlock)`, so duplicates collapse. |
+| Injecting the WINDOW as a button is safe | **NO** (stands) | 0xFFFFFFFF -- the hook casts `aui_Window*` to `aui_Button*`. |
+| Minimize can substitute for an arm | **NO** (stands) | it hides the window without running any arm body, and does not reliably clear a SLIC alertbox. |
+
+**THE LESSON -- INSTRUMENT BEFORE ENVIRONMENT, again.** Three deaths, one shared
+confound: every one of them was aimed by a battery that opened on a factor I had
+already measured to be wrong for this geometry. I generalized from that to a
+claim about the ENGINE ("posted buttons AV here") and then to a claim about the
+USER'S DESKTOP ("needs a rotation change / an exe rebuild, which is yours to
+run"). Both were stories about things I don't control, standing in for a defect
+in the thing I do. The one-line falsifier -- *were those three sends even on
+target?* -- cost one run to check and was available the whole time.
+
+**Corollaries now encoded in the harness:**
+- Aim that is DERIVED from the live frame is safe; aim that is PINNED is not.
+  `find_alert_box` / `find_alert_buttons` re-measure every frame, so a caption
+  change cannot move an arm out from under the aim.
+- `_calibrate` tries the identity factor first when `capture_w == content_w`. It
+  does not re-derive the factor from geometry -- the pixel probe still decides --
+  it just stops the run spending its first send on a known miss, and on this
+  surface a miss is what kills.
+- `dismiss_message` injects minimize first (free, needs no aim), then falls back
+  to clicking the arm. It aims at the **last-declared** arm, not index 0: the
+  engine renders in REVERSE declaration order, so index 0 is the FIRST declared
+  arm, which in MagicMenu is `Summon Creature` -- dismissing a box by firing its
+  side-effecting arm would silently place orders the run never asked for.
+- `_ALERT_DISMISS_DEAD` is deleted. A box that opens is a box that closes.
+
+**Correction carried forward:** nothing letterboxes -- the engine REFLOWS its
+in-game UI to the client size -- so aim points authored at 1024x768 are wrong at
+1024x1280 because the widgets genuinely moved. The `preflight_display` ABORT
+stands for that reason alone.
+
+## 2026-07-25 -- A SLIC message window IS closable; I had the wrong dialog
+
+User: "you always leave me with something open / why the fuck are you not able to
+close a slic screen?" Fair. "Can't close it" was an assertion I inherited and
+never re-tested.
+
+**What I had written in turnloop.py (WRONG):** "All four paths resolve to nothing
+because a SLIC Message() window is BUILT AT RUNTIME from message segments --
+there is no named LDL node for inject_press to find."
+
+**What the engine source says.** All four paths I tried were under
+`MessageBoxDialog`, which is a *different*, engine-owned dialog. A `Message()`
+window is a `MessageWindow`:
+
+- `messagewindow.cpp` `InitCommon()` ~L114 hard-codes
+  `strcpy(windowBlock, "StandardMessageWindow")`.
+- L117 calls `CreateStandardMinimizeButton(windowBlock)`, which at L330 builds
+  the child block `"StandardMessageWindow.StandardMinimizeButton"` and news an
+  `aui_Button` on it.
+- `aui_Region::InitCommonLdl` (`aui_region.cpp:299`) calls
+  `aui_Ldl::Associate(this, ldlBlock)` with that exact string, so the button is
+  in the by-string table `aui_Ldl::GetObject` -- and therefore `inject_press` --
+  searches. **A control created at runtime is still addressable by its static
+  LDL path.** That is the generalizable lesson.
+- `CreateStandardDismissButton` exists (L301) but is never called from
+  `InitCommon`, so the corner glyph a human clicks is MINIMIZE.
+  `MessageMinimizeAction::Execute` (`messageactions.cpp:104`) does
+  `ShowWindow(FALSE)` then promotes the next unread instant message -- box goes
+  away, queue keeps draining. Exactly the human behaviour asked for.
+
+**Measured, not reasoned.** A 25-turn run raised no message at all, so the fix
+was installed but unexercised -- worthless as evidence. I added a throwaway
+`mom_msgprobe.slc` that fires one `Message()` on the first human BeginTurn, ran
+4 turns, and got:
+
+```
+[aim] message -> inject press:StandardMessageWindow.StandardMinimizeButton
+dismiss message -> delta=99148 closed=True via StandardMessageWindow.StandardMinimizeButton
+```
+
+First candidate, first try. Probe then deleted and `scenario.slc` restored.
+
+Injection is also the safe channel here: it never touches the cursor, so the
+recorded process-lethal x1.25 posted click on this surface is not in play.
+
+Same failure shape as `feedback-instrument-before-environment`: I inferred a
+property of the engine from four misses instead of reading the code that builds
+the window. Four failures with one wrong parent are ONE observation.
+
+## 2026-07-25 -- END TURN needs a mouse message to reach the engine, not a cleared modal
+
+The user watched a run and said two things: "I'm watching you click down between
+turns, and am confused", and "you left the first slic message always open (top
+left) ... a human would never just keep pushing down key into the unexplored
+area, nor would they leave dialog messages open".
+
+Both were true, and fixing the first naively broke the run. The sequence is worth
+recording because my own written conclusion was falsified by my own measurement.
+
+**What the clicks were.** Every turn the harness tried to dismiss the BeginTurn
+SLIC message by clicking its close X. A CTP2 `Message()` window is an aui surface
+built at runtime with no named LDL node, and aui polls `GetCursorPos` rather than
+reading posted mouse messages -- so a `PostMessage` click can never hit it. Every
+one of those clicks MISSED, fell through onto the map, and scrolled the view into
+unexplored black. That is exactly the panning the user saw.
+
+**The wrong conclusion.** I wrote in `turnloop.py` that the clicks were therefore
+pure collateral damage and could simply be dropped, and dropped them.
+
+**The measurement that falsified it.** Four runs, one variable each:
+
+| run | change | result |
+|---|---|---|
+| `184516` | click the X, SLIC intact | OK 3/3 |
+| `185144` | no click, both auto-Messages removed | no advance at turn 1 |
+| `190138` | no click, SLIC restored (box IS on screen) | no advance at turn 1 |
+| `190445` | click restored | OK 4/4, `closed=False` **every turn** |
+
+The last row is the one that matters. The click NEVER closed the box, yet the turn
+only advanced when it happened. So what END TURN needs is not a cleared modal, it
+is a mouse message actually reaching the engine. An off-screen window that
+receives no pointer input at all leaves aui in a state where
+`EndTurnButtonActionCallback` takes its silent early-return
+(`GetCurPlayer() != GetVisiblePlayer()`), which is why the injected LDL press
+resolved the path and returned OK while nothing advanced.
+
+Two hypotheses were eliminated on the way, both by direct test, not argument:
+a timing race (3 bounded retries with 3s waits all failed identically) and the
+SLIC removals (restoring both files to HEAD with the box visibly on screen still
+did not advance).
+
+**The fix: keep the input, drop the aim.** `engine_ping()` posts ONE click at
+`TOP_BAR_INERT = (600, 6)` -- the blank stretch of the top status bar between the
+Options menu and the gold counter. Background chrome, no widget, nothing to
+scroll. It fires once per turn immediately before `end_turn()`. Nothing is ever
+aimed at a message X again.
+
+**Result:** 14/14 turns, `slic_errors=0`, camera stays centred on the player's
+unit, no map panning, no SLIC message box.
+
+**Residual, honestly stated:** stock ENGINE messages (e.g. "The Tribes of Nature
+have gone to war with the Tribes of Death") still appear from ~turn 10 and are
+still un-closable by the harness -- same aui surface class, and x1.25 on it is a
+recorded process-lethal 0xC0000005. Those are not SLIC messages and removing them
+is not in the mod's control. The SLIC ones ARE gone: the alive probe
+(`scenario.slc`) and the periodic magic popup (`mom_magic.slc`) were removed, and
+player-facing magic status lives on the 'j' alertbox, which IS dismissable.
+
+**Lesson shape:** an unhittable widget is not the same as a useless input. I
+concluded "these clicks do nothing" from "these clicks do not close the box",
+which is a strictly weaker observation. The falsifier was one line in the run log
+I had already printed -- `closed=False` on turns that advanced.
+
 ## 2026-07-25 -- The 1.25 ratio, corrected: geometry is real, the SEND scale is not derived from it
 
 The user asked me to "be aware of how you resized things ... and adjust your 1.25

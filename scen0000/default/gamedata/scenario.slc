@@ -21,28 +21,25 @@
 //     (engine silently auto-creates unknowns). Run validate_all_surfaces.py.
 //=============================================================================
 
-// Phase A liveness probe: on the human player's first BeginTurn, show a one-time
-// proof-of-life message, then latch off -- proving the scenario SLIC layer parsed
-// and its handlers execute. (Message string: scen_str.txt 'MomSlicAlive'.)
+// Phase A liveness probe: REMOVED 2026-07-25.
 //
-// player[0] is the BeginTurn event-local player (stock tut2_main.slc uses exactly
-// this; `playerTurn` is NOT a base SLIC symbol -- it is undefined, and the parked
-// git-history module that used it never actually ran). MomSlicAliveLatch is declared
-// at file scope (int_t, 0 by default -- same idiom as base script.slc globals) and is
-// the real one-shot guard: DisableTrigger ALONE did not stop the re-fire, and an
-// unlatched Message in BeginTurn floods the queue -> 0xC0000005. A single Message is
-// safe (stock TStartGame does exactly this).
-int_t MomSlicAliveLatch;
-
-HandleEvent(BeginTurn) 'MomSlicAlive' post {
-	if (IsHumanPlayer(player[0])) {
-		if (MomSlicAliveLatch == 0) {
-			MomSlicAliveLatch = 1;
-			Message(g.player, 'MomMsgSlicAlive');
-			DisableTrigger('MomSlicAlive');
-		}
-	}
-}
+// It showed a one-time proof-of-life Message on the human's first BeginTurn to
+// prove the scenario SLIC layer parsed. That question is long since settled by
+// stronger evidence -- 25/25 clean headless turns, the 'j' MagicMenu alertbox,
+// working summons, and interactive alertbox buttons whose state survives a turn
+// boundary. The probe was scaffolding that outlived its job.
+//
+// It had to go rather than merely be ignored: a CTP2 Message window is an aui
+// surface, and aui polls GetCursorPos, so a PostMessage click can never dismiss
+// one (measured -- every candidate send factor left closed=False, while the same
+// clicks fell through onto the map behind it and scrolled the view into
+// unexplored black). So this box sat pinned over the top-left of EVERY frame for
+// the rest of the game, occluding the map region the unit-visibility check
+// measures, and each dismissal attempt panned the map. One removed debug line
+// closes both.
+//
+// Player-facing magic status lives on the 'j' MagicMenu alertbox, which IS
+// dismissable by both a human and the harness.
 
 // Phase B1 sphere-magic modules. Include order (func before turns): mom_func.slc
 // defines the helpers that mom_turns.slc's BeginTurn handler calls. B1a wires the

@@ -2,7 +2,7 @@ IMPROVE_WIZARDS_FORTRESS {
 	DefaultIcon ICON_IMPROVE_WIZARDS_FORTRESS
 	Description DESCRIPTION_IMPROVE_WIZARDS_FORTRESS
 	EnableAdvance ADVANCE_MASONRY
-	ProductionCost 10
+	ProductionCost 330
 	Upkeep 0
 }
 
@@ -10,7 +10,7 @@ IMPROVE_BARRACKS {
 	DefaultIcon ICON_IMPROVE_BARRACKS
 	Description DESCRIPTION_IMPROVE_BARRACKS
 	EnableAdvance ADVANCE_WARRIOR_CODE
-	ProductionCost 4
+	ProductionCost 270
 	Upkeep 1
 }
 
@@ -18,7 +18,7 @@ IMPROVE_GRANARY {
 	DefaultIcon ICON_IMPROVE_GRANARY
 	Description DESCRIPTION_IMPROVE_GRANARY
 	EnableAdvance ADVANCE_POTTERY
-	ProductionCost 6
+	ProductionCost 290
 	Upkeep 1
 }
 
@@ -26,7 +26,7 @@ IMPROVE_TEMPLE {
 	DefaultIcon ICON_IMPROVE_TEMPLE
 	Description DESCRIPTION_IMPROVE_TEMPLE
 	EnableAdvance ADVANCE_CEREMONIAL_BURIAL
-	ProductionCost 4
+	ProductionCost 270
 	Upkeep 1
 }
 
@@ -34,7 +34,7 @@ IMPROVE_LIBRARY {
 	DefaultIcon ICON_IMPROVE_LIBRARY
 	Description DESCRIPTION_IMPROVE_LIBRARY
 	EnableAdvance ADVANCE_WRITING
-	ProductionCost 8
+	ProductionCost 310
 	Upkeep 1
 }
 
@@ -42,7 +42,7 @@ IMPROVE_COURTHOUSE {
 	DefaultIcon ICON_IMPROVE_COURTHOUSE
 	Description DESCRIPTION_IMPROVE_COURTHOUSE
 	EnableAdvance ADVANCE_CODE_OF_LAWS
-	ProductionCost 8
+	ProductionCost 310
 	Upkeep 1
 }
 
@@ -50,7 +50,7 @@ IMPROVE_CITY_WALLS {
 	DefaultIcon ICON_IMPROVE_CITY_WALLS
 	Description DESCRIPTION_IMPROVE_CITY_WALLS
 	EnableAdvance ADVANCE_MASONRY
-	ProductionCost 8
+	ProductionCost 310
 	Upkeep 0
 }
 
@@ -58,7 +58,7 @@ IMPROVE_AQUEDUCT {
 	DefaultIcon ICON_IMPROVE_AQUEDUCT
 	Description DESCRIPTION_IMPROVE_AQUEDUCT
 	EnableAdvance ADVANCE_CONSTRUCTION
-	ProductionCost 8
+	ProductionCost 310
 	Upkeep 2
 }
 
@@ -66,7 +66,7 @@ IMPROVE_CATHEDRAL {
 	DefaultIcon ICON_IMPROVE_CATHEDRAL
 	Description DESCRIPTION_IMPROVE_CATHEDRAL
 	EnableAdvance ADVANCE_THEOLOGY
-	ProductionCost 12
+	ProductionCost 660
 	Upkeep 3
 }
 
@@ -74,7 +74,7 @@ IMPROVE_UNIVERSITY {
 	DefaultIcon ICON_IMPROVE_UNIVERSITY
 	Description DESCRIPTION_IMPROVE_UNIVERSITY
 	EnableAdvance ADVANCE_UNIVERSITY
-	ProductionCost 16
+	ProductionCost 400
 	Upkeep 3
 }
 
@@ -82,7 +82,7 @@ IMPROVE_COLOSSEUM {
 	DefaultIcon ICON_IMPROVE_COLOSSEUM
 	Description DESCRIPTION_IMPROVE_COLOSSEUM
 	EnableAdvance ADVANCE_CONSTRUCTION
-	ProductionCost 10
+	ProductionCost 330
 	Upkeep 4
 }
 
@@ -90,7 +90,7 @@ IMPROVE_MECHANICIANS_GUILD {
 	DefaultIcon ICON_IMPROVE_MECHANICIANS_GUILD
 	Description DESCRIPTION_IMPROVE_MECHANICIANS_GUILD
 	EnableAdvance ADVANCE_ARTIFICING
-	ProductionCost 20
+	ProductionCost 440
 	Upkeep 4
 }
 
@@ -99,7 +99,7 @@ IMPROVE_XPOWER_PLANT {
 	Description DESCRIPTION_IMPROVE_XPOWER_PLANT
 	EnableAdvance ADVANCE_WARRIOR_CODE
    ObsoleteAdvance ADVANCE_WARRIOR_CODE
-	ProductionCost 16
+	ProductionCost 400
 	Upkeep 4
 }
 
@@ -108,7 +108,7 @@ IMPROVE_XHYDRO_PLANT {
 	Description DESCRIPTION_IMPROVE_XHYDRO_PLANT
 	EnableAdvance ADVANCE_WARRIOR_CODE
    ObsoleteAdvance ADVANCE_WARRIOR_CODE
-	ProductionCost 24
+	ProductionCost 490
 	Upkeep 4
 }
 
@@ -116,15 +116,15 @@ IMPROVE_PRIMAL_SOURCE {
 	DefaultIcon ICON_IMPROVE_PRIMAL_SOURCE
 	Description DESCRIPTION_IMPROVE_PRIMAL_SOURCE
 	EnableAdvance ADVANCE_FORCES_OF_NATURE
-	ProductionCost 16
+	ProductionCost 400
 	Upkeep 2
 }
 
 IMPROVE_MERCHANTS_GUILD {
 	DefaultIcon ICON_IMPROVE_MERCHANTS_GUILD
 	Description DESCRIPTION_IMPROVE_MERCHANTS_GUILD
-	EnableAdvance ADVANCE_WARRIOR_CODE
-	ProductionCost 16
+	EnableAdvance ADVANCE_ALPHABET
+	ProductionCost 400
 	Upkeep 4
 }
 
@@ -132,7 +132,7 @@ IMPROVE_BEACON_OF_WISDOM {
 	DefaultIcon ICON_IMPROVE_BEACON_OF_WISDOM
 	Description DESCRIPTION_IMPROVE_BEACON_OF_WISDOM
 	EnableAdvance ADVANCE_WIZARDRY
-	ProductionCost 16
+	ProductionCost 400
 	Upkeep 3
 }
 
@@ -140,7 +140,7 @@ IMPROVE_COASTAL_FORTRESS {
 	DefaultIcon ICON_IMPROVE_COASTAL_FORTRESS
 	Description DESCRIPTION_IMPROVE_COASTAL_FORTRESS
 	EnableAdvance ADVANCE_WARRIOR_CODE
-	ProductionCost 8
+	ProductionCost 310
 	Upkeep 1
 }
 
@@ -148,7 +148,7 @@ IMPROVE_HARBOR {
 	DefaultIcon ICON_IMPROVE_HARBOR
 	Description DESCRIPTION_IMPROVE_HARBOR
 	EnableAdvance ADVANCE_SEAFARING
-	ProductionCost 6
+	ProductionCost 290
 	Upkeep 1
 }
 
@@ -156,7 +156,7 @@ IMPROVE_FANTASTIC_STABLE {
 	DefaultIcon ICON_IMPROVE_FANTASTIC_STABLE
 	Description DESCRIPTION_IMPROVE_FANTASTIC_STABLE
 	EnableAdvance ADVANCE_LESSER_FAUNA_LORE
-	ProductionCost 16
+	ProductionCost 400
 	Upkeep 3
 }
 
@@ -164,6 +164,6 @@ IMPROVE_PORT {
 	DefaultIcon ICON_IMPROVE_PORT
 	Description DESCRIPTION_IMPROVE_PORT
 	EnableAdvance ADVANCE_SEA_LORE
-	ProductionCost 8
+	ProductionCost 310
 	Upkeep 3
 }

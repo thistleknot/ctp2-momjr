@@ -102,6 +102,37 @@ MIN_OPAQUE_WARN  = 50     # fewer surviving pixels than this => likely near-blan
 CONTENT_MAX_W_FRAC = float(os.environ.get("MOM_SPRITE_MAX_W_FRAC", 1.0))
 CONTENT_MAX_H_FRAC = float(os.environ.get("MOM_SPRITE_MAX_H_FRAC", 1.0))
 
+# Vanilla unit-art envelope, MEASURED 2026-07-26 by decoding the 95 shipped
+# GU0*.SPR MOVE frames (medians; shadow runs excluded from the content bbox, since
+# the shadow is the ground blob and would drag the measured bottom down):
+#
+#     content height  min 23  p25 48  med 55  p75 59  max 70
+#     content bottom row 64   (content top row 9)
+#     bottom - hot_y = 12          <- the anchor sits ~12px ABOVE the art's feet
+#     hot_x - pixel-mass centroid  <- median +0.5 (mean +0.5, range -7.7..+15.3)
+#
+# The last two lines are the ones that matter, and both were wrong.
+#
+# bottom - hot_y: we anchored at the exact content bottom (== 0), drawing every
+# MoM unit ~12px too high -- the reported "a little to the top". Fixed 2026-07-26.
+#
+# hot_x: we anchored on the BBOX centre. For symmetric art that equals the mass
+# centre, but MoM units carry a spear on one side and a banner on the other, so
+# the two diverge. Measured on the shipped build: stock sits at +0.5 from its
+# pixel-mass centroid, ours at a median of -4.6 -- i.e. our art's visual mass sat
+# ~5px RIGHT of the anchor, which is the residual "still offset to the right"
+# the bottom-12 fix did not touch. _content_anchor now uses the alpha-weighted
+# centroid. See its docstring.
+#
+# Height was pinned at the median 55 and the units read as slightly small on the
+# map (user, 2026-07-26: "made the units a little too small"). Stock's own spread
+# is 23..70, so 55 is the centre of a wide distribution, not a law. Raised to 62
+# (~p85) -- visibly larger, still inside the shipped envelope, and still well
+# under the 68-70 we were at when nobody complained about size.
+STOCK_CONTENT_H      = 62
+STOCK_CONTENT_BOT    = 64
+STOCK_FEET_TO_ANCHOR = 12
+
 # SPRITE_ names whose extracted source art faces LEFT and must be flipped to face
 # right (else the unit appears to walk backwards when moving left/right — Kull #2b).
 LEFT_FACING: set[str] = set()
@@ -301,6 +332,75 @@ def _fit_content(img: "Image.Image") -> "Image.Image":
     return out
 
 
+def _normalize_to_stock_extent(img: "Image.Image") -> "Image.Image":
+    """
+    Rescale and reposition a keyed facing so its opaque content occupies the same
+    region of the 96x72 frame that vanilla CTP2 unit art occupies.
+
+    Require  : `img` is RGBA, 96x72, already keyed (background alpha == 0).
+    Guarantee: returns a same-size RGBA frame whose content is aspect-preserved,
+               <= STOCK_CONTENT_H tall, horizontally centred on the frame, and
+               bottom-aligned to row STOCK_CONTENT_BOT.
+    Maintain : scale is clamped to <= 1.0 -- content is never blown UP, so art
+               already inside the stock envelope comes back untouched.
+    Failure  : a fully transparent frame has no bbox and is returned unchanged.
+
+    WHY THIS EXISTS. `_facing_images` does `resize((96, 72))`, which stretches the
+    whole source TGA edge-to-edge regardless of how much of it is actually the
+    unit. Measured 2026-07-26 by decoding the shipped SPRs (medians, content bbox,
+    shadow runs excluded):
+
+                       content w   content h   top   bot
+        stock (n=95)          32          55     9     64
+        ours  GU9x  (n=9)     56          68     1     68
+        ours  GU1xx (n=50)    70          70     1     70
+
+    i.e. our units render 1.75-2.2x wider and ~1.25x taller than every unit the
+    engine was art-directed around, with their silhouettes jammed against the
+    frame edges. That is the reported "too far to the right": the anchor is
+    correct (hot_x - content_cx ~= 0 for stock AND for ours) but the visual mass
+    overhangs the tile. Bounding the extent -- not moving the anchor -- is the fix
+    for the horizontal half of the complaint.
+
+    This is NOT the reverted 2026-07-25 change. That one bound `_fit_content` to
+    0.80/0.97 and left the anchor at the content's own feet, so shrinking the art
+    also walked the unit off the draw anchor and it was backed out the same day.
+    Extent and anchor are COUPLED: `_content_anchor` is corrected in the same
+    commit to sit STOCK_FEET_TO_ANCHOR above the content bottom. Changing either
+    alone reintroduces the regression.
+    """
+    box = img.getbbox()
+    if box is None:
+        return img
+    x0, y0, x1, y1 = box                      # right/bottom-EXCLUSIVE
+    bw, bh = x1 - x0, y1 - y0
+    if bw <= 0 or bh <= 0:
+        return img
+
+    cw, ch = img.size
+    # Height governs (aspect preserved); width is only a guard so an unusually
+    # wide unit cannot overhang the frame after scaling.
+    scale = min(1.0, STOCK_CONTENT_H / bh, cw / bw)
+    nw, nh = max(1, int(round(bw * scale))), max(1, int(round(bh * scale)))
+
+    content = img.crop(box).resize((nw, nh), Image.LANCZOS)
+    out = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
+    px_ = max(0, min(cw - nw, int(round((cw - nw) / 2.0))))
+    py_ = max(0, min(ch - nh, STOCK_CONTENT_BOT + 1 - nh))
+    out.paste(content, (px_, py_), content)
+
+    # LANCZOS blends toward the transparent (0,0,0,0) surround, so a downscale can
+    # manufacture opaque-but-pure-black edge pixels, which makespr's chromakey test
+    # would eat -- punching holes in the silhouette. Re-apply the DARK_FLOOR nudge.
+    p = out.load()
+    for y in range(ch):
+        for x in range(cw):
+            r, g, b, a = p[x, y]
+            if a and r == 0 and g == 0 and b == 0:
+                p[x, y] = (DARK_FLOOR, DARK_FLOOR, DARK_FLOOR, a)
+    return out
+
+
 def _facing_images(tga: Path, flip: bool) -> list["Image.Image"]:
     """
     Return one keyed 96×72 RGBA image per facing (N,NE,E,SE,S).
@@ -310,37 +410,88 @@ def _facing_images(tga: Path, flip: bool) -> list["Image.Image"]:
     exists later, load each facing's own source here and return n distinct images
     (n:n) — nothing else in the pipeline needs to change.
 
-    Content extent normalisation (_fit_content) is INERT by default: both
-    CONTENT_MAX_*_FRAC are 1.0, so the image is returned pixel-identical to the
-    bare-resize path. It was briefly bound to 0.80/0.97 on 2026-07-25 and reverted
-    the same day -- shrinking the shared source art also moved the unit off the
-    map's draw anchor. Placement is governed by SPRITE_HOT_POINTS instead (see the
-    _GU_SCRIPT comment), which is the engine's actual anchor mechanism.
+    Two normalisation steps run after keying, in order:
+
+      _fit_content            INERT by default (both CONTENT_MAX_*_FRAC are 1.0).
+                              Kept as the env-var escape hatch for one-off
+                              experiments; it is not the extent mechanism.
+      _normalize_to_stock_extent
+                              THE extent mechanism. Bounds content to vanilla's
+                              measured envelope and bottom-aligns it. See its
+                              docstring for the stock-vs-ours measurement.
+
+    The 2026-07-25 attempt bound _fit_content to 0.80/0.97 and was reverted the
+    same day because it shrank the art without correcting the anchor. Extent and
+    anchor are coupled; _content_anchor moves with this.
     """
     img = Image.open(str(tga)).convert("RGBA").resize((96, 72), Image.LANCZOS)
     if flip:
         img = img.transpose(Image.FLIP_LEFT_RIGHT)   # left-facing source -> right-facing
     _key_background(img)
     img = _fit_content(img)
+    img = _normalize_to_stock_extent(img)
     return [img] * N_FACINGS   # 1:n cast; replace with n distinct images for true facings
 
 
 def _content_anchor(img: "Image.Image") -> tuple[int, int]:
     """
-    Return the (x, y) draw anchor of a keyed facing image: the horizontal centre
-    of its opaque bounding box, and the box's bottom row (the unit's feet).
+    Return the (x, y) draw anchor of a keyed facing image: the ALPHA-WEIGHTED
+    horizontal centroid of its opaque pixels, and STOCK_FEET_TO_ANCHOR rows ABOVE
+    the bounding box's bottom — not the bottom row itself.
 
     Require:   img is RGBA, already background-keyed (transparent surround).
     Guarantee: the returned point lies inside the image bounds.
     Failure:   a fully transparent image has no content, so it falls back to the
                canvas floor-centre — a blank frame draws nothing either way, and
                _spr_move_nonempty_rows already hard-fails that case downstream.
+
+    The engine blits the frame so the hot-point pixel lands on the tile anchor,
+    so hot_y is a pure translation: a LARGER hot_y draws the unit further UP.
+    Anchoring at the literal content bottom (what this returned until 2026-07-26)
+    put MoM's hot_y at a median of 68 against vanilla's 48, drawing every unit
+    ~12px too high — the reported "a little to the top". Vanilla's measured
+    convention is bottom-12: the anchor is the unit's lower shin where it meets
+    the tile, not the last opaque pixel (which is toe, cloak hem, or spear butt).
+    `build_unit_sprite.py` independently arrived at the same shape with
+    FEET_TO_HOTPOINT = 16; the 12 here is measured from the shipped art rather
+    than assumed, so it supersedes that constant.
+
+    hot_x is the alpha-weighted centroid, NOT the bbox centre. The two are equal
+    only for art that is symmetric inside its box, and MoM's is not: a spear juts
+    one way, a banner the other, so the box grows on both sides while the visual
+    mass stays off to one. Measured on the shipped build, stock sits at
+    hot_x - centroid = +0.5 median while ours sat at -4.6 — the art's mass ~5px
+    right of the anchor, which is exactly the "still offset to the right" that
+    survived the bottom-12 fix. Weighting by alpha (not a binary opaque test)
+    keeps a feathered edge from counting as much as solid body pixels.
+
+    Coupled to _normalize_to_stock_extent(): that bounds the content to vanilla's
+    envelope, this anchors within it. Changing one without the other is what made
+    the 2026-07-25 attempt regress.
     """
     box = img.getbbox()
     if box is None:
         return (img.width // 2, img.height - 1)
     x0, y0, x1, y1 = box                      # getbbox is right/bottom-EXCLUSIVE
-    return (int(round((x0 + x1 - 1) / 2.0)), y1 - 1)
+    bottom = y1 - 1
+    hot_y = max(y0, bottom - STOCK_FEET_TO_ANCHOR)   # never above the content top
+
+    alpha = img.getchannel("A")
+    wsum = 0
+    xsum = 0
+    ap = alpha.load()
+    for x in range(x0, x1):
+        col = 0
+        for y in range(y0, y1):
+            col += ap[x, y]
+        wsum += col
+        xsum += col * x
+    # Fall back to the bbox centre only if the box is somehow weightless, which
+    # getbbox already rules out — belt and braces so a divide-by-zero can never
+    # take the build down.
+    hot_x = (xsum / wsum) if wsum else ((x0 + x1 - 1) / 2.0)
+    hot_x = max(0, min(img.width - 1, int(round(hot_x))))
+    return (hot_x, hot_y)
 
 
 def _convert_tga_to_tifs(tga: Path, num: int, work_dir: Path, flip: bool = False) -> int:
@@ -404,6 +555,24 @@ def _spr_move_nonempty_rows(spr: Path) -> "int | None":
         for fr in range(num_frames):
             off += sizes[j * num_frames * 2 + num_frames + fr]
     return nonempty
+
+
+def _dest_names(num: int) -> list[Path]:
+    """Every shipped filename the engine might resolve for sprite id `num`.
+
+    ctp2.exe contains BOTH format strings "GU%.2d.SPR" and "GU%.3d.SPR", and
+    base CTP2 ships both conventions on disk (124 zero-padded, 83 unpadded, all
+    2000-11-01).  For ids < 100 the two forms are different files, so writing
+    only the unpadded one leaves any base-shipped padded twin in place and the
+    engine may serve stock art.  Measured 2026-07-26 for SPRITE_SPEARMEN 92:
+    map drew base GU092.SPR, UI drew MoM's GU92.SPR.  Base twins exist for
+    091/092/093 only, but emitting both names unconditionally is cheap and
+    removes the whole class.
+
+    Guarantee: returns 1 path for num >= 100, 2 distinct paths below that.
+    """
+    names = {f"GU{num:02d}.SPR", f"GU{num:03d}.SPR"}
+    return [SPRITES_DIR / n for n in sorted(names)]
 
 
 def _build_spr(num: int, work_dir: Path, anchor: tuple[int, int]) -> Path:
@@ -481,7 +650,13 @@ def main() -> int:
 
         nn = f"{num:02d}"
         spr = SPRITES_DIR / f"GU{nn}.SPR"
-        # Presence is NOT proof we built it. The MoM range starts at 91, but base
+        # Presence is NOT proof we built it.  Nor is presence of the UNPADDED
+        # name proof the engine reads it: ctp2.exe carries BOTH "GU%.2d.SPR"
+        # and "GU%.3d.SPR", and base CTP2 ships zero-padded twins GU091/092/093
+        # dated 2000-11-01.  Measured 2026-07-26: the map drew base GU092.SPR
+        # (white spearman) while the UI drew MoM's GU92.SPR (gold warrior).  So
+        # staleness must consider the OLDEST of both names, and the copy step
+        # writes both.  See _dest_names(). The MoM range starts at 91, but base
         # CTP2 already ships GU91/92/93/95 (and others) into the same directory, so
         # a bare exists() check silently adopted stock art for SPRITE_ZOMBIES,
         # SPRITE_SPEARMEN, SPRITE_SWORDSMEN and SPRITE_WARBEARS -- the map drew a
@@ -489,8 +664,10 @@ def main() -> int:
         # instead: rebuild whenever the source TGA is newer than the SPR. Stock
         # files are dated 2000-11-01, so every collision resolves in our favour and
         # the check self-heals on any future art edit.
-        if (spr.exists() and not args.force
-                and spr.stat().st_mtime >= tga.stat().st_mtime):
+        dests = _dest_names(num)
+        if (not args.force
+                and all(d.exists() for d in dests)
+                and min(d.stat().st_mtime for d in dests) >= tga.stat().st_mtime):
             continue   # up to date
 
         to_build.append((name, num, tga))
@@ -547,9 +724,9 @@ def main() -> int:
                     raise ValueError(
                         f"compiled GU{nn}.SPR is fully EMPTY (all rows transparent) — keying "
                         f"erased the art for {name}; not copying. Diagnose with diagnose_spr.py.")
-                dest = SPRITES_DIR / f"GU{nn}.SPR"
-                shutil.copy2(str(spr), str(dest))
-                print(f"    -> {dest}  ({dest.stat().st_size} bytes)")
+                for dest in _dest_names(num):
+                    shutil.copy2(str(spr), str(dest))
+                    print(f"    -> {dest}  ({dest.stat().st_size} bytes)")
             except Exception as exc:
                 errors.append((name, f"GU{nn}.SPR", str(exc)))
                 print(f"    ERROR: {exc}")

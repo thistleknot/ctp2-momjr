@@ -189,6 +189,10 @@ void_f MomGrantDeathBuilding(int_t p_12)
 void_f MomSpawnSphereUnit(int_t p_13, int_t unitType)
 {
     city_t tmpCity;
+    location_t spawnLoc;
+    location_t tryLoc;
+    int_t d;
+    int_t placed;
 
     // NEVER player[1]: player[] is the event ARG array (size 1), so player[1] is
     // out of bounds -- the same rule mom_turns.slc documents. It did not raise a
@@ -198,7 +202,34 @@ void_f MomSpawnSphereUnit(int_t p_13, int_t unitType)
     if (player[0].cities) {
         GetCityByIndex(player[0], 0, tmpCity);
         if (CityIsValid(tmpCity)) {
-            CreateUnit(p_13, unitType, tmpCity.location, 1);
+            // ADJACENT PLACEMENT, 2026-07-25. This used to spawn on tmpCity.location
+            // unconditionally, so every summon piled onto the capital tile. CTP2 draws
+            // exactly ONE unit per tile, and CellUnitList::GetTopVisibleUnitOfMoveType
+            // orders own units by MaxMovePoints -- GUARDIAN_SPIRIT is 200, SPEARMEN is
+            // 100, so a single summon permanently hid every unit the player built there
+            // ("you can't find the unit on the map despite us building one"). Placing
+            // the summon on a free land neighbour leaves the garrison's draw slot alone.
+            //
+            // Builtins only, no nested user-function call: this runs from the
+            // BeginTurn handler body and the 2-level chain is the known 0xC0000005.
+            // WORLD_DIRECTION 0..7 are the eight neighbours (directions.h); GetNeighbor
+            // returns 0 at a map edge, where its out-arg is not written -- so the
+            // return value must gate the read.
+            spawnLoc = tmpCity.location;
+            placed = 0;
+            for (d = 0; d < 8; d = d + 1) {
+                if (placed == 0) {
+                    if (GetNeighbor(tmpCity.location, d, tryLoc)) {
+                        if (!IsWater(tryLoc)) {
+                            if (GetUnitsAtLocation(tryLoc) == 0) {
+                                spawnLoc = tryLoc;
+                                placed = 1;
+                            }
+                        }
+                    }
+                }
+            }
+            CreateUnit(p_13, unitType, spawnLoc, 1);
         }
     }
 }

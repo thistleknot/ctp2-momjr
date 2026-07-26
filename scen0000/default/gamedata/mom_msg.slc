@@ -42,20 +42,33 @@ HandleEvent(GrantAdvance) 'MomSphereBlessingMessages' post {
 }
 
 // ---------------------------------------------------------------------------
-// LINK 7 CONSUMER: reads the order a MagicMenu arm placed LAST turn, spawns the
-// chosen unit, and clears the order.
+// SUMMON CONSUMER: reads the order a MagicMenu arm placed LAST turn, spawns the
+// creature of the CASTER'S OWN SPHERE, and clears the order.
 //
-// ZERO user-function calls by construction. GetCityByIndex / CityIsValid /
-// CreateUnit / UnitDB / AddGold / IsHumanPlayer are all builtins, so this
-// handler sits at call depth 0 and cannot hit the Class 1 crash -- which is why
-// the spawn is NOT routed through MomSpawnSphereUnit even though that helper
-// exists (MomMagicPoolTick already spends its budget on two user calls).
+// Sphere-gated as of 2026-07-26. It used to branch on MomSummonChoice being 1 or
+// 2 and spawn a Guardian Spirit or Zombies accordingly, because the menu offered
+// both to everyone. That was link-7 test scaffolding -- two arms existed only so
+// "the ordered unit appeared" could be told apart from "the handler always
+// summons that unit" -- and once link 7 closed it survived as a Life tribe being
+// able to raise the dead. The order is now a single boolean intent; WHICH
+// creature answers is a property of the caster, not of the button.
 //
-// The AddGold sentinel is the readable half of the verdict: unit sprites are
-// hard for the harness to identify, a gold delta is a number on the HUD.
-// 111 vs 222 vs "no change" are mutually exclusive readings, so one screenshot
-// settles which arm ran, that it ran ONCE, and that it ran on the FOLLOWING
-// turn rather than at click time.
+// The sphere IS the player index (1 Life, 2 Nature, 3 Sorcery, 4 Death,
+// 5 Chaos; 0 is barbarians and is excluded by the p >= 1 guard). Seating order
+// is faction identity here -- TRIBES_* are civ-DB record names, not SLIC
+// symbols, so there is nothing else to test against.
+//
+// The mapping is INLINED rather than delegated to MomSphereSummonUnit(), for two
+// independent reasons, either of which alone would force it: scenario.slc
+// includes mom_msg.slc BEFORE mom_magic.slc, so that helper is not yet declared
+// here; and this handler must stay at call depth 0. GetCityByIndex / CityIsValid
+// / CreateUnit / UnitDB / Message are all builtins, so the Class 1 nested-call
+// crash cannot be reached.
+//
+// The 111/222 AddGold sentinels are gone with the scaffolding. They existed
+// because a gold delta on the HUD was easier for the harness to read than a unit
+// sprite; the five distinct result popups now carry that signal, and free gold
+// on every summon was never intended gameplay.
 //
 // player[0] is the turn player -- never player[p], see mom_func.slc.
 // ---------------------------------------------------------------------------
@@ -65,22 +78,49 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     city_t tmpCity;
 
     p = player[0];
-    if (p >= 1 && MomSummonChoice[p] != 0 && player[0].cities > 0) {
+    // COST 75 (added 2026-07-26). The order is placed at click time and PAID here,
+    // at spawn time, so the pool is only debited when a creature actually appears.
+    // Re-checking the balance is not redundant with the button-body check: the
+    // only thing that can move the pool between the two is MomMagicPoolTick's
+    // accrual, which is monotonically upward, so a click that was affordable stays
+    // affordable -- but a future spender on the same turn must not be able to push
+    // this negative. The check is a plain comparison at call depth 0.
+    if (p >= 1 && MomSummonChoice[p] != 0 && player[0].cities > 0
+        && MomMagicCur[p] >= 75) {
         GetCityByIndex(player[0], 0, tmpCity);
         if (CityIsValid(tmpCity)) {
-            if (MomSummonChoice[p] == 1) {
+            MomMagicCur[p] = MomMagicCur[p] - 75;
+            if (IsHumanPlayer(p)) {
+                MomMagicCurDisp = MomMagicCur[p];
+                MomMagicMaxDisp = MomMagicMax[p];
+                MomMagicGenDisp = MomMagicPerTurn[p];
+            }
+            if (p == 1) {
                 CreateUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT), tmpCity.location, 1);
-                AddGold(p, 111);
                 Message(p, 'MomSummonGuard');
-            } elseif (MomSummonChoice[p] == 2) {
+            } elseif (p == 2) {
+                CreateUnit(p, UnitDB(UNIT_WARBEARS), tmpCity.location, 1);
+                Message(p, 'MomSummonBear');
+            } elseif (p == 3) {
+                CreateUnit(p, UnitDB(UNIT_MAGE), tmpCity.location, 1);
+                Message(p, 'MomSummonMage');
+            } elseif (p == 4) {
                 CreateUnit(p, UnitDB(UNIT_ZOMBIES), tmpCity.location, 1);
-                AddGold(p, 222);
                 Message(p, 'MomSummonZombie');
+            } elseif (p == 5) {
+                CreateUnit(p, UnitDB(UNIT_HELL_HOUNDS), tmpCity.location, 1);
+                Message(p, 'MomSummonHound');
             }
         }
-        // Cleared unconditionally: an order that could not be filled (no valid
-        // city) must not silently re-fire on a later turn, or "it spawned" would
-        // no longer pin WHICH turn consumed the click.
+    }
+
+    // Cleared OUTSIDE the fill condition, not inside it. An order that could not
+    // be filled -- no valid city, or the pool moved below 75 -- must not survive to
+    // re-fire on a later turn, or "it spawned" would no longer pin WHICH turn
+    // consumed the click. Putting this clear inside the gate (as it was before the
+    // cost check existed, when the gate could not fail for a player with a city)
+    // would have made an unaffordable order a permanent standing order.
+    if (p >= 1 && MomSummonChoice[p] != 0) {
         MomSummonChoice[p] = 0;
     }
 }
@@ -126,17 +166,46 @@ messagebox 'MomBlessChaos' {
 	Text(ID_MOM_MSG_BLESS_CHAOS);
 }
 
-// Link-7 result popups. A distinct segment per arm is what makes the readout
-// DISCRIMINATING: the harness compares the two runs' captured frames, so the two
-// texts must differ, and neither may be reachable from the other arm.
+// Summon result popups -- one per sphere. A distinct segment per sphere is also
+// what keeps the readout DISCRIMINATING for the harness: the text names the
+// creature, so a single captured frame settles which sphere's branch ran, and no
+// segment is reachable from another sphere's branch. Message(p, 'Key') needs
+// 'Key' to be a DEFINED SEGMENT (see the block comment above) -- adding the
+// scen_str.txt keys alone would have displayed nothing.
 messagebox 'MomSummonGuard' {
 	Show();
 	Text(ID_MOM_MSG_SUMMON_GUARD);
 }
 
+messagebox 'MomSummonBear' {
+	Show();
+	Text(ID_MOM_MSG_SUMMON_BEAR);
+}
+
+messagebox 'MomSummonMage' {
+	Show();
+	Text(ID_MOM_MSG_SUMMON_MAGE);
+}
+
 messagebox 'MomSummonZombie' {
 	Show();
 	Text(ID_MOM_MSG_SUMMON_ZOMBIE);
+}
+
+messagebox 'MomSummonHound' {
+	Show();
+	Text(ID_MOM_MSG_SUMMON_HOUND);
+}
+
+// Insufficient-mana answer for the Summon arm. A messagebox, NOT an alertbox:
+// this fires from inside a button body while the MagicMenu alertbox is being
+// Kill()ed, and stacking a second modal on that path is exactly the shape the
+// harness cannot dismiss. mom_spells.slc's 'MomMsgNoMana' is an alertbox and is
+// deliberately not reused here for that reason -- distinct segment name, so the
+// one-flat-namespace rule is satisfied.
+messagebox 'MomSummonNoMana' {
+	Show();
+	Text(ID_MOM_MSG_SUMMON_NOMANA);
 }
 
 messagebox 'MomMagicPower' {
@@ -179,28 +248,41 @@ alertbox 'MagicMenu' {
 	Show();
 	Text(ID_MOM_MSG_MAGIC_MENU);
 
-	// ARM 1 -- LINK 7: place a summon ORDER. The body only writes a global; the
-	// spawn happens next BeginTurn in MomSummonOrderTick. Two arms, not one:
-	// with a single arm, "the ordered unit appeared" is indistinguishable from
-	// "the handler always spawns that unit", so the choice would prove nothing.
-	// Bodies stay assignment-only -- a button body carries the same nested-call
-	// budget as a HandleEvent body (Class 1), so no user-function calls here.
-	Button(ID_MOM_MSG_BTN_SUMMON_GUARD) {
-		MomSummonChoice[g.player] = 1;
+	// SUMMON: place a summon ORDER. The body only writes a global; the spawn
+	// happens next BeginTurn in MomSummonOrderTick, which resolves the creature
+	// from the caster's own sphere. The body stays assignment-only -- a button
+	// body carries the same nested-call budget as a HandleEvent body (Class 1),
+	// so no user-function calls here, and none are needed: the sphere lookup
+	// belongs at spawn time, not at click time.
+	//
+	// ONE arm as of 2026-07-26, previously two (Guardian / Zombies). The second
+	// arm was link-7 apparatus -- with a single arm "the ordered unit appeared"
+	// could not be told apart from "the handler always spawns that unit" -- and
+	// link 7 is closed. Leaving it in meant every sphere was offered every other
+	// sphere's creature, so a Life tribe could raise zombies. The caption cannot
+	// name the creature (button captions are static string IDs and this segment
+	// is invoked BY NAME from keypress.cpp, so SLIC never gets to pick a
+	// per-sphere variant the way MomSpellShowBook does); the result popup does.
+	// COST 75, checked HERE as well as at spawn time. The click is the moment the
+	// player expects an answer, so an unaffordable click gets an immediate message
+	// rather than a button that appears to do nothing and then produces nothing
+	// next turn. Both branches are comparisons and builtins (Message is a builtin),
+	// so the body is still at call depth 0 -- the Class 1 budget is untouched.
+	Button(ID_MOM_MSG_BTN_SUMMON) {
+		if (MomMagicCur[g.player] >= 75) {
+			MomSummonChoice[g.player] = 1;
+		} else {
+			Message(g.player, 'MomSummonNoMana');
+		}
 		Kill();
 	}
 
-	// ARM 2 -- the discriminating alternative.
-	Button(ID_MOM_MSG_BTN_SUMMON_ZOMBIE) {
-		MomSummonChoice[g.player] = 2;
-		Kill();
-	}
-
-	// ARM 3 -- SLIC->engine boundary: AddGold is base-verified (AlexanderTheGreat).
-	Button(ID_BUTTON_GOAL) {
-		AddGold(g.player, 500);
-		Kill();
-	}
+	// The "Goal" arm (AddGold 500) was REMOVED 2026-07-26 with the same reasoning
+	// as the second summon arm. It existed to prove the SLIC->engine boundary for
+	// link 5 by writing real engine state that shows on the HUD; that link is
+	// closed, and what remained was a free-money button sitting in the player's
+	// magic menu. The boundary is still exercised in play by the summon path's
+	// CreateUnit, so nothing is lost as evidence.
 
 	Button(ID_BUTTON_CLOSE) {
 		Kill();

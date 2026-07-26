@@ -165,6 +165,17 @@ def advance_id(code):
 # Complete MoM short-code → CTP2 advance ID mapping for UNITS
 MOM_UNIT_ADVANCE = {r["code"]: r["advance"] for r in _ADVANCE_CODE_ROWS if r["lane"] == "unit"}
 
+# The BUILDING-prereq lane of the same control plane. Kept SEPARATE from the
+# unit lane rather than merged over it: the two lanes disagree on purpose
+# (unit 'MT' -> ADVANCE_THEOLOGY, prereq 'MT' -> ADVANCE_COMMUNE_WITH_GODS) and
+# 5 prereq-lane targets are dangling, so consumers must try this lane first and
+# FALL THROUGH to the unit lane when the target does not exist or is disabled.
+# Reading buildings through the unit lane alone silently dropped prereq-only
+# codes to the fallback advance (found 2026-07-26 via Merchant's Guild, 'Eco').
+MOM_PREREQ_ADVANCE_LANE = {
+    r["code"]: r["advance"] for r in _ADVANCE_CODE_ROWS if r["lane"] == "prereq"
+}
+
 # Codes that mean "no advance required" (heroes / starter units)
 _NO_ADVANCE = {'nil', 'no', ''}
 
@@ -496,9 +507,23 @@ def _merge_mom_improvements_into_buildings() -> int:
     import re as _re
     import csv
     gl_str = reg.load("english/gamedata/gl_str.txt")
-    advances = set(_re.findall(r'^(ADVANCE_[A-Z0-9_]+)',
-                               _read_rel("default/gamedata/Advance.txt"), _re.M))
-    
+    # Read the LIVE advance tree from the registry, not from disk. This merge
+    # runs before save_all(), so _read_rel() here returns the PREVIOUS run's
+    # advance.txt: measured 2026-07-26, ADVANCE_COMMUNE_WITH_GODS was absent
+    # from it, so Cathedral's real gate was rejected as unknown and silently
+    # demoted to the fallback advance (buildable turn 1). Same ordering class
+    # as the improvement-cost bug below.
+    _adv_file = reg.load("default/gamedata/Advance.txt")
+    _advance_text = getattr(_adv_file, "_text", "") or _read_rel("default/gamedata/Advance.txt")
+    advances = set(_adv_file.blocks) or set(
+        _re.findall(r'^(ADVANCE_[A-Z0-9_]+)', _advance_text, _re.M))
+    # Advances disabled by self-prerequisite — see the prereq resolution below.
+    _disabled_advances = {
+        _m.group(1)
+        for _m in _re.finditer(r'^(ADVANCE_\w+) \{(.*?)^\}', _advance_text, _re.S | _re.M)
+        if _re.search(r'Prerequisites\s+' + _m.group(1) + r'\b', _m.group(2))
+    }
+
     # RECONSTRUCT FROM NOTHING: Start with a completely empty file.
     bld = P.RawBlockTextFile()
     
@@ -508,6 +533,7 @@ def _merge_mom_improvements_into_buildings() -> int:
                     else (sorted(advances)[0] if advances else ""))
     remap = dict(_merge_policy["prereq_remap"])
     merged = 0
+    _fallback_gates: list[tuple[str, str, str]] = []
     
     # Read directly from improvements.csv, NOT from Improve.txt (which may be base game)
     csv_path = MOMJR / "improvements.csv"
@@ -556,9 +582,31 @@ def _merge_mom_improvements_into_buildings() -> int:
                 if prereq in _NO_ADVANCE:
                     adv = "ADVANCE_WARRIOR_CODE"
                 else:
-                    adv = MOM_UNIT_ADVANCE.get(prereq, "ADVANCE_WARRIOR_CODE")
-                    if adv not in advances:
-                        adv = fallback_adv
+                    # Resolution CHAIN, most specific first. A flat override of
+                    # the unit lane by the prereq lane is wrong: 5 prereq-lane
+                    # targets are dangling (ADVANCE_COMMUNE_WITH_GODS et al.
+                    # were never generated), and taking them blindly demoted
+                    # real gates to the fallback -- Cathedral's 'MT' resolves to
+                    # the dangling COMMUNE_WITH_GODS in the prereq lane but to
+                    # the live ADVANCE_THEOLOGY in the unit lane.
+                    #
+                    # A candidate is usable only if it EXISTS and is not
+                    # disabled by self-prerequisite, which is CTP2's sanctioned
+                    # "advance is unresearchable" form (Advances.cpp:498) and
+                    # which MoM applies to 169 base advances. Gating a building
+                    # on one makes it permanently unbuildable.
+                    adv = fallback_adv
+                    for _candidate in (MOM_PREREQ_ADVANCE_LANE.get(prereq),
+                                       MOM_UNIT_ADVANCE.get(prereq)):
+                        if (_candidate and _candidate in advances
+                                and _candidate not in _disabled_advances):
+                            adv = _candidate
+                            break
+                    else:
+                        # Falling back is legitimate, but it must never be
+                        # SILENT again: an unannounced fallback is what let
+                        # every building sit on the wrong gate unnoticed.
+                        _fallback_gates.append((name, prereq, adv))
                 
                 cost = row.get("cost", "100").strip() or "100"
                 upkeep = row.get("upkeep", "1").strip() or "1"
@@ -602,6 +650,9 @@ def _merge_mom_improvements_into_buildings() -> int:
     if imp_path.exists():
         imp_path.unlink()
     print(f"  + reconstructed buildings.txt STRICTLY from control plane ({merged} records); removed dead Improve.txt")
+    for _bname, _bcode, _badv in _fallback_gates:
+        print(f"  ! prereq code {_bcode!r} for '{_bname}' is dangling or disabled "
+              f"in advance_code_map.csv -> gated on fallback {_badv}")
     return merged
 
 
@@ -4154,6 +4205,18 @@ def main():
     # the authored MoM improvements into buildings.txt (AE schema) and drop Improve.txt.
     # Done before save_all so the dead Improve.txt is never written.
     _merge_mom_improvements_into_buildings()
+
+    # ORDERING (fixed 2026-07-26): the merge above writes RAW Civ2 costs (4..60)
+    # straight from improvements.csv, and it runs ~1300 lines AFTER the
+    # _retune_mom_improvement_costs() call earlier in main() -- so that earlier
+    # rescale was always clobbered and every MoM building shipped as a 1-turn
+    # build. Wonders and units were never affected: their retunes run after
+    # their own ingestion. Re-run the improvement rescale HERE, once the blocks
+    # actually exist, so raw Civ2 costs land in the base CTP2 age band that
+    # matches the advance which gates each block.
+    retuned_improvement_costs = _retune_mom_improvement_costs(advance_ages)
+    if retuned_improvement_costs:
+        print(f"  + rescaled {retuned_improvement_costs} improvement cost(s) into base CTP2 age bands")
 
     # Icon-DB backfill: the runtime Icon database is uniticon.txt (civapp.cpp
     # g_theIconDB->Parse(g_uniticondb_filename) — one DB for unit AND building

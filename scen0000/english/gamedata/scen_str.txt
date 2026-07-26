@@ -43,11 +43,27 @@ MOM_MSG_NO_TARGET		"Your magic finds no enemy city to strike. The power is retai
 MOM_MSG_NO_MANA		"You lack the mana to complete this working."
 MOM_MSG_NOT_CHAOS		"Only a Chaos mage may summon demons."
 
-# Interactivity link 7 -- an alertbox arm places a summon ORDER, and the BeginTurn
-# consumer in mom_msg.slc fills it on the FOLLOWING turn. Two arms, two distinct
-# result popups: with one arm, "the ordered unit appeared" could not be told apart
-# from "the handler always summons that unit".
-MOM_MSG_BTN_SUMMON_GUARD	"Summon Guardian"
-MOM_MSG_BTN_SUMMON_ZOMBIE	"Summon Zombies"
+# Summoning. The button is SPHERE-NEUTRAL by necessity, not by choice: alertbox
+# button captions are static string IDs, and 'MagicMenu' is invoked BY NAME from
+# C++ on the 'j' key, so SLIC gets no chance to dispatch to a per-sphere variant
+# the way MomSpellShowBook picks Spellbook vs SpellbookChaos. The creature is
+# resolved at spawn time from the caster's own sphere instead, and the result
+# popup names it -- so the flavour lands on the outcome rather than the caption.
+#
+# Superseded 2026-07-26: this used to be TWO hardcoded arms, Guardian and Zombies,
+# offered to everyone. That was link-7 test scaffolding (two arms were needed to
+# tell "the ordered unit appeared" apart from "the handler always summons that
+# unit"), and it leaked into play as a Life tribe being able to raise zombies.
+#
+# Priced at 75 on 2026-07-26. It was free while the pool auto-discharged at cap;
+# with the pool now a real accumulating resource, a free arm would be the only
+# working in the game that costs nothing. 75 sits above Flame Strike (50) and
+# below Demon Strike (100), and is reachable inside the base 100 cap, so no
+# sphere is locked out of it.
+MOM_MSG_BTN_SUMMON		"Summon Creature (75)"
+MOM_MSG_SUMMON_NOMANA		"You lack the mana for a summoning. A creature costs 75, and you hold {MomMagicCurDisp}."
 MOM_MSG_SUMMON_GUARD		"Your working completes. A Guardian Spirit manifests in your capital."
+MOM_MSG_SUMMON_BEAR		"Your working completes. Warbears lumber out of the forest into your capital."
+MOM_MSG_SUMMON_MAGE		"Your working completes. A Mage steps out of the aether in your capital."
 MOM_MSG_SUMMON_ZOMBIE		"Your working completes. Zombies claw their way up in your capital."
+MOM_MSG_SUMMON_HOUND		"Your working completes. Hell Hounds burn their way into your capital."

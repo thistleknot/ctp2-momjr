@@ -1,18 +1,49 @@
 module,kind,name,signature,purpose,phase,status
-scenario.slc,handler,MomSlicAlive,HandleEvent(BeginTurn) post,one-shot liveness probe; DisableTrigger self,A,ACTIVE
-tutorial.slc,override,-,-,retires stock tut2_main.slc tutorial triggers,A,ACTIVE
-mom_func.slc,function,MomPlayerIsLife,int_f(int_t p),faction predicate p==1 (Life),B,ACTIVE
-mom_func.slc,function,MomPlayerIsNature,int_f(int_t p),faction predicate p==2 (Nature),B,ACTIVE
-mom_func.slc,function,MomPlayerIsSorcery,int_f(int_t p),faction predicate p==3 (Sorcery),B,ACTIVE
-mom_func.slc,function,MomPlayerIsDeath,int_f(int_t p),faction predicate p==4 (Death),B,ACTIVE
-mom_func.slc,function,MomPlayerIsChaos,int_f(int_t p),faction predicate p==5 (Chaos),B,ACTIVE
-mom_func.slc,function,MomCountLifeBlessings,int_f(int_t p),weighted count of Life buildings (TEMPLE/CITY_WALLS/WIZARDS_FORTRESS),B,ACTIVE
-mom_func.slc,function,MomCountNatureFoci,int_f(int_t p),weighted count of Nature buildings (GRANARY/PRIMAL_SOURCE/FANTASTIC_STABLE),B,ACTIVE
-mom_func.slc,function,MomCountSorceryFoci,int_f(int_t p),weighted count of Sorcery buildings (LIBRARY/BEACON_OF_WISDOM),B,ACTIVE
-mom_func.slc,function,MomGrantSphereBuilding,void_f(int_t p; int_t buildingType),grant a themed building in the player's first city if absent,B,ACTIVE
-mom_func.slc,function,MomSpawnSphereUnit,void_f(int_t p; int_t unitType),CreateUnit in first city (integer player index),B,ACTIVE
+mom_func.slc,function,MomPlayerIsLife,int_f(int_t p_1),faction predicate p==1 (Life),B,ACTIVE
+mom_func.slc,function,MomPlayerIsNature,int_f(int_t p_2),faction predicate p==2 (Nature),B,ACTIVE
+mom_func.slc,function,MomPlayerIsSorcery,int_f(int_t p_3),faction predicate p==3 (Sorcery),B,ACTIVE
+mom_func.slc,function,MomPlayerIsDeath,int_f(int_t p_4),faction predicate p==4 (Death),B,ACTIVE
+mom_func.slc,function,MomPlayerIsChaos,int_f(int_t p_5),faction predicate p==5 (Chaos),B,ACTIVE
+mom_func.slc,function,MomCountLifeBlessings,int_f(int_t p_6),weighted count of Life buildings (TEMPLE/CITY_WALLS/WIZARDS_FORTRESS),B,ACTIVE
+mom_func.slc,function,MomCountNatureFoci,int_f(int_t p_7),weighted count of Nature buildings (GRANARY/PRIMAL_SOURCE/FANTASTIC_STABLE),B,ACTIVE
+mom_func.slc,function,MomCountSorceryFoci,int_f(int_t p_8),weighted count of Sorcery buildings (LIBRARY/BEACON_OF_WISDOM),B,ACTIVE
+mom_func.slc,function,MomGrantLifeBuilding,void_f(int_t p_9),grant the Life-sphere themed building in the player's first city,B,ACTIVE
+mom_func.slc,function,MomGrantNatureBuilding,void_f(int_t p_10),grant the Nature-sphere themed building in the player's first city,B,ACTIVE
+mom_func.slc,function,MomGrantSorceryBuilding,void_f(int_t p_11),grant the Sorcery-sphere themed building in the player's first city,B,ACTIVE
+mom_func.slc,function,MomGrantDeathBuilding,void_f(int_t p_12),grant the Death-sphere themed building in the player's first city,B,ACTIVE
+mom_func.slc,function,MomSpawnSphereUnit,"void_f(int_t p_13, int_t unitType)",CreateUnit in first city (integer player index),B,ACTIVE
 mom_turns.slc,handler,MomSphereTurnBlessings,HandleEvent(BeginTurn) post,per-turn sphere gold income by faction,B,ACTIVE
 mom_city_effects.slc,handler,MomSphereAdvanceBlessings,HandleEvent(GrantAdvance) post,sphere magic-advance milestone: grant blessing building + spawn sphere unit (Chaos = random gold),B,ACTIVE
 mom_city_effects.slc,handler,MomSphereCityEffects,HandleEvent(CreateBuilding) post,+30 burst gold on themed building completion,B,ACTIVE
 mom_msg.slc,handler,MomSphereBlessingMessages,HandleEvent(GrantAdvance) post,per-sphere blessing popup on the magic advance (human-only; base Message plumbing),C,ACTIVE
-mom_magic.slc,module,-,-,MoM magic system (power pool / school multipliers / spells / mana nodes / AI) per specs/slic-magic-system.md — built on base-verified SLIC,M,PLANNED
+mom_msg.slc,handler,MomSummonOrderTick,HandleEvent(BeginTurn) post,"spawn the creature ordered last turn, resolved from the CASTER'S OWN sphere; debits 75 mana",C,ACTIVE
+mom_msg.slc,messagebox,MomMsgSlicAlive,messagebox,segment: SLIC liveness confirmation text,C,ACTIVE
+mom_msg.slc,messagebox,MomBlessLife,messagebox,segment: Life sphere blessing popup,C,ACTIVE
+mom_msg.slc,messagebox,MomBlessNature,messagebox,segment: Nature sphere blessing popup,C,ACTIVE
+mom_msg.slc,messagebox,MomBlessSorcery,messagebox,segment: Sorcery sphere blessing popup,C,ACTIVE
+mom_msg.slc,messagebox,MomBlessDeath,messagebox,segment: Death sphere blessing popup,C,ACTIVE
+mom_msg.slc,messagebox,MomBlessChaos,messagebox,segment: Chaos sphere blessing popup,C,ACTIVE
+mom_msg.slc,messagebox,MomSummonGuard,messagebox,"segment: Life summon result (Guardian Spirit) -- names the creature, so one frame settles which branch ran",C,ACTIVE
+mom_msg.slc,messagebox,MomSummonBear,messagebox,segment: Nature summon result (War Bear),C,ACTIVE
+mom_msg.slc,messagebox,MomSummonMage,messagebox,segment: Sorcery summon result (Mage),C,ACTIVE
+mom_msg.slc,messagebox,MomSummonZombie,messagebox,segment: Death summon result (Zombies),C,ACTIVE
+mom_msg.slc,messagebox,MomSummonHound,messagebox,segment: Chaos summon result (Hell Hound),C,ACTIVE
+mom_msg.slc,messagebox,MomSummonNoMana,messagebox,"segment: insufficient-mana answer for the Summon arm; messagebox NOT alertbox, so no modal stacks on the Kill() path",C,ACTIVE
+mom_msg.slc,messagebox,MomMagicPower,messagebox,segment: mana pool / income readout body,C,ACTIVE
+mom_msg.slc,alertbox,MagicMenu,alertbox,INTERACTIVE: MAGIC STATUS alertbox; Summon arm (75 mana) writes an order global that survives the turn boundary,C,ACTIVE
+mom_magic.slc,function,MomRecalcMagicPerTurn,int_f(int_t mp_1),recompute a player's mana income from cities + owned mana nodes (base 10/turn),M,ACTIVE
+mom_magic.slc,handler,MomMagicPoolTick,HandleEvent(BeginTurn) post,"per-turn mana accrual into MomMagicCur, capped at the 100 pool ceiling",M,ACTIVE
+mom_magic.slc,handler,MomMagicSchoolGrant,HandleEvent(GrantAdvance) post,apply per-school mana multipliers when a magic advance is granted,M,ACTIVE
+mom_spells.slc,function,MomCastFlameStrike,void_f(int_t p),Chaos spell: damage the nearest enemy unit; targeting scan inlined to stay inside the Class 1 call budget,M,ACTIVE
+mom_spells.slc,function,MomCastDemonStrike,void_f(int_t p),Death spell: damage the nearest enemy unit; targeting scan inlined for the same reason,M,ACTIVE
+mom_spells.slc,function,MomSpellShowBook,void_f(int_t p),"open the spellbook popup, choosing the per-sphere variant at call time",M,ACTIVE
+mom_spells.slc,handler,MomSpellMenuTick,HandleEvent(BeginTurn) post,per-turn tick that resolves a queued spellbook selection,M,ACTIVE
+mom_spells.slc,trigger,MomOpenSpellbook,on ControlPanelWindow.ControlPanel.ShortcutPad.MagicButton,UI trigger bound to the control-panel MagicButton,M,ACTIVE
+mom_spells.slc,handler,MomSpellAICast,HandleEvent(BeginTurn) post,let AI players cast their sphere's spell when mana allows,M,ACTIVE
+mom_spells.slc,alertbox,MomMsgSpellbook,alertbox,segment: generic spellbook menu,M,ACTIVE
+mom_spells.slc,alertbox,MomMsgSpellbookChaos,alertbox,segment: Chaos-specific spellbook menu,M,ACTIVE
+mom_spells.slc,alertbox,MomMsgDemonCast,alertbox,segment: Demon Strike cast confirmation,M,ACTIVE
+mom_spells.slc,alertbox,MomMsgFlameCast,alertbox,segment: Flame Strike cast confirmation,M,ACTIVE
+mom_spells.slc,alertbox,MomMsgNoTarget,alertbox,segment: no enemy unit in range,M,ACTIVE
+mom_spells.slc,alertbox,MomMsgNoMana,alertbox,segment: insufficient mana for a spell (alertbox; distinct from mom_msg's summon variant),M,ACTIVE
+mom_spells.slc,alertbox,MomMsgNotChaos,alertbox,segment: caster's sphere does not grant this spell,M,ACTIVE
