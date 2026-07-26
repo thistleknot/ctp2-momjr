@@ -1,3 +1,34 @@
+## 2026-07-26 — Great Library text colour lives in the CONTENT, not the LDL
+
+**Symptom:** GL article body text is dark grey (50,50,50) on MoM's dark brown
+article pane — nearly invisible.
+
+**Two theses falsified before the right one.**
+1. "the scenario tree's `greatlibrary.ldl` overrides the base tree" — FALSIFIED.
+   A `widthpix 415 → 300` marker in `Scenarios/mom/scen0000/default/uidata/layouts/`
+   produced no visual change. **LDL is loaded from the BASE tree only.**
+2. "so set `fontcolor*` on `GREAT_BOX`/`GREAT_BIG_BOX` in the base tree" —
+   FALSIFIED. The same file over the base tree visibly narrowed the pane (proving
+   the file was live) while the text stayed dark. A geometry change applying and a
+   colour change not applying, from one edit, is the discriminating observation.
+
+**Root cause, from the engine source** (`ui/aui_ctp2/ctp2_hypertextbox.cpp`):
+`ctp2_HyperTextBox::InitCommon` hardcodes `m_hyperColor = RGB(50,50,50)` and
+`LoadFromLdl` never reads `fontcolor*`. **The colour cannot be set from LDL at
+all.** The only supported override is the in-text markup the parser consumes:
+`<c:r,g,b>` colour, `<h:r,g,b>` shadow, plus `<t:> <p:> <b:> <i:> <s:> <u:>`.
+Links are separately hardcoded to `RGB(0,0,100)` and restore `m_hyperColorOld`
+at `<e>`, so a leading `<c:>` survives every link in the section.
+
+**Fix:** `gl_descriptions.apply_text_color()` stamps `<c:245,240,225><h:0,0,0>`
+on every section, idempotently (strips any prior colour prefix first, so output
+stays byte-stable when the constant changes). `strip_markup()` now drops every
+`<x:...>` control tag, not just `<L:...>`, so the filler gate keeps measuring
+prose rather than markup.
+
+**Confirmed in-game headlessly** — Barracks GAME PLAY and a HISTORICAL panel both
+render near-white and legible. `steps/newgame_gl_descriptions.json --save none`.
+
 ## 2026-07-26 — Two repos: ctp2-modding is the HARNESS, ctp2-momjr is the MOD
 
 I merged the game tree into `ctp2-modding`'s `main` and destroyed the toolkit
