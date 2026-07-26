@@ -1,3 +1,39 @@
+## 2026-07-26 — SLIC is a control-plane dimension, and it flows BACKWARD
+
+The control plane is `mom_dimension_inventory.xlsx`: one tab per dimension, and
+a cell is a file and/or a set of constants/classes/functions — the content
+itself, not a manifest describing it. I first built the SLIC dimension as a flat
+CSV of signatures and was corrected; a manifest of names is a table of contents,
+not a control plane, because nothing downstream can be rebuilt from it.
+
+Every other dimension is forward-generated (Civ2 RULES.TXT -> xlsx -> scenario).
+SLIC is the exception and has to be: Civ2 has no equivalent, so there is nothing
+upstream to encode from. `tools/backcast_slic.py` runs the other way,
+scenario `*.slc` -> xlsx, and never writes SLIC. A spreadsheet that could
+regenerate SLIC would be strictly worse than text that is diffable and
+compilable.
+
+The tab that existed before was hand-maintained and had rotted exactly the way
+hand-maintained inventories do: 17 declarations, `mom_magic.slc` marked PLANNED
+although it ships and was verified in-game, `mom_spells.slc` missing entirely,
+and no tool in `tools/` read it. Derived instead: 8 modules, 48 declarations,
+57,196 bytes. Include order is parsed from `scenario.slc`'s `#include` list
+rather than hardcoded, so adding a module cannot silently mis-order the tab.
+
+**The split that makes it survivable.** Structure is re-derived every run;
+prose (`purpose`, `status`) merges forward by name via
+`tools/momjr_csv/slic_purpose.json`. A declaration added in code appears with an
+empty `purpose` — a visible TODO — and curated intent is never clobbered. One
+carve-out: a stale `PLANNED` never survives over code that demonstrably exists,
+which is the specific failure the old tab shipped with.
+
+**Harness lesson: openpyxl round-trips an empty string as `None`.** `--check`
+reported STALE immediately after a successful write because
+`existing != [HEADER] + rows` compared `None` against `""`. Any table drift gate
+must normalise BOTH sides. Verified in both directions afterwards: clean -> exit
+0; inject a `MomDriftProbe` handler -> STALE at 49 declarations, exit 1; revert
+-> exit 0. A gate only tested on the passing case is not a gate.
+
 ## 2026-07-26 (second pass) — matching the WRONG STATISTIC looks like confirmation
 
 The entry below closed the horizontal complaint on the evidence
