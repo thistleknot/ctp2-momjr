@@ -8,6 +8,7 @@ sys.path.insert(0, str(ROOT_DIR))
 sys.path.insert(0, str(TOOLS_DIR))
 import ctp2_parser as P
 import civ2_sprite_extractor as extractor
+import gl_descriptions
 from export_mod_workbook import DEFAULT_OUTPUT as MOD_WORKBOOK_PATH, export_workbook
 
 MOMJR = Path(
@@ -921,6 +922,19 @@ def _ensure_runtime_unit_gl_surfaces(
                 added_sections += 1
 
     return added_strings, added_sections
+
+
+def _gl_desc_text(rel: str) -> str:
+    """Current text of a scenario DB file, preferring unsaved in-memory content.
+
+    reg.text() reads disk, which during a run still holds the PREVIOUS run's
+    output -- deriving descriptions from that would quote last run's costs. Use
+    the parsed object's render() whenever the file has been loaded this run.
+    """
+    obj = reg._parsed.get(rel)
+    if obj is not None and hasattr(obj, "render"):
+        return obj.render()
+    return reg.text(rel)
 
 
 def _section_base_id(section_id: str):
@@ -4284,6 +4298,15 @@ def main():
     _adv._text = re.sub(r"(ADVANCE_\w+ )\{(.*?)\}", _cap_prereqs, _adv._text, flags=re.S)
     if _capped_adv:
         print(f"  + capped Prerequisites to {K_MAX_PREREQUISITES} on {_capped_adv} advance(s)")
+
+    # Great Library descriptions. Runs LAST, deliberately: GAMEPLAY prose is
+    # derived from the live DB blocks, so it has to see the final costs. The
+    # improvement rescale above is the cautionary tale -- an earlier pass here
+    # would quote production costs that a later pass then rewrote
+    # (see: generator pass ordering ate the cost rescale).
+    _gl_desc_report = gl_descriptions.apply_descriptions(
+        _gl_desc_text, gl_library, gl_str, MOMJR,
+    )
 
     reg.save_all()
     final_gl_scrubbed = 0

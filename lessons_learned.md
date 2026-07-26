@@ -2346,3 +2346,56 @@ round-robined over the other 10 MoM-generated looks (MoM aesthetic preserved, ad
 dupes broken). **Rule: fix the complained-about set, nothing more — "correct" is what the
 user sees, not what a tier ladder scores.** The desc=0x00 normalization of the 63 recovered
 loose TGAs stands (GL-crash guard).
+
+## 2026-07-26 — Great Library descriptions for EVERY element, and the harness lessons that got us there
+
+**Symptom:** the Barracks article rendered a blank GAME PLAY panel. Root cause was
+coverage, not rendering: most MoM elements had only a link-stub section.
+
+**Design:** GAMEPLAY prose is **derived** from the live DB blocks on every generator run
+(so it stays true when costs are retuned); HISTORICAL prose is **authored once** in the
+control plane (`tools/momjr_csv/gl_descriptions.csv`, 293 rows). One shared filler
+predicate, `gl_descriptions.is_filler()`, defines "missing" for both the writer and the
+gate — anything under 60 characters. Final state: 593 sections written (298 derived,
+293 authored), gate 800/800 PASS, output byte-stable across two runs.
+
+**Pass ordering (again).** The description pass must run LAST, immediately before
+`reg.save_all()`. A PREREQ section written by an earlier pass says "No advance required"
+for elements the advance-patch pass later gives a prerequisite; the last-running pass has
+to reconcile it.
+
+**Display labels come from the stock GL link stubs, not `gl_str`.** Several terrain idents
+have no `gl_str` entry, so `humanize()` fell back to the raw ident and the article titled
+"Desert Mountain" opened with "A Brown Mountain tile produces…". `_harvest_labels()` now
+reads labels back out of the stock articles' own `<L:DATABASE_X,IDENT>Name<e>` stubs. Two
+follow-ons: (a) among non-stub occurrences, first-wins is wrong — prose pluralises
+("found in Desert Mountains") while PREREQ "Location:" lists carry the singular, so vote
+by frequency and break ties on the shorter string; (b) terraform tileimps have neither a
+`gl_str` entry nor a stub, so name them from their `TerraformTerrain` field.
+
+**Harness lessons (all measured this session):**
+- `ctrl+5` does NOT open the Great Library. Use
+  `ControlPanelWindow.ControlPanel.ShortcutPad.GreatLibraryButton`.
+- GL search *filters* the index but does not *select* an article; a `select` on
+  `GreatLibrary.IndexSheet` is required. The first search after opening returns an empty
+  index — search twice.
+- GL tab buttons are `Tabs.<Name>.TabButton`, not `Tabs.<Name>`
+  (greatlibrary.ldl:403-442). Pressing the bare tab path is a silent no-op.
+- Selecting an index row resets the panel to GAME PLAY, and the first select after a
+  filter does not always load the article. Select, select again, *then* press the tab.
+- **With the vanilla-guard Targa modal gone, main-menu clicks are process-lethal**
+  (0xC0000005). The whole boot must be injection-driven. Working path:
+  `InitPlayWindow.NewGameButton` → `SPNewGameWindow.ScenarioButton` →
+  `ScenarioWindow.AvailableListBox` index 3 → `LoadButton` → index 0 → `LoadButton` →
+  `SPNewGameWindow.StartButton`. Frozen as `steps/newgame_mom_inject.json`.
+- The scenario dialog is TWO-LEVEL: the outer list holds *packs*, `LoadButton` descends
+  into that pack's scenario list. Pack order is case-insensitive alphabetical by folder
+  (0=AE_Mod, 1=AlexanderTheGreat, 2=MagnificentSamurai, **3=mom**, 4=NuclearDetente,
+  5=smm, 6=WorldMaps); `archived/` is skipped.
+- `uiwalk.py --save none` is required for any menu-entry walk; the default `uiwalk_start`
+  save is stale and raises a native "Load save game Error" modal.
+- `_assert_no_blocking_modal()` reports only the dialog TITLE. Dump the body with a Win32
+  `EnumWindows`+`EnumChildWindows` sweep — that is how the SMM defect below was read.
+
+**Backlog opened:** `Scenarios/smm/scen0000/default/gamedata/mom_turns.slc:19: Array index
+1 out of bounds` raises a SLIC Error modal and makes the SMM scenario unlaunchable.
