@@ -25,8 +25,10 @@ ROOT_FILES = ["packicon.tga", "packlist.txt"]
 ROOT_DIRS = ["scen0000"]
 PREFIX = "mom"
 
-# Build residue that has no business in a distributed mod.
-SKIP_DIRS = {"__pycache__", ".pytest_cache"}
+# Build residue that has no business in a distributed mod. `_icon_backup` is a
+# pre-regeneration snapshot of the unit icons that lives beside the real ones in
+# scen0000; the engine never loads it, so shipping it was 55 dead TGAs of weight.
+SKIP_DIRS = {"__pycache__", ".pytest_cache", "_icon_backup"}
 SKIP_SUFFIXES = {".pyc", ".bak", ".bak_recursion", ".tmp", ".orig", ".rej"}
 
 

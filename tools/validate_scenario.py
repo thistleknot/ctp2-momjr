@@ -262,6 +262,95 @@ def check_faction_gating(scen: Path, fails: list[str]) -> None:
     fails.extend(F.audit(scen))
 
 
+def check_tga_assets(scen: Path, fails: list[str]) -> None:
+    """Gate 12: every .tga the scenario names resolves, and every .tga it ships loads.
+
+    Require: the scenario's own gamedata/uidata name their art by filename.
+    Guarantee: each named .tga resolves to something the engine can open, and no
+    shipped .tga has a header the engine would reject.
+    Maintain: the base tree is never written -- it is read-only evidence here.
+
+    Two halves, because the engine has two distinct TGA failure modes and an
+    existence check alone catches neither reliably:
+
+    ABSENT. Art resolves from three places, not one: a loose .tga under the
+    scenario, a loose .tga in the base tree, or -- and this is the half that
+    makes a naive sweep useless -- a PACKED entry inside a .zfs archive. The
+    archives are `ZFS3` containers whose name table stores `.rim` files, so
+    grepping them for `.tga` returns zero and every packed asset reads as
+    missing. Scanning scen0000 alone against loose files only reported 256
+    missing of 541 referenced, ~100% false positives; counting .rim stems cut
+    that to 22, all of them stock refs the base tree makes identically.
+
+    MALFORMED. The engine's only two TGA diagnostics -- `Bad TGA Sprite File(%s)`
+    and `TGA Sprite File not 32-bits(%s)` -- both fire on a file that EXISTS.
+    A zero-byte or truncated .tga is therefore invisible to an existence gate;
+    the base tree ships exactly one (UPCB47X.tga, 0 bytes, dated 2000-11-01,
+    referenced by nothing but badTGA.txt). Only scenario-shipped files are
+    asserted, since the base tree's oddities are Activision's and unfixable here.
+
+    Scope: references are read from the scenario's own .txt/.ldl/.slc only.
+    Base-tree files are not scanned for references -- unlike dangling record
+    idents, which abort the load, missing art degrades to a blank cell, so the
+    stock tree's own latents are noise rather than a crash class. `//` comments
+    are stripped before tokenising, per gate 11.
+    """
+    base = None
+    for anc in scen.resolve().parents:
+        if (anc / "ctp2_data/default/gamedata").exists():
+            base = anc / "ctp2_data"
+            break
+
+    have: set[str] = {p.name.lower() for p in scen.rglob("*.tga")}
+    if base is not None:
+        have |= {p.name.lower() for p in base.rglob("*.tga")}
+        for archive in base.rglob("*.zfs"):
+            blob = archive.read_bytes()
+            if not blob.startswith(b"ZFS3"):
+                continue
+            for raw in re.findall(rb"[A-Za-z0-9_\-]{2,40}\.rim", blob):
+                have.add(raw.decode("latin-1").lower()[:-4] + ".tga")
+
+    refs: dict[str, str] = {}
+    for src in sorted(scen.rglob("*")):
+        if src.suffix.lower() not in (".txt", ".ldl", ".slc"):
+            continue
+        try:
+            text = src.read_text(encoding="latin-1")
+        except OSError:
+            continue
+        text = re.sub(r"//[^\n]*", "", text)
+        for name in re.findall(r"[A-Za-z0-9_.\-]+\.tga", text):
+            refs.setdefault(name.lower(), src.name)
+
+    base_named: set[str] = set()
+    if base is not None:
+        for rel in ("default/gamedata", "default/uidata"):
+            for src in (base / rel).rglob("*"):
+                if src.suffix.lower() not in (".txt", ".ldl"):
+                    continue
+                try:
+                    text = re.sub(r"//[^\n]*", "", src.read_text(encoding="latin-1"))
+                except OSError:
+                    continue
+                base_named.update(n.lower() for n in
+                                  re.findall(r"[A-Za-z0-9_.\-]+\.tga", text))
+
+    for name, src_name in sorted(refs.items()):
+        # A ref the stock tree makes identically is Activision's latent, not the
+        # mod's regression -- flagging it would train the operator to ignore this
+        # gate, which is how a gate dies.
+        if name not in have and name not in base_named:
+            fails.append(f"{src_name}: references {name}, which is neither a "
+                         f"loose .tga nor a .rim entry in any .zfs archive")
+
+    for art in sorted(scen.rglob("*.tga")):
+        blob = art.read_bytes()
+        if len(blob) < 18:
+            fails.append(f"{art.name}: {len(blob)}-byte .tga -- header is 18 "
+                         f"bytes, the engine reports this as a Bad TGA Sprite File")
+
+
 def check_effective_tree_advance_refs(scen: Path, fails: list[str]) -> None:
     """Gate 11: no DB the ENGINE parses cites a record any prune deleted.
 
@@ -389,6 +478,7 @@ def main() -> int:
     check_gl_str(scen, fails)
     check_faction_gating(scen, fails)
     check_effective_tree_advance_refs(scen, fails)
+    check_tga_assets(scen, fails)
 
     if fails:
         for f in fails:

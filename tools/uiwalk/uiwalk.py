@@ -699,6 +699,27 @@ class Game:
     def __init__(self):
         self.proc = None
         self.hwnd = None
+        self._log_fh = None
+
+    def _open_engine_log(self):
+        """Capture the engine's stdout instead of discarding it.
+
+        Guarantee: the returned handle stays referenced for the process lifetime,
+        so it is not closed by GC while the engine still holds the fd.
+        Why: a whole class of engine diagnostic never draws anything. Both TGA
+        errors -- `Bad TGA Sprite File(%s)` and `TGA Sprite File not 32-bits(%s)`
+        (gfx/spritesys/Sprite.cpp:190,199) -- are plain printf to stdout, as are
+        the SLIC compile errors. This harness asserts on PIXELS, so with stdout
+        going to DEVNULL those warnings were not merely missed, they were
+        unobservable: a clean screenshot and a clean run looked identical to a run
+        that printed a hundred errors. Anything console-only is invisible to a
+        screenshot harness by construction, which is why this is captured rather
+        than watched for.
+        """
+        RUNS.mkdir(parents=True, exist_ok=True)
+        path = RUNS / "engine_stdout.log"
+        self._log_fh = open(path, "wb")
+        return self._log_fh
 
     def launch(self, save: str | None, extra_args: list[str]):
         """Launch the staged exe DIRECTLY.
@@ -744,7 +765,7 @@ class Game:
             # so the very first CreateWindow is already covered.
             self.proc = subprocess.Popen(
                 [str(exe), *direct], cwd=str(EXE_DIR), env=env,
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                stdout=self._open_engine_log(), stderr=subprocess.STDOUT)
             _WATCHED_PROCS.add(self.proc)
             _start_stash_watchdog(self.proc.pid)
             self._wait_for_window()
@@ -767,7 +788,7 @@ class Game:
         self.proc = subprocess.Popen(
             ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", cmd],
             cwd=str(EXE_DIR), env=env,
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            stdout=self._open_engine_log(), stderr=subprocess.STDOUT)
         _WATCHED_PROCS.add(self.proc)
         _start_stash_watchdog(self.proc.pid)
         self._wait_for_window()
