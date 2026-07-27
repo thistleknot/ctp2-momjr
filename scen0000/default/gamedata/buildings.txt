@@ -152,7 +152,7 @@ IMPROVE_MERCHANTS_GUILD {
 	DefaultIcon ICON_IMPROVE_MERCHANTS_GUILD
 	Description DESCRIPTION_IMPROVE_MERCHANTS_GUILD
 	EnableAdvance ADVANCE_ECOGNOMICS
-	ProductionCost 1690
+	ProductionCost 1350
 	Upkeep 4
 	CommercePercent 0.15
 	Brokerage
@@ -202,7 +202,7 @@ IMPROVE_PORT {
 	DefaultIcon ICON_IMPROVE_PORT
 	Description DESCRIPTION_IMPROVE_PORT
 	EnableAdvance ADVANCE_SEA_LORE
-	ProductionCost 1360
+	ProductionCost 1270
 	Upkeep 3
 	CoastalBuilding
 	CommercePercent 0.1

@@ -1,0 +1,297 @@
+[
+ {
+  "_comment": "Headless confirmation of the Renaissance age cap. Five advances (Ecognomics, Sanitation, Sea Lore, Greater Fauna Lore, Sea Mastery) had drifted above AGE_FOUR because _relayout_advance_ages keyed its mundane cap on `ident in momjr` -- true for nearly the whole tree, so the cap branch was dead code. Each must now read Age: 4. NOTE the list indices: a GL search returns buildings and units too, so index 0 is often NOT the advance -- indices below are measured from run 20260727-081725, not guessed. Run with --save none."
+ },
+ {
+  "do": "wait",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 30000
+ },
+ {
+  "do": "shot",
+  "name": "main_menu"
+ },
+ {
+  "do": "press",
+  "path": "InitPlayWindow.NewGameButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.ScenarioButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 3
+ },
+ {
+  "do": "wait",
+  "ms": 2000
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.StartButton"
+ },
+ {
+  "do": "wait",
+  "ms": 15000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 90000
+ },
+ {
+  "do": "shot",
+  "name": "in_game_mom"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 15000
+ },
+ {
+  "do": "press",
+  "path": "ControlPanelWindow.ControlPanel.ShortcutPad.GreatLibraryButton"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 12000
+ },
+ {
+  "do": "shot",
+  "name": "gl_open"
+ },
+ {
+  "do": "press",
+  "path": "GreatLibrary.SearchWord"
+ },
+ {
+  "do": "key",
+  "keys": "backspace",
+  "times": 25
+ },
+ {
+  "do": "type",
+  "text": "Ecognomics"
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "select",
+  "path": "GreatLibrary.IndexSheet",
+  "index": 1
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "ecognomics_stats"
+ },
+ {
+  "do": "press",
+  "path": "GreatLibrary.SearchWord"
+ },
+ {
+  "do": "key",
+  "keys": "backspace",
+  "times": 25
+ },
+ {
+  "do": "type",
+  "text": "Sanitation"
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "select",
+  "path": "GreatLibrary.IndexSheet",
+  "index": 0
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "sanitation_stats"
+ },
+ {
+  "do": "press",
+  "path": "GreatLibrary.SearchWord"
+ },
+ {
+  "do": "key",
+  "keys": "backspace",
+  "times": 25
+ },
+ {
+  "do": "type",
+  "text": "Sea Lore"
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "select",
+  "path": "GreatLibrary.IndexSheet",
+  "index": 3
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "sea_lore_stats"
+ },
+ {
+  "do": "press",
+  "path": "GreatLibrary.SearchWord"
+ },
+ {
+  "do": "key",
+  "keys": "backspace",
+  "times": 25
+ },
+ {
+  "do": "type",
+  "text": "Sea Mastery"
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "select",
+  "path": "GreatLibrary.IndexSheet",
+  "index": 1
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "sea_mastery_stats"
+ },
+ {
+  "do": "press",
+  "path": "GreatLibrary.SearchWord"
+ },
+ {
+  "do": "key",
+  "keys": "backspace",
+  "times": 25
+ },
+ {
+  "do": "type",
+  "text": "Greater Fauna Lore"
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "select",
+  "path": "GreatLibrary.IndexSheet",
+  "index": 1
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "greater_fauna_lore_stats"
+ }
+]

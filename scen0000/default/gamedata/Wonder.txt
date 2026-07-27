@@ -154,7 +154,7 @@ WONDER_GNOME_TREASURY {
    DefaultIcon ICON_WONDER_GNOME_TREASURY
    Description DESCRIPTION_WONDER_GNOME_TREASURY
    EnableAdvance ADVANCE_BANKING
-   ProductionCost 7200
+   ProductionCost 5760
    BonusGold 250
    IncreaseBrokerages 1
    GoldPerInternationalTradeRoute 10

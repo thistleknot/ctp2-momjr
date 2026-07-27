@@ -879,8 +879,8 @@ UNIT_WYVERN {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 1500
-   PowerPoints 750
+   ShieldCost 1200
+   PowerPoints 600
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
@@ -1024,8 +1024,8 @@ UNIT_UNICORN {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 670
-   PowerPoints 335
+   ShieldCost 630
+   PowerPoints 315
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1228,8 +1228,8 @@ UNIT_EFREET {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 1230
-   PowerPoints 615
+   ShieldCost 1500
+   PowerPoints 750
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1279,8 +1279,8 @@ UNIT_WRAITH {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 670
-   PowerPoints 335
+   ShieldCost 630
+   PowerPoints 315
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1330,8 +1330,8 @@ UNIT_GRIFFIN {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 670
-   PowerPoints 335
+   ShieldCost 630
+   PowerPoints 315
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1373,8 +1373,8 @@ UNIT_PEGASUS {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 1130
-   PowerPoints 565
+   ShieldCost 1180
+   PowerPoints 590
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1460,8 +1460,8 @@ UNIT_WARSHIP {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 2910
-   PowerPoints 1455
+   ShieldCost 820
+   PowerPoints 410
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1700,8 +1700,8 @@ UNIT_GARGOYLE {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 670
-   PowerPoints 335
+   ShieldCost 630
+   PowerPoints 315
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1794,8 +1794,8 @@ UNIT_COCKATRICE {
    Firepower 3
    Armor 1
    MaxHP 10
-   ShieldCost 670
-   PowerPoints 335
+   ShieldCost 630
+   PowerPoints 315
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1837,8 +1837,8 @@ UNIT_SALAMANDER {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 1200
-   PowerPoints 600
+   ShieldCost 1010
+   PowerPoints 505
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
@@ -1982,8 +1982,8 @@ UNIT_DEMON {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 1040
-   PowerPoints 520
+   ShieldCost 860
+   PowerPoints 430
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2127,8 +2127,8 @@ UNIT_STORM_GIANT {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 1230
-   PowerPoints 615
+   ShieldCost 1500
+   PowerPoints 750
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2409,8 +2409,8 @@ UNIT_BEHEMOTH {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 1230
-   PowerPoints 615
+   ShieldCost 1500
+   PowerPoints 750
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2511,8 +2511,8 @@ UNIT_MERFOLK {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 860
-   PowerPoints 430
+   ShieldCost 540
+   PowerPoints 270
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0

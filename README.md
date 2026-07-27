@@ -1,9 +1,16 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v2.0.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.0.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
 
-> **What's new in 2.0 — the tribes became real.** Faction identity used to live
+> **What's new in 3.0 — the Renaissance cap actually applies.** 2.0 announced
+> that mundane tech ends at the Renaissance; the code that enforced it asked the
+> wrong question ("did MoM author this advance?" — MoM authored nearly all of
+> them) and so enforced nothing. Ages 5–7 are now magic-only: every one of the 19
+> advances above AGE_FOUR is a sphere-ladder rung or transitively requires one,
+> confirmed in-game. See `CHANGELOG.md`.
+
+> **What 2.0 brought — the tribes became real.** Faction identity used to live
 > only in SLIC's player index; now it is in the data. Every unit, building and
 > wonder carries a `sphere`, four engine `mod_Can*` hooks fence what each tribe
 > may research and build, and mundane tech ends at the Renaissance so Ages 5–10

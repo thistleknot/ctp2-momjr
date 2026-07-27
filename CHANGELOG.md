@@ -9,6 +9,73 @@ noise is not a change.
 
 ---
 
+## [3.0.0] — 2026-07-27 — the Renaissance cap actually applies
+
+**Major.** 2.0 announced "mundane tech ends at the Renaissance." It did not. The
+cap was written, shipped, and enforced nothing — so 3.0 is the release where the
+2.0 headline becomes true. Ages 5–7 are now magic-only, verified in-game.
+
+The version bump is not ceremonial. Five advances change age, and one changes
+cost by 60% (Ecognomics 3900 → 2425), so a 2.x research plan no longer costs what
+it did and a 2.x save references the old bands.
+
+### Fixed
+
+- **The Renaissance cap was dead code.** `_relayout_advance_ages` decided
+  "is this advance mundane?" with `ident in momjr` — i.e. "did MoM author it?"
+  MoM authored essentially the entire tree, so that test was true for nearly
+  every ident and the mundane branch never ran. **Ecognomics, Sanitation, Sea
+  Lore, Greater Fauna Lore** (AGE_FIVE) and **Sea Mastery** (AGE_SIX) had drifted
+  above the cap on depth banding alone. The discriminator is now a derived
+  *magical closure* — is this a sphere-ladder rung, or does it transitively
+  require one — which is also self-consistent with the no-advance-below-its-
+  parent guarantee, since a mundane advance's prerequisites are mundane by
+  construction. Post-fix distribution: AGE_ONE 35, TWO 43, THREE 19, FOUR 28,
+  FIVE 5, SIX 7, SEVEN 7. Every one of the 19 advances above AGE_FOUR is
+  magical.
+- **`mom_sphere_home.slc` was written when its policy was off.** The emit block
+  sat nested under the age-re-layout branch, so any run that re-aged anything
+  wrote a SLIC file citing five `ADVANCE_HOME_*` that only exist when
+  `sphere_home_exclusivity` is enabled — five dangling advance refs, the
+  mom-db-error crash class. The sever pass ran *earlier* in the same run, so the
+  mod only looked self-healing because a second generator run cleaned up after
+  the first. Now guarded on the policy flag; one run is clean.
+- **`mom_audit.py` reported a phantom missing building.** `IMPROVE_X` was
+  harvested out of a documentation comment in `mom_func.slc`. SLIC text is now
+  comment-stripped before idents are harvested. Audit: 65 PASS / **0 FAIL**.
+
+### Added
+
+- **Gate 22 — `check_renaissance_age_cap`** in `validate_scenario.py`. Reads the
+  *shipped* `Advance.txt` and re-derives the magical closure independently of the
+  writer, so the gate and the generator cannot agree on the same mistake. Control
+  run against the pre-fix artifact: 5 FAILs, matching the 5 known strays.
+- `ADVANCE_ECOGNOMICS_HISTORICAL` prose in `gl_descriptions.csv` (it was a stub).
+- `tools/uiwalk/steps/newgame_gl_age_cap.json` — headless confirmation walk.
+
+### Decided (previously open, now closed)
+
+- **Ecognomics is native MoM, not a CTP2 import.**
+  `H:\games\civ2\MOMJR\MOMJR\Rules.txt:107` — `Ecognomics, 4, 1, Uni, Ban`,
+  i.e. University + Banking, exactly what the Great Library now shows. It stays.
+- **`FUTURE_TECHNOLOGY` at AGE_SEVEN is correct.** Also MoM-native
+  (`Rules.txt:174`), and its prerequisites are `DEATH_WIZARD` + `CHAOS_LORE`, so
+  it is magical by closure, not a stray modern leftover.
+- **`PrerequisiteBuilding` chains stay at 0.** Stock CTP2 ships 49; MoM ships
+  none. This is faithfulness, not a gap: civ2's `@IMPROVE` record has four fields
+  — name, cost, upkeep, *advance* prereq — and no building-prerequisite concept
+  exists in the source at all. Not a todo.
+
+### Verified
+
+Headless, in-game, Great Library STATISTICS pane (run `20260727-082211`):
+Ecognomics **Cost 2425 / Age 4**, Sanitation 1825/4, Sea Lore 2735/4,
+Sea Mastery 3095/4, Greater Fauna Lore 2735/4. Plus byte-stable double
+generator run, `validate_scenario` all gates, `gate_faction_gating` 0/71
+violations, `gate_gl_descriptions` 784/784, `backcast_slic --check` current.
+
+---
+
 ## [2.0.0] — 2026-07-26 — faction gating + age re-layout
 
 **Major.** The five tribes are now distinct in the data, not just in SLIC's

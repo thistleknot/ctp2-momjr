@@ -578,11 +578,22 @@ gl_waw    = gl_sections(ENGDATA / "WAW_Great_Library.txt") if (ENGDATA / "WAW_Gr
 gl_all    = gl_main | gl_waw
 scenario_slc_path = GAMEDATA / "scenario.slc"
 scenario_slc_text = scenario_slc_path.read_text(encoding='utf-8', errors='replace') if scenario_slc_path.exists() else ""
+def strip_slic_comments(text: str) -> str:
+    """Drop /* */ and // comments so documentation prose is not harvested as code.
+
+    mom_func.slc:11 documents the membership idiom with a placeholder ident
+    (CityHasBuilding(city, "IMPROVE_X")); harvesting it produced a phantom
+    'missing from buildings.txt' FAIL. A comment is not a reference.
+    """
+    text = re.sub(r'/\*.*?\*/', '', text, flags=re.DOTALL)
+    return re.sub(r'//[^\n]*', '', text)
+
+
 mom_slic_building_refs = set()
 for slic_name in ("mom_func.slc", "mom_turns.slc", "mom_city_effects.slc"):
     slic_path = GAMEDATA / slic_name
     if slic_path.exists():
-        slic_text = slic_path.read_text(encoding='utf-8', errors='replace')
+        slic_text = strip_slic_comments(slic_path.read_text(encoding='utf-8', errors='replace'))
         mom_slic_building_refs.update(re.findall(r'BuildingDB\((IMPROVE_[A-Z0-9_]+)\)', slic_text))
         mom_slic_building_refs.update(re.findall(r'CityHasBuilding\([^,\n]+,\s*"(IMPROVE_[A-Z0-9_]+)"\)', slic_text))
 

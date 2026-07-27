@@ -137,3 +137,45 @@ point does not reproduce.
    `text` string, not the name you see on screen.
 3. A run that "completes" is not a run that progressed. Assert the game clock
    moved, not just that no step threw.
+
+## The discriminator that was true for everything
+
+**Symptom.** `ADVANCE_ECOGNOMICS` sat at AGE_FIVE — inside the band the design
+reserves for magic — even though `_relayout_advance_ages` documents a guarantee
+that mundane tech stops at AGE_FOUR. The cap was written, shipped, and enforcing
+nothing.
+
+**Root cause.** The cap keyed on `ident in momjr`, meaning "did MoM author this
+advance?" MoM authored essentially the entire tree, so the predicate was true for
+nearly every ident and the `else` branch that applied the cap was dead code. I
+did not assume this — I ran a probe printing `momjr=` per ident and every one
+came back `True`.
+
+**Three laws.**
+
+1. **A boolean that is nearly always true is not a discriminator, it is a
+   constant.** Before trusting a branch, measure how often each side is taken. A
+   branch that never executes reads exactly like a branch that always passes.
+2. **Write the gate first and it tells you the blast radius.** I framed this as
+   one bad advance. The Gate-22 control run against the *pre-fix* artifact
+   returned **five** FAILs: Ecognomics, Greater Fauna Lore, Sanitation, Sea Lore
+   (AGE_FIVE) and Sea Mastery (AGE_SIX). Fixing what I had noticed would have
+   left four.
+3. **Derive the discriminator from structure, not from provenance.** "Who wrote
+   it" is metadata that drifts; "is it a sphere rung, or does it transitively
+   require one" is a closure over the actual prerequisite graph and cannot go
+   stale. It also preserves the sibling guarantee for free: a mundane advance's
+   prerequisites are mundane by construction, so clamping can never place an
+   advance below its parent.
+
+**The bug the fix uncovered.** The `mom_sphere_home.slc` emitter was nested under
+the age-re-layout branch, unrelated to its own policy flag — so any run that
+re-aged anything wrote SLIC citing five `ADVANCE_HOME_*` that only exist when
+`sphere_home_exclusivity` is on. The policy-off sever pass runs *earlier* in the
+same function, so it could not undo it; the system only looked self-healing
+because a second generator run cleaned up after the first. **A defect that a
+re-run hides is still a defect** — the shipping artifact is whatever one run
+produces.
+
+**Verified headlessly**, run `20260727-082211`: all five advances read `Age: 4`
+in the Great Library, Ecognomics at the predicted `Cost: 2425`.

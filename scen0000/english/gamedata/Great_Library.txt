@@ -312,7 +312,7 @@ Age: 1
 Branch: 1
 [END]
 [ADVANCE_SANITATION_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sanitation requires <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>. It costs 3035 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Sanitation requires <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>. It costs 1825 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_SANITATION_HISTORICAL]
 <c:245,240,225><h:0,0,0>Moving waste away from drinking water has saved more lives than every physician in history combined.
@@ -322,8 +322,8 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>
 [END]
 [ADVANCE_SANITATION_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 3035
-Age: 5
+<c:245,240,225><h:0,0,0>Cost: 1825
+Age: 4
 Branch: 1
 [END]
 [ADVANCE_SEAFARING_GAMEPLAY]
@@ -361,10 +361,10 @@ Age: 2
 Branch: 0
 [END]
 [ADVANCE_ECOGNOMICS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Ecognomics requires <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e> and <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>. It costs 3900 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MERCHANTS_GUILD>Merchant's Guild<e>.
+<c:245,240,225><h:0,0,0>Researching Ecognomics requires <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e> and <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>. It costs 2425 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MERCHANTS_GUILD>Merchant's Guild<e>.
 [END]
 [ADVANCE_ECOGNOMICS_HISTORICAL]
-<c:245,240,225><h:0,0,0><L:DATABASE_ADVANCES,ADVANCE_ECOGNOMICS>Ecognomics<e>
+<c:245,240,225><h:0,0,0>The gnomes' contribution to statecraft: the discovery that a coin lent is worth more than a coin held, and that a ledger, honestly kept, is a kind of fortification. Merchants' guilds date their charters from here.
 [END]
 [ADVANCE_ECOGNOMICS_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
@@ -372,8 +372,8 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>
 [END]
 [ADVANCE_ECOGNOMICS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 3900
-Age: 5
+<c:245,240,225><h:0,0,0>Cost: 2425
+Age: 4
 Branch: 1
 [END]
 [ADVANCE_BRIDGE_BUILDING_GAMEPLAY]
@@ -628,7 +628,7 @@ Age: 3
 Branch: 3
 [END]
 [ADVANCE_GREATER_FAUNA_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Greater Fauna Lore requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>. It costs 4210 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Greater Fauna Lore requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>. It costs 2735 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_GREATER_FAUNA_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The study of the beasts that were never meant to be catalogued: the ones with opinions, wings, or both.
@@ -638,8 +638,8 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>
 [END]
 [ADVANCE_GREATER_FAUNA_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 4210
-Age: 5
+<c:245,240,225><h:0,0,0>Cost: 2735
+Age: 4
 Branch: 3
 [END]
 [ADVANCE_HEALING_GAMEPLAY]
@@ -722,7 +722,7 @@ Age: 2
 Branch: 3
 [END]
 [ADVANCE_SEA_MASTERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sea Mastery requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. It costs 6580 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARSHIP>Warship<e>.
+<c:245,240,225><h:0,0,0>Researching Sea Mastery requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. It costs 3095 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARSHIP>Warship<e>.
 [END]
 [ADVANCE_SEA_MASTERY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Command of the deep water, which historically has meant command of everything the deep water touches.
@@ -733,8 +733,8 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>
 [END]
 [ADVANCE_SEA_MASTERY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 6580
-Age: 6
+<c:245,240,225><h:0,0,0>Cost: 3095
+Age: 4
 Branch: 3
 [END]
 [ADVANCE_SHAMANISM_GAMEPLAY]
@@ -892,7 +892,7 @@ Age: 4
 Branch: 3
 [END]
 [ADVANCE_SEA_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sea Lore requires <L:DATABASE_ADVANCES,ADVANCE_NAVIGATION>Navigation<e>. It costs 4210 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_PORT>Port<e>.
+<c:245,240,225><h:0,0,0>Researching Sea Lore requires <L:DATABASE_ADVANCES,ADVANCE_NAVIGATION>Navigation<e>. It costs 2735 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_PORT>Port<e>.
 [END]
 [ADVANCE_SEA_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>What sailors know that charts do not record: currents, tempers, and which waters have something living under them.
@@ -902,8 +902,8 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_NAVIGATION>Navigation<e>
 [END]
 [ADVANCE_SEA_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 4210
-Age: 5
+<c:245,240,225><h:0,0,0>Cost: 2735
+Age: 4
 Branch: 3
 [END]
 [ADVANCE_ARTIFICING_GAMEPLAY]
@@ -1704,7 +1704,7 @@ Commune With Gods
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_PRIMAL_SOURCE>Primal Source<e>
 [END]
 [IMPROVE_MERCHANTS_GUILD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Merchant's Guild costs 1690 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_ECOGNOMICS>Ecognomics<e>. In the city that builds it, increases commerce by 15% and opens a brokerage.
+<c:245,240,225><h:0,0,0>Merchant's Guild costs 1350 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_ECOGNOMICS>Ecognomics<e>. In the city that builds it, increases commerce by 15% and opens a brokerage.
 [END]
 [IMPROVE_MERCHANTS_GUILD_HISTORICAL]
 <c:245,240,225><h:0,0,0>Traders who discovered that acting together beats competing, and who quietly became a second government in many cities.
@@ -1769,7 +1769,7 @@ Commune With Gods
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_FANTASTIC_STABLE>Fantastic Stable<e>
 [END]
 [IMPROVE_PORT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Port costs 1360 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. In the city that builds it, increases commerce by 10% and can only be built in a coastal city.
+<c:245,240,225><h:0,0,0>Port costs 1270 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. In the city that builds it, increases commerce by 10% and can only be built in a coastal city.
 [END]
 [IMPROVE_PORT_HISTORICAL]
 <c:245,240,225><h:0,0,0>More than a harbour: warehousing, customs, and the machinery of turning a shoreline into an economy.
@@ -2071,7 +2071,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_ELDRITCH_COLLEGE>Eldritch College<e>
 [END]
 [WONDER_GNOME_TREASURY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Gnome Treasury costs 7200 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>. Across your empire, it counts as 1 extra brokerage in every city, pays a one-off 250 gold and yields 10 gold per foreign trade route.
+<c:245,240,225><h:0,0,0>Gnome Treasury costs 5760 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>. Across your empire, it counts as 1 extra brokerage in every city, pays a one-off 250 gold and yields 10 gold per foreign trade route.
 [END]
 [WONDER_GNOME_TREASURY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Vaults dug by people who consider accounting a sacred discipline and interest a form of poetry.
@@ -2689,7 +2689,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WYVERN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Wyvern: attack 40, defense 20, 10 hit points, firepower 2. Moves 3 tiles per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>.
+<c:245,240,225><h:0,0,0>Wyvern: attack 40, defense 20, 10 hit points, firepower 2. Moves 3 tiles per turn and sees 2 tiles. Costs 1200 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>.
 [END]
 [UNIT_WYVERN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Wyvern is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2758,7 +2758,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_UNICORN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Unicorn: attack 15, defense 30, 10 hit points, firepower 1. Moves 3 tiles per turn and sees 2 tiles. Costs 670 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Unicorn: attack 15, defense 30, 10 hit points, firepower 1. Moves 3 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_UNICORN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Unicorn is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2850,7 +2850,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_EFREET_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Efreet: attack 35, defense 15, 10 hit points, firepower 2. Moves 1 tile per turn and sees 2 tiles. Costs 1230 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Efreet: attack 35, defense 15, 10 hit points, firepower 2. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_EFREET_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Efreet is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2873,7 +2873,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WRAITH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Wraith: attack 20, defense 15, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 670 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Wraith: attack 20, defense 15, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_WRAITH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Wraith is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2896,7 +2896,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_GRIFFIN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Griffin: attack 20, defense 20, 10 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 670 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>.
+<c:245,240,225><h:0,0,0>Griffin: attack 20, defense 20, 10 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>.
 [END]
 [UNIT_GRIFFIN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Griffin is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2919,7 +2919,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_PEGASUS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Pegasus: attack 25, defense 10, 10 hit points, firepower 2. Moves 5 tiles per turn and sees 2 tiles. Costs 1130 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>.
+<c:245,240,225><h:0,0,0>Pegasus: attack 25, defense 10, 10 hit points, firepower 2. Moves 5 tiles per turn and sees 2 tiles. Costs 1180 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>.
 [END]
 [UNIT_PEGASUS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Pegasus is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2965,7 +2965,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WARSHIP_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warship: attack 35, defense 15, 10 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 2910 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SEA_MASTERY>Sea Mastery<e>. This unit can raid trade routes.
+<c:245,240,225><h:0,0,0>Warship: attack 35, defense 15, 10 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 820 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SEA_MASTERY>Sea Mastery<e>. This unit can raid trade routes.
 [END]
 [UNIT_WARSHIP_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Warship is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3080,7 +3080,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_GARGOYLE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Gargoyle: attack 10, defense 20, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 670 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>.
+<c:245,240,225><h:0,0,0>Gargoyle: attack 10, defense 20, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>.
 [END]
 [UNIT_GARGOYLE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Gargoyle is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3126,7 +3126,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_COCKATRICE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Cockatrice: attack 30, defense 5, 10 hit points, firepower 3. Moves 2 tiles per turn and sees 2 tiles. Costs 670 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>.
+<c:245,240,225><h:0,0,0>Cockatrice: attack 30, defense 5, 10 hit points, firepower 3. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>.
 [END]
 [UNIT_COCKATRICE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Cockatrice is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3149,7 +3149,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_SALAMANDER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Salamander: attack 50, defense 15, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1200 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Salamander: attack 50, defense 15, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1010 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_SALAMANDER_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Salamander is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3218,7 +3218,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_DEMON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Demon: attack 20, defense 25, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1040 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>.
+<c:245,240,225><h:0,0,0>Demon: attack 20, defense 25, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 860 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>.
 [END]
 [UNIT_DEMON_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Demon is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3287,7 +3287,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_STORM_GIANT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Storm Giant: attack 40, defense 20, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1230 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Storm Giant: attack 40, defense 20, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_STORM_GIANT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Storm Giant is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3425,7 +3425,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_BEHEMOTH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Behemoth: attack 25, defense 20, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 1230 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Behemoth: attack 25, defense 20, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_BEHEMOTH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Behemoth is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3471,7 +3471,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_MERFOLK_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Merfolk: attack 20, defense 15, 10 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 860 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>. This unit can raid trade routes.
+<c:245,240,225><h:0,0,0>Merfolk: attack 20, defense 15, 10 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>. This unit can raid trade routes.
 [END]
 [UNIT_MERFOLK_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Merfolk is represented here as a proxy unit while the final MoM art swap is in progress.

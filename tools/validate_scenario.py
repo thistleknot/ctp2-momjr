@@ -485,6 +485,60 @@ def check_disabled_entities_unbuildable(scen: Path, fails: list[str]) -> None:
                              f"EnableAdvance {gate or 'NONE'}")
 
 
+def check_renaissance_age_cap(scen: Path, fails: list[str]) -> None:
+    """Gate 22: ages 5-7 are purely magical; mundane tech ends at AGE_FOUR.
+
+    Require: a generated Advance.txt.
+    Guarantee: every advance above AGE_FOUR transitively requires a sphere
+    ladder rung (ADVANCE_<SPHERE>_{MAGIC,LORE,ADEPT,MAGE,WIZARD,MASTER}, plus
+    Sorcery's irregular ADVANCE_SORCERY / ADVANCE_SORCEROUS_LORE).
+
+    `_relayout_advance_ages` keyed its cap on `ident in momjr` -- but MoM
+    authored nearly the whole tree, so the mundane branch was dead code and the
+    cap applied to nothing. Ecognomics, Sanitation, Sea Lore and Greater Fauna
+    Lore drifted to AGE_FIVE on depth banding alone. This gate reads the SHIPPED
+    Advance.txt and re-derives the closure independently of the writer, so a
+    future relayout that regresses the discriminator fails here rather than
+    quietly shipping mundane tech in the magical ages.
+    """
+    adv = scen / "default/gamedata/Advance.txt"
+    if not adv.exists():
+        return
+    try:
+        sys.path.insert(0, str(TOOLS_DIR))
+        from ctp2_generator import _ladder_rung_age, _AGE_NUMBER, _MUNDANE_MAX_AGE
+    except Exception:
+        return
+    text = adv.read_text(encoding="latin-1", errors="replace")
+    blocks = dict(re.findall(r"^(ADVANCE_[A-Z0-9_]+)\s*\{(.*?)^\}", text,
+                             re.S | re.M))
+    prereqs = {
+        ident: [p for p in re.findall(
+            r"^\s*Prerequisites\s+(ADVANCE_[A-Z0-9_]+)\s*$", body, re.M)
+            if p != ident and p in blocks]
+        for ident, body in blocks.items()
+    }
+    magical: dict[str, bool] = {}
+
+    def _magical(ident: str, stack: frozenset = frozenset()) -> bool:
+        if ident in magical:
+            return magical[ident]
+        if ident in stack:
+            return False            # a prerequisite cycle is not this gate's job
+        result = (_ladder_rung_age(ident) is not None
+                  or any(_magical(p, stack | {ident}) for p in prereqs[ident]))
+        magical[ident] = result
+        return result
+
+    for ident, body in sorted(blocks.items()):
+        m = re.search(r"^\s*Age\s+(AGE_[A-Z]+)\s*$", body, re.M)
+        age = _AGE_NUMBER.get(m.group(1), 1) if m else 1
+        if age > _MUNDANE_MAX_AGE and not _magical(ident):
+            fails.append(f"{ident} is mundane but sits at {m.group(1)} -- "
+                         f"ages above AGE_{'FOUR'} are reserved for the sphere "
+                         f"ladders (Renaissance cap)")
+
+
 def check_gl_statistics_match_db(scen: Path, fails: list[str]) -> None:
     """Gate 21: the Great Library's printed stats match the advance DB.
 
@@ -933,6 +987,7 @@ def main() -> int:
     check_advance_code_map(scen, fails)
     check_disabled_entities_unbuildable(scen, fails)
     check_gl_statistics_match_db(scen, fails)
+    check_renaissance_age_cap(scen, fails)
 
     if fails:
         for f in fails:
