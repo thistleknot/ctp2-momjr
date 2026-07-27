@@ -1,7 +1,15 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic), built on the
-Apolyton Edition.
+**v2.0.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+built on the Apolyton Edition.
+
+> **What's new in 2.0 — the tribes became real.** Faction identity used to live
+> only in SLIC's player index; now it is in the data. Every unit, building and
+> wonder carries a `sphere`, four engine `mod_Can*` hooks fence what each tribe
+> may research and build, and mundane tech ends at the Renaissance so Ages 5–10
+> belong entirely to the magic ladder. That cap deleted 113 advances, which in
+> turn exposed and closed the whole DB-Error crash class. Full detail in
+> [`CHANGELOG.md`](CHANGELOG.md).
 
 ![MoM running in CTP2: the MAGIC STATUS panel with a live mana pool and a
 Summon Creature arm, beside a Life Tribe city](docs/img/mom_magic_status_ingame.png)

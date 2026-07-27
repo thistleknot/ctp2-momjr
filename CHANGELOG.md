@@ -9,11 +9,19 @@ noise is not a change.
 
 ---
 
-## [Unreleased] — faction gating + age re-layout
+## [2.0.0] — 2026-07-26 — faction gating + age re-layout
 
-The five tribes are now distinct in the data, not just in SLIC's player index,
-and the tech tree ends at the Renaissance with the Masters of Magic ladder spread
-across Ages 5–10. Planned in
+**Major.** The five tribes are now distinct in the data, not just in SLIC's
+player index, and the tech tree ends at the Renaissance with the Masters of Magic
+ladder spread across Ages 5–10.
+
+The version bump is not ceremonial — 2.0 breaks compatibility three ways. Saves
+from 1.x reference 113 advances, 6 governments and 17 tile improvements that no
+longer exist. Any downstream edit to `units.csv` or `improvements.csv` needs the
+new `sphere` column. And content that was buildable by everyone in 1.x is now
+gated per tribe, so a 1.x build order may no longer be legal.
+
+Planned in
 `~/.claude/plans/synchronous-petting-naur.md`; postmortem in `PLAN.md`.
 
 ### Added
