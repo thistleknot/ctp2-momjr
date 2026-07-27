@@ -43,3 +43,97 @@ absolute path, and `--scenario scen0000` is relative, so the guard returned
 early and disabled the whole check. Walk `scen.resolve().parents` upward
 instead. A gate that cannot fail is worse than no gate — always run the
 negative control.
+
+---
+
+## The Great Library printed stale numbers, and a stale instrument hid it
+
+**Symptom.** `ADVANCE_WRITING_STATISTICS` advertised `Cost: 1000` for an advance
+the DB priced at `1025`.
+
+**Scope was wrong by 170x.** I carried "one cost drift". Running the new gate
+against the live tree before fixing anything produced **170 FAILs** across all
+three fields — `ADVANCE_CHAOS_MASTER` said `Cost: 1000` against a DB `8280`, and
+`Age: Medieval` against `AGE_SEVEN`. Measure the class; never extrapolate from
+the one instance you happened to notice.
+
+**Root cause: pass ordering, again.** `ctp2_parser.Advance.register` stamps
+Cost/Age/Branch at registration; `_retune_mom_advance_costs` rewrites Cost about
+1300 lines later. `ctp2_generator` already encodes the countermeasure for GL prose
+("Runs LAST, deliberately") — `_STATISTICS` simply predated that invariant. Fix
+is the same idiom: derive from the final artifact at the end, never carry a value
+forward.
+
+**I nearly shipped an invented fact.** My first draft lifted `ctp2_parser`'s five
+era words (Ancient/Medieval/Renaissance/Industrial/Modern) into a constant.
+Measuring first killed them: `age.txt` carries **no display name at all** — the
+`AGE_*` record is purely ordinal — and MoM ships **seven** ages, so AGE_SIX and
+AGE_SEVEN printed as raw idents. The engine's `AGE_NAME_*` strings are a
+different, five-valued concept that does not line up. `gl_age_display()` now
+derives the ordinal, which is the only claim the data supports and stays correct
+when the ladder is re-laid out.
+
+**The second defect the first one exposed.** 39 labels shipped as
+`Bronze_Working`, `Chaos_Magic` — three sites used `ident.split('_',1)[1].title()`,
+which strips the prefix and leaves every interior underscore. It survived for
+one reason: **an underscore is invisible inside an underlined link.** It only
+became visible in the no-prereq sentence, which prints the bare name. Worse,
+`gl_descriptions._harvest_labels` reads the *previous* generation's
+`Great_Library.txt`, so one bad label re-seeded itself every run — a
+self-sustaining feedback loop in a file the generator both reads and writes.
+
+**The instrument was testing the wrong game.** Two headless probes were void: the
+steps file inherited `select index 8` twice on `ScenarioWindow.AvailableListBox`
+from a stale sibling, and index 8 boots **stock CTP2**. The verified MoM boot is
+the two-level dialog **index 3 → LoadButton → index 0 → LoadButton**. The tell
+was decisive once measured — searching "Chaos Magic" returned an *empty list* and
+the article shown was stock "Religion". I had already started building a theory
+("the pane must be engine-generated, not file-sourced") on top of that void
+evidence. Three sibling steps files carried the same stale indices and were
+silently testing stock CTP2 too; all three are fixed.
+
+**The laws.**
+1. A value stamped at registration is stale the moment any later pass rewrites
+   its source. Derive at the end or gate it.
+2. A gate must read the **shipped** artifact on both sides, not the writer's own
+   output, so a future writer reintroducing the bug still fails.
+3. When a generator reads a file it also writes, a single bad value is permanent
+   unless something normalises at the read boundary.
+4. Before trusting a headless result, prove the *right build and the right
+   scenario* actually booted. A stale index is a stale binary by another name.
+
+## The turn loop stalled on a modal that keys cannot reach
+
+**Symptom.** A 40-turn headless AI stall run completed without crashing, but
+frames at turns 20/25/30/35 were byte-identical (`changed_px = 0`). Per the
+pixel-delta decoder a zero is ambiguous — input never landed, landed and did
+nothing, or something swallowed it — so it was not read as "the AI stalled".
+
+**Observed.** `09_turn20.png` shows the `SciAdvanceScreen` RESEARCH modal:
+"scientists have discovered Bronze Working. Select a new Advance", with
+Ceremonial Burial / Pottery / Shamanism / Currency and Goal / OK. The clock was
+frozen at 3625BC. The injected `enter` was being absorbed by the modal, which is
+the already-recorded law `ctp2-input-reach-by-surface`: in-game modals take
+clicks, not keys.
+
+**Fix.** A posted in-game click is process-lethal, so the modal is cleared by
+*injection* on its OK button — `science.ldl:430` declares it as
+`SciAdvanceScreen.Background.BackButton` (text `str_ldl_CAPS_OK`, the label is
+"OK" but the ident says "Back"). Injection is fire-and-forget: when the modal is
+absent the hook finds no control and does nothing, so the press is safe to issue
+unconditionally on every turn. `steps/ai_stall_40turns.json` now runs
+`press SciAdvanceScreen.Background.BackButton` → `wait 400` → `click(600,6)` →
+`enter` → `wait_stable`.
+
+**Result.** Run `20260727-075633`: 40 turns, every delta 61k–159k, no zero
+frame, clock 3625BC → **3000BC**, two cities founded, AI diplomacy greetings
+arriving. **No AI research thrash** — the risk the plan named as its weakest
+point does not reproduce.
+
+**Laws.**
+1. `uiwalk.py` has no conditionals, but injection is idempotent-by-absence — an
+   unconditional `press` on a modal that may not be up is the conditional.
+2. An LDL ident is not its label. The OK button is named `BackButton`; grep the
+   `text` string, not the name you see on screen.
+3. A run that "completes" is not a run that progressed. Assert the game clock
+   moved, not just that no step threw.
