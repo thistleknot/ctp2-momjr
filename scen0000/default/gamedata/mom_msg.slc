@@ -85,7 +85,7 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     // accrual, which is monotonically upward, so a click that was affordable stays
     // affordable -- but a future spender on the same turn must not be able to push
     // this negative. The check is a plain comparison at call depth 0.
-    if (p >= 1 && MomSummonChoice[p] != 0 && player[0].cities > 0
+    if (p >= 1 && p <= 5 && MomSummonChoice[p] != 0 && player[0].cities > 0
         && MomMagicCur[p] >= 75) {
         GetCityByIndex(player[0], 0, tmpCity);
         if (CityIsValid(tmpCity)) {
@@ -95,20 +95,30 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
                 MomMagicMaxDisp = MomMagicMax[p];
                 MomMagicGenDisp = MomMagicPerTurn[p];
             }
+            // OCCLUSION-SAFE PLACEMENT. These used to CreateUnit on
+            // tmpCity.location, so every summon landed on the capital tile --
+            // CTP2 draws exactly ONE unit per tile and
+            // CellUnitList::GetTopVisibleUnitOfMoveType orders own units by
+            // MaxMovePoints, so a fast summon permanently hides the garrison
+            // ("can't find the unit on the map"). MomSpawnSphereUnit
+            // (mom_func.slc) already carries the free-land-neighbour search;
+            // calling it here is ONE level from the handler body, the same
+            // depth mom_city_effects.slc already uses, so it is clear of the
+            // 2-level 0xC0000005 chain.
             if (p == 1) {
-                CreateUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT), tmpCity.location, 1);
+                MomSpawnSphereUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT));
                 Message(p, 'MomSummonGuard');
             } elseif (p == 2) {
-                CreateUnit(p, UnitDB(UNIT_WARBEARS), tmpCity.location, 1);
+                MomSpawnSphereUnit(p, UnitDB(UNIT_WARBEARS));
                 Message(p, 'MomSummonBear');
             } elseif (p == 3) {
-                CreateUnit(p, UnitDB(UNIT_MAGE), tmpCity.location, 1);
+                MomSpawnSphereUnit(p, UnitDB(UNIT_MAGE));
                 Message(p, 'MomSummonMage');
             } elseif (p == 4) {
-                CreateUnit(p, UnitDB(UNIT_ZOMBIES), tmpCity.location, 1);
+                MomSpawnSphereUnit(p, UnitDB(UNIT_ZOMBIES));
                 Message(p, 'MomSummonZombie');
             } elseif (p == 5) {
-                CreateUnit(p, UnitDB(UNIT_HELL_HOUNDS), tmpCity.location, 1);
+                MomSpawnSphereUnit(p, UnitDB(UNIT_HELL_HOUNDS));
                 Message(p, 'MomSummonHound');
             }
         }
@@ -120,7 +130,7 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     // consumed the click. Putting this clear inside the gate (as it was before the
     // cost check existed, when the gate could not fail for a player with a city)
     // would have made an unaffordable order a permanent standing order.
-    if (p >= 1 && MomSummonChoice[p] != 0) {
+    if (p >= 1 && p <= 5 && MomSummonChoice[p] != 0) {
         MomSummonChoice[p] = 0;
     }
 }

@@ -1,77 +1,12 @@
 ## 0 ##########################################################
 
-ADVANCE_ADV_INFANTRY_TACTICS {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_ADV_INFANTRY_TACTICS
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ADV_INFANTRY_TACTICS
-   Prerequisites ADVANCE_ADV_INFANTRY_TACTICS
-}
-
 ## 1 ##########################################################
-
-ADVANCE_ADV_NAVAL_TACTICS {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_ADV_NAVAL_TACTICS
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ADV_NAVAL_TACTICS
-   Prerequisites ADVANCE_ADV_NAVAL_TACTICS
-}
 
 ## 2 ##########################################################
 
-ADVANCE_ADV_URBAN_PLANNING {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_ADV_URBAN_PLANNING
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ADV_URBAN_PLANNING
-   Prerequisites ADVANCE_ADV_URBAN_PLANNING
-}
-
 ## 3 ##########################################################
 
-ADVANCE_ADVANCED_COMPOSITES {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_ADVANCED_COMPOSITES
-   Branch 0
-   Age AGE_SEVEN
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ADVANCED_COMPOSITES
-   Prerequisites ADVANCE_ADVANCED_COMPOSITES
-}
-
 ## 4 ##########################################################
-
-ADVANCE_AERODYNAMICS {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_AERODYNAMICS
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_AERODYNAMICS
-   Prerequisites ADVANCE_AERODYNAMICS
-}
 
 ## 5 ##########################################################
 
@@ -90,20 +25,6 @@ ADVANCE_AGE_OF_REASON {
 
 ## 6 ##########################################################
 
-ADVANCE_AGRICULTURAL_REVOLUTION {
-
-
-   Cost 800
-   Icon ICON_ADVANCE_AGRICULTURAL_REVOLUTION
-   Branch 0
-   Age AGE_THREE
-   KeyAdvanceAdvice KEY_GROWTH_ADVANCE_ADVICE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_AGRICULTURAL_REVOLUTION
-   Prerequisites ADVANCE_AGRICULTURAL_REVOLUTION
-}
-
 ## 7 ##########################################################
 
 ADVANCE_AGRICULTURE {
@@ -119,45 +40,19 @@ ADVANCE_AGRICULTURE {
 
 ## 8 ##########################################################
 
-ADVANCE_AI_SURVEILLANCE {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_AI_SURVEILLANCE
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_AI_SURVEILLANCE
-   Prerequisites ADVANCE_AI_SURVEILLANCE
-}
-
 ## 9 ##########################################################
 
 ADVANCE_ALCHEMY {
 
 
-   Cost 1725
+   Cost 1025
    Icon ICON_ADVANCE_ALCHEMY
    Branch 0
-   Age AGE_THREE
+   Age AGE_TWO
    Prerequisites ADVANCE_PHILOSOPHY
 }
 
 ## 10 #########################################################
-
-ADVANCE_ARCOLOGIES {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_ARCOLOGIES
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ARCOLOGIES
-   Prerequisites ADVANCE_ARCOLOGIES
-}
 
 ## 11 #########################################################
 
@@ -179,10 +74,10 @@ ADVANCE_BALLISTICS {
 ADVANCE_BANKING {
 
 
-   Cost 1825
+   Cost 1075
    Icon ICON_ADVANCE_BANKING
    Branch 0
-   Age AGE_FOUR
+   Age AGE_THREE
    Prerequisites ADVANCE_TRADE
 }
 
@@ -244,19 +139,6 @@ ADVANCE_CAVALRY_TACTICS {
 
 ## 17 #########################################################
 
-ADVANCE_CHAOS_THEORY {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_CHAOS_THEORY
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CHAOS_THEORY
-   Prerequisites ADVANCE_CHAOS_THEORY
-}
-
 ## 18 #########################################################
 
 ADVANCE_CHEMISTRY {
@@ -290,34 +172,7 @@ ADVANCE_CLASSICAL_EDUCATION {
 
 ## 20 #########################################################
 
-ADVANCE_COMMUNISM {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_COMMUNISM
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_COMMUNISM
-   Prerequisites ADVANCE_COMMUNISM
-}
-
 ## 21 #########################################################
-
-ADVANCE_COMPUTER {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_COMPUTER
-   Branch 0
-   Age AGE_SEVEN
-   TriggerFeat FEAT_ADVANCE_COMPUTERS
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_COMPUTER
-   Prerequisites ADVANCE_COMPUTER
-}
 
 ## 22 #########################################################
 
@@ -337,108 +192,17 @@ ADVANCE_CONCRETE {
 
 ## 23 #########################################################
 
-ADVANCE_CONSERVATION {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_CONSERVATION
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CONSERVATION
-   Prerequisites ADVANCE_CONSERVATION
-}
-
 ## 24 #########################################################
-
-ADVANCE_CORPORATE_REPUBLIC {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_CORPORATE_REPUBLIC
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CORPORATE_REPUBLIC
-   Prerequisites ADVANCE_CORPORATE_REPUBLIC
-}
 
 ## 25 #########################################################
 
-ADVANCE_CORPORATION {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_CORPORATION
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CORPORATION
-   Prerequisites ADVANCE_CORPORATION
-}
-
 ## 26 #########################################################
-
-ADVANCE_CRIMINAL_CODE {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_CRIMINAL_CODE
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CRIMINAL_CODE
-   Prerequisites ADVANCE_CRIMINAL_CODE
-}
 
 ## 27 #########################################################
 
-ADVANCE_CYBERNETICS {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_CYBERNETICS
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CYBERNETICS
-   Prerequisites ADVANCE_CYBERNETICS
-}
-
 ## 28 #########################################################
 
-ADVANCE_DEMOCRACY {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_DEMOCRACY
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_DEMOCRACY
-   Prerequisites ADVANCE_DEMOCRACY
-}
-
 ## 29 #########################################################
-
-ADVANCE_DIGITAL_ENCRYPTION {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_DIGITAL_ENCRYPTION
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_DIGITAL_ENCRYPTION
-   Prerequisites ADVANCE_DIGITAL_ENCRYPTION
-}
 
 ## 30 #########################################################
 
@@ -457,197 +221,39 @@ ADVANCE_DRAMA {
 
 ## 31 #########################################################
 
-ADVANCE_ECONOMICS {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_ECONOMICS
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ECONOMICS
-   Prerequisites ADVANCE_ECONOMICS
-}
-
 ## 32 #########################################################
-
-ADVANCE_ECOTOPIA {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_ECOTOPIA
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ECOTOPIA
-   Prerequisites ADVANCE_ECOTOPIA
-}
 
 ## 33 #########################################################
 
-ADVANCE_ELECTRICITY {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_ELECTRICITY
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ELECTRICITY
-   Prerequisites ADVANCE_ELECTRICITY
-}
-
 ## 34 #########################################################
-
-ADVANCE_EUGENICS {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_EUGENICS
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_EUGENICS
-   Prerequisites ADVANCE_EUGENICS
-}
 
 ## 35 #########################################################
 
-ADVANCE_EXPLOSIVES {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_EXPLOSIVES
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_EXPLOSIVES
-   Prerequisites ADVANCE_EXPLOSIVES
-}
-
 ## 36 #########################################################
-
-ADVANCE_FASCISM {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_FASCISM
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_FASCISM
-   Prerequisites ADVANCE_FASCISM
-}
 
 ## 37 #########################################################
 
 ADVANCE_FEUDALISM {
 
 
-   Cost 920
+   Cost 460
    Icon ICON_ADVANCE_FEUDALISM
    Branch 0
-   Age AGE_THREE
+   Age AGE_TWO
    Prerequisites ADVANCE_MASONRY
 }
 
 ## 38 #########################################################
 
-ADVANCE_FUEL_CELLS {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_FUEL_CELLS
-   Branch 0
-   Age AGE_SEVEN
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_FUEL_CELLS
-   Prerequisites ADVANCE_FUEL_CELLS
-}
-
 ## 39 #########################################################
-
-ADVANCE_FUSION {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_FUSION
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_FUSION
-   Prerequisites ADVANCE_FUSION
-}
 
 ## 40 #########################################################
 
-ADVANCE_GAIA_CONTROLLER {
-
-
-   Cost 10500
-   Icon ICON_ADVANCE_GAIA_CONTROLLER
-   Branch 0
-   Age AGE_TEN
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_GAIA_CONTROLLER
-   Prerequisites ADVANCE_GAIA_CONTROLLER
-}
-
 ## 41 #########################################################
-
-ADVANCE_GAIA_THEORY {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_GAIA_THEORY
-   Branch 0
-   Age AGE_NINE
-   PollutionSizeModifier -1
-   PollutionProductionModifier -1
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_GAIA_THEORY
-   Prerequisites ADVANCE_GAIA_THEORY
-}
 
 ## 42 #########################################################
 
-ADVANCE_GENETIC_TAILORING {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_GENETIC_TAILORING
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_GENETIC_TAILORING
-   Prerequisites ADVANCE_GENETIC_TAILORING
-}
-
 ## 43 #########################################################
-
-ADVANCE_GENETICS {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_GENETICS
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_GENETICS
-   Prerequisites ADVANCE_GENETICS
-}
 
 ## 44 #########################################################
 
@@ -666,64 +272,11 @@ ADVANCE_GEOMETRY {
 
 ## 45 #########################################################
 
-ADVANCE_GLOBAL_COMMUNICATIONS {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_GLOBAL_COMMUNICATIONS
-   Branch 0
-   Age AGE_SEVEN
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_GLOBAL_COMMUNICATIONS
-   Prerequisites ADVANCE_GLOBAL_COMMUNICATIONS
-}
-
 ## 46 #########################################################
-
-ADVANCE_GLOBAL_DEFENSE {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_GLOBAL_DEFENSE
-   Branch 0
-   Age AGE_SEVEN
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_GLOBAL_DEFENSE
-   Prerequisites ADVANCE_GLOBAL_DEFENSE
-}
 
 ## 47 #########################################################
 
-ADVANCE_GLOBAL_ECONOMICS {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_GLOBAL_ECONOMICS
-   Branch 0
-   Age AGE_SEVEN
-   Capitalization
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_GLOBAL_ECONOMICS
-   Prerequisites ADVANCE_GLOBAL_ECONOMICS
-}
-
 ## 48 #########################################################
-
-ADVANCE_GUIDED_WEAPON_SYSTEMS {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_GUIDED_WEAPON_SYSTEMS
-   Branch 0
-   Age AGE_SEVEN
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_GUIDED_WEAPON_SYSTEMS
-   Prerequisites ADVANCE_GUIDED_WEAPON_SYSTEMS
-}
 
 ## 49 #########################################################
 
@@ -760,20 +313,6 @@ ADVANCE_HORSE_RIDING {
 
 ## 51 #########################################################
 
-ADVANCE_HT_SUPERCONDUCTOR {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_HT_SUPERCONDUCTOR
-   Branch 0
-   Age AGE_EIGHT
-   MagLev
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_HT_SUPERCONDUCTOR
-   Prerequisites ADVANCE_HT_SUPERCONDUCTOR
-}
-
 ## 52 #########################################################
 
 ADVANCE_HULL_MAKING {
@@ -791,76 +330,24 @@ ADVANCE_HULL_MAKING {
 
 ## 53 #########################################################
 
-ADVANCE_HUMAN_CLONING {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_HUMAN_CLONING
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_HUMAN_CLONING
-   Prerequisites ADVANCE_HUMAN_CLONING
-}
-
 ## 54 #########################################################
 
-ADVANCE_INDUSTRIAL_REVOLUTION {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_INDUSTRIAL_REVOLUTION
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_INDUSTRIAL_REVOLUTION
-   Prerequisites ADVANCE_INDUSTRIAL_REVOLUTION
-}
-
 ## 55 #########################################################
-
-ADVANCE_INTERNAL_COMBUSTION {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_INTERNAL_COMBUSTION
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_INTERNAL_COMBUSTION
-   Prerequisites ADVANCE_INTERNAL_COMBUSTION
-}
 
 ## 56 #########################################################
 
 ADVANCE_IRON_WORKING {
 
 
-   Cost 945
+   Cost 1645
    Icon ICON_ADVANCE_IRON_WORKING
    Branch 0
-   Age AGE_TWO
+   Age AGE_THREE
    Prerequisites ADVANCE_BRONZE_WORKING
    Prerequisites ADVANCE_TRADE
 }
 
 ## 57 #########################################################
-
-ADVANCE_JET_PROPULSION {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_JET_PROPULSION
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_JET_PROPULSION
-   Prerequisites ADVANCE_JET_PROPULSION
-}
 
 ## 58 #########################################################
 
@@ -879,34 +366,7 @@ ADVANCE_JURISPRUDENCE {
 
 ## 59 #########################################################
 
-ADVANCE_LIFE_EXTENSION {
-
-
-   Cost 10500
-   Icon ICON_ADVANCE_LIFE_EXTENSION
-   Branch 0
-   Age AGE_TEN
-   TriggerFeat FEAT_ADVANCE_LIFE_EXTENSION
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_LIFE_EXTENSION
-   Prerequisites ADVANCE_LIFE_EXTENSION
-}
-
 ## 60 #########################################################
-
-ADVANCE_LIQUID_BREATHING_APPARATUS {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_LIQUID_BREATHING_APPARATUS
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_LIQUID_BREATHING_APPARATUS
-   Prerequisites ADVANCE_LIQUID_BREATHING_APPARATUS
-}
 
 ## 61 #########################################################
 
@@ -921,82 +381,13 @@ ADVANCE_MASONRY {
 
 ## 62 #########################################################
 
-ADVANCE_MASS_MEDIA {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_MASS_MEDIA
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_MASS_MEDIA
-   Prerequisites ADVANCE_MASS_MEDIA
-}
-
 ## 63 #########################################################
-
-ADVANCE_MASS_PRODUCTION {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_MASS_PRODUCTION
-   Branch 0
-   Age AGE_SIX
-   PollutionSizeModifier 0.5
-   PollutionProductionModifier 0.5
-   Infrastructure
-   TriggerFeat FEAT_ADVANCE_MASS_PRODUCTION
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_MASS_PRODUCTION
-   Prerequisites ADVANCE_MASS_PRODUCTION
-}
 
 ## 64 #########################################################
 
-ADVANCE_MASS_TRANSIT {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_MASS_TRANSIT
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_MASS_TRANSIT
-   Prerequisites ADVANCE_MASS_TRANSIT
-}
-
 ## 65 #########################################################
 
-ADVANCE_MEDICINE {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_MEDICINE
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_MEDICINE
-   Prerequisites ADVANCE_MEDICINE
-}
-
 ## 66 #########################################################
-
-ADVANCE_MODERN_METALLURGY {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_MODERN_METALLURGY
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_MODERN_METALLURGY
-   Prerequisites ADVANCE_MODERN_METALLURGY
-}
 
 ## 67 #########################################################
 
@@ -1012,81 +403,13 @@ ADVANCE_MONARCHY {
 
 ## 68 #########################################################
 
-ADVANCE_NANO_ASSEMBLY {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_NANO_ASSEMBLY
-   Branch 0
-   Age AGE_EIGHT
-   Tunnels
-#   PollutionSizeModifier -1
-#   PollutionProductionModifier -1
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NANO_ASSEMBLY
-   Prerequisites ADVANCE_NANO_ASSEMBLY
-}
-
 ## 69 #########################################################
-
-ADVANCE_NANO_MACHINES {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_NANO_MACHINES
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NANO_MACHINES
-   Prerequisites ADVANCE_NANO_MACHINES
-}
 
 ## 70 #########################################################
 
-ADVANCE_NANO_WARFARE {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_NANO_WARFARE
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NANO_WARFARE
-   Prerequisites ADVANCE_NANO_WARFARE
-}
-
 ## 71 #########################################################
 
-ADVANCE_NATIONALISM {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_NATIONALISM
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NATIONALISM
-   Prerequisites ADVANCE_NATIONALISM
-}
-
 ## 72 #########################################################
-
-ADVANCE_NAVAL_AVIATION {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_NAVAL_AVIATION
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NAVAL_AVIATION
-   Prerequisites ADVANCE_NAVAL_AVIATION
-}
 
 ## 73 #########################################################
 
@@ -1105,50 +428,9 @@ ADVANCE_NAVAL_TACTICS {
 
 ## 74 #########################################################
 
-ADVANCE_NEURAL_INTERFACE {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_NEURAL_INTERFACE
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NEURAL_INTERFACE
-   Prerequisites ADVANCE_NEURAL_INTERFACE
-}
-
 ## 75 #########################################################
 
-ADVANCE_NEURAL_REPROGRAMMING {
-
-
-   Cost 10500
-   Icon ICON_ADVANCE_NEURAL_REPROGRAMMING
-   Branch 0
-   Age AGE_TEN
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NEURAL_REPROGRAMMING
-   Prerequisites ADVANCE_NEURAL_REPROGRAMMING
-}
-
 ## 76 #########################################################
-
-ADVANCE_NUCLEAR_POWER {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_NUCLEAR_POWER
-   Branch 0
-   Age AGE_SEVEN
-   PlantNuke
-   KeyAdvanceAdvice KEY_MILITARY_ADVANCE_ADVICE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NUCLEAR_POWER
-   Prerequisites ADVANCE_NUCLEAR_POWER
-}
 
 ## 77 #########################################################
 
@@ -1167,21 +449,6 @@ ADVANCE_OCEAN_FARING {
 
 ## 78 #########################################################
 
-ADVANCE_OIL_REFINING {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_OIL_REFINING
-   Branch 0
-   Age AGE_FIVE
-   DeepOcean
-   KeyAdvanceAdvice KEY_GROWTH_ADVANCE_ADVICE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_OIL_REFINING
-   Prerequisites ADVANCE_OIL_REFINING
-}
-
 ## 79 #########################################################
 
 ADVANCE_OPTICS {
@@ -1199,19 +466,6 @@ ADVANCE_OPTICS {
 
 ## 80 #########################################################
 
-ADVANCE_PHARMACEUTICALS {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_PHARMACEUTICALS
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_PHARMACEUTICALS
-   Prerequisites ADVANCE_PHARMACEUTICALS
-}
-
 ## 81 #########################################################
 
 ADVANCE_PHILOSOPHY {
@@ -1226,33 +480,7 @@ ADVANCE_PHILOSOPHY {
 
 ## 82 #########################################################
 
-ADVANCE_PHYSICS {
-
-
-   Cost 2400
-   Icon ICON_ADVANCE_PHYSICS
-   Branch 0
-   Age AGE_FIVE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_PHYSICS
-   Prerequisites ADVANCE_PHYSICS
-}
-
 ## 83 #########################################################
-
-ADVANCE_PLASMA_WEAPONRY {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_PLASMA_WEAPONRY
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_PLASMA_WEAPONRY
-   Prerequisites ADVANCE_PLASMA_WEAPONRY
-}
 
 ## 84 #########################################################
 
@@ -1271,51 +499,9 @@ ADVANCE_PRINTING_PRESS {
 
 ## 85 #########################################################
 
-ADVANCE_QUANTUM_MECHANICS {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_QUANTUM_MECHANICS
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_QUANTUM_MECHANICS
-   Prerequisites ADVANCE_QUANTUM_MECHANICS
-}
-
 ## 86 #########################################################
 
-ADVANCE_RADAR {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_RADAR
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_RADAR
-   Prerequisites ADVANCE_RADAR
-}
-
 ## 87 #########################################################
-
-ADVANCE_RAILROAD {
-
-
-   Cost 3840
-   Icon ICON_ADVANCE_RAILROAD
-   Branch 0
-   Age AGE_FIVE
-   Railroads
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_GREATER_ENCHANTMENTS
-   Prerequisites ADVANCE_GREATER_ENCHANTMENTS
-   Prerequisites ADVANCE_GREATER_ENCHANTMENTS
-   Prerequisites ADVANCE_GREATER_ENCHANTMENTS
-}
 
 ## 88 #########################################################
 
@@ -1331,20 +517,6 @@ ADVANCE_RELIGION {
 }
 
 ## 89 #########################################################
-
-ADVANCE_ROBOTICS {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_ROBOTICS
-   Branch 0
-   Age AGE_SEVEN
-   TriggerFeat FEAT_ADVANCE_ROBOTICS
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ROBOTICS
-   Prerequisites ADVANCE_ROBOTICS
-}
 
 ## 90 #########################################################
 
@@ -1376,33 +548,7 @@ ADVANCE_SLAVE_LABOR {
 
 ## 92 #########################################################
 
-ADVANCE_SMART_MATERIALS {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_SMART_MATERIALS
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_SMART_MATERIALS
-   Prerequisites ADVANCE_SMART_MATERIALS
-}
-
 ## 93 #########################################################
-
-ADVANCE_SPACE_FLIGHT {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_SPACE_FLIGHT
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_SPACE_FLIGHT
-   Prerequisites ADVANCE_SPACE_FLIGHT
-}
 
 ## 94 #########################################################
 
@@ -1419,62 +565,11 @@ ADVANCE_STONE_WORKING {
 
 ## 95 #########################################################
 
-ADVANCE_SUBNEURAL_ADS {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_SUBNEURAL_ADS
-}
-
 ## 96 #########################################################
-
-ADVANCE_SUPERSONIC_FLIGHT {
-
-
-   Cost 5200
-   Icon ICON_ADVANCE_SUPERSONIC_FLIGHT
-   Branch 0
-   Age AGE_SEVEN
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_SUPERSONIC_FLIGHT
-   Prerequisites ADVANCE_SUPERSONIC_FLIGHT
-}
 
 ## 97 #########################################################
 
-ADVANCE_TANK_WARFARE {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_TANK_WARFARE
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_TANK_WARFARE
-   Prerequisites ADVANCE_TANK_WARFARE
-}
-
 ## 98 #########################################################
-
-ADVANCE_TECHNOCRACY {
-
-
-   Cost 6800
-   Icon ICON_ADVANCE_TECHNOCRACY
-   Branch 0
-   Age AGE_EIGHT
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_TECHNOCRACY
-   Prerequisites ADVANCE_TECHNOCRACY
-}
 
 ## 99 #########################################################
 
@@ -1507,10 +602,10 @@ ADVANCE_TOOLMAKING {
 ADVANCE_TRADE {
 
 
-   Cost 210
+   Cost 565
    Icon ICON_ADVANCE_TRADE
    Branch 0
-   Age AGE_ONE
+   Age AGE_TWO
    Roads
    KeyAdvanceAdvice KEY_GROWTH_ADVANCE_ADVICE
    Prerequisites ADVANCE_WRITING
@@ -1518,63 +613,11 @@ ADVANCE_TRADE {
 
 ## 102 ########################################################
 
-ADVANCE_ULTRAPRESSURE_MACHINERY {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_ULTRAPRESSURE_MACHINERY
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ULTRAPRESSURE_MACHINERY
-   Prerequisites ADVANCE_ULTRAPRESSURE_MACHINERY
-}
-
 ## 103 ########################################################
-
-ADVANCE_UNIFIED_PHYSICS {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_UNIFIED_PHYSICS
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_UNIFIED_PHYSICS
-   Prerequisites ADVANCE_UNIFIED_PHYSICS
-}
 
 ## 104 ########################################################
 
-ADVANCE_VERTICAL_FLIGHT_AIRCRAFT {
-
-
-   Cost 3800
-   Icon ICON_ADVANCE_VERTICAL_FLIGHT_AIRCRAFT
-   Branch 0
-   Age AGE_SIX
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_VERTICAL_FLIGHT_AIRCRAFT
-   Prerequisites ADVANCE_VERTICAL_FLIGHT_AIRCRAFT
-}
-
 ## 105 ########################################################
-
-ADVANCE_VIRTUAL_DEMOCRACY {
-
-
-   Cost 8500
-   Icon ICON_ADVANCE_VIRTUAL_DEMOCRACY
-   Branch 0
-   Age AGE_NINE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_VIRTUAL_DEMOCRACY
-   Prerequisites ADVANCE_VIRTUAL_DEMOCRACY
-}
 
 ## 106 ########################################################
 
@@ -1906,39 +949,6 @@ ADVANCE_WIZARD_GUILD {
    Prerequisites ADVANCE_WIZARD_GUILD
 }
 
-ADVANCE_COMPUTERS {
-   Cost 800
-   Icon ICON_ADVANCE_COMPUTERS
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_COMPUTERS
-   Prerequisites ADVANCE_COMPUTERS
-}
-
-ADVANCE_CONSUMER_ELECTRONICS {
-   Cost 800
-   Icon ICON_ADVANCE_CONSUMER_ELECTRONICS
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CONSUMER_ELECTRONICS
-   Prerequisites ADVANCE_CONSUMER_ELECTRONICS
-}
-
-ADVANCE_CRYONICS {
-   Cost 800
-   Icon ICON_ADVANCE_CRYONICS
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CRYONICS
-   Prerequisites ADVANCE_CRYONICS
-}
-
 ADVANCE_DOMESTICATION {
    Cost 120
    Icon ICON_ADVANCE_DOMESTICATION
@@ -1948,28 +958,6 @@ ADVANCE_DOMESTICATION {
    GoodyHutExcluded
    Prerequisites ADVANCE_DOMESTICATION
    Prerequisites ADVANCE_DOMESTICATION
-}
-
-ADVANCE_ELECTRIFICATION {
-   Cost 800
-   Icon ICON_ADVANCE_ELECTRIFICATION
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ELECTRIFICATION
-   Prerequisites ADVANCE_ELECTRIFICATION
-}
-
-ADVANCE_ENVIRONMENTALISM {
-   Cost 800
-   Icon ICON_ADVANCE_ENVIRONMENTALISM
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ENVIRONMENTALISM
-   Prerequisites ADVANCE_ENVIRONMENTALISM
 }
 
 ADVANCE_MECHANICAL_CLOCK {
@@ -1983,39 +971,6 @@ ADVANCE_MECHANICAL_CLOCK {
    Prerequisites ADVANCE_MECHANICAL_CLOCK
 }
 
-ADVANCE_MIND_CONTROL {
-   Cost 800
-   Icon ICON_ADVANCE_MIND_CONTROL
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_MIND_CONTROL
-   Prerequisites ADVANCE_MIND_CONTROL
-}
-
-ADVANCE_NANOASSEMBLY {
-   Cost 800
-   Icon ICON_ADVANCE_NANOASSEMBLY
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NANOASSEMBLY
-   Prerequisites ADVANCE_NANOASSEMBLY
-}
-
-ADVANCE_NEURAL_SILICON_INTERFACE {
-   Cost 800
-   Icon ICON_ADVANCE_NEURAL_SILICON_INTERFACE
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NEURAL_SILICON_INTERFACE
-   Prerequisites ADVANCE_NEURAL_SILICON_INTERFACE
-}
-
 ADVANCE_PERSPECTIVE {
    Cost 400
    Icon ICON_ADVANCE_PERSPECTIVE
@@ -2027,28 +982,6 @@ ADVANCE_PERSPECTIVE {
    Prerequisites ADVANCE_PERSPECTIVE
 }
 
-ADVANCE_SUPERCONDUCTOR {
-   Cost 800
-   Icon ICON_ADVANCE_SUPERCONDUCTOR
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_SUPERCONDUCTOR
-   Prerequisites ADVANCE_SUPERCONDUCTOR
-}
-
-ADVANCE_UNIFIED_FIELD_THEORY {
-   Cost 800
-   Icon ICON_ADVANCE_UNIFIED_FIELD_THEORY
-   Branch 0
-   Age AGE_THREE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_UNIFIED_FIELD_THEORY
-   Prerequisites ADVANCE_UNIFIED_FIELD_THEORY
-}
-
 ADVANCE_ALPHABET {
    Cost 455
    Icon ICON_ADVANCE_ALPHABET
@@ -2057,27 +990,27 @@ ADVANCE_ALPHABET {
 }
 
 ADVANCE_ANIMISM {
-   Cost 525
+   Cost 1725
    Icon ICON_ADVANCE_ANIMISM
    Branch 3
-   Age AGE_ONE
+   Age AGE_THREE
    Prerequisites ADVANCE_UNIVERSITY
 }
 
 ADVANCE_ASTROLOGY {
-   Cost 595
+   Cost 1950
    Icon ICON_ADVANCE_ASTROLOGY
    Branch 3
-   Age AGE_ONE
+   Age AGE_THREE
    Prerequisites ADVANCE_MYSTICISM
    Prerequisites ADVANCE_MATHEMATICS
 }
 
 ADVANCE_ELDRITCH_LORE {
-   Cost 525
+   Cost 1725
    Icon ICON_ADVANCE_ELDRITCH_LORE
    Branch 3
-   Age AGE_ONE
+   Age AGE_THREE
    Prerequisites ADVANCE_ASTROLOGY
 }
 
@@ -2093,10 +1026,10 @@ ADVANCE_USER_DEF_TECH_A {
 }
 
 ADVANCE_BRIDGE_BUILDING {
-   Cost 445
+   Cost 2670
    Icon ICON_ADVANCE_BRIDGE_BUILDING
    Branch 4
-   Age AGE_ONE
+   Age AGE_FOUR
    Prerequisites ADVANCE_IRON_WORKING
    Prerequisites ADVANCE_CONSTRUCTION
 }
@@ -2109,34 +1042,34 @@ ADVANCE_CEREMONIAL_BURIAL {
 }
 
 ADVANCE_GREATER_FAUNA_LORE {
-   Cost 525
+   Cost 4210
    Icon ICON_ADVANCE_GREATER_FAUNA_LORE
    Branch 3
-   Age AGE_ONE
+   Age AGE_FIVE
    Prerequisites ADVANCE_LESSER_FAUNA_LORE
 }
 
 ADVANCE_CHIVALRY {
-   Cost 140
+   Cost 460
    Icon ICON_ADVANCE_CHIVALRY
    Branch 0
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_FEUDALISM
 }
 
 ADVANCE_CODE_OF_LAWS {
-   Cost 185
+   Cost 525
    Icon ICON_ADVANCE_CODE_OF_LAWS
    Branch 2
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_ALPHABET
 }
 
 ADVANCE_HEALING {
-   Cost 595
+   Cost 3095
    Icon ICON_ADVANCE_HEALING
    Branch 3
-   Age AGE_ONE
+   Age AGE_FOUR
    Prerequisites ADVANCE_ASTROLOGY
    Prerequisites ADVANCE_PHILOSOPHY
 }
@@ -2149,54 +1082,54 @@ ADVANCE_LESSER_ENCHANMENTS {
 }
 
 ADVANCE_METAMORPHOSIS {
-   Cost 595
+   Cost 4760
    Icon ICON_ADVANCE_METAMORPHOSIS
    Branch 3
-   Age AGE_ONE
+   Age AGE_FIVE
    Prerequisites ADVANCE_RUNE_LORE
    Prerequisites ADVANCE_CONSTRUCTION
 }
 
 ADVANCE_CONSTRUCTION {
-   Cost 445
+   Cost 1645
    Icon ICON_ADVANCE_CONSTRUCTION
    Branch 4
-   Age AGE_ONE
+   Age AGE_THREE
    Prerequisites ADVANCE_MASONRY
    Prerequisites ADVANCE_CURRENCY
 }
 
 ADVANCE_PANTHEISM {
-   Cost 595
+   Cost 1155
    Icon ICON_ADVANCE_PANTHEISM
    Branch 3
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_CEREMONIAL_BURIAL
    Prerequisites ADVANCE_SHAMANISM
 }
 
 ADVANCE_CURRENCY {
-   Cost 210
+   Cost 565
    Icon ICON_ADVANCE_CURRENCY
    Branch 1
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_BRONZE_WORKING
 }
 
 ADVANCE_RUNE_LORE {
-   Cost 595
+   Cost 3095
    Icon ICON_ADVANCE_RUNE_LORE
    Branch 3
-   Age AGE_ONE
+   Age AGE_FOUR
    Prerequisites ADVANCE_OCCULT_STUDIES
    Prerequisites ADVANCE_LITERACY
 }
 
 ADVANCE_SEA_MASTERY {
-   Cost 595
+   Cost 6580
    Icon ICON_ADVANCE_SEA_MASTERY
    Branch 3
-   Age AGE_ONE
+   Age AGE_SIX
    Prerequisites ADVANCE_IRON_WORKING
    Prerequisites ADVANCE_SEA_LORE
 }
@@ -2209,28 +1142,28 @@ ADVANCE_SHAMANISM {
 }
 
 ADVANCE_THAUMATURGY {
-   Cost 595
+   Cost 4760
    Icon ICON_ADVANCE_THAUMATURGY
    Branch 3
-   Age AGE_ONE
+   Age AGE_FIVE
    Prerequisites ADVANCE_SORCEROUS_LORE
    Prerequisites ADVANCE_OCCULT_STUDIES
 }
 
 ADVANCE_TACTICS {
-   Cost 155
+   Cost 520
    Icon ICON_ADVANCE_TACTICS
    Branch 0
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_LEADERSHIP
    Prerequisites ADVANCE_UNIVERSITY
 }
 
 ADVANCE_WIZARDRY {
-   Cost 525
+   Cost 1025
    Icon ICON_ADVANCE_WIZARDRY
    Branch 3
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_ALCHEMY
 }
 
@@ -2266,186 +1199,186 @@ ADVANCE_SORCERY {
 }
 
 ADVANCE_LIFE_LORE {
-   Cost 1170
+   Cost 1970
    Icon ICON_ADVANCE_LIFE_LORE
    Branch 2
-   Age AGE_TWO
+   Age AGE_THREE
    Prerequisites ADVANCE_LIFE_MAGIC
    Prerequisites ADVANCE_ELDRITCH_LORE
 }
 
 ADVANCE_LIFE_ADEPT {
-   Cost 1035
+   Cost 2765
    Icon ICON_ADVANCE_LIFE_ADEPT
    Branch 2
-   Age AGE_TWO
+   Age AGE_FOUR
    Prerequisites ADVANCE_LIFE_LORE
 }
 
 ADVANCE_LIFE_MAGE {
-   Cost 1035
+   Cost 4245
    Icon ICON_ADVANCE_LIFE_MAGE
    Branch 2
-   Age AGE_TWO
+   Age AGE_FIVE
    Prerequisites ADVANCE_LIFE_ADEPT
 }
 
 ADVANCE_HOLY_WARRIORS {
-   Cost 155
+   Cost 3120
    Icon ICON_ADVANCE_HOLY_WARRIORS
    Branch 0
-   Age AGE_ONE
+   Age AGE_FIVE
    Prerequisites ADVANCE_CHIVALRY
    Prerequisites ADVANCE_SORCEROUS_LORE
 }
 
 ADVANCE_LITERACY {
-   Cost 595
+   Cost 1950
    Icon ICON_ADVANCE_LITERACY
    Branch 3
-   Age AGE_ONE
+   Age AGE_THREE
    Prerequisites ADVANCE_WRITING
    Prerequisites ADVANCE_CODE_OF_LAWS
 }
 
 ADVANCE_LIFE_WIZARD {
-   Cost 1035
+   Cost 5855
    Icon ICON_ADVANCE_LIFE_WIZARD
    Branch 2
-   Age AGE_TWO
+   Age AGE_SIX
    Prerequisites ADVANCE_LIFE_MAGE
 }
 
 ADVANCE_LIFE_MASTER {
-   Cost 1035
+   Cost 7630
    Icon ICON_ADVANCE_LIFE_MASTER
    Branch 2
-   Age AGE_TWO
+   Age AGE_SEVEN
    Prerequisites ADVANCE_LIFE_WIZARD
 }
 
 ADVANCE_MAP_MAKING {
-   Cost 210
+   Cost 565
    Icon ICON_ADVANCE_MAP_MAKING
    Branch 1
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_ALPHABET
 }
 
 ADVANCE_CHAOS_LORE {
-   Cost 1430
+   Cost 2340
    Icon ICON_ADVANCE_CHAOS_LORE
    Branch 0
-   Age AGE_TWO
+   Age AGE_THREE
    Prerequisites ADVANCE_CHAOS_MAGIC
    Prerequisites ADVANCE_ELDRITCH_LORE
 }
 
 ADVANCE_MATHEMATICS {
-   Cost 595
+   Cost 1155
    Icon ICON_ADVANCE_MATHEMATICS
    Branch 3
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_ALPHABET
    Prerequisites ADVANCE_MASONRY
 }
 
 ADVANCE_CHAOS_ADEPT {
-   Cost 1265
+   Cost 3220
    Icon ICON_ADVANCE_CHAOS_ADEPT
    Branch 0
-   Age AGE_TWO
+   Age AGE_FOUR
    Prerequisites ADVANCE_CHAOS_LORE
 }
 
 ADVANCE_CHAOS_MAGE {
-   Cost 1265
+   Cost 4830
    Icon ICON_ADVANCE_CHAOS_MAGE
    Branch 0
-   Age AGE_TWO
+   Age AGE_FIVE
    Prerequisites ADVANCE_CHAOS_ADEPT
 }
 
 ADVANCE_CHAOS_WIZARD {
-   Cost 1265
+   Cost 6440
    Icon ICON_ADVANCE_CHAOS_WIZARD
    Branch 0
-   Age AGE_TWO
+   Age AGE_SIX
    Prerequisites ADVANCE_CHAOS_MAGE
 }
 
 ADVANCE_CHAOS_MASTER {
-   Cost 1265
+   Cost 8280
    Icon ICON_ADVANCE_CHAOS_MASTER
    Branch 0
-   Age AGE_TWO
+   Age AGE_SEVEN
    Prerequisites ADVANCE_CHAOS_WIZARD
 }
 
 ADVANCE_MYSTICISM {
-   Cost 185
+   Cost 525
    Icon ICON_ADVANCE_MYSTICISM
    Branch 2
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_CEREMONIAL_BURIAL
 }
 
 ADVANCE_NAVIGATION {
-   Cost 240
+   Cost 2065
    Icon ICON_ADVANCE_NAVIGATION
    Branch 1
-   Age AGE_ONE
+   Age AGE_FOUR
    Prerequisites ADVANCE_SEAFARING
    Prerequisites ADVANCE_ASTROLOGY
 }
 
 ADVANCE_GRAND_MASTERY {
-   Cost 155
+   Cost 520
    Icon ICON_ADVANCE_GRAND_MASTERY
    Branch 0
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_TACTICS
    Prerequisites ADVANCE_WIZARDRY
 }
 
 ADVANCE_SORCERY_MAGE {
-   Cost 1185
+   Cost 4625
    Icon ICON_ADVANCE_SORCERY_MAGE
    Branch 4
-   Age AGE_TWO
+   Age AGE_FIVE
    Prerequisites ADVANCE_SORCERY_ADEPT
 }
 
 ADVANCE_SORCERY_WIZARD {
-   Cost 1185
+   Cost 6235
    Icon ICON_ADVANCE_SORCERY_WIZARD
    Branch 4
-   Age AGE_TWO
+   Age AGE_SIX
    Prerequisites ADVANCE_SORCERY_MAGE
 }
 
 ADVANCE_SORCERY_MASTER {
-   Cost 1185
+   Cost 8050
    Icon ICON_ADVANCE_SORCERY_MASTER
    Branch 4
-   Age AGE_TWO
+   Age AGE_SEVEN
    Prerequisites ADVANCE_SORCERY_WIZARD
 }
 
 ADVANCE_NATURE_LORE {
-   Cost 1095
+   Cost 1865
    Icon ICON_ADVANCE_NATURE_LORE
    Branch 1
-   Age AGE_TWO
+   Age AGE_THREE
    Prerequisites ADVANCE_NATURE_MAGIC
    Prerequisites ADVANCE_ELDRITCH_LORE
 }
 
 ADVANCE_NATURE_ADEPT {
-   Cost 970
+   Cost 2630
    Icon ICON_ADVANCE_NATURE_ADEPT
    Branch 1
-   Age AGE_TWO
+   Age AGE_FOUR
    Prerequisites ADVANCE_NATURE_LORE
 }
 
@@ -2457,10 +1390,10 @@ ADVANCE_POTTERY {
 }
 
 ADVANCE_NATURE_MAGE {
-   Cost 970
+   Cost 4070
    Icon ICON_ADVANCE_NATURE_MAGE
    Branch 1
-   Age AGE_TWO
+   Age AGE_FIVE
    Prerequisites ADVANCE_NATURE_ADEPT
 }
 
@@ -2472,110 +1405,110 @@ ADVANCE_GREATER_ENCHANTMENTS {
 }
 
 ADVANCE_NATURE_WIZARD {
-   Cost 970
+   Cost 5680
    Icon ICON_ADVANCE_NATURE_WIZARD
    Branch 1
-   Age AGE_TWO
+   Age AGE_SIX
    Prerequisites ADVANCE_NATURE_MAGE
 }
 
 ADVANCE_NATURE_MASTER {
-   Cost 970
+   Cost 7435
    Icon ICON_ADVANCE_NATURE_MASTER
    Branch 1
-   Age AGE_TWO
+   Age AGE_SEVEN
    Prerequisites ADVANCE_NATURE_WIZARD
 }
 
 ADVANCE_DEATH_LORE {
-   Cost 1185
+   Cost 1995
    Icon ICON_ADVANCE_DEATH_LORE
    Branch 3
-   Age AGE_TWO
+   Age AGE_THREE
    Prerequisites ADVANCE_DEATH_MAGIC
    Prerequisites ADVANCE_ELDRITCH_LORE
 }
 
 ADVANCE_THE_REPUBLIC {
-   Cost 185
+   Cost 1745
    Icon ICON_ADVANCE_THE_REPUBLIC
    Branch 2
-   Age AGE_ONE
+   Age AGE_FOUR
    Prerequisites ADVANCE_LITERACY
 }
 
 ADVANCE_DEATH_ADEPT {
-   Cost 1050
+   Cost 2790
    Icon ICON_ADVANCE_DEATH_ADEPT
    Branch 3
-   Age AGE_TWO
+   Age AGE_FOUR
    Prerequisites ADVANCE_DEATH_LORE
 }
 
 ADVANCE_SANITATION {
-   Cost 210
+   Cost 3035
    Icon ICON_ADVANCE_SANITATION
    Branch 1
-   Age AGE_ONE
+   Age AGE_FIVE
    Prerequisites ADVANCE_HEALING
 }
 
 ADVANCE_SEAFARING {
-   Cost 240
+   Cost 1215
    Icon ICON_ADVANCE_SEAFARING
    Branch 1
-   Age AGE_ONE
+   Age AGE_THREE
    Prerequisites ADVANCE_MAP_MAKING
    Prerequisites ADVANCE_POTTERY
 }
 
 ADVANCE_DEATH_MAGE {
-   Cost 1050
+   Cost 4280
    Icon ICON_ADVANCE_DEATH_MAGE
    Branch 3
-   Age AGE_TWO
+   Age AGE_FIVE
    Prerequisites ADVANCE_DEATH_ADEPT
 }
 
 ADVANCE_DEATH_WIZARD {
-   Cost 1050
+   Cost 5890
    Icon ICON_ADVANCE_DEATH_WIZARD
    Branch 3
-   Age AGE_TWO
+   Age AGE_SIX
    Prerequisites ADVANCE_DEATH_MAGE
 }
 
 ADVANCE_DEATH_MASTER {
-   Cost 1050
+   Cost 7665
    Icon ICON_ADVANCE_DEATH_MASTER
    Branch 3
-   Age AGE_TWO
+   Age AGE_SEVEN
    Prerequisites ADVANCE_DEATH_WIZARD
 }
 
 ADVANCE_LEADERSHIP {
-   Cost 155
+   Cost 520
    Icon ICON_ADVANCE_LEADERSHIP
    Branch 0
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_CHIVALRY
    Prerequisites ADVANCE_UNIVERSITY
 }
 
 ADVANCE_SORCEROUS_LORE {
-   Cost 1340
+   Cost 2210
    Icon ICON_ADVANCE_SORCEROUS_LORE
    Branch 4
-   Age AGE_TWO
+   Age AGE_THREE
    Prerequisites ADVANCE_SORCERY
    Prerequisites ADVANCE_ELDRITCH_LORE
 }
 
 ADVANCE_UNIVERSITY {
-   Cost 595
+   Cost 1155
    Icon ICON_ADVANCE_UNIVERSITY
    Branch 3
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_MATHEMATICS
    Prerequisites ADVANCE_PHILOSOPHY
 }
@@ -2588,19 +1521,19 @@ ADVANCE_WARRIOR_CODE {
 }
 
 ADVANCE_FUTURE_TECHNOLOGY {
-   Cost 2340
+   Cost 9360
    Icon ICON_ADVANCE_FUTURE_TECHNOLOGY
    Branch 3
-   Age AGE_THREE
+   Age AGE_SEVEN
    Prerequisites ADVANCE_DEATH_WIZARD
    Prerequisites ADVANCE_CHAOS_LORE
 }
 
 ADVANCE_FORCES_OF_NATURE {
-   Cost 525
+   Cost 2735
    Icon ICON_ADVANCE_FORCES_OF_NATURE
    Branch 3
-   Age AGE_ONE
+   Age AGE_FOUR
    Prerequisites ADVANCE_ANIMISM
 }
 
@@ -2613,10 +1546,10 @@ ADVANCE_DEATH_MAGIC {
 }
 
 ADVANCE_SEA_LORE {
-   Cost 525
+   Cost 4210
    Icon ICON_ADVANCE_SEA_LORE
    Branch 3
-   Age AGE_ONE
+   Age AGE_FIVE
    Prerequisites ADVANCE_NAVIGATION
 }
 
@@ -2629,197 +1562,43 @@ ADVANCE_NATURE_MAGIC {
 }
 
 ADVANCE_SORCERY_ADEPT {
-   Cost 1185
+   Cost 3060
    Icon ICON_ADVANCE_SORCERY_ADEPT
    Branch 4
-   Age AGE_TWO
+   Age AGE_FOUR
    Prerequisites ADVANCE_SORCEROUS_LORE
 }
 
 ADVANCE_ARTIFICING {
-   Cost 525
+   Cost 5820
    Icon ICON_ADVANCE_ARTIFICING
    Branch 3
-   Age AGE_ONE
+   Age AGE_SIX
    Prerequisites ADVANCE_THAUMATURGY
 }
 
 ADVANCE_LESSER_FAUNA_LORE {
-   Cost 525
+   Cost 2735
    Icon ICON_ADVANCE_LESSER_FAUNA_LORE
    Branch 3
-   Age AGE_ONE
+   Age AGE_FOUR
    Prerequisites ADVANCE_ANIMISM
 }
 
 ADVANCE_PYROTECHNICS {
-   Cost 525
+   Cost 2735
    Icon ICON_ADVANCE_PYROTECHNICS
    Branch 3
-   Age AGE_ONE
+   Age AGE_FOUR
    Prerequisites ADVANCE_ELDRITCH_LORE
 }
 
 ADVANCE_OCCULT_STUDIES {
-   Cost 525
+   Cost 1025
    Icon ICON_ADVANCE_OCCULT_STUDIES
    Branch 3
-   Age AGE_ONE
+   Age AGE_TWO
    Prerequisites ADVANCE_SHAMANISM
-}
-
-ADVANCE_ADV_FLIGHT_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ADV_FLIGHT_WAW
-   Prerequisites ADVANCE_ADV_FLIGHT_WAW
-}
-
-ADVANCE_ASSEMBLY_LINES_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ASSEMBLY_LINES_WAW
-   Prerequisites ADVANCE_ASSEMBLY_LINES_WAW
-}
-
-ADVANCE_ASSEMBLY_LINE_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ASSEMBLY_LINE_WAW
-   Prerequisites ADVANCE_ASSEMBLY_LINE_WAW
-}
-
-ADVANCE_ATOMIC_STRUC_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ATOMIC_STRUC_WAW
-   Prerequisites ADVANCE_ATOMIC_STRUC_WAW
-}
-
-ADVANCE_BIG_BANG_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_BIG_BANG_WAW
-   Prerequisites ADVANCE_BIG_BANG_WAW
-}
-
-ADVANCE_CHEM_WEAPS_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CHEM_WEAPS_WAW
-   Prerequisites ADVANCE_CHEM_WEAPS_WAW
-}
-
-ADVANCE_CYCLOTRON_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_CYCLOTRON_WAW
-   Prerequisites ADVANCE_CYCLOTRON_WAW
-}
-
-ADVANCE_DRUGS_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_DRUGS_WAW
-   Prerequisites ADVANCE_DRUGS_WAW
-}
-
-ADVANCE_ELEC_APPS_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ELEC_APPS_WAW
-   Prerequisites ADVANCE_ELEC_APPS_WAW
-}
-
-ADVANCE_ELEC_COMP_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ELEC_COMP_WAW
-   Prerequisites ADVANCE_ELEC_COMP_WAW
-}
-
-ADVANCE_ELEC_WAR_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ELEC_WAR_WAW
-   Prerequisites ADVANCE_ELEC_WAR_WAW
-}
-
-ADVANCE_EUGENICS_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_EUGENICS_WAW
-   Prerequisites ADVANCE_EUGENICS_WAW
-}
-
-ADVANCE_INTEL_TESTS_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_INTEL_TESTS_WAW
-   Prerequisites ADVANCE_INTEL_TESTS_WAW
-}
-
-ADVANCE_MOTOR_WAR_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_MOTOR_WAR_WAW
-   Prerequisites ADVANCE_MOTOR_WAR_WAW
 }
 
 ADVANCE_NA {
@@ -2832,181 +1611,4 @@ ADVANCE_NA {
    Prerequisites ADVANCE_NA
    Prerequisites ADVANCE_NA
 }
-
-ADVANCE_NAVAL_WAR_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NAVAL_WAR_WAW
-   Prerequisites ADVANCE_NAVAL_WAR_WAW
-}
-
-ADVANCE_NUC_REACT_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NUC_REACT_WAW
-   Prerequisites ADVANCE_NUC_REACT_WAW
-}
-
-ADVANCE_NYLON_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_NYLON_WAW
-   Prerequisites ADVANCE_NYLON_WAW
-}
-
-ADVANCE_PENICILLIN_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_PENICILLIN_WAW
-   Prerequisites ADVANCE_PENICILLIN_WAW
-}
-
-ADVANCE_POWER_FLIGHT_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_POWER_FLIGHT_WAW
-   Prerequisites ADVANCE_POWER_FLIGHT_WAW
-}
-
-ADVANCE_QUANTUM_ENERGY_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_QUANTUM_ENERGY_WAW
-   Prerequisites ADVANCE_QUANTUM_ENERGY_WAW
-}
-
-ADVANCE_RADAR_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_RADAR_WAW
-   Prerequisites ADVANCE_RADAR_WAW
-}
-
-ADVANCE_RADIO_BROAD_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_RADIO_BROAD_WAW
-   Prerequisites ADVANCE_RADIO_BROAD_WAW
-}
-
-ADVANCE_RADIO_WAVES_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_RADIO_WAVES_WAW
-   Prerequisites ADVANCE_RADIO_WAVES_WAW
-}
-
-ADVANCE_RELATIVITY_ONE_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_RELATIVITY_ONE_WAW
-   Prerequisites ADVANCE_RELATIVITY_ONE_WAW
-}
-
-ADVANCE_RELATIVITY_TWO_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_RELATIVITY_TWO_WAW
-   Prerequisites ADVANCE_RELATIVITY_TWO_WAW
-}
-
-ADVANCE_ROCKETRY_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_ROCKETRY_WAW
-   Prerequisites ADVANCE_ROCKETRY_WAW
-}
-
-ADVANCE_START_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_START_WAW
-   Prerequisites ADVANCE_START_WAW
-}
-
-ADVANCE_TELEVISION_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_TELEVISION_WAW
-   Prerequisites ADVANCE_TELEVISION_WAW
-}
-
-ADVANCE_TRANSISTOR_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_TRANSISTOR_WAW
-   Prerequisites ADVANCE_TRANSISTOR_WAW
-}
-
-ADVANCE_UNCERTAINTY_WAW {
-   Cost 120
-   Icon ICON_ADVANCE_DEFAULT
-   Branch 0
-   Age AGE_ONE
-   GLHidden
-   GoodyHutExcluded
-   Prerequisites ADVANCE_UNCERTAINTY_WAW
-   Prerequisites ADVANCE_UNCERTAINTY_WAW
-}
-
 

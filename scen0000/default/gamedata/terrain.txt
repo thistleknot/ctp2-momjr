@@ -9,13 +9,13 @@ TERRAIN_FOREST {
    InternalType: Forest
    CanDie
 
-   AddAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+   AddAdvance ADVANCE_NATURE_LORE
    TransformAdd {
       Time 2
       Materials 800
    }
 
-   RemoveAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+   RemoveAdvance ADVANCE_NATURE_LORE
    TransformRemove {
       Time 1
       Materials 200
@@ -135,13 +135,13 @@ TERRAIN_TUNDRA {
    InternalType: Tundra
    CanDie
 
-   AddAdvance ADVANCE_ADVANCED_COMPOSITES
+   AddAdvance ADVANCE_NATURE_ADEPT
    TransformAdd {
       Time 3
       Materials 1600
    }
 
-   RemoveAdvance ADVANCE_ADVANCED_COMPOSITES
+   RemoveAdvance ADVANCE_NATURE_ADEPT
    TransformRemove {
       Time 2
       Materials 400
@@ -197,13 +197,13 @@ TERRAIN_GLACIER {
    Icon ICON_TERRAIN_GLACIERS
    InternalType: Glacier
 
-   AddAdvance ADVANCE_ADVANCED_COMPOSITES
+   AddAdvance ADVANCE_NATURE_ADEPT
    TransformAdd {
       Time 5
       Materials 4000
    }
 
-   RemoveAdvance ADVANCE_ADVANCED_COMPOSITES
+   RemoveAdvance ADVANCE_NATURE_ADEPT
    TransformRemove {
       Time 5
       Materials 1000
@@ -323,13 +323,13 @@ TERRAIN_DESERT {
    InternalType: Desert
    CanDie
 
-   AddAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+   AddAdvance ADVANCE_NATURE_LORE
    TransformAdd {
       Time 1
       Materials 1600
    }
 
-   RemoveAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+   RemoveAdvance ADVANCE_NATURE_LORE
    TransformRemove {
       Time 1
       Materials 400
@@ -386,13 +386,13 @@ TERRAIN_SWAMP {
    InternalType: Swamp
    CanDie
 
-   AddAdvance ADVANCE_INDUSTRIAL_REVOLUTION
+   AddAdvance ADVANCE_NATURE_LORE
    TransformAdd {
       Time 2
       Materials 1600
    }
 
-   RemoveAdvance ADVANCE_INDUSTRIAL_REVOLUTION
+   RemoveAdvance ADVANCE_NATURE_LORE
    TransformRemove {
       Time 1
       Materials 400
@@ -449,13 +449,13 @@ TERRAIN_JUNGLE {
    InternalType: Jungle
    CanDie
 
-   AddAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+   AddAdvance ADVANCE_NATURE_LORE
    TransformAdd {
       Time 2
       Materials 1600
    }
 
-   RemoveAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+   RemoveAdvance ADVANCE_NATURE_LORE
    TransformRemove {
       Time 1
       Materials 200
@@ -511,13 +511,13 @@ TERRAIN_MOUNTAIN {
    Icon ICON_TERRAIN_MOUNTAIN
    InternalType: Mountain
 
-   AddAdvance ADVANCE_FUSION
+   AddAdvance ADVANCE_NATURE_ADEPT
    TransformAdd {
       Time 5
       Materials 8000
    }
 
-   RemoveAdvance ADVANCE_FUSION
+   RemoveAdvance ADVANCE_NATURE_ADEPT
    TransformRemove {
       Time 5
       Materials 2000
@@ -574,13 +574,13 @@ TERRAIN_HILL {
    InternalType: Hill
    CanDie
 
-   AddAdvance ADVANCE_EXPLOSIVES
+   AddAdvance ADVANCE_NATURE_LORE
    TransformAdd {
       Time 2
       Materials 1600
    }
 
-   RemoveAdvance ADVANCE_EXPLOSIVES
+   RemoveAdvance ADVANCE_NATURE_LORE
    TransformRemove {
       Time 3
       Materials 600
@@ -907,7 +907,7 @@ TERRAIN_DEAD {
    Icon ICON_TERRAIN_DEAD
    InternalType: Dead
 
-   RemoveAdvance ADVANCE_CONSERVATION
+   RemoveAdvance ADVANCE_NATURE_MAGIC
    TransformRemove {
       Time 5
       Materials 500
@@ -940,13 +940,13 @@ TERRAIN_BROWN_HILL {
    InternalType: BrownHill
    CanDie
 
-   AddAdvance ADVANCE_EXPLOSIVES
+   AddAdvance ADVANCE_NATURE_LORE
    TransformAdd {
       Time 2
       Materials 1600
    }
 
-   RemoveAdvance ADVANCE_EXPLOSIVES
+   RemoveAdvance ADVANCE_NATURE_LORE
    TransformRemove {
       Time 3
       Materials 600
@@ -1002,13 +1002,13 @@ TERRAIN_BROWN_MOUNTAIN {
    Icon ICON_TERRAIN_BMOUNTAIN
    InternalType: BrownMountain
 
-   AddAdvance ADVANCE_FUSION
+   AddAdvance ADVANCE_NATURE_ADEPT
    TransformAdd {
       Time 5
       Materials 8000
    }
 
-   RemoveAdvance ADVANCE_FUSION
+   RemoveAdvance ADVANCE_NATURE_ADEPT
    TransformRemove {
       Time 5
       Materials 2000
@@ -1065,13 +1065,13 @@ TERRAIN_WHITE_HILL {
    InternalType: WhiteHill
    CanDie
 
-   AddAdvance ADVANCE_EXPLOSIVES
+   AddAdvance ADVANCE_NATURE_LORE
    TransformAdd {
       Time 2
       Materials 1600
    }
 
-   RemoveAdvance ADVANCE_EXPLOSIVES
+   RemoveAdvance ADVANCE_NATURE_LORE
    TransformRemove {
       Time 3
       Materials 600
@@ -1126,13 +1126,13 @@ TERRAIN_WHITE_MOUNTAIN {
    Icon ICON_TERRAIN_WMOUNTAIN
    InternalType: WhiteMountain
 
-   AddAdvance ADVANCE_FUSION
+   AddAdvance ADVANCE_NATURE_ADEPT
    TransformAdd {
       Time 5
       Materials 8000
    }
 
-   RemoveAdvance ADVANCE_FUSION
+   RemoveAdvance ADVANCE_NATURE_ADEPT
    TransformRemove {
       Time 5
       Materials 2000

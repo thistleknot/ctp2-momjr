@@ -48,6 +48,12 @@ def _read(p: Path) -> str:
     return p.read_text(encoding="latin-1") if p.exists() else ""
 
 
+def _strip_slic_comments(txt: str) -> str:
+    """Drop // and /* */ comments so prose idents are not read as references."""
+    txt = re.sub(r"/\*.*?\*/", " ", txt, flags=re.S)
+    return re.sub(r"//[^\n]*", "", txt)
+
+
 def _defs(files, pfx) -> set:
     s = set()
     for f in files:
@@ -181,7 +187,12 @@ def main() -> int:
                     failures.append((f"6 base-fallback {pfx}", f"{bp.name}: {bad[:6]}"))
 
     # 7. SLIC entity symbols
-    slic = "".join(_read(f) for f in GD.glob("*.slc"))
+    #    Comments are stripped first: the SLIC compiler never sees them, so an
+    #    ident quoted in prose is not a reference. Without this, mom_func.slc's
+    #    own doc comment (`CityHasBuilding(city, "IMPROVE_X")`, an illustrative
+    #    placeholder) reported as a dangling ref and made the run NOT
+    #    launch-clean forever.
+    slic = "".join(_strip_slic_comments(_read(f)) for f in GD.glob("*.slc"))
     for pfx in ("UNIT_", "IMPROVE_", "ADVANCE_", "WONDER_"):
         refs = set(re.findall(r"\b(" + pfx + r"[A-Z0-9_]+)\b", slic))
         bad = _dangling(refs, dbs[pfx])

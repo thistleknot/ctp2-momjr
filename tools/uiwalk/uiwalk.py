@@ -837,8 +837,29 @@ class Game:
                 if win32gui.GetClassName(hwnd) != "#32770":
                     return
                 _, pid = win32process.GetWindowThreadProcessId(hwnd)
-                if pid == self.proc.pid:
-                    found.append(win32gui.GetWindowText(hwnd))
+                if pid != self.proc.pid:
+                    return
+                # The TITLE alone ('DB Error') names the error CLASS but not the
+                # offending ident, which is the only thing that shortens the
+                # hunt. The body lives in the dialog's static-text children, so
+                # collect them too -- a title-only report sends you grepping
+                # every gamedata file instead of the one record at fault.
+                body = []
+
+                def child(ch, _):
+                    try:
+                        t = win32gui.GetWindowText(ch).strip()
+                        if t and t not in ("OK", "Cancel", "&OK", "&Cancel"):
+                            body.append(t)
+                    except Exception:
+                        pass
+                    return True
+                try:
+                    win32gui.EnumChildWindows(hwnd, child, None)
+                except Exception:
+                    pass
+                title = win32gui.GetWindowText(hwnd)
+                found.append(f"{title}: {' | '.join(body)}" if body else title)
             except Exception:
                 pass
         try:

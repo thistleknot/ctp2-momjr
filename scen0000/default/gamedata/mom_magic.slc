@@ -78,7 +78,7 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
     // CRASH FIX (turn-10): magic is for sphere players 1..5 only. Player 0 (barbarians) and
     // any non-sphere player must skip. SLIC 'post' handlers cannot bare-return, so gate the
     // whole body with an if (this handler running for player 0 was the turn-10 crash).
-    if (p >= 1) {
+    if (p >= 1 && p <= 5) {
         if (MomMagicMax[p] == 0) {
             MomMagicMax[p] = 100;
         }

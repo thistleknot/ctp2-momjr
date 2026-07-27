@@ -1,301 +1,10 @@
-[ADVANCE_ADV_FLIGHT_WAW_GAMEPLAY]
-Although not a single technology or discovery, advanced flight is recognised as the time when all aircraft were being built entirely of metal, specific use aircraft such as fighters and bombers.
-[END]
-[END]
-[END]
-[ADVANCE_ADV_FLIGHT_WAW_HISTORICAL]
-On the advice of General Jan Smuts, it was decided in April 1918 to form the Royal Air Force (RAF) by amalgamating the Royal Naval Air Service (RNAS) with the Royal Flying Corps (RFC). A fleet of light and medium monoplane bombers were developed before 1937, notably the Vickers Wellington. The RAF also obtained two fast, heavily armed interceptor aircraft, the Hawker Hurricane and the Supermarine Spitfire, for defence against enemy bombers.
-
-Immediately after the defeat of France, Adolf Hitler ordered his generals to organize the invasion of Britain. The invasion plan was given the code name Sealion. The objective was to land 160,000 German soldiers along a forty-mile coastal stretch of south-east England. Within a few weeks the Germans had assembled a large armada of vessels, including 2,000 barges in German, Belgian and French harbours. However, Hitler's generals were very worried about the damage that the Royal Air Force could inflict on the German Army during the invasion. Hitler therefore agreed to their request that the invasion should be postponed until the British airforce had been destroyed.
-
-During the war the RAF used 333 flying training schools. In all, between 1940 and 1945 the scheme trained out aircrew from Britain (88,022), Canada (137,739), Australia (27,387), South Africa (24,814), Southern Rhodesia (10,033) and New Zealand (5,609).
-[END]
-[ADVANCE_ASSEMBLY_LINE_WAW_GAMEPLAY]
-After Ford installed the first assembly line, manufactorers all over the world employed them to produce large amounts of goods at a cheaper price.  It also enabled nations to build weapons cheaply and quickly.
-[END]
-[ADVANCE_ASSEMBLY_LINE_WAW_HISTORICAL]
-In 1907, Henry Ford announced his goal for the Ford Motor Company: to create "a motor car for the great multitude." Ford's engineers took the first step towards this goal by designing the Model T, a simple, sturdy car, offering no factory options -- not even a choice of color. The Model T, first produced in 1908, kept the same design until the last one -- number 15,000,000 -- rolled off the line in 1927. From the start, the Model T was less expensive than most other cars, but it was still not attainable for the "multitude." Ford realized he'd need a more efficient way to produce the car in order to lower the price. He and his team looked at other industries and found four principles that would further their goal: interchangeable parts, continuous flow, division of labor, and reducing wasted effort.
-
-Ford put these principles into play gradually over five years, fine-tuning and testing as he went along. In 1913, they came together in the first moving assembly line ever used for large-scale manufacturing. Ford produced cars at a record-breaking rate. That meant he could lower the price and still make a good profit by selling more cars. Ford had another notion, rather original in its time: the workers were also potential consumers! In 1914, Ford workers' wages were raised to $5 a day -- an excellent wage -- and they soon proved him right by buying their own Model Ts. Ford was called "a traitor to his class" by other industrialists and professionals, but he held firm in believing that well-paid workers would put up with dull work, be loyal, and buy his cars.
-
-Ford's manufacturing principles were adopted by countless other industries. Henry Ford went beyond his 1907 goal of making cars affordable for all; he changed the habits of a nation, and shaped its very character.
-[END]
-[ADVANCE_ATOMIC_STRUC_WAW_GAMEPLAY]
-The discovery of the structure of atomic particles was a giant leap towards the nuclear age.  It was also the beginning of how to break up an atom into useful parts.
-[END]
-[ADVANCE_ATOMIC_STRUC_WAW_HISTORICAL]
-In 1911, Niels Bohr earned his PhD in Denmark with a dissertation on the electron theory of metals. Right afterwards, he went to England to study with J.J. Thomson, who had discovered the electron in 1897. Bohr soon went to visit Ernest Rutherford (a former student of Thomson's) in another part of England, where Rutherford had made a brand-new discovery about the atom.
-
-In 1912 Bohr joined Rutherford. He realized that Rutherford's model wasn't quite right. By all rules of classical physics, it should be very unstable. For one thing, the orbiting electrons should give off energy and eventually spiral down into the nucleus, making the atom collapse. Or the electrons could be knocked out of position if a charged particle passed by. Bohr turned to Planck's quantum theory to explain the stability of most atoms. He found that the ratio of energy in electrons and the frequency of their orbits around the nucleus was equal to Planck's constant. Bohr suggested the revolutionary idea that electrons "jump" between energy levels (orbits) in a quantum fashion, that is, without ever existing in an in-between state. Thus when an atom absorbs or gives off energy (as in light or heat), the electron jumps to higher or lower orbits. Bohr published these ideas in 1913 to mixed reaction. Many people still hadn't accepted the idea of quanta, or they found other flaws in the theory because Bohr had based it on very simple atoms. But there was good evidence he was right: the electrons in his model lined up with the regular patterns (spectral series) of light emitted by real hydrogen atoms. 
-
-Over the years other investigators refined Bohr's theory, but his bold application of new ideas paved the way for the development of quantum mechanics. Bohr went on to make enormous contributions to physics and, like Rutherford, to train a new generation of physicists. But his atomic model remains the best known work of a very long career.
-[END]
-[ADVANCE_BIG_BANG_WAW_GAMEPLAY]
-The big bang theory is a theory of how the universe was formed.  Starting from one massive clump of dust, gas and heat, an explosion of enormous proportions began these component hurtling away from the mass.  Eventually over billions of years these formed the galaxies, stars and planets.
-[END]
-[ADVANCE_BIG_BANG_WAW_HISTORICAL]
-Georges LeMaitre (1894-1966) showed that religion and science -- or at least physics -- did not have to be incompatible. LeMaitre, born in Belgium, was a monsignor in the Catholic church. In 1927, the year he got his PhD from MIT, LeMaitre proposed this theory, in which he stated that the expanding universe was the same in all directions -- the same laws applied, and its composition was the same -- but it was not static.
-
-In 1929 at the Mt. Wilson Observatory in California, Edwin Hubble discovered that galaxies were moving away at high speeds. He was, like most people, unaware of LeMaitre's 1927 theory. But LeMaitre used Hubble's dramatic discovery as evidence for his theory. It was easy. If you imagined the galaxies rushing away from us as a movie, just run the movie backwards. After a certain time, all those galaxies will rush together. LeMaitre put forth the idea that there was once a primordial atom which had contained all the matter in the universe. 
-
-The other support LeMaitre used was the idea of entropy, which states that everything is moving towards greater and greater disorder. 
-
-Others took notice and named his theory "big bang." LeMaitre's ideas opened more questions, many of which forced physics and astronomy together: What was that primordial atom like? Why would it explode? He pursued the topic for some time, even suggesting that there ought to be some form of background radiation in the universe, left over from the initial explosion of that primordial atom. He became more interested in the philosophical ramifications of his theory, which were many.
-[END]
-[ADVANCE_CHEM_WEAPS_WAW_GAMEPLAY]
-Chemical Weapons introduce the beginning of alternative warfare in the game.  Although frowned upon by the world community, chemical weapons are abound in the world.
-[END]
-[ADVANCE_CHEM_WEAPS_WAW_HISTORICAL]
-The German Army first used chlorine gas cylinders in April 1915 against the French Army at Ypres. French soldiers reported seeing yellow-green clouds drifting slowly towards the Allied trenches. They also noticed its distinctive smell which was like a mixture of pineapple and pepper. At first the French officers assumed that the German infantry were advancing behind a smoke screen and orders were given to prepare for an armed attack. When the gas arrived at the Allied front-trenches soldiers began to complain about pains in the chests and a burning sensation in their throats. 
-
-Most soldiers now realised they were being gassed and many ran as fast as they could away from the scene. An hour after the attack had started there was a four-mile gap in the Allied line. As the German soldiers were concerned about what the chlorine gas would do to them, they hesitated about moving forward in large numbers. This delayed attack enabled Canadian and British troops to retake the position before the Germans burst through the gap that the chlorine gas had created. 
-
-Chlorine gas destroyed the respiratory organs of its victims and this led to a slow death by asphyxiation. One nurse described the death of one soldier who had been in the trenches during a chlorine gas attack. “He was sitting on the bed, fighting for breath, his lips plum coloured. He was a magnificent young Canadian past all hope in the asphyxia of chlorine. I shall never forget the look in his eyes as he turned to me and gasped: I can’t die! Is it possible that nothing can be done for me?” It was a horrible death, but as hard as they tried, doctors were unable to find a way of successfully treating chlorine gas poisoning.
-[END]
-[ADVANCE_CYCLOTRON_WAW_GAMEPLAY]
-The cyclotron is the nuclear accelerator which enabled the USA to develop the atomic bomb for use against Japan in 1945.  This discovery is the beginning of the end of a long road of research into atoms and their behaviour.
-[END]
-[ADVANCE_CYCLOTRON_WAW_HISTORICAL]
-When Ernest Orlando Lawrence (1901-1958) got his PhD in physics, the hottest topic was bombarding the atom's nucleus to see what new particles it might produce. Ernest Rutherford had only recently shown that striking the atom of one element could make it emit electrons and turn into a different element.
-
-The University of California gave Lawrence the go-ahead to build what he called the cyclotron in 1930. With some graduate students, he tried a number of different set-ups. They had success using electrodes, a radio frequency oscillator producing 10 watts, a vacuum, hydrogen ions, and a 10 cm electromagnet. The whole contraption was quite small. With a larger magnet, Lawrence's team was able to produce 80,000 electron volts in 1931, and later the same year, with a 25 cm cyclotron, 1 million electron volts. In 1939, a 152 cm device was being used for medical purposes, and Lawrence won the Nobel Prize in physics. Work was begun on a 467 cm machine in 1940, but World War II interrupted its development. Lawrence's team turned its attention to producing the uranium-235 needed for the atomic bomb.
-
-The development of the cyclotron and the growth of Lawrence's Radiation Laboratory had tremendous implications for science and the way it's done. This new tool could probe the atom's nucleus and offered applications in medicine and chemical research. It launched the modern era of high-energy physics. But it also launched the era of "big science"-- a new way of organizing scientific work. To feed and care for these increasingly large, complex, and expensive tools required more staff and above all, more money. Governments and corporations saw they had a stake in such research and stepped in as funders.
-[END]
-[ADVANCE_DRUGS_WAW_GAMEPLAY]
-Drugs is the beginning of medical research in the game.  Ground-breaking discoveries were to follow the start of drug research.
-[END]
-[ADVANCE_ELEC_APPS_WAW_GAMEPLAY]
-Electronic Appliances begin the electronic/information age.  Due to assembly lines, consumer appliances became cheap and quick to make.
-[END]
-[ADVANCE_ELEC_APPS_WAW_HISTORICAL]
-A booming economy, after several years of "saving for the war effort," made the United States ripe for the explosion of consumer goods and technology that shaped the 1920s. The United States emerged from World War I a creditor nation and a dominant economic power. Business was booming. The idea of paying in installments may not have been new, but it became habit in the "jazz age." 
-
-Electric appliances for the household were one of the biggest new market segments in the 1920s. Brooms and carpet beaters were replaced by the Electrolux, introduced in 1921. In 1923, Schick marketed an electric shaver. The spin dryer was introduced. The icebox gave way to the Frigidaire. Birdseye introduced frozen foods. Radios came with speakers instead of headsets (and there were regularly broadcast programs since KDKA began in 1920). While science entered more and more intimidating realms of abstraction, what with general relativity and the uncertainty principle, technology seemed more and more accessible as people mastered the use of machinery in their homes. 
-
-But in this climate of high production and low cost, only the biggest corporations survived. From 1920 to 1928, more than 5,000 firms joined in corporate mergers. Among these were the local electric companies. Between 1919 and 1927, 3,700 local power companies went out of business; by 1930 10 holding companies supplied 72 percent of the nation's electricity.
-[END]
-[ADVANCE_ELEC_COMP_WAW_GAMEPLAY]
-Electronic computing begins the information age.  Beginning back in Pascal's day when he invented the adding machine (which used cogs, levers and pulleys) electronic computing represents the beginning of electronic computers leading to the PC's and supercomputers we have today.
-[END]
-[ADVANCE_ELEC_COMP_WAW_HISTORICAL]
-A bank of blinking lights indicate the mysterious processes going on within: That classic symbol of a computer has lasted long after computers evolved into friendly desktop tools. This was not a dream of science fiction, but a representation of ENIAC (Electronic Numerical Integrator Analyzer and Computer), the gigantic machine credited with starting the modern computer age. ENIAC, with its 17,468 vacuum tubes, 70,000 resistors, 10,000 capacitors, 1,500 relays, and 6,000 manual switches, was a monument of engineering -- and an energy hog. The city of Philadelphia reportedly experienced brown-outs when ENIAC drew power at its home at the Moore School of Electrical Engingeering at the University of Pennsylvania. 
-
-ENIAC was a product of World War II. The military needed to develop firing tables for its artillery, so that gunners in the field could quickly look up which settings to use with a particular weapon on a particular target under particular conditions. The Ballistics Research Laboratory heard about the work of John Mauchly at the Moore School. In 1942, he had suggested using vacuum tubes to speed computer calculations. 
-
-It took about a year to design ENIAC, and 18 months to build it. By the time it was completed, in November 1945, the war had been over for three months. The project was 200 percent over budget (total cost approximately $500,000). But it had achieved what it set out to do. A calulation like finding the cube root of 2589 to the 16th power could be done in a fraction of a second. In a whole second ENIAC could execute 5,000 additions, 357 multiplications, and 38 divisions. This was up to a thousand times faster than its predecessors. A little too late for World War II, ENIAC was kept busy through the Cold War, working on such projects as calculations for the design of a hydrogen bomb.
-[END]
-[ADVANCE_ELEC_WAR_WAW_GAMEPLAY]
-Electronic warfare marks the gradual usage of radio and other electronic appliances for war.  The most notable of these are the radio.  This communication device enabled instant message transmission between many fronts of a war.
-[END]
-[ADVANCE_ELEC_WAR_WAW_HISTORICAL]
-The first wireless transmission was made in 1892 by William Preece. Marconi, disappointed by a lack of support from the Italian government, decided to move to London. During his early work he also found out that the radio waves could be reflected into narrow beams by using sheets of metal sheets around the antenna. Marconi had an Irish cousin who helped him take out his first patent. As a result of the interest of the British Post Office he improved the system and was able to send a signal nine miles across the Bristol Channel. Marconi was now making great progress with his work and was able to communicate with a French wireless station that was some 31 miles across the English Channel.
-
-Marconi decided to replace the wire receiver with a glass tube filled with iron filings. This was an improvement and on the 11th of December 1901 Marconi transmitted a signal from Poldhu on Cornwall to St John's in Newfoundland, 2,000 miles away.
-
-By 1914 wireless telegraphy had developed sufficiently to play an important role in warfare. Wireless was widely employed by wartime ground forces. Large naval vessels were fitted with radios, although when they were used, it did make it easier for enemy submarines to discover where they were. Reconnaissance aircraft that had enough power to carry wireless sets (they weighed 50kg) were able to communicate the position of enemy artillery.
-[END]
-[ADVANCE_EUGENICS_WAW_GAMEPLAY]
-Eugenics is the idea of specialised human behaviour, or genetics.  Eugenics was popular during the start of the 20th century due to the strong feelings of nationalism still prevalent from the 19th century.  Though as history was to show, social groups do not always do "good".
-[END]
-[ADVANCE_EUGENICS_WAW_HISTORICAL]
-By 1900 the word 'Eugenics' was widely used by scientists who had rediscovered the work of Gregor Mendel. Mendel had meticulously recorded the results of cross-breeding pea plants, and found a very regular statistical pattern for features like height and color. This introduced the concept of genes, opening the field of genetics to a tumultuous century of research. One path of genetic research branched off into the shadows of social theory, and in the first quarter of the twentieth century became immensely popular as eugenics. It was presented as a mathematical science that could be used to predict the traits and behaviors of humans, and in a perfect world, to control human breeding so that people with the best genes would reproduce and thus improve the species.
-
-In 1923, organizers founded the American Eugenics Society, and it quickly grew to 29 chapters around the country. At fairs and exhibitions, eugenicists spread the word and hosted "fitter family" and "better baby" competitions to award blue ribbons to the finest human stock -- not unlike the awards for prize bull and biggest pumpkin. Not only did eugenicists promote better breeding, they wanted to prevent poor breeding or the risk of it. That meant keeping people with undesireable traits in their heritage (including alcoholism, pauperism, or epilepsy) separate from others or, where law allowed, preventing them from reproducing. 
-
-As the weight of the scientific community shifted toward behaviorism and true genetics, popular opinion followed. John Watson's articles about childrearing and self-improvement popularized behaviorism still further. The eugenics craze was already fading when the horrors of institutionalized eugenics revealed in Nazi Germany during World War II doused it entirely as a movement.
-[END]
-[ADVANCE_INTEL_TESTS_WAW_GAMEPLAY]
-The invention of the Intelligence test led to better understanding of who could suit what career.  Thus it led to a more specialised and efficient workforce.
-[END]
-[ADVANCE_INTEL_TESTS_WAW_HISTORICAL]
-French psychologist Alfred Binet (1859-1911) took a different tack than most psychologists of his day: he was interested in the workings of the normal mind rather than the pathology of mental illness. He wanted to find a way to measure the ability to think and reason, apart from education in any particular field. 
-
-In 1905 he developed a test in which he had children do tasks such as follow commands, copy patterns, name objects, and put things in order or arrange them properly. He gave the test to Paris schoolchildren and created a standard based on his data. For example, if 70 percent of 8-year-olds could pass a particular test, then success on the test represented the 8-year-old level of intelligence. From Binet's work, the phrase "intelligence quotient," or "IQ," entered the vocabulary. The IQ is the ratio of "mental age" to chronological age, with 100 being average. So, an 8 year old who passes the 10 year-old's test would have an IQ of 10/8 x 100, or 125.
-
-Binet's work set off a passion for testing and in the enthusiasm, a widespread application of tests and scoring measures developed from relatively limited data. Tests based on Binet's test were used by the U.S. Army in sorting out the vast numbers of recruits in World War I. The questions, however, had much more to do with general knowledge than with mental tasks such as sequencing or matching. The results, released after the war, showed that the majority of recruits had a juvenile intelligence. This shocking news played into the hands of eugenicists who argued that intelligence was an innate, inheritable trait limited to certain types (or nationalities) of people.
-[END]
-[ADVANCE_MOTOR_WAR_WAW_GAMEPLAY]
-Motorised warfare represents the implementation of mobile warfare, or Blitzkreig.  Though dismissed by the British High Command earlier, the German army used it to devastating effect in the early part of World War II, enabling them to conquor most of Europe/USSR in the first 3 years of war.
-[END]
-[ADVANCE_MOTOR_WAR_WAW_HISTORICAL]
-The German military strategy of using fast-moving tanks, with motorized infantry and artillery supported by dive-bombers, and concentrating on one part of the enemy sector, became known as Blitzkreig (lightning war). The strategy was first put forward by Colonel John Fuller, the chief of staff of the British Tank Corps. Fuller's ideas were ignored by the British Army but was studied in Germany and in 1926 leaders of the the German Army asked the government to commission the production of new tanks that would enable them to use Blitzkreig tactics in any future conflicts. 
-
-After Adolf Hitler obtained power in 1933, the German government was open about its tank production. In the spring of 1934 the German Army began developing the Panzer tank. Over the next few years the Panzer I, Panzer II, Panzer III and Panzer IV were produced. 
-
-During the invasion of Poland in September, 1939, it became clear that the Panzer I was insufficiently armed for battle conditions. Panzer II and Panzer III tanks were reliable but were outgunned. The outstanding performer was the Panzer IV as it had the perfect combination of speed, agility, firepower and reliability. Over the next few years it became the backbone of Blitzkrieg and over 9,000 of these tanks were produced. 
-
-However, the the successful resistance of the Red Army in the Soviet Union in 1942 showed that the Panzer IV was no longer invincible. This resulted in the production of the Panther and it eventually became the most popular tank used in Germany. The greatest exponents of Blitzkrieg were the German commanders, Heinz Guderian and Erwin Rommel.
-[END]
 [ADVANCE_NA_GAMEPLAY]
 Not in this MOD
 [END]
+[END]
+[END]
 [ADVANCE_NA_HISTORICAL]
 Not in this MOD
-[END]
-[ADVANCE_NAVAL_WAR_WAW_GAMEPLAY]
-Naval warfare represents the enhanced naval warfare available once radar and other electronic methods were employed in ships and submarines.
-[END]
-[ADVANCE_NAVAL_WAR_WAW_HISTORICAL]
-When it became clear that Adolf Hitler was rapidly increasing the size Germany's armed forces, new ships were ordered in 1937 but none were ready when the Second World War started in 1939. Even so, the British naval forces were the largest in the world in 1939. By the outbreak of war the Royal Navy had 15 large battleships, 15 heavy cruisers, 46 light cruisers, 7 aircraft carriers, 181 destroyers and 59 submarines. However, only about half had been modernized and the rest were deficient in horizontal armour needed for protection against modern, long-range shellfire.
-
-The French Navy had been responsible for containing the Italian Navy but after Henri-Philippe Petain signed the armistice with Nazi Germany in June, 1940, the British had to divert ships to the Mediterranean. 
-
-The German U-Boats now also had bases on the Atlantic coast which put them much closer to British trade routes. The Royal Navy used its older ships to protect the convoys bringing goods from the United States. From 1941 it was also able to use its growing number of corvettes. 
-
-The turning point in the naval war came when the Bismarck was sunk after being surrounded and fired on by King George V, Rodney, the Norfork and the Dorsetshire on 26th May, 1941. The loss of its largest ship marked the end of the German Navy's incursions into the Atlantic.
-[END]
-[ADVANCE_NUC_REACT_WAW_GAMEPLAY]
-Nuclear reactions are what occur in a nuclear pile.  Uranium ore is put in one end, a nuclear reaction initiated and at the end came energy and plutonium.  As we all know, plutonium is the main ingredient for nuclear weapons.
-[END]
-[ADVANCE_NUC_REACT_WAW_HISTORICAL]
-Enrico Fermi (1901-1954) left Italy in 1938 to receive the Nobel Prize for physics in Sweden. He never went back. He and his wife moved to the United States to escape Italy's increasing fascism and antisemitism. 
-
-Fermi's task was to create a controlled nuclear reaction; that is, to split the atom without creating a deadly explosion. Theoretically, it was possible. During fission, a fast-moving neutron splits an atom's nucleus, which results in the release of energy and additional neutrons. These ejected neutrons can split other nuclei, which release other neutrons to split still other nuclei, and so on: a self-sustaining chain reaction. If this chain reaction went too fast, it became an atomic explosion, but under control it could produce a steady flow of energy.
-
-At the University of Chicago, Fermi worked with a team to find a way to control the chain reaction. He did this by setting up the equipment -- atomic pile -- so that he could insert a neutron-absorbing material into the midst of the fission process to slow it down or stop it altogether. He found that rods made of cadmium would absorb neutrons. If the chain reaction speeded up, the cadmium rods could be inserted to slow it down and could be removed to accelerate it again. By the end of 1942, the team was ready for its first test. The equipment was set up in a squash court at the University of Chicago. The moment was tense: if their theories and experiments until now proved wrong, they could blow up half of Chicago. A few of the rods were pulled out, and the reaction began. The team could increase or decrease the energy output by adjusting the rods. Fermi's idea had worked, and the first controlled, self-sustaining nuclear chain reaction was achieved.
-[END]
-[ADVANCE_NYLON_WAW_GAMEPLAY]
-Nylon is used to make parachutes.  Parachutes are used by paratroopers.  Pretty elementary really.
-[END]
-[ADVANCE_NYLON_WAW_HISTORICAL]
-Wallace Carothers was 32 years old when he was appointed director of Du Pont Corporation's research center. He had studied and taught organic chemistry before that, with a specialization in polymers, molecules composed of long chains of repeating units of atoms. Polymers were little-understood molecules when Carothers began his work. He made major contributions to the understanding of their structure and of polymerization, how these long chain molecules form.
-
-Du Pont's goal was basic research with possible industrial applications, especially in the field of artificial materials. The search was on for a synthetic fiber. By 1934, Carothers had a promising development: He combined the chemicals amine, hexamethylene diamine, and adipic acid. It created fibers! But they were weak. They had formed by the polymerizing process known as a condensation reaction, in which individual molecules join together, with water as a byproduct. Carothers' breakthrough came when he realized the water produced by the reaction was dropping back into the mixture and getting in the way of more polymers forming. He adjusted his equipment so that the water was distilled and removed from the system. It worked!
-
-Carothers drew out fibers that were long, strong, and very elastic. Du Pont named this product nylon. The chemists called it Nylon 66 because the adipic acid and hexamethylene diamine each contain 6 carbon atoms per molecule.
-
-It was exactly what Du Pont had hoped for, and nylon was patented in 1935. It hit the markets in 1939 and was an instant hit, especially as a replacement for silk in hosiery. Carothers did not see the widespread application of his work -- in consumer goods such as toothbrushes, fishing lines, and lingerie, or in special uses such as surgical thread, parachutes, or pipes.
-[END]
-[ADVANCE_PENICILLIN_WAW_GAMEPLAY]
-Penicillin is one of the most important medical discoveries of the 20th century.  It is attributed to single-handedly raising the average lifespan of humans by 10 years, and opening the fields of surgery and drugs to intesive research.
-[END]
-[ADVANCE_PENICILLIN_WAW_HISTORICAL]
-Alexander Fleming returned to his research laboratory at St. Mary's Hospital in London after World War I. His battlefront experience had shown him how serious a killer bacteria could be, much worse even than enemy artillery. He wanted to find a chemical that could stop bacterial infection. 
-
-Fleming had so much going on in his lab that it was often in a jumble. This disorder proved very fortunate. In 1928, he was straightening up a pile of Petri dishes where he had been growing bacteria, but which had been piled in the sink. He opened each one and examined it before tossing it into the cleaning solution. One made him stop and say, "That's funny." 
-
-Some mold was growing on one of the dishes... not too unusual, but all around the mold, the staph bacteria had been killed... very unusual. He took a sample of the mold. He found that it was from the penicillium family, later specified as Penicillium notatum. Fleming presented his findings in 1929, but they raised little interest. He published a report on penicillin and its potential uses in the British Journal of Experimental Pathology. 
-
-The biggest problem was producing enough penicillin. This was hard and expensive to accomplish. Florey and another researcher traveled to the U.S. to talk to chemical manufacturers and ended up in Peoria, Illinois. The agriculture of Illinois proved useful. The nutrient base for the penicillin grown there was corn (maize), which was not commonly grown in Britain. The penicillin loved it, and yielded almost 500 times as much as it had before. More vigorous and productive strains of the mold were sought, and one of the best came from a rotting canteloupe from a Peoria market!
-[END]
-[ADVANCE_POWER_FLIGHT_WAW_GAMEPLAY]
-Powered Flight is the beginning of the aviation age.  Flight became an important field in later years as the potential of aeroplanes in war became apparent in World War I.
-[END]
-[ADVANCE_POWER_FLIGHT_WAW_HISTORICAL]
-Orville and Wilbur Wright were inspired by Otto Lilienthal, a German glider pioneer. Though he crashed to his death in 1896, the Wrights were obsessed the technical problems involved in flight. They approached the issue methodically, working out ways to control a glider's tendency to pitch up and down, roll side to side, or yaw left and right. By the third glider they built, they had solved most of these problems of steering and stability.
-
-To make a self-powered airplane, they needed to develop a very light gasoline engine and an appropriate propellor. By December 1903, their first airplane (Flyer I, later renamed Kitty Hawk) was ready to test. It had a 12.3 meter (40 1/2 feet) wingspan, was 6.4 meters (21 feet) long, and weighed about 274 kilos (605 pounds) without the pilot. It was powered by the Wrights' home-made 12 horsepower gasoline engine. The Wrights returned to the site at Kill Devil Hill near Kitty Hawk, North Carolina, where they had tested their gliders. Their selection of this spot was based on national weather records which showed it to have consistently favorable conditions. 
-
-The first day's attempt was unsuccessful, but in a few days, Orville flew the plane 37 meters (120 feet), which took 12 seconds. They made several more flights that day, the longest being 260 meters (852 feet) in 59 seconds. The Wrights' press release sent out the following month was largely ignored. Many people just didn't believe it, though there were five witnesses to their first flights. A report did appear in the March 1904 issue of Popular Science Monthly, but the first report of a firsthand sighting of the Wrights' plane was in the January 1905 issue of Gleanings in Bee Culture.
-[END]
-[ADVANCE_QUANTUM_ENERGY_WAW_GAMEPLAY]
-Quantum Energy represents the first step along the way towards the nuclear age.[END]
-[END]
-[ADVANCE_QUANTUM_ENERGY_WAW_HISTORICAL]
-In 1899 Max Planck became a professor at the University of Berlin, after nine years at the University of Munich and Kiel University, in Germany. In his research there, he turned to a thermodynamic problem raised by one of his old teachers. The problem was that of a "black body," something that absorbs all frequencies (or wavelengths) of light. When heated it should then radiate all frequencies of light equally -- theoretically. But the distribution of energy radiated in "real life" never matched up with the predictions of classical physics. Several distinguished physicists had created complex equations trying to work it out, but none solved the problem. 
-
-Planck was as steeped in traditional physics as his colleagues, but he had an open mind. The older way wasn't working. So he changed one basic assumption: energy, instead of being continuous, comes in distinct particles. These were later called "quanta," from the Latin for "how much?" Though it sounded outlandish, applying this idea to the problem of heated bodies revealed a simple relationship that explained previous puzzles. Planck found that the energy radiated from a heated body is exactly proportional to the wavelength of its radiation. So, a black body would not radiate all frequencies equally. As temperature goes up, energy increases and it's more likely that quanta with higher energy will be radiated. So, as an object heats up, the light given off is orange, then yellow, and eventually bluish. The wavelength emitted is a function of the energy times a constant (h), now known as Planck's constant. Though Planck's idea was not immediately believed by most physicists, it is now accepted as one of the fundamental constants in the universe. In fact, Planck himself wasn't sure if it was more than a little mathematics that resolved his own particular problem.
-[END]
-[ADVANCE_RADAR_WAW_GAMEPLAY]
-Radar is one of the most important military discoveries of the era.  Radar opened the military machine up to huge leaps in technology.  The ability of radar to detect other metalic objects were extremely useful in defeating the Axis powers in World War II.
-[END]
-[ADVANCE_RADAR_WAW_HISTORICAL]
-In 1935 Robert Watson-Watt wrote a paper entitled The Detection of Aircraft by Radio Methods. This was presented to Henry Tizard, the chairman of the Committee for the Scientific Survey of Air Defence. Watson-Watt's was based on the idea of bouncing a radio wave against an object and measuring its travel to provide targeting information. It was called radar (radio detection and ranging). 
-
-By the outbreak of the Second World War in September 1939, Watson-Watt had designed and installed a chain of radar stations along the East and South coast of England. During the Battle of Britain these stations were able to detect enemy aircraft at any time of day and in any weather conditions.
-
-Radar was also used by ships and aircraft during the war. Germany was using radar by 1940 but Japan never used it effectively. The United States had a good radar system and it was able to predict the attack on Pearl Harbor an hour before it happened. Britain tended to have the best radar system during the early stages of the war and in 1940 the invention of the Magnetron cavity resonator enabled more centimetric waves to be transmitted. It also enabled more compact high-frequency sets to be used by aircraft in the Royal Air Force.
-
-In 1941 the Royal Navy began employing the ASV-3 radar system that helped them locate and attack U-Boats. In December 1942, the RAF began using the Oboe navigational system. A control station in Britain broadcast a radar beam in the direction of the target, and another beam tracked an Oboe-equipped Pathfinder bomber. A person in the control station could then guide the aircraft directly to the target.
-[END]
-[ADVANCE_RADIO_BROAD_WAW_GAMEPLAY]
-Radio broadcasting begins the commercial viability of the new technology, as well as an explosion in propeganda.  Radio broadcasts would be used almost exclusively for propeganda (enemy and allied) during the second world war.
-[END]
-[ADVANCE_RADIO_BROAD_WAW_HISTORICAL]
-On Christmas Eve, 1906, wireless operators on ships off the New England coast wondered if they'd had a religious experience. Out of the midst of Morse code dots and dashes beeping through their headsets came the sound of a voice reading the Christmas story from the Gospel of Luke and a violin playing "Silent Night." The voice wished them a merry Christmas, and then the dots and dashes started up again.
-
-On November 2, 1920, station KDKA made the nation's first commercial broadcast (a term coined by Conrad himself). They chose that date because it was election day, and the power of radio was proven when people could hear the results of the Harding-Cox presidential race before they read about it in the newspaper.
-
-The entry of mass communication into American homes meant, among other things, the development of a mass culture. The same songs were heard across the country, news travelled fast, and heroes like Charles Lindbergh or Joe Louis were, in a new way, accessible to all. Technological refinements in radio continued. Early in the 1920s, headsets were replaced with speakers. In 1929, FM radio became available. The development of the transistor in the late 1940s paved the way for the transistor radio's appearance in 1952. Stereophonic sound and personal stereos would continue radio's evolution.
-[END]
-[ADVANCE_RADIO_WAVES_WAW_GAMEPLAY]
-Radio waves represents the beginning steps on the way towards radios, television, and ultimately electronics and computing.
-[END]
-[ADVANCE_RADIO_WAVES_WAW_HISTORICAL]
-Late in the nineteenth century, Guglielmo Marconi began experimenting with electromagnetic waves to send signals. At that time, the telegraph wire was the quickest way to get messages from here to there, using Morse code. He designed a transmitter to send and a receiver to detect radio waves. By the end of the century Marconi had managed to send signals over several miles with no wires, and the idea was taking hold with naval officials. In 1898 he sent a wireless message 18 miles. In 1900 he patented his system.
-
-On December 12, 1901, Marconi attempted to send the first radio signals across the Atlantic Ocean, in spite of predictions that the radio waves would be lost as the earth curved over that long distance. He set up a specially designed wireless receiver in Newfoundland, Canada, using a coherer (a glass tube filled with iron filings) to conduct radio waves, and balloons to lift the antenna as high as possible. The signals were sent in Morse code from Poldhu, Cornwall, in England. Marconi later wrote about the experience:
-
-Shortly before midday I placed the single earphone to my ear and started listening. The receiver on the table before me was very crude -- a few coils and condensers and a coherer -- no valves, no amplifiers, not even a crystal. But I was at last on the point of putting the correctness of all my beliefs to test. The answer came at 12: 30 when I heard, faintly but distinctly, pip-pip-pip. I handed the phone to Kemp: "Can you hear anything?" I asked. "Yes," he said. "The letter S." He could hear it. I knew then that all my anticipations had been justified. The electric waves sent out into space from Poldhu had traversed the Atlantic -- the distance, enormous as it seemed then, of 1,700 miles -- unimpeded by the curvature of the earth. The result meant much more to me than the mere successful realization of an experiment.
-[END]
-[ADVANCE_RELATIVITY_ONE_WAW_GAMEPLAY]
-This is the first of Einstein's massive breakthroughs that eventually led to the formation of the complete Theory of Relativity.
-[END]
-[ADVANCE_RELATIVITY_ONE_WAW_HISTORICAL]
-Einstein, a young cleark at the Swiss patent office, published several ideas that led to a total rethinking of physics. The publication that had the most profound effect was not the most ballyhooed at the time. Einstein received the Nobel Prize for one of the other ideas, but the special theory of relativity has since become the most well-known. When first published, the article didn't include the now-famous equation E=mc2, but later in 1905, he added it to another publication. The theory stated that the speed of light is constant and absolute -- it always goes the same speed, and nothing can go faster than that. In fact, as things travel at speeds approaching the speed of light, strange things happen to them. They get shorter in the direction of travel, their mass increases, and time passes more slowly for them. 
-
-This was incredibly shocking to a world that saw Newton's laws of physics as sacrosanct. Everyone knew that space had three dimensions, and time only one. But Einstein put them together in one four-dimensional system where space and time cannot be separated or viewed independently. In that system, energy and mass are really the same. And that is the fundamental point of E=mc2: Energy equals matter times the speed of light squared. You only need a minute amount of matter, say, an atom, to create a tremendous amount of energy.
-
-The implications of Einstein's theory were strange, but proved true mathematically and in the real world. Researchers calculated that going about a quarter of the speed of light would only change mass, length, and time measurements by 1 percent. That means that Newton's ideas and "laws" still work well for local measurements at ordinary speeds. This changes drastically the closer one goes to the speed of light: For an object moving at 6/7 the speed of light, its mass would be doubled.
-[END]
-[ADVANCE_RELATIVITY_TWO_WAW_GAMEPLAY]
-This is the second of Einstein's massive breakthroughs that led to the formation of the complete Theory of Relativity.
-[END]
-[ADVANCE_RELATIVITY_TWO_WAW_HISTORICAL]
-After thinking about the problems for 10 years, Einstein published the general theory of relativity. In it, he suggested that gravity is not a force, as Newton had believed, but the result of a curvature of the space-time continuum -- the four dimensional world in which we live. He used a thought experiment to compare the force felt from gravity with acceleration. Imagine you are in an elevator and feel what you believe is the force of gravity, holding you to the floor. According to Einstein, since you cannot see outside the elevator, you cannot tell if you are feeling the force of gravity or if the elevator is being pushed toward your feet. Einstein stated that the two forces are actually identical. Furthermore, if you were in the elevator accelerating upward and a beam of light entered the elevator parallel to the floor, the light beam would appear to bend downward. This meant that light, which ordinarily traveled in straight lines, could curve if it traveled across a gravitational field. This curving path of light meant that that "field" was really a curving of space, which Einstein found was inseparable from time. The curvature would be caused by bodies with great mass.
-
-Einstein postulated three ways this theory could be proved. One was by observing the stars during a total solar eclipse. The sun is our closest strong gravitational field. Light traveling from a star through space and passing the sun's field would be bent, if Einstein's theory were true. If you could see the star during the day, he predicted, it would be in a different place than at night. On March 29, 1919, that opportunity came. British Astronomer Sir Arthur Eddington traveled to Príncipe Island off the western coast of Africa. His team photographed starfields during the eclipse and compared the photos with those of the same starfield taken when the sun was not present. Eddington found the apparent location of the stars had shifted, just as Einstein predicted.
-[END]
-[ADVANCE_ROCKETRY_WAW_GAMEPLAY]
-With the invention of the jet engine came the possibility of rockets.  The Germans led the world in rocket science, and demonstrated this ability with the V1 & later the V2 rocket in World War II.
-[END]
-[ADVANCE_ROCKETRY_WAW_HISTORICAL]
-In June, 1942, Germany began working on a new secret weapon. It was officially known as the F2G-76 but was also called Vergeltung (Retribution) as it was built in response to the mass bombing of urban areas in Germany. British intelligence first became aware of this new weapon when on 22nd August, 1942, a Danish naval officer discovered an early test version that had crash landed on a small island between Germany and Sweden. The officer sent a photograph and a detailed sketch of the bomb to Britain and preparations began to deal with this new weapon that had the potential to win the war for Germany.
-
-Military intelligence eventually discovered that the V-1 missile was being built at Peenemünde and in May, 1943, Winston Churchill ordered Operation Crossbow, a plan to destroy V-1 production and launch sites. Over the next few months over 36,000 tons of bombs were dropped on these targets. 
-
-The V-1 (also known as a flying bomb, buzz bomb or doodlebug) was a pilotless monoplane that was powered by a pulse-jet motor and carried a one ton warhead. They were launched from a fixed ramp and travelled at about 350mph and 4,000ft and had a range of 150 miles (240km). It was 8 metres (25 feet) long and had a wingspan of about 5.5 metres (20 feet).
-
-Germany fired 9,521 V-I bombs on southern England. Of these 4,621 were destroyed by anti-aircraft fire or by RAF fighters such as the new turbojet fighter, the Gloster Meteor. An estimated 6,184 people were killed by these flying bombs. By August only 20 per cent of these bombs were reaching England.
-[END]
-[ADVANCE_START_WAW_GAMEPLAY]
-The Aquired Knowledge advance represents the technology of mankind at the date January 1, 1900.  This advance enables the units, buildings and wonders available at the start of the game.
-[END]
-[ADVANCE_START_WAW_HISTORICAL]
-At the beginning of the 20th century, mankind had reached a technology level whereby oil refining, railroads, explosives, electricity and internal combustion were the standard discoveries known worldwide.  From this point in time a massive injection into science occured due to war, economics, imperialism and need.  The time 1900 - 1950 represents the end of the Imperialsm era and the transition into the Nuclear era.  By 1950 the United States of America with the United Kingdom were in the Cold War period with the communist power of USSR.
-[END]
-[ADVANCE_TELEVISION_WAW_GAMEPLAY]
-Television represents the end result of consumers wanting access to information.  Previously, only movie theatres had information presentation, but now with television and radio, citizens were presented information and propeganda right in their own homes.
-[END]
-[ADVANCE_TELEVISION_WAW_HISTORICAL]
-John Logie Baird (1888-1946) applied for a patent for a mechanical television in 1923. He ran successful experiments in transmitting images in 1926, and in 1930 he worked with the British Broadcasting Corporation (BBC) to begin mechanical television broadcasting. He also tried, rather unsuccessfully, to mass-market his television transmitter. 
-
-In 1923 Vladimir Zworykin (1889-1982) also applied for a patent. His was for a television camera that converted optical images into electrical pulses. About six years later he had developed a receiver and in 1930 demonstrated his system at RCA. 
-
-Meanwhile, in Japan, Kenjiro Takayanagi was developing electronic television, too. He was ahead of Zworykin, but better publicity gave Zworykin the nickname "father of television." Takayanagi transmitted an image electronically in 1926, with a 40-line resolution and film running at 14 frames per second.
-
-In 1932 the BBC ventured the first regularly broadcast programs using Baird's mechanical equipment, though it had been broadcasting special events and other sporadic transmissions since 1927. The first special-purpose television station was built in Germany in 1935 in preparation for the Berlin Olympic Games the following year. That Olympic year, NBC experimented with electronic broadcast from the top of the Empire State Building. The first live journalistic event covered by television was the 1937 coronation of Britain's King George VI. That year, the BBC began the first regular, high-quality broadcasting service using an electronic system.
-[END]
-[ADVANCE_TRANSISTOR_WAW_GAMEPLAY]
-Transistors were a giant leap from vacuum tubes.  Many big, clunky, breakable vacuum tubes were required for even the simplest calculations in early computers.  However, the transistor is small, fast and hardy.  The transistor has enabled modern computers to have thousands of transistors on a chip the size of a small fingernail.
-[END]
-[ADVANCE_TRANSISTOR_WAW_HISTORICAL]
-By 1906, because of the work of Lee de Forest, inventors knew the two basic functions of a vacuum tube -- converting alternating current to direct current and amplifying an electronic signal. Over the decades, vacuum tubes were improved and were used in more and more complicated circuitry. At the 1939 World's Fair, for example, vacuum tubes were showcased in fully electronic television. And by 1945, the high-speed computer ENIAC was built, containing more than 17,000 tubes. Vacuum tubes were bulky, used a lot of energy, and were somewhat fragile and easy to overheat. Engineers knew they needed to find something different. 
-
-The idea of somehow using semiconductors (solid materials such as silicon that conduct electricity, but not as well as a conductor such as copper) had been tossed about before World War II, but knowledge about how they worked was scant, and manufacturing semiconductors was difficult. In 1945, however, the vice president for research at Bell Labs established a research group to look into it. The group was led by William Shockley and included Walter Brattain, John Bardeen, and others, physicists who had worked with quantum theory, especially in solids. 
-
-The transistor was a solid (thus the term "solid-state technology") but had the electrical properties of a vacuum tube. Yet it had none of the drawbacks: it was cheap, sturdy, used little power, worked instantly, and best of all, was tiny. Bell began to license the use of transistors (for a royalty) and offered courses on transistor technology, helping spread the word throughout the industry. The first transistor available to consumers was in hearing aids, followed quickly by transistor radios. The computer industry immediately began designing computers using transistors that were faster, smaller, more economical, and more powerful.
-[END]
-[ADVANCE_UNCERTAINTY_WAW_GAMEPLAY]
-The uncertainty principle is an extension of quantum energy research.  The basics of the principle are based in the chaos theory and strings.
-[END]
-[ADVANCE_UNCERTAINTY_WAW_HISTORICAL]
-In 1927, Werner Heisenberg was in Denmark working at Niels Bohr's research institute in Copenhagen. The two scientists worked closely on theoretical investigations into quantum theory and the nature of physics. Bohr was away on a skiing holiday, and Heisenberg was left to mull things over himself. He had a shocking but clear realization about the limits of physical knowledge: the act of observing alters the reality being observed. At least at the subatomic level. To measure the properties of a particle such as an electron, one needs to use a measuring device, usually light or radiation. But the energy in this radiation affects the particle being observed. If you adjust the light beam to accurately measure position, you need a short-wavelength, high-energy beam. It would tell you position, but its energy would throw off the momentum of the particle. Then, if you adjust the beam to a longer wavelength and lower energy, you could more closely measure momentum, but position would be inaccurate. 
-
-The uncertainty principle was hard even for scientists to accept at first. After struggling with it, however, Bohr developed complementarity theory. This stated that there was a dual nature to things -- an electron was a wave and a particle, for example -- but we could only perceive one side of that dual nature. A sphere, for instance, has a convex and concave aspect. We can sense the convex from outside the sphere, but from inside it appears completely concave. This theory would affect much more than physics, but other fields of science, as well as art and philosophy.
-
-Heisenberg and Bohr's theories were compatible and became known together as the Copenhagen interpretation and accepted as the foundation for quantum theory.
 [END]
 [WONDER_GAIAS_SHRINE_GAMEPLAY]
 Gaia's Shrine is a Master of Magic world wonder.
@@ -594,7 +303,7 @@ Gnome Treasury currently uses runtime wonder proxy data in the MoM scenario buil
 [END]
 [WONDER_GNOME_TREASURY_PREREQ]
 Requires:
-<L:DATABASE_ADVANCES,ADVANCE_ECONOMICS>Economics<e>
+Economics
 
 Costs:
 {WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
@@ -941,7 +650,7 @@ Some <L:DATABASE_CONCEPTS,CONCEPT_IMPROVEMENTS>Improvements<e>, such as <L:DATAB
 
 An excess of Pollution will surely upset one's citizens.  The specific Pollution level that they are willing to tolerate depends on one's <L:DATABASE_CONCEPTS,CONCEPT_GOVERNMENTS>Government<e> type.
 
-If cities allow pollution to reach toxic levels, the terrain within their area of influence will be damaged beyond use.  Once the Advance <L:DATABASE_ADVANCES,ADVANCE_CONSERVATION>Conservation<e> is discovered, however, these "dead tiles" can be <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraformed<e> back to useful terrain.
+If cities allow pollution to reach toxic levels, the terrain within their area of influence will be damaged beyond use.  Once the Advance Conservation is discovered, however, these "dead tiles" can be <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraformed<e> back to useful terrain.
 [END]
 [CONCEPT_POPULATION_GAMEPLAY]
 Each city has a Population, representing the total number of citizens who live there.  As a city's Population grows, so does it's productivity.  With each increase in Population, another <L:DATABASE_CONCEPTS,CONCEPT_WORKER>Worker<e> adds to the resource-gathering potential of a city.
@@ -1015,9 +724,9 @@ Specialists represent groups of citizens who are not primarily involved in the c
 
 There are five types of specialists:
 Entertainers - enabled by <L:DATABASE_ADVANCES,ADVANCE_DRAMA>Drama<e> - Increase <L:DATABASE_CONCEPTS,CONCEPT_HAPPINESS>Happiness<e> in the city
-Merchants - enabled by <L:DATABASE_ADVANCES,ADVANCE_ECONOMICS>Economics<e> - Increase <L:DATABASE_CONCEPTS,CONCEPT_GOLD>Gold<e> in the city
+Merchants - enabled by Economics - Increase <L:DATABASE_CONCEPTS,CONCEPT_GOLD>Gold<e> in the city
 Scientists - enabled by <L:DATABASE_ADVANCES,ADVANCE_CLASSICAL_EDUCATION>Classical Education<e> - Increase <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE>Science<e> in the city
-Laborers  - enabled by <L:DATABASE_ADVANCES,ADVANCE_INDUSTRIAL_REVOLUTION>Industrial Revolution<e> - Increase <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> in the city
+Laborers  - enabled by Industrial Revolution - Increase <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> in the city
 Farms - enabled by <L:DATABASE_ADVANCES,ADVANCE_AGRICULTURE>Agriculture<e> - Increase <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e> in the city
 [END]
 [CONCEPT_STARVATION_GAMEPLAY]
@@ -1082,7 +791,7 @@ You may not wish to destroy all of your rivals in bloody combat.  You may instea
 As you progress through the game, you will accumulate a score based on your performance as a leader.  You will be judged on the <L:DATABASE_CONCEPTS,CONCEPT_EMPIRE_SIZE>size<e> and extent of your empire, how <L:DATABASE_CONCEPTS,CONCEPT_HAPPINESS>happy<e> you make your people, how well you deal with other nations, how <L:DATABASE_CONCEPTS,CONCEPT_ADVANCES>advanced<e> your empire is, how much you promote peace, and many other factors.  AD 2300 is the chronological end of the game.  The player with the highest score at the end of the game wins.
 [END]
 [CONCEPT_VICTORY_SCIENCE_GAMEPLAY]
-Much of scientific research is in the pursuit of ways to improve the world, end its problems and make it more efficient.  Throughout Call To Power II, you will have the opportunity to research new scientific <L:DATABASE_CONCEPTS,CONCEPT_ADVANCES>advances<e>, which will, in turn, give you and your people the access to better ways of living through art, culture, technology and understanding.  The <L:DATABASE_ADVANCES,ADVANCE_GAIA_CONTROLLER>Gaia Controller<e> is the culmination of more than six millennia of human determination, ingenuity and perseverance in the field of science.  A device that makes a limitless supply of energy available, its creation is the opening of a door to a true world utopia, free from want, conflict, scarcity and strife.  In order to achieve this magnificent creation, you must wind your way through the "technology tree" of scientific advances in the game.  Once you research the Gaia Controller advance, you will be able to build the Solaris Project, a <L:DATABASE_CONCEPTS,CONCEPT_WONDERS>wonder of the world<e>.  Once the Solaris Project is built, the whole world can race to build the Gaia Controller.  The first nation to build all the components of the Gaia Controller wins the game.
+Much of scientific research is in the pursuit of ways to improve the world, end its problems and make it more efficient.  Throughout Call To Power II, you will have the opportunity to research new scientific <L:DATABASE_CONCEPTS,CONCEPT_ADVANCES>advances<e>, which will, in turn, give you and your people the access to better ways of living through art, culture, technology and understanding.  The Gaia Controller is the culmination of more than six millennia of human determination, ingenuity and perseverance in the field of science.  A device that makes a limitless supply of energy available, its creation is the opening of a door to a true world utopia, free from want, conflict, scarcity and strife.  In order to achieve this magnificent creation, you must wind your way through the "technology tree" of scientific advances in the game.  Once you research the Gaia Controller advance, you will be able to build the Solaris Project, a <L:DATABASE_CONCEPTS,CONCEPT_WONDERS>wonder of the world<e>.  Once the Solaris Project is built, the whole world can race to build the Gaia Controller.  The first nation to build all the components of the Gaia Controller wins the game.
 [END]
 [CONCEPT_VISION_GAMEPLAY]
 Vision is the range of sight that each unit possesses.  Most <L:DATABASE_CONCEPTS,CONCEPT_UNITS>Units<e> have a vision range of one tile in each direction.  <L:DATABASE_CONCEPTS,CONCEPT_UNITS>Units<e> outside of vision range remain hidden.  <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e> have a vision range equal to their area of influence.
@@ -1199,117 +908,6 @@ National Loyalty:  {GovernmentDB(Government[0]).LoyaltyRank}
 Martial Law:  {GovernmentDB(Government[0]).MartialLawRank}
 Anti-Pollution:   {GovernmentDB(Government[0]).PollutionRank}
 [END]
-[GOVERNMENT_COMMUNISM_GAMEPLAY]
-Communism is one of the more productive forms of <L:DATABASE_CONCEPTS,CONCEPT_GOVERNMENTS>Government<e>.  The majority of citizens are workers who contentedly toil in fields and factories.  Although the economy is good, <L:DATABASE_CONCEPTS,CONCEPT_GOVERNMENTS>Government<e> control of the market squelches profits.
-
-Communism is well suited to medium-sized empires that want to build up their <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e>.  The strong military enjoys the support of the people, making Communist empires excellent at waging war.
-[END]
-[GOVERNMENT_COMMUNISM_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_COMMUNISM>Communism<e>
-
-Max Cities:  {GovernmentDB(Government[0]).TooManyCitiesThreshold}
-Max <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE_SETTING>Science<e>: {GovernmentDB(Government[0]).MaxScienceRate}
-Growth Rating:  {GovernmentDB(Government[0]).GrowthRank}
-Production Rank:  {GovernmentDB(Government[0]).ProductionRank}
-[END]
-[GOVERNMENT_COMMUNISM_STATISTICS]
-Science Rank:  {GovernmentDB(Government[0]).ScienceRank}
-Economic Rank:  {GovernmentDB(Government[0]).GoldRank}
-Crime Levels:  {GovernmentDB(Government[0]).CommerceRank}
-Military Support:  {GovernmentDB(Government[0]).MilitaryRank}
-National Loyalty:  {GovernmentDB(Government[0]).LoyaltyRank}
-Martial Law:  {GovernmentDB(Government[0]).MartialLawRank}
-Anti-Pollution:   {GovernmentDB(Government[0]).PollutionRank}
-[END]
-[GOVERNMENT_CORPORATE_REPUBLIC_GAMEPLAY]
-Corporate Republics are modern, efficient empires that are good for <L:DATABASE_CONCEPTS,CONCEPT_GROWTH>Growth<e>.  A booming economy fuels a vibrant research community.  People tend to be <L:DATABASE_CONCEPTS,CONCEPT_HAPPINESS>Happy<e>, the <L:DATABASE_CONCEPTS,CONCEPT_MILITARY_READINESS>Military<e> is healthy and <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e> are <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Productive<e>.
-[END]
-[GOVERNMENT_CORPORATE_REPUBLIC_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CORPORATE_REPUBLIC>Corporate Republic<e>
-
-Max Cities:  {GovernmentDB(Government[0]).TooManyCitiesThreshold}
-Max <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE_SETTING>Science<e>: {GovernmentDB(Government[0]).MaxScienceRate}
-Growth Rating:  {GovernmentDB(Government[0]).GrowthRank}
-Production Rank:  {GovernmentDB(Government[0]).ProductionRank}
-[END]
-[GOVERNMENT_CORPORATE_REPUBLIC_STATISTICS]
-Science Rank:  {GovernmentDB(Government[0]).ScienceRank}
-Economic Rank:  {GovernmentDB(Government[0]).GoldRank}
-Crime Levels:  {GovernmentDB(Government[0]).CommerceRank}
-Military Support:  {GovernmentDB(Government[0]).MilitaryRank}
-National Loyalty:  {GovernmentDB(Government[0]).LoyaltyRank}
-Martial Law:  {GovernmentDB(Government[0]).MartialLawRank}
-Anti-Pollution:   {GovernmentDB(Government[0]).PollutionRank}
-[END]
-[GOVERNMENT_DEMOCRACY_GAMEPLAY]
-Democracy is fit for peace-loving, medium-sized empires that wish to grow and advance.  People tend to be content, as long as they are free to go about their business.  Although they are loyal to the state, citizens in a Democracy have little tolerance for war or <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e> overrun with <L:DATABASE_ORDERS,ORDER_FORTIFY>Garrisoned<e> forces.  Democracies value good <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE>Science<e>, a clean <L:DATABASE_CONCEPTS,CONCEPT_POLLUTION>Environment<e> and an honest day's <L:DATABASE_CONCEPTS,CONCEPT_WORK_HOURS>Work<e> above all.
-[END]
-[GOVERNMENT_DEMOCRACY_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_DEMOCRACY>Democracy<e>
-
-Max Cities:  {GovernmentDB(Government[0]).TooManyCitiesThreshold}
-Max <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE_SETTING>Science<e>: {GovernmentDB(Government[0]).MaxScienceRate}
-Growth Rating:  {GovernmentDB(Government[0]).GrowthRank}
-Production Rank:  {GovernmentDB(Government[0]).ProductionRank}
-[END]
-[GOVERNMENT_DEMOCRACY_STATISTICS]
-Science Rank:  {GovernmentDB(Government[0]).ScienceRank}
-Economic Rank:  {GovernmentDB(Government[0]).GoldRank}
-Crime Levels:  {GovernmentDB(Government[0]).CommerceRank}
-Military Support:  {GovernmentDB(Government[0]).MilitaryRank}
-National Loyalty:  {GovernmentDB(Government[0]).LoyaltyRank}
-Martial Law:  {GovernmentDB(Government[0]).MartialLawRank}
-Anti-Pollution:   {GovernmentDB(Government[0]).PollutionRank}
-[END]
-[GOVERNMENT_ECOTOPIA_GAMEPLAY]
-Fanatically dedicated to eliminating the detrimental impact of human beings on the ecology, Ecotopians are a particularly zealous group. Their empires inspire <L:DATABASE_CONCEPTS,CONCEPT_GROWTH>Growth<e>, promote <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE>Scientific<e> research and a strong <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Economy<e>.
-
-Ecotopians endow themselves with self-righteousness, and usually seek to wage war against nations that do not meet their severe environmental standards.
-[END]
-[GOVERNMENT_ECOTOPIA_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_ECOTOPIA>Ecotopia<e>
-
-Max Cities:  {GovernmentDB(Government[0]).TooManyCitiesThreshold}
-Max <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE_SETTING>Science<e>: {GovernmentDB(Government[0]).MaxScienceRate}
-Growth Rating:  {GovernmentDB(Government[0]).GrowthRank}
-Production Rank:  {GovernmentDB(Government[0]).ProductionRank}
-[END]
-[GOVERNMENT_ECOTOPIA_STATISTICS]
-Science Rank:  {GovernmentDB(Government[0]).ScienceRank}
-Economic Rank:  {GovernmentDB(Government[0]).GoldRank}
-Crime Levels:  {GovernmentDB(Government[0]).CommerceRank}
-Military Support:  {GovernmentDB(Government[0]).MilitaryRank}
-National Loyalty:  {GovernmentDB(Government[0]).LoyaltyRank}
-Martial Law:  {GovernmentDB(Government[0]).MartialLawRank}
-Anti-Pollution:   {GovernmentDB(Government[0]).PollutionRank}
-[END]
-[GOVERNMENT_FASCISM_GAMEPLAY]
-Fascism is a particularly harsh form of <L:DATABASE_CONCEPTS,CONCEPT_GOVERNMENTS>Government<e>, in which personal freedom and privacy are continuously under attack.  The military runs the <L:DATABASE_CONCEPTS,CONCEPT_GOVERNMENTS>Government<e>, and is, understandably, very strong.  Although <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e> are <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Productive<e>, Fascist states <L:DATABASE_CONCEPTS,CONCEPT_GROWTH>Grow<e> slowly and the <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Economy<e> is always poor.
-
-Leaders hell-bent on conquering the world will find Fascism ideally suited to their aims, as the people will unflaggingly support their imperialistic lust.
-[END]
-[GOVERNMENT_FASCISM_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_FASCISM>Fascism<e>
-
-Max Cities:  {GovernmentDB(Government[0]).TooManyCitiesThreshold}
-Max <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE_SETTING>Science<e>: {GovernmentDB(Government[0]).MaxScienceRate}
-Growth Rating:  {GovernmentDB(Government[0]).GrowthRank}
-Production Rank:  {GovernmentDB(Government[0]).ProductionRank}
-[END]
-[GOVERNMENT_FASCISM_STATISTICS]
-Science Rank:  {GovernmentDB(Government[0]).ScienceRank}
-Economic Rank:  {GovernmentDB(Government[0]).GoldRank}
-Crime Levels:  {GovernmentDB(Government[0]).CommerceRank}
-Military Support:  {GovernmentDB(Government[0]).MilitaryRank}
-National Loyalty:  {GovernmentDB(Government[0]).LoyaltyRank}
-Martial Law:  {GovernmentDB(Government[0]).MartialLawRank}
-Anti-Pollution:   {GovernmentDB(Government[0]).PollutionRank}
-[END]
 [GOVERNMENT_MONARCHY_GAMEPLAY]
 Monarchy is one of the earliest forms of <L:DATABASE_CONCEPTS,CONCEPT_GOVERNMENTS>Government<e> available in Call To Power II.  It is ideal for fledgling empires interested in exploration and conquest.
 [END]
@@ -1359,27 +957,6 @@ National Loyalty:  {GovernmentDB(Government[0]).LoyaltyRank}
 Martial Law:  {GovernmentDB(Government[0]).MartialLawRank}
 Anti-Pollution:   {GovernmentDB(Government[0]).PollutionRank}
 [END]
-[GOVERNMENT_TECHNOCRACY_GAMEPLAY]
-A Technocracy, as the name implies, values <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE>Science<e> above all other pursuits.  Not surprisingly, Technocratic empires substantially endow scientific research, enabling rapid advancement through the Technology Tree.  <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e> are <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Productive<e>, the <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Economy<e> is good, the <L:DATABASE_CONCEPTS,CONCEPT_MILITARY_READINESS>Military<e> is healthy and people are generally <L:DATABASE_CONCEPTS,CONCEPT_HAPPINESS>Happy<e>.
-[END]
-[GOVERNMENT_TECHNOCRACY_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_TECHNOCRACY>Technocracy<e>
-
-Max Cities:  {GovernmentDB(Government[0]).TooManyCitiesThreshold}
-Max <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE_SETTING>Science<e>: {GovernmentDB(Government[0]).MaxScienceRate}
-Growth Rating:  {GovernmentDB(Government[0]).GrowthRank}
-Production Rank:  {GovernmentDB(Government[0]).ProductionRank}
-[END]
-[GOVERNMENT_TECHNOCRACY_STATISTICS]
-Science Rank:  {GovernmentDB(Government[0]).ScienceRank}
-Economic Rank:  {GovernmentDB(Government[0]).GoldRank}
-Crime Levels:  {GovernmentDB(Government[0]).CommerceRank}
-Military Support:  {GovernmentDB(Government[0]).MilitaryRank}
-National Loyalty:  {GovernmentDB(Government[0]).LoyaltyRank}
-Martial Law:  {GovernmentDB(Government[0]).MartialLawRank}
-Anti-Pollution:   {GovernmentDB(Government[0]).PollutionRank}
-[END]
 [GOVERNMENT_THEOCRACY_GAMEPLAY]
 In a Theocracy, the church and state are virtually the same institution.   Citizens adore their leaders, believing them endowed to rule by divine right.  Theocrats have little regard for <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE>Science<e>, despite a decent <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Economy<e>.  Cities tend to be only moderately <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Productive<e>, but <L:DATABASE_CONCEPTS,CONCEPT_GROWTH>Grow<e> at a healthy pace.
 [END]
@@ -1396,28 +973,6 @@ Growth Rating:  {GovernmentDB(Government[0]).GrowthRank}
 Production Rank:  {GovernmentDB(Government[0]).ProductionRank}
 [END]
 [GOVERNMENT_THEOCRACY_STATISTICS]
-Science Rank:  {GovernmentDB(Government[0]).ScienceRank}
-Economic Rank:  {GovernmentDB(Government[0]).GoldRank}
-Crime Levels:  {GovernmentDB(Government[0]).CommerceRank}
-Military Support:  {GovernmentDB(Government[0]).MilitaryRank}
-National Loyalty:  {GovernmentDB(Government[0]).LoyaltyRank}
-Martial Law:  {GovernmentDB(Government[0]).MartialLawRank}
-Anti-Pollution:   {GovernmentDB(Government[0]).PollutionRank}
-[END]
-[GOVERNMENT_VIRTUAL_DEMOCRACY_GAMEPLAY]
-Virtual Democracies are extremely advanced empires, in which citizens use technology to fulfill basic needs, freeing themselves up to pursue higher level activities.  The <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Economy<e> brims with life and the research community enjoys unprecedented support.  Although <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e> are <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Productive<e>, citizens demand adherence to strict <L:DATABASE_CONCEPTS,CONCEPT_POLLUTION>Environmental<e> regulations.
-Leaders with militaristic streaks are wise to seek another form of <L:DATABASE_CONCEPTS,CONCEPT_GOVERNMENTS>Government<e> - the Virtual Democracy is a peace-oriented form of <L:DATABASE_CONCEPTS,CONCEPT_GOVERNMENTS>Government<e>.
-[END]
-[GOVERNMENT_VIRTUAL_DEMOCRACY_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_VIRTUAL_DEMOCRACY>Virtual Democracy<e>
-
-Max Cities:  {GovernmentDB(Government[0]).TooManyCitiesThreshold}
-Max <L:DATABASE_CONCEPTS,CONCEPT_SCIENCE_SETTING>Science<e>: {GovernmentDB(Government[0]).MaxScienceRate}
-Growth Rating:  {GovernmentDB(Government[0]).GrowthRank}
-Production Rank:  {GovernmentDB(Government[0]).ProductionRank}
-[END]
-[GOVERNMENT_VIRTUAL_DEMOCRACY_STATISTICS]
 Science Rank:  {GovernmentDB(Government[0]).ScienceRank}
 Economic Rank:  {GovernmentDB(Government[0]).GoldRank}
 Crime Levels:  {GovernmentDB(Government[0]).CommerceRank}
@@ -1926,7 +1481,7 @@ Defense: +0%
 [TERRAIN_BROWN_HILL_GAMEPLAY]
 Sand Dunes are desolate and hostile locales, lacking suitable resources for <L:DATABASE_CONCEPTS,CONCEPT_CITY>City<e> building.  <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> is moderately, <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e> is scarce, <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e> is nonexistent and movement is slow.  One can build <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MINES>Mines<e>, but not <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_FARMS>Farms<e>.  Units enjoy a moderate <L:DATABASE_CONCEPTS,CONCEPT_DEFENSE>Defense<e> bonus.
 
-<L:DATABASE_ADVANCES,ADVANCE_EXPLOSIVES>Explosives<e> enable <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraforming<e> Sand Dunes.
+Explosives enable <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraforming<e> Sand Dunes.
 
 <L:DATABASE_RESOURCE,TERRAIN_DESERT_GOOD_ONE>Glass<e> and <L:DATABASE_RESOURCE,TERRAIN_DESERT_GOOD_TWO>Oil<e> are the Goods found on sand dune tiles.
 [END]
@@ -1942,7 +1497,7 @@ Defense: +50%
 [TERRAIN_BROWN_MOUNTAIN_GAMEPLAY]
 Desert Mountains are hostile to all but the hardiest of life and give no <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e>.  However, they afford moderate amounts of <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> and <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e>.  One cannot build <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_FARMS>Farms<e>, only <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MINES>Mines<e>.  Desert Mountain tiles give a substantial <L:DATABASE_CONCEPTS,CONCEPT_DEFENSE>Defensive<e> bonus to any units on them, but movement across Desert Mountains without the benefit of roads is extremely slow.
 
-The <L:DATABASE_ADVANCES,ADVANCE_EXPLOSIVES>Explosives<e> Advance allows one to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Desert Mountains.
+The Explosives Advance allows one to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Desert Mountains.
 
 <L:DATABASE_CONCEPTS,CONCEPT_GOODS>Goods<e> like <L:DATABASE_RESOURCE,TERRAIN_MOUNTAIN_GOOD_ONE>Tea<e> and <L:DATABASE_RESOURCE,TERRAIN_MOUNTAIN_GOOD_TWO>Emeralds<e> are found in Desert Mountains.
 [END]
@@ -1986,7 +1541,7 @@ Defense: +0%
 [TERRAIN_DEAD_GAMEPLAY]
 Dead Tiles do not naturally occur anywhere in the game.  They are the unfortunate result of sustained toxic levels of <L:DATABASE_CONCEPTS,CONCEPT_POLLUTION>Pollution<e>.  When a tile is dead, construction of <L:DATABASE_CONCEPTS,CONCEPT_TILE_IMPROVEMENTS>Tile Improvements<e> and harvesting of resources become impossible.
 
-Once a player discovers <L:DATABASE_ADVANCES,ADVANCE_CONSERVATION>Conservation<e>, they can, at considerable expense, <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> a dead tile and restore the terrain type that existed before profound neglect rendered it inhospitable.  But, by far the best course of action is to mitigate <L:DATABASE_CONCEPTS,CONCEPT_POLLUTION>Pollution<e> long before toxicity becomes a threat.
+Once a player discovers Conservation, they can, at considerable expense, <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> a dead tile and restore the terrain type that existed before profound neglect rendered it inhospitable.  But, by far the best course of action is to mitigate <L:DATABASE_CONCEPTS,CONCEPT_POLLUTION>Pollution<e> long before toxicity becomes a threat.
 [END]
 [TERRAIN_DEAD_PREREQ]
 Food: 0
@@ -2014,7 +1569,7 @@ Defense: +0%
 [TERRAIN_DESERT_GAMEPLAY]
 Deserts are not conducive to healthy <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e>.  An unimproved Desert tile has no <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e> or <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> and only a small <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e> bonus.  Players can build the whole range of land-based <L:DATABASE_CONCEPTS,CONCEPT_TILE_IMPROVEMENTS>Tile Improvements<e>.  Units have difficulty moving through Deserts, so <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e> are advised.  <L:DATABASE_CONCEPTS,CONCEPT_RIVER>Rivers<e> boost all resources on Desert tiles.
 
-After the discovery of the <L:DATABASE_ADVANCES,ADVANCE_AGRICULTURAL_REVOLUTION>Agricultural Revolution<e> Advance, players can <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Desert tiles.
+After the discovery of the Agricultural Revolution Advance, players can <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Desert tiles.
 
 <L:DATABASE_RESOURCE,TERRAIN_DESERT_GOOD_ONE>Glass<e> and <L:DATABASE_RESOURCE,TERRAIN_DESERT_GOOD_TWO>Oil<e> are <L:DATABASE_CONCEPTS,CONCEPT_GOODS>Goods<e> found in deserts.
 [END]
@@ -2030,7 +1585,7 @@ Defense: +0%
 [TERRAIN_FOREST_GAMEPLAY]
 Forests provide a substantial bonus to the <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> output of <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e>.  However, one cannot build any <L:DATABASE_CONCEPTS,CONCEPT_TILE_IMPROVEMENTS>Tile Improvements<e> except for <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e>.  <L:DATABASE_CONCEPTS,CONCEPT_RIVER>Rivers<e> that run through Forest tiles substantially increase <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e>, <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> and <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e>.
 
-After the discovery of the <L:DATABASE_ADVANCES,ADVANCE_AGRICULTURAL_REVOLUTION>Agricultural Revolution<e> Advance, players can <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Forest tiles.
+After the discovery of the Agricultural Revolution Advance, players can <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Forest tiles.
 
 Exotic <L:DATABASE_RESOURCE,TERRAIN_FOREST_GOOD_ONE>Hardwood<e> and <L:DATABASE_RESOURCE,TERRAIN_FOREST_GOOD_TWO>Bears<e> are the trade <L:DATABASE_CONCEPTS,CONCEPT_GOODS>Goods<e> native to Forest tiles.
 [END]
@@ -2046,7 +1601,7 @@ Defense: +25%
 [TERRAIN_GLACIER_GAMEPLAY]
 Glacier tiles are almost completely inhospitable.  One may build a city on a Glacier, but it will be exceedingly difficult to support.  Tile Improvement construction is impossible.  There is no <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e>, <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> or <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e>.  Movement is severely limited and there is no <L:DATABASE_CONCEPTS,CONCEPT_DEFENSE>Defense<e> bonus for units.  It is best to avoid these lands as much as possible.
 
-One must discover <L:DATABASE_ADVANCES,ADVANCE_ADVANCED_COMPOSITES>Advanced Composites<e> in order to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Glacier tiles.
+One must discover Advanced Composites in order to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Glacier tiles.
 [END]
 [TERRAIN_GLACIER_PREREQ]
 Food: 0
@@ -2076,7 +1631,7 @@ Defense: +0%
 [TERRAIN_HILL_GAMEPLAY]
 Hills are good places to build <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e>, because they give a <L:DATABASE_CONCEPTS,CONCEPT_DEFENSE>Defensive<e> bonus to any units stationed there.  The <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> and <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e> bonuses are substantial, but <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e> is minimal.  One can build <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e>, <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MINES>Mines<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_TRADING_POST>Trading Posts<e>, but not <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_FARMS>Farms<e>.
 
-One needs to discover <L:DATABASE_ADVANCES,ADVANCE_EXPLOSIVES>Explosives<e> to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Hills.
+One needs to discover Explosives to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Hills.
 
 <L:DATABASE_RESOURCE,TERRAIN_HILL_GOOD_ONE>Coffee<e> and <L:DATABASE_RESOURCE,TERRAIN_HILL_GOOD_TWO>Grapes<e> are the <L:DATABASE_CONCEPTS,CONCEPT_GOODS>Goods<e> found on Hill tiles.
 [END]
@@ -2092,7 +1647,7 @@ Defense: +50%
 [TERRAIN_JUNGLE_GAMEPLAY]
 Rain Forests have an abundance of natural resources, making available small amounts of <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e>, substantial <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> and a minimum of <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e>.  A <L:DATABASE_CONCEPTS,CONCEPT_RIVER>River<e> enhances the bonuses.  <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_FARMS>Farming<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MINES>Mining<e> are both impossible, but one can build Commerce improvements such as <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_TRADING_POST>Trading Posts<e> and .  <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e> are strongly advised, as unaided movement through this terrain is slow.
 
-The discovery of <L:DATABASE_ADVANCES,ADVANCE_AGRICULTURAL_REVOLUTION>Agricultural Revolution<e> enables <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraforming<e> of Rain Forest tiles.
+The discovery of Agricultural Revolution enables <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraforming<e> of Rain Forest tiles.
 
 <L:DATABASE_RESOURCE,TERRAIN_JUNGLE_GOOD_ONE>Medicinal Herbs<e> and <L:DATABASE_RESOURCE,TERRAIN_JUNGLE_GOOD_TWO>Jade<e> are the Goods found in rain forests.
 [END]
@@ -2124,7 +1679,7 @@ Defense: +0%
 [TERRAIN_MOUNTAIN_GAMEPLAY]
 Mountains make up for their lack of a <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e> with substantial levels of <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> and fair amounts of <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e>.  Mountains are good places to build well-fortified <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e>, as the <L:DATABASE_CONCEPTS,CONCEPT_DEFENSE>Defense<e> bonus to units is considerable.  Movement without <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e> is extremely slow, though road construction is very expensive.  One can build <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MINES>Mines<e>, but not <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_FARMS>Farms<e> or Commerce Improvements.
 
-The discovery of <L:DATABASE_ADVANCES,ADVANCE_FUSION>Fusion<e> enables <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraforming<e> Mountains.
+The discovery of Fusion enables <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraforming<e> Mountains.
 
 <L:DATABASE_RESOURCE,TERRAIN_MOUNTAIN_GOOD_ONE>Tea<e> and <L:DATABASE_RESOURCE,TERRAIN_MOUNTAIN_GOOD_TWO>Emeralds<e> are the Goods to be found in Alpine Mountains.
 [END]
@@ -2183,7 +1738,7 @@ Defense: +0%
 [TERRAIN_SWAMP_GAMEPLAY]
 Swamps are unsuitable for <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e>.  There is a scarce amount of <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e> minimal <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e> and a small amount of <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>.  <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_RAILROAD>Enchanted Roads<e> are the only tile improvements one can build.
 
-The <L:DATABASE_ADVANCES,ADVANCE_INDUSTRIAL_REVOLUTION>Industrial Revolution<e> Advance enables <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraforming<e> Swamp tiles.
+The Industrial Revolution Advance enables <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraforming<e> Swamp tiles.
 
 <L:DATABASE_RESOURCE,TERRAIN_SWAMP_GOOD_ONE>Alligator<e> is the only <L:DATABASE_CONCEPTS,CONCEPT_GOODS>Good<e> found on swamps.
 [END]
@@ -2200,7 +1755,7 @@ Defense: +25%
 Tundra tiles are abysmal places to build <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e>.  They have no 
 <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e>, minimal <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> and no <L:DATABASE_CONCEPTS,CONCEPT_GOLD>Commerce<e>.  <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MINES>Mining<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_FARMS>Farming<e> are both impossible.  Movement is slow and there is no <L:DATABASE_CONCEPTS,CONCEPT_DEFENSE>Defense<e> bonus.
 
-<L:DATABASE_ADVANCES,ADVANCE_ADVANCED_COMPOSITES>Advanced Composites<e> allow one to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Tundra.
+Advanced Composites allow one to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Tundra.
 
 <L:DATABASE_RESOURCE,TERRAIN_TUNDRA_GOOD_ONE>Caribou<e> is the only <L:DATABASE_CONCEPTS,CONCEPT_GOODS>Good<e> found on Tundra.
 [END]
@@ -2232,7 +1787,7 @@ Defense: +0%
 [TERRAIN_WHITE_HILL_GAMEPLAY]
 Polar Hills are less than desirable locations for <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e>, owing to their lack of <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e>.  <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e> and <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> levels are minimal.  One can build <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MINES>Mines<e> and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e>, but the harsh weather and extreme cold make supporting <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_FARMS>Farms<e> impossible.  Movement is slow, and there is a moderate defensive bonus for units.
 
-<L:DATABASE_ADVANCES,ADVANCE_EXPLOSIVES>Explosives<e> are required to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Polar Hill tiles.
+Explosives are required to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Polar Hill tiles.
 [END]
 [TERRAIN_WHITE_HILL_PREREQ]
 Food: 0
@@ -2246,7 +1801,7 @@ Defense: +50%
 [TERRAIN_WHITE_MOUNTAIN_GAMEPLAY]
 Though <L:DATABASE_CONCEPTS,CONCEPT_FOOD>Food<e> is impossible to grow in Polar Mountains, <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e> may make these tiles suitable enough location for <L:DATABASE_CONCEPTS,CONCEPT_CITY>Cities<e>.  There is a small amount of <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e>.  Movement is extremely slow and <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_ROAD>Roads<e>, though expensive, are possible.  <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_MINES>Mines<e> are the only industry available.
 
-<L:DATABASE_ADVANCES,ADVANCE_FUSION>Fusion<e> is required to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Polar Mountains.
+Fusion is required to <L:DATABASE_CONCEPTS,CONCEPT_TERRAFORM>Terraform<e> Polar Mountains.
 
 <L:DATABASE_RESOURCE,TERRAIN_ARCTIC_MOUNTAIN_GOOD_ONE>Rubies<e> and <L:DATABASE_RESOURCE,TERRAIN_ARCTIC_MOUNTAIN_GOOD_TWO>Diamonds<e> are the Goods found in Polar Mountains.
 [END]
@@ -2260,7 +1815,7 @@ Movement: 4
 Defense: +100%
 [END]
 [TILEIMP_ADVANCED_FARMS_GAMEPLAY]
-Advanced Farms take advantage of the breakthroughs that come about from the <L:DATABASE_ADVANCES,ADVANCE_AGRICULTURAL_REVOLUTION>Agricultural Revolution<e> to produce an additional 10 more Food than standard <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_FARMS>Farms<e>.
+Advanced Farms take advantage of the breakthroughs that come about from the Agricultural Revolution to produce an additional 10 more Food than standard <L:DATABASE_TILE_IMPROVEMENTS,TILEIMP_FARMS>Farms<e>.
 [END]
 [TILEIMP_ADVANCED_FARMS_PREREQ]
 Requires:
@@ -2327,7 +1882,7 @@ Nature Preserves are lands intentionally set aside to protect endangered species
 [END]
 [TILEIMP_NATURE_PRESERVE_PREREQ]
 Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CONSERVATION>Conservation<e>
+Conservation
 [END]
 [TILEIMP_NATURE_PRESERVE_STATISTICS]
 +30 <L:DATABASE_CONCEPTS,CONCEPT_COMMERCE>Commerce<e>

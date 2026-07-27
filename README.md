@@ -6,6 +6,14 @@ Apolyton Edition.
 ![MoM running in CTP2: the MAGIC STATUS panel with a live mana pool and a
 Summon Creature arm, beside a Life Tribe city](docs/img/mom_magic_status_ingame.png)
 
+![The mod in play at 3775BC: two tribe cities, Eudoria and Silvermere, on an
+isometric map with a mana node visible, and Knights queued in the unit
+panel](docs/img/mom_ingame_3775bc.png)
+
+*3775BC. Tribe cities Eudoria and Silvermere with Spearmen garrisons; a mana
+node east of the ridge; Knights — a neutral unit every tribe may field — in the
+build panel. Captured headlessly through `tools/uiwalk/uiwalk.py`.*
+
 ## What this mod adds
 
 - **Interactive SLIC, per civ.** The magic system is a real modal the player

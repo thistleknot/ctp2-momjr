@@ -741,20 +741,6 @@ GOVERNMENT_THEOCRACY_SAME_RANK_ADVICE			"I recommend you change your government 
 GOVERNMENT_THEOCRACY_HIGHER_RANK_ADVICE			"You should consider running this empire as a Theocracy.  A government based on faith is a stronger one."
 GOVERNMENT_REPUBLIC_SAME_RANK_ADVICE			"I recommend we change our government type.  As a Republic, we will have peace and prosperity."
 GOVERNMENT_REPUBLIC_HIGHER_RANK_ADVICE			"You should consider governing this nation as a Republic.  It brings with it many benefits to productivity, growth and science."
-GOVERNMENT_DEMOCRACY_SAME_RANK_ADVICE			"Consider changing our government to a Democracy.  Commerce and science will flourish."
-GOVERNMENT_DEMOCRACY_HIGHER_RANK_ADVICE			"I recommend we become a Democracy.  Our people yearn to pursue wealth, increase productivity and be free."
-GOVERNMENT_COMMUNISM_SAME_RANK_ADVICE			"I recommend we change our government.  Under Communism, our nation will be productive beyond measure."  
-GOVERNMENT_COMMUNISM_HIGHER_RANK_ADVICE			"Under Communism, our nation will be productive and powerful, both militarily and industrially.  I recommend we consider changing our current government to it."
-GOVERNMENT_FASCISM_SAME_RANK_ADVICE			"I recommend changing our government to Fascism.  As a dictator, you will rule the world with an iron fist.  No nation will dare challenge the might of our military forces!"
-GOVERNMENT_FASCISM_HIGHER_RANK_ADVICE			"You should consider running our empire as a Fascist state.  The benefits to productivity and the military are substantial."
-GOVERNMENT_ECOTOPIA_SAME_RANK_ADVICE			"I recommend we become an Ecotopian civilization, and enjoy the benefits of a clean environment."
-GOVERNMENT_ECOTOPIA_HIGHER_RANK_ADVICE			"An Ecotopian empire is a prosperous empire.  I recommend we become an Ecotopia."
-GOVERNMENT_CORPORATE_REPUBLIC_SAME_RANK_ADVICE		"As a Corporate Republic, our nation will be prosperous and productive.  Commerce will flourish, as will science.  I recommend we change our government to Corporate Republic."
-GOVERNMENT_CORPORATE_REPUBLIC_HIGHER_RANK_ADVICE	"You should consider changing our government to a Corporate Republic.  Commerce, production, science and growth will all get a boost."
-GOVERNMENT_TECHNOCRACY_SAME_RANK_ADVICE			"I recommend we switch government types.  As a Technocracy, our scientists will have the freedom and funding to dominate the world in technological achievement."
-GOVERNMENT_TECHNOCRACY_HIGHER_RANK_ADVICE		"You should consider changing our government to a Technocracy.  Our nation will lead the way in scientific achievement."
-GOVERNMENT_VIRTUAL_DEMOCRACY_SAME_RANK_ADVICE		"I recommend we change our current government to Virtual Democracy, so that we may enjoy commercial prosperity."
-GOVERNMENT_VIRTUAL_DEMOCRACY_HIGHER_RANK_ADVICE		"You should consider switching our government to Virtual Democracy, so that our nation will be prosperous, enlightened and free."
 
 ##
 ## MILITARY MANAGER

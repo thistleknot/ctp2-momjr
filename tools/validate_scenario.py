@@ -118,6 +118,13 @@ def check_icon_refs(scen: Path, fails: list[str]) -> None:
          "default/gamedata/uniticon.txt"),
         ("default/gamedata/Wonder.txt", r"Icon\s+(ICON_WONDER_[A-Z0-9_]+)",
          "default/gamedata/uniticon.txt"),
+        # Advance.txt was the blind spot: the advance-deletion prune drops any
+        # ICON_ADVANCE_* line whose ident is not a live advance, which ate the
+        # engine's fallback ICON_ADVANCE_DEFAULT (referenced by the ADVANCE_NA
+        # sentinel, not by any advance record). The scenario then died at load on
+        # a native "DB Error" modal that no static gate could see.
+        ("default/gamedata/Advance.txt", r"Icon\s+(ICON_ADVANCE_[A-Z0-9_]+)",
+         "default/gamedata/uniticon.txt"),
     )
     for src_rel, pattern, db_rel in lanes:
         src, db = scen / src_rel, scen / db_rel
@@ -238,6 +245,129 @@ def check_gl_str(scen: Path, fails: list[str]) -> None:
             fails.append(f"gl_str.txt:{i}: bad entry {s[:70]!r}")
 
 
+def check_faction_gating(scen: Path, fails: list[str]) -> None:
+    """Gate 10: the five tribes get different things and the wall has no holes.
+
+    Delegates to gate_faction_gating.audit, which borrows its predicate from
+    ctp2_generator -- the writer owns the policy, so the wall and the prereq
+    rewrite cannot drift apart. Skipped (not failed) when the generator is not
+    importable, because this validator is scenario-generic and MoM's control
+    plane is not guaranteed to be alongside it.
+    """
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        import gate_faction_gating as F
+    except Exception:
+        return
+    fails.extend(F.audit(scen))
+
+
+def check_effective_tree_advance_refs(scen: Path, fails: list[str]) -> None:
+    """Gate 11: no DB the ENGINE parses cites a record any prune deleted.
+
+    Require: the scenario's gamedata holds the live DB for each family below.
+    Guarantee: for every file in the engine's parse list, the copy the engine
+    will actually load -- the scenario's override if it ships one, else the
+    base-tree file -- contains no dangling reference in ANY of those families.
+    Why: every other gate here only inspects files the scenario overrides, and
+    the engine aborts on the FIRST dangling ref, so launching the game finds
+    these one at a time at ~5 min each. Three modals came from this one blind
+    spot: base Pop.txt -> deleted ADVANCE_INDUSTRIAL_REVOLUTION, base
+    aidata/ImprovementLists.txt -> deleted TILEIMP_LISTENING_POSTS, and the
+    ICON_ADVANCE_DEFAULT sentinel. Base-tree fallback is the defect, not a file.
+
+    Scope is deliberately narrow on both axes. Files: only DBs Parse()d in
+    civapp.cpp plus the aidata lists -- Improve.txt, endgame.txt, order.txt, the
+    *icon.txt exports (uniticon.txt is the sole runtime icon DB) and
+    Units_{historic,release}.txt all carry dead refs and are harmless because
+    nothing parses them. Tokens: `//` comments are stripped first (strategies.txt
+    lists seven deleted governments, all commented out), and the exclusion
+    regex drops field names (ADVANCE_CHANCES, CONCEPT_DEFAULT_ICON,
+    UNIT_RATIONS), enum values (UNIT_CATEGORY_*), Great Library string keys
+    (*_GAMEPLAY/_SUMMARY/_ADVICE/...), AI list record names (*_LIST_*), the
+    per-good terrain slots (TERRAIN_*_GOOD_ONE..FOUR) and the city styles
+    (AGE_*_STYLE_*, defined in agecitystyle.txt rather than age.txt).
+    Skipped when the base tree is not locatable, since this validator is
+    scenario-generic.
+    """
+    # Walk up rather than index a fixed depth: --scenario is routinely passed as
+    # a relative path, whose .parents chain is one element long, so any fixed
+    # index silently no-ops the whole gate.
+    base = None
+    for anc in scen.resolve().parents:
+        if (anc / "ctp2_data/default/gamedata").exists():
+            base = anc / "ctp2_data"
+            break
+    if base is None:
+        return
+    def effective(rel: str) -> tuple[Path | None, str]:
+        if (scen / rel).exists():
+            return scen / rel, "scenario"
+        if (base / rel).exists():
+            return base / rel, "BASE"
+        return None, ""
+
+    def body(rel: str) -> str:
+        eff, _ = effective(rel)
+        if eff is None:
+            return ""
+        return re.sub(r"//[^\n]*", "",
+                      eff.read_text(encoding="latin-1"))
+
+    # family -> the file that DEFINES its records.
+    families = {
+        "ADVANCE": "Advance.txt", "TILEIMP": "tileimp.txt",
+        "UNIT": "Units.txt", "ICON": "uniticon.txt",
+        "WONDER": "Wonder.txt", "GOVERNMENT": "govern.txt",
+        "IMPROVE": "buildings.txt", "TERRAIN": "terrain.txt",
+        "POP": "Pop.txt", "FEAT": "feat.txt", "ORDER": "Orders.txt",
+        "CONCEPT": "concept.txt", "AGE": "age.txt",
+    }
+    live: dict[str, set[str]] = {}
+    for fam, defining in families.items():
+        found = set(re.findall(rf"^({fam}_[A-Z0-9_]+)\s*\{{",
+                               body(f"default/gamedata/{defining}"), re.M))
+        if found:
+            live[fam] = found
+    if "ADVANCE" not in live:
+        return
+    live["ADVANCE"].add("ADVANCE_NA")
+
+    # Tokens that look like record references but are not. See the docstring.
+    noise = re.compile(
+        r"_(GAMEPLAY|HISTORICAL|PREREQ|STATISTICS|SUMMARY|DESCRIPTION)$"
+        r"|_(HIGHER|SAME)_RANK_ADVICE$"
+        r"|^UNIT_CATEGORY_|_LIST_|_STYLE_"
+        r"|_GOOD_(ONE|TWO|THREE|FOUR)$"
+        r"|^(CONCEPT_DEFAULT_ICON|GOVERNMENT_TYPE|POP_HUNGER)$"
+        r"|^UNIT_(RATIONS|WAGES|WORKDAY|RUSH_MODIFIER)$"
+        r"|^WONDER_(RUSH_MODIFIER|VICTORY_BONUS)$"
+        r"|^ADVANCE_(CHANCES|CHOICES_MAX|CHOICES_MIN)$")
+
+    parsed = [f"default/gamedata/{n}" for n in (
+        "Pop.txt", "buildings.txt", "Units.txt", "Wonder.txt", "govern.txt",
+        "tileimp.txt", "terrain.txt", "feat.txt", "goods.txt", "concept.txt",
+        "age.txt", "Orders.txt", "civilisation.txt", "EndGameObjects.txt",
+        "risks.txt", "citysize.txt", "citystyle.txt", "pollution.txt",
+        "uniticon.txt", "Advance.txt")]
+    parsed += [f"default/aidata/{n}" for n in (
+        "AdvanceLists.txt", "BuildingBuildLists.txt", "UnitBuildLists.txt",
+        "WonderBuildLists.txt", "ImprovementLists.txt", "Goals.txt",
+        "strategies.txt", "buildlistsequences.txt")]
+    for rel in parsed:
+        eff, src = effective(rel)
+        if eff is None:
+            continue
+        text = body(rel)
+        for fam, ls in live.items():
+            dead = {m for m in set(re.findall(rf"\b{fam}_[A-Z0-9_]+\b", text))
+                    if m not in ls and not noise.search(m)}
+            for missing in sorted(dead):
+                fails.append(
+                    f"{rel} ({src} copy the engine will load): {missing} not in "
+                    f"{families[fam]} (DB-Error crash at load)")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--scenario", type=Path, required=True)
@@ -257,6 +387,8 @@ def main() -> int:
     check_buildlist_refs(scen, fails)
     check_city_unit_coverage(scen, fails)
     check_gl_str(scen, fails)
+    check_faction_gating(scen, fails)
+    check_effective_tree_advance_refs(scen, fails)
 
     if fails:
         for f in fails:
@@ -264,7 +396,7 @@ def main() -> int:
         print(f"\n{len(fails)} failure(s).")
         return 1
     print("all scenario gates pass (newsprite grammar, ident charset, "
-          "reserved tokens, string-ref integrity, gl_str grammar)")
+          "reserved tokens, string-ref integrity, gl_str grammar, faction gating)")
     return 0
 
 

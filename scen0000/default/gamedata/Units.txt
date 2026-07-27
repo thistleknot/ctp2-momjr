@@ -12,8 +12,8 @@ UNIT_ZOMBIES {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 460
-   PowerPoints 230
+   ShieldCost 350
+   PowerPoints 175
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -114,8 +114,8 @@ UNIT_SWORDSMEN {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 190
-   PowerPoints 100
+   ShieldCost 250
+   PowerPoints 125
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -165,8 +165,8 @@ UNIT_PHANTOM_WARRIORS {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 460
-   PowerPoints 230
+   ShieldCost 150
+   PowerPoints 100
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -216,8 +216,8 @@ UNIT_HELL_HOUNDS {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 740
+   PowerPoints 370
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -267,8 +267,8 @@ UNIT_WARBEARS {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 460
-   PowerPoints 230
+   ShieldCost 350
+   PowerPoints 175
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -318,14 +318,14 @@ UNIT_WARLOCK {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 440
-   PowerPoints 220
+   ShieldCost 470
+   PowerPoints 235
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_ALCHEMY
+   EnableAdvance ADVANCE_SORCERY_MAGE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -369,14 +369,14 @@ UNIT_ARIEL {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 270
-   PowerPoints 135
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_MYSTICISM
+   EnableAdvance ADVANCE_LIFE_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -420,14 +420,14 @@ UNIT_JAFAR {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 350
-   PowerPoints 175
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 400
    VisionRange 2
-   EnableAdvance ADVANCE_MYSTICISM
+   EnableAdvance ADVANCE_SORCERY_ADEPT
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -471,14 +471,14 @@ UNIT_RJAK {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 430
-   PowerPoints 215
+   ShieldCost 470
+   PowerPoints 235
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_MYSTICISM
+   EnableAdvance ADVANCE_DEATH_ADEPT
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -522,14 +522,14 @@ UNIT_TAURON {
    Firepower 3
    Armor 1
    MaxHP 10
-   ShieldCost 310
-   PowerPoints 155
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_MYSTICISM
+   EnableAdvance ADVANCE_CHAOS_ADEPT
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -573,14 +573,14 @@ UNIT_SERENA {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 350
-   PowerPoints 175
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_MYSTICISM
+   EnableAdvance ADVANCE_LIFE_ADEPT
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -624,14 +624,14 @@ UNIT_FREYA {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 270
-   PowerPoints 135
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 300
    VisionRange 2
-   EnableAdvance ADVANCE_MYSTICISM
+   EnableAdvance ADVANCE_NATURE_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -675,14 +675,14 @@ UNIT_ALORRA {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 500
-   PowerPoints 250
+   ShieldCost 470
+   PowerPoints 235
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_MYSTICISM
+   EnableAdvance ADVANCE_NATURE_MAGE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -726,14 +726,14 @@ UNIT_CENTAURS {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 190
-   PowerPoints 100
+   ShieldCost 250
+   PowerPoints 125
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_SHAMANISM
+   EnableAdvance ADVANCE_NATURE_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -777,14 +777,14 @@ UNIT_ELVEN_ARCHERS {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 230
-   PowerPoints 115
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_PANTHEISM
+   EnableAdvance ADVANCE_NATURE_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -828,14 +828,14 @@ UNIT_MAGE {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 270
-   PowerPoints 135
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_OCCULT_STUDIES
+   EnableAdvance ADVANCE_SORCEROUS_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -879,14 +879,14 @@ UNIT_WYVERN {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 580
-   PowerPoints 290
+   ShieldCost 1500
+   PowerPoints 750
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 300
    VisionRange 2
-   EnableAdvance ADVANCE_GREATER_FAUNA_LORE
+   EnableAdvance ADVANCE_NATURE_MAGE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -922,8 +922,8 @@ UNIT_KNIGHTS {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 270
-   PowerPoints 135
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -973,14 +973,14 @@ UNIT_PALADINS {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 310
-   PowerPoints 155
+   ShieldCost 860
+   PowerPoints 430
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_HOLY_WARRIORS
+   EnableAdvance ADVANCE_LIFE_ADEPT
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1024,8 +1024,8 @@ UNIT_UNICORN {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 670
+   PowerPoints 335
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1075,8 +1075,8 @@ UNIT_IRON_GOLEM {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 460
-   PowerPoints 230
+   ShieldCost 1230
+   PowerPoints 615
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1126,8 +1126,8 @@ UNIT_CATAPULT {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 270
-   PowerPoints 135
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1177,8 +1177,8 @@ UNIT_STEAM_CANNON {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 580
-   PowerPoints 290
+   ShieldCost 3500
+   PowerPoints 1750
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
@@ -1228,8 +1228,8 @@ UNIT_EFREET {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 1230
+   PowerPoints 615
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1279,8 +1279,8 @@ UNIT_WRAITH {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 670
+   PowerPoints 335
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1330,14 +1330,14 @@ UNIT_GRIFFIN {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 350
-   PowerPoints 175
+   ShieldCost 670
+   PowerPoints 335
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 400
    VisionRange 2
-   EnableAdvance ADVANCE_LESSER_FAUNA_LORE
+   EnableAdvance ADVANCE_NATURE_ADEPT
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1373,8 +1373,8 @@ UNIT_PEGASUS {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 1130
+   PowerPoints 565
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1416,8 +1416,8 @@ UNIT_GALLEY {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 270
-   PowerPoints 135
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1460,8 +1460,8 @@ UNIT_WARSHIP {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 430
-   PowerPoints 215
+   ShieldCost 2310
+   PowerPoints 1155
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1504,8 +1504,8 @@ UNIT_HYDRA {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 480
-   PowerPoints 240
+   ShieldCost 3490
+   PowerPoints 1745
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
@@ -1555,8 +1555,8 @@ UNIT_AIRSHIP {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 270
-   PowerPoints 135
+   ShieldCost 1125
+   PowerPoints 562
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1598,14 +1598,14 @@ UNIT_MINOTAUR {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 230
-   PowerPoints 115
+   ShieldCost 350
+   PowerPoints 175
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_WARRIOR_CODE
+   EnableAdvance ADVANCE_CHAOS_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1649,14 +1649,14 @@ UNIT_WAR_TROLL {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 390
-   PowerPoints 195
+   ShieldCost 470
+   PowerPoints 235
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_LEADERSHIP
+   EnableAdvance ADVANCE_NATURE_ADEPT
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1700,8 +1700,8 @@ UNIT_GARGOYLE {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 670
+   PowerPoints 335
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1743,8 +1743,8 @@ UNIT_GUARDIAN_SPIRIT {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 460
-   PowerPoints 230
+   ShieldCost 350
+   PowerPoints 175
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1794,8 +1794,8 @@ UNIT_COCKATRICE {
    Firepower 3
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 670
+   PowerPoints 335
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1837,14 +1837,14 @@ UNIT_SALAMANDER {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 500
-   PowerPoints 250
+   ShieldCost 1200
+   PowerPoints 600
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_PYROTECHNICS
+   EnableAdvance ADVANCE_CHAOS_MAGE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1888,14 +1888,14 @@ UNIT_INFERNAL_DEVICE {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 740
-   PowerPoints 370
+   ShieldCost 480
+   PowerPoints 240
    ShieldHunger 3
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 1000
    VisionRange 2
-   EnableAdvance ADVANCE_GRAND_MASTERY
+   EnableAdvance ADVANCE_CHAOS_WIZARD
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1931,14 +1931,14 @@ UNIT_MINION {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 230
-   PowerPoints 115
+   ShieldCost 350
+   PowerPoints 175
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_WRITING
+   EnableAdvance ADVANCE_DEATH_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1982,8 +1982,8 @@ UNIT_DEMON {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 1040
+   PowerPoints 520
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2025,8 +2025,8 @@ UNIT_CARAVAN {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 310
-   PowerPoints 155
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2076,14 +2076,14 @@ UNIT_WAR_MAMMOTH {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 430
-   PowerPoints 215
+   ShieldCost 470
+   PowerPoints 235
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_TACTICS
+   EnableAdvance ADVANCE_NATURE_ADEPT
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -2127,8 +2127,8 @@ UNIT_STORM_GIANT {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 1230
+   PowerPoints 615
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2178,8 +2178,8 @@ UNIT_AIR_ELEMENTAL {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 460
-   PowerPoints 230
+   ShieldCost 540
+   PowerPoints 270
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2221,8 +2221,8 @@ UNIT_STORM_DRAKE {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 480
-   PowerPoints 240
+   ShieldCost 4000
+   PowerPoints 2000
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
@@ -2264,14 +2264,14 @@ UNIT_WARRAX {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 580
-   PowerPoints 290
+   ShieldCost 470
+   PowerPoints 235
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_MYSTICISM
+   EnableAdvance ADVANCE_CHAOS_MAGE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -2315,8 +2315,8 @@ UNIT_UNDEAD_DRAGON {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 460
-   PowerPoints 230
+   ShieldCost 1200
+   PowerPoints 600
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2358,8 +2358,8 @@ UNIT_GREAT_WYRM {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 480
-   PowerPoints 240
+   ShieldCost 3490
+   PowerPoints 1745
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
@@ -2409,8 +2409,8 @@ UNIT_BEHEMOTH {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 470
-   PowerPoints 235
+   ShieldCost 1230
+   PowerPoints 615
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2460,14 +2460,14 @@ UNIT_MALLEUS {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 500
-   PowerPoints 250
+   ShieldCost 470
+   PowerPoints 235
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_MYSTICISM
+   EnableAdvance ADVANCE_DEATH_MAGE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -2511,14 +2511,14 @@ UNIT_MERFOLK {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 310
-   PowerPoints 155
+   ShieldCost 860
+   PowerPoints 430
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
    MaxMovePoints 400
    VisionRange 2
-   EnableAdvance ADVANCE_SEA_LORE
+   EnableAdvance ADVANCE_NATURE_ADEPT
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -2555,8 +2555,8 @@ UNIT_ARCHANGEL {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 480
-   PowerPoints 240
+   ShieldCost 3490
+   PowerPoints 1745
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
@@ -2604,7 +2604,6 @@ UNIT_SETTLER {
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 1
-   ObsoleteAdvance ADVANCE_ADV_URBAN_PLANNING
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0

@@ -1,0 +1,64 @@
+unit_id,name,cost,sphere,tier,gate_code,gate_advance,source,basis
+UNIT_EFREET,Efreet,9,chaos,mage,Met,,,ladder prereq Met (chaos mage)
+UNIT_GARGOYLE,Gargoyle,6,chaos,adept,Med,,,ladder prereq Med (chaos adept)
+UNIT_HELL_HOUNDS,Hell Hounds,6,chaos,lore,MP,,,ladder prereq MP (chaos lore)
+UNIT_HYDRA,Hydra,12,chaos,master,Mob,,,ladder prereq Mob (chaos master)
+UNIT_INFERNAL_DEVICE,Infernal Device,16,chaos,wizard,Min,,,infernal war engine
+UNIT_MINOTAUR,Minotaur,3,chaos,lore,MP,,,DEFECT FIX: prereq War made it universal; beastmen are chaos
+UNIT_SALAMANDER,Salamander,10,chaos,mage,Met,,,fire drake
+UNIT_TAURON,Tauron,5,chaos,adept,Med,,,"tribe leader, players.csv TRIBES_CHAOS"
+UNIT_WARRAX,Warrax,12,chaos,mage,Met,,,reviewers agree; 8a/3d is an exact stat twin of Tauron
+UNIT_DEMON,Demon,7,death,mage,SFl,,,ladder prereq SFl (death mage)
+UNIT_MALLEUS,Malleus,10,death,mage,SFl,,,authored beside the death anchor Rjak in the keyword table
+UNIT_MINION,Minion,3,death,lore,Rfg,,,0a/0d summoned servant
+UNIT_RJAK,Rjak,8,death,adept,Rob,,,"tribe leader, players.csv TRIBES_DEATH"
+UNIT_UNDEAD_DRAGON,Undead Dragon,3,death,master,SE,,,ladder prereq SE (death master)
+UNIT_WRAITH,Wraith,6,death,adept,Rob,,,ladder prereq Rob (death adept)
+UNIT_ZOMBIES,Zombies,4,death,lore,Rfg,,,ladder prereq Rfg (death lore)
+UNIT_ARCHANGEL,Archangel,12,life,master,Mag,,,ladder prereq Mag (life master)
+UNIT_ARIEL,Ariel,4,life,lore,Inv,,,"tribe leader, players.csv TRIBES_LIFE"
+UNIT_GUARDIAN_SPIRIT,Guardian Spirit,4,life,lore,Inv,,,ladder prereq Inv (life lore)
+UNIT_PALADINS,Paladins,5,life,adept,Lab,,,holy warrior
+UNIT_PEGASUS,Pegasus,8,life,mage,Las,,,ladder prereq Las (life mage)
+UNIT_SERENA,Serena,6,life,adept,Lab,,,reviewers agree; 3a/4d low-attack shape matches Ariel
+UNIT_UNICORN,Unicorn,6,life,adept,Lab,,,ladder prereq Lab (life adept)
+UNIT_ALORRA,Alorra,10,nature,mage,Rad,,,elven archer; 6a/2d contradicts the life anchor Ariel
+UNIT_BEHEMOTH,Behemoth,9,nature,mage,Rad,,,ladder prereq Rad (nature mage)
+UNIT_CENTAURS,Centaurs,2,nature,lore,Plu,,,beast-folk
+UNIT_COCKATRICE,Cockatrice,6,nature,adept,PT,,,ladder prereq PT (nature adept)
+UNIT_ELVEN_ARCHERS,Elven Archers,3,nature,lore,Plu,,,elves
+UNIT_FREYA,Freya,4,nature,lore,Plu,,,"tribe leader, players.csv TRIBES_NATURE"
+UNIT_GREAT_WYRM,Great Wyrm,12,nature,master,Ref,,,ladder prereq Ref (nature master)
+UNIT_GRIFFIN,Griffin,6,nature,adept,PT,,,wild flying beast
+UNIT_MERFOLK,Merfolk,5,nature,adept,PT,,,sea folk
+UNIT_WAR_MAMMOTH,War Mammoth,8,nature,adept,PT,,,wild beast
+UNIT_WAR_TROLL,War Troll,7,nature,adept,PT,,,wilderness regenerator
+UNIT_WARBEARS,Warbears,4,nature,lore,Plu,,,ladder prereq Plu (nature lore)
+UNIT_WYVERN,Wyvern,12,nature,mage,Rad,,,wild flying beast
+UNIT_AIRSHIP,Airship,4,neutral,,X3,,,mundane air
+UNIT_B3,B3,9,neutral,,no,,,placeholder
+UNIT_B3,B3,9,neutral,,no,,,placeholder
+UNIT_B4,B4,9,neutral,,no,,,placeholder
+UNIT_B5,B5,9,neutral,,no,,,placeholder
+UNIT_B6,B6,9,neutral,,no,,,placeholder
+UNIT_B7,B7,9,neutral,,no,,,placeholder
+UNIT_B8,B8,9,neutral,,no,,,placeholder
+UNIT_B9,B9,9,neutral,,no,,,placeholder
+UNIT_CARAVAN,Caravan,5,neutral,,Tra,,,trade
+UNIT_CATAPULT,Catapult,4,neutral,,Mat,,,mundane siege
+UNIT_GALLEY,Galley,4,neutral,,Map,,,mundane naval
+UNIT_IRON_GOLEM,Iron Golem,9,neutral,,Esp,,,"mechanical construct, Mechanician's Guild line"
+UNIT_KNIGHTS,Knights,4,neutral,,Chi,,,mundane spine
+UNIT_MAGE,Mage,4,neutral,,X6,,,the baseline spellcaster; every tribe casts
+UNIT_PEASANTS,Peasants,4,neutral,,nil,,,founds cities; universal by construction
+UNIT_SETTLER,Settler,7,neutral,,nil,,,expansion
+UNIT_SPEARMEN,Spearmen,1,neutral,,nil,,,mundane spine
+UNIT_STEAM_CANNON,Steam Cannon,12,neutral,,X3,,,mundane siege
+UNIT_SWORDSMEN,Swordsmen,2,neutral,,Bro,,,mundane spine
+UNIT_WARSHIP,Warship,8,neutral,,Eng,,,mundane naval
+UNIT_AIR_ELEMENTAL,Air Elemental,5,sorcery,adept,X2,,,ladder prereq X2 (sorcery adept)
+UNIT_JAFAR,Jafar,6,sorcery,adept,X2,,,"tribe leader, players.csv TRIBES_SORCERY"
+UNIT_PHANTOM_WARRIORS,Phantom Warriors,3,sorcery,lore,The,,,ladder prereq The (sorcery lore)
+UNIT_STORM_DRAKE,Storm Drake,14,sorcery,master,Pla,,,ladder prereq Pla (sorcery master)
+UNIT_STORM_GIANT,Storm Giant,9,sorcery,mage,NP,,,ladder prereq NP (sorcery mage)
+UNIT_WARLOCK,Warlock,12,sorcery,mage,NP,,,arcane caster

@@ -27,9 +27,11 @@ HandleEvent(BeginTurn) 'MomSphereTurnBlessings' post {
     } elseif (MomPlayerIsSorcery(p)) {
         turnGold = 4 + player[0].cities * 2 + MomCountSorceryFoci(p) * 3;
     } elseif (MomPlayerIsDeath(p)) {
-        turnGold = 4 + player[0].cities * 2 + (player[0].units / 3);
+        turnGold = 4 + player[0].cities * 2 + (player[0].units / 3)
+                    + MomCountDeathFoci(p) * 2;
     } elseif (MomPlayerIsChaos(p)) {
-        turnGold = 4 + Random(6 + player[0].cities * 10);
+        turnGold = 4 + Random(6 + player[0].cities * 10)
+                    + MomCountChaosFoci(p) * 2;
     }
 
     if (turnGold > 0) {

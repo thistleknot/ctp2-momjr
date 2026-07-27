@@ -82,7 +82,7 @@ TILEIMP_ADVANCED_FARMS {
       Terrain TERRAIN_PLAINS
 
       BonusFood 20
-      EnableAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+      EnableAdvance ADVANCE_INTERCHANGABLE_PARTS
       ProductionCost 500
       ProductionTime 2
       TilesetIndex 8
@@ -127,7 +127,7 @@ TILEIMP_ADVANCED_MINES {
 
       BonusProduction 10
       BonusGold 5
-      EnableAdvance ADVANCE_EXPLOSIVES
+      EnableAdvance ADVANCE_ALCHEMY
       ProductionCost 800
       ProductionTime 2
       TilesetIndex 17
@@ -140,7 +140,7 @@ TILEIMP_ADVANCED_MINES {
 
       BonusProduction 20
       BonusGold 5
-      EnableAdvance ADVANCE_EXPLOSIVES
+      EnableAdvance ADVANCE_ALCHEMY
       ProductionCost 1000
       ProductionTime 2
       TilesetIndex 17
@@ -153,271 +153,11 @@ TILEIMP_ADVANCED_MINES {
 
       BonusProduction 30
       BonusGold 5
-      EnableAdvance ADVANCE_EXPLOSIVES
+      EnableAdvance ADVANCE_ALCHEMY
       ProductionCost 1200
       ProductionTime 2
       TilesetIndex 17
    }
-}
-
-TILEIMP_ADVANCED_UNDERSEA_MINES {
-   Icon ICON_TILEIMP_ADVANCED_UNDERSEA_MINES
-   Tooltip TOOLTIP_TILEIMP_SELECT_RIG2_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_RIG2_BUTTON
-   Sound SOUND_ID_MINE_2_WATER
-   Level 2
-   Class:OceanMine
-
-   ConstructionTiles 55
-   ConstructionTiles 56
-   ConstructionTiles 56
-
-   CantBuildOn TERRAIN_BROWN_HILL
-   CantBuildOn TERRAIN_BROWN_MOUNTAIN
-   CantBuildOn TERRAIN_DESERT
-   CantBuildOn TERRAIN_FOREST
-   CantBuildOn TERRAIN_GLACIER
-   CantBuildOn TERRAIN_GRASSLAND
-   CantBuildOn TERRAIN_HILL
-   CantBuildOn TERRAIN_JUNGLE
-   CantBuildOn TERRAIN_MOUNTAIN
-   CantBuildOn TERRAIN_PLAINS
-   CantBuildOn TERRAIN_SWAMP
-   CantBuildOn TERRAIN_TUNDRA
-   CantBuildOn TERRAIN_WHITE_HILL
-   CantBuildOn TERRAIN_WHITE_MOUNTAIN
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_DEEP
-
-      BonusProduction 30
-      BonusGold 5
-      EnableAdvance ADVANCE_ULTRAPRESSURE_MACHINERY
-      ProductionCost 1000
-      ProductionTime 2
-      TilesetIndex 57
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_RIFT
-
-      BonusProduction 45
-      BonusGold 5
-      EnableAdvance ADVANCE_ULTRAPRESSURE_MACHINERY
-      ProductionCost 1200
-      ProductionTime 2
-      TilesetIndex 57
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_VOLCANO
-
-      BonusProduction 60
-      BonusGold 5
-      EnableAdvance ADVANCE_ULTRAPRESSURE_MACHINERY
-      ProductionCost 1400
-      ProductionTime 2
-      TilesetIndex 57
-   }
-   GLHidden
-}
-
-TILEIMP_AIR_BASES {
-   Icon ICON_TILEIMP_AIR_BASES
-   Tooltip TOOLTIP_TILEIMP_SELECT_AIRBASE_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_AIRBASE_BUTTON
-   Sound SOUND_ID_AIR_BASES
-   Level 2
-   Class:Structure1
-
-   ConstructionTiles 1
-   ConstructionTiles 1
-   ConstructionTiles 1
-
-   CantBuildOn TERRAIN_WATER_BEACH
-   CantBuildOn TERRAIN_WATER_DEEP
-   CantBuildOn TERRAIN_WATER_RIFT
-   CantBuildOn TERRAIN_WATER_SHALLOW
-   CantBuildOn TERRAIN_WATER_SHELF
-   CantBuildOn TERRAIN_WATER_TRENCH
-   CantBuildOn TERRAIN_WATER_VOLCANO
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_HILL
-      Terrain TERRAIN_DESERT
-      Terrain TERRAIN_FOREST
-      Terrain TERRAIN_GLACIER
-      Terrain TERRAIN_GRASSLAND
-      Terrain TERRAIN_HILL
-      Terrain TERRAIN_JUNGLE
-      Terrain TERRAIN_PLAINS
-      Terrain TERRAIN_SWAMP
-      Terrain TERRAIN_TUNDRA
-      Terrain TERRAIN_WHITE_HILL
-
-      Airport
-      VisionRange 3
-      RadarRange 3
-      EnableAdvance ADVANCE_AERODYNAMICS
-      ProductionCost 1000
-      ProductionTime 4
-      TilesetIndex 32
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_MOUNTAIN
-      Terrain TERRAIN_MOUNTAIN
-      Terrain TERRAIN_WHITE_MOUNTAIN
-
-      Airport
-      VisionRange 3
-      RadarRange 3
-      EnableAdvance ADVANCE_AERODYNAMICS
-      ProductionCost 1000
-      ProductionTime 4
-      TilesetIndex 33
-   }
-   GLHidden
-}
-
-TILEIMP_AUTOMATED_FISHERIES {
-   Icon ICON_TILEIMP_AUTOMATED_FISHERIES
-   Tooltip TOOLTIP_TILEIMP_SELECT_NET3_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_NET3_BUTTON
-   Sound SOUND_ID_IRRIGATION_3_WATER
-   Level 3
-   Class:OceanFarm
-
-   ConstructionTiles 50
-   ConstructionTiles 50
-   ConstructionTiles 50
-
-   CantBuildOn TERRAIN_BROWN_HILL
-   CantBuildOn TERRAIN_BROWN_MOUNTAIN
-   CantBuildOn TERRAIN_DESERT
-   CantBuildOn TERRAIN_FOREST
-   CantBuildOn TERRAIN_GLACIER
-   CantBuildOn TERRAIN_GRASSLAND
-   CantBuildOn TERRAIN_HILL
-   CantBuildOn TERRAIN_JUNGLE
-   CantBuildOn TERRAIN_MOUNTAIN
-   CantBuildOn TERRAIN_PLAINS
-   CantBuildOn TERRAIN_SWAMP
-   CantBuildOn TERRAIN_TUNDRA
-   CantBuildOn TERRAIN_WHITE_HILL
-   CantBuildOn TERRAIN_WHITE_MOUNTAIN
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_BEACH
-      Terrain TERRAIN_WATER_KELP
-      Terrain TERRAIN_WATER_REEF
-      Terrain TERRAIN_WATER_SHALLOW
-      Terrain TERRAIN_WATER_SHELF
-
-      BonusFood 30
-      EnableAdvance ADVANCE_ROBOTICS
-      ProductionCost 1400
-      ProductionTime 2
-      TilesetIndex 67
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_DEEP
-      Terrain TERRAIN_WATER_RIFT
-      Terrain TERRAIN_WATER_TRENCH
-
-      BonusFood 45
-      EnableAdvance ADVANCE_ROBOTICS
-      ProductionCost 1800
-      ProductionTime 2
-      TilesetIndex 67
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_VOLCANO
-
-      BonusFood 45
-      EnableAdvance ADVANCE_ROBOTICS
-      ProductionCost 2000
-      ProductionTime 2
-      TilesetIndex 67
-   }
-   GLHidden
-}
-
-TILEIMP_DRILLING_PLATFORM {
-   Icon ICON_TILEIMP_DRILLING_PLATFORM
-   Tooltip TOOLTIP_TILEIMP_SELECT_PIER2_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_PIER2_BUTTON
-   Sound SOUND_ID_MINE_2_WATER
-   Level 2
-   Class:OceanATM
-
-   ConstructionTiles 74
-   ConstructionTiles 75
-   ConstructionTiles 75
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_DEEP
-      Terrain TERRAIN_WATER_KELP
-      Terrain TERRAIN_WATER_REEF
-      Terrain TERRAIN_WATER_RIFT
-      Terrain TERRAIN_WATER_SHALLOW
-      Terrain TERRAIN_WATER_SHELF
-      Terrain TERRAIN_WATER_TRENCH
-      Terrain TERRAIN_WATER_VOLCANO
-
-      BonusGold 25
-      EnableAdvance ADVANCE_OIL_REFINING
-      ProductionCost 800
-      ProductionTime 4
-      TilesetIndex 76
-   }
-   GLHidden
 }
 
 TILEIMP_FARMS {
@@ -606,340 +346,6 @@ TILEIMP_FORTIFICATIONS {
    }
 }
 
-TILEIMP_HYDROPONIC_FARMS {
-   Icon ICON_TILEIMP_HYDROPONIC_FARMS
-   Tooltip TOOLTIP_TILEIMP_SELECT_FARM3_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_FARM3_BUTTON
-   Sound SOUND_ID_IRRIGATION_3
-   Level 3
-   Class:Farm
-
-   ConstructionTiles 9
-   ConstructionTiles 10
-   ConstructionTiles 10
-
-   CantBuildOn TERRAIN_BROWN_MOUNTAIN
-   CantBuildOn TERRAIN_GLACIER
-   CantBuildOn TERRAIN_MOUNTAIN
-   CantBuildOn TERRAIN_TUNDRA
-   CantBuildOn TERRAIN_WATER_BEACH
-   CantBuildOn TERRAIN_WATER_DEEP
-   CantBuildOn TERRAIN_WATER_RIFT
-   CantBuildOn TERRAIN_WATER_SHALLOW
-   CantBuildOn TERRAIN_WATER_SHELF
-   CantBuildOn TERRAIN_WATER_TRENCH
-   CantBuildOn TERRAIN_WATER_VOLCANO
-   CantBuildOn TERRAIN_WHITE_HILL
-   CantBuildOn TERRAIN_WHITE_MOUNTAIN
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_DESERT
-      Terrain TERRAIN_GRASSLAND
-      Terrain TERRAIN_PLAINS
-
-      BonusFood 30
-      EnableAdvance ADVANCE_GENETICS
-      ProductionCost 1400
-      ProductionTime 2
-      TilesetIndex 11
-   }
-   GLHidden
-}
-
-TILEIMP_LISTENING_POSTS {
-   Icon ICON_TILEIMP_LISTENING_POSTS
-   Tooltip TOOLTIP_TILEIMP_SELECT_LISTENPOST_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_LISTENPOST_BUTTON
-   Sound SOUND_ID_LISTENING_POSTS
-   Level 1
-   Class:LandDetector
-
-   ConstructionTiles 1
-   ConstructionTiles 1
-   ConstructionTiles 1
-
-   CantBuildOn TERRAIN_WATER_BEACH
-   CantBuildOn TERRAIN_WATER_DEEP
-   CantBuildOn TERRAIN_WATER_RIFT
-   CantBuildOn TERRAIN_WATER_SHALLOW
-   CantBuildOn TERRAIN_WATER_SHELF
-   CantBuildOn TERRAIN_WATER_TRENCH
-   CantBuildOn TERRAIN_WATER_VOLCANO
-
-   CanSee:Standard
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_HILL
-      Terrain TERRAIN_BROWN_MOUNTAIN
-      Terrain TERRAIN_DESERT
-      Terrain TERRAIN_FOREST
-      Terrain TERRAIN_GLACIER
-      Terrain TERRAIN_GRASSLAND
-      Terrain TERRAIN_HILL
-      Terrain TERRAIN_JUNGLE
-      Terrain TERRAIN_MOUNTAIN
-      Terrain TERRAIN_PLAINS
-      Terrain TERRAIN_SWAMP
-      Terrain TERRAIN_TUNDRA
-      Terrain TERRAIN_WHITE_HILL
-      Terrain TERRAIN_WHITE_MOUNTAIN
-
-      Radar
-      ListeningPost
-      VisionRange 3
-      RadarRange 3
-      EnableAdvance ADVANCE_ELECTRICITY
-      ProductionCost 800
-      ProductionTime 3
-      TilesetIndex 30
-   }
-   GLHidden
-}
-
-TILEIMP_MAGLEV {
-   Icon ICON_TILEIMP_MAGLEV
-   Tooltip TOOLTIP_TILEIMP_SELECT_ROAD3_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_ROAD3_BUTTON
-   Sound SOUND_ID_ROAD_3
-   Level 3
-   Class:Road
-
-   ConstructionTiles 1
-   ConstructionTiles 1
-   ConstructionTiles 1
-
-   CantBuildOn TERRAIN_WATER_BEACH
-   CantBuildOn TERRAIN_WATER_DEEP
-   CantBuildOn TERRAIN_WATER_RIFT
-   CantBuildOn TERRAIN_WATER_SHALLOW
-   CantBuildOn TERRAIN_WATER_SHELF
-   CantBuildOn TERRAIN_WATER_TRENCH
-   CantBuildOn TERRAIN_WATER_VOLCANO
-
-   Excludes:Road
-   Excludes:OceanRoad
-
-   TerrainEffect {
-      Terrain TERRAIN_DESERT
-      Terrain TERRAIN_GRASSLAND
-      Terrain TERRAIN_PLAINS
-
-      MoveCost 10
-      Freight 30
-      EnableAdvance ADVANCE_HT_SUPERCONDUCTOR
-      ProductionCost 240
-      ProductionTime 4
-      TilesetIndex 400
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_HILL
-      Terrain TERRAIN_FOREST
-      Terrain TERRAIN_HILL
-      Terrain TERRAIN_JUNGLE
-      Terrain TERRAIN_WHITE_HILL
-
-      MoveCost 10
-      Freight 30
-      EnableAdvance ADVANCE_HT_SUPERCONDUCTOR
-      ProductionCost 800
-      ProductionTime 4
-      TilesetIndex 400
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_SWAMP
-      Terrain TERRAIN_TUNDRA
-
-      MoveCost 10
-      Freight 30
-      EnableAdvance ADVANCE_HT_SUPERCONDUCTOR
-      ProductionCost 1200
-      ProductionTime 4
-      TilesetIndex 400
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_MOUNTAIN
-      Terrain TERRAIN_MOUNTAIN
-      Terrain TERRAIN_WHITE_MOUNTAIN
-
-      MoveCost 10
-      Freight 30
-      EnableAdvance ADVANCE_HT_SUPERCONDUCTOR
-      ProductionCost 1600
-      ProductionTime 4
-      TilesetIndex 400
-   }
-   GLHidden
-}
-
-TILEIMP_MEGA_MINES {
-   Icon ICON_TILEIMP_MEGA_MINES
-   Tooltip TOOLTIP_TILEIMP_SELECT_MINE3_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_MINE3_BUTTON
-   Sound SOUND_ID_MINE_3
-   Level 3
-   Class:Mine
-
-   ConstructionTiles 18
-   ConstructionTiles 19
-   ConstructionTiles 19
-
-   CantBuildOn TERRAIN_WATER_BEACH
-   CantBuildOn TERRAIN_WATER_DEEP
-   CantBuildOn TERRAIN_WATER_RIFT
-   CantBuildOn TERRAIN_WATER_SHALLOW
-   CantBuildOn TERRAIN_WATER_SHELF
-   CantBuildOn TERRAIN_WATER_TRENCH
-   CantBuildOn TERRAIN_WATER_VOLCANO
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_DESERT
-      Terrain TERRAIN_GRASSLAND
-      Terrain TERRAIN_PLAINS
-
-      BonusProduction 15
-      BonusGold 5
-      EnableAdvance ADVANCE_ADV_URBAN_PLANNING
-      ProductionCost 1600
-      ProductionTime 2
-      TilesetIndex 20
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_HILL
-      Terrain TERRAIN_HILL
-      Terrain TERRAIN_WHITE_HILL
-
-      BonusProduction 30
-      BonusGold 5
-      EnableAdvance ADVANCE_ADV_URBAN_PLANNING
-      ProductionCost 2000
-      ProductionTime 2
-      TilesetIndex 20
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_MOUNTAIN
-      Terrain TERRAIN_MOUNTAIN
-      Terrain TERRAIN_WHITE_MOUNTAIN
-
-      BonusProduction 45
-      BonusGold 5
-      EnableAdvance ADVANCE_ADV_URBAN_PLANNING
-      ProductionCost 2400
-      ProductionTime 2
-      TilesetIndex 20
-   }
-   GLHidden
-}
-
-TILEIMP_MEGA_UNDERSEA_MINES {
-   Icon ICON_TILEIMP_MEGA_UNDERSEA_MINES
-   Tooltip TOOLTIP_TILEIMP_SELECT_RIG3_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_RIG3_BUTTON
-   Sound SOUND_ID_MINE_3_WATER
-   Level 3
-   Class:OceanMine
-
-   ConstructionTiles 58
-   ConstructionTiles 59
-   ConstructionTiles 59
-
-   CantBuildOn TERRAIN_BROWN_HILL
-   CantBuildOn TERRAIN_BROWN_MOUNTAIN
-   CantBuildOn TERRAIN_DESERT
-   CantBuildOn TERRAIN_FOREST
-   CantBuildOn TERRAIN_GLACIER
-   CantBuildOn TERRAIN_GRASSLAND
-   CantBuildOn TERRAIN_HILL
-   CantBuildOn TERRAIN_JUNGLE
-   CantBuildOn TERRAIN_MOUNTAIN
-   CantBuildOn TERRAIN_PLAINS
-   CantBuildOn TERRAIN_SWAMP
-   CantBuildOn TERRAIN_TUNDRA
-   CantBuildOn TERRAIN_WHITE_HILL
-   CantBuildOn TERRAIN_WHITE_MOUNTAIN
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_DEEP
-
-      BonusProduction 45
-      BonusGold 5
-      EnableAdvance ADVANCE_SMART_MATERIALS
-      ProductionCost 2200
-      ProductionTime 2
-      TilesetIndex 60
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_RIFT
-
-      BonusProduction 60
-      BonusGold 5
-      EnableAdvance ADVANCE_SMART_MATERIALS
-      ProductionCost 2400
-      ProductionTime 2
-      TilesetIndex 60
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_VOLCANO
-
-      BonusProduction 90
-      BonusGold 5
-      EnableAdvance ADVANCE_SMART_MATERIALS
-      ProductionCost 2800
-      ProductionTime 2
-      TilesetIndex 60
-   }
-   GLHidden
-}
-
 TILEIMP_MINES {
    Icon ICON_TILEIMP_MINES
    Tooltip TOOLTIP_TILEIMP_SELECT_MINE1_BUTTON
@@ -1049,7 +455,7 @@ TILEIMP_NATURE_PRESERVE {
       Terrain TERRAIN_PLAINS
 
       BonusGold 30
-      EnableAdvance ADVANCE_CONSERVATION
+      EnableAdvance ADVANCE_NATURE_MAGIC
       ProductionCost 1400
       ProductionTime 2
       TilesetIndex 27
@@ -1131,55 +537,6 @@ TILEIMP_NETS {
    }
 }
 
-TILEIMP_OUTLET_MALL {
-   Icon ICON_TILEIMP_OUTLET_MALL
-   Tooltip TOOLTIP_TILEIMP_SELECT_ATM2_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_ATM2_BUTTON
-   Sound SOUND_ID_ROAD_1
-   Level 2
-   Class:ATM
-
-   ConstructionTiles 24
-   ConstructionTiles 25
-   ConstructionTiles 25
-
-   CantBuildOn TERRAIN_WATER_BEACH
-   CantBuildOn TERRAIN_WATER_DEEP
-   CantBuildOn TERRAIN_WATER_RIFT
-   CantBuildOn TERRAIN_WATER_SHALLOW
-   CantBuildOn TERRAIN_WATER_SHELF
-   CantBuildOn TERRAIN_WATER_TRENCH
-   CantBuildOn TERRAIN_WATER_VOLCANO
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_HILL
-      Terrain TERRAIN_DESERT
-      Terrain TERRAIN_FOREST
-      Terrain TERRAIN_GRASSLAND
-      Terrain TERRAIN_HILL
-      Terrain TERRAIN_JUNGLE
-      Terrain TERRAIN_PLAINS
-
-      BonusGold 20
-      EnableAdvance ADVANCE_MASS_MEDIA
-      ProductionCost 600
-      ProductionTime 2
-      TilesetIndex 26
-   }
-   GLHidden
-}
-
 TILEIMP_PORT {
    Icon ICON_TILEIMP_PORT
    Tooltip TOOLTIP_TILEIMP_SELECT_PIER1_BUTTON
@@ -1231,126 +588,6 @@ TILEIMP_PORT {
       ProductionCost 350
       ProductionTime 2
       TilesetIndex 73
-   }
-   GLHidden
-}
-
-TILEIMP_PROCESSING_TOWER {
-   Icon ICON_TILEIMP_PROCESSING_TOWER
-   Tooltip TOOLTIP_TILEIMP_SELECT_OBELISK_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_OBELISK_BUTTON
-   Sound SOUND_ID_SCIFI_SCREEN
-   Level 3
-   Class:Structure1
-
-   ConstructionTiles 77
-   ConstructionTiles 78
-   ConstructionTiles 78
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_HILL
-      Terrain TERRAIN_BROWN_MOUNTAIN
-      Terrain TERRAIN_DEAD
-      Terrain TERRAIN_DESERT
-      Terrain TERRAIN_FOREST
-      Terrain TERRAIN_GLACIER
-      Terrain TERRAIN_GRASSLAND
-      Terrain TERRAIN_HILL
-      Terrain TERRAIN_JUNGLE
-      Terrain TERRAIN_MOUNTAIN
-      Terrain TERRAIN_PLAINS
-      Terrain TERRAIN_SWAMP
-      Terrain TERRAIN_TUNDRA
-      Terrain TERRAIN_WATER_BEACH
-      Terrain TERRAIN_WATER_DEEP
-      Terrain TERRAIN_WATER_KELP
-      Terrain TERRAIN_WATER_REEF
-      Terrain TERRAIN_WATER_RIFT
-      Terrain TERRAIN_WATER_SHALLOW
-      Terrain TERRAIN_WATER_SHELF
-      Terrain TERRAIN_WATER_TRENCH
-      Terrain TERRAIN_WATER_VOLCANO
-      Terrain TERRAIN_WHITE_HILL
-      Terrain TERRAIN_WHITE_MOUNTAIN
-
-      Endgame
-      VisionRange 2
-      RadarRange 2
-      EnableAdvance ADVANCE_GAIA_CONTROLLER
-      ProductionCost 3000
-      ProductionTime 5
-      TilesetIndex 79
-   }
-   GLHidden
-}
-
-TILEIMP_RADAR_STATIONS {
-   Icon ICON_TILEIMP_RADAR_STATIONS
-   Tooltip TOOLTIP_TILEIMP_SELECT_RADARTOWER_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_RADARTOWER_BUTTON
-   Sound SOUND_ID_RADAR_STATIONS
-   Level 2
-   Class:LandDetector
-
-   ConstructionTiles 1
-   ConstructionTiles 1
-   ConstructionTiles 1
-
-   CantBuildOn TERRAIN_WATER_BEACH
-   CantBuildOn TERRAIN_WATER_DEEP
-   CantBuildOn TERRAIN_WATER_RIFT
-   CantBuildOn TERRAIN_WATER_SHALLOW
-   CantBuildOn TERRAIN_WATER_SHELF
-   CantBuildOn TERRAIN_WATER_TRENCH
-   CantBuildOn TERRAIN_WATER_VOLCANO
-
-   CanSee:Standard
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_HILL
-      Terrain TERRAIN_BROWN_MOUNTAIN
-      Terrain TERRAIN_DESERT
-      Terrain TERRAIN_FOREST
-      Terrain TERRAIN_GLACIER
-      Terrain TERRAIN_GRASSLAND
-      Terrain TERRAIN_HILL
-      Terrain TERRAIN_JUNGLE
-      Terrain TERRAIN_MOUNTAIN
-      Terrain TERRAIN_PLAINS
-      Terrain TERRAIN_SWAMP
-      Terrain TERRAIN_TUNDRA
-      Terrain TERRAIN_WHITE_HILL
-      Terrain TERRAIN_WHITE_MOUNTAIN
-
-      Radar
-      ListeningPost
-      VisionRange 8
-      RadarRange 8
-      EnableAdvance ADVANCE_RADAR
-      ProductionCost 1200
-      ProductionTime 4
-      TilesetIndex 35
    }
    GLHidden
 }
@@ -1511,69 +748,6 @@ TILEIMP_ROAD {
    }
 }
 
-TILEIMP_SONAR_BUOYS {
-   Icon ICON_TILEIMP_SONAR_BUOYS
-   Tooltip TOOLTIP_TILEIMP_SELECT_SONAR_BUOYS_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_SONAR_BUOYS_BUTTON
-   Sound SOUND_ID_SONAR_BUOYS
-   Level 1
-   Class:OceanDetector
-
-   ConstructionTiles 50
-   ConstructionTiles 50
-   ConstructionTiles 50
-
-   CantBuildOn TERRAIN_BROWN_HILL
-   CantBuildOn TERRAIN_BROWN_MOUNTAIN
-   CantBuildOn TERRAIN_DESERT
-   CantBuildOn TERRAIN_FOREST
-   CantBuildOn TERRAIN_GLACIER
-   CantBuildOn TERRAIN_GRASSLAND
-   CantBuildOn TERRAIN_HILL
-   CantBuildOn TERRAIN_JUNGLE
-   CantBuildOn TERRAIN_MOUNTAIN
-   CantBuildOn TERRAIN_PLAINS
-   CantBuildOn TERRAIN_SWAMP
-   CantBuildOn TERRAIN_TUNDRA
-   CantBuildOn TERRAIN_WHITE_HILL
-   CantBuildOn TERRAIN_WHITE_MOUNTAIN
-
-   CanSee:Underwater
-   CanSee:Standard
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_BEACH
-      Terrain TERRAIN_WATER_DEEP
-      Terrain TERRAIN_WATER_KELP
-      Terrain TERRAIN_WATER_REEF
-      Terrain TERRAIN_WATER_RIFT
-      Terrain TERRAIN_WATER_SHALLOW
-      Terrain TERRAIN_WATER_SHELF
-      Terrain TERRAIN_WATER_TRENCH
-      Terrain TERRAIN_WATER_VOLCANO
-
-      Radar
-      ListeningPost
-      VisionRange 4
-      RadarRange 4
-      EnableAdvance ADVANCE_MASS_PRODUCTION
-      ProductionCost 1000
-      ProductionTime 2
-      TilesetIndex 70
-   }
-   GLHidden
-}
-
 TILEIMP_TERRAFORM_BROWN_HILL {
    Icon ICON_TERRAIN_BHILLS
    Tooltip TOOLTIP_TILEIMP_SELECT_BROWN_HILL_BUTTON
@@ -1614,7 +788,7 @@ TILEIMP_TERRAFORM_BROWN_HILL {
    TerrainEffect {
       Terrain TERRAIN_BROWN_HILL
 
-      EnableAdvance ADVANCE_EXPLOSIVES
+      EnableAdvance ADVANCE_NATURE_LORE
       TilesetIndex 1
    }
 }
@@ -1659,7 +833,7 @@ TILEIMP_TERRAFORM_BROWN_MOUNTAIN {
    TerrainEffect {
       Terrain TERRAIN_BROWN_MOUNTAIN
 
-      EnableAdvance ADVANCE_FUSION
+      EnableAdvance ADVANCE_NATURE_ADEPT
       TilesetIndex 1
    }
 }
@@ -1704,7 +878,7 @@ TILEIMP_TERRAFORM_DESERT {
    TerrainEffect {
       Terrain TERRAIN_DESERT
 
-      EnableAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+      EnableAdvance ADVANCE_NATURE_LORE
       TilesetIndex 1
    }
 }
@@ -1749,7 +923,7 @@ TILEIMP_TERRAFORM_FOREST {
    TerrainEffect {
       Terrain TERRAIN_FOREST
 
-      EnableAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+      EnableAdvance ADVANCE_NATURE_LORE
       TilesetIndex 1
    }
 }
@@ -1839,7 +1013,7 @@ TILEIMP_TERRAFORM_HILL {
    TerrainEffect {
       Terrain TERRAIN_HILL
 
-      EnableAdvance ADVANCE_EXPLOSIVES
+      EnableAdvance ADVANCE_NATURE_LORE
       TilesetIndex 1
    }
 }
@@ -1884,7 +1058,7 @@ TILEIMP_TERRAFORM_JUNGLE {
    TerrainEffect {
       Terrain TERRAIN_JUNGLE
 
-      EnableAdvance ADVANCE_AGRICULTURAL_REVOLUTION
+      EnableAdvance ADVANCE_NATURE_LORE
       TilesetIndex 1
    }
 }
@@ -1929,7 +1103,7 @@ TILEIMP_TERRAFORM_MOUNTAIN {
    TerrainEffect {
       Terrain TERRAIN_MOUNTAIN
 
-      EnableAdvance ADVANCE_FUSION
+      EnableAdvance ADVANCE_NATURE_ADEPT
       TilesetIndex 1
    }
 }
@@ -2019,7 +1193,7 @@ TILEIMP_TERRAFORM_SWAMP {
    TerrainEffect {
       Terrain TERRAIN_SWAMP
 
-      EnableAdvance ADVANCE_INDUSTRIAL_REVOLUTION
+      EnableAdvance ADVANCE_NATURE_LORE
       TilesetIndex 1
    }
 }
@@ -2064,7 +1238,7 @@ TILEIMP_TERRAFORM_WHITE_HILL {
    TerrainEffect {
       Terrain TERRAIN_WHITE_HILL
 
-      EnableAdvance ADVANCE_EXPLOSIVES
+      EnableAdvance ADVANCE_NATURE_LORE
       TilesetIndex 1
    }
 }
@@ -2109,7 +1283,7 @@ TILEIMP_TERRAFORM_WHITE_MOUNTAIN {
    TerrainEffect {
       Terrain TERRAIN_WHITE_MOUNTAIN
 
-      EnableAdvance ADVANCE_FUSION
+      EnableAdvance ADVANCE_NATURE_ADEPT
       TilesetIndex 1
    }
 }
@@ -2162,212 +1336,3 @@ TILEIMP_TRADING_POST {
    }
 }
 
-TILEIMP_UNDERSEA_MINES {
-   Icon ICON_TILEIMP_UNDERSEA_MINES
-   Tooltip TOOLTIP_TILEIMP_SELECT_RIG1_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_RIG1_BUTTON
-   Sound SOUND_ID_MINE_1_WATER
-   Level 1
-   Class:OceanMine
-
-   ConstructionTiles 52
-   ConstructionTiles 53
-   ConstructionTiles 53
-
-   CantBuildOn TERRAIN_BROWN_HILL
-   CantBuildOn TERRAIN_BROWN_MOUNTAIN
-   CantBuildOn TERRAIN_DESERT
-   CantBuildOn TERRAIN_FOREST
-   CantBuildOn TERRAIN_GLACIER
-   CantBuildOn TERRAIN_GRASSLAND
-   CantBuildOn TERRAIN_HILL
-   CantBuildOn TERRAIN_JUNGLE
-   CantBuildOn TERRAIN_MOUNTAIN
-   CantBuildOn TERRAIN_PLAINS
-   CantBuildOn TERRAIN_SWAMP
-   CantBuildOn TERRAIN_TUNDRA
-   CantBuildOn TERRAIN_WHITE_HILL
-   CantBuildOn TERRAIN_WHITE_MOUNTAIN
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_DEEP
-
-      BonusProduction 15
-      EnableAdvance ADVANCE_NANO_MACHINES
-      ProductionCost 400
-      ProductionTime 2
-      TilesetIndex 54
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_RIFT
-
-      BonusProduction 20
-      EnableAdvance ADVANCE_NANO_MACHINES
-      ProductionCost 500
-      ProductionTime 2
-      TilesetIndex 54
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_VOLCANO
-
-      BonusProduction 25
-      EnableAdvance ADVANCE_NANO_MACHINES
-      ProductionCost 600
-      ProductionTime 2
-      TilesetIndex 54
-   }
-   GLHidden
-}
-
-TILEIMP_UNDERSEA_TUNNEL {
-   Icon ICON_TILEIMP_UNDERSEA_TUNNEL
-   Tooltip TOOLTIP_TILEIMP_SELECT_TUNNEL_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_TUNNEL_BUTTON
-   Sound SOUND_ID_ROAD_3_WATER
-   Level 1
-   Class:OceanRoad
-
-   ConstructionTiles 50
-   ConstructionTiles 50
-   ConstructionTiles 50
-
-   CantBuildOn TERRAIN_BROWN_HILL
-   CantBuildOn TERRAIN_BROWN_MOUNTAIN
-   CantBuildOn TERRAIN_DESERT
-   CantBuildOn TERRAIN_FOREST
-   CantBuildOn TERRAIN_GLACIER
-   CantBuildOn TERRAIN_GRASSLAND
-   CantBuildOn TERRAIN_HILL
-   CantBuildOn TERRAIN_JUNGLE
-   CantBuildOn TERRAIN_MOUNTAIN
-   CantBuildOn TERRAIN_PLAINS
-   CantBuildOn TERRAIN_SWAMP
-   CantBuildOn TERRAIN_TUNDRA
-   CantBuildOn TERRAIN_WHITE_HILL
-   CantBuildOn TERRAIN_WHITE_MOUNTAIN
-
-   Excludes:Road
-   Excludes:OceanRoad
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_BEACH
-      Terrain TERRAIN_WATER_KELP
-      Terrain TERRAIN_WATER_REEF
-      Terrain TERRAIN_WATER_SHALLOW
-
-      MoveCost 10
-      Freight 30
-      EnableAdvance ADVANCE_NANO_ASSEMBLY
-      ProductionCost 1200
-      ProductionTime 4
-      TilesetIndex 500
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_DEEP
-      Terrain TERRAIN_WATER_RIFT
-      Terrain TERRAIN_WATER_SHELF
-      Terrain TERRAIN_WATER_TRENCH
-
-      MoveCost 10
-      Freight 30
-      EnableAdvance ADVANCE_NANO_ASSEMBLY
-      ProductionCost 1200
-      ProductionTime 4
-      TilesetIndex 500
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_WATER_VOLCANO
-
-      MoveCost 10
-      Freight 30
-      EnableAdvance ADVANCE_NANO_ASSEMBLY
-      ProductionCost 2400
-      ProductionTime 4
-      TilesetIndex 500
-   }
-   GLHidden
-}
-
-TILEIMP_RUINS {
-   Icon ICON_TILEIMP_ADVANCED_MINES
-   Tooltip TOOLTIP_TILEIMP_SELECT_MINE2_BUTTON
-   Statusbar STATUSBAR_TILEIMP_SELECT_MINE2_BUTTON
-   Sound SOUND_ID_MINE_2
-   Level 5
-   IsCityRuin
-   Class:Mine
-
-   ConstructionTiles 15
-   ConstructionTiles 16
-   ConstructionTiles 16
-
-   CantBuildOn TERRAIN_WATER_BEACH
-   CantBuildOn TERRAIN_WATER_DEEP
-   CantBuildOn TERRAIN_WATER_RIFT
-   CantBuildOn TERRAIN_WATER_SHALLOW
-   CantBuildOn TERRAIN_WATER_SHELF
-   CantBuildOn TERRAIN_WATER_TRENCH
-   CantBuildOn TERRAIN_WATER_VOLCANO
-
-   Excludes:ATM
-   Excludes:Farm
-   Excludes:LandDetector
-   Excludes:Mine
-   Excludes:OceanFarm
-   Excludes:OceanDetector
-   Excludes:OceanATM
-   Excludes:Structure1
-   Excludes:Structure2
-   Excludes:OceanMine
-
-   TerrainEffect {
-      Terrain TERRAIN_DESERT
-      Terrain TERRAIN_GRASSLAND
-      Terrain TERRAIN_PLAINS
-
-      BonusProduction 0
-      BonusGold 0
-      EnableAdvance ADVANCE_SUBNEURAL_ADS
-      ProductionCost 1000
-      TilesetIndex 150
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_HILL
-      Terrain TERRAIN_HILL
-      Terrain TERRAIN_WHITE_HILL
-
-      BonusProduction 0
-      BonusGold 0
-      EnableAdvance ADVANCE_SUBNEURAL_ADS
-      ProductionCost 1000
-      TilesetIndex 150
-   }
-
-   TerrainEffect {
-      Terrain TERRAIN_BROWN_MOUNTAIN
-      Terrain TERRAIN_MOUNTAIN
-      Terrain TERRAIN_WHITE_MOUNTAIN
-
-      BonusProduction 0
-      BonusGold 0
-      EnableAdvance ADVANCE_SUBNEURAL_ADS
-      ProductionCost 1000
-      TilesetIndex 151
-   }
-}

@@ -15,6 +15,14 @@
     "purpose": "MoM sphere helpers -- all five spheres (Phase B1b, fanned out from the proven",
     "status": "ACTIVE"
   },
+  "mom_func.slc:MomCountChaosFoci": {
+    "purpose": "weighted count of Chaos buildings (COLOSSEUM 2 / MERCHANTS_GUILD 1) -- the deterministic floor under the random-windfall identity term",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomCountDeathFoci": {
+    "purpose": "weighted count of Death buildings (BARRACKS 1 / MECHANICIANS_GUILD 2) -- the additive city-focus term that squares the 5-column income matrix; Death keeps its army-fed units/3 identity term alongside it",
+    "status": "ACTIVE"
+  },
   "mom_func.slc:MomCountLifeBlessings": {
     "purpose": "weighted count of Life buildings (TEMPLE/CITY_WALLS/WIZARDS_FORTRESS)",
     "status": "ACTIVE"
@@ -25,6 +33,10 @@
   },
   "mom_func.slc:MomCountSorceryFoci": {
     "purpose": "weighted count of Sorcery buildings (LIBRARY/BEACON_OF_WISDOM)",
+    "status": "ACTIVE"
+  },
+  "mom_func.slc:MomGrantChaosBuilding": {
+    "purpose": "grant the Chaos-sphere milestone building (COLOSSEUM) in the player's first city -- the only unclaimed chaos-reading improvement, every other sphere's milestone being spoken for",
     "status": "ACTIVE"
   },
   "mom_func.slc:MomGrantDeathBuilding": {
@@ -64,7 +76,27 @@
     "status": "ACTIVE"
   },
   "mom_func.slc:MomSpawnSphereUnit": {
-    "purpose": "CreateUnit in first city (integer player index)",
+    "purpose": "spawn a sphere unit on a free non-water NEIGHBOUR of the first city, never the city tile: CTP2 draws exactly ONE unit per tile and orders own units by MaxMovePoints, so a fast summon on the capital permanently hides the garrison. GetNeighbor returns 0 at the map edge and does not write its out-arg, so the return value gates the read.",
+    "status": "ACTIVE"
+  },
+  "mom_gating.slc:-": {
+    "purpose": "GENERATED per-tribe who-gets-what wall via the engine mod functions. Identity comes from g.player (advance hook) and theCity.owner (build hooks); the thePlayer PARAMETER cannot carry identity -- CallMod builds it as SLIC_SYM_PLAYER and SetIntValue only writes SLIC_SYM_IVAR, so it always reads 0. Do not hand-edit.",
+    "status": "ACTIVE"
+  },
+  "mom_gating.slc:mod_CanCityBuildBuilding": {
+    "purpose": "same wall for improvements: deny off-sphere buildings, permit neutral ones.",
+    "status": "ACTIVE"
+  },
+  "mom_gating.slc:mod_CanCityBuildUnit": {
+    "purpose": "deny a city any unit whose sphere is not its owner tribe; neutral units always permitted. Identity via theCity.owner (proven to resolve, probe B2).",
+    "status": "ACTIVE"
+  },
+  "mom_gating.slc:mod_CanCityBuildWonder": {
+    "purpose": "same wall for wonders.",
+    "status": "ACTIVE"
+  },
+  "mom_gating.slc:mod_CanPlayerHaveAdvance": {
+    "purpose": "deny a tribe every ladder advance outside its own sphere. Guards on g.player FIRST (ResetCanResearch calls this once per advance per player) and intercepts every acquisition path including scenario-start seeding, so seed advances are unnecessary.",
     "status": "ACTIVE"
   },
   "mom_magic.slc:-": {
@@ -72,7 +104,7 @@
     "status": "ACTIVE"
   },
   "mom_magic.slc:MomMagicPoolTick": {
-    "purpose": "per-turn mana accrual into MomMagicCur, capped at the 100 pool ceiling",
+    "purpose": "per-turn mana accrual into MomMagicCur, clamped at the per-sphere MomMagicMax ceiling (200-300, set by MomMagicSchoolGrant; 100 only as the pre-grant default). Gated to players 1..5 -- running for player 0 was the turn-10 crash. The old pool-overflow auto-summon is REMOVED: it zeroed the pool on cap, so the 50/100-cost workings were unreachable by construction.",
     "status": "ACTIVE"
   },
   "mom_magic.slc:MomMagicSchoolGrant": {
@@ -156,11 +188,11 @@
     "status": "ACTIVE"
   },
   "mom_spells.slc:MomCastDemonStrike": {
-    "purpose": "Death spell: damage the nearest enemy unit; targeting scan inlined for the same reason",
+    "purpose": "Death spell: damage the nearest enemy unit; targeting scan inlined for the same 2-level-chain reason as MomCastFlameStrike.",
     "status": "ACTIVE"
   },
   "mom_spells.slc:MomCastFlameStrike": {
-    "purpose": "Chaos spell: damage the nearest enemy unit; targeting scan inlined to stay inside the Class 1 call budget",
+    "purpose": "Chaos spell: damage the nearest enemy unit. The targeting scan is INLINED because a 2-level user-function chain from an engine callback is an access violation (slic-two-crash-classes), not because of any call-count budget.",
     "status": "ACTIVE"
   },
   "mom_spells.slc:MomMsgDemonCast": {
@@ -200,7 +232,7 @@
     "status": "ACTIVE"
   },
   "mom_spells.slc:MomSpellMenuTick": {
-    "purpose": "per-turn tick that resolves a queued spellbook selection",
+    "purpose": "per-turn latched spellbook prompt for HUMAN sphere players: re-arms MomSpellPromptArmed only after the pool drops back under 60% of max. Unlatched Message here floods the BeginTurn queue -> 0xC0000005 (measured 2/2).",
     "status": "ACTIVE"
   },
   "mom_spells.slc:MomSpellShowBook": {

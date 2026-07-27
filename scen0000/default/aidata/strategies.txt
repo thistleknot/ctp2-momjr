@@ -114,15 +114,8 @@ STRATEGY_DEFAULT {
     //
 
     // GOVERNMENT_VIRTUAL_DEMOCRACY best government in the group (city limit 60)
-    Government  GOVERNMENT_VIRTUAL_DEMOCRACY
-    Government  GOVERNMENT_ECOTOPIA
     // GOVERNMENT_TECHNOCRACY best government in the group (city limit 45)
-    Government  GOVERNMENT_TECHNOCRACY
-    Government  GOVERNMENT_CORPORATE_REPUBLIC
     // GOVERNMENT_FASCISM best government in the group (city limit 35)
-    Government  GOVERNMENT_FASCISM
-    Government  GOVERNMENT_DEMOCRACY
-    Government  GOVERNMENT_COMMUNISM
     // GOVERNMENT_MONARCHY best government in the group (city limit 20)
     Government  GOVERNMENT_MONARCHY
     Government  GOVERNMENT_REPUBLIC
@@ -563,15 +556,8 @@ STRATEGY_BARBARIAN {
 
 	// Good for war
 	// GOVERNMENT_VIRTUAL_DEMOCRACY best government in the group (city limit 60)
-	Government  GOVERNMENT_VIRTUAL_DEMOCRACY
-	Government  GOVERNMENT_ECOTOPIA
 	// GOVERNMENT_TECHNOCRACY best government in the group (city limit 45)
-	Government  GOVERNMENT_TECHNOCRACY
-	Government  GOVERNMENT_CORPORATE_REPUBLIC
 	// GOVERNMENT_FASCISM best government in the group (city limit 35)
-	Government  GOVERNMENT_FASCISM
-	Government  GOVERNMENT_DEMOCRACY
-	Government  GOVERNMENT_COMMUNISM
 	// GOVERNMENT_MONARCHY best government in the group (city limit 20)
 	Government  GOVERNMENT_MONARCHY
 	Government  GOVERNMENT_REPUBLIC
@@ -1268,15 +1254,8 @@ STRATEGY_SCIENTIST_DEFAULT {
     //
 
     // GOVERNMENT_VIRTUAL_DEMOCRACY best government in the group (city limit 60)
-    Government  GOVERNMENT_VIRTUAL_DEMOCRACY
-    Government  GOVERNMENT_ECOTOPIA
     // GOVERNMENT_CORPORATE_REPUBLIC best government in the group (city limit 45)
-    Government  GOVERNMENT_CORPORATE_REPUBLIC
-    Government  GOVERNMENT_TECHNOCRACY
     // GOVERNMENT_DEMOCRACY best government in the group (city limit 35)
-    Government  GOVERNMENT_DEMOCRACY
-    Government  GOVERNMENT_COMMUNISM
-    Government  GOVERNMENT_FASCISM
     // GOVERNMENT_REPUBLIC best government in the group (city limit 20)
     Government  GOVERNMENT_REPUBLIC
     Government  GOVERNMENT_MONARCHY
@@ -1767,15 +1746,8 @@ STRATEGY_MILITARIST_DEFAULT {
 
     // good for war
     // GOVERNMENT_VIRTUAL_DEMOCRACY best government in the group (city limit 60)
-    Government  GOVERNMENT_VIRTUAL_DEMOCRACY
-    Government  GOVERNMENT_ECOTOPIA
     // GOVERNMENT_TECHNOCRACY best government in the group (city limit 45)
-    Government  GOVERNMENT_TECHNOCRACY
-    Government  GOVERNMENT_CORPORATE_REPUBLIC
     // GOVERNMENT_FASCISM best government in the group (city limit 35)
-    Government  GOVERNMENT_FASCISM
-    Government  GOVERNMENT_COMMUNISM
-    Government  GOVERNMENT_DEMOCRACY
     // GOVERNMENT_MONARCHY best government in the group (city limit 20)
     Government  GOVERNMENT_MONARCHY
     Government  GOVERNMENT_REPUBLIC
@@ -2266,15 +2238,8 @@ STRATEGY_ECONOMIC_DEFAULT {
 
     // good for war
     // GOVERNMENT_VIRTUAL_DEMOCRACY best government in the group (city limit 60)
-    Government  GOVERNMENT_VIRTUAL_DEMOCRACY
-    Government  GOVERNMENT_ECOTOPIA
     // GOVERNMENT_CORPORATE_REPUBLIC best government in the group (city limit 45)
-    Government  GOVERNMENT_CORPORATE_REPUBLIC
-    Government  GOVERNMENT_TECHNOCRACY
     // GOVERNMENT_DEMOCRACY best government in the group (city limit 35)
-    Government  GOVERNMENT_DEMOCRACY
-    Government  GOVERNMENT_FASCISM
-    Government  GOVERNMENT_COMMUNISM
     // GOVERNMENT_THEOCRACY best government in the group (city limit 20)
     Government  GOVERNMENT_THEOCRACY
     Government  GOVERNMENT_REPUBLIC
@@ -2772,15 +2737,8 @@ STRATEGY_ECOTOPIAN_DEFAULT {
     //
 
     // GOVERNMENT_ECOTOPIA best government in the group (city limit 60)
-    Government  GOVERNMENT_ECOTOPIA
-    Government  GOVERNMENT_VIRTUAL_DEMOCRACY
     // GOVERNMENT_CORPORATE_REPUBLIC best government in the group (city limit 45)
-    Government  GOVERNMENT_CORPORATE_REPUBLIC
-    Government  GOVERNMENT_TECHNOCRACY
     // GOVERNMENT_DEMOCRACY best government in the group (city limit 20)
-    Government  GOVERNMENT_DEMOCRACY
-    Government  GOVERNMENT_FASCISM
-    Government  GOVERNMENT_COMMUNISM
     // GOVERNMENT_THEOCRACY best government in the group (city limit 20)
     Government  GOVERNMENT_THEOCRACY
     Government  GOVERNMENT_REPUBLIC
@@ -3270,15 +3228,8 @@ STRATEGY_DIPLOMATIC_DEFAULT {
     //
 
     // GOVERNMENT_VIRTUAL_DEMOCRACY best government in the group (city limit 60)
-    Government  GOVERNMENT_VIRTUAL_DEMOCRACY
-    Government  GOVERNMENT_ECOTOPIA
     // GOVERNMENT_CORPORATE_REPUBLIC best government in the group (city limit 45)
-    Government  GOVERNMENT_CORPORATE_REPUBLIC
-    Government  GOVERNMENT_TECHNOCRACY
     // GOVERNMENT_DEMOCRACY best government in the group (city limit 20)
-    Government  GOVERNMENT_DEMOCRACY
-    Government  GOVERNMENT_FASCISM
-    Government  GOVERNMENT_COMMUNISM
     // GOVERNMENT_REPUBLIC best government in the group (city limit 20)
     Government  GOVERNMENT_REPUBLIC
     Government  GOVERNMENT_MONARCHY

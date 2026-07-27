@@ -90,7 +90,40 @@ DIM_HEADER = [
     "constants", "functions", "handlers", "triggers", "segments",
     "n_decls", "bytes", "source",
 ]
-IDX_HEADER = ["module", "kind", "name", "signature", "purpose", "phase", "status"]
+# `sphere` is APPENDED, never inserted: load_curation()'s bootstrap and the
+# CURATION writeback address idx rows positionally (r[0]/r[2]/r[4]/r[6]), so a
+# mid-header insert would silently re-key every curated purpose string.
+IDX_HEADER = ["module", "kind", "name", "signature", "purpose", "phase", "status",
+              "sphere"]
+
+SPHERES = ("life", "nature", "sorcery", "death", "chaos")
+
+
+def sphere_of(name: str, body: str) -> str:
+    """Which faction sphere a declaration serves.
+
+    Require: `body` is the declaration plus its balanced-brace body.
+    Guarantee: one of life/nature/sorcery/death/chaos, "all" (touches >1), or
+    "neutral" (touches none).
+    Why: the 5-column sphere matrix went ragged (Chaos had no milestone building,
+    Death had no foci counter) and nothing could see it. Deriving the column from
+    the code makes the next ragged column a diff, not an archaeology exercise.
+    """
+    # Comments are stripped before the body scan: a prose cross-reference
+    # ("see MomCastFlameStrike") is not a sphere claim, and letting it count
+    # mislabelled MomCastDemonStrike (Death) as chaos.
+    body = "\n".join(l.split("//", 1)[0] for l in body.splitlines())
+    hits = set()
+    for sphere in SPHERES:
+        # ADVANCE_SORCEROUS_LORE is the one irregular ladder name -- the Sorcery
+        # root is ADVANCE_SORCERY, not ADVANCE_SORCERY_MAGIC -- so match the
+        # 5-letter stem rather than the full ident.
+        stem = "SORCER" if sphere == "sorcery" else sphere.upper()
+        if sphere in name.lower() or re.search(rf"\b\w*{stem}\w*\b", body.upper()):
+            hits.add(sphere)
+    if len(hits) == 1:
+        return hits.pop()
+    return "all" if hits else "neutral"
 
 PHASE_BY_MODULE = {
     "scenario.slc": "A",
@@ -218,6 +251,7 @@ def scan(path: Path) -> dict:
                 "module": module, "kind": kind, "name": groups["name"],
                 "signature": signature, "purpose": "",
                 "phase": PHASE_BY_MODULE.get(module, "?"), "status": "ACTIVE",
+                "sphere": sphere_of(groups["name"], body),
             })
             break
 

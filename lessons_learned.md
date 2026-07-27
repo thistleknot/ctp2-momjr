@@ -1,3 +1,68 @@
+## 2026-07-26 — The SLIC mod hooks: `theCity.owner` works, `thePlayer` is a lie
+
+**Context:** per-tribe "who gets what" gating rides CTP2's four SLIC mod
+functions (`mod_CanPlayerHaveAdvance`, `mod_CanCityBuild{Unit,Building,Wonder}`).
+A six-probe campaign, one variable each, prediction written before every run.
+Readout was always the same frame: a turn-0 city's Units tab
+(`steps/verify_build_costs.json`, `runs/<stamp>/03_city_founded_units_tab.png`),
+whose control baseline is three rows — Spearmen, **Minotaur**, Peasants.
+
+**CLOSED — a scenario-defined mod function binds and is called.** B1: an
+unconditional `theUnit == UnitDB(UNIT_MINOTAUR) -> 0` dropped Minotaur from the
+list. Scenario segments compile before `AddModFuncs()` runs (`SlicEngine.cpp:1020`),
+so no base-tree edit is needed.
+
+**CLOSED — `theCity.owner` resolves.** B2 added `theCity.owner == 1` and the
+outcome was unchanged. Previously unproven, because the only shipped reference
+(`AlexanderTheGreat/AG_mod.slc`) matches cities by *location* and never reads the
+field. No `GetCityOwner` fallback is required.
+
+**CLOSED — the advance hook intercepts scenario-start seeding.** B4 denied
+`ADVANCE_WARRIOR_CODE` and the Units tab went *empty*, not down to one row as
+predicted: `UNIT_PEASANTS.EnableAdvance` is also `ADVANCE_WARRIOR_CODE`, via the
+generator's `_NO_ADVANCE -> WARRIOR_CODE` fallback. So `Player.cpp:539`'s
+`GiveAdvance(CAUSE_SCI_INITIAL)` does route through the hook, and **seed advances
+are unnecessary** — the veto covers the initial grant too.
+
+**THE TRAP — the `thePlayer` parameter cannot carry identity.** Two dead ends,
+both of which hang the headless harness, because a native modal stops the
+engine's message pump and every later capture is a byte-identical stale frame:
+
+- `player_t` is not a SLIC type. The lexer defines only `Unit_t`, `City_t`,
+  `Location_t`, `Int_t`, `Void_t`, `Army_t`. Declaring it is a compile-time
+  *"SLIC Error: syntax error"*.
+- Declared `int_t`, **reading** it raises *"mod_CanPlayerHaveAdvance#thePlayer:
+  is not an integer"* and evaluates to `0`.
+
+The source says exactly why. `CallMod` builds the argument as
+`new SlicSymbolData(SLIC_SYM_PLAYER)` and then calls `SetIntValue`
+(`SlicEngine.cpp:3148-3152`) — but `SetIntValue` only writes when the type is
+`SLIC_SYM_IVAR` (`SlicSymbol.cpp:182`). **The player index is never stored.**
+`GetIntValue` returns FALSE and `SlicStack::Eval` falls through to `return 0`
+(`SlicStack.cpp:94-123`). `AG_mod.slc` ships an `int_t` declaration and survives
+only because it never reads the parameter. `CallExcludeFunc` has the same defect.
+
+**The replacement — `g.player`, with its negative control.** B5 guarded the same
+deny with `g.player == 1`: empty tab, as predicted. But "empty" is also what a
+degenerate always-true comparison produces, so B6 flipped it to `g.player == 2`
+and predicted the units would **return** — they did. That pair, not B5 alone, is
+what makes the claim evidence.
+
+> **Scope, honestly:** confirmed for the scenario-start seeding path, player 1.
+> **Untested** during an AI turn and inside `Advances::ResetCanResearch`. The AI
+> stall check (~turn 40) must assert per-tribe denial there before this is
+> claimed global.
+
+**Design consequence.** Per-player *advance* gating is expressed as `g.player`,
+never as the parameter. Per-tribe *unit/building/wonder* gating rides
+`theCity.owner`, which is independently proven.
+
+**Method note.** The dialog text was the whole game, and it is not in any log —
+`EnumWindows` for a title containing "error", then `EnumChildWindows` to read the
+static, is what turned an opaque hang into a one-line diagnosis. Match the title
+**case-insensitively**: the runtime modal is titled `Slic Error` and the compile
+modal `SLIC Error`, and a case-sensitive probe silently sees only one of them.
+
 ## 2026-07-26 — Great Library text colour lives in the CONTENT, not the LDL
 
 **Symptom:** GL article body text is dark grey (50,50,50) on MoM's dark brown
@@ -2430,3 +2495,24 @@ by frequency and break ties on the shorter string; (b) terraform tileimps have n
 
 **Backlog opened:** `Scenarios/smm/scen0000/default/gamedata/mom_turns.slc:19: Array index
 1 out of bounds` raises a SLIC Error modal and makes the SMM scenario unlaunchable.
+
+## Derived tier must never override an AUTHORED ladder rung (2026-07-26)
+
+Plan item 2 said "tier from the existing `cost_to_tier`". Measured it against the
+20 summon units whose prereq already sits on a sphere ladder — a deliberate
+authoring act: **agree 12, disagree 8, and every disagreement is a demotion of a
+master-tier summon.** Undead Dragon (cost 3) would have landed on `lore` — a
+turn-1 dragon. Deriving tier from cost would have quietly dismantled the summon
+grid the plan itself calls "already perfect… needs no work."
+
+**Law: the authored rung wins; `cost_to_tier` is a seed only for rows with no
+ladder prereq.** The original author hit this too — `assign_unit_factions.py`
+already carries a hardcoded `"dragon" -> master` special case, which is a patch
+on exactly this defect.
+
+Corollary evidence rule, established while writing the `sphere` column: a prereq
+on a **sphere** ladder is decisive. A prereq on the **neutral** ladder
+(`War`/`Bro`/`Iro`/`Feu`/`Chi`) or `nil`/`no` encodes **no intent** — it is the
+default that *produced* the reported defect. Minotaur is offered to a
+Tribe-of-Life city precisely because its prereq is `War`. Those rows must be
+decided by name and lore, never by trusting the existing prereq.

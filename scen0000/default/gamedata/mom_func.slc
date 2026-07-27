@@ -186,6 +186,68 @@ void_f MomGrantDeathBuilding(int_t p_12)
     }
 }
 
+void_f MomGrantChaosBuilding(int_t p_14)
+{
+    city_t tmpCity;
+
+    // COLOSSEUM is Chaos's milestone building: a blood-sport arena is the only
+    // unclaimed improvement in buildings.txt that reads chaos, and every other
+    // sphere's milestone is already spoken for (TEMPLE/GRANARY/LIBRARY/BARRACKS).
+    if (player[0].cities) {
+        GetCityByIndex(player[0], 0, tmpCity);
+        if (CityIsValid(tmpCity) && !CityHasBuilding(tmpCity, "IMPROVE_COLOSSEUM")) {
+            CreateBuilding(tmpCity, BuildingDB(IMPROVE_COLOSSEUM));
+        }
+    }
+}
+
+int_f MomCountDeathFoci(int_t p_15)
+{
+    int_t i;
+    int_t focusCount;
+    city_t tmpCity;
+
+    // Mirrors the Death burst set in mom_city_effects.slc. Death's per-turn
+    // income stays army-fed (units/3); this is the additive city-focus term
+    // that every other sphere already had, so the 5-column matrix is square.
+    focusCount = 0;
+    for (i = 0; i < player[0].cities; i = i + 1) {
+        GetCityByIndex(player[0], i, tmpCity);
+        if (CityIsValid(tmpCity)) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_BARRACKS")) {
+                focusCount = focusCount + 1;
+            }
+            if (CityHasBuilding(tmpCity, "IMPROVE_MECHANICIANS_GUILD")) {
+                focusCount = focusCount + 2;
+            }
+        }
+    }
+    return focusCount;
+}
+
+int_f MomCountChaosFoci(int_t p_16)
+{
+    int_t i;
+    int_t focusCount;
+    city_t tmpCity;
+
+    // Chaos keeps its random-gold identity; this is the deterministic floor
+    // underneath it, so the column is no longer ragged.
+    focusCount = 0;
+    for (i = 0; i < player[0].cities; i = i + 1) {
+        GetCityByIndex(player[0], i, tmpCity);
+        if (CityIsValid(tmpCity)) {
+            if (CityHasBuilding(tmpCity, "IMPROVE_COLOSSEUM")) {
+                focusCount = focusCount + 2;
+            }
+            if (CityHasBuilding(tmpCity, "IMPROVE_MERCHANTS_GUILD")) {
+                focusCount = focusCount + 1;
+            }
+        }
+    }
+    return focusCount;
+}
+
 void_f MomSpawnSphereUnit(int_t p_13, int_t unitType)
 {
     city_t tmpCity;

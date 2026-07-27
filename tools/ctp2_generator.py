@@ -1010,6 +1010,134 @@ def _scrub_hidden_tileimp_gl_file(rel_path: str, hidden_tileimp_ids: set[str]) -
     return removed
 
 
+def _scrub_dead_tileimp_surfaces() -> int:
+    """Re-anchor every AI improvement list off a tile improvement the cap deleted.
+
+    Require: scen tileimp.txt is the live terrain-improvement DB.
+    Guarantee: no file the engine parses cites a TILEIMP_* absent from it.
+    Why: the scenario ships an aidata/ directory but no ImprovementLists.txt, so
+    the engine loaded the BASE copy -- whose IMPROVEMENT_LIST_MISC still pointed
+    at TILEIMP_LISTENING_POSTS, one of the 17 industrial tileimps item 3 deleted.
+    That surfaced in-game as "Listening Post not found in terrainimprovement
+    database". Identical shape to the Pop.txt defect: the blind spot is base-tree
+    fallback, not the file. Re-anchor rather than drop the list -- an empty AI
+    list is an untested engine path, and TRADING_POST is the live misc-utility
+    improvement the MISC list is for.
+    """
+    rel = "default/gamedata/tileimp.txt"
+    live = set(re.findall(r"^(TILEIMP_[A-Z0-9_]+)\s*\{", _read_rel(rel), re.M))
+    if not live:
+        return 0
+    changed = 0
+    for rel, repl in (("default/aidata/ImprovementLists.txt",
+                       "TILEIMP_TRADING_POST"),):
+        text = _read_rel(rel)
+        if not text:
+            continue
+        before = text
+        text = re.sub(r"\bTILEIMP_[A-Z0-9_]+\b",
+                      lambda m: m.group(0) if m.group(0) in live else repl, text)
+        if text != before:
+            changed += 1
+            _write_rel(rel, text)
+    return changed
+
+
+def _scrub_dead_advance_surfaces() -> int:
+    """Remove every Great Library surface naming an advance the tech cap cut.
+
+    Require: Advance.txt is final (mask + re-layout have run).
+    Guarantee: no GL section, GL index link, uniticon block or gl_str key names
+    an ADVANCE_* absent from the live Advance.txt. Idempotent.
+    Why: mom-db-error-class -- an orphan Great Library section referencing a
+    missing advance surfaces as 'not found in Advance database' at load. The
+    tech cap CREATES this surface, so the scrub ships with it, not after it.
+    """
+    live = set(re.findall(r"^(ADVANCE_[A-Z0-9_]+)\s*\{",
+                          _read_rel("default/gamedata/Advance.txt"), re.M))
+    removed = 0
+
+    def _dead(text: str) -> set[str]:
+        return {m for m in set(re.findall(r"\bADVANCE_[A-Z0-9_]+\b", text))
+                if re.sub(r"_(GAMEPLAY|HISTORICAL|PREREQ|STATISTICS)$", "", m)
+                not in live}
+
+    for rel in ("english/gamedata/Great_Library.txt",
+                "english/gamedata/WAW_Great_Library.txt"):
+        text = _read_rel(rel)
+        if not text:
+            continue
+        before = text
+        for ident in sorted({re.sub(r"_(GAMEPLAY|HISTORICAL|PREREQ|STATISTICS)$", "", m)
+                             for m in _dead(text)}):
+            for suffix in ("PREREQ", "STATISTICS", "GAMEPLAY", "HISTORICAL"):
+                text, n = re.subn(rf"\[{re.escape(ident)}_{suffix}\].*?\[END\](?:\r?\n)?",
+                                  "", text, flags=re.DOTALL)
+                removed += n
+            text, n = re.subn(rf"<L:DATABASE_ADVANCES,{re.escape(ident)}>(.*?)<e>",
+                              r"\1", text)
+            removed += n
+        if text != before:
+            _write_rel(rel, text)
+
+    # uniticon.txt: one ICON_ADVANCE_* block per line.
+    #
+    # ICON_ADVANCE_DEFAULT is NOT an advance icon -- it is the engine's fallback,
+    # and ADVANCE_NA (the null sentinel the engine always keeps) points at it. Its
+    # ident ADVANCE_DEFAULT is never a live advance, so the _dead() sweep pruned
+    # it and the scenario died at load with a native "DB Error:
+    # ICON_ADVANCE_DEFAULT not found in Icon database" modal -- invisible to every
+    # static gate, because no *advance* record referenced it.
+    rel = "default/gamedata/uniticon.txt"
+    text = _read_rel(rel)
+    if text:
+        kept_lines = [l for l in text.splitlines(keepends=True)
+                      if not (l.lstrip().startswith("ICON_ADVANCE_")
+                              and not l.lstrip().startswith("ICON_ADVANCE_DEFAULT")
+                              and _dead(l))]
+        if len(kept_lines) != len(text.splitlines()):
+            removed += len(text.splitlines()) - len(kept_lines)
+            _write_rel(rel, "".join(kept_lines))
+
+    # gl_str.txt: one "ADVANCE_X <tab> "Name"" key per line.
+    rel = "english/gamedata/gl_str.txt"
+    text = _read_rel(rel)
+    if text:
+        kept_lines = [l for l in text.splitlines(keepends=True)
+                      if not (l.lstrip().startswith("ADVANCE_") and _dead(l))]
+        if len(kept_lines) != len(text.splitlines()):
+            removed += len(text.splitlines()) - len(kept_lines)
+            _write_rel(rel, "".join(kept_lines))
+
+    # Pop.txt: the specialist DB, parsed at civapp.cpp:1104 from g_pop_filename.
+    #
+    # The scenario did not ship this file, so the engine loaded the BASE copy --
+    # whose POP_LABORER points at ADVANCE_INDUSTRIAL_REVOLUTION and POP_MERCHANT
+    # at ADVANCE_ECONOMICS, both cut by the tech cap. AdvanceRecord's resolver
+    # then killed the load with "Industrial Revolution not found in Advance
+    # database" (it prints the DISPLAY NAME, not the ident, which is why the
+    # ident greps came up empty). Every static gate was blind to it because they
+    # only ever looked at files the scenario overrides.
+    #
+    # Re-anchor rather than delete: all five specialists stay playable, and both
+    # replacements are mundane and pre-Renaissance, so the age cap holds.
+    rel = "default/gamedata/Pop.txt"
+    text = _read_rel(rel)
+    if text:
+        before = text
+        for pop, advance in (("POP_LABORER", "ADVANCE_CONSTRUCTION"),
+                             ("POP_MERCHANT", "ADVANCE_TRADE")):
+            text = re.sub(
+                rf"({re.escape(pop)}\s*\{{[^}}]*?EnableAdvance\s+)(ADVANCE_[A-Z0-9_]+)",
+                lambda m, a=advance: m.group(1) + (a if m.group(2) not in live
+                                                   else m.group(2)),
+                text, flags=re.DOTALL)
+        if text != before:
+            removed += 1
+            _write_rel(rel, text)
+    return removed
+
+
 def _scrub_hidden_tileimp_gl_prose(rel_path: str, hidden_tileimp_ids: set[str]) -> int:
     """Final raw-file pass to remove hidden tile-improvement plain-text mentions."""
     text = _read_rel(rel_path)
@@ -1611,6 +1739,518 @@ def _load_mom_improvement_source_specs(
         for age, values in bands.items()
         if values
     }
+
+
+# --- Sphere gating: move sphere'd content onto its own ladder rung -----------
+#
+# The five tribes are only distinct if their content is. Faction identity lives
+# in the `sphere` column of units.csv / improvements.csv; this pass is what
+# turns that column into an enforced tech gate by rewriting EnableAdvance.
+#
+# The advance ident is DERIVED from (sphere, tier) rather than looked up in
+# advance_code_map.csv, deliberately: the map's `prereq` lane is incomplete for
+# the ladders and actively wrong for three codes ('Inv' means INVENTION there,
+# not LIFE_LORE), so routing improvements through it would mis-gate them. The
+# derivation is verified against the generated Advance.txt by the gate.
+_SPHERE_TIERS = ["lore", "adept", "mage", "wizard", "master"]
+
+# Short-code -> (sphere, tier). A prereq already sitting on one of these rungs
+# is an AUTHORED decision and outranks any cost-derived guess.
+_SPHERE_LADDER_CODES = {
+    code: (sphere, _SPHERE_TIERS[i])
+    for sphere, codes in {
+        "life":    ["Inv", "Lab", "Las", "Too", "Mag"],
+        "nature":  ["Plu", "PT",  "Rad", "Rec", "Ref"],
+        "death":   ["Rfg", "Rob", "SFl", "Sth", "SE"],
+        "chaos":   ["MP",  "Med", "Met", "Min", "Mob"],
+        "sorcery": ["The", "X2",  "NP",  "Phy", "Pla"],
+    }.items()
+    for i, code in enumerate(codes)
+}
+
+
+def _sphere_rung_advance(sphere: str, tier: str) -> str:
+    """(sphere, tier) -> the ADVANCE_* ident for that ladder rung.
+
+    One irregular name, honoured verbatim because the advance really is called
+    this: the Sorcery lore rung is ADVANCE_SORCEROUS_LORE, not
+    ADVANCE_SORCERY_LORE. Every other rung is regular.
+    """
+    if sphere == "sorcery" and tier == "lore":
+        return "ADVANCE_SORCEROUS_LORE"
+    return f"ADVANCE_{sphere.upper()}_{tier.upper()}"
+
+
+def _sphere_cost_tier(cost: int) -> str:
+    """Seed a tier from production cost. ONLY for rows with no ladder prereq.
+
+    Measured 2026-07-26: against the 20 summon units that DO carry an authored
+    ladder prereq, this heuristic disagrees on 8 -- and every disagreement
+    demotes a master-tier summon (Undead Dragon, cost 3, would land on `lore`,
+    a turn-1 dragon). So it must never override an authored rung.
+    """
+    if cost <= 4:   return "lore"
+    if cost <= 8:   return "adept"
+    if cost <= 15:  return "mage"
+    if cost <= 40:  return "wizard"
+    return "master"
+
+
+def sphere_gate_targets() -> dict[str, str]:
+    """THE SHARED PREDICATE: block ident -> the advance it must gate on.
+
+    Owned here so `gate_faction_gating.py` reports on exactly what this pass
+    writes; the two cannot drift apart. Rows whose sphere is `neutral` (or
+    blank) are absent from the result -- they are deliberately universal and
+    keep whatever prereq they already had.
+    """
+    targets: dict[str, str] = {}
+    for csv_name, prefixes in (("units.csv", ("UNIT_",)),
+                               ("improvements.csv", ("IMPROVE_", "WONDER_"))):
+        path = MOMJR / csv_name
+        if not path.exists():
+            continue
+        with open(str(path), newline="", encoding="utf-8-sig") as fh:
+            for row in csv.DictReader(fh):
+                sphere = (row.get("sphere") or "").strip()
+                if sphere not in {"life", "nature", "death", "chaos", "sorcery"}:
+                    continue
+                prereq = (row.get("prereq") or "").strip()
+                if prereq in _SPHERE_LADDER_CODES:
+                    # Authored rung wins outright.
+                    tier = _SPHERE_LADDER_CODES[prereq][1]
+                else:
+                    tier = _sphere_cost_tier(
+                        int(re.sub(r"[^0-9]", "", str(row.get("cost", "0"))) or 0))
+                advance = _sphere_rung_advance(sphere, tier)
+                base = sanitize(row.get("name", ""))
+                for prefix in prefixes:
+                    targets[prefix + base] = advance
+    return targets
+
+
+# Tribe player index, fixed by the SLIC faction predicates (mom_func.slc
+# MomPlayerIsLife is p == 1, ... MomPlayerIsChaos is p == 5) and corroborated by
+# the summon table in mom_msg.slc. Player 0 is the barbarian.
+_SPHERE_PLAYER = {"life": 1, "nature": 2, "sorcery": 3, "death": 4, "chaos": 5}
+
+_GATING_SLC_REL = "default/gamedata/mom_gating.slc"
+
+
+def _sphere_ladder_idents(sphere: str) -> list[str]:
+    """Root + five rungs for one sphere, in ladder order.
+
+    The Sorcery root is ADVANCE_SORCERY (not ..._SORCERY_MAGIC) and its lore
+    rung is ADVANCE_SORCEROUS_LORE -- the only two irregular names in the tree.
+    """
+    root = "ADVANCE_SORCERY" if sphere == "sorcery" else f"ADVANCE_{sphere.upper()}_MAGIC"
+    return [root] + [_sphere_rung_advance(sphere, tier) for tier in _SPHERE_TIERS]
+
+
+def _emit_mom_gating_slc() -> int:
+    """Write mom_gating.slc: the per-tribe who-gets-what wall. Returns idents emitted.
+
+    Require: Advance.txt, Units.txt, buildings.txt and Wonder.txt are FINAL --
+    every ident is filtered against the live block names, so a stale run would
+    emit a dangling ref (mom-db-error-class) or silently drop a real one.
+    Guarantee: bodies are FLAT (no user-function call -- a 2-level chain from an
+    engine callback is a 0xC0000005), every comparison goes through
+    AdvanceDB()/UnitDB()/BuildingDB()/WonderDB(), and the player guard is first
+    because ResetCanResearch calls the advance hook once per advance per player.
+    Identity: g.player on the advance hook -- the thePlayer PARAMETER is built as
+    SLIC_SYM_PLAYER and SetIntValue only writes SLIC_SYM_IVAR, so reading it
+    always yields 0 (probe B3). theCity.owner on the build hooks (probe B2).
+    """
+    def _blocks(rel: str, prefix: str) -> set[str]:
+        return set(re.findall(rf"^({prefix}[A-Z0-9_]+)\s*\{{", _read_rel(rel), re.M))
+
+    live_adv = _blocks("default/gamedata/Advance.txt", "ADVANCE_")
+    live = {
+        "unit":  (_blocks("default/gamedata/Units.txt", "UNIT_"), "UnitDB"),
+        "bldg":  (_blocks("default/gamedata/buildings.txt", "IMPROVE_"), "BuildingDB"),
+        "wndr":  (_blocks("default/gamedata/Wonder.txt", "WONDER_"), "WonderDB"),
+    }
+
+    targets = sphere_gate_targets()
+    by_sphere: dict[str, dict[str, list[str]]] = {
+        s: {"advance": [], "unit": [], "bldg": [], "wndr": []} for s in _SPHERE_PLAYER}
+    for sphere in _SPHERE_PLAYER:
+        by_sphere[sphere]["advance"] = [a for a in _sphere_ladder_idents(sphere)
+                                        if a in live_adv]
+    for ident, advance in sorted(targets.items()):
+        # The sphere is read back off the gate advance, so the wall and the
+        # prereq rewrite cannot disagree about which tribe owns a block.
+        sphere = next((s for s in _SPHERE_PLAYER
+                       if advance in _sphere_ladder_idents(s)), None)
+        if sphere is None:
+            continue
+        for kind, (idents, _) in live.items():
+            if ident in idents:
+                by_sphere[sphere][kind].append(ident)
+
+    def _deny_block(kind: str, var: str, owner: str, indent: str = "    ") -> list[str]:
+        db = "AdvanceDB" if kind == "advance" else live[kind][1]
+        out: list[str] = []
+        for sphere, index in sorted(_SPHERE_PLAYER.items(), key=lambda kv: kv[1]):
+            idents = by_sphere[sphere][kind]
+            if not idents:
+                continue
+            terms = [f"{var} == {db}({i})" for i in idents]
+            out.append(f"{indent}// {sphere.upper()} -- {len(idents)} block(s)")
+            out.append(f"{indent}if ({owner} != {index}) {{")
+            out.append(f"{indent}    if ({terms[0]}")
+            for term in terms[1:]:
+                out.append(f"{indent}    || {term}")
+            out.append(f"{indent}    ) {{ return 0; }}")
+            out.append(f"{indent}}}")
+        return out
+
+    lines = [
+        "// mom_gating.slc -- GENERATED by tools/ctp2_generator.py. DO NOT HAND-EDIT.",
+        "//",
+        "// The per-tribe who-gets-what wall, via the engine's four mod functions",
+        "// (SlicEngine::AddModFuncs, gs/slic/SlicEngine.cpp:3092; bound after scenario",
+        "// segments compile, :1020). Shipped reference: AlexanderTheGreat/AG_mod.slc.",
+        "//",
+        "// IDENTITY, settled by the step-0 probe campaign (2026-07-26):",
+        "//   * advance hook -> g.player. The thePlayer PARAMETER CANNOT carry identity:",
+        "//     CallMod builds it as SLIC_SYM_PLAYER and SetIntValue only writes when the",
+        "//     type is SLIC_SYM_IVAR, so the index is never stored and reads return 0.",
+        "//   * build hooks -> theCity.owner, proven to resolve (probe B2).",
+        "//",
+        "// CONSTRAINTS honoured here (slic-two-crash-classes):",
+        "//   * bodies are FLAT -- a 2-level user-function chain from an engine callback",
+        "//     is an access violation.",
+        "//   * every comparison goes through AdvanceDB()/UnitDB()/BuildingDB()/WonderDB().",
+        "//   * the player guard is FIRST: ResetCanResearch calls the advance hook once",
+        "//     per advance per player.",
+        "//",
+        "// Every ident below was filtered against the live generated DB at emit time, so",
+        "// a typo cannot survive here (mom-db-error-class).",
+        "",
+        "int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)",
+        "{",
+        "    // Barbarians and any out-of-range player are unrestricted.",
+        "    if (g.player < 1 || g.player > 5) { return 1; }",
+        *_deny_block("advance", "theAdvance", "g.player"),
+        "    return 1;",
+        "}",
+        "",
+        "int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)",
+        "{",
+        "    if (theCity.owner < 1 || theCity.owner > 5) { return 1; }",
+        *_deny_block("unit", "theUnit", "theCity.owner"),
+        "    return 1;",
+        "}",
+        "",
+        "int_f mod_CanCityBuildBuilding(city_t theCity, int_t theBuilding)",
+        "{",
+        "    if (theCity.owner < 1 || theCity.owner > 5) { return 1; }",
+        *_deny_block("bldg", "theBuilding", "theCity.owner"),
+        "    return 1;",
+        "}",
+        "",
+        "int_f mod_CanCityBuildWonder(city_t theCity, int_t theWonder)",
+        "{",
+        "    if (theCity.owner < 1 || theCity.owner > 5) { return 1; }",
+        *_deny_block("wndr", "theWonder", "theCity.owner"),
+        "    return 1;",
+        "}",
+        "",
+    ]
+    _write_rel(_GATING_SLC_REL, "\n".join(lines))
+    return sum(len(v[k]) for v in by_sphere.values() for k in v)
+
+
+_ADVANCE_MASK ={r["id"] for r in _policy_csv_rows("advance_mask.csv")}
+_ADVANCE_REANCHOR = _policy_csv_rows("advance_reanchor.csv")
+
+_AGE_NAMES = ["", "AGE_ONE", "AGE_TWO", "AGE_THREE", "AGE_FOUR", "AGE_FIVE",
+              "AGE_SIX", "AGE_SEVEN", "AGE_EIGHT", "AGE_NINE", "AGE_TEN"]
+_AGE_NUMBER = {name: n for n, name in enumerate(_AGE_NAMES) if name}
+
+# Renaissance cap: no MUNDANE advance may sit past AGE_FOUR. Ages 5+ are
+# purely magical, which is what makes "Masters of Magic tech split across
+# ages" true rather than a claim.
+_MUNDANE_MAX_AGE = 4
+# Ladder rung -> age. The spine of the layout: a rung's age is AUTHORITATIVE
+# and is never max()'d against a prerequisite, because the prerequisite chain
+# under a sphere root is pre-magic foundation and gets pulled DOWN to fit
+# (see _relayout_advance_ages' upper-bound propagation).
+_SPHERE_NAMES = ["life", "nature", "death", "chaos", "sorcery"]
+_RUNG_AGE = {"MAGIC": 2, "LORE": 3, "ADEPT": 4,
+             "MAGE": 5, "WIZARD": 6, "MASTER": 7}
+
+
+def _ladder_rung_age(ident: str) -> "int | None":
+    """Return the fixed age of a sphere-ladder rung, or None if not a rung."""
+    # NOTE: iterate the SPHERES, not _SPHERE_TIERS -- the tier list would build
+    # ADVANCE_LORE_MAGIC and silently match nothing, dropping every rung into
+    # the depth-banding path and shifting all five ladders two ages late.
+    for sphere in _SPHERE_NAMES:
+        for rung, age in _RUNG_AGE.items():
+            if ident == f"ADVANCE_{sphere.upper()}_{rung}":
+                return age
+    # Sorcery's root and lore rung are irregularly named in the authored tree.
+    return {"ADVANCE_SORCERY": 2, "ADVANCE_SORCEROUS_LORE": 3}.get(ident)
+
+
+def _momjr_advance_idents() -> set[str]:
+    """ADVANCE_* idents authored by MoM (as opposed to inherited from base)."""
+    idents = set()
+    with open(MOMJR / "advances.csv", newline="", encoding="utf-8-sig") as fh:
+        for row in csv.DictReader(fh):
+            name = (row.get("name") or "").split(";", 1)[0].strip()
+            if (not name or name.startswith("x") or "Extra Advance" in name
+                    or name.lower() == "blah"):
+                continue
+            idents.add(f"ADVANCE_{sanitize(name)}")
+    return idents
+
+
+def _apply_advance_mask(adv_file: "P.AdvanceFile") -> int:
+    """Delete every masked advance block and every reference to one.
+
+    Require: all advance INGESTION passes have run, so the tree is final.
+    Guarantee: no ADVANCE_* named in advance_mask.csv survives in Advance.txt,
+    either as a block or inside another block's Prerequisites. Idempotent --
+    a second run finds nothing to remove.
+    Why: the mask is the Renaissance tech cap. It carries base CTP2's
+    industrial/modern tail (AGE_FIVE..TEN plus 11 advances mis-banded into
+    AGE_THREE) and the 30 '*_WAW' duplicate-ladder advances that no MoM
+    content ever references. Measured 2026-07-26: 112 removed, 143 kept, and
+    ZERO kept advances carry a deleted prerequisite -- the cut is clean.
+    """
+    blocks = _scan_advance_blocks(adv_file._text)
+    removed = 0
+    for ident in sorted(_ADVANCE_MASK & set(blocks)):
+        text = adv_file._text
+        # Swallow the trailing blank line so deletions do not accumulate gaps.
+        adv_file._text = re.sub(
+            r"^" + re.escape(ident) + r"\s*\{.*?^\}\n*", "",
+            text, count=1, flags=re.S | re.M)
+        if adv_file._text != text:
+            removed += 1
+        adv_file.blocks.pop(ident, None)
+    if _ADVANCE_MASK:
+        # Strip dangling prerequisite lines pointing at anything just removed.
+        adv_file._text = "\n".join(
+            line for line in adv_file._text.splitlines()
+            if not (line.strip().startswith("Prerequisites ")
+                    and line.split()[-1] in _ADVANCE_MASK)
+        ) + "\n"
+    return removed
+
+
+def _relayout_advance_ages(adv_file: "P.AdvanceFile") -> tuple[int, dict[str, int]]:
+    """Re-band every surviving advance so content lands in the intended age.
+
+    Require: _apply_advance_mask has run, so the graph holds only kept advances.
+    Guarantee: (a) every sphere-ladder rung sits on its fixed age, MAGIC=2
+    through MASTER=7; (b) no mundane (base-CTP2) advance exceeds AGE_FOUR;
+    (c) no advance is in an earlier age than one of its own prerequisites.
+    Idempotent -- the layout is a pure function of the graph.
+
+    Method (derived, never hand-typed, so a rename cannot desync it):
+      1. topologically order the kept advances by prerequisite;
+      2. seed an upper bound of the rung age on each rung, 10 elsewhere, and
+         propagate it BACKWARD along prerequisite edges -- a prerequisite can
+         never be bounded later than the thing it enables;
+      3. walk forward: rungs take their fixed age; MoM support advances take
+         max(depth band, deepest prerequisite + 1) so long magical chains
+         actually climb; base advances keep their authored CTP2 age clamped to
+         the Renaissance cap. Everything is finally clamped by its upper bound
+         and floored by its prerequisites.
+    Step 2 is what makes step 3 consistent: without it, the five *_MAGIC roots
+    inherit a deep support chain and drag all 30 rungs into one age -- the
+    exact 'all magic crammed into a single band' defect this pass exists to fix.
+    """
+    blocks = _scan_advance_blocks(adv_file._text)
+    prereqs = {
+        ident: [p for p in re.findall(r'^\s*Prerequisites\s+(ADVANCE_[A-Z0-9_]+)\s*$',
+                                      body, re.M)
+                if p != ident and p in blocks]
+        for ident, body in blocks.items()
+    }
+    current = {
+        ident: _AGE_NUMBER.get(_unit_block_value(body, "Age", "AGE_ONE"), 1)
+        for ident, body in blocks.items()
+    }
+    momjr = _momjr_advance_idents()
+
+    order: list[str] = []
+    seen: set[str] = set()
+
+    def _visit(ident: str, stack: tuple[str, ...] = ()) -> None:
+        if ident in seen or ident in stack:
+            return          # a prerequisite cycle is not ours to fix; skip it
+        for parent in prereqs[ident]:
+            _visit(parent, stack + (ident,))
+        seen.add(ident)
+        order.append(ident)
+
+    for ident in sorted(blocks):
+        _visit(ident)
+
+    depth: dict[str, int] = {}
+    for ident in order:
+        depth[ident] = (0 if not prereqs[ident]
+                        else 1 + max(depth.get(p, 0) for p in prereqs[ident]))
+
+    bound = {i: (_ladder_rung_age(i) or len(_AGE_NAMES) - 1) for i in blocks}
+    for ident in reversed(order):
+        for parent in prereqs[ident]:
+            bound[parent] = min(bound[parent], bound[ident])
+
+    ages: dict[str, int] = {}
+    for ident in order:
+        rung = _ladder_rung_age(ident)
+        if rung is not None:
+            ages[ident] = rung
+            continue
+        parent_ages = [ages[p] for p in prereqs[ident] if p in ages]
+        if ident in momjr:
+            want = max(1 + depth[ident] // 2,
+                       (max(parent_ages) + 1) if parent_ages else 1)
+        else:
+            want = min(_MUNDANE_MAX_AGE, current[ident])
+        age = min(bound[ident], want)
+        if parent_ages:
+            age = max(age, max(parent_ages))
+        ages[ident] = max(1, min(len(_AGE_NAMES) - 1, age))
+
+    changed = 0
+    for ident, age in ages.items():
+        body = blocks[ident]
+        new_body = _set_raw_block_value(body, "Age", _AGE_NAMES[age])
+        if new_body != body:
+            adv_file._text = adv_file._text.replace(body, new_body, 1)
+            blocks[ident] = new_body
+            changed += 1
+    return changed, ages
+
+
+def _apply_advance_reanchor(reg) -> tuple[int, int]:
+    """Re-point or delete every block orphaned by the tech cap.
+
+    Require: _apply_advance_mask has run and tileimp.txt/govern.txt have been
+    rebuilt, so this sees final blocks.
+    Guarantee: no dimension file cites a masked ADVANCE_*. Idempotent -- each
+    row only fires while the stale advance is still present.
+    Why: mom-db-error-class -- a dangling advance reference surfaces in-game as
+    'not found in Advance database' and takes the scenario down at load.
+    """
+    by_file: dict[str, list[dict[str, str]]] = {}
+    for row in _ADVANCE_REANCHOR:
+        by_file.setdefault(row["file"], []).append(row)
+    # An orphan is any advance absent from the LIVE tree -- a superset of the
+    # mask, because base CTP2 files also cite advances MoM never imported.
+    _live = set(re.findall(r"^(ADVANCE_[A-Z0-9_]+)\s*\{",
+                           _read_rel("default/gamedata/Advance.txt"), re.M))
+    rewritten = deleted = 0
+    for name, rows in by_file.items():
+        rel = f"default/gamedata/{name}"
+        # Units.txt and Wonder.txt are REGISTRY-BACKED: reg.save_all() runs
+        # after this pass and rewrites them from the cached parse, so a raw
+        # _write_rel here is silently clobbered. Mutate the cached ._text when
+        # the file is loaded; fall back to raw I/O for the rest (tileimp.txt,
+        # terrain.txt, govern.txt are not registry-written).
+        cached = reg._parsed.get(rel)
+        text = getattr(cached, "_text", "") if cached is not None else _read_rel(rel)
+        if not text:
+            continue
+        before = text
+        for row in rows:
+            ident, target = row["block"], row["new_advance"]
+            pattern = re.compile(r"^(" + re.escape(ident) + r"\s*\{)(.*?)(^\}\n*)",
+                                 re.S | re.M)
+            match = pattern.search(text)
+            if not match:
+                continue
+            if target == "DELETE_BLOCK":
+                text = text[:match.start()] + text[match.end():]
+                deleted += 1
+                continue
+            body = match.group(2)
+            if target == "CLEAR_FIELD":
+                new_body = re.sub(r"^\s*ObsoleteAdvance\s+ADVANCE_[A-Z0-9_]+\s*$\n?",
+                                  "", body, flags=re.M)
+            else:
+                # Re-point every masked advance this block still cites,
+                # whatever field carries it (EnableAdvance, AddAdvance,
+                # RemoveAdvance, ObsoleteAdvance).
+                new_body = re.sub(
+                    r"\b(ADVANCE_[A-Z0-9_]+)\b",
+                    lambda m: target if m.group(1) not in _live else m.group(1),
+                    body)
+            if new_body != body:
+                text = f"{text[:match.start()]}{match.group(1)}{new_body}{match.group(3)}{text[match.end():]}"
+                rewritten += 1
+        if text != before:
+            if cached is not None:
+                cached.set_text(text) if hasattr(cached, "set_text") else \
+                    setattr(cached, "_text", text)
+            else:
+                _write_rel(rel, text)
+    return rewritten, deleted
+
+
+def _apply_sphere_gating(reg) -> tuple[int, list[str]]:
+    """Rewrite EnableAdvance on every sphere'd block to its ladder rung.
+
+    Require: the unit mask, the unit/improvement cost retunes, and the
+    improvement->buildings merge have all already run, so this reads final
+    costs and cannot resurrect a masked unit.
+    Guarantee: every block named by sphere_gate_targets() that EXISTS in a DB
+    file gates on its sphere rung. Idempotent -- a second run changes nothing.
+    Note: a target with no matching block is not an error; units.csv carries
+    masked placeholder rows and improvements.csv rows split across
+    buildings.txt and Wonder.txt.
+    """
+    targets = sphere_gate_targets()
+    # Registry-backed files, rewritten through ._text so reg.save_all() emits
+    # them. buildings.txt is deliberately NOT here: it has no PARSER_MAP entry
+    # (it is produced wholesale by _merge_mom_improvements_into_buildings and
+    # written straight to disk), so it takes the read/modify/write path below.
+    reg_files = [
+        "default/gamedata/Units.txt",
+        "default/gamedata/Units_historic.txt",
+        "default/gamedata/Units_release.txt",
+        "default/gamedata/Wonder.txt",
+    ]
+    direct_files = ["default/gamedata/buildings.txt"]
+    changed, touched = 0, set()
+    for rel in reg_files + direct_files:
+        is_direct = rel in direct_files
+        if is_direct:
+            db, text = None, _read_rel(rel)
+        else:
+            db = reg.load(rel)
+            text = getattr(db, "_text", None)
+        if not text:
+            continue
+        before = text
+        for ident in sorted(targets):
+            advance = targets[ident]
+            block = re.compile(r"^(" + re.escape(ident) + r"\s*\{)(.*?)(^\})",
+                               re.S | re.M)
+
+            def _rewrite(m: "re.Match[str]") -> str:
+                nonlocal changed
+                body = m.group(2)
+                new_body = _set_raw_block_value(body, "EnableAdvance", advance)
+                if new_body != body:
+                    changed += 1
+                    touched.add(ident)
+                return f"{m.group(1)}{new_body}{m.group(3)}"
+
+            text = block.sub(_rewrite, text)
+        if is_direct:
+            if text != before:
+                _write_rel(rel, text)
+        else:
+            db._text = text
+    return changed, sorted(touched)
 
 
 def _retune_mom_improvement_costs(advance_ages: dict[str, str]) -> int:
@@ -3060,6 +3700,40 @@ def main():
         print(f"  + sphere-home exclusivity: {homes_created} HOME advance(s) created, "
               f"{wired} ladder prereq(s) wired")
 
+    else:
+        # Policy OFF (mod_policy.json carries no sphere_home_exclusivity key),
+        # so the ADVANCE_HOME_* advances are never created -- but an earlier
+        # run left mom_sphere_home.slc on disk AND #include'd from
+        # scenario.slc, citing five advances that do not exist. That is the
+        # mom-db-error-class crash surface exactly. Sever it; the per-tribe
+        # wall is mod_CanPlayerHaveAdvance in mom_gating.slc, not this.
+        _home_path = SCENARIO / "default/gamedata/mom_sphere_home.slc"
+        _scen_slc = _read_rel("default/gamedata/scenario.slc")
+        if '#include "mom_sphere_home.slc"' in _scen_slc:
+            _write_rel("default/gamedata/scenario.slc",
+                       "".join(l for l in _scen_slc.splitlines(keepends=True)
+                               if 'mom_sphere_home.slc' not in l))
+            print("  + scenario.slc: severed stale mom_sphere_home.slc include")
+        if _home_path.exists():
+            _home_path.unlink()
+            print("  + removed stale mom_sphere_home.slc (policy off)")
+
+    # --- Tech cap + age re-layout ---------------------------------------
+    # ORDERING: after ALL advance ingestion and ladder wiring, and BEFORE the
+    # tileimp.txt/govern.txt rebuilds (~:3939-4006). The mask must precede
+    # govern's rebuild so the existing _government_ids_enabled_by_live_advances
+    # self-heal drops the 7 modern governments off the live Advance.txt.
+    masked = _apply_advance_mask(adv_file)
+    if masked:
+        print(f"  + tech cap: removed {masked} modern/junk advance(s)")
+    aged, _age_hist = _relayout_advance_ages(adv_file)
+    if aged:
+        print(f"  + age re-layout: {aged} advance(s) re-aged; histogram {_age_hist}")
+        # Ages changed -> research costs must be re-banded, and advance_ages
+        # (which feeds the improvement cost bands) refreshed off the NEW tree.
+        _retune_mom_advance_costs(adv_file)
+        advance_ages = _advance_age_map_from_text(adv_file._text)
+
         # SLIC start-of-game grants: player index -> sphere is the scenario
         # contract (players.csv order: 1 Life, 2 Nature, 3 Sorcery, 4 Death,
         # 5 Chaos). GrantAdvance(player, AdvanceDB(...)) is engine-verified
@@ -4228,9 +4902,27 @@ def main():
     # their own ingestion. Re-run the improvement rescale HERE, once the blocks
     # actually exist, so raw Civ2 costs land in the base CTP2 age band that
     # matches the advance which gates each block.
+    #
+    # ORDERING: tileimp.txt is rebuilt above and evicted from the registry
+    # cache, so the orphan re-anchor MUST run here, after that rebuild --
+    # anywhere earlier and it is silently clobbered.
+    _ra_files, _ra_blocks = _apply_advance_reanchor(reg)
+    if _ra_blocks:
+        print(f"  + advance re-anchor: {_ra_files} block(s) re-pointed, {_ra_blocks} deleted")
+
     retuned_improvement_costs = _retune_mom_improvement_costs(advance_ages)
     if retuned_improvement_costs:
         print(f"  + rescaled {retuned_improvement_costs} improvement cost(s) into base CTP2 age bands")
+
+    # Faction gating. Placement is the whole risk here (see: generator pass
+    # ordering ate the cost rescale) -- it must land AFTER the unit mask, both
+    # cost retunes and the improvement->buildings merge above so it reads final
+    # state, and BEFORE gl_descriptions.apply_descriptions() below, which
+    # quotes the prereq in derived GAMEPLAY prose.
+    sphere_gated, sphere_idents = _apply_sphere_gating(reg)
+    if sphere_gated:
+        print(f"  + sphere-gated {len(sphere_idents)} block(s) onto their ladder rung "
+              f"({sphere_gated} EnableAdvance rewrite(s))")
 
     # Icon-DB backfill: the runtime Icon database is uniticon.txt (civapp.cpp
     # g_theIconDB->Parse(g_uniticondb_filename) — one DB for unit AND building
@@ -4350,6 +5042,21 @@ def main():
     )
     if final_concept_scrubbed:
         print(f"  + final GL scrub removed {final_concept_scrubbed} hidden/out-of-genre concept surface(s)")
+
+    dead_adv_scrubbed = _scrub_dead_advance_surfaces()
+    if dead_adv_scrubbed:
+        print(f"  + final GL scrub removed {dead_adv_scrubbed} dead-advance surface(s)")
+
+    dead_imp_scrubbed = _scrub_dead_tileimp_surfaces()
+    if dead_imp_scrubbed:
+        print(f"  + re-anchored {dead_imp_scrubbed} dead-tileimp surface(s)")
+
+    # ORDERING: dead last. Every ident is filtered against the live Advance.txt /
+    # Units.txt / buildings.txt / Wonder.txt, so this must run after the mask,
+    # the re-layout, the prereq rewrite and the improvement merge have all
+    # settled -- otherwise the wall cites blocks that no longer exist.
+    gated_idents = _emit_mom_gating_slc()
+    print(f"  + mom_gating.slc: {gated_idents} ident(s) walled across 5 tribes")
 
     if _ensure_diffdb_start_government():
         print(f"  + DiffDB.txt: guaranteed {START_GUARANTEED_ADVANCES} across all start-tech blocks")

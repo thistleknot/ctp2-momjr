@@ -15,7 +15,15 @@ Purpose:
       2. units.csv prereq   — set to the sphere-ladder gate code.
 
     Runs post-mask, pre-generator. Units with a real non-sphere prereq
-    (MoM heroes on Mys) and neutral/starter units (cost <= STARTER) keep it.
+    (MoM heroes on Mys) and units on the STARTER_WHITELIST keep it.
+
+    Sphere precedence, strongest first:
+      1. an explicit `sphere` column in units.csv  — the curated control plane
+      2. a curated prior edit in unit_factions.csv
+      3. keyword inference from the unit name
+    (1) exists because MoM's plane now carries a hand-adjudicated `sphere`
+    column; keyword inference is a seed for planes that do not have one yet
+    (SMM), not an authority that may override a human decision.
 
 Usage:
     assign_unit_factions.py --csv <merged csv dir>
@@ -30,7 +38,6 @@ import sys
 from pathlib import Path
 
 NO_PREREQ = {"no", "nil", ""}
-STARTER_COST = 2  # <= this stays turn-1 (WARRIOR_CODE), no sphere gate
 
 # Sphere ladder -> gate code per tier (from advance_code_map, unit lane).
 # All ladders are AGE_TWO; tier within the ladder sets how deep you research.
@@ -51,7 +58,7 @@ SPHERE_KEYWORDS = [
                  "spectral", "phantom", "witch", "baba yaga"]),
     ("nature",  ["centaur", "elf", "elven", "halfling", "sprite", "faerie",
                  "unicorn", "pegasus", "griffin", "treant", "dryad", "faun",
-                 "warbear", "cockatrice", "wolf", "hawk", "bear", "boar",
+                 "alorra", "warbear", "cockatrice", "wolf", "hawk", "bear", "boar",
                  "great wyrm", "behemoth", "mammoth", "gnome", "tree",
                  "eagle", "spider", "ranger", "dwarf", "dwarves", "otterine"]),
     ("chaos",   ["goblin", "efreet", "salamander", "hell", "chaos", "orc",
@@ -61,7 +68,7 @@ SPHERE_KEYWORDS = [
                  "kraken", "imp", "beholder", "harpy", "manticore",
                  "basilisk", "wyvern", "medusa"]),
     ("life",    ["angel", "archangel", "paladin", "priest", "cleric", "healer",
-                 "guardian", "serena", "ariel", "alorra", "monk", "crusader",
+                 "guardian", "serena", "ariel", "monk", "crusader",
                  "templar", "knight hosp", "prophet", "zealot"]),
     ("sorcery", ["elemental", "phantom warrior", "storm", "djinn", "genie",
                  "jafar", "warlock", "sorcer", "air ", "water", "earth",
@@ -159,15 +166,23 @@ def main() -> int:
 
         source = r.get("source", "")
         edit = prior.get(uid, {})
+        # An explicit `sphere` column in units.csv outranks everything: it is a
+        # hand-adjudicated control-plane decision, not a machine seed. Planes
+        # without the column (SMM) fall through to the prior-edit/keyword path
+        # exactly as before.
+        column_sphere = (r.get("sphere") or "").strip()
+        if column_sphere not in set(SPHERE_LADDER) | {"gated_neutral", "neutral"}:
+            column_sphere = ""
         # A prior sphere counts as a curated EDIT only when it names a real
         # cluster; machine seeds (starter/neutral/base/gated) re-infer so
         # keyword/whitelist fixes actually take effect on re-run.
         prior_sphere = (edit.get("sphere") or "").strip()
         if prior_sphere not in set(SPHERE_LADDER) | {"gated_neutral"}:
             prior_sphere = ""
-        inferred = prior_sphere or infer_sphere(name)
+        inferred = column_sphere or prior_sphere or infer_sphere(name)
 
-        if name.lower() in STARTER_WHITELIST and not prior_sphere:
+        if (name.lower() in STARTER_WHITELIST and not prior_sphere
+                and column_sphere not in SPHERE_LADDER):
             # true turn-1 generics only — strict whitelist, never cost-derived
             sphere = "starter"
             tier = ""
@@ -179,11 +194,13 @@ def main() -> int:
             sphere = "base"
             tier = ""
             gate_code = r.get("prereq", "")
+            counts[sphere] += 1
         elif prereq not in NO_PREREQ and inferred == "neutral" and source != "base":
             # merged unit with a real source tech gate and no cluster claim
             sphere = "gated"
             tier = ""
             gate_code = r.get("prereq", "")
+            counts[sphere] += 1
         else:
             sphere = inferred
             # dragons are elite/event units regardless of cost -> MASTER tier
@@ -207,13 +224,18 @@ def main() -> int:
         gate_adv = ""
         tax_rows.append({"unit_id": uid, "name": name, "cost": str(cost),
                          "sphere": sphere, "tier": tier, "gate_code": gate_code,
-                         "gate_advance": gate_adv, "source": r.get("source", "")})
+                         "gate_advance": gate_adv, "source": r.get("source", ""),
+                         # `basis` is authored prose recording WHY a sphere was
+                         # chosen. Carried through verbatim so a re-run never
+                         # silently discards the adjudication record.
+                         "basis": edit.get("basis", "")})
 
     with upath.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=header, lineterminator="\r\n", extrasaction="ignore")
         w.writeheader(); w.writerows(rows)
 
-    tax_header = ["unit_id", "name", "cost", "sphere", "tier", "gate_code", "gate_advance", "source"]
+    tax_header = ["unit_id", "name", "cost", "sphere", "tier", "gate_code",
+                  "gate_advance", "source", "basis"]
     with tax_path.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=tax_header, lineterminator="\r\n", extrasaction="ignore")
         w.writeheader(); w.writerows(tax_rows)

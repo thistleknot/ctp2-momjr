@@ -60,7 +60,7 @@ void_f MomCastFlameStrike(int_t p)
     location_t homeLoc;
     location_t bestLoc;
 
-    if (p >= 1) {
+    if (p >= 1 && p <= 5) {
         if (MomMagicCur[p] < 50) {
             if (IsHumanPlayer(p)) {
                 Message(g.player, 'MomMsgNoMana');
@@ -139,7 +139,7 @@ void_f MomCastDemonStrike(int_t p)
     location_t homeLoc;
     location_t bestLoc;
 
-    if (p >= 1) {
+    if (p >= 1 && p <= 5) {
         // Inlined (p == 5) rather than MomPlayerIsChaos(p): this runs from a
         // Button body, and a nested user call on that path is the measured
         // 0xC0000005 documented in MomSpellShowBook below.
@@ -203,7 +203,7 @@ void_f MomCastDemonStrike(int_t p)
 // Show the spellbook popup for player p (pool status + cast buttons).
 void_f MomSpellShowBook(int_t p)
 {
-    if (p >= 1) {
+    if (p >= 1 && p <= 5) {
         MomSpellCurDisp = MomMagicCur[p];
         MomSpellMaxDisp = MomMagicMax[p];
         // NESTED USER-FUNCTION CALLS CRASH ON THE TRIGGER PATH (measured
@@ -243,7 +243,7 @@ HandleEvent(BeginTurn) 'MomSpellMenuTick' post {
     // the queue -> 0xC0000005. The threshold logic below is correctly latched
     // (MomSpellPromptArmed re-arms only after the pool drops back under 60%),
     // which is why it is safe to keep.
-    if (p >= 1 && IsHumanPlayer(p) && MomMagicMax[p] > 0) {
+    if (p >= 1 && p <= 5 && IsHumanPlayer(p) && MomMagicMax[p] > 0) {
         threshold = (MomMagicMax[p] * 3) / 5;
         if (MomMagicCur[p] < threshold) {
             MomSpellPromptArmed[p] = 1;
@@ -291,7 +291,7 @@ HandleEvent(BeginTurn) 'MomSpellAICast' post {
     int_t p;
 
     p = player[0];
-    if (p >= 1 && IsHumanPlayer(p) == 0 && MomMagicMax[p] > 0) {
+    if (p >= 1 && p <= 5 && IsHumanPlayer(p) == 0 && MomMagicMax[p] > 0) {
         if (MomMagicCur[p] * 4 >= MomMagicMax[p] * 3) {
             // Inlined chaos test -- see MomSpellShowBook for the nested-call crash.
             if (p == 5 && MomMagicCur[p] >= 100) {

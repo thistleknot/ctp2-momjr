@@ -17,7 +17,7 @@
 //   Nature   NATURE_MAGIC   GRANARY  + WARBEARS                   GRANARY, PRIMAL_SOURCE, FANTASTIC_STABLE
 //   Sorcery  SORCERY        LIBRARY  + MAGE                       LIBRARY, BEACON_OF_WISDOM
 //   Death    DEATH_MAGIC    BARRACKS + ZOMBIES                    BARRACKS, MECHANICIANS_GUILD
-//   Chaos    CHAOS_MAGIC    random gold windfall (no bldg/unit)   -- (matches its B1 random-gold theme)
+//   Chaos    CHAOS_MAGIC    COLOSSEUM + HELL_HOUNDS (+ windfall)  COLOSSEUM, MERCHANTS_GUILD
 
 HandleEvent(GrantAdvance) 'MomSphereAdvanceBlessings' post {
     int_t p;
@@ -42,6 +42,11 @@ HandleEvent(GrantAdvance) 'MomSphereAdvanceBlessings' post {
             MomGrantDeathBuilding(p);
             MomSpawnSphereUnit(p, UnitDB(UNIT_ZOMBIES));
         } elseif (MomPlayerIsChaos(p) && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
+            // Chaos KEEPS its random windfall -- that is its B1 identity -- but
+            // it now also gets the building+unit milestone every other sphere
+            // had, so the 5-column matrix is square.
+            MomGrantChaosBuilding(p);
+            MomSpawnSphereUnit(p, UnitDB(UNIT_HELL_HOUNDS));
             AddGold(p, 50 + Random(100));
         }
     }
@@ -78,6 +83,11 @@ HandleEvent(CreateBuilding) 'MomSphereCityEffects' post {
     } elseif (MomPlayerIsDeath(p)) {
         if (value[0] == BuildingDB(IMPROVE_BARRACKS)
         || value[0] == BuildingDB(IMPROVE_MECHANICIANS_GUILD)) {
+            burstGold = 30;
+        }
+    } elseif (MomPlayerIsChaos(p)) {
+        if (value[0] == BuildingDB(IMPROVE_COLOSSEUM)
+        || value[0] == BuildingDB(IMPROVE_MERCHANTS_GUILD)) {
             burstGold = 30;
         }
     }

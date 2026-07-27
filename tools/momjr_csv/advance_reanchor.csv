@@ -1,0 +1,52 @@
+file,block,new_advance,note
+govern.txt,GOVERNMENT_COMMUNISM,DELETE_BLOCK,modern government; no Renaissance-cap equivalent
+govern.txt,GOVERNMENT_CORPORATE_REPUBLIC,DELETE_BLOCK,modern government
+govern.txt,GOVERNMENT_DEMOCRACY,DELETE_BLOCK,modern government; Republic survives as the elective form
+govern.txt,GOVERNMENT_ECOTOPIA,DELETE_BLOCK,modern government
+govern.txt,GOVERNMENT_FASCISM,DELETE_BLOCK,modern government
+govern.txt,GOVERNMENT_TECHNOCRACY,DELETE_BLOCK,modern government
+govern.txt,GOVERNMENT_VIRTUAL_DEMOCRACY,DELETE_BLOCK,modern government
+tileimp.txt,TILEIMP_ADVANCED_FARMS,ADVANCE_INTERCHANGABLE_PARTS,"basic infrastructure — user: ""we don't have to lose basic tech like farm""; mundane and universal, never a sphere"
+tileimp.txt,TILEIMP_ADVANCED_MINES,ADVANCE_ALCHEMY,keeps a mundane mining upgrade path above TILEIMP_MINES/ADVANCE_SLAVE_LABOR
+tileimp.txt,TILEIMP_NATURE_PRESERVE,ADVANCE_NATURE_MAGIC,preserving wilderness is the Nature sphere's root act
+tileimp.txt,TILEIMP_TERRAFORM_HILL,ADVANCE_NATURE_LORE,terrain-shaping is nature magic
+tileimp.txt,TILEIMP_TERRAFORM_WHITE_HILL,ADVANCE_NATURE_LORE,terrain-shaping is nature magic
+tileimp.txt,TILEIMP_TERRAFORM_BROWN_HILL,ADVANCE_NATURE_LORE,terrain-shaping is nature magic
+tileimp.txt,TILEIMP_TERRAFORM_SWAMP,ADVANCE_NATURE_LORE,terrain-shaping is nature magic
+tileimp.txt,TILEIMP_TERRAFORM_DESERT,ADVANCE_NATURE_LORE,vegetation terraform; base CTP2 gated it on AGRICULTURAL_REVOLUTION which is cut
+tileimp.txt,TILEIMP_TERRAFORM_FOREST,ADVANCE_NATURE_LORE,vegetation terraform; base gate AGRICULTURAL_REVOLUTION is cut
+tileimp.txt,TILEIMP_TERRAFORM_JUNGLE,ADVANCE_NATURE_LORE,vegetation terraform; base gate AGRICULTURAL_REVOLUTION is cut
+tileimp.txt,TILEIMP_TERRAFORM_MOUNTAIN,ADVANCE_NATURE_ADEPT,moving mountains costs more than hills
+tileimp.txt,TILEIMP_TERRAFORM_WHITE_MOUNTAIN,ADVANCE_NATURE_ADEPT,moving mountains costs more than hills
+tileimp.txt,TILEIMP_TERRAFORM_BROWN_MOUNTAIN,ADVANCE_NATURE_ADEPT,moving mountains costs more than hills
+tileimp.txt,TILEIMP_ADVANCED_UNDERSEA_MINES,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_UNDERSEA_MINES,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_MEGA_UNDERSEA_MINES,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_UNDERSEA_TUNNEL,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_MEGA_MINES,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_MAGLEV,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_AIR_BASES,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_RADAR_STATIONS,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_SONAR_BUOYS,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_LISTENING_POSTS,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_DRILLING_PLATFORM,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_AUTOMATED_FISHERIES,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_HYDROPONIC_FARMS,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_OUTLET_MALL,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_PROCESSING_TOWER,DELETE_BLOCK,industrial/modern
+tileimp.txt,TILEIMP_RUINS,DELETE_BLOCK,industrial/modern
+terrain.txt,TERRAIN_FOREST,ADVANCE_NATURE_LORE,transform trigger; mirrors TILEIMP_TERRAFORM_FOREST
+terrain.txt,TERRAIN_DESERT,ADVANCE_NATURE_LORE,transform trigger; mirrors TILEIMP_TERRAFORM_DESERT
+terrain.txt,TERRAIN_JUNGLE,ADVANCE_NATURE_LORE,transform trigger; mirrors TILEIMP_TERRAFORM_JUNGLE
+terrain.txt,TERRAIN_SWAMP,ADVANCE_NATURE_LORE,transform trigger; mirrors TILEIMP_TERRAFORM_SWAMP
+terrain.txt,TERRAIN_HILL,ADVANCE_NATURE_LORE,transform trigger; mirrors TILEIMP_TERRAFORM_HILL
+terrain.txt,TERRAIN_BROWN_HILL,ADVANCE_NATURE_LORE,transform trigger
+terrain.txt,TERRAIN_WHITE_HILL,ADVANCE_NATURE_LORE,transform trigger
+terrain.txt,TERRAIN_MOUNTAIN,ADVANCE_NATURE_ADEPT,transform trigger; mirrors TILEIMP_TERRAFORM_MOUNTAIN
+terrain.txt,TERRAIN_BROWN_MOUNTAIN,ADVANCE_NATURE_ADEPT,transform trigger
+terrain.txt,TERRAIN_WHITE_MOUNTAIN,ADVANCE_NATURE_ADEPT,transform trigger
+terrain.txt,TERRAIN_TUNDRA,ADVANCE_NATURE_ADEPT,transform trigger; harsh terrain costs an adept
+terrain.txt,TERRAIN_GLACIER,ADVANCE_NATURE_ADEPT,transform trigger; harsh terrain costs an adept
+terrain.txt,TERRAIN_DEAD,ADVANCE_NATURE_MAGIC,RemoveAdvance trigger; mirrors TILEIMP_NATURE_PRESERVE
+Wonder.txt,WONDER_GNOME_TREASURY,ADVANCE_BANKING,a MoM wonder; must not be dropped with ADVANCE_ECONOMICS
+Units.txt,UNIT_SETTLER,CLEAR_FIELD,ObsoleteAdvance pointed at ADV_URBAN_PLANNING; cosmetic — settlers simply never obsolete
