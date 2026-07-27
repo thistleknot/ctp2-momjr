@@ -262,6 +262,452 @@ def check_faction_gating(scen: Path, fails: list[str]) -> None:
     fails.extend(F.audit(scen))
 
 
+def _momjr_csv() -> Path:
+    return TOOLS_DIR / "momjr_csv"
+
+
+def _advance_blocks(scen: Path) -> dict[str, list[str]]:
+    """ident -> its Prerequisites values, parsed from the generated Advance.txt."""
+    path = scen / "default/gamedata/Advance.txt"
+    if not path.exists():
+        return {}
+    blocks: dict[str, list[str]] = {}
+    cur = None
+    for line in path.read_text(encoding="latin-1", errors="replace").splitlines():
+        s = line.strip()
+        m = re.match(r"^(ADVANCE_[A-Za-z0-9_]+)\s*\{", s)
+        if m:
+            cur = m.group(1)
+            blocks[cur] = []
+            continue
+        if s.startswith("}"):
+            cur = None
+            continue
+        if cur:
+            p = re.match(r"^Prerequisites\s+([A-Za-z0-9_]+)", s)
+            if p:
+                blocks[cur].append(p.group(1))
+    return blocks
+
+
+def check_disabled_advances_closed(scen: Path, fails: list[str]) -> None:
+    """Gate 18: an advance civ2 marked `no` must never ship researchable.
+
+    `nil` and `no` are OPPOSITE sentinels in civ2 Rules.txt -- `nil` = no
+    prerequisite (a researchable root), `no` = never available. Collapsing them
+    once shipped ADVANCE_GLYPHS as a free AGE_ONE root. CTP2's disable idiom is
+    the self-prerequisite (Advances.cpp::ResetCanResearch forces
+    canResearch=FALSE) with the block still in the DB so references resolve.
+
+    Require: advances.csv alongside this tool and a generated Advance.txt.
+    Guarantee: every disabled row's block lists ITSELF as a prerequisite.
+    The predicate is imported from ctp2_generator so the gate cannot disagree
+    with the writer about what "disabled" means.
+    """
+    csv_path = _momjr_csv() / "advances.csv"
+    if not csv_path.exists():
+        return
+    try:
+        sys.path.insert(0, str(TOOLS_DIR))
+        from ctp2_generator import _advance_row_is_disabled, sanitize
+    except Exception:
+        return
+    blocks = _advance_blocks(scen)
+    if not blocks:
+        return
+    import csv as _csv
+    with csv_path.open(newline="", encoding="utf-8-sig") as fh:
+        for row in _csv.DictReader(fh):
+            name = (row.get("name") or "").split(";")[0].strip()
+            if not name or not _advance_row_is_disabled(row):
+                continue
+            ident = f"ADVANCE_{sanitize(name)}"
+            if ident not in blocks:
+                continue
+            if ident not in blocks[ident]:
+                fails.append(f"Advance.txt: {ident} is disabled in advances.csv "
+                             f"(`no` prerequisite) but ships researchable -- "
+                             f"prereqs {blocks[ident] or 'NONE'}")
+
+
+def check_advance_code_map(scen: Path, fails: list[str]) -> None:
+    """Gate 19: every civ2 short code resolves to a live advance.
+
+    advance_code_map.csv carries two lanes, `prereq` and `unit`, which disagree
+    ON PURPOSE (the prereq lane holds stock-CTP2 names for several codes).
+    Consumers try `prereq` first and fall through to `unit` when the target is
+    absent or disabled, so a code is only broken when NEITHER lane lands on an
+    advance that exists and is researchable.
+
+    Scoped to codes a consumer actually CITES as a prerequisite. An uncited map
+    row whose only target is deliberately disabled (`FP` -> ADVANCE_GLYPHS) is
+    dead weight, not a defect; flagging it would train the operator to ignore
+    this gate. A cited code that cannot resolve, by contrast, silently falls
+    back to ADVANCE_WARRIOR_CODE and ships the wrong tech tree.
+
+    Require: advance_code_map.csv alongside this tool, generated Advance.txt.
+    Guarantee: no CITED code is left without a resolvable target.
+    """
+    csv_path = _momjr_csv() / "advance_code_map.csv"
+    if not csv_path.exists():
+        return
+    blocks = _advance_blocks(scen)
+    if not blocks:
+        return
+    import csv as _csv
+    # The three consumers do NOT share a prereq schema: advances.csv carries the
+    # civ2 two-slot pair (prereq1/prereq2), units.csv and improvements.csv carry a
+    # single `prereq`. Reading the wrong column name yields an empty set and a
+    # gate that silently checks nothing, so derive the columns from the header
+    # instead of hardcoding one shape.
+    cited: set[str] = set()
+    for consumer in ("units.csv", "improvements.csv", "advances.csv"):
+        cpath = _momjr_csv() / consumer
+        if not cpath.exists():
+            continue
+        with cpath.open(newline="", encoding="utf-8-sig") as fh:
+            reader = _csv.DictReader(fh)
+            # Exact names only. A substring match on "prereq" also catches
+            # `prereq_str`, which holds Great Library STRING KEYS
+            # (ADVANCE_X_PREREQ), not civ2 codes -- the same string-key-as-ident
+            # confusion that once produced a bogus 619-dangling-ref report.
+            cols = [c for c in (reader.fieldnames or [])
+                    if c in ("prereq", "prereq1", "prereq2")]
+            if not cols:
+                fails.append(f"{consumer}: no prerequisite column -- the code-map "
+                             f"gate cannot see this consumer")
+                continue
+            for row in reader:
+                for col in cols:
+                    v = (row.get(col) or "").split(";")[0].strip()
+                    if v and v not in ("nil", "no"):
+                        cited.add(v)
+
+    lanes: dict[str, dict[str, str]] = {}
+    with csv_path.open(newline="", encoding="utf-8-sig") as fh:
+        for row in _csv.DictReader(fh):
+            lane = (row.get("lane") or "").strip()
+            code = (row.get("code") or "").strip()
+            adv = (row.get("advance") or "").strip()
+            if lane and code and adv:
+                lanes.setdefault(code, {})[lane] = adv
+
+    def live(ident: str) -> bool:
+        return ident in blocks and ident not in blocks[ident]
+
+    for code in sorted(cited):
+        targets = lanes.get(code)
+        if not targets:
+            fails.append(f"advance_code_map.csv: code {code!r} is cited as a "
+                         f"prerequisite but has no row in either lane")
+            continue
+        if any(live(t) for t in targets.values()):
+            continue
+        shown = ", ".join(f"{k}={v}" for k, v in sorted(targets.items()))
+        fails.append(f"advance_code_map.csv: code {code!r} has no live target "
+                     f"in either lane ({shown})")
+
+
+def check_disabled_entities_unbuildable(scen: Path, fails: list[str]) -> None:
+    """Gate 20: nothing civ2 marks `no` ships buildable.
+
+    `no` is the OPPOSITE of `nil` (see check_disabled_advances_closed): `nil`
+    means "no prerequisite", `no` means "never available". The unit and
+    improvement lanes collapsed both into the ADVANCE_WARRIOR_CODE fallback,
+    which is researched on turn one -- `Coastal Fortress` shipped as a turn-one
+    buildable though civ2 marks it unavailable.
+
+    Require: units.csv / improvements.csv alongside this tool, and a generated
+    Advance.txt plus the file the entity ships in.
+    Guarantee: every `no`-prereq row either does not ship at all, or ships gated
+    on an advance closed by self-prerequisite.
+
+    The gate reads the SHIPPED EnableAdvance rather than trusting the generator,
+    so a future emitter that reintroduces the union bug fails here even if its
+    own predicate says otherwise.
+    """
+    blocks = _advance_blocks(scen)
+    if not blocks:
+        return
+    disabled = {a for a, prereqs in blocks.items() if a in prereqs}
+
+    import csv as _csv
+    try:
+        sys.path.insert(0, str(TOOLS_DIR))
+        from ctp2_generator import sanitize
+    except Exception:
+        return
+
+    lanes = (("units.csv", "UNIT_", "default/gamedata/Units.txt"),
+             ("improvements.csv", "IMPROVE_", "default/gamedata/buildings.txt"))
+    for fname, prefix, rel in lanes:
+        csv_path = _momjr_csv() / fname
+        target = scen / rel
+        if not csv_path.exists() or not target.exists():
+            continue
+        text = target.read_text(encoding="latin-1", errors="replace")
+        gates: dict[str, str] = {}
+        cur = None
+        for line in text.splitlines():
+            s = line.strip()
+            m = re.match(rf"^({prefix}[A-Za-z0-9_]+)\s*\{{", s)
+            if m:
+                cur = m.group(1)
+                gates[cur] = ""
+                continue
+            if s.startswith("}"):
+                cur = None
+                continue
+            if cur:
+                e = re.match(r"^EnableAdvance\s+([A-Za-z0-9_]+)", s)
+                if e:
+                    gates[cur] = e.group(1)
+        with csv_path.open(newline="", encoding="utf-8-sig") as fh:
+            reader = _csv.DictReader(fh)
+            if "prereq" not in (reader.fieldnames or []):
+                fails.append(f"{fname}: no `prereq` column -- the disabled-entity "
+                             f"gate cannot see this lane")
+                continue
+            for row in reader:
+                if (row.get("prereq") or "").split(";")[0].strip() != "no":
+                    continue
+                name = (row.get("name") or "").split(";")[0].strip()
+                if not name:
+                    continue
+                ident = f"{prefix}{sanitize(name)}"
+                if ident not in gates:
+                    continue  # does not ship at all -- fine
+                gate = gates[ident]
+                if gate and gate in disabled:
+                    continue
+                fails.append(f"{rel}: {ident} is `no` (never available) in "
+                             f"{fname} but ships buildable -- "
+                             f"EnableAdvance {gate or 'NONE'}")
+
+
+def check_gl_statistics_match_db(scen: Path, fails: list[str]) -> None:
+    """Gate 21: the Great Library's printed stats match the advance DB.
+
+    Require: a generated Advance.txt and english/gamedata/Great_Library.txt.
+    Guarantee: every ADVANCE_*_STATISTICS section prints the Cost, Age and
+    Branch of the block it describes.
+
+    ctp2_parser stamped these lines when the advance was registered, ~1300 lines
+    before `_retune_mom_advance_costs` rewrote the costs -- ADVANCE_WRITING
+    advertised `Cost: 1000` against a DB `Cost 1025`. The player has no way to
+    see the DB, so a drifted line is simply a lie in the encyclopaedia.
+
+    Reads both SHIPPED artifacts rather than the reconcile pass's own output, so
+    a future writer that re-stamps stale values still fails here.
+    """
+    adv = scen / "default/gamedata/Advance.txt"
+    gl = scen / "english/gamedata/Great_Library.txt"
+    if not adv.exists() or not gl.exists():
+        return
+    try:
+        sys.path.insert(0, str(TOOLS_DIR))
+        from ctp2_generator import gl_age_display
+    except Exception:
+        return
+    age_path = scen / "default/gamedata/age.txt"
+    ages = gl_age_display(
+        age_path.read_text(encoding="latin-1", errors="replace")
+        if age_path.exists() else "")
+
+    live: dict[str, dict[str, str]] = {}
+    text = adv.read_text(encoding="latin-1", errors="replace")
+    for m in re.finditer(r'^(ADVANCE_\w+) \{(.*?)^\}', text, re.S | re.M):
+        body, fields = m.group(2), {}
+        for key in ("Cost", "Age", "Branch"):
+            f = re.search(rf'^\s*{key}\s+(\S+)', body, re.M)
+            if f:
+                fields[key] = f.group(1)
+        live[m.group(1)] = fields
+
+    section = None
+    for line in gl.read_text(encoding="latin-1", errors="replace").splitlines():
+        s = line.strip()
+        m = re.match(r"^\[(ADVANCE_\w+)_STATISTICS\]$", s)
+        if m:
+            section = m.group(1)
+            continue
+        if s == "[END]":
+            section = None
+            continue
+        if not section:
+            continue
+        f = re.match(r'^(?:<[ch]:\d+,\d+,\d+>)*(Cost|Age|Branch):\s*(.*)$', s)
+        if not f:
+            continue
+        key, shown = f.group(1), f.group(2).strip()
+        want = (live.get(section) or {}).get(key)
+        if want is None:
+            continue
+        if key == "Age":
+            want = ages.get(want, want)
+        if shown != want:
+            fails.append(f"english/gamedata/Great_Library.txt: "
+                         f"{section}_STATISTICS says {key}: {shown} but "
+                         f"Advance.txt says {want}")
+
+
+def check_building_effects(scen: Path, fails: list[str]) -> None:
+    """Gate 13: no building charges upkeep and does nothing.
+
+    Two halves, and both matter:
+
+    a) Every live improvement carries at least one effect field. Before this
+       gate all 21 shipped blocks were DefaultIcon/Description/EnableAdvance/
+       ProductionCost/Upkeep and nothing more -- a 270-production Barracks with
+       no mechanical effect at all. Nothing in the pipeline noticed, because an
+       inert block is perfectly well-formed.
+
+    b) Every field a block does carry is declared in the engine's own record
+       schema (gs/newdb/building.cdb, transcribed as
+       ctp2_generator.BUILDING_EFFECT_FIELDS plus the five structural fields).
+       An undeclared field aborts scenario load, so a typo here is fatal in
+       game and invisible on disk.
+
+    Retired 'x' sentinels are exempt from (a): they exist only to hold their DB
+    index and are obsoleted from turn 1, so an effect on one is unreachable.
+    """
+    path = scen / "default/gamedata/buildings.txt"
+    if not path.exists():
+        return
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from ctp2_generator import BUILDING_EFFECT_FIELDS
+    except Exception:
+        return
+    structural = {"DefaultIcon", "Description", "EnableAdvance", "ObsoleteAdvance",
+                  "PrerequisiteBuilding", "ProductionCost", "Upkeep"}
+    text = re.sub(r"//.*", "", path.read_text(encoding="latin-1"))
+    for m in re.finditer(r"^(IMPROVE_\w+)\s*\{(.*?)^\}", text, re.S | re.M):
+        ident, body = m.group(1), m.group(2)
+        fields = [ln.split()[0] for ln in body.splitlines() if ln.strip()]
+        unknown = [f for f in fields if f not in structural and f not in BUILDING_EFFECT_FIELDS]
+        for f in unknown:
+            fails.append(f"buildings.txt: {ident} names field {f!r}, absent from building.cdb")
+        if "ObsoleteAdvance" in fields:
+            continue  # retired sentinel: unreachable by construction
+        if not [f for f in fields if f in BUILDING_EFFECT_FIELDS]:
+            fails.append(f"buildings.txt: {ident} has no effect -- it costs upkeep and does nothing")
+
+
+def check_wonder_effects(scen: Path, fails: list[str]) -> None:
+    """Gate 14: the same inert-block check, against Wonder.txt.
+
+    A wonder is 2160-3240 production and one per civilisation; an inert one is
+    a worse deal than an inert building by an order of magnitude. Live wonders
+    must carry an effect, and every field they carry must be declared in
+    gs/newdb/wonder.cdb (transcribed as ctp2_generator.WONDER_EFFECT_FIELDS).
+
+    Retired 'X'-prefixed sentinels hold a DB index only and are exempt.
+    """
+    path = scen / "default/gamedata/Wonder.txt"
+    if not path.exists():
+        return
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from ctp2_generator import WONDER_EFFECT_FIELDS, WONDER_STRUCTURAL_FIELDS
+    except Exception:
+        return
+    text = re.sub(r"//.*", "", path.read_text(encoding="latin-1"))
+    for m in re.finditer(r"^(WONDER_\w+)\s*\{(.*?)^\}", text, re.S | re.M):
+        ident, body = m.group(1), m.group(2)
+        fields = [ln.split()[0] for ln in body.splitlines() if ln.strip()]
+        for f in fields:
+            if f not in WONDER_STRUCTURAL_FIELDS and f not in WONDER_EFFECT_FIELDS:
+                fails.append(f"Wonder.txt: {ident} names field {f!r}, absent from wonder.cdb")
+        if ident.startswith("WONDER_X"):
+            continue  # retired sentinel
+        if not [f for f in fields if f in WONDER_EFFECT_FIELDS]:
+            fails.append(f"Wonder.txt: {ident} has no effect -- it costs thousands of production and does nothing")
+
+
+def check_advance_prereqs(scen: Path, fails: list[str]) -> None:
+    """Gate 15: every prereq advances.csv declares survives into Advance.txt.
+
+    RawBlockTextFile.add_advance is append-only, so an advance that already
+    exists in the seeded tree silently discards its whole CSV-derived block.
+    The loss is invisible in-game -- the tech simply researches earlier than the
+    design says -- which is exactly why it needs a gate rather than a reading.
+
+    The expected-edge set comes from ctp2_generator.csv_advance_prereq_edges, the
+    same function the generator pass uses, so gate and writer cannot disagree.
+    """
+    path = scen / "default/gamedata/Advance.txt"
+    if not path.exists():
+        return
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from ctp2_generator import csv_advance_prereq_edges, _scan_advance_blocks
+    except Exception:
+        return
+    text = re.sub(r"//.*", "", path.read_text(encoding="latin-1"))
+    blocks = _scan_advance_blocks(text)
+    for ident, wanted in csv_advance_prereq_edges().items():
+        block = blocks.get(ident)
+        if block is None:
+            continue  # masked out by the tech cap; not this gate's business
+        have = set(re.findall(r"^\s*Prerequisites\s+(ADVANCE_[A-Z0-9_]+)\s*$",
+                              block, re.M))
+        for prereq in wanted:
+            if prereq not in have:
+                fails.append(
+                    f"Advance.txt: {ident} lost its control-plane prerequisite {prereq}")
+    # Second arm, over EVERY block: a prereq naming an advance no block defines
+    # is a dangling ref, and dangling refs abort scenario load.
+    for ident, block in blocks.items():
+        for prereq in re.findall(r"^\s*Prerequisites\s+(ADVANCE_[A-Z0-9_]+)\s*$",
+                                 block, re.M):
+            if prereq not in blocks:
+                fails.append(
+                    f"Advance.txt: {ident} requires {prereq}, which no block defines")
+
+
+def check_gl_icon_keys(scen: Path, fails: list[str]) -> None:
+    """Gate 16: an icon record must cite the Great Library section we wrote for it.
+
+    The GL panel key is the icon record's field verbatim -- SetTechMode copies
+    iconRec->GetGameplay() and hands it straight to Look_Up_Data
+    (greatlibrarywindow.cpp:343,187). Nothing derives `IDENT_GAMEPLAY`. So an icon
+    record still carrying a stock `GAMEA011.txt`-style key renders base-tree prose
+    (or blank) while our generated section sits unreferenced -- invisible unless
+    someone opens that exact entry in-game.
+
+    Scope: only records whose matching `<IDENT>_GAMEPLAY` section exists in our GL.
+    A legacy record with no counterpart section is not this gate's business.
+    """
+    gl = scen / "english/gamedata/Great_Library.txt"
+    if not gl.exists():
+        return
+    sections = set(re.findall(r"^\[([A-Z0-9_]+)\]", gl.read_text(encoding="latin-1"), re.M))
+    for name in ("advanceicon.txt", "improveicon.txt", "wondericon.txt", "uniticon.txt"):
+        path = scen / "default/gamedata" / name
+        if not path.exists():
+            continue
+        for line in path.read_text(encoding="latin-1").splitlines():
+            m = re.match(r"^(ICON_[A-Z0-9_]+)\b", line.strip())
+            if not m:
+                continue
+            ident = m.group(1)[len("ICON_"):]
+            want = f"{ident}_GAMEPLAY"
+            if want not in sections:
+                continue
+            # The three icon-file dialects (named fields, tab-quoted, quote-run)
+            # all put the key inside double quotes, so compare on quoted tokens.
+            # Stock deliberately points some Gameplay tabs at that ident's own
+            # HISTORICAL section (the age concepts); text that resolves to a real
+            # section of the SAME ident is reachable -- not this gate's business.
+            cited = re.findall(r'"([^"]*)"', line)
+            if not any(c == want or (c.startswith(ident + "_") and c in sections)
+                       for c in cited):
+                fails.append(
+                    f"{name}: {m.group(1)} does not cite {want}; its Great Library "
+                    f"text is unreachable")
+
+
 def check_tga_assets(scen: Path, fails: list[str]) -> None:
     """Gate 12: every .tga the scenario names resolves, and every .tga it ships loads.
 
@@ -478,7 +924,15 @@ def main() -> int:
     check_gl_str(scen, fails)
     check_faction_gating(scen, fails)
     check_effective_tree_advance_refs(scen, fails)
+    check_building_effects(scen, fails)
+    check_wonder_effects(scen, fails)
+    check_gl_icon_keys(scen, fails)
+    check_advance_prereqs(scen, fails)
     check_tga_assets(scen, fails)
+    check_disabled_advances_closed(scen, fails)
+    check_advance_code_map(scen, fails)
+    check_disabled_entities_unbuildable(scen, fails)
+    check_gl_statistics_match_db(scen, fails)
 
     if fails:
         for f in fails:

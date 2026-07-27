@@ -4,6 +4,9 @@ IMPROVE_WIZARDS_FORTRESS {
 	EnableAdvance ADVANCE_MASONRY
 	ProductionCost 330
 	Upkeep 0
+	Capitol
+	HappyInc 1
+	DefendersPercent 25
 }
 
 IMPROVE_BARRACKS {
@@ -12,6 +15,8 @@ IMPROVE_BARRACKS {
 	EnableAdvance ADVANCE_WARRIOR_CODE
 	ProductionCost 270
 	Upkeep 1
+	EnablesLandVeterans
+	DefendersPercent 10
 }
 
 IMPROVE_GRANARY {
@@ -20,6 +25,8 @@ IMPROVE_GRANARY {
 	EnableAdvance ADVANCE_POTTERY
 	ProductionCost 290
 	Upkeep 1
+	FoodPercent 0.1
+	StarvationProtection 2
 }
 
 IMPROVE_TEMPLE {
@@ -28,14 +35,18 @@ IMPROVE_TEMPLE {
 	EnableAdvance ADVANCE_CEREMONIAL_BURIAL
 	ProductionCost 270
 	Upkeep 1
+	HappyInc 1
+	IsReligious
+	Cathedral
 }
 
 IMPROVE_LIBRARY {
 	DefaultIcon ICON_IMPROVE_LIBRARY
 	Description DESCRIPTION_IMPROVE_LIBRARY
 	EnableAdvance ADVANCE_WRITING
-	ProductionCost 310
+	ProductionCost 350
 	Upkeep 1
+	SciencePercent 0.1
 }
 
 IMPROVE_COURTHOUSE {
@@ -44,6 +55,7 @@ IMPROVE_COURTHOUSE {
 	EnableAdvance ADVANCE_CODE_OF_LAWS
 	ProductionCost 350
 	Upkeep 1
+	LowerCrime -0.1
 }
 
 IMPROVE_CITY_WALLS {
@@ -52,14 +64,21 @@ IMPROVE_CITY_WALLS {
 	EnableAdvance ADVANCE_MASONRY
 	ProductionCost 310
 	Upkeep 0
+	DefendersPercent 15
+	PreventConversion 0.5
+	PreventSlavery 0.5
+	CityWalls
+	CantBuildInSea
 }
 
 IMPROVE_AQUEDUCT {
 	DefaultIcon ICON_IMPROVE_AQUEDUCT
 	Description DESCRIPTION_IMPROVE_AQUEDUCT
 	EnableAdvance ADVANCE_CONSTRUCTION
-	ProductionCost 590
+	ProductionCost 350
 	Upkeep 2
+	RaiseOvercrowdingLevel 6
+	RaiseMaxPopulation 14
 }
 
 IMPROVE_CATHEDRAL {
@@ -68,6 +87,9 @@ IMPROVE_CATHEDRAL {
 	EnableAdvance ADVANCE_THEOLOGY
 	ProductionCost 660
 	Upkeep 3
+	HappyInc 3
+	IsReligious
+	Cathedral
 }
 
 IMPROVE_UNIVERSITY {
@@ -76,39 +98,43 @@ IMPROVE_UNIVERSITY {
 	EnableAdvance ADVANCE_UNIVERSITY
 	ProductionCost 400
 	Upkeep 3
+	SciencePercent 0.15
 }
 
 IMPROVE_COLOSSEUM {
 	DefaultIcon ICON_IMPROVE_COLOSSEUM
 	Description DESCRIPTION_IMPROVE_COLOSSEUM
 	EnableAdvance ADVANCE_CONSTRUCTION
-	ProductionCost 620
+	ProductionCost 370
 	Upkeep 4
+	HappyInc 2
 }
 
 IMPROVE_MECHANICIANS_GUILD {
 	DefaultIcon ICON_IMPROVE_MECHANICIANS_GUILD
 	Description DESCRIPTION_IMPROVE_MECHANICIANS_GUILD
 	EnableAdvance ADVANCE_ARTIFICING
-	ProductionCost 1860
+	ProductionCost 3290
 	Upkeep 4
+	ProductionPercent 0.15
+	AllowGrunts
 }
 
 IMPROVE_XPOWER_PLANT {
 	DefaultIcon ICON_IMPROVE_XPOWER_PLANT
 	Description DESCRIPTION_IMPROVE_XPOWER_PLANT
-	EnableAdvance ADVANCE_WARRIOR_CODE
+	EnableAdvance ADVANCE_AGE_OF_REASON
    ObsoleteAdvance ADVANCE_WARRIOR_CODE
-	ProductionCost 400
+	ProductionCost 1350
 	Upkeep 4
 }
 
 IMPROVE_XHYDRO_PLANT {
 	DefaultIcon ICON_IMPROVE_XHYDRO_PLANT
 	Description DESCRIPTION_IMPROVE_XHYDRO_PLANT
-	EnableAdvance ADVANCE_WARRIOR_CODE
+	EnableAdvance ADVANCE_AGE_OF_REASON
    ObsoleteAdvance ADVANCE_WARRIOR_CODE
-	ProductionCost 490
+	ProductionCost 1430
 	Upkeep 4
 }
 
@@ -118,14 +144,18 @@ IMPROVE_PRIMAL_SOURCE {
 	EnableAdvance ADVANCE_NATURE_WIZARD
 	ProductionCost 1350
 	Upkeep 2
+	FoodPercent 0.15
+	HappyInc 1
 }
 
 IMPROVE_MERCHANTS_GUILD {
 	DefaultIcon ICON_IMPROVE_MERCHANTS_GUILD
 	Description DESCRIPTION_IMPROVE_MERCHANTS_GUILD
-	EnableAdvance ADVANCE_ALPHABET
-	ProductionCost 400
+	EnableAdvance ADVANCE_ECOGNOMICS
+	ProductionCost 1690
 	Upkeep 4
+	CommercePercent 0.15
+	Brokerage
 }
 
 IMPROVE_BEACON_OF_WISDOM {
@@ -134,14 +164,18 @@ IMPROVE_BEACON_OF_WISDOM {
 	EnableAdvance ADVANCE_SORCERY_WIZARD
 	ProductionCost 400
 	Upkeep 3
+	SciencePercent 0.2
 }
 
 IMPROVE_COASTAL_FORTRESS {
 	DefaultIcon ICON_IMPROVE_COASTAL_FORTRESS
 	Description DESCRIPTION_IMPROVE_COASTAL_FORTRESS
-	EnableAdvance ADVANCE_WARRIOR_CODE
-	ProductionCost 310
+	EnableAdvance ADVANCE_AGE_OF_REASON
+	ProductionCost 1270
 	Upkeep 1
+	CoastalBuilding
+	OffenseBonusWater 25
+	DefendersPercent 10
 }
 
 IMPROVE_HARBOR {
@@ -150,6 +184,8 @@ IMPROVE_HARBOR {
 	EnableAdvance ADVANCE_SEAFARING
 	ProductionCost 560
 	Upkeep 1
+	CoastalBuilding
+	FoodPercent 0.1
 }
 
 IMPROVE_FANTASTIC_STABLE {
@@ -158,6 +194,8 @@ IMPROVE_FANTASTIC_STABLE {
 	EnableAdvance ADVANCE_NATURE_WIZARD
 	ProductionCost 1350
 	Upkeep 3
+	OffenseBonusLand 25
+	IncreaseHP 5
 }
 
 IMPROVE_PORT {
@@ -166,4 +204,6 @@ IMPROVE_PORT {
 	EnableAdvance ADVANCE_SEA_LORE
 	ProductionCost 1360
 	Upkeep 3
+	CoastalBuilding
+	CommercePercent 0.1
 }

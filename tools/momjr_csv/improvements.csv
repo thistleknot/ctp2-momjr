@@ -1,47 +1,47 @@
-cell_index,name,cost,upkeep,prereq,icon,sphere
-1,Wizard's Fortress,10,0,Mas,ICON_IMPROVE_WIZARDS_FORTRESS,neutral
-2,Barracks,4,1,nil,ICON_IMPROVE_BARRACKS,neutral
-3,Granary,6,1,Pot,ICON_IMPROVE_GRANARY,neutral
-4,Temple,4,1,Cer,ICON_IMPROVE_TEMPLE,neutral
-6,Library,8,1,Wri,ICON_IMPROVE_LIBRARY,neutral
-7,Courthouse,8,1,CoL,ICON_IMPROVE_COURTHOUSE,neutral
-8,City Walls,8,0,Mas,ICON_IMPROVE_CITY_WALLS,neutral
-9,Aqueduct,8,2,Cst,ICON_IMPROVE_AQUEDUCT,neutral
-11,Cathedral,12,3,MT,ICON_IMPROVE_CATHEDRAL,neutral
-12,University,16,3,Uni,ICON_IMPROVE_UNIVERSITY,neutral
-14,Colosseum,10,4,Cst,ICON_IMPROVE_COLOSSEUM,neutral
-15,Mechanician's Guild,20,4,X3,ICON_IMPROVE_MECHANICIANS_GUILD,neutral
-19,xPower Plant,16,4,no,ICON_IMPROVE_POWER_PLANT,neutral
-20,xHydro Plant,24,4,no,ICON_IMPROVE_HYDRO_PLANT,neutral
-21,Primal Source,16,2,U1,ICON_IMPROVE_PRIMAL_SOURCE,nature
-22,Merchant's Guild,16,4,Eco,ICON_IMPROVE_MERCHANTS_GUILD,neutral
-26,Beacon of Wisdom,16,3,Fli,ICON_IMPROVE_BEACON_OF_WISDOM,sorcery
-28,Coastal Fortress,8,1,no,ICON_IMPROVE_COASTAL_FORTRESS,neutral
-30,Harbor,6,1,Sea,ICON_IMPROVE_HARBOR,neutral
-32,Fantastic Stable,16,3,X4,ICON_IMPROVE_FANTASTIC_STABLE,nature
-34,Port,8,3,U3,ICON_IMPROVE_PORT,neutral
-40,Gaia's Shrine,20,0,PT,ICON_IMPROVE_GAIAS_SHRINE,nature
-41,Pleasure Dome,20,0,The,ICON_IMPROVE_PLEASURE_DOME,sorcery
-42,Font of Bounty,20,0,Plu,ICON_IMPROVE_FONT_OF_BOUNTY,nature
-44,Great Library,30,0,Lit,ICON_IMPROVE_GREAT_LIBRARY,neutral
-45,Oracle,30,0,Mys,ICON_IMPROVE_ORACLE,neutral
-46,Wall of Bone,30,0,Rob,ICON_IMPROVE_WALL_OF_BONE,death
-47,Guild of Legends,30,0,Feu,ICON_IMPROVE_GUILD_OF_LEGENDS,neutral
-48,Rune of Rulership,30,0,E1,ICON_IMPROVE_RUNE_OF_RULERSHIP,neutral
-49,Bardic College,20,0,Tra,ICON_IMPROVE_BARDIC_COLLEGE,neutral
-50,The Parthenon,40,0,MT,ICON_IMPROVE_THE_PARTHENON,neutral
-51,Mystic X's Tower,30,0,Ast,ICON_IMPROVE_MYSTIC_XS_TOWER,neutral
-52,Gunthar's Voyage,40,0,Nav,ICON_IMPROVE_GUNTHARS_VOYAGE,neutral
-53,Prospero's Conservatory,30,0,CA,ICON_IMPROVE_PROSPEROS_CONSERVATORY,neutral
-54,Elixir of Metamorphosis,40,0,Cmp,ICON_IMPROVE_ELIXIR_OF_METAMORPHOSIS,chaos
-55,Enchanted Grotto,40,0,Inv,ICON_IMPROVE_ENCHANTED_GROTTO,life
-56,Eldritch College,40,0,Ato,ICON_IMPROVE_ELDRITCH_COLLEGE,sorcery
-57,Gnome Treasury,40,0,Eco,ICON_IMPROVE_GNOME_TREASURY,neutral
-58,Reywind's Discovery,40,0,RR,ICON_IMPROVE_REYWINDS_DISCOVERY,neutral
-60,Mesmer's Tower,30,0,Cmb,ICON_IMPROVE_MESMERS_TOWER,neutral
-61,xWomen's Suffrage,60,0,no,ICON_IMPROVE_WOMENS_SUFFRAGE,neutral
-62,Forge of Chaos,60,0,Min,ICON_IMPROVE_FORGE_OF_CHAOS,chaos
-63,Entropy Engine,60,0,Sth,ICON_IMPROVE_ENTROPY_ENGINE,death
-64,League of Wizards,60,0,Phy,ICON_IMPROVE_LEAGUE_OF_WIZARDS,sorcery
-66,Celestial Beacon,60,0,Too,ICON_IMPROVE_CELESTIAL_BEACON,life
-999,HIDE Supermarket,0,0,nil,ICON_IMPROVE_NOTHING,neutral
+cell_index,name,cost,upkeep,prereq,icon,sphere,effects
+1,Wizard's Fortress,10,0,Mas,ICON_IMPROVE_WIZARDS_FORTRESS,neutral,Capitol; HappyInc 1; DefendersPercent 25
+2,Barracks,4,1,nil,ICON_IMPROVE_BARRACKS,neutral,EnablesLandVeterans; DefendersPercent 10
+3,Granary,6,1,Pot,ICON_IMPROVE_GRANARY,neutral,FoodPercent 0.1; StarvationProtection 2
+4,Temple,4,1,Cer,ICON_IMPROVE_TEMPLE,neutral,HappyInc 1; IsReligious; Cathedral
+6,Library,8,1,Wri,ICON_IMPROVE_LIBRARY,neutral,SciencePercent 0.1
+7,Courthouse,8,1,CoL,ICON_IMPROVE_COURTHOUSE,neutral,LowerCrime -0.1
+8,City Walls,8,0,Mas,ICON_IMPROVE_CITY_WALLS,neutral,DefendersPercent 15; PreventConversion 0.5; PreventSlavery 0.5; CityWalls; CantBuildInSea
+9,Aqueduct,8,2,Cst,ICON_IMPROVE_AQUEDUCT,neutral,RaiseOvercrowdingLevel 6; RaiseMaxPopulation 14
+11,Cathedral,12,3,MT,ICON_IMPROVE_CATHEDRAL,neutral,HappyInc 3; IsReligious; Cathedral
+12,University,16,3,Uni,ICON_IMPROVE_UNIVERSITY,neutral,SciencePercent 0.15
+14,Colosseum,10,4,Cst,ICON_IMPROVE_COLOSSEUM,neutral,HappyInc 2
+15,Mechanician's Guild,20,4,X3,ICON_IMPROVE_MECHANICIANS_GUILD,neutral,ProductionPercent 0.15; AllowGrunts
+19,xPower Plant,16,4,no,ICON_IMPROVE_POWER_PLANT,neutral,
+20,xHydro Plant,24,4,no,ICON_IMPROVE_HYDRO_PLANT,neutral,
+21,Primal Source,16,2,U1,ICON_IMPROVE_PRIMAL_SOURCE,nature,FoodPercent 0.15; HappyInc 1
+22,Merchant's Guild,16,4,Eco,ICON_IMPROVE_MERCHANTS_GUILD,neutral,CommercePercent 0.15; Brokerage
+26,Beacon of Wisdom,16,3,Fli,ICON_IMPROVE_BEACON_OF_WISDOM,sorcery,SciencePercent 0.2
+28,Coastal Fortress,8,1,no,ICON_IMPROVE_COASTAL_FORTRESS,neutral,CoastalBuilding; OffenseBonusWater 25; DefendersPercent 10
+30,Harbor,6,1,Sea,ICON_IMPROVE_HARBOR,neutral,CoastalBuilding; FoodPercent 0.1
+32,Fantastic Stable,16,3,X4,ICON_IMPROVE_FANTASTIC_STABLE,nature,OffenseBonusLand 25; IncreaseHP 5
+34,Port,8,3,U3,ICON_IMPROVE_PORT,neutral,CoastalBuilding; CommercePercent 0.1
+40,Gaia's Shrine,20,0,PT,ICON_IMPROVE_GAIAS_SHRINE,nature,
+41,Pleasure Dome,20,0,The,ICON_IMPROVE_PLEASURE_DOME,sorcery,
+42,Font of Bounty,20,0,Plu,ICON_IMPROVE_FONT_OF_BOUNTY,nature,
+44,Great Library,30,0,Lit,ICON_IMPROVE_GREAT_LIBRARY,neutral,
+45,Oracle,30,0,Mys,ICON_IMPROVE_ORACLE,neutral,
+46,Wall of Bone,30,0,Rob,ICON_IMPROVE_WALL_OF_BONE,death,
+47,Guild of Legends,30,0,Feu,ICON_IMPROVE_GUILD_OF_LEGENDS,neutral,
+48,Rune of Rulership,30,0,E1,ICON_IMPROVE_RUNE_OF_RULERSHIP,neutral,
+49,Bardic College,20,0,Tra,ICON_IMPROVE_BARDIC_COLLEGE,neutral,
+50,The Parthenon,40,0,MT,ICON_IMPROVE_THE_PARTHENON,neutral,
+51,Mystic X's Tower,30,0,Ast,ICON_IMPROVE_MYSTIC_XS_TOWER,neutral,
+52,Gunthar's Voyage,40,0,Nav,ICON_IMPROVE_GUNTHARS_VOYAGE,neutral,
+53,Prospero's Conservatory,30,0,CA,ICON_IMPROVE_PROSPEROS_CONSERVATORY,neutral,
+54,Elixir of Metamorphosis,40,0,Cmp,ICON_IMPROVE_ELIXIR_OF_METAMORPHOSIS,chaos,
+55,Enchanted Grotto,40,0,Inv,ICON_IMPROVE_ENCHANTED_GROTTO,life,
+56,Eldritch College,40,0,Ato,ICON_IMPROVE_ELDRITCH_COLLEGE,sorcery,
+57,Gnome Treasury,40,0,Eco,ICON_IMPROVE_GNOME_TREASURY,neutral,
+58,Reywind's Discovery,40,0,RR,ICON_IMPROVE_REYWINDS_DISCOVERY,neutral,
+60,Mesmer's Tower,30,0,Cmb,ICON_IMPROVE_MESMERS_TOWER,neutral,
+61,xWomen's Suffrage,60,0,no,ICON_IMPROVE_WOMENS_SUFFRAGE,neutral,
+62,Forge of Chaos,60,0,Min,ICON_IMPROVE_FORGE_OF_CHAOS,chaos,
+63,Entropy Engine,60,0,Sth,ICON_IMPROVE_ENTROPY_ENGINE,death,
+64,League of Wizards,60,0,Phy,ICON_IMPROVE_LEAGUE_OF_WIZARDS,sorcery,
+66,Celestial Beacon,60,0,Too,ICON_IMPROVE_CELESTIAL_BEACON,life,
+999,HIDE Supermarket,0,0,nil,ICON_IMPROVE_NOTHING,neutral,

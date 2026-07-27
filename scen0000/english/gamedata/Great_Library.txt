@@ -1,79 +1,3 @@
-[ADVANCE_ALCHEMY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Alchemy requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 1025 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_ALCHEMY_HISTORICAL]
-<c:245,240,225><h:0,0,0>Alchemy was a science fused of many disparate sources, including Chinese, Egyptian and Islamic concepts that flowed into Western Europe via the Silk Road during the Middle Ages.  The primary objective of alchemy was the discovery of a method to turn base metals into precious ones.  Though this quest proved futile, its pursuit contributed to a deeper understanding of the nature and composition of many elements.  Early metallurgy benefited from the results of alchemic experiments.
-[END]
-[ADVANCE_ALCHEMY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_METAMORPHOSIS>Metamorphosis<e>
-[END]
-[ADVANCE_ALCHEMY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_ALPHABET_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Alphabet needs no prior research and is available from the first turn. It costs 455 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MERCHANTS_GUILD>Merchant's Guild<e>.
-[END]
-[ADVANCE_ALPHABET_HISTORICAL]
-<c:245,240,225><h:0,0,0>Before a people can keep accounts, treaties or spellbooks, they must first agree that a mark on clay can stand for a sound. The alphabet is the quiet invention on which every later one rests.
-[END]
-[ADVANCE_ALPHABET_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-Nothing
-[END]
-[ADVANCE_ALPHABET_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_ANIMISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Animism requires <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 1725 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_ANIMISM_HISTORICAL]
-<c:245,240,225><h:0,0,0>The oldest reading of the world: that the river, the stone and the storm each carry a will of their own. Animist shamans do not command nature so much as negotiate with it.
-[END]
-[ADVANCE_ANIMISM_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>
-[END]
-[ADVANCE_ANIMISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_ASTROLOGY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Astrology requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e> and <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e>. It costs 1950 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_MYSTIC_XS_TOWER>Mystic X's Tower<e>.
-[END]
-[ADVANCE_ASTROLOGY_HISTORICAL]
-<c:245,240,225><h:0,0,0>The first systematic attempt to read the future in the fixed order of the sky. Its charts were wrong about destiny and right about the calendar, which proved the more useful gift.
-[END]
-[ADVANCE_ASTROLOGY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
-<L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e>
-[END]
-[ADVANCE_ASTROLOGY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_ELDRITCH_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Eldritch Lore requires <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>. It costs 1725 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_ELDRITCH_LORE_HISTORICAL]
-<c:245,240,225><h:0,0,0>Knowledge that predates the peoples who study it, recovered in fragments from places better left unexcavated.
-[END]
-[ADVANCE_ELDRITCH_LORE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>
-[END]
-[ADVANCE_ELDRITCH_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
 [ADVANCE_USER_DEF_TECH_A_GAMEPLAY]
 <c:245,240,225><h:0,0,0><L:DATABASE_ADVANCES,ADVANCE_USER_DEF_TECH_A>User Def Tech A<e>
 [END]
@@ -85,86 +9,9 @@ Branch: 3
 Nothing
 [END]
 [ADVANCE_USER_DEF_TECH_A_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 120
+Age: 1
 Branch: 0
-[END]
-[ADVANCE_BANKING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Banking requires <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>. It costs 1075 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GNOME_TREASURY>Gnome Treasury<e>.
-[END]
-[ADVANCE_BANKING_HISTORICAL]
-<c:245,240,225><h:0,0,0>The first banks developed in response to the great risk of early trading. Bandits, uncertain foreign markets, and a multitude of foreign currencies made caravans and trade ships very vulnerable. Without a way to mitigate the risk of piracy, a merchant could lose his or her livelihood with the destruction of his or her caravan.  Banking helped to change this by splitting risk between bank and merchant.  The Romans developed banking into a robust system of mortgages, loans, and credits. With banking, capital was available to expand trade and spread commerce widely.
-[END]
-[ADVANCE_BANKING_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_THE_REPUBLIC>The_Republic<e>
-<L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>
-[END]
-[ADVANCE_BANKING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 1
-[END]
-[ADVANCE_BRIDGE_BUILDING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Bridge Building requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. It costs 2670 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_BRIDGE_BUILDING_HISTORICAL]
-<c:245,240,225><h:0,0,0>A river is a wall until someone learns to span it. Bridge building turns a frontier into a road and a besieged province into a supplied one.
-[END]
-[ADVANCE_BRIDGE_BUILDING_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron_Working<e>
-<L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>
-[END]
-[ADVANCE_BRIDGE_BUILDING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 4
-[END]
-[ADVANCE_BRONZE_WORKING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Bronze_Working needs no prior research and is available from the first turn. It costs 345 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_SWORDSMEN>Swordsmen<e>.
-[END]
-[ADVANCE_BRONZE_WORKING_HISTORICAL]
-<c:245,240,225><h:0,0,0>Around 3500 BC, Western Europeans discovered that beaten copper repeatedly heated in a fire became less brittle.  Perhaps because tin and copper deposits often occurred together in nature, early metal workers combined the two to form bronze.  This new alloy was strong, light and its raw materials were plentiful.  The Greeks and Spartans found many uses for bronze, most notably for armor and weaponry.  Phalanxes of hoplites, clad in bronze armor and wielding bronze swords and shields, menaced the armies of the Mediterranean and contributed to the dominance of the Spartan state in the 8th century BC.
-[END]
-[ADVANCE_BRONZE_WORKING_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-Nothing
-[END]
-[ADVANCE_BRONZE_WORKING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 4
-[END]
-[ADVANCE_CEREMONIAL_BURIAL_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Ceremonial Burial needs no prior research and is available from the first turn. It costs 160 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_TEMPLE>Temple<e>.
-[END]
-[ADVANCE_CEREMONIAL_BURIAL_HISTORICAL]
-<c:245,240,225><h:0,0,0>Laying out the dead with intent is the first evidence anywhere of a people who believe in something beyond the day. Every temple in history descends from a grave dug carefully.
-[END]
-[ADVANCE_CEREMONIAL_BURIAL_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-Nothing
-[END]
-[ADVANCE_CEREMONIAL_BURIAL_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 2
-[END]
-[ADVANCE_GREATER_FAUNA_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Greater Fauna Lore requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>. It costs 4210 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_GREATER_FAUNA_LORE_HISTORICAL]
-<c:245,240,225><h:0,0,0>The study of the beasts that were never meant to be catalogued: the ones with opinions, wings, or both.
-[END]
-[ADVANCE_GREATER_FAUNA_LORE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser_Fauna_Lore<e>
-[END]
-[ADVANCE_GREATER_FAUNA_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
 [END]
 [ADVANCE_CHIVALRY_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Researching Chivalry requires <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>. It costs 460 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_KNIGHTS>Knights<e>.
@@ -177,181 +24,9 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>
 [END]
 [ADVANCE_CHIVALRY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 460
+Age: 2
 Branch: 0
-[END]
-[ADVANCE_CODE_OF_LAWS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Code of Laws requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 525 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_COURTHOUSE>Courthouse<e>.
-[END]
-[ADVANCE_CODE_OF_LAWS_HISTORICAL]
-<c:245,240,225><h:0,0,0>The moment a ruling is written down, it stops belonging to the ruler. Written law is the first real limit any sovereign ever accepted.
-[END]
-[ADVANCE_CODE_OF_LAWS_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>
-[END]
-[ADVANCE_CODE_OF_LAWS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 2
-[END]
-[ADVANCE_HEALING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Healing requires <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e> and <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 3095 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_PROSPEROS_CONSERVATORY>Prospero's Conservatory<e>.
-[END]
-[ADVANCE_HEALING_HISTORICAL]
-<c:245,240,225><h:0,0,0>The oldest use anyone ever found for power, and still the one that buys the most loyalty.
-[END]
-[ADVANCE_HEALING_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>
-<L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>
-[END]
-[ADVANCE_HEALING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_LESSER_ENCHANMENTS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Lesser Enchanments needs no prior research and is available from the first turn. It costs 455 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_MESMERS_TOWER>Mesmer's Tower<e>.
-[END]
-[ADVANCE_LESSER_ENCHANMENTS_HISTORICAL]
-<c:245,240,225><h:0,0,0>Small, durable workings: a blade that will not dull, a granary that will not spoil. Unglamorous magic that quietly wins wars.
-[END]
-[ADVANCE_LESSER_ENCHANMENTS_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-Nothing
-[END]
-[ADVANCE_LESSER_ENCHANMENTS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_METAMORPHOSIS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Metamorphosis requires <L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune Lore<e> and <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. It costs 4760 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_METAMORPHOSIS_HISTORICAL]
-<c:245,240,225><h:0,0,0>The art of changing what a thing fundamentally is, rather than merely how it behaves. Reversal is not guaranteed.
-[END]
-[ADVANCE_METAMORPHOSIS_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune_Lore<e>
-<L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>
-[END]
-[ADVANCE_METAMORPHOSIS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_CONSTRUCTION_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Construction requires <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e> and <L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e>. It costs 1645 science to complete. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_AQUEDUCT>Aqueduct<e> and <L:DATABASE_BUILDINGS,IMPROVE_COLOSSEUM>Colosseum<e>.
-[END]
-[ADVANCE_CONSTRUCTION_HISTORICAL]
-<c:245,240,225><h:0,0,0>Stone laid to a plan rather than to a habit. Construction is what separates a settlement that endures a siege from one that endures a season.
-[END]
-[ADVANCE_CONSTRUCTION_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>
-<L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e>
-[END]
-[ADVANCE_CONSTRUCTION_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 4
-[END]
-[ADVANCE_PANTHEISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Pantheism requires <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e> and <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. It costs 1155 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_PANTHEISM_HISTORICAL]
-<c:245,240,225><h:0,0,0>The doctrine that divinity is distributed rather than located. Convenient for empires with many conquered gods to absorb.
-[END]
-[ADVANCE_PANTHEISM_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial_Burial<e>
-<L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>
-[END]
-[ADVANCE_PANTHEISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_CURRENCY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Currency requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze_Working<e>. It costs 565 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_CURRENCY_HISTORICAL]
-<c:245,240,225><h:0,0,0>A token everyone agrees is worth something becomes worth something. Currency lets a farmer trade with a shipwright who does not want grain.
-[END]
-[ADVANCE_CURRENCY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze_Working<e>
-[END]
-[ADVANCE_CURRENCY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 1
-[END]
-[ADVANCE_RUNE_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Rune Lore requires <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e> and <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 3095 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_RUNE_OF_RULERSHIP>Rune of Rulership<e>.
-[END]
-[ADVANCE_RUNE_LORE_HISTORICAL]
-<c:245,240,225><h:0,0,0>Runes bind meaning into shape. Carved into a weapon or a wall, they hold their instruction indefinitely and without supervision.
-[END]
-[ADVANCE_RUNE_LORE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult_Studies<e>
-<L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>
-[END]
-[ADVANCE_RUNE_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_SEA_MASTERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sea Mastery requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. It costs 6580 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARSHIP>Warship<e>.
-[END]
-[ADVANCE_SEA_MASTERY_HISTORICAL]
-<c:245,240,225><h:0,0,0>Command of the deep water, which historically has meant command of everything the deep water touches.
-[END]
-[ADVANCE_SEA_MASTERY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron_Working<e>
-<L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea_Lore<e>
-[END]
-[ADVANCE_SEA_MASTERY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_SHAMANISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Shamanism needs no prior research and is available from the first turn. It costs 455 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_SHAMANISM_HISTORICAL]
-<c:245,240,225><h:0,0,0>The first professional intermediaries between a people and whatever they believed was listening.
-[END]
-[ADVANCE_SHAMANISM_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-Nothing
-[END]
-[ADVANCE_SHAMANISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_THAUMATURGY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Thaumaturgy requires <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e> and <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e>. It costs 4760 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_IRON_GOLEM>Iron Golem<e>.
-[END]
-[ADVANCE_THAUMATURGY_HISTORICAL]
-<c:245,240,225><h:0,0,0>The formal study of wonder-working: taking the miracle apart to see whether it can be repeated on demand.
-[END]
-[ADVANCE_THAUMATURGY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous_Lore<e>
-<L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult_Studies<e>
-[END]
-[ADVANCE_THAUMATURGY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
 [END]
 [ADVANCE_TACTICS_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Researching Tactics requires <L:DATABASE_ADVANCES,ADVANCE_LEADERSHIP>Leadership<e> and <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 520 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
@@ -365,12 +40,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>
 [END]
 [ADVANCE_TACTICS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 520
+Age: 2
 Branch: 0
 [END]
 [ADVANCE_FEUDALISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Feudalism requires <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>. It costs 460 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GUILD_OF_LEGENDS>Guild of Legends<e>.
+<c:245,240,225><h:0,0,0>Researching Feudalism requires <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e> and <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. It costs 520 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GUILD_OF_LEGENDS>Guild of Legends<e>.
 [END]
 [ADVANCE_FEUDALISM_HISTORICAL]
 <c:245,240,225><h:0,0,0>Feudalism is a social system based on land ownership, in which vassals held land in fief from lords to whom they were obliged, by personal relationship or service.  What also distinguished feudalism was that those who performed official duties, whether civil or military, did not do it for the state or for public service.  Rather, they fulfilled them in service of personal relationships with landowners in exchange for fiefs, hereditarily held estates from which they could make money.  This decentralized public authority, and the manorial system, in which peasants served landlords with few rights or freedoms, gave lords wide-ranging power over the fiscal, judicial and constabulary systems.
@@ -379,152 +54,15 @@ Feudalism flourished in societies with closed agricultural economies, particular
 [END]
 [ADVANCE_FEUDALISM_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior_Code<e>
+<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
 [END]
 [ADVANCE_FEUDALISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 520
+Age: 2
 Branch: 0
-[END]
-[ADVANCE_WIZARDRY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Wizardry requires <L:DATABASE_ADVANCES,ADVANCE_ALCHEMY>Alchemy<e>. It costs 1025 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_WIZARDRY_HISTORICAL]
-<c:245,240,225><h:0,0,0>The systematisation of magic into something that can be taught, examined and graded: the moment power became a profession.
-[END]
-[ADVANCE_WIZARDRY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_ALCHEMY>Alchemy<e>
-[END]
-[ADVANCE_WIZARDRY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_GLYPHS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Glyphs needs no prior research and is available from the first turn. It costs 455 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_GLYPHS_HISTORICAL]
-<c:245,240,225><h:0,0,0>Marks that hold power rather than meaning. A glyph carved correctly will still be working when no one alive can read it.
-[END]
-[ADVANCE_GLYPHS_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-Nothing
-[END]
-[ADVANCE_GLYPHS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_LIFE_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1035 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_LIFE_MAGIC_HISTORICAL]
-<c:245,240,225><h:0,0,0>Power drawn from growth and continuation rather than from force. The slowest school to show results and the hardest to break.
-[END]
-[ADVANCE_LIFE_MAGIC_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand_Mastery<e>
-[END]
-[ADVANCE_LIFE_MAGIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 2
-[END]
-[ADVANCE_CHAOS_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1265 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_CHAOS_MAGIC_HISTORICAL]
-<c:245,240,225><h:0,0,0>The discipline of drawing power from the raw unmade, where nothing is stable and therefore nothing is forbidden. Its practitioners trade safety for reach.
-[END]
-[ADVANCE_CHAOS_MAGIC_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand_Mastery<e>
-[END]
-[ADVANCE_CHAOS_MAGIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 0
-[END]
-[ADVANCE_SORCERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1185 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_SORCERY_HISTORICAL]
-<c:245,240,225><h:0,0,0>The disciplined manipulation of force at a distance. Less spectacular than chaos, and considerably more reliable.
-[END]
-[ADVANCE_SORCERY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand_Mastery<e>
-[END]
-[ADVANCE_SORCERY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 4
-[END]
-[ADVANCE_LIFE_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Lore requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1970 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_ARIEL>Ariel<e> and <L:DATABASE_UNITS,UNIT_GUARDIAN_SPIRIT>Guardian Spirit<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENCHANTED_GROTTO>Enchanted Grotto<e>.
-[END]
-[ADVANCE_LIFE_LORE_HISTORICAL]
-<c:245,240,225><h:0,0,0>The gathered record of what can be mended, what can be strengthened, and what should be left exactly as it is.
-[END]
-[ADVANCE_LIFE_LORE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life_Magic<e>
-<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch_Lore<e>
-[END]
-[ADVANCE_LIFE_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 2
-[END]
-[ADVANCE_IRON_WORKING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Iron Working requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze_Working<e> and <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>. It costs 1645 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_IRON_WORKING_HISTORICAL]
-<c:245,240,225><h:0,0,0>In Asia Minor during the 2nd millennium BC, wrought iron began to replace bronze in tools and weaponry.  By the 3rd century BC, it was a well-established material in China, India and much of the Mediterranean.  Iron's dominance was due in large part to its availability.  Whereas bronze required both copper and tin, both of which were scarce, iron was an abundant natural resource.  Wrought iron and, later cast iron, was a principle material for both peace and war for many centuries.
-[END]
-[ADVANCE_IRON_WORKING_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze_Working<e>
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior_Code<e>
-[END]
-[ADVANCE_IRON_WORKING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 4
-[END]
-[ADVANCE_LIFE_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Adept requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>. It costs 2765 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_PALADINS>Paladins<e>, <L:DATABASE_UNITS,UNIT_SERENA>Serena<e> and <L:DATABASE_UNITS,UNIT_UNICORN>Unicorn<e>.
-[END]
-[ADVANCE_LIFE_ADEPT_HISTORICAL]
-<c:245,240,225><h:0,0,0>The first lessons in the magic of vitality, taught almost everywhere and mastered almost nowhere.
-[END]
-[ADVANCE_LIFE_ADEPT_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life_Lore<e>
-[END]
-[ADVANCE_LIFE_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 2
-[END]
-[ADVANCE_LIFE_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Mage requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. It costs 4245 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_PEGASUS>Pegasus<e>.
-[END]
-[ADVANCE_LIFE_MAGE_HISTORICAL]
-<c:245,240,225><h:0,0,0>A life mage can return a dying soldier to the line. Armies grasped the strategic implications of this faster than priests grasped the moral ones.
-[END]
-[ADVANCE_LIFE_MAGE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life_Adept<e>
-[END]
-[ADVANCE_LIFE_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 2
 [END]
 [ADVANCE_HOLY_WARRIORS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Holy Warriors requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e> and <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. It costs 3120 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Holy Warriors requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e> and <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. It costs 4940 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_HOLY_WARRIORS_HISTORICAL]
 <c:245,240,225><h:0,0,0>Soldiers who fight because they are certain rather than because they are paid. History records both how effective and how unmanageable this is.
@@ -532,58 +70,200 @@ Branch: 2
 [ADVANCE_HOLY_WARRIORS_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
 <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e>
-<L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous_Lore<e>
+<L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>
 [END]
 [ADVANCE_HOLY_WARRIORS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 4940
+Age: 6
 Branch: 0
 [END]
-[ADVANCE_LITERACY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Literacy requires <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 1950 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GREAT_LIBRARY>Great Library<e>.
+[ADVANCE_GRAND_MASTERY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Grand Mastery requires <L:DATABASE_ADVANCES,ADVANCE_TACTICS>Tactics<e> and <L:DATABASE_ADVANCES,ADVANCE_WIZARDRY>Wizardry<e>. It costs 520 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
-[ADVANCE_LITERACY_HISTORICAL]
-<c:245,240,225><h:0,0,0>Writing lets one generation argue with the next. Every institution that outlasts its founder depends on it.
+[ADVANCE_GRAND_MASTERY_HISTORICAL]
+<c:245,240,225><h:0,0,0>The final grade, at which a wizard's limitation is no longer knowledge or power but judgement.
 [END]
-[ADVANCE_LITERACY_PREREQ]
+[ADVANCE_GRAND_MASTERY_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e>
-<L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code_Of_Laws<e>
+<L:DATABASE_ADVANCES,ADVANCE_TACTICS>Tactics<e>
+<L:DATABASE_ADVANCES,ADVANCE_WIZARDRY>Wizardry<e>
 [END]
-[ADVANCE_LITERACY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
+[ADVANCE_GRAND_MASTERY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 520
+Age: 2
+Branch: 0
 [END]
-[ADVANCE_LIFE_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Wizard requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>. It costs 5855 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_CELESTIAL_BEACON>Celestial Beacon<e>.
+[ADVANCE_LEADERSHIP_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Leadership requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e> and <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 520 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
-[ADVANCE_LIFE_WIZARD_HISTORICAL]
-<c:245,240,225><h:0,0,0>The life wizard treats mortality as a condition rather than as a verdict.
+[ADVANCE_LEADERSHIP_HISTORICAL]
+<c:245,240,225><h:0,0,0>The discovery that men will follow a person further than they will follow an order.
 [END]
-[ADVANCE_LIFE_WIZARD_PREREQ]
+[ADVANCE_LEADERSHIP_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life_Mage<e>
+<L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e>
+<L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>
 [END]
-[ADVANCE_LIFE_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
+[ADVANCE_LEADERSHIP_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 520
+Age: 2
+Branch: 0
+[END]
+[ADVANCE_WARRIOR_CODE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 120 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>. It enables the wonders <L:DATABASE_WONDERS,WONDER_XAPOLLO_PROGRAM>Xapollo Program<e>, <L:DATABASE_WONDERS,WONDER_XCURE_FOR_CANCER>Xcure For Cancer<e>, <L:DATABASE_WONDERS,WONDER_XLIGHTHOUSE>Xlighthouse<e>, <L:DATABASE_WONDERS,WONDER_XSTATUE_OF_LIBERTY>Xstatue Of Liberty<e> and <L:DATABASE_WONDERS,WONDER_XWOMENS_SUFFRAGE>Xwomens Suffrage<e>.
+[END]
+[ADVANCE_WARRIOR_CODE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The rules fighting men impose on themselves, which are what distinguish an army from a mob with weapons.
+[END]
+[ADVANCE_WARRIOR_CODE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+Nothing
+[END]
+[ADVANCE_WARRIOR_CODE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 120
+Age: 1
+Branch: 0
+[END]
+[ADVANCE_CEREMONIAL_BURIAL_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Ceremonial Burial needs no prior research and is available from the first turn. It costs 160 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_TEMPLE>Temple<e>.
+[END]
+[ADVANCE_CEREMONIAL_BURIAL_HISTORICAL]
+<c:245,240,225><h:0,0,0>Laying out the dead with intent is the first evidence anywhere of a people who believe in something beyond the day. Every temple in history descends from a grave dug carefully.
+[END]
+[ADVANCE_CEREMONIAL_BURIAL_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+Nothing
+[END]
+[ADVANCE_CEREMONIAL_BURIAL_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 160
+Age: 1
 Branch: 2
 [END]
-[ADVANCE_LIFE_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Master requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>. It costs 7630 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ARCHANGEL>Archangel<e>.
+[ADVANCE_CODE_OF_LAWS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Code of Laws requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 525 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_COURTHOUSE>Courthouse<e>.
 [END]
-[ADVANCE_LIFE_MASTER_HISTORICAL]
-<c:245,240,225><h:0,0,0>At mastery, the life mage's difficulty is no longer healing the wounded but deciding whom not to heal.
+[ADVANCE_CODE_OF_LAWS_HISTORICAL]
+<c:245,240,225><h:0,0,0>The moment a ruling is written down, it stops belonging to the ruler. Written law is the first real limit any sovereign ever accepted.
 [END]
-[ADVANCE_LIFE_MASTER_PREREQ]
+[ADVANCE_CODE_OF_LAWS_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life_Wizard<e>
+<L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>
 [END]
-[ADVANCE_LIFE_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
+[ADVANCE_CODE_OF_LAWS_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 525
+Age: 2
 Branch: 2
+[END]
+[ADVANCE_MONARCHY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Monarchy requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>, <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 1280 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_MONARCHY_HISTORICAL]
+<c:245,240,225><h:0,0,0>Monarchy was a government in which the supreme authority was vested in a single person, usually a hereditary sovereign, who was the permanent head of state.  It was the basis for most medieval empires.  Monarchs provided the centralized power needed by fledgling nations in the 16th and 17th centuries.  The monarch was usually the absolute ruler, the source of law and of administration.  Feudal societies often thrived within a monarchy.  Monarchy existed in various iterations in Asia, Africa, Latin America and Europe.  Some monarchies lasted until well into the 20th century, although these later monarchies abandoned absolutism in favor of a parliamentary system.
+[END]
+[ADVANCE_MONARCHY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>
+<L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code Of Laws<e>
+[END]
+[ADVANCE_MONARCHY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1280
+Age: 3
+Branch: 0
+[END]
+[ADVANCE_THEOLOGY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Theology requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e> and <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>. It costs 1150 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_CATHEDRAL>Cathedral<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_THE_PARTHENON>The Parthenon<e>.
+[END]
+[ADVANCE_THEOLOGY_HISTORICAL]
+<c:245,240,225><h:0,0,0>Theology was the study of God, man, the world, salvation and eschatology (or the study of "end" times).  It was a discipline almost exclusively limited to Christianity.  It's origins lie with the Greek philosopher Plato (c.428-c.348 BC), who was the first to put for theology as a field of study.  Although Plato's concept of theology dealt with Greek, not Christian, myths, the fundamental nature of the study came from him, namely: theology is the attempt of believers of a faith to represent their statements of belief consistently, to logically analyze them out of the fundamentals of their faith and to properly contextualize such statements within nature, history, reason and logic.
+
+A scientific analysis of something as emotionally and ontologically complex as religious faith seemed incongruous to some people.  Nevertheless, theology has served to explicate and reinforce the central tenets of many faiths, and provided the basis for the Theocracy, a government based on religious law.
+[END]
+[ADVANCE_THEOLOGY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>
+<L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>
+[END]
+[ADVANCE_THEOLOGY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1150
+Age: 3
+Branch: 0
+[END]
+[ADVANCE_MYSTICISM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Mysticism requires <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>. It costs 525 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_ORACLE>Oracle<e>.
+[END]
+[ADVANCE_MYSTICISM_HISTORICAL]
+<c:245,240,225><h:0,0,0>The conviction that the world has an inside, and the various disciplines invented to get at it.
+[END]
+[ADVANCE_MYSTICISM_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>
+[END]
+[ADVANCE_MYSTICISM_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 525
+Age: 2
+Branch: 2
+[END]
+[ADVANCE_PHILOSOPHY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Philosophy requires <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>, <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e> and <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 665 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_PHILOSOPHY_HISTORICAL]
+<c:245,240,225><h:0,0,0>Throughout world history, the term "philosophy" (from the Greek word philosophia, "love of wisdom") has meant many different things.  It encompassed the pursuit of wisdom, the understanding of the universe as a whole, the examination of morals, values and ethics, and the attempt to promote rationality and clear thinking through the codification of rules governing human thought.  At its core, philosophy was an analysis of the basis for fundamental beliefs and an examination of the expression of such beliefs.  Its pursuit was the mark of an intellectually robust civilization.  It was a reflective pursuit, with no explicitly defined subject matter.  Much like science, it was a mental operation that could be exercised on any area or subject.  Because of this flexibility, philosophy, and its subcategories ethics, logic and metaphysics, formed the basis of rational thought processes that spawned many of the scientific and cultural advances in history.
+[END]
+[ADVANCE_PHILOSOPHY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>
+[END]
+[ADVANCE_PHILOSOPHY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 665
+Age: 2
+Branch: 0
+[END]
+[ADVANCE_THE_REPUBLIC_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching The Republic requires <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 1015 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_THE_REPUBLIC_HISTORICAL]
+<c:245,240,225><h:0,0,0>The proposition that authority can be lent out and taken back. Radical, fragile, and repeatedly rediscovered.
+[END]
+[ADVANCE_THE_REPUBLIC_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>
+[END]
+[ADVANCE_THE_REPUBLIC_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1015
+Age: 3
+Branch: 2
+[END]
+[ADVANCE_BANKING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Banking requires <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e> and <L:DATABASE_ADVANCES,ADVANCE_THE_REPUBLIC>The Republic<e>. It costs 2065 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GNOME_TREASURY>Gnome Treasury<e>.
+[END]
+[ADVANCE_BANKING_HISTORICAL]
+<c:245,240,225><h:0,0,0>The first banks developed in response to the great risk of early trading. Bandits, uncertain foreign markets, and a multitude of foreign currencies made caravans and trade ships very vulnerable. Without a way to mitigate the risk of piracy, a merchant could lose his or her livelihood with the destruction of his or her caravan.  Banking helped to change this by splitting risk between bank and merchant.  The Romans developed banking into a robust system of mortgages, loans, and credits. With banking, capital was available to expand trade and spread commerce widely.
+[END]
+[ADVANCE_BANKING_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_THE_REPUBLIC>The Republic<e>
+<L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>
+[END]
+[ADVANCE_BANKING_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 2065
+Age: 4
+Branch: 0
+[END]
+[ADVANCE_CURRENCY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Currency requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>. It costs 565 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_CURRENCY_HISTORICAL]
+<c:245,240,225><h:0,0,0>A token everyone agrees is worth something becomes worth something. Currency lets a farmer trade with a shipwright who does not want grain.
+[END]
+[ADVANCE_CURRENCY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>
+[END]
+[ADVANCE_CURRENCY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 565
+Age: 2
+Branch: 1
 [END]
 [ADVANCE_MAP_MAKING_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Researching Map Making requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 565 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GALLEY>Galley<e>.
@@ -596,9 +276,168 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>
 [END]
 [ADVANCE_MAP_MAKING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 565
+Age: 2
 Branch: 1
+[END]
+[ADVANCE_NAVIGATION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Navigation requires <L:DATABASE_ADVANCES,ADVANCE_SEAFARING>Seafaring<e> and <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>. It costs 2065 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GUNTHARS_VOYAGE>Gunthar's Voyage<e>.
+[END]
+[ADVANCE_NAVIGATION_HISTORICAL]
+<c:245,240,225><h:0,0,0>Finding a destination out of sight of land. The technique is unremarkable; the nerve it required was not.
+[END]
+[ADVANCE_NAVIGATION_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SEAFARING>Seafaring<e>
+<L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>
+[END]
+[ADVANCE_NAVIGATION_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 2065
+Age: 4
+Branch: 1
+[END]
+[ADVANCE_POTTERY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Pottery needs no prior research and is available from the first turn. It costs 185 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_GRANARY>Granary<e>.
+[END]
+[ADVANCE_POTTERY_HISTORICAL]
+<c:245,240,225><h:0,0,0>A fired clay jar is a solved problem in storage, and storage is what lets a people survive a bad year.
+[END]
+[ADVANCE_POTTERY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+Nothing
+[END]
+[ADVANCE_POTTERY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 185
+Age: 1
+Branch: 1
+[END]
+[ADVANCE_SANITATION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Sanitation requires <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>. It costs 3035 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_SANITATION_HISTORICAL]
+<c:245,240,225><h:0,0,0>Moving waste away from drinking water has saved more lives than every physician in history combined.
+[END]
+[ADVANCE_SANITATION_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>
+[END]
+[ADVANCE_SANITATION_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 3035
+Age: 5
+Branch: 1
+[END]
+[ADVANCE_SEAFARING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Seafaring requires <L:DATABASE_ADVANCES,ADVANCE_MAP_MAKING>Map Making<e> and <L:DATABASE_ADVANCES,ADVANCE_POTTERY>Pottery<e>. It costs 1215 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_HARBOR>Harbor<e>.
+[END]
+[ADVANCE_SEAFARING_HISTORICAL]
+<c:245,240,225><h:0,0,0>The decision to treat the sea as a road rather than as an edge.
+[END]
+[ADVANCE_SEAFARING_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_MAP_MAKING>Map Making<e>
+<L:DATABASE_ADVANCES,ADVANCE_POTTERY>Pottery<e>
+[END]
+[ADVANCE_SEAFARING_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1215
+Age: 3
+Branch: 1
+[END]
+[ADVANCE_TRADE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Trade requires <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e>, <L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 715 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CARAVAN>Caravans<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_BARDIC_COLLEGE>Bardic College<e>.
+[END]
+[ADVANCE_TRADE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The proliferation of trade, internal and abroad, was essential to the economic vitality of many of the ancient empires.  Commerce was no longer limited to the goods within a city or country's own capacity to harvest and manufacture.  Foreign caravans would deliver exotic new foods, fabrics, luxuries and precious items.  Unfortunately, trade was a dangerous endeavor.  Bandits and other hostile forces threatened the livelihood of many merchants.  Contracts, laws and other fruits of jurisprudence helped mitigate the risk.
+
+Trade had political and social ramifications as well.  Nations generally had to be on good terms in order to keep trade routes open.  As a result, consumer demand for foreign goods could powerfully influence a government's motivations to keep peaceful relations with trade partners.  Trade contributed to the international exchange of music, art, culture and science.  It motivated nations to fund the exploration of the world, to seek alternate trade routes and find new cultures and societies with which to exchange goods.
+[END]
+[ADVANCE_TRADE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e>
+<L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code Of Laws<e>
+[END]
+[ADVANCE_TRADE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 715
+Age: 2
+Branch: 0
+[END]
+[ADVANCE_ECOGNOMICS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Ecognomics requires <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e> and <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>. It costs 3900 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MERCHANTS_GUILD>Merchant's Guild<e>.
+[END]
+[ADVANCE_ECOGNOMICS_HISTORICAL]
+<c:245,240,225><h:0,0,0><L:DATABASE_ADVANCES,ADVANCE_ECOGNOMICS>Ecognomics<e>
+[END]
+[ADVANCE_ECOGNOMICS_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>
+<L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>
+[END]
+[ADVANCE_ECOGNOMICS_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 3900
+Age: 5
+Branch: 1
+[END]
+[ADVANCE_BRIDGE_BUILDING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Bridge Building requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. It costs 2670 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_BRIDGE_BUILDING_HISTORICAL]
+<c:245,240,225><h:0,0,0>A river is a wall until someone learns to span it. Bridge building turns a frontier into a road and a besieged province into a supplied one.
+[END]
+[ADVANCE_BRIDGE_BUILDING_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e>
+<L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>
+[END]
+[ADVANCE_BRIDGE_BUILDING_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 2670
+Age: 4
+Branch: 4
+[END]
+[ADVANCE_BRONZE_WORKING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Bronze Working needs no prior research and is available from the first turn. It costs 345 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_SWORDSMEN>Swordsmen<e>.
+[END]
+[ADVANCE_BRONZE_WORKING_HISTORICAL]
+<c:245,240,225><h:0,0,0>Around 3500 BC, Western Europeans discovered that beaten copper repeatedly heated in a fire became less brittle.  Perhaps because tin and copper deposits often occurred together in nature, early metal workers combined the two to form bronze.  This new alloy was strong, light and its raw materials were plentiful.  The Greeks and Spartans found many uses for bronze, most notably for armor and weaponry.  Phalanxes of hoplites, clad in bronze armor and wielding bronze swords and shields, menaced the armies of the Mediterranean and contributed to the dominance of the Spartan state in the 8th century BC.
+[END]
+[ADVANCE_BRONZE_WORKING_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+Nothing
+[END]
+[ADVANCE_BRONZE_WORKING_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 345
+Age: 1
+Branch: 0
+[END]
+[ADVANCE_CONSTRUCTION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Construction requires <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e> and <L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e>. It costs 945 science to complete. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_AQUEDUCT>Aqueduct<e> and <L:DATABASE_BUILDINGS,IMPROVE_COLOSSEUM>Colosseum<e>.
+[END]
+[ADVANCE_CONSTRUCTION_HISTORICAL]
+<c:245,240,225><h:0,0,0>Stone laid to a plan rather than to a habit. Construction is what separates a settlement that endures a siege from one that endures a season.
+[END]
+[ADVANCE_CONSTRUCTION_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>
+<L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e>
+[END]
+[ADVANCE_CONSTRUCTION_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 945
+Age: 2
+Branch: 4
+[END]
+[ADVANCE_IRON_WORKING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Iron Working requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>, <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e> and <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. It costs 1835 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_IRON_WORKING_HISTORICAL]
+<c:245,240,225><h:0,0,0>In Asia Minor during the 2nd millennium BC, wrought iron began to replace bronze in tools and weaponry.  By the 3rd century BC, it was a well-established material in China, India and much of the Mediterranean.  Iron's dominance was due in large part to its availability.  Whereas bronze required both copper and tin, both of which were scarce, iron was an abundant natural resource.  Wrought iron and, later cast iron, was a principle material for both peace and war for many centuries.
+[END]
+[ADVANCE_IRON_WORKING_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>
+<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
+[END]
+[ADVANCE_IRON_WORKING_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1835
+Age: 3
+Branch: 0
 [END]
 [ADVANCE_MASONRY_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Masonry needs no prior research and is available from the first turn. It costs 345 science to complete. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_CITY_WALLS>City Walls<e> and <L:DATABASE_BUILDINGS,IMPROVE_WIZARDS_FORTRESS>Wizard's Fortress<e>.
@@ -617,25 +456,363 @@ Built in the 3rd century BC, the Great Wall of China is one of the wonders of th
 Nothing
 [END]
 [ADVANCE_MASONRY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 4
-[END]
-[ADVANCE_CHAOS_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Lore requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2340 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_HELL_HOUNDS>Hell Hounds<e> and <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>.
-[END]
-[ADVANCE_CHAOS_LORE_HISTORICAL]
-<c:245,240,225><h:0,0,0>The collected findings of wizards who studied disorder itself, and the smaller collection of those who survived doing so.
-[END]
-[ADVANCE_CHAOS_LORE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos_Magic<e>
-<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch_Lore<e>
-[END]
-[ADVANCE_CHAOS_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
+<c:245,240,225><h:0,0,0>Cost: 345
+Age: 1
 Branch: 0
+[END]
+[ADVANCE_NATURE_LORE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Nature Lore requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1865 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_CENTAURS>Centaurs<e>, <L:DATABASE_UNITS,UNIT_ELVEN_ARCHERS>Elven Archers<e>, <L:DATABASE_UNITS,UNIT_FREYA>Freya<e> and <L:DATABASE_UNITS,UNIT_WARBEARS>Warbears<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_FONT_OF_BOUNTY>Font of Bounty<e>.
+[END]
+[ADVANCE_NATURE_LORE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The collected knowledge of growing things, weather and beasts, held mostly by people who distrust cities.
+[END]
+[ADVANCE_NATURE_LORE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e>
+<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
+[END]
+[ADVANCE_NATURE_LORE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1865
+Age: 3
+Branch: 1
+[END]
+[ADVANCE_NATURE_ADEPT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Nature Adept requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>. It costs 2630 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_COCKATRICE>Cockatrice<e>, <L:DATABASE_UNITS,UNIT_GRIFFIN>Griffin<e>, <L:DATABASE_UNITS,UNIT_MERFOLK>Merfolk<e>, <L:DATABASE_UNITS,UNIT_WAR_MAMMOTH>War Mammoth<e> and <L:DATABASE_UNITS,UNIT_WAR_TROLL>War Troll<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_GAIAS_SHRINE>Gaia's Shrine<e>.
+[END]
+[ADVANCE_NATURE_ADEPT_HISTORICAL]
+<c:245,240,225><h:0,0,0>An apprenticeship spent outdoors, learning that the natural world cooperates only with those who have been asking politely for years.
+[END]
+[ADVANCE_NATURE_ADEPT_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>
+[END]
+[ADVANCE_NATURE_ADEPT_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 2630
+Age: 4
+Branch: 1
+[END]
+[ADVANCE_NATURE_MAGE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Nature Mage requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>. It costs 4070 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_ALORRA>Alorra<e>, <L:DATABASE_UNITS,UNIT_BEHEMOTH>Behemoth<e> and <L:DATABASE_UNITS,UNIT_WYVERN>Wyvern<e>.
+[END]
+[ADVANCE_NATURE_MAGE_HISTORICAL]
+<c:245,240,225><h:0,0,0>A nature mage does not defeat the land; they recruit it. Every tradition that worked this way treated weather, beasts and growing things as allies to be bargained with rather than obstacles to be overcome.
+[END]
+[ADVANCE_NATURE_MAGE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>
+[END]
+[ADVANCE_NATURE_MAGE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 4070
+Age: 5
+Branch: 1
+[END]
+[ADVANCE_NATURE_WIZARD_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Nature Wizard requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. It costs 5680 science to complete. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_FANTASTIC_STABLE>Fantastic Stable<e> and <L:DATABASE_BUILDINGS,IMPROVE_PRIMAL_SOURCE>Primal Source<e>.
+[END]
+[ADVANCE_NATURE_WIZARD_HISTORICAL]
+<c:245,240,225><h:0,0,0>The nature wizard is answerable to the land, and the arrangement is genuinely mutual.
+[END]
+[ADVANCE_NATURE_WIZARD_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>
+[END]
+[ADVANCE_NATURE_WIZARD_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 5680
+Age: 6
+Branch: 1
+[END]
+[ADVANCE_NATURE_MASTER_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Nature Master requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>. It costs 7435 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GREAT_WYRM>Great Wyrm<e>.
+[END]
+[ADVANCE_NATURE_MASTER_HISTORICAL]
+<c:245,240,225><h:0,0,0>Mastery here looks like nothing happening: the storm that did not come, the famine that did not arrive.
+[END]
+[ADVANCE_NATURE_MASTER_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>
+[END]
+[ADVANCE_NATURE_MASTER_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 7435
+Age: 7
+Branch: 1
+[END]
+[ADVANCE_NATURE_MAGIC_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Nature Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 970 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_NATURE_MAGIC_HISTORICAL]
+<c:245,240,225><h:0,0,0>Power borrowed from living systems, on the strict understanding that it is a loan.
+[END]
+[ADVANCE_NATURE_MAGIC_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
+[END]
+[ADVANCE_NATURE_MAGIC_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 970
+Age: 2
+Branch: 1
+[END]
+[ADVANCE_ALCHEMY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Alchemy requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e> and <L:DATABASE_ADVANCES,ADVANCE_METAMORPHOSIS>Metamorphosis<e>. It costs 1155 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_ALCHEMY_HISTORICAL]
+<c:245,240,225><h:0,0,0>Alchemy was a science fused of many disparate sources, including Chinese, Egyptian and Islamic concepts that flowed into Western Europe via the Silk Road during the Middle Ages.  The primary objective of alchemy was the discovery of a method to turn base metals into precious ones.  Though this quest proved futile, its pursuit contributed to a deeper understanding of the nature and composition of many elements.  Early metallurgy benefited from the results of alchemic experiments.
+[END]
+[ADVANCE_ALCHEMY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_METAMORPHOSIS>Metamorphosis<e>
+[END]
+[ADVANCE_ALCHEMY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1155
+Age: 2
+Branch: 0
+[END]
+[ADVANCE_ALPHABET_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Alphabet needs no prior research and is available from the first turn. It costs 455 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_ALPHABET_HISTORICAL]
+<c:245,240,225><h:0,0,0>Before a people can keep accounts, treaties or spellbooks, they must first agree that a mark on clay can stand for a sound. The alphabet is the quiet invention on which every later one rests.
+[END]
+[ADVANCE_ALPHABET_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+Nothing
+[END]
+[ADVANCE_ALPHABET_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 455
+Age: 1
+Branch: 3
+[END]
+[ADVANCE_ANIMISM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Animism requires <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 1725 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_ANIMISM_HISTORICAL]
+<c:245,240,225><h:0,0,0>The oldest reading of the world: that the river, the stone and the storm each carry a will of their own. Animist shamans do not command nature so much as negotiate with it.
+[END]
+[ADVANCE_ANIMISM_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>
+[END]
+[ADVANCE_ANIMISM_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1725
+Age: 3
+Branch: 3
+[END]
+[ADVANCE_ASTROLOGY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Astrology requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e> and <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e>. It costs 1950 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_MYSTIC_XS_TOWER>Mystic X's Tower<e>.
+[END]
+[ADVANCE_ASTROLOGY_HISTORICAL]
+<c:245,240,225><h:0,0,0>The first systematic attempt to read the future in the fixed order of the sky. Its charts were wrong about destiny and right about the calendar, which proved the more useful gift.
+[END]
+[ADVANCE_ASTROLOGY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e>
+[END]
+[ADVANCE_ASTROLOGY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1950
+Age: 3
+Branch: 3
+[END]
+[ADVANCE_ELDRITCH_LORE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Eldritch Lore requires <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>. It costs 1725 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_ELDRITCH_LORE_HISTORICAL]
+<c:245,240,225><h:0,0,0>Knowledge that predates the peoples who study it, recovered in fragments from places better left unexcavated.
+[END]
+[ADVANCE_ELDRITCH_LORE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>
+[END]
+[ADVANCE_ELDRITCH_LORE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1725
+Age: 3
+Branch: 3
+[END]
+[ADVANCE_GREATER_FAUNA_LORE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Greater Fauna Lore requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>. It costs 4210 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_GREATER_FAUNA_LORE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The study of the beasts that were never meant to be catalogued: the ones with opinions, wings, or both.
+[END]
+[ADVANCE_GREATER_FAUNA_LORE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>
+[END]
+[ADVANCE_GREATER_FAUNA_LORE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 4210
+Age: 5
+Branch: 3
+[END]
+[ADVANCE_HEALING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Healing requires <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e> and <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 3095 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_PROSPEROS_CONSERVATORY>Prospero's Conservatory<e>.
+[END]
+[ADVANCE_HEALING_HISTORICAL]
+<c:245,240,225><h:0,0,0>The oldest use anyone ever found for power, and still the one that buys the most loyalty.
+[END]
+[ADVANCE_HEALING_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>
+<L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>
+[END]
+[ADVANCE_HEALING_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 3095
+Age: 4
+Branch: 3
+[END]
+[ADVANCE_LESSER_ENCHANMENTS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Lesser Enchanments requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. It costs 1725 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_MESMERS_TOWER>Mesmer's Tower<e>.
+[END]
+[ADVANCE_LESSER_ENCHANMENTS_HISTORICAL]
+<c:245,240,225><h:0,0,0>Small, durable workings: a blade that will not dull, a granary that will not spoil. Unglamorous magic that quietly wins wars.
+[END]
+[ADVANCE_LESSER_ENCHANMENTS_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+[END]
+[ADVANCE_LESSER_ENCHANMENTS_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1725
+Age: 3
+Branch: 3
+[END]
+[ADVANCE_METAMORPHOSIS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Metamorphosis requires <L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune Lore<e> and <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. It costs 1155 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_METAMORPHOSIS_HISTORICAL]
+<c:245,240,225><h:0,0,0>The art of changing what a thing fundamentally is, rather than merely how it behaves. Reversal is not guaranteed.
+[END]
+[ADVANCE_METAMORPHOSIS_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune Lore<e>
+<L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>
+[END]
+[ADVANCE_METAMORPHOSIS_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1155
+Age: 2
+Branch: 3
+[END]
+[ADVANCE_PANTHEISM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Pantheism requires <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e> and <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. It costs 1155 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_PANTHEISM_HISTORICAL]
+<c:245,240,225><h:0,0,0>The doctrine that divinity is distributed rather than located. Convenient for empires with many conquered gods to absorb.
+[END]
+[ADVANCE_PANTHEISM_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>
+<L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>
+[END]
+[ADVANCE_PANTHEISM_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1155
+Age: 2
+Branch: 3
+[END]
+[ADVANCE_RUNE_LORE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Rune Lore requires <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e> and <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 1155 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_RUNE_OF_RULERSHIP>Rune of Rulership<e>.
+[END]
+[ADVANCE_RUNE_LORE_HISTORICAL]
+<c:245,240,225><h:0,0,0>Runes bind meaning into shape. Carved into a weapon or a wall, they hold their instruction indefinitely and without supervision.
+[END]
+[ADVANCE_RUNE_LORE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e>
+<L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>
+[END]
+[ADVANCE_RUNE_LORE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1155
+Age: 2
+Branch: 3
+[END]
+[ADVANCE_SEA_MASTERY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Sea Mastery requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. It costs 6580 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARSHIP>Warship<e>.
+[END]
+[ADVANCE_SEA_MASTERY_HISTORICAL]
+<c:245,240,225><h:0,0,0>Command of the deep water, which historically has meant command of everything the deep water touches.
+[END]
+[ADVANCE_SEA_MASTERY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e>
+<L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>
+[END]
+[ADVANCE_SEA_MASTERY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 6580
+Age: 6
+Branch: 3
+[END]
+[ADVANCE_SHAMANISM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Shamanism needs no prior research and is available from the first turn. It costs 455 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_SHAMANISM_HISTORICAL]
+<c:245,240,225><h:0,0,0>The first professional intermediaries between a people and whatever they believed was listening.
+[END]
+[ADVANCE_SHAMANISM_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+Nothing
+[END]
+[ADVANCE_SHAMANISM_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 455
+Age: 1
+Branch: 3
+[END]
+[ADVANCE_THAUMATURGY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Thaumaturgy requires <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e> and <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e>. It costs 6580 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_IRON_GOLEM>Iron Golem<e>.
+[END]
+[ADVANCE_THAUMATURGY_HISTORICAL]
+<c:245,240,225><h:0,0,0>The formal study of wonder-working: taking the miracle apart to see whether it can be repeated on demand.
+[END]
+[ADVANCE_THAUMATURGY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>
+<L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e>
+[END]
+[ADVANCE_THAUMATURGY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 6580
+Age: 6
+Branch: 3
+[END]
+[ADVANCE_WIZARDRY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Wizardry requires <L:DATABASE_ADVANCES,ADVANCE_ALCHEMY>Alchemy<e>. It costs 1025 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_WIZARDRY_HISTORICAL]
+<c:245,240,225><h:0,0,0>The systematisation of magic into something that can be taught, examined and graded: the moment power became a profession.
+[END]
+[ADVANCE_WIZARDRY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_ALCHEMY>Alchemy<e>
+[END]
+[ADVANCE_WIZARDRY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1025
+Age: 2
+Branch: 3
+[END]
+[ADVANCE_GLYPHS_GAMEPLAY]
+<c:245,240,225><h:0,0,0><L:DATABASE_ADVANCES,ADVANCE_GLYPHS>Glyphs<e>
+[END]
+[ADVANCE_GLYPHS_HISTORICAL]
+<c:245,240,225><h:0,0,0><L:DATABASE_ADVANCES,ADVANCE_GLYPHS>Glyphs<e>
+[END]
+[ADVANCE_GLYPHS_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+Nothing
+[END]
+[ADVANCE_GLYPHS_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 455
+Age: 1
+Branch: 3
+[END]
+[ADVANCE_LITERACY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Literacy requires <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 1155 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GREAT_LIBRARY>Great Library<e>.
+[END]
+[ADVANCE_LITERACY_HISTORICAL]
+<c:245,240,225><h:0,0,0>Writing lets one generation argue with the next. Every institution that outlasts its founder depends on it.
+[END]
+[ADVANCE_LITERACY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e>
+<L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code Of Laws<e>
+[END]
+[ADVANCE_LITERACY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1155
+Age: 2
+Branch: 3
 [END]
 [ADVANCE_MATHEMATICS_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Researching Mathematics requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e> and <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>. It costs 1155 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CATAPULT>Catapult<e>.
@@ -649,489 +826,24 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>
 [END]
 [ADVANCE_MATHEMATICS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 1155
+Age: 2
 Branch: 3
 [END]
-[ADVANCE_CHAOS_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Adept requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>. It costs 3220 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_GARGOYLE>Gargoyle<e> and <L:DATABASE_UNITS,UNIT_TAURON>Tauron<e>.
-[END]
-[ADVANCE_CHAOS_ADEPT_HISTORICAL]
-<c:245,240,225><h:0,0,0>The first initiation into chaos: the student learns that fire answers willingly and obeys badly. Adepts are recognised less by their skill than by their scars.
-[END]
-[ADVANCE_CHAOS_ADEPT_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos_Lore<e>
-[END]
-[ADVANCE_CHAOS_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 0
-[END]
-[ADVANCE_CHAOS_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Mage requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>. It costs 4830 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_EFREET>Efreet<e>, <L:DATABASE_UNITS,UNIT_SALAMANDER>Salamander<e> and <L:DATABASE_UNITS,UNIT_WARRAX>Warrax<e>.
-[END]
-[ADVANCE_CHAOS_MAGE_HISTORICAL]
-<c:245,240,225><h:0,0,0>A chaos mage no longer coaxes the flame but argues with it, and usually wins. The distinction matters to everyone standing nearby.
-[END]
-[ADVANCE_CHAOS_MAGE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos_Adept<e>
-[END]
-[ADVANCE_CHAOS_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 0
-[END]
-[ADVANCE_CHAOS_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Wizard requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. It costs 6440 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_INFERNAL_DEVICE>Infernal Device<e>. It enables the wonders <L:DATABASE_WONDERS,WONDER_ELIXIR_OF_METAMORPHOSIS>Elixir of Metamorphosis<e> and <L:DATABASE_WONDERS,WONDER_FORGE_OF_CHAOS>Forge of Chaos<e>.
-[END]
-[ADVANCE_CHAOS_WIZARD_HISTORICAL]
-<c:245,240,225><h:0,0,0>At the wizard's grade, chaos is no longer a force to be handled but a country to be travelled. Few return unchanged, and fewer return unwilling to go back.
-[END]
-[ADVANCE_CHAOS_WIZARD_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos_Mage<e>
-[END]
-[ADVANCE_CHAOS_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 0
-[END]
-[ADVANCE_CHAOS_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Master requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>. It costs 8280 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_HYDRA>Hydra<e>.
-[END]
-[ADVANCE_CHAOS_MASTER_HISTORICAL]
-<c:245,240,225><h:0,0,0>Mastery of chaos is not control; it is the ability to stand at the centre of something uncontrolled and remain intact.
-[END]
-[ADVANCE_CHAOS_MASTER_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos_Wizard<e>
-[END]
-[ADVANCE_CHAOS_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 0
-[END]
-[ADVANCE_MONARCHY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Monarchy requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 1015 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_MONARCHY_HISTORICAL]
-<c:245,240,225><h:0,0,0>Monarchy was a government in which the supreme authority was vested in a single person, usually a hereditary sovereign, who was the permanent head of state.  It was the basis for most medieval empires.  Monarchs provided the centralized power needed by fledgling nations in the 16th and 17th centuries.  The monarch was usually the absolute ruler, the source of law and of administration.  Feudal societies often thrived within a monarchy.  Monarchy existed in various iterations in Asia, Africa, Latin America and Europe.  Some monarchies lasted until well into the 20th century, although these later monarchies abandoned absolutism in favor of a parliamentary system.
-[END]
-[ADVANCE_MONARCHY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial_Burial<e>
-<L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code_Of_Laws<e>
-[END]
-[ADVANCE_MONARCHY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 2
-[END]
-[ADVANCE_THEOLOGY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Theology requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 1015 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_CATHEDRAL>Cathedral<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_THE_PARTHENON>The Parthenon<e>.
-[END]
-[ADVANCE_THEOLOGY_HISTORICAL]
-<c:245,240,225><h:0,0,0>Theology was the study of God, man, the world, salvation and eschatology (or the study of "end" times).  It was a discipline almost exclusively limited to Christianity.  It's origins lie with the Greek philosopher Plato (c.428-c.348 BC), who was the first to put for theology as a field of study.  Although Plato's concept of theology dealt with Greek, not Christian, myths, the fundamental nature of the study came from him, namely: theology is the attempt of believers of a faith to represent their statements of belief consistently, to logically analyze them out of the fundamentals of their faith and to properly contextualize such statements within nature, history, reason and logic.
-
-A scientific analysis of something as emotionally and ontologically complex as religious faith seemed incongruous to some people.  Nevertheless, theology has served to explicate and reinforce the central tenets of many faiths, and provided the basis for the Theocracy, a government based on religious law.
-[END]
-[ADVANCE_THEOLOGY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>
-<L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>
-[END]
-[ADVANCE_THEOLOGY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 2
-[END]
-[ADVANCE_MYSTICISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Mysticism requires <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>. It costs 525 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_ORACLE>Oracle<e>.
-[END]
-[ADVANCE_MYSTICISM_HISTORICAL]
-<c:245,240,225><h:0,0,0>The conviction that the world has an inside, and the various disciplines invented to get at it.
-[END]
-[ADVANCE_MYSTICISM_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial_Burial<e>
-[END]
-[ADVANCE_MYSTICISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 2
-[END]
-[ADVANCE_NAVIGATION_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Navigation requires <L:DATABASE_ADVANCES,ADVANCE_SEAFARING>Seafaring<e> and <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>. It costs 2065 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GUNTHARS_VOYAGE>Gunthar's Voyage<e>.
-[END]
-[ADVANCE_NAVIGATION_HISTORICAL]
-<c:245,240,225><h:0,0,0>Finding a destination out of sight of land. The technique is unremarkable; the nerve it required was not.
-[END]
-[ADVANCE_NAVIGATION_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_SEAFARING>Seafaring<e>
-<L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>
-[END]
-[ADVANCE_NAVIGATION_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 1
-[END]
-[ADVANCE_GRAND_MASTERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Grand Mastery requires <L:DATABASE_ADVANCES,ADVANCE_TACTICS>Tactics<e> and <L:DATABASE_ADVANCES,ADVANCE_WIZARDRY>Wizardry<e>. It costs 520 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_GRAND_MASTERY_HISTORICAL]
-<c:245,240,225><h:0,0,0>The final grade, at which a wizard's limitation is no longer knowledge or power but judgement.
-[END]
-[ADVANCE_GRAND_MASTERY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_TACTICS>Tactics<e>
-<L:DATABASE_ADVANCES,ADVANCE_WIZARDRY>Wizardry<e>
-[END]
-[ADVANCE_GRAND_MASTERY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 0
-[END]
-[ADVANCE_SORCERY_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery Mage requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>. It costs 4625 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_STORM_GIANT>Storm Giant<e> and <L:DATABASE_UNITS,UNIT_WARLOCK>Warlock<e>.
-[END]
-[ADVANCE_SORCERY_MAGE_HISTORICAL]
-<c:245,240,225><h:0,0,0>A sorcery mage does openly and instantly what an engineer would need a season and a workforce to accomplish.
-[END]
-[ADVANCE_SORCERY_MAGE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery_Adept<e>
-[END]
-[ADVANCE_SORCERY_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 4
-[END]
-[ADVANCE_PHILOSOPHY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Philosophy requires <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>. It costs 525 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_PHILOSOPHY_HISTORICAL]
-<c:245,240,225><h:0,0,0>Throughout world history, the term "philosophy" (from the Greek word philosophia, "love of wisdom") has meant many different things.  It encompassed the pursuit of wisdom, the understanding of the universe as a whole, the examination of morals, values and ethics, and the attempt to promote rationality and clear thinking through the codification of rules governing human thought.  At its core, philosophy was an analysis of the basis for fundamental beliefs and an examination of the expression of such beliefs.  Its pursuit was the mark of an intellectually robust civilization.  It was a reflective pursuit, with no explicitly defined subject matter.  Much like science, it was a mental operation that could be exercised on any area or subject.  Because of this flexibility, philosophy, and its subcategories ethics, logic and metaphysics, formed the basis of rational thought processes that spawned many of the scientific and cultural advances in history.
-[END]
-[ADVANCE_PHILOSOPHY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
-<L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>
-[END]
-[ADVANCE_PHILOSOPHY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 2
-[END]
-[ADVANCE_SORCERY_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery Wizard requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. It costs 6235 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BEACON_OF_WISDOM>Beacon of Wisdom<e>. It enables the wonders <L:DATABASE_WONDERS,WONDER_ELDRITCH_COLLEGE>Eldritch College<e> and <L:DATABASE_WONDERS,WONDER_LEAGUE_OF_WIZARDS>League of Wizards<e>.
-[END]
-[ADVANCE_SORCERY_WIZARD_HISTORICAL]
-<c:245,240,225><h:0,0,0>The sorcery wizard treats the laws of the world as defaults rather than as limits.
-[END]
-[ADVANCE_SORCERY_WIZARD_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery_Mage<e>
-[END]
-[ADVANCE_SORCERY_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 4
-[END]
-[ADVANCE_SORCERY_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery Master requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>. It costs 8050 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_STORM_DRAKE>Storm Drake<e>.
-[END]
-[ADVANCE_SORCERY_MASTER_HISTORICAL]
-<c:245,240,225><h:0,0,0>Mastery of sorcery is measured in restraint, since by this grade the capability is no longer in question.
-[END]
-[ADVANCE_SORCERY_MASTER_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery_Wizard<e>
-[END]
-[ADVANCE_SORCERY_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 4
-[END]
-[ADVANCE_NATURE_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Lore requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1865 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_CENTAURS>Centaurs<e>, <L:DATABASE_UNITS,UNIT_ELVEN_ARCHERS>Elven Archers<e>, <L:DATABASE_UNITS,UNIT_FREYA>Freya<e> and <L:DATABASE_UNITS,UNIT_WARBEARS>Warbears<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_FONT_OF_BOUNTY>Font of Bounty<e>.
-[END]
-[ADVANCE_NATURE_LORE_HISTORICAL]
-<c:245,240,225><h:0,0,0>The collected knowledge of growing things, weather and beasts, held mostly by people who distrust cities.
-[END]
-[ADVANCE_NATURE_LORE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature_Magic<e>
-<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch_Lore<e>
-[END]
-[ADVANCE_NATURE_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 1
-[END]
-[ADVANCE_NATURE_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Adept requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>. It costs 2630 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_COCKATRICE>Cockatrice<e>, <L:DATABASE_UNITS,UNIT_GRIFFIN>Griffin<e>, <L:DATABASE_UNITS,UNIT_MERFOLK>Merfolk<e>, <L:DATABASE_UNITS,UNIT_WAR_MAMMOTH>War Mammoth<e> and <L:DATABASE_UNITS,UNIT_WAR_TROLL>War Troll<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_GAIAS_SHRINE>Gaia's Shrine<e>.
-[END]
-[ADVANCE_NATURE_ADEPT_HISTORICAL]
-<c:245,240,225><h:0,0,0>An apprenticeship spent outdoors, learning that the natural world cooperates only with those who have been asking politely for years.
-[END]
-[ADVANCE_NATURE_ADEPT_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature_Lore<e>
-[END]
-[ADVANCE_NATURE_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 1
-[END]
-[ADVANCE_POTTERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Pottery needs no prior research and is available from the first turn. It costs 185 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_GRANARY>Granary<e>.
-[END]
-[ADVANCE_POTTERY_HISTORICAL]
-<c:245,240,225><h:0,0,0>A fired clay jar is a solved problem in storage, and storage is what lets a people survive a bad year.
-[END]
-[ADVANCE_POTTERY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-Nothing
-[END]
-[ADVANCE_POTTERY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 1
-[END]
-[ADVANCE_NATURE_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Mage requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>. It costs 4070 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_ALORRA>Alorra<e>, <L:DATABASE_UNITS,UNIT_BEHEMOTH>Behemoth<e> and <L:DATABASE_UNITS,UNIT_WYVERN>Wyvern<e>.
-[END]
-[ADVANCE_NATURE_MAGE_HISTORICAL]
-<c:245,240,225><h:0,0,0>A nature mage does not defeat the land; they recruit it. Every tradition that worked this way treated weather, beasts and growing things as allies to be bargained with rather than obstacles to be overcome.
-[END]
-[ADVANCE_NATURE_MAGE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature_Adept<e>
-[END]
-[ADVANCE_NATURE_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 1
-[END]
 [ADVANCE_GREATER_ENCHANTMENTS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Greater Enchantments needs no prior research and is available from the first turn. It costs 455 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_REYWINDS_DISCOVERY>Reywind's Discovery<e>.
+<c:245,240,225><h:0,0,0>Researching Greater Enchantments requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_ENCHANMENTS>Lesser Enchanments<e>. It costs 2735 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_REYWINDS_DISCOVERY>Reywind's Discovery<e>.
 [END]
 [ADVANCE_GREATER_ENCHANTMENTS_HISTORICAL]
 <c:245,240,225><h:0,0,0>Workings laid not on an object or a person but on a place, a season, or an army. Their scale is what makes them greater and what makes them dangerous.
 [END]
 [ADVANCE_GREATER_ENCHANTMENTS_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-Nothing
+<L:DATABASE_ADVANCES,ADVANCE_LESSER_ENCHANMENTS>Lesser Enchanments<e>
 [END]
 [ADVANCE_GREATER_ENCHANTMENTS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 2735
+Age: 4
 Branch: 3
-[END]
-[ADVANCE_NATURE_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Wizard requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. It costs 5680 science to complete. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_FANTASTIC_STABLE>Fantastic Stable<e> and <L:DATABASE_BUILDINGS,IMPROVE_PRIMAL_SOURCE>Primal Source<e>.
-[END]
-[ADVANCE_NATURE_WIZARD_HISTORICAL]
-<c:245,240,225><h:0,0,0>The nature wizard is answerable to the land, and the arrangement is genuinely mutual.
-[END]
-[ADVANCE_NATURE_WIZARD_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature_Mage<e>
-[END]
-[ADVANCE_NATURE_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 1
-[END]
-[ADVANCE_NATURE_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Master requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>. It costs 7435 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GREAT_WYRM>Great Wyrm<e>.
-[END]
-[ADVANCE_NATURE_MASTER_HISTORICAL]
-<c:245,240,225><h:0,0,0>Mastery here looks like nothing happening: the storm that did not come, the famine that did not arrive.
-[END]
-[ADVANCE_NATURE_MASTER_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature_Wizard<e>
-[END]
-[ADVANCE_NATURE_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 1
-[END]
-[ADVANCE_DEATH_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Lore requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1995 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_MINION>Minion<e> and <L:DATABASE_UNITS,UNIT_ZOMBIES>Zombies<e>.
-[END]
-[ADVANCE_DEATH_LORE_HISTORICAL]
-<c:245,240,225><h:0,0,0>Accumulated study of the boundary between living and not, compiled by scholars whom no city willingly houses.
-[END]
-[ADVANCE_DEATH_LORE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death_Magic<e>
-<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch_Lore<e>
-[END]
-[ADVANCE_DEATH_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 3
-[END]
-[ADVANCE_THE_REPUBLIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching The Republic requires <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 1745 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_THE_REPUBLIC_HISTORICAL]
-<c:245,240,225><h:0,0,0>The proposition that authority can be lent out and taken back. Radical, fragile, and repeatedly rediscovered.
-[END]
-[ADVANCE_THE_REPUBLIC_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>
-[END]
-[ADVANCE_THE_REPUBLIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 2
-[END]
-[ADVANCE_DEATH_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Adept requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>. It costs 2790 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_RJAK>Rjak<e> and <L:DATABASE_UNITS,UNIT_WRAITH>Wraith<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_WALL_OF_BONE>Wall of Bone<e>.
-[END]
-[ADVANCE_DEATH_ADEPT_HISTORICAL]
-<c:245,240,225><h:0,0,0>The novice necromancer learns the least popular truth in magic: that the dead are a resource, and an obedient one.
-[END]
-[ADVANCE_DEATH_ADEPT_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death_Lore<e>
-[END]
-[ADVANCE_DEATH_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 3
-[END]
-[ADVANCE_SANITATION_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sanitation requires <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>. It costs 3035 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_SANITATION_HISTORICAL]
-<c:245,240,225><h:0,0,0>Moving waste away from drinking water has saved more lives than every physician in history combined.
-[END]
-[ADVANCE_SANITATION_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>
-[END]
-[ADVANCE_SANITATION_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 1
-[END]
-[ADVANCE_SEAFARING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Seafaring requires <L:DATABASE_ADVANCES,ADVANCE_MAP_MAKING>Map Making<e> and <L:DATABASE_ADVANCES,ADVANCE_POTTERY>Pottery<e>. It costs 1215 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_HARBOR>Harbor<e>.
-[END]
-[ADVANCE_SEAFARING_HISTORICAL]
-<c:245,240,225><h:0,0,0>The decision to treat the sea as a road rather than as an edge.
-[END]
-[ADVANCE_SEAFARING_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MAP_MAKING>Map_Making<e>
-<L:DATABASE_ADVANCES,ADVANCE_POTTERY>Pottery<e>
-[END]
-[ADVANCE_SEAFARING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 1
-[END]
-[ADVANCE_DEATH_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Mage requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. It costs 4280 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_DEMON>Demon<e> and <L:DATABASE_UNITS,UNIT_MALLEUS>Malleus<e>.
-[END]
-[ADVANCE_DEATH_MAGE_HISTORICAL]
-<c:245,240,225><h:0,0,0>A death mage commands what was once a person. The price of that power is that no one will ever again sit comfortably beside them.
-[END]
-[ADVANCE_DEATH_MAGE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death_Adept<e>
-[END]
-[ADVANCE_DEATH_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 3
-[END]
-[ADVANCE_DEATH_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Wizard requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>. It costs 5890 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENTROPY_ENGINE>Entropy Engine<e>.
-[END]
-[ADVANCE_DEATH_WIZARD_HISTORICAL]
-<c:245,240,225><h:0,0,0>The death wizard has stopped negotiating with mortality and started administering it.
-[END]
-[ADVANCE_DEATH_WIZARD_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death_Mage<e>
-[END]
-[ADVANCE_DEATH_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 3
-[END]
-[ADVANCE_DEATH_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Master requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>. It costs 7665 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_UNDEAD_DRAGON>Undead Dragon<e>.
-[END]
-[ADVANCE_DEATH_MASTER_HISTORICAL]
-<c:245,240,225><h:0,0,0>To master death magic is to stand, for practical purposes, outside the ordinary account of who owes what to whom.
-[END]
-[ADVANCE_DEATH_MASTER_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death_Wizard<e>
-[END]
-[ADVANCE_DEATH_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 3
-[END]
-[ADVANCE_LEADERSHIP_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Leadership requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e> and <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 520 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_LEADERSHIP_HISTORICAL]
-<c:245,240,225><h:0,0,0>The discovery that men will follow a person further than they will follow an order.
-[END]
-[ADVANCE_LEADERSHIP_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e>
-<L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>
-[END]
-[ADVANCE_LEADERSHIP_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 0
-[END]
-[ADVANCE_SORCEROUS_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcerous Lore requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2210 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_MAGE>Mage<e> and <L:DATABASE_UNITS,UNIT_PHANTOM_WARRIORS>Phantom Warriors<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_PLEASURE_DOME>Pleasure Dome<e>.
-[END]
-[ADVANCE_SORCEROUS_LORE_HISTORICAL]
-<c:245,240,225><h:0,0,0>The theoretical backbone of sorcery, written down by practitioners who wanted successors rather than rivals.
-[END]
-[ADVANCE_SORCEROUS_LORE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>
-<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch_Lore<e>
-[END]
-[ADVANCE_SORCEROUS_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 4
-[END]
-[ADVANCE_TRADE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Trade requires <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e>. It costs 565 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CARAVAN>Caravans<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_BARDIC_COLLEGE>Bardic College<e>.
-[END]
-[ADVANCE_TRADE_HISTORICAL]
-<c:245,240,225><h:0,0,0>The proliferation of trade, internal and abroad, was essential to the economic vitality of many of the ancient empires.  Commerce was no longer limited to the goods within a city or country's own capacity to harvest and manufacture.  Foreign caravans would deliver exotic new foods, fabrics, luxuries and precious items.  Unfortunately, trade was a dangerous endeavor.  Bandits and other hostile forces threatened the livelihood of many merchants.  Contracts, laws and other fruits of jurisprudence helped mitigate the risk.
-
-Trade had political and social ramifications as well.  Nations generally had to be on good terms in order to keep trade routes open.  As a result, consumer demand for foreign goods could powerfully influence a government's motivations to keep peaceful relations with trade partners.  Trade contributed to the international exchange of music, art, culture and science.  It motivated nations to fund the exploration of the world, to seek alternate trade routes and find new cultures and societies with which to exchange goods.
-[END]
-[ADVANCE_TRADE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e>
-<L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code_Of_Laws<e>
-[END]
-[ADVANCE_TRADE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 1
 [END]
 [ADVANCE_UNIVERSITY_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Researching University requires <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e> and <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 1155 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_UNIVERSITY>University<e>.
@@ -1145,27 +857,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>
 [END]
 [ADVANCE_UNIVERSITY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 1155
+Age: 2
 Branch: 3
 [END]
-[ADVANCE_WARRIOR_CODE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 120 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>, <L:DATABASE_BUILDINGS,IMPROVE_COASTAL_FORTRESS>Coastal Fortress<e>, <L:DATABASE_BUILDINGS,IMPROVE_XHYDRO_PLANT>Xhydro Plant<e> and <L:DATABASE_BUILDINGS,IMPROVE_XPOWER_PLANT>Xpower Plant<e>. It enables the wonders <L:DATABASE_WONDERS,WONDER_XAPOLLO_PROGRAM>Xapollo Program<e>, <L:DATABASE_WONDERS,WONDER_XCURE_FOR_CANCER>Xcure For Cancer<e>, <L:DATABASE_WONDERS,WONDER_XLIGHTHOUSE>Xlighthouse<e>, <L:DATABASE_WONDERS,WONDER_XSTATUE_OF_LIBERTY>Xstatue Of Liberty<e> and <L:DATABASE_WONDERS,WONDER_XWOMENS_SUFFRAGE>Xwomens Suffrage<e>.
-[END]
-[ADVANCE_WARRIOR_CODE_HISTORICAL]
-<c:245,240,225><h:0,0,0>The rules fighting men impose on themselves, which are what distinguish an army from a mob with weapons.
-[END]
-[ADVANCE_WARRIOR_CODE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-Nothing
-[END]
-[ADVANCE_WARRIOR_CODE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 0
-[END]
 [ADVANCE_WRITING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Writing needs no prior research and is available from the first turn. It costs 455 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_LIBRARY>Library<e>.
+<c:245,240,225><h:0,0,0>Researching Writing requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 1025 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_LIBRARY>Library<e>.
 [END]
 [ADVANCE_WRITING_HISTORICAL]
 <c:245,240,225><h:0,0,0>As ancient societies developed, early humans found a need to visibly represent the language they spoke.  Whether it was to document their history, keep records or facilitate communication, writing's origins were almost certainly borne out of need.  Although the world is full of examples of prehistoric communication, most notably in the form of cave paintings, writing systems did not begin to appear until ancient times.  Writing systems developed in many ways.  Some cultures developed a meaning-based system, with characters and symbols that represented words, acts, and concepts, while others developed sound-based systems, with characters representing syllables or phonemes.  Whether pictographic, ideographic, alphabetic or phonetic, the writing system needed to match the demands of the societies' expressions and communications.  Nevertheless, writing was a giant leap forward in the establishment of history and culture for early societies, leading to a strengthening of social order, jurisprudence and historical preservation.
@@ -1175,25 +872,9 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>
 [END]
 [ADVANCE_WRITING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_FUTURE_TECHNOLOGY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Future Technology requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e> and <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>. It costs 9360 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_FUTURE_TECHNOLOGY_HISTORICAL]
-<c:245,240,225><h:0,0,0>Whatever comes after the last thing anyone thought to name. Every age has believed it had reached this point.
-[END]
-[ADVANCE_FUTURE_TECHNOLOGY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death_Wizard<e>
-<L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos_Lore<e>
-[END]
-[ADVANCE_FUTURE_TECHNOLOGY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Renaissance
-Branch: 3
+<c:245,240,225><h:0,0,0>Cost: 1025
+Age: 2
+Branch: 0
 [END]
 [ADVANCE_FORCES_OF_NATURE_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Researching Forces of Nature requires <L:DATABASE_ADVANCES,ADVANCE_ANIMISM>Animism<e>. It costs 2735 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
@@ -1206,23 +887,8 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_ANIMISM>Animism<e>
 [END]
 [ADVANCE_FORCES_OF_NATURE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
-Branch: 3
-[END]
-[ADVANCE_DEATH_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1050 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_DEATH_MAGIC_HISTORICAL]
-<c:245,240,225><h:0,0,0>The art of reaching past the end of a life and finding that something still answers. Universally condemned, and widely practised in wartime.
-[END]
-[ADVANCE_DEATH_MAGIC_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand_Mastery<e>
-[END]
-[ADVANCE_DEATH_MAGIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
+<c:245,240,225><h:0,0,0>Cost: 2735
+Age: 4
 Branch: 3
 [END]
 [ADVANCE_SEA_LORE_GAMEPLAY]
@@ -1236,42 +902,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_NAVIGATION>Navigation<e>
 [END]
 [ADVANCE_SEA_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 4210
+Age: 5
 Branch: 3
 [END]
-[ADVANCE_NATURE_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 970 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
-[END]
-[ADVANCE_NATURE_MAGIC_HISTORICAL]
-<c:245,240,225><h:0,0,0>Power borrowed from living systems, on the strict understanding that it is a loan.
-[END]
-[ADVANCE_NATURE_MAGIC_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand_Mastery<e>
-[END]
-[ADVANCE_NATURE_MAGIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 1
-[END]
-[ADVANCE_SORCERY_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery Adept requires <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. It costs 3060 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_AIR_ELEMENTAL>Air Elemental<e> and <L:DATABASE_UNITS,UNIT_JAFAR>Jafar<e>.
-[END]
-[ADVANCE_SORCERY_ADEPT_HISTORICAL]
-<c:245,240,225><h:0,0,0>The adept's year is spent on precision, because sorcery punishes approximation immediately.
-[END]
-[ADVANCE_SORCERY_ADEPT_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous_Lore<e>
-[END]
-[ADVANCE_SORCERY_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Medieval
-Branch: 4
-[END]
 [ADVANCE_ARTIFICING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Artificing requires <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>. It costs 5820 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_AIRSHIP>Airship<e> and <L:DATABASE_UNITS,UNIT_STEAM_CANNON>Steam Cannon<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MECHANICIANS_GUILD>Mechanician's Guild<e>.
+<c:245,240,225><h:0,0,0>Researching Artificing requires <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>. It costs 7590 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_AIRSHIP>Airship<e> and <L:DATABASE_UNITS,UNIT_STEAM_CANNON>Steam Cannon<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MECHANICIANS_GUILD>Mechanician's Guild<e>.
 [END]
 [ADVANCE_ARTIFICING_HISTORICAL]
 <c:245,240,225><h:0,0,0>The craft of binding a spell into a made thing, so that the enchantment outlives the enchanter. An artificer's blade remembers its instructions long after the hand that forged it is dust.
@@ -1281,8 +917,8 @@ Branch: 4
 <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>
 [END]
 [ADVANCE_ARTIFICING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 7590
+Age: 7
 Branch: 3
 [END]
 [ADVANCE_LESSER_FAUNA_LORE_GAMEPLAY]
@@ -1296,8 +932,8 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_ANIMISM>Animism<e>
 [END]
 [ADVANCE_LESSER_FAUNA_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 2735
+Age: 4
 Branch: 3
 [END]
 [ADVANCE_PYROTECHNICS_GAMEPLAY]
@@ -1308,11 +944,11 @@ Branch: 3
 [END]
 [ADVANCE_PYROTECHNICS_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch_Lore<e>
+<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
 [END]
 [ADVANCE_PYROTECHNICS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 2735
+Age: 4
 Branch: 3
 [END]
 [ADVANCE_OCCULT_STUDIES_GAMEPLAY]
@@ -1326,8 +962,388 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>
 [END]
 [ADVANCE_OCCULT_STUDIES_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1000
-Age: Ancient
+<c:245,240,225><h:0,0,0>Cost: 1025
+Age: 2
+Branch: 3
+[END]
+[ADVANCE_LIFE_MAGIC_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Life Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1035 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_LIFE_MAGIC_HISTORICAL]
+<c:245,240,225><h:0,0,0>Power drawn from growth and continuation rather than from force. The slowest school to show results and the hardest to break.
+[END]
+[ADVANCE_LIFE_MAGIC_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
+[END]
+[ADVANCE_LIFE_MAGIC_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1035
+Age: 2
+Branch: 2
+[END]
+[ADVANCE_LIFE_LORE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Life Lore requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1970 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_ARIEL>Ariel<e> and <L:DATABASE_UNITS,UNIT_GUARDIAN_SPIRIT>Guardian Spirit<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENCHANTED_GROTTO>Enchanted Grotto<e>.
+[END]
+[ADVANCE_LIFE_LORE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The gathered record of what can be mended, what can be strengthened, and what should be left exactly as it is.
+[END]
+[ADVANCE_LIFE_LORE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e>
+<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
+[END]
+[ADVANCE_LIFE_LORE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1970
+Age: 3
+Branch: 2
+[END]
+[ADVANCE_LIFE_ADEPT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Life Adept requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>. It costs 2765 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_PALADINS>Paladins<e>, <L:DATABASE_UNITS,UNIT_SERENA>Serena<e> and <L:DATABASE_UNITS,UNIT_UNICORN>Unicorn<e>.
+[END]
+[ADVANCE_LIFE_ADEPT_HISTORICAL]
+<c:245,240,225><h:0,0,0>The first lessons in the magic of vitality, taught almost everywhere and mastered almost nowhere.
+[END]
+[ADVANCE_LIFE_ADEPT_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>
+[END]
+[ADVANCE_LIFE_ADEPT_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 2765
+Age: 4
+Branch: 2
+[END]
+[ADVANCE_LIFE_MAGE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Life Mage requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. It costs 4245 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_PEGASUS>Pegasus<e>.
+[END]
+[ADVANCE_LIFE_MAGE_HISTORICAL]
+<c:245,240,225><h:0,0,0>A life mage can return a dying soldier to the line. Armies grasped the strategic implications of this faster than priests grasped the moral ones.
+[END]
+[ADVANCE_LIFE_MAGE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>
+[END]
+[ADVANCE_LIFE_MAGE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 4245
+Age: 5
+Branch: 2
+[END]
+[ADVANCE_LIFE_WIZARD_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Life Wizard requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>. It costs 5855 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_CELESTIAL_BEACON>Celestial Beacon<e>.
+[END]
+[ADVANCE_LIFE_WIZARD_HISTORICAL]
+<c:245,240,225><h:0,0,0>The life wizard treats mortality as a condition rather than as a verdict.
+[END]
+[ADVANCE_LIFE_WIZARD_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>
+[END]
+[ADVANCE_LIFE_WIZARD_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 5855
+Age: 6
+Branch: 2
+[END]
+[ADVANCE_LIFE_MASTER_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Life Master requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>. It costs 7630 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ARCHANGEL>Archangel<e>.
+[END]
+[ADVANCE_LIFE_MASTER_HISTORICAL]
+<c:245,240,225><h:0,0,0>At mastery, the life mage's difficulty is no longer healing the wounded but deciding whom not to heal.
+[END]
+[ADVANCE_LIFE_MASTER_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>
+[END]
+[ADVANCE_LIFE_MASTER_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 7630
+Age: 7
+Branch: 2
+[END]
+[ADVANCE_DEATH_LORE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Death Lore requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1995 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_MINION>Minion<e> and <L:DATABASE_UNITS,UNIT_ZOMBIES>Zombies<e>.
+[END]
+[ADVANCE_DEATH_LORE_HISTORICAL]
+<c:245,240,225><h:0,0,0>Accumulated study of the boundary between living and not, compiled by scholars whom no city willingly houses.
+[END]
+[ADVANCE_DEATH_LORE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>
+<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
+[END]
+[ADVANCE_DEATH_LORE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1995
+Age: 3
+Branch: 3
+[END]
+[ADVANCE_DEATH_ADEPT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Death Adept requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>. It costs 2790 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_RJAK>Rjak<e> and <L:DATABASE_UNITS,UNIT_WRAITH>Wraith<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_WALL_OF_BONE>Wall of Bone<e>.
+[END]
+[ADVANCE_DEATH_ADEPT_HISTORICAL]
+<c:245,240,225><h:0,0,0>The novice necromancer learns the least popular truth in magic: that the dead are a resource, and an obedient one.
+[END]
+[ADVANCE_DEATH_ADEPT_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>
+[END]
+[ADVANCE_DEATH_ADEPT_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 2790
+Age: 4
+Branch: 3
+[END]
+[ADVANCE_DEATH_MAGE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Death Mage requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. It costs 4280 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_DEMON>Demon<e> and <L:DATABASE_UNITS,UNIT_MALLEUS>Malleus<e>.
+[END]
+[ADVANCE_DEATH_MAGE_HISTORICAL]
+<c:245,240,225><h:0,0,0>A death mage commands what was once a person. The price of that power is that no one will ever again sit comfortably beside them.
+[END]
+[ADVANCE_DEATH_MAGE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>
+[END]
+[ADVANCE_DEATH_MAGE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 4280
+Age: 5
+Branch: 3
+[END]
+[ADVANCE_DEATH_WIZARD_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Death Wizard requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>. It costs 5890 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENTROPY_ENGINE>Entropy Engine<e>.
+[END]
+[ADVANCE_DEATH_WIZARD_HISTORICAL]
+<c:245,240,225><h:0,0,0>The death wizard has stopped negotiating with mortality and started administering it.
+[END]
+[ADVANCE_DEATH_WIZARD_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>
+[END]
+[ADVANCE_DEATH_WIZARD_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 5890
+Age: 6
+Branch: 3
+[END]
+[ADVANCE_DEATH_MASTER_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Death Master requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>. It costs 7665 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_UNDEAD_DRAGON>Undead Dragon<e>.
+[END]
+[ADVANCE_DEATH_MASTER_HISTORICAL]
+<c:245,240,225><h:0,0,0>To master death magic is to stand, for practical purposes, outside the ordinary account of who owes what to whom.
+[END]
+[ADVANCE_DEATH_MASTER_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>
+[END]
+[ADVANCE_DEATH_MASTER_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 7665
+Age: 7
+Branch: 3
+[END]
+[ADVANCE_DEATH_MAGIC_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Death Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1050 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_DEATH_MAGIC_HISTORICAL]
+<c:245,240,225><h:0,0,0>The art of reaching past the end of a life and finding that something still answers. Universally condemned, and widely practised in wartime.
+[END]
+[ADVANCE_DEATH_MAGIC_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
+[END]
+[ADVANCE_DEATH_MAGIC_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1050
+Age: 2
+Branch: 3
+[END]
+[ADVANCE_SORCERY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Sorcery requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1185 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_SORCERY_HISTORICAL]
+<c:245,240,225><h:0,0,0>The disciplined manipulation of force at a distance. Less spectacular than chaos, and considerably more reliable.
+[END]
+[ADVANCE_SORCERY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
+[END]
+[ADVANCE_SORCERY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1185
+Age: 2
+Branch: 4
+[END]
+[ADVANCE_SORCERY_MAGE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Sorcery Mage requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>. It costs 4625 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_STORM_GIANT>Storm Giant<e> and <L:DATABASE_UNITS,UNIT_WARLOCK>Warlock<e>.
+[END]
+[ADVANCE_SORCERY_MAGE_HISTORICAL]
+<c:245,240,225><h:0,0,0>A sorcery mage does openly and instantly what an engineer would need a season and a workforce to accomplish.
+[END]
+[ADVANCE_SORCERY_MAGE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>
+[END]
+[ADVANCE_SORCERY_MAGE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 4625
+Age: 5
+Branch: 4
+[END]
+[ADVANCE_SORCERY_WIZARD_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Sorcery Wizard requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. It costs 6235 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BEACON_OF_WISDOM>Beacon of Wisdom<e>. It enables the wonders <L:DATABASE_WONDERS,WONDER_ELDRITCH_COLLEGE>Eldritch College<e> and <L:DATABASE_WONDERS,WONDER_LEAGUE_OF_WIZARDS>League of Wizards<e>.
+[END]
+[ADVANCE_SORCERY_WIZARD_HISTORICAL]
+<c:245,240,225><h:0,0,0>The sorcery wizard treats the laws of the world as defaults rather than as limits.
+[END]
+[ADVANCE_SORCERY_WIZARD_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>
+[END]
+[ADVANCE_SORCERY_WIZARD_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 6235
+Age: 6
+Branch: 4
+[END]
+[ADVANCE_SORCERY_MASTER_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Sorcery Master requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>. It costs 8050 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_STORM_DRAKE>Storm Drake<e>.
+[END]
+[ADVANCE_SORCERY_MASTER_HISTORICAL]
+<c:245,240,225><h:0,0,0>Mastery of sorcery is measured in restraint, since by this grade the capability is no longer in question.
+[END]
+[ADVANCE_SORCERY_MASTER_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>
+[END]
+[ADVANCE_SORCERY_MASTER_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 8050
+Age: 7
+Branch: 4
+[END]
+[ADVANCE_SORCEROUS_LORE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Sorcerous Lore requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2210 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_MAGE>Mage<e> and <L:DATABASE_UNITS,UNIT_PHANTOM_WARRIORS>Phantom Warriors<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_PLEASURE_DOME>Pleasure Dome<e>.
+[END]
+[ADVANCE_SORCEROUS_LORE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The theoretical backbone of sorcery, written down by practitioners who wanted successors rather than rivals.
+[END]
+[ADVANCE_SORCEROUS_LORE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>
+<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
+[END]
+[ADVANCE_SORCEROUS_LORE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 2210
+Age: 3
+Branch: 4
+[END]
+[ADVANCE_SORCERY_ADEPT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Sorcery Adept requires <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. It costs 3060 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_AIR_ELEMENTAL>Air Elemental<e> and <L:DATABASE_UNITS,UNIT_JAFAR>Jafar<e>.
+[END]
+[ADVANCE_SORCERY_ADEPT_HISTORICAL]
+<c:245,240,225><h:0,0,0>The adept's year is spent on precision, because sorcery punishes approximation immediately.
+[END]
+[ADVANCE_SORCERY_ADEPT_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>
+[END]
+[ADVANCE_SORCERY_ADEPT_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 3060
+Age: 4
+Branch: 4
+[END]
+[ADVANCE_CHAOS_MAGIC_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Chaos Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1265 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_CHAOS_MAGIC_HISTORICAL]
+<c:245,240,225><h:0,0,0>The discipline of drawing power from the raw unmade, where nothing is stable and therefore nothing is forbidden. Its practitioners trade safety for reach.
+[END]
+[ADVANCE_CHAOS_MAGIC_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
+[END]
+[ADVANCE_CHAOS_MAGIC_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 1265
+Age: 2
+Branch: 0
+[END]
+[ADVANCE_CHAOS_LORE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Chaos Lore requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2340 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_HELL_HOUNDS>Hell Hounds<e> and <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>.
+[END]
+[ADVANCE_CHAOS_LORE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The collected findings of wizards who studied disorder itself, and the smaller collection of those who survived doing so.
+[END]
+[ADVANCE_CHAOS_LORE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e>
+<L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
+[END]
+[ADVANCE_CHAOS_LORE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 2340
+Age: 3
+Branch: 0
+[END]
+[ADVANCE_CHAOS_ADEPT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Chaos Adept requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>. It costs 3220 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_GARGOYLE>Gargoyle<e> and <L:DATABASE_UNITS,UNIT_TAURON>Tauron<e>.
+[END]
+[ADVANCE_CHAOS_ADEPT_HISTORICAL]
+<c:245,240,225><h:0,0,0>The first initiation into chaos: the student learns that fire answers willingly and obeys badly. Adepts are recognised less by their skill than by their scars.
+[END]
+[ADVANCE_CHAOS_ADEPT_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>
+[END]
+[ADVANCE_CHAOS_ADEPT_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 3220
+Age: 4
+Branch: 0
+[END]
+[ADVANCE_CHAOS_MAGE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Chaos Mage requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>. It costs 4830 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_EFREET>Efreet<e>, <L:DATABASE_UNITS,UNIT_SALAMANDER>Salamander<e> and <L:DATABASE_UNITS,UNIT_WARRAX>Warrax<e>.
+[END]
+[ADVANCE_CHAOS_MAGE_HISTORICAL]
+<c:245,240,225><h:0,0,0>A chaos mage no longer coaxes the flame but argues with it, and usually wins. The distinction matters to everyone standing nearby.
+[END]
+[ADVANCE_CHAOS_MAGE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>
+[END]
+[ADVANCE_CHAOS_MAGE_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 4830
+Age: 5
+Branch: 0
+[END]
+[ADVANCE_CHAOS_WIZARD_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Chaos Wizard requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. It costs 6440 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_INFERNAL_DEVICE>Infernal Device<e>. It enables the wonders <L:DATABASE_WONDERS,WONDER_ELIXIR_OF_METAMORPHOSIS>Elixir of Metamorphosis<e> and <L:DATABASE_WONDERS,WONDER_FORGE_OF_CHAOS>Forge of Chaos<e>.
+[END]
+[ADVANCE_CHAOS_WIZARD_HISTORICAL]
+<c:245,240,225><h:0,0,0>At the wizard's grade, chaos is no longer a force to be handled but a country to be travelled. Few return unchanged, and fewer return unwilling to go back.
+[END]
+[ADVANCE_CHAOS_WIZARD_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>
+[END]
+[ADVANCE_CHAOS_WIZARD_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 6440
+Age: 6
+Branch: 0
+[END]
+[ADVANCE_CHAOS_MASTER_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Chaos Master requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>. It costs 8280 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_HYDRA>Hydra<e>.
+[END]
+[ADVANCE_CHAOS_MASTER_HISTORICAL]
+<c:245,240,225><h:0,0,0>Mastery of chaos is not control; it is the ability to stand at the centre of something uncontrolled and remain intact.
+[END]
+[ADVANCE_CHAOS_MASTER_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>
+[END]
+[ADVANCE_CHAOS_MASTER_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 8280
+Age: 7
+Branch: 0
+[END]
+[ADVANCE_FUTURE_TECHNOLOGY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Researching Future Technology requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e> and <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>. It costs 9360 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+[END]
+[ADVANCE_FUTURE_TECHNOLOGY_HISTORICAL]
+<c:245,240,225><h:0,0,0>Whatever comes after the last thing anyone thought to name. Every age has believed it had reached this point.
+[END]
+[ADVANCE_FUTURE_TECHNOLOGY_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>
+[END]
+[ADVANCE_FUTURE_TECHNOLOGY_STATISTICS]
+<c:245,240,225><h:0,0,0>Cost: 9360
+Age: 7
 Branch: 3
 [END]
 [ADVANCE_AGE_OF_REASON_GAMEPLAY]
@@ -1519,7 +1535,7 @@ The Tool Making Advance makes available the Warrior unit, which is the first arm
 <c:245,240,225><h:0,0,0>The origins of tool making can be found in prehistoric times, when early man employed naturally sharp stones to, among other things, dig, hunt and cut animal hides.  The human impulse to fashion useful items out of natural substances, such as stone, wood and bone is what set humans apart from other animals.  Tool making developed over the course of prehistory and was one of the advances that made ancient societies capable of feeding, clothing and defending themselves.  Advances continued, and in 11th millennium BC, Palestinian natives created reaping knives by setting flint blades into primitive handles.  Simple metal working dates back to 4500 BC, in which people fashioned ornamental and utilitarian items out of gold, silver and copper.  By heating and hammering metal, treating and tanning hides and cutting wood into virtually any shape, early civilizations could create a tool for almost all of their needs, from armaments to farming implements.
 [END]
 [IMPROVE_WIZARDS_FORTRESS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Wizard's Fortress costs 330 production to build and costs nothing to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>.
+<c:245,240,225><h:0,0,0>Wizard's Fortress costs 330 production to build and costs nothing to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>. In the city that builds it, adds 1 happiness, raises the defence of units inside by 25% and serves as the seat of the empire.
 [END]
 [IMPROVE_WIZARDS_FORTRESS_HISTORICAL]
 <c:245,240,225><h:0,0,0>Part citadel, part laboratory. Its walls are built to keep things in as much as to keep armies out.
@@ -1532,7 +1548,7 @@ The Tool Making Advance makes available the Warrior unit, which is the first arm
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_WIZARDS_FORTRESS>Wizard's Fortress<e>
 [END]
 [IMPROVE_BARRACKS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Barracks costs 270 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
+<c:245,240,225><h:0,0,0>Barracks costs 270 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. In the city that builds it, raises the defence of units inside by 10% and makes land units built here veterans.
 [END]
 [IMPROVE_BARRACKS_HISTORICAL]
 <c:245,240,225><h:0,0,0>Housing soldiers together turns them from armed men into a unit. Barracks are where drill, discipline and the habit of obedience are manufactured.
@@ -1545,7 +1561,7 @@ The Tool Making Advance makes available the Warrior unit, which is the first arm
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>
 [END]
 [IMPROVE_GRANARY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Granary costs 290 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_POTTERY>Pottery<e>.
+<c:245,240,225><h:0,0,0>Granary costs 290 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_POTTERY>Pottery<e>. In the city that builds it, increases food by 10% and shields the city from starvation for 2 turns.
 [END]
 [IMPROVE_GRANARY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Storing the good harvest against the bad one is the single decision that separates a people who persist from a people who scatter.
@@ -1558,20 +1574,20 @@ The Tool Making Advance makes available the Warrior unit, which is the first arm
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_GRANARY>Granary<e>
 [END]
 [IMPROVE_TEMPLE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Temple costs 270 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>.
+<c:245,240,225><h:0,0,0>Temple costs 270 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>. In the city that builds it, adds 1 happiness, counts as a cathedral for happiness and is a religious building.
 [END]
 [IMPROVE_TEMPLE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The first public building any people erect, and usually the last one they will consent to see torn down.
 [END]
 [IMPROVE_TEMPLE_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial_Burial<e>
+<L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>
 [END]
 [IMPROVE_TEMPLE_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_TEMPLE>Temple<e>
 [END]
 [IMPROVE_LIBRARY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Library costs 310 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e>.
+<c:245,240,225><h:0,0,0>Library costs 350 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e>. In the city that builds it, increases science by 10%.
 [END]
 [IMPROVE_LIBRARY_HISTORICAL]
 <c:245,240,225><h:0,0,0>A room where the dead are still arguing. Cities that keep one compound their advantages; cities that burn one start over.
@@ -1584,20 +1600,20 @@ The Tool Making Advance makes available the Warrior unit, which is the first arm
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_LIBRARY>Library<e>
 [END]
 [IMPROVE_COURTHOUSE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Courthouse costs 350 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>.
+<c:245,240,225><h:0,0,0>Courthouse costs 350 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. In the city that builds it, changes crime by -10%.
 [END]
 [IMPROVE_COURTHOUSE_HISTORICAL]
 <c:245,240,225><h:0,0,0>Where a grievance goes instead of a feud. The courthouse is how a distant capital is felt in a provincial street.
 [END]
 [IMPROVE_COURTHOUSE_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code_Of_Laws<e>
+<L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code Of Laws<e>
 [END]
 [IMPROVE_COURTHOUSE_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_COURTHOUSE>Courthouse<e>
 [END]
 [IMPROVE_CITY_WALLS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>City Walls costs 310 production to build and costs nothing to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>.
+<c:245,240,225><h:0,0,0>City Walls costs 310 production to build and costs nothing to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>. In the city that builds it, raises the defence of units inside by 15%, resists conversion by 50%, resists slavers by 50%, counts as city walls and cannot be built in a sea city.
 [END]
 [IMPROVE_CITY_WALLS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The oldest declaration a settlement can make: that it intends to still be here next year.
@@ -1610,7 +1626,7 @@ The Tool Making Advance makes available the Warrior unit, which is the first arm
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_CITY_WALLS>City Walls<e>
 [END]
 [IMPROVE_AQUEDUCT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Aqueduct costs 590 production to build and 2 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>.
+<c:245,240,225><h:0,0,0>Aqueduct costs 350 production to build and 2 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. In the city that builds it, raises the overcrowding threshold by 6 and raises the population limit by 14.
 [END]
 [IMPROVE_AQUEDUCT_HISTORICAL]
 <c:245,240,225><h:0,0,0>Cities die of thirst long before they die of siege. The aqueduct is the unglamorous engineering that lets a town become a city at all.
@@ -1623,20 +1639,20 @@ The Tool Making Advance makes available the Warrior unit, which is the first arm
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_AQUEDUCT>Aqueduct<e>
 [END]
 [IMPROVE_CATHEDRAL_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Cathedral costs 660 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_THEOLOGY>Theology<e>.
+<c:245,240,225><h:0,0,0>Cathedral costs 660 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_THEOLOGY>Theology<e>. In the city that builds it, adds 3 happiness, counts as a cathedral for happiness and is a religious building.
 [END]
 [IMPROVE_CATHEDRAL_HISTORICAL]
 <c:245,240,225><h:0,0,0>Built to be larger than any need it served, on the correct assumption that awe is a form of civic order.
 [END]
 [IMPROVE_CATHEDRAL_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-Commune_With_Gods
+Commune With Gods
 [END]
 [IMPROVE_CATHEDRAL_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_CATHEDRAL>Cathedral<e>
 [END]
 [IMPROVE_UNIVERSITY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>University costs 400 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>.
+<c:245,240,225><h:0,0,0>University costs 400 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. In the city that builds it, increases science by 15%.
 [END]
 [IMPROVE_UNIVERSITY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Teaching and disputation under one roof, chartered so that neither crown nor church can quite shut it.
@@ -1649,7 +1665,7 @@ Commune_With_Gods
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_UNIVERSITY>University<e>
 [END]
 [IMPROVE_COLOSSEUM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Colosseum costs 620 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>.
+<c:245,240,225><h:0,0,0>Colosseum costs 370 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. In the city that builds it, adds 2 happiness.
 [END]
 [IMPROVE_COLOSSEUM_HISTORICAL]
 <c:245,240,225><h:0,0,0>A crowd that is entertained is a crowd that is not rioting. Rulers understood this long before they admitted it.
@@ -1662,7 +1678,7 @@ Commune_With_Gods
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_COLOSSEUM>Colosseum<e>
 [END]
 [IMPROVE_MECHANICIANS_GUILD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Mechanician's Guild costs 1860 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>.
+<c:245,240,225><h:0,0,0>Mechanician's Guild costs 3290 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>. In the city that builds it, increases production by 15% and allows conscript units to be built.
 [END]
 [IMPROVE_MECHANICIANS_GUILD_HISTORICAL]
 <c:245,240,225><h:0,0,0>An organised body of engineers who guard their methods jealously and sell their results dearly.
@@ -1675,33 +1691,33 @@ Commune_With_Gods
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_MECHANICIANS_GUILD>Mechanician's Guild<e>
 [END]
 [IMPROVE_PRIMAL_SOURCE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Primal Source costs 1350 production to build and 2 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>.
+<c:245,240,225><h:0,0,0>Primal Source costs 1350 production to build and 2 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>. In the city that builds it, increases food by 15% and adds 1 happiness.
 [END]
 [IMPROVE_PRIMAL_SOURCE_HISTORICAL]
 <c:245,240,225><h:0,0,0>A place where the raw stuff of magic surfaces of its own accord. Cities are not built near these by accident.
 [END]
 [IMPROVE_PRIMAL_SOURCE_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_FORCES_OF_NATURE>Forces_Of_Nature<e>
+<L:DATABASE_ADVANCES,ADVANCE_FORCES_OF_NATURE>Forces Of Nature<e>
 [END]
 [IMPROVE_PRIMAL_SOURCE_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_PRIMAL_SOURCE>Primal Source<e>
 [END]
 [IMPROVE_MERCHANTS_GUILD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Merchant's Guild costs 400 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>.
+<c:245,240,225><h:0,0,0>Merchant's Guild costs 1690 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_ECOGNOMICS>Ecognomics<e>. In the city that builds it, increases commerce by 15% and opens a brokerage.
 [END]
 [IMPROVE_MERCHANTS_GUILD_HISTORICAL]
 <c:245,240,225><h:0,0,0>Traders who discovered that acting together beats competing, and who quietly became a second government in many cities.
 [END]
 [IMPROVE_MERCHANTS_GUILD_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-Economics
+<L:DATABASE_ADVANCES,ADVANCE_ECOGNOMICS>Ecognomics<e>
 [END]
 [IMPROVE_MERCHANTS_GUILD_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_MERCHANTS_GUILD>Merchant's Guild<e>
 [END]
 [IMPROVE_BEACON_OF_WISDOM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Beacon of Wisdom costs 400 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>.
+<c:245,240,225><h:0,0,0>Beacon of Wisdom costs 400 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>. In the city that builds it, increases science by 20%.
 [END]
 [IMPROVE_BEACON_OF_WISDOM_HISTORICAL]
 <c:245,240,225><h:0,0,0>A tower kept lit by scholars rather than sailors, signalling that this city will pay for knowledge and protect those who bring it.
@@ -1714,20 +1730,20 @@ Economics
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_BEACON_OF_WISDOM>Beacon of Wisdom<e>
 [END]
 [IMPROVE_COASTAL_FORTRESS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Coastal Fortress costs 310 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
+<c:245,240,225><h:0,0,0>Coastal Fortress costs 1270 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_AGE_OF_REASON>Age Of Reason<e>. In the city that builds it, raises the defence of units inside by 10%, raises the attack of sea units by 25% and can only be built in a coastal city.
 [END]
 [IMPROVE_COASTAL_FORTRESS_HISTORICAL]
 <c:245,240,225><h:0,0,0>Guns and wards facing the water, built by every port that has been raided exactly once.
 [END]
 [IMPROVE_COASTAL_FORTRESS_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
+<L:DATABASE_ADVANCES,ADVANCE_AGE_OF_REASON>Age Of Reason<e>
 [END]
 [IMPROVE_COASTAL_FORTRESS_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_COASTAL_FORTRESS>Coastal Fortress<e>
 [END]
 [IMPROVE_HARBOR_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Harbor costs 560 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SEAFARING>Seafaring<e>.
+<c:245,240,225><h:0,0,0>Harbor costs 560 production to build and 1 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SEAFARING>Seafaring<e>. In the city that builds it, increases food by 10% and can only be built in a coastal city.
 [END]
 [IMPROVE_HARBOR_HISTORICAL]
 <c:245,240,225><h:0,0,0>A sheltered place to unload. Everything a coastal city becomes, it becomes because of this.
@@ -1740,33 +1756,33 @@ Economics
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_HARBOR>Harbor<e>
 [END]
 [IMPROVE_FANTASTIC_STABLE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Fantastic Stable costs 1350 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>.
+<c:245,240,225><h:0,0,0>Fantastic Stable costs 1350 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>. In the city that builds it, raises the attack of land units by 25% and adds 5 hit points to units built here.
 [END]
 [IMPROVE_FANTASTIC_STABLE_HISTORICAL]
 <c:245,240,225><h:0,0,0>Stalls built to hold things that resent being held. The stablemasters here are paid hazard rates and earn them.
 [END]
 [IMPROVE_FANTASTIC_STABLE_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser_Fauna_Lore<e>
+<L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>
 [END]
 [IMPROVE_FANTASTIC_STABLE_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_FANTASTIC_STABLE>Fantastic Stable<e>
 [END]
 [IMPROVE_PORT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Port costs 1360 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>.
+<c:245,240,225><h:0,0,0>Port costs 1360 production to build and 3 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. In the city that builds it, increases commerce by 10% and can only be built in a coastal city.
 [END]
 [IMPROVE_PORT_HISTORICAL]
 <c:245,240,225><h:0,0,0>More than a harbour: warehousing, customs, and the machinery of turning a shoreline into an economy.
 [END]
 [IMPROVE_PORT_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea_Lore<e>
+<L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>
 [END]
 [IMPROVE_PORT_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_PORT>Port<e>
 [END]
 [WONDER_GAIAS_SHRINE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Gaia's Shrine costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>.
+<c:245,240,225><h:0,0,0>Gaia's Shrine costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>. Across your empire, it adds 2 food to every city and ends unhappiness from pollution.
 [END]
 [WONDER_GAIAS_SHRINE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The formal recognition that the land is a party to the bargain, and the place where that bargain is renewed.
@@ -1783,7 +1799,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_GAIAS_SHRINE>Gaia's Shrine<e>
 [END]
 [WONDER_PLEASURE_DOME_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Pleasure Dome costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>.
+<c:245,240,225><h:0,0,0>Pleasure Dome costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. Across your empire, it adds 2 happiness in every city and makes every city fully content for 10 turns.
 [END]
 [WONDER_PLEASURE_DOME_HISTORICAL]
 <c:245,240,225><h:0,0,0>A monument to the argument that a contented population is cheaper to rule than a frightened one.
@@ -1800,7 +1816,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_PLEASURE_DOME>Pleasure Dome<e>
 [END]
 [WONDER_FONT_OF_BOUNTY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Font of Bounty costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>.
+<c:245,240,225><h:0,0,0>Font of Bounty costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>. Across your empire, it adds 3 food to every city.
 [END]
 [WONDER_FONT_OF_BOUNTY_HISTORICAL]
 <c:245,240,225><h:0,0,0>A spring that will not run dry and a field that will not fail. Every famine legend in the world is a story about looking for this.
@@ -1834,7 +1850,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_XLIGHTHOUSE>Xlighthouse<e>
 [END]
 [WONDER_GREAT_LIBRARY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Great Library costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>.
+<c:245,240,225><h:0,0,0>Great Library costs 2700 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. Across your empire, it increases science by 20% and adds 2 scientists to every city.
 [END]
 [WONDER_GREAT_LIBRARY_HISTORICAL]
 <c:245,240,225><h:0,0,0>The attempt to gather everything anyone knows into one building. Every civilisation tries it once, and its loss is always the age's defining wound.
@@ -1851,7 +1867,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_GREAT_LIBRARY>Great Library<e>
 [END]
 [WONDER_ORACLE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Oracle costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>.
+<c:245,240,225><h:0,0,0>Oracle costs 2700 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. Across your empire, it adds 2 happiness in every city and counts as 1 extra cathedral in every city.
 [END]
 [WONDER_ORACLE_HISTORICAL]
 <c:245,240,225><h:0,0,0>An institution built on ambiguous answers, which survived because ambiguous answers are never wrong.
@@ -1868,7 +1884,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_ORACLE>Oracle<e>
 [END]
 [WONDER_WALL_OF_BONE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Wall of Bone costs 4500 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>.
+<c:245,240,225><h:0,0,0>Wall of Bone costs 4500 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. Across your empire, it shields your cities from barbarians and makes your cities immune to conversion.
 [END]
 [WONDER_WALL_OF_BONE_HISTORICAL]
 <c:245,240,225><h:0,0,0>A rampart raised from the fallen, which defends a city and also reminds it, daily, of what defence has cost.
@@ -1885,7 +1901,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_WALL_OF_BONE>Wall of Bone<e>
 [END]
 [WONDER_GUILD_OF_LEGENDS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Guild of Legends costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>.
+<c:245,240,225><h:0,0,0>Guild of Legends costs 2700 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>. Across your empire, it adds 10 hit points to every unit and cuts readiness costs by 50%.
 [END]
 [WONDER_GUILD_OF_LEGENDS_HISTORICAL]
 <c:245,240,225><h:0,0,0>Where heroes are registered, outfitted and, when necessary, invented. The paperwork is more of the legend than anyone admits.
@@ -1902,7 +1918,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_GUILD_OF_LEGENDS>Guild of Legends<e>
 [END]
 [WONDER_RUNE_OF_RULERSHIP_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Rune of Rulership costs 4500 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune Lore<e>.
+<c:245,240,225><h:0,0,0>Rune of Rulership costs 2700 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune Lore<e>. Across your empire, it eases empire-size unhappiness by 4 and raises how other wizards regard you by 25.
 [END]
 [WONDER_RUNE_OF_RULERSHIP_HISTORICAL]
 <c:245,240,225><h:0,0,0>A single carved mark that makes obedience feel like agreement. Its existence is the strongest argument ever made against runes.
@@ -1919,7 +1935,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_RUNE_OF_RULERSHIP>Rune of Rulership<e>
 [END]
 [WONDER_BARDIC_COLLEGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Bardic College costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>.
+<c:245,240,225><h:0,0,0>Bardic College costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>. Across your empire, it adds 1 happiness in every city and raises how other wizards regard you by 25.
 [END]
 [WONDER_BARDIC_COLLEGE_HISTORICAL]
 <c:245,240,225><h:0,0,0>Where the songs are written that decide how a war will be remembered. Rulers who ignored the bards were forgotten by them.
@@ -1936,7 +1952,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_BARDIC_COLLEGE>Bardic College<e>
 [END]
 [WONDER_THE_PARTHENON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>The Parthenon costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_THEOLOGY>Theology<e>.
+<c:245,240,225><h:0,0,0>The Parthenon costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_THEOLOGY>Theology<e>. Across your empire, it adds 3 happiness in every city and counts as 1 extra cathedral in every city.
 [END]
 [WONDER_THE_PARTHENON_HISTORICAL]
 <c:245,240,225><h:0,0,0>Proportion made permanent. Built as a temple, remembered as a definition of how a building should be.
@@ -1953,7 +1969,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_THE_PARTHENON>The Parthenon<e>
 [END]
 [WONDER_MYSTIC_XS_TOWER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Mystic X's Tower costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>.
+<c:245,240,225><h:0,0,0>Mystic X's Tower costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>. Across your empire, it has a 10% chance each turn of revealing an advance and reveals the whole world.
 [END]
 [WONDER_MYSTIC_XS_TOWER_HISTORICAL]
 <c:245,240,225><h:0,0,0>Raised by an adept who left no name, only instructions. The instructions are still being followed.
@@ -1970,7 +1986,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_MYSTIC_XS_TOWER>Mystic X's Tower<e>
 [END]
 [WONDER_GUNTHARS_VOYAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Gunthar's Voyage costs 5760 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NAVIGATION>Navigation<e>.
+<c:245,240,225><h:0,0,0>Gunthar's Voyage costs 5760 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NAVIGATION>Navigation<e>. Across your empire, it adds 3 movement to every ship, yields 10 gold per sea trade route and lets every ship cross deep ocean.
 [END]
 [WONDER_GUNTHARS_VOYAGE_HISTORICAL]
 <c:245,240,225><h:0,0,0>One expedition that went further than was reasonable and came back with a map that redrew everyone's world.
@@ -1987,7 +2003,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_GUNTHARS_VOYAGE>Gunthar's Voyage<e>
 [END]
 [WONDER_PROSPEROS_CONSERVATORY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Prospero's Conservatory costs 4500 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>.
+<c:245,240,225><h:0,0,0>Prospero's Conservatory costs 4500 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>. Across your empire, it increases science by 15% and adds 1 specialists to every city.
 [END]
 [WONDER_PROSPEROS_CONSERVATORY_HISTORICAL]
 <c:245,240,225><h:0,0,0>A garden, a library and a workshop kept by one scholar in exile, who proved that isolation and mastery are related.
@@ -2004,7 +2020,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_PROSPEROS_CONSERVATORY>Prospero's Conservatory<e>
 [END]
 [WONDER_ELIXIR_OF_METAMORPHOSIS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Elixir of Metamorphosis costs 7200 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>.
+<c:245,240,225><h:0,0,0>Elixir of Metamorphosis costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>. Across your empire, it increases production by 25% and adds 10 hit points to every unit.
 [END]
 [WONDER_ELIXIR_OF_METAMORPHOSIS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The perfected draught that changes the drinker into whatever the maker intended. The making took generations; the drinking takes a moment.
@@ -2021,7 +2037,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_ELIXIR_OF_METAMORPHOSIS>Elixir of Metamorphosis<e>
 [END]
 [WONDER_ENCHANTED_GROTTO_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Enchanted Grotto costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>.
+<c:245,240,225><h:0,0,0>Enchanted Grotto costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>. Across your empire, it adds 2 food to every city and adds 2 happiness in every city.
 [END]
 [WONDER_ENCHANTED_GROTTO_HISTORICAL]
 <c:245,240,225><h:0,0,0>A cave the land itself has enchanted, tended rather than built. Its keepers claim, plausibly, that it predates them.
@@ -2038,7 +2054,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_ENCHANTED_GROTTO>Enchanted Grotto<e>
 [END]
 [WONDER_ELDRITCH_COLLEGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Eldritch College costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>.
+<c:245,240,225><h:0,0,0>Eldritch College costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>. Across your empire, it increases science by 25% and adds 2 scientists to every city.
 [END]
 [WONDER_ELDRITCH_COLLEGE_HISTORICAL]
 <c:245,240,225><h:0,0,0>A school built over a site nobody sane would choose, precisely because what leaks out of it is worth studying.
@@ -2055,7 +2071,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_ELDRITCH_COLLEGE>Eldritch College<e>
 [END]
 [WONDER_GNOME_TREASURY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Gnome Treasury costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>.
+<c:245,240,225><h:0,0,0>Gnome Treasury costs 7200 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>. Across your empire, it counts as 1 extra brokerage in every city, pays a one-off 250 gold and yields 10 gold per foreign trade route.
 [END]
 [WONDER_GNOME_TREASURY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Vaults dug by people who consider accounting a sacred discipline and interest a form of poetry.
@@ -2072,7 +2088,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_GNOME_TREASURY>Gnome Treasury<e>
 [END]
 [WONDER_REYWINDS_DISCOVERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Reywind's Discovery costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_GREATER_ENCHANTMENTS>Greater Enchantments<e>.
+<c:245,240,225><h:0,0,0>Reywind's Discovery costs 5760 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_GREATER_ENCHANTMENTS>Greater Enchantments<e>. Across your empire, it increases science by 10% and has a 15% chance each turn of revealing an advance.
 [END]
 [WONDER_REYWINDS_DISCOVERY_HISTORICAL]
 <c:245,240,225><h:0,0,0>A single finding that reorganised an entire discipline, and made its discoverer permanently unwelcome in it.
@@ -2106,7 +2122,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_XSTATUE_OF_LIBERTY>Xstatue Of Liberty<e>
 [END]
 [WONDER_MESMERS_TOWER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Mesmer's Tower costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LESSER_ENCHANMENTS>Lesser Enchanments<e>.
+<c:245,240,225><h:0,0,0>Mesmer's Tower costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LESSER_ENCHANMENTS>Lesser Enchanments<e>. Across your empire, it cuts crime by 30%, places a spy in every civilisation and opens an embassy with every civilisation.
 [END]
 [WONDER_MESMERS_TOWER_HISTORICAL]
 <c:245,240,225><h:0,0,0>A tower devoted to the study of influence: what a mind will accept if it is approached in the right order.
@@ -2140,7 +2156,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_XWOMENS_SUFFRAGE>Xwomens Suffrage<e>
 [END]
 [WONDER_FORGE_OF_CHAOS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Forge of Chaos costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>.
+<c:245,240,225><h:0,0,0>Forge of Chaos costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>. Across your empire, it increases production by 30% and cuts building maintenance by 25%.
 [END]
 [WONDER_FORGE_OF_CHAOS_HISTORICAL]
 <c:245,240,225><h:0,0,0>A smithy where the metal argues back. What comes out is never quite what was ordered and is often better.
@@ -2157,7 +2173,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_FORGE_OF_CHAOS>Forge of Chaos<e>
 [END]
 [WONDER_ENTROPY_ENGINE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Entropy Engine costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>.
+<c:245,240,225><h:0,0,0>Entropy Engine costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>. Across your empire, it cuts crime by 50%, frees every slave and forbids slavers everywhere.
 [END]
 [WONDER_ENTROPY_ENGINE_HISTORICAL]
 <c:245,240,225><h:0,0,0>A machine that runs on things falling apart, which is the one fuel supply that can never be exhausted.
@@ -2174,7 +2190,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_ENTROPY_ENGINE>Entropy Engine<e>
 [END]
 [WONDER_LEAGUE_OF_WIZARDS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>League of Wizards costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>.
+<c:245,240,225><h:0,0,0>League of Wizards costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>. Across your empire, it increases science by 30%, has a 10% chance each turn of revealing an advance and opens an embassy with every civilisation, even at war.
 [END]
 [WONDER_LEAGUE_OF_WIZARDS_HISTORICAL]
 <c:245,240,225><h:0,0,0>An agreement among people who did not want to be governed, to be governed slightly, mostly regarding each other.
@@ -2208,7 +2224,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_XAPOLLO_PROGRAM>Xapollo Program<e>
 [END]
 [WONDER_CELESTIAL_BEACON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Celestial Beacon costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>.
+<c:245,240,225><h:0,0,0>Celestial Beacon costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>. Across your empire, it adds 3 happiness in every city and leaves every citizen content.
 [END]
 [WONDER_CELESTIAL_BEACON_HISTORICAL]
 <c:245,240,225><h:0,0,0>A light raised to be seen from outside the world, on the theory that something out there is watching and can be signalled.
@@ -2328,7 +2344,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_SWORDSMEN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Swordsmen: attack 10, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 250 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze_Working<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Swordsmen: attack 10, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 250 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_SWORDSMEN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Swordsmen is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2719,7 +2735,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_PALADINS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Paladins: attack 30, defense 10, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 860 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Paladins: attack 30, defense 10, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1125 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_PALADINS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Paladins is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2765,7 +2781,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_IRON_GOLEM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Iron Golem: attack 40, defense 25, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 1230 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Iron Golem: attack 40, defense 25, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 3500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_IRON_GOLEM_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Iron Golem is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2811,7 +2827,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_STEAM_CANNON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Steam Cannon: attack 50, defense 10, 10 hit points, firepower 2. Moves 1 tile per turn and sees 2 tiles. Costs 3500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Steam Cannon: attack 50, defense 10, 10 hit points, firepower 2. Moves 1 tile per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_STEAM_CANNON_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Steam Cannon is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2949,7 +2965,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WARSHIP_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warship: attack 35, defense 15, 10 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 2310 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SEA_MASTERY>Sea Mastery<e>. This unit can raid trade routes.
+<c:245,240,225><h:0,0,0>Warship: attack 35, defense 15, 10 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 2910 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SEA_MASTERY>Sea Mastery<e>. This unit can raid trade routes.
 [END]
 [UNIT_WARSHIP_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Warship is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2995,7 +3011,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_AIRSHIP_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Airship: attack 25, defense 5, 10 hit points, firepower 1. Moves 6 tiles per turn and sees 2 tiles. Costs 1125 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>.
+<c:245,240,225><h:0,0,0>Airship: attack 25, defense 5, 10 hit points, firepower 1. Moves 6 tiles per turn and sees 2 tiles. Costs 1450 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>.
 [END]
 [UNIT_AIRSHIP_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Airship is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3179,7 +3195,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_MINION_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Minion: attack 0, defense 5, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Minion: attack 0, defense 5, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_MINION_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Minion is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -5930,27 +5946,27 @@ Conservation
 2 Turns
 [END]
 [IMPROVE_XPOWER_PLANT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Xpower Plant costs 400 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
+<c:245,240,225><h:0,0,0>Xpower Plant costs 1350 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_AGE_OF_REASON>Age Of Reason<e>.
 [END]
 [IMPROVE_XPOWER_PLANT_HISTORICAL]
 <c:245,240,225><h:0,0,0>Concentrated industrial power, bought at a cost the surrounding air and water pay on the city's behalf.
 [END]
 [IMPROVE_XPOWER_PLANT_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
+<L:DATABASE_ADVANCES,ADVANCE_AGE_OF_REASON>Age Of Reason<e>
 [END]
 [IMPROVE_XPOWER_PLANT_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_XPOWER_PLANT>Xpower Plant<e>
 [END]
 [IMPROVE_XHYDRO_PLANT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Xhydro Plant costs 490 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
+<c:245,240,225><h:0,0,0>Xhydro Plant costs 1430 production to build and 4 gold per turn to maintain. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_AGE_OF_REASON>Age Of Reason<e>.
 [END]
 [IMPROVE_XHYDRO_PLANT_HISTORICAL]
 <c:245,240,225><h:0,0,0>Falling water put to work at scale, trading a valley for a supply of power that never has to be mined.
 [END]
 [IMPROVE_XHYDRO_PLANT_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
+<L:DATABASE_ADVANCES,ADVANCE_AGE_OF_REASON>Age Of Reason<e>
 [END]
 [IMPROVE_XHYDRO_PLANT_STATISTICS]
 <c:245,240,225><h:0,0,0><L:DATABASE_BUILDINGS,IMPROVE_XHYDRO_PLANT>Xhydro Plant<e>

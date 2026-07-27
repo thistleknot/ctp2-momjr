@@ -185,7 +185,13 @@ def _harvest_labels(gl_library) -> dict:
     for ident, counts in fallback.items():
         best = sorted(counts.items(), key=lambda kv: (-kv[1], len(kv[0]), kv[0]))
         labels.setdefault(ident, best[0][0])
-    return labels
+    # A display name must never contain an underscore. This harvest reads the
+    # PREVIOUS generation's Great_Library.txt, so a raw-ident label written once
+    # is re-harvested every run and never decays -- 39 names ("Bronze_Working",
+    # "Chaos_Magic", ...) survived that way. They are invisible inside an
+    # underlined link, which is why it went unnoticed, but the no-prereq sentence
+    # prints the bare name: "Bronze_Working needs no prior research".
+    return {ident: label.replace("_", " ") for ident, label in labels.items()}
 
 
 def _link(db: str, ident: str, label: str) -> str:
@@ -282,7 +288,7 @@ def _gameplay_building(ident, fields, flags, ctx) -> str:
     if adv:
         bits.append("It becomes available with " + _link(
             "DATABASE_ADVANCES", adv, ctx["name"](adv, "ADVANCE_")) + ".")
-    effects = _effect_sentences(fields)
+    effects = _effect_sentences(fields, flags)
     if effects:
         bits.append("In the city that builds it, " + _join(effects) + ".")
     return " ".join(bits)
@@ -302,28 +308,134 @@ def _gameplay_wonder(ident, fields, flags, ctx) -> str:
     if adv:
         bits.append("It becomes available with " + _link(
             "DATABASE_ADVANCES", adv, ctx["name"](adv, "ADVANCE_")) + ".")
-    effects = _effect_sentences(fields)
+    effects = _wonder_effect_sentences(fields, flags)
     if effects:
-        bits.append("It " + _join(effects) + ".")
+        bits.append("Across your empire, it " + _join(effects) + ".")
     return " ".join(bits)
 
 
-# Effect fields worth stating, in the order a player cares about them.
-_EFFECTS = OrderedDict([
-    ("FoodPercent",       "increases food by {pct}%"),
-    ("ProductionPercent", "increases production by {pct}%"),
-    ("CommercePercent",   "increases commerce by {pct}%"),
-    ("SciencePercent",    "increases science by {pct}%"),
-    ("GoldPercent",       "increases gold by {pct}%"),
-    ("HappyInc",          "adds {n} happiness"),
-    ("DefenseBonus",      "raises defense by {pct}%"),
-    ("CrimeCoef",         "changes crime by {pct}%"),
-    ("PollutionCoef",     "changes pollution by {pct}%"),
-    ("MaxPopIncrement",   "raises the population limit by {n}"),
+# Wonder effects are a DIFFERENT schema from buildings (gs/newdb/wonder.cdb),
+# empire-wide rather than city-wide, and their percent fields are whole-number
+# Ints -- so they cannot share the building table or its /100 formatting.
+_WONDER_EFFECTS = OrderedDict([
+    ("IncKnowledgePercent",            "increases science by {n}%"),
+    ("IncreaseProduction",             "increases production by {n}%"),
+    ("IncreaseFoodAllCities",          "adds {n} food to every city"),
+    ("IncHappinessEmpire",             "adds {n} happiness in every city"),
+    ("DecCrimePercent",                "cuts crime by {n}%"),
+    ("DecEmpireSize",                  "eases empire-size unhappiness by {n}"),
+    ("IncreaseRegard",                 "raises how other wizards regard you by {n}"),
+    ("IncreaseScientists",             "adds {n} scientists to every city"),
+    ("IncreaseSpecialists",            "adds {n} specialists to every city"),
+    ("IncreaseCathedrals",             "counts as {n} extra cathedral in every city"),
+    ("IncreaseBrokerages",             "counts as {n} extra brokerage in every city"),
+    ("IncreaseHp",                     "adds {n} hit points to every unit"),
+    ("IncreaseBoatMovement",           "adds {n} movement to every ship"),
+    ("BonusGold",                      "pays a one-off {n} gold"),
+    ("GoldPerWaterTradeRoute",         "yields {n} gold per sea trade route"),
+    ("GoldPerInternationalTradeRoute", "yields {n} gold per foreign trade route"),
+    ("MultiplyTradeRoutes",            "multiplies trade routes by {n}"),
+    ("DecreaseMaintenance",            "cuts building maintenance by {n}%"),
+    ("ReduceReadinessCost",            "cuts readiness costs by {n}%"),
+    ("RandomAdvanceChance",            "has a {n}% chance each turn of revealing an advance"),
+    ("TemporaryFullHappiness",         "makes every city fully content for {n} turns"),
+])
+
+_WONDER_EFFECT_FLAGS = OrderedDict([
+    ("AllCitizensContent",           "leaves every citizen content"),
+    ("ProtectFromBarbarians",        "shields your cities from barbarians"),
+    ("PreventConversion",            "makes your cities immune to conversion"),
+    ("RevoltingCitiesJoinPlayer",    "draws revolting cities to your banner"),
+    ("FreeSlaves",                   "frees every slave"),
+    ("ProhibitSlavers",              "forbids slavers everywhere"),
+    ("ReformCities",                 "reforms your cities"),
+    ("FreeTradeRoutes",              "makes trade routes free"),
+    ("GlobalRadar",                  "reveals the whole world"),
+    ("SpiesEverywhere",              "places a spy in every civilisation"),
+    ("EmbassiesEverywhere",          "opens an embassy with every civilisation"),
+    ("EmbassiesEverywhereEvenAtWar", "opens an embassy with every civilisation, even at war"),
+    ("AllBoatsDeepWater",            "lets every ship cross deep ocean"),
+    ("ForcefieldEverywhere",         "raises a force field over every city"),
+    ("NoPollutionUnhappiness",       "ends unhappiness from pollution"),
+    ("CoastalBuilding",              "can only be built in a coastal city"),
+    ("CantBuildInSea",               "cannot be built in a sea city"),
+    ("CantBuildOnLand",              "can only be built at sea"),
 ])
 
 
-def _effect_sentences(fields: dict) -> list:
+def _wonder_effect_sentences(fields: dict, flags=()) -> list:
+    out = []
+    for key, tmpl in _WONDER_EFFECTS.items():
+        raw = fields.get(key)
+        if raw is None:
+            continue
+        try:
+            val = int(float(str(raw).split()[0]))
+        except (ValueError, IndexError):
+            continue
+        if val == 0:
+            continue
+        out.append(tmpl.format(n=val))
+    out += [d for f, d in _WONDER_EFFECT_FLAGS.items() if f in flags]
+    return out
+
+
+# Valued effect fields worth stating, in the order a player cares about them.
+#
+# The names are the ENGINE's, taken from gs/newdb/building.cdb. An earlier
+# version invented four of them (DefenseBonus, CrimeCoef, PollutionCoef,
+# MaxPopIncrement); none exists, so those effects could never surface no matter
+# what the data said. A key here that the schema does not declare is a silent
+# hole in the prose, which is exactly the defect this table is meant to close.
+_EFFECTS = OrderedDict([
+    ("FoodPercent",                "increases food by {pct}%"),
+    ("ProductionPercent",          "increases production by {pct}%"),
+    ("CommercePercent",            "increases commerce by {pct}%"),
+    ("SciencePercent",             "increases science by {pct}%"),
+    ("GoldPerCitizen",             "yields {n} gold per citizen"),
+    ("HappyInc",                   "adds {n} happiness"),
+    ("DefendersPercent",           "raises the defence of units inside by {pct}%"),
+    ("OffenseBonusLand",           "raises the attack of land units by {pct}%"),
+    ("OffenseBonusWater",          "raises the attack of sea units by {pct}%"),
+    ("OffenseBonusAir",            "raises the attack of air units by {pct}%"),
+    ("IncreaseHP",                 "adds {n} hit points to units built here"),
+    ("StarvationProtection",       "shields the city from starvation for {n} turns"),
+    ("RaiseOvercrowdingLevel",     "raises the overcrowding threshold by {n}"),
+    ("RaiseMaxPopulation",         "raises the population limit by {n}"),
+    ("IncreaseMaxPopulation",      "raises the population limit by {n}"),
+    ("IncreaseBaseOvercrowding",   "raises the overcrowding threshold by {n}"),
+    ("LowerCrime",                 "changes crime by {pct}%"),
+    ("PreventConversion",          "resists conversion by {pct}%"),
+    ("PreventSlavery",             "resists slavers by {pct}%"),
+    ("LowerPeaceMovement",         "damps the peace movement by {pct}%"),
+    ("PopulationPollutionPercent", "changes pollution from population by {pct}%"),
+    ("ProductionPollutionPercent", "changes pollution from production by {pct}%"),
+])
+
+# Flag effects — present or absent, no value. These live in the block's flag set
+# rather than its key/value fields, so they need their own lane.
+_EFFECT_FLAGS = OrderedDict([
+    ("Capitol",             "serves as the seat of the empire"),
+    ("CityWalls",           "counts as city walls"),
+    ("ForceField",          "projects a force field"),
+    ("Cathedral",           "counts as a cathedral for happiness"),
+    ("IsReligious",         "is a religious building"),
+    ("Brokerage",           "opens a brokerage"),
+    ("AllowGrunts",         "allows conscript units to be built"),
+    ("EnablesAllVeterans",  "makes every unit built here a veteran"),
+    ("EnablesLandVeterans", "makes land units built here veterans"),
+    ("EnablesSeaVeterans",  "makes sea units built here veterans"),
+    ("EnablesAirVeterans",  "makes air units built here veterans"),
+    ("NoUnhappyPeople",     "leaves no unhappy citizens"),
+    ("CoastalBuilding",     "can only be built in a coastal city"),
+    ("CantBuildInSea",      "cannot be built in a sea city"),
+    ("CantBuildOnLand",     "can only be built at sea"),
+    ("OnePerCiv",           "may be built only once per civilisation"),
+    ("CantSell",            "cannot be sold"),
+])
+
+
+def _effect_sentences(fields: dict, flags=()) -> list:
     out = []
     for key, tmpl in _EFFECTS.items():
         raw = fields.get(key)
@@ -337,6 +449,7 @@ def _effect_sentences(fields: dict) -> list:
             continue
         out.append(tmpl.format(pct=f"{val * 100:g}" if abs(val) <= 1 else f"{val:g}",
                                n=f"{val:g}"))
+    out += [d for f, d in _EFFECT_FLAGS.items() if f in flags]
     return out
 
 

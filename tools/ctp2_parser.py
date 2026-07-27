@@ -832,6 +832,23 @@ class FileRegistry:
 
 # === ENTITY REGISTRATION — one entity = multiple files ===
 
+def advance_label(ident: str) -> str:
+    """ADVANCE_BRONZE_WORKING -> "Bronze Working".
+
+    Require: a database ident, with or without its prefix.
+    Guarantee: the result never contains an underscore.
+
+    Three call sites used `ident.split('_', 1)[1].title()`, which strips only the
+    PREFIX and leaves every interior underscore in place -- 39 Great Library
+    labels shipped as "Bronze_Working" / "Chaos_Magic". They are invisible inside
+    an underlined link, which is why it survived, but gl_descriptions harvests
+    these stubs back on the next run, so one bad label propagated into bare prose
+    ("Bronze_Working needs no prior research").
+    """
+    core = ident.split('_', 1)[1] if '_' in ident else ident
+    return core.replace('_', ' ').title()
+
+
 def _unpack_module_docstring(mod):
     """Parse module existence helper """
     return True
@@ -913,17 +930,18 @@ class ModAdvance:
             )
         prereq_section = "Requires:\n"
         for p in self.prereqs:
-            prereq_section += f"<L:DATABASE_ADVANCES,{p}>{p.split('_', 1)[1].title() if '_' in p else p}<e>\n"
+            prereq_section += f"<L:DATABASE_ADVANCES,{p}>{advance_label(p)}<e>\n"
         if not self.prereqs:
             prereq_section = "Requires:\nNothing"
         gl.sections[f"{self.ident}_PREREQ"] = prereq_section.strip()
-        _age_display = {
-            'AGE_ONE': 'Ancient', 'AGE_TWO': 'Medieval', 'AGE_THREE': 'Renaissance',
-            'AGE_FOUR': 'Industrial', 'AGE_FIVE': 'Modern',
-        }
+        # Placeholder only. These three values are RE-DERIVED at the end of the
+        # run by ctp2_generator.reconcile_advance_statistics, because the cost
+        # retune rewrites Cost long after registration and the age words that
+        # used to be hardcoded here were invented (age.txt carries an ordinal,
+        # no name, and MoM ships seven ages, not five).
         branch_display = str(self.branch).split(';')[0].strip()
-        age_display = _age_display.get(str(self.age).strip(), str(self.age))
-        gl.sections[f"{self.ident}_STATISTICS"] = f"Cost: {self.cost}\nAge: {age_display}\nBranch: {branch_display}"
+        gl.sections[f"{self.ident}_STATISTICS"] = (
+            f"Cost: {self.cost}\nAge: {str(self.age).strip()}\nBranch: {branch_display}")
         # uniticon.txt — required or engine raises "not found in Icon database"
         uic = reg.load("default/gamedata/uniticon.txt")
         if self.icon not in uic.blocks:
@@ -999,7 +1017,7 @@ class ModBuilding:
         for suffix in ["GAMEPLAY", "HISTORICAL"]:
             gl.sections[f"{self.ident}_{suffix}"] = f"<L:DATABASE_IMPROVEMENTS,{self.ident}>{self.name}<e>"
         if self.advance:
-            prereq_label = self.advance.split('_', 1)[1].title() if '_' in self.advance else self.advance
+            prereq_label = advance_label(self.advance)
             gl.sections[f"{self.ident}_PREREQ"] = f"Requires:\n<L:DATABASE_ADVANCES,{self.advance}>{prereq_label}<e>"
         else:
             gl.sections[f"{self.ident}_PREREQ"] = f"No advance required."
@@ -1136,7 +1154,7 @@ class ModWonder:
         gl = reg.load("english/gamedata/Great_Library.txt")
         for suffix in ["GAMEPLAY", "HISTORICAL"]:
             gl.sections[f"{self.ident}_{suffix}"] = f"<L:DATABASE_WONDERS,{self.ident}>{self.name}<e>"
-        gl.sections[f"{self.ident}_PREREQ"] = f"Requires:\n<L:DATABASE_ADVANCES,{self.advance}>{self.advance.split('_', 1)[1].title() if '_' in self.advance else self.advance}<e>"
+        gl.sections[f"{self.ident}_PREREQ"] = f"Requires:\n<L:DATABASE_ADVANCES,{self.advance}>{advance_label(self.advance)}<e>"
         gl.sections[f"{self.ident}_STATISTICS"] = f"<L:DATABASE_WONDERS,{self.ident}>{self.name}<e>"
 
     def check(self, reg: FileRegistry) -> List[str]:

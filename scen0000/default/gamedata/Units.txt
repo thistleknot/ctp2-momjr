@@ -973,8 +973,8 @@ UNIT_PALADINS {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 860
-   PowerPoints 430
+   ShieldCost 1125
+   PowerPoints 562
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1075,8 +1075,8 @@ UNIT_IRON_GOLEM {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 1230
-   PowerPoints 615
+   ShieldCost 3500
+   PowerPoints 1750
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1177,8 +1177,8 @@ UNIT_STEAM_CANNON {
    Firepower 2
    Armor 1
    MaxHP 10
-   ShieldCost 3500
-   PowerPoints 1750
+   ShieldCost 3490
+   PowerPoints 1745
    ShieldHunger 2
    GoldHunger 0
    FoodHunger 0
@@ -1460,8 +1460,8 @@ UNIT_WARSHIP {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 2310
-   PowerPoints 1155
+   ShieldCost 2910
+   PowerPoints 1455
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1555,8 +1555,8 @@ UNIT_AIRSHIP {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 1125
-   PowerPoints 562
+   ShieldCost 1450
+   PowerPoints 725
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1931,8 +1931,8 @@ UNIT_MINION {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 350
-   PowerPoints 175
+   ShieldCost 460
+   PowerPoints 230
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0

@@ -93,6 +93,20 @@ def main() -> int:
                 unit_sphere[r["unit_id"]] = s if s in (
                     "life", "nature", "death", "chaos", "sorcery") else "neutral"
 
+    # icon TGA filename -> civ2 category, for the advance proxy buckets below.
+    advance_category: dict[str, str] = {}
+    adv_category_of_name: dict[str, str] = {}
+    adv_csv = args.csv / "advances.csv"
+    if adv_csv.exists():
+        with adv_csv.open(newline="", encoding="utf-8-sig") as fh:
+            for r in csv.DictReader(fh):
+                nm = (r.get("name") or "").split(";")[0].strip()
+                if not nm:
+                    continue
+                cat = (r.get("category") or "").split(";")[0].strip()
+                adv_category_of_name[nm] = cat
+                advance_category[f"ICON_ADVANCE_{sanitize(nm)}.TGA"] = cat
+
     total_proxied = 0
     for fname, prefix, icon_prefix in DIMENSIONS:
         csv_path = args.csv / fname
@@ -106,6 +120,19 @@ def main() -> int:
         if fname == "units.csv":
             for donor in pool:
                 buckets.setdefault(donor_theme(donor, icon_prefix), []).append(donor)
+        elif fname == "advances.csv":
+            # Advance art is CATEGORY art, not per-advance art: the 96 shipped
+            # ICON_ADVANCE_*.tga collapse to exactly 11 distinct images, one per
+            # civ2 @CIVILIZE category (0=Military 1=Economic 2=Social 3=Academic
+            # 4=Applied ...). Currency, Banking and Trade -- all category 1 --
+            # are byte-identical. A blind round-robin therefore hands a new
+            # economic advance whatever cell the counter lands on, which is a
+            # visible mismatch in the Great Library for no reason: the control
+            # plane already states the category. Bucket by it, same shape as the
+            # unit sphere buckets above.
+            for donor in pool:
+                buckets.setdefault(advance_category.get(donor.name.upper(), ""),
+                                   []).append(donor)
 
         # Existing target ids on disk (skip — real or already-proxied art).
         have = {p.name.upper() for p in pictures.iterdir() if p.is_file()}
@@ -126,6 +153,10 @@ def main() -> int:
                 theme = unit_sphere.get(f"{prefix}{sanitize(name)}", "neutral")
                 donor_pool = buckets.get(theme) or buckets.get("neutral") or pool
                 key = theme
+            elif fname == "advances.csv":
+                cat = adv_category_of_name.get(name, "")
+                donor_pool = buckets.get(cat) or pool
+                key = f"{icon_prefix}{cat}"
             else:
                 key = icon_prefix
             i = counters.get(key, 0)

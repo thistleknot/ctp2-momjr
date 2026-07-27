@@ -2516,3 +2516,75 @@ on a **sphere** ladder is decisive. A prereq on the **neutral** ladder
 default that *produced* the reported defect. Minotaur is offered to a
 Tribe-of-Life city precisely because its prereq is `War`. Those rows must be
 decided by name and lore, never by trusting the existing prereq.
+
+## civ2 `nil` vs `no` — opposite sentinels, one union bug (2026-07-27)
+
+`nil` = **no prerequisite** (researchable root). `no` = **never available**.
+Stock `RULES.TXT` ~line 419 settles it: *"If these units are given prerequisites
+other than 'no' they will appear in the game..."*
+
+`ctp2_generator.py` held `_NO_ADVANCE = {'nil','no',''}` — their union. That is
+right for "is this slot a usable code?" and wrong for "does this advance have
+prerequisites?". Using it for the second question shipped `ADVANCE_GLYPHS` as a
+free cost-455 AGE_ONE root.
+
+**The rule was derived, not assumed:** disabled iff at least one slot is `no` AND
+no slot carries a real code. `no,no` selects exactly three rows; a lone `no`
+beside a real code (`Animism = Uni,no`) is an unused second slot.
+
+**Disable, don't delete.** `Advances.cpp::ResetCanResearch` forces
+`canResearch=FALSE` for any advance listing itself as a prerequisite, and the
+block stays in the DB so every reference resolves — deletion instead produces the
+in-game *"not found in Advance database"* dialog.
+
+**The gate is scoped to CITED codes.** `advance_code_map.csv` code `FP` points
+only at the correctly-disabled `ADVANCE_GLYPHS`, and nothing cites `FP`. That is
+dead weight, not a defect. A gate that fires on harmless rows teaches the
+operator to ignore it.
+
+**Collateral finding.** A placeholder cull had swept `Ecognomics` along with 12
+genuine placeholders — a fully enabled advance (`Uni,Ban`) — which is what
+dangled the `Eco` prereq of Merchant's Guild and Gnome Treasury. The lesson is
+that a cull predicate needs a negative control as much as a gate does.
+
+**Process note.** The "headless confirmation is blocked on the portrait primary
+display" blocker was carried across a compaction and was **stale**. One
+`Screen::AllScreens` call killed it and the probe then ran end-to-end. Re-measure
+inherited blockers before reporting them as OPEN.
+
+## The `nil`/`no` union bug had THREE lanes, not one (2026-07-27)
+
+The advance lane was fixed first (see the 2026-07-27 entry above). The same
+`_NO_ADVANCE = {'nil','no',''}` union was load-bearing in two more places, and
+fixing only where the bug was *discovered* left the leak shipping:
+
+| Lane | Site | Symptom |
+|---|---|---|
+| advances | `_advance_row_is_disabled` | `ADVANCE_GLYPHS` shipped as a free cost-455 AGE_ONE root |
+| improvements | `ctp2_generator.py` improvement emit | 3 buildings gated on `ADVANCE_WARRIOR_CODE` = **buildable turn one** |
+| units | `ctp2_generator.py` unit emit | latent — no `no` unit ships today |
+
+The improvement leak was `Coastal Fortress`, `xPower Plant`, `xHydro Plant`.
+Only the first was suspected; a gate found the other two. **The `x` prefix does
+not protect this lane** — the improvement emitter deliberately KEEPS
+`x`-sentinels in the DB for index stability (`_retire_x_sentinels`), so an
+`x` name is not an exclusion here even though it is in seven other passes.
+
+**The fix is the same idiom as the advance lane, not a special case.** A `no`
+entity is gated on a self-prerequisite advance: the block stays in the DB so
+every reference resolves, but the gate can never be researched. Shared helpers
+`self_prereq_advances()` / `never_buildable_gate()` so the two lanes cannot
+disagree.
+
+Gated by `validate_scenario.check_disabled_entities_unbuildable` (Gate 20), which
+reads the **shipped** `EnableAdvance` rather than trusting the generator — a
+future emitter that reintroduces the union fails here even if its own predicate
+says otherwise. Negative-controlled four ways: pre-fix (3 FAILs), column removed
+(blindness detected), gate repointed at a live advance (3 FAILs), a shipping unit
+marked `no` (units lane proven non-blind).
+
+Observed headlessly: the turn-one Build Manager buildings tab now offers
+**Barracks only**; Coastal Fortress is gone.
+
+**The law:** when a sentinel is collapsed in one place, grep every consumer of
+that constant before calling the class closed. One fixed lane is not a fixed bug.

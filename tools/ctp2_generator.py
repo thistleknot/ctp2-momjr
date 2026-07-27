@@ -180,6 +180,156 @@ MOM_PREREQ_ADVANCE_LANE = {
 # Codes that mean "no advance required" (heroes / starter units)
 _NO_ADVANCE = {'nil', 'no', ''}
 
+# `nil` and `no` are OPPOSITE sentinels in civ2 Rules.txt, and _NO_ADVANCE is the
+# UNION of them -- correct only for the question "is this slot a usable code?".
+#
+#   nil = no prerequisite   -> the advance IS researchable, from turn one
+#   no  = never available   -> the advance must NEVER be researchable
+#
+# Stock civ2 documents this at RULES.TXT ~line 419 ("If these units are given
+# prerequisites other than 'no' they will appear in the game..."); stock @CIVILIZE
+# never uses `no`, and MoM JR uses it only on disabled/placeholder slots.
+# Collapsing them shipped ADVANCE_GLYPHS as a free cost-455 AGE_ONE root.
+#
+# Disabled means ALL non-`nil` slots are `no`. Measured against advances.csv:
+# `no,no` -> {User Def Tech A, Extra Advance 4, Glyphs}; a lone `no` beside a real
+# code (`Animism` = `Uni,no`) is just an unused second slot, NOT a disable.
+_DISABLED_SLOT = 'no'
+_UNSPEC_SLOTS = {'nil', ''}
+
+
+def _advance_row_is_disabled(row) -> bool:
+    """True when a civ2 @CIVILIZE row marks the advance permanently unavailable.
+
+    Require: `row` is an advances.csv DictReader row with prereq1/prereq2.
+    Guarantee: True iff at least one slot is `no` and no slot carries a real code.
+    Maintain: `nil`/empty slots are ignored -- they mean "unspecified", not "none".
+
+    The CTP2 realisation of True is a self-prerequisite
+    (`ctp2_parser.ensure_self_prerequisite`), which makes canResearch FALSE while
+    the block stays in the DB so every reference to it still resolves.
+    """
+    slots = [(row.get(c) or '').strip() for c in ('prereq1', 'prereq2')]
+    real = [s for s in slots if s and s not in _UNSPEC_SLOTS and s != _DISABLED_SLOT]
+    return any(s == _DISABLED_SLOT for s in slots) and not real
+
+
+def self_prereq_advances(advance_text: str) -> set[str]:
+    """Advances closed by CTP2's self-prerequisite idiom (Advances.cpp:498).
+
+    Require: `advance_text` is the full text of the Advance.txt an entity will
+    ship against.
+    Guarantee: every ident that lists ITSELF as a prerequisite, i.e. every
+    advance `ResetCanResearch` forces to canResearch=FALSE.
+    """
+    return {
+        m.group(1)
+        for m in re.finditer(r'^(ADVANCE_\w+) \{(.*?)^\}', advance_text, re.S | re.M)
+        if re.search(r'Prerequisites\s+' + m.group(1) + r'\b', m.group(2))
+    }
+
+
+def never_buildable_gate(disabled: set[str], fallback: str) -> str:
+    """EnableAdvance for an entity civ2 marks `no` — never available.
+
+    Require: `disabled` is `self_prereq_advances` over the SAME Advance.txt.
+    Guarantee: a deterministic ident that exists in the DB and can never be
+    researched, so the block stays resolvable (no "not found in Advance
+    database" dialog) while being permanently unbuildable.
+
+    The unit and improvement lanes had the same `nil`/`no` union bug the advance
+    lane did: both collapsed into _NO_ADVANCE and gated on ADVANCE_WARRIOR_CODE,
+    which is buildable on turn one. `Coastal Fortress` shipped that way.
+
+    Falls back to `fallback` only when nothing is disabled — impossible in MoM
+    (169 base advances are closed) but must not crash a stock tree.
+    """
+    return sorted(disabled)[0] if disabled else fallback
+
+
+def gl_age_display(age_text: str) -> dict[str, str]:
+    """AGE_* -> the number the Great Library prints, derived from age.txt.
+
+    Require: `age_text` is the scenario's age.txt.
+    Guarantee: one entry per declared age, mapping the ident to its ordinal.
+
+    ctp2_parser hardcoded five era WORDS (Ancient/Medieval/Renaissance/
+    Industrial/Modern). Two problems, both measured: MoM ships SEVEN ages, so
+    AGE_SIX and AGE_SEVEN printed as raw idents; and `age.txt` carries no
+    display name at all -- the AGE_* record is purely ordinal (`Age N`), so
+    those words were invented, not derived. The engine's own AGE_NAME_* strings
+    in ldl_str.txt are a different, five-valued concept and do not line up.
+
+    The ordinal is the only claim the data actually supports, and it stays
+    correct when the ladder is re-laid out (AGE_FIVE becomes a magic tier, not
+    "Modern").
+    """
+    return {
+        m.group(1): m.group(2)
+        for m in re.finditer(r'^(AGE_\w+) \{(?:.*?)^\s*Age\s+(\d+)',
+                             age_text, re.S | re.M)
+    }
+
+
+def reconcile_advance_statistics(gl_library, advance_text: str,
+                                 age_text: str = "") -> int:
+    """Re-derive every ADVANCE_*_STATISTICS Cost/Age/Branch from the live DB.
+
+    Require: `advance_text` is the FINAL Advance.txt -- call after every cost
+    rescale and prereq pass, alongside the Great Library description pass.
+    Guarantee: no _STATISTICS line disagrees with the block it describes.
+    Returns the number of sections changed.
+
+    ctp2_parser.Advance.register stamps these three lines at REGISTRATION time,
+    but `_retune_mom_advance_costs` rewrites Cost ~1300 lines later, so the
+    Library shipped `Cost: 1000` for an advance the DB priced at 1025. Same
+    pass-ordering class as the improvement rescale; the fix is the same one --
+    derive from the artifact at the end, never carry a value forward.
+
+    Rewrites only the numeric tail of each line, so the `<c:...><h:...>` colour
+    tag gl_descriptions prefixes survives regardless of which pass runs first.
+    """
+    ages = gl_age_display(age_text)
+    live: dict[str, dict[str, str]] = {}
+    for m in re.finditer(r'^(ADVANCE_\w+) \{(.*?)^\}', advance_text, re.S | re.M):
+        body = m.group(2)
+        fields = {}
+        for key, pat in (("Cost", r'^\s*Cost\s+(\S+)'),
+                         ("Age", r'^\s*Age\s+(\S+)'),
+                         ("Branch", r'^\s*Branch\s+(\S+)')):
+            f = re.search(pat, body, re.M)
+            if f:
+                fields[key] = f.group(1)
+        live[m.group(1)] = fields
+
+    changed = 0
+    for section, text in list((getattr(gl_library, "sections", None) or {}).items()):
+        if not section.endswith("_STATISTICS"):
+            continue
+        fields = live.get(section[: -len("_STATISTICS")])
+        if not fields:
+            continue
+        out = []
+        for line in (text or "").splitlines():
+            for key in ("Cost", "Age", "Branch"):
+                if key not in fields:
+                    continue
+                m = re.match(rf'^(.*?){key}:\s*(.*)$', line)
+                if not m:
+                    continue
+                value = fields[key]
+                if key == "Age":
+                    value = ages.get(value, value)
+                line = f"{m.group(1)}{key}: {value}"
+                break
+            out.append(line)
+        new_text = "\n".join(out)
+        if new_text != text:
+            gl_library.sections[section] = new_text
+            changed += 1
+    return changed
+
+
 # Engine-required unit slots that must stay visible even in a MoM-only scenario.
 _ENGINE_REQUIRED_UNITS = {
     "UNIT_CITY",
@@ -498,6 +648,107 @@ def _save_raw_block_file(rel: str, file_obj: P.RawBlockTextFile) -> None:
     _write_rel(rel, file_obj.render())
 
 
+# ---------------------------------------------------------------------------
+# Legal effect fields for a Building block.
+#
+# Transcribed from the engine record schema, H:/Games/civctp2/ctp2_code/gs/newdb/
+# building.cdb -- the same file dbgen compiles into BuildingRecord. A token that
+# is not here is a typo: CTP2's parser aborts scenario load on an unknown field,
+# so the generator refuses rather than emitting it.
+#
+# Value kinds mirror the .cdb declaration: 'flag' takes no argument, 'int' takes
+# a whole number, 'float' takes a fraction (percent effects are 0.15 == +15%).
+# ---------------------------------------------------------------------------
+BUILDING_EFFECT_FIELDS: dict[str, str] = {
+    # economy / growth
+    "FoodPercent": "float",
+    "ProductionPercent": "float",
+    "CommercePercent": "float",
+    "SciencePercent": "float",
+    "SciencePerPop": "float",
+    "GoldPerCitizen": "int",
+    "FoodVat": "float",
+    "StarvationProtection": "int",
+    "RaiseOvercrowdingLevel": "int",
+    "RaiseMaxPopulation": "int",
+    "IncreaseBaseOvercrowding": "int",
+    "IncreaseMaxPopulation": "int",
+    # happiness / order
+    "HappyInc": "int",
+    "NoUnhappyPeople": "flag",
+    "LowerCrime": "float",
+    "PreventConversion": "float",
+    "PreventSlavery": "float",
+    "LowerPeaceMovement": "float",
+    "IsReligious": "flag",
+    "Cathedral": "flag",
+    "Capitol": "flag",
+    "Brokerage": "flag",
+    # military
+    "DefendersPercent": "float",
+    "OffenseBonusLand": "float",
+    "OffenseBonusWater": "float",
+    "OffenseBonusAir": "float",
+    "IncreaseHP": "int",
+    "CityWalls": "flag",
+    "ForceField": "flag",
+    "AllowGrunts": "flag",
+    "EnablesAllVeterans": "flag",
+    "EnablesLandVeterans": "flag",
+    "EnablesSeaVeterans": "flag",
+    "EnablesAirVeterans": "flag",
+    # siting
+    "CoastalBuilding": "flag",
+    "CantBuildInSea": "flag",
+    "CantBuildOnLand": "flag",
+    "OnePerCiv": "flag",
+    "CantSell": "flag",
+    # pollution
+    "PopulationPollutionPercent": "float",
+    "ProductionPollutionPercent": "float",
+    "PollutionAmount": "float",
+}
+
+
+def parse_effects(spec: str, owner: str) -> list[str]:
+    """Turn one `effects` cell into validated `\\tField value` emitter lines.
+
+    Grammar: semicolon-separated tokens, each `Field` (flag) or `Field value`.
+    Require: every field is in BUILDING_EFFECT_FIELDS and carries the arity that
+    schema declares. Guarantee: the returned lines are parseable by the engine,
+    or SystemExit -- a bad field is a scenario-load abort, so failing the build
+    is strictly cheaper than shipping it.
+    """
+    lines: list[str] = []
+    for token in (spec or "").split(";"):
+        token = token.strip()
+        if not token:
+            continue
+        parts = token.split()
+        field, value = parts[0], (parts[1] if len(parts) > 1 else None)
+        kind = BUILDING_EFFECT_FIELDS.get(field)
+        if kind is None:
+            raise SystemExit(
+                f"improvements.csv: {owner!r} names unknown building field {field!r} "
+                f"(not in building.cdb)")
+        if len(parts) > 2:
+            raise SystemExit(f"improvements.csv: {owner!r} effect {token!r} has extra words")
+        if kind == "flag":
+            if value is not None:
+                raise SystemExit(f"improvements.csv: {owner!r} flag {field!r} takes no value")
+            lines.append(f"\t{field}")
+            continue
+        if value is None:
+            raise SystemExit(f"improvements.csv: {owner!r} field {field!r} needs a {kind} value")
+        try:
+            float(value) if kind == "float" else int(value)
+        except ValueError:
+            raise SystemExit(
+                f"improvements.csv: {owner!r} field {field!r} wants a {kind}, got {value!r}")
+        lines.append(f"\t{field} {value}")
+    return lines
+
+
 def _merge_mom_improvements_into_buildings() -> int:
     """Reconstruct buildings.txt STRICTLY from the control plane (improvements.csv).
 
@@ -519,11 +770,7 @@ def _merge_mom_improvements_into_buildings() -> int:
     advances = set(_adv_file.blocks) or set(
         _re.findall(r'^(ADVANCE_[A-Z0-9_]+)', _advance_text, _re.M))
     # Advances disabled by self-prerequisite — see the prereq resolution below.
-    _disabled_advances = {
-        _m.group(1)
-        for _m in _re.finditer(r'^(ADVANCE_\w+) \{(.*?)^\}', _advance_text, _re.S | _re.M)
-        if _re.search(r'Prerequisites\s+' + _m.group(1) + r'\b', _m.group(2))
-    }
+    _disabled_advances = self_prereq_advances(_advance_text)
 
     # RECONSTRUCT FROM NOTHING: Start with a completely empty file.
     bld = P.RawBlockTextFile()
@@ -580,7 +827,13 @@ def _merge_mom_improvements_into_buildings() -> int:
                 desc = f"DESCRIPTION_{ident}"
                 
                 prereq = row.get("prereq", "").strip()
-                if prereq in _NO_ADVANCE:
+                if prereq == _DISABLED_SLOT:
+                    # `no` = NEVER available, the OPPOSITE of `nil`. Gate on a
+                    # self-prerequisite advance so the block still resolves but
+                    # can never be built. Collapsing the two sentinels is what
+                    # shipped Coastal Fortress as a turn-one buildable.
+                    adv = never_buildable_gate(_disabled_advances, fallback_adv)
+                elif prereq in _NO_ADVANCE:
                     adv = "ADVANCE_WARRIOR_CODE"
                 else:
                     # Resolution CHAIN, most specific first. A flat override of
@@ -616,33 +869,18 @@ def _merge_mom_improvements_into_buildings() -> int:
                 if adv:
                     lines.append(f"	EnableAdvance {adv}")
                 lines += [f"\tProductionCost {cost}", f"\tUpkeep {upkeep}"]
+                # Effects are what makes a building worth its cost. Without
+                # them every block was DefaultIcon/Description/EnableAdvance/
+                # ProductionCost/Upkeep and nothing else -- 21 buildings that
+                # charged upkeep and did literally nothing.
+                lines += parse_effects(row.get("effects", ""), name)
                 lines.append("}")
                 bld.add_block(ident, "\n".join(lines))
                 merged += 1
     
-    for ident, fields in {} .items():  # Dummy loop to keep rest of function intact
-        if ident in bld.blocks:
-            continue  # AE base building — keep verbatim
-        icon = fields.get("IMPROVE_DEFAULT_ICON") or fields.get("DefaultIcon") or f"ICON_{ident}"
-        desc = fields.get("IMPROVE_DESCRIPTION") or fields.get("Description") or f"DESCRIPTION_{ident}"
-        adv = fields.get("ENABLING_ADVANCE") or fields.get("EnableAdvance") or ""
-        adv = remap.get(adv, adv)
-        if adv and adv not in advances:
-            adv = fallback_adv
-        cost = fields.get("IMPROVEMENT_PRODUCTION_COST") or fields.get("ProductionCost") or "100"
-        upkeep = fields.get("IMPROVEMENT_UPKEEP") or fields.get("Upkeep") or "1"
-        lines = [f"{ident} {{", f"\tDefaultIcon {icon}", f"\tDescription {desc}"]
-        if adv:
-            lines.append(f"\tEnableAdvance {adv}")
-        lines += [f"\tProductionCost {cost}", f"\tUpkeep {upkeep}"]
-        
-        # NOTE: buildings.txt does NOT support NoIndex or GLHidden flags.
-        # Injecting them here causes CTP2 parser corruption and Icon database errors.
-        # Hidden base improvements are handled by omitting them from build lists instead.
-            
-        lines.append("}")
-        bld.add_block(ident, "\n".join(lines))
-        merged += 1
+    # NOTE: buildings.txt does NOT support NoIndex or GLHidden flags. Injecting
+    # them causes CTP2 parser corruption and Icon database errors. Hidden base
+    # improvements are handled by omitting them from build lists instead.
     _save_raw_block_file("default/gamedata/buildings.txt", bld)
     # Improve.txt is never loaded by the engine (not in gamefile.txt) — remove it so it
     # can't be mistaken for the live improvement DB.
@@ -1405,6 +1643,63 @@ def _scan_wonder_blocks(text: str) -> dict[str, str]:
     return blocks
 
 
+def _write_advance_icon_file() -> int:
+    """Emit scen0000 advanceicon.txt keyed to our own Great Library sections.
+
+    Require: Advance.txt and english/gamedata/Great_Library.txt are final on disk.
+    Guarantee: every live ADVANCE_* has an icon record whose Gameplay/Historical/
+    Prerequisites/Statistics fields name sections that exist in OUR Great Library.
+    Maintain: the icon/movie art fields are carried over from the base record when
+    one exists, so nothing regresses visually.
+
+    Why it exists: the Great Library panel key is the icon record's field VERBATIM
+    (greatlibrarywindow.cpp:343 -> Look_Up_Data). Nothing derives `IDENT_GAMEPLAY`.
+    Stock advanceicon.txt names `GAMEA011.txt`-style keys, which no Great Library
+    file in this install defines -- so every stock-ident advance rendered base
+    prose or nothing at all, no matter what we wrote into our own GL file.
+    """
+    adv_path = SCENARIO / "default/gamedata/Advance.txt"
+    gl_path = SCENARIO / "english/gamedata/Great_Library.txt"
+    if not adv_path.exists() or not gl_path.exists():
+        return 0
+    sections = set(re.findall(
+        r'^\[([A-Z0-9_]+)\]', gl_path.read_text(encoding="latin-1"), re.M))
+    blocks = _scan_advance_blocks(
+        re.sub(r"//.*", "", adv_path.read_text(encoding="latin-1")))
+
+    base_art: dict[str, tuple[str, str]] = {}
+    base_icon = CTP2_DATA / "default/gamedata/advanceicon.txt"
+    if base_icon.exists():
+        for ident, body in re.findall(
+                r'^(ICON_[A-Z0-9_]+)\s*\{(.*?)\}', base_icon.read_text(encoding="latin-1"),
+                re.M | re.S):
+            art = re.search(r'Icon\s+"([^"]*)"', body)
+            movie = re.search(r'Movie\s+"([^"]*)"', body)
+            base_art[ident] = (art.group(1) if art else "NULL",
+                               movie.group(1) if movie else "NULL")
+
+    lines = []
+    for ident, block_text in sorted(blocks.items()):
+        icon_id = _raw_block_value(block_text, "Icon") or f"ICON_{ident}"
+        keys = [f"{ident}_GAMEPLAY", f"{ident}_HISTORICAL",
+                f"{ident}_PREREQ", f"{ident}_STATISTICS"]
+        if not all(k in sections for k in keys):
+            continue
+        art, movie = base_art.get(icon_id, (f"{icon_id}.tga", "NULL"))
+        lines.append(
+            f'{icon_id} {{ Icon "{art}" Movie "{movie}" '
+            f'Gameplay "{keys[0]}" Historical "{keys[1]}" '
+            f'Prerequisites "{keys[2]}" Vari "{keys[3]}" '
+            f'Frame "Null" Statistics "{keys[3]}" }}'
+        )
+    if not lines:
+        return 0
+    out = SCENARIO / "default/gamedata/advanceicon.txt"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text("\n".join(lines) + "\n", encoding="latin-1")
+    return len(lines)
+
+
 def _scan_advance_blocks(text: str) -> dict[str, str]:
     """Return nested-brace-safe ADVANCE_* blocks keyed by advance ID."""
     blocks: dict[str, str] = {}
@@ -1628,6 +1923,146 @@ def _load_mom_wonder_source_specs(
         for age, values in bands.items()
         if values
     }
+
+
+# ---------------------------------------------------------------------------
+# Legal effect fields for a Wonder block.
+#
+# From gs/newdb/wonder.cdb, then INTERSECTED with the fields stock CTP2's own
+# Wonder.txt actually uses. wonder.cdb declares a dozen more that no shipped
+# wonder touches and several the comments mark "FU" (future use); a field the
+# retail data never exercises is one whose engine support is unproven, and an
+# unproven effect on a 3240-production wonder is worse than none.
+#
+# Wonder effects are EMPIRE-wide, not city-wide. Percent-valued ones here are
+# whole-number Ints (DecCrimePercent 30 == -30% crime), unlike the Building
+# lane's floats -- that asymmetry is the engine's, not ours.
+# ---------------------------------------------------------------------------
+WONDER_EFFECT_FIELDS: dict[str, str] = {
+    "IncKnowledgePercent": "int",
+    "DecCrimePercent": "int",
+    "IncHappinessEmpire": "int",
+    "IncreaseRegard": "int",
+    "IncreaseProduction": "int",
+    "IncreaseFoodAllCities": "int",
+    "IncreaseScientists": "int",
+    "IncreaseSpecialists": "int",
+    "IncreaseHp": "int",
+    "IncreaseBoatMovement": "int",
+    "IncreaseCathedrals": "int",
+    "IncreaseBrokerages": "int",
+    "BonusGold": "int",
+    "GoldPerWaterTradeRoute": "int",
+    "GoldPerInternationalTradeRoute": "int",
+    "DecEmpireSize": "int",
+    "ReduceReadinessCost": "int",
+    "TemporaryFullHappiness": "int",
+    "RandomAdvanceChance": "int",
+    "DecreaseMaintenance": "int",
+    "MultiplyTradeRoutes": "int",
+    "ProtectFromBarbarians": "flag",
+    "PreventConversion": "flag",
+    "RevoltingCitiesJoinPlayer": "flag",
+    "FreeSlaves": "flag",
+    "ProhibitSlavers": "flag",
+    "ReformCities": "flag",
+    "FreeTradeRoutes": "flag",
+    "GlobalRadar": "flag",
+    "SpiesEverywhere": "flag",
+    "EmbassiesEverywhere": "flag",
+    "EmbassiesEverywhereEvenAtWar": "flag",
+    "AllCitizensContent": "flag",
+    "AllBoatsDeepWater": "flag",
+    "ForcefieldEverywhere": "flag",
+    "NoPollutionUnhappiness": "flag",
+    "CantBuildInSea": "flag",
+    "CantBuildOnLand": "flag",
+    "CoastalBuilding": "flag",
+    "OnePerCiv": "flag",
+}
+
+# Fields a wonder block carries for reasons other than effect.
+WONDER_STRUCTURAL_FIELDS = frozenset({
+    "DefaultIcon", "Description", "Movie", "EnableAdvance", "ObsoleteAdvance",
+    "ProductionCost", "PrerequisiteBuilding",
+})
+
+
+def parse_wonder_effects(spec: str, owner: str) -> list[str]:
+    """Same grammar as parse_effects, against the Wonder schema."""
+    lines: list[str] = []
+    for token in (spec or "").split(";"):
+        token = token.strip()
+        if not token:
+            continue
+        parts = token.split()
+        field, value = parts[0], (parts[1] if len(parts) > 1 else None)
+        kind = WONDER_EFFECT_FIELDS.get(field)
+        if kind is None:
+            raise SystemExit(
+                f"wonders.csv: {owner!r} names unknown wonder field {field!r} "
+                f"(not in wonder.cdb, or unused by stock CTP2)")
+        if len(parts) > 2:
+            raise SystemExit(f"wonders.csv: {owner!r} effect {token!r} has extra words")
+        if kind == "flag":
+            if value is not None:
+                raise SystemExit(f"wonders.csv: {owner!r} flag {field!r} takes no value")
+            lines.append(f"   {field}")
+            continue
+        if value is None:
+            raise SystemExit(f"wonders.csv: {owner!r} field {field!r} needs an int value")
+        try:
+            int(value)
+        except ValueError:
+            raise SystemExit(f"wonders.csv: {owner!r} field {field!r} wants an int, got {value!r}")
+        lines.append(f"   {field} {value}")
+    return lines
+
+
+def _apply_wonder_effects() -> int:
+    """Rewrite every wonder block's effect tail from wonders.csv `effects`.
+
+    Require: Wonder.txt blocks exist (this runs after the wonder passes).
+    Guarantee: each block's non-structural lines are EXACTLY the CSV's, so the
+    pass is idempotent -- it strips whatever effect tail is there before
+    appending, and a second run therefore produces identical bytes.
+
+    Why it exists: all 24 MoM wonders shipped as DefaultIcon/Description/
+    EnableAdvance/ProductionCost and nothing else -- 3240 production for no
+    mechanical effect whatsoever, the same inert-block defect as the buildings.
+    """
+    if not _csv_exists("wonders.csv"):
+        return 0
+    effects_by_id = {
+        (row.get("id") or "").strip(): (row.get("effects") or "").strip()
+        for row in _csv_rows("wonders.csv")
+    }
+    rel = "default/gamedata/Wonder.txt"
+    wonder_file = _load_raw_block_file(rel)
+    changed = 0
+    for ident, block_text in list(wonder_file.blocks.items()):
+        spec = effects_by_id.get(ident)
+        if spec is None:
+            continue
+        head, body = [], block_text.splitlines()
+        for line in body:
+            stripped = line.strip()
+            if (stripped and not stripped.startswith("//") and stripped != "}"
+                    and "{" not in stripped
+                    and stripped.split()[0] not in WONDER_STRUCTURAL_FIELDS):
+                continue  # an old effect line: drop it, the CSV is the truth
+            head.append(line)
+        closer = head.pop() if head and head[-1].strip() == "}" else "}"
+        rebuilt = "\n".join(head + parse_wonder_effects(spec, ident) + [closer])
+        if rebuilt != block_text:
+            wonder_file.add_block(ident, rebuilt)
+            changed += 1
+    if changed:
+        _save_raw_block_file(rel, wonder_file)
+        refreshed = P.WonderFile()
+        refreshed.parse(_read_rel(rel))
+        reg._parsed[rel] = refreshed
+    return changed
 
 
 def _retune_mom_wonder_costs(advance_ages: dict[str, str]) -> int:
@@ -2334,6 +2769,80 @@ def _scaled_mom_advance_cost(weight: int, age: str, prereq_count: int,
     round_to = float(scaling["round_to"])
     scaled = int(round((base_cost * prereq_factor) / round_to) * int(round_to))
     return max(low, scaled)
+
+
+def csv_advance_prereq_edges() -> dict[str, list[str]]:
+    """Return ADVANCE_* -> [prereq ADVANCE_*] exactly as advances.csv declares.
+
+    Single source for the generator pass and the gate, so the two cannot drift.
+    Resolution is through the `unit` lane of advance_code_map.csv -- that is the
+    lane the advance importer has always used, not the `prereq` lane.
+    """
+    edges: dict[str, list[str]] = {}
+    with open(str(MOMJR / "advances.csv"), newline='', encoding='utf-8') as f:
+        for row in csv.DictReader(f):
+            name = (row.get('name') or '').split(';')[0].strip()
+            if (not name or name.startswith('x') or 'Extra Advance' in name
+                    or name.lower() == 'blah'):
+                continue
+            wanted = []
+            for code_col in ('prereq1', 'prereq2'):
+                code = (row.get(code_col) or '').strip()
+                if code and code not in _NO_ADVANCE:
+                    adv_id = MOM_UNIT_ADVANCE.get(code)
+                    if adv_id and adv_id not in wanted:
+                        wanted.append(adv_id)
+            if wanted:
+                edges[f"ADVANCE_{sanitize(name)}"] = wanted
+    return edges
+
+
+def _reconcile_advance_prereqs(adv_file: "P.AdvanceFile") -> int:
+    """Add every advances.csv prereq edge missing from a pre-existing block.
+
+    Require: the advances.csv registration loop has run.
+    Guarantee: for each CSV row, every declared prereq appears as a
+    `Prerequisites` line in that advance's block.
+    Maintain: edges the base tree declares but the CSV does not are left alone --
+    `nil` in the CSV means "unspecified", not "assert none", so a rewrite would
+    silently flatten the stock tech tree.
+
+    Why it exists: RawBlockTextFile.add_advance (ctp2_parser.py:523) is
+    APPEND-ONLY. Any ident already present in the seeded Advance.txt discards its
+    whole CSV-derived block, prereqs included -- so the control plane silently
+    loses to whatever the seed happened to contain. Measured fallout today is one
+    edge (ADVANCE_WRITING <- ADVANCE_ALPHABET), but the hole is a class, not a
+    case, and the gate below is what keeps it closed.
+
+    Ordering: must run BEFORE _retune_mom_advance_costs, which prices an advance
+    partly by its prerequisite count.
+    """
+    blocks = _scan_advance_blocks(adv_file._text)
+    changed = 0
+    for ident, wanted in csv_advance_prereq_edges().items():
+        block_text = blocks.get(ident)
+        if block_text is None:
+            continue
+        have = set(re.findall(r'^\s*Prerequisites\s+(ADVANCE_[A-Z0-9_]+)\s*$',
+                              block_text, re.MULTILINE))
+        missing = [p for p in wanted if p not in have]
+        if not missing:
+            continue
+        lines = block_text.splitlines(keepends=True)
+        insert_at = 1  # immediately after the `IDENT {` opener
+        for offset, line in enumerate(lines[1:], start=1):
+            if re.match(r'^\s*Prerequisites\s+ADVANCE_', line):
+                insert_at = offset + 1
+        indent = "   "
+        new_block = ''.join(
+            lines[:insert_at]
+            + [f"{indent}Prerequisites {p}\n" for p in missing]
+            + lines[insert_at:]
+        )
+        adv_file._text = adv_file._text.replace(block_text, new_block, 1)
+        blocks[ident] = new_block
+        changed += 1
+    return changed
 
 
 def _retune_mom_advance_costs(adv_file: "P.AdvanceFile") -> int:
@@ -3363,6 +3872,7 @@ def main():
     reg.load("english/gamedata/Great_Library.txt")
 
     mom_advance_idents: set[str] = set(MOM_UNIT_ADVANCE.values())
+    disabled_advance_idents: set[str] = set()
 
     # Generate stub advances for base-unit EnableAdvance refs not in advances.csv
     adv_file = reg.load("default/gamedata/Advance.txt")
@@ -3387,11 +3897,28 @@ def main():
                     adv_id = MOM_UNIT_ADVANCE.get(code)
                     if adv_id:
                         prereqs.append(adv_id)
+            if _advance_row_is_disabled(row):
+                disabled_advance_idents.add(ident)
             is_new = ident not in reg.load("default/gamedata/Advance.txt").blocks
             P.ModAdvance(ident, name, "1000", cat, _AGE_MAP.get(str(epoch), 'AGE_ONE'),
                          prereqs=prereqs).register(reg)
             if is_new:
                 print(f"  + advance: {name}")
+
+    # Close every advance whose civ2 row says `no`. Must run AFTER registration
+    # (the block has to exist) and BEFORE the cost retune, which discounts
+    # self-prereqs when counting real research dependencies.
+    adv_file = reg.load("default/gamedata/Advance.txt")
+    closed_disabled = 0
+    for ident in sorted(disabled_advance_idents & set(adv_file.blocks)):
+        if adv_file.ensure_self_prerequisite(ident):
+            closed_disabled += 1
+    if closed_disabled:
+        print(f"  + closed {closed_disabled} advance(s) disabled by a civ2 `no` prerequisite")
+    # Before the cost retune, which prices an advance partly by its prereq count.
+    reconciled_prereqs = _reconcile_advance_prereqs(adv_file)
+    if reconciled_prereqs:
+        print(f"  + restored control-plane prereqs on {reconciled_prereqs} pre-existing advance(s)")
     retuned_advance_costs = _retune_mom_advance_costs(adv_file)
     if retuned_advance_costs:
         print(f"  + rescaled {retuned_advance_costs} MoM advance cost(s) into AE age bands")
@@ -3565,6 +4092,8 @@ def main():
         written_runtime_wonder_art,
     ) = _ensure_runtime_wonder_gl_surfaces(gl_str, gl_library, waw_library, wonder_specs)
     retuned_wonder_costs = _retune_mom_wonder_costs(advance_ages)
+    # After the cost/metadata passes, so it owns the tail of a settled block.
+    _apply_wonder_effects()
     retuned_improvement_costs = _retune_mom_improvement_costs(advance_ages)
     if retuned_improvement_costs:
         print(f"  + rescaled {retuned_improvement_costs} improvement cost(s) into base CTP2 age bands")
@@ -3771,6 +4300,8 @@ def main():
 
     # --- Units from units.csv ---
     adv_db = reg.load("default/gamedata/Advance.txt")
+    _unit_disabled_advances = self_prereq_advances(
+        getattr(adv_db, "_text", "") or _read_rel("default/gamedata/Advance.txt"))
     mom_unit_idents: set[str] = set()
     mom_unit_display_names: dict[str, str] = {}  # ident -> display name for gl_str backfill
 
@@ -3806,7 +4337,13 @@ def main():
 
             # Advance prereq — heroes (nil/no) default to earliest advance so
             # EnableAdvance is always present (required in 97% of reference blocks).
-            if prereq in _NO_ADVANCE:
+            if prereq == _DISABLED_SLOT:
+                # civ2 `no` — never available. Same sentinel split as the
+                # improvement lane above; no unit ships this way today, but the
+                # rule must hold in both lanes or the next `no` row leaks.
+                advance = never_buildable_gate(_unit_disabled_advances,
+                                               _default_advance)
+            elif prereq in _NO_ADVANCE:
                 advance = _default_advance
             else:
                 advance = MOM_UNIT_ADVANCE.get(prereq, _default_advance)
@@ -5000,6 +5537,15 @@ def main():
         _gl_desc_text, gl_library, gl_str, MOMJR,
     )
 
+    # Same reason, same anchor: the STATISTICS lines were stamped at advance
+    # registration, before the cost retune, so they have to be re-derived here
+    # from the final Advance.txt rather than trusted.
+    _stats_fixed = reconcile_advance_statistics(
+        gl_library, _adv._text, _read_rel("default/gamedata/age.txt"))
+    if _stats_fixed:
+        print(f"  + reconciled {_stats_fixed} Great Library _STATISTICS section(s) "
+              f"against the final advance DB")
+
     reg.save_all()
     final_gl_scrubbed = 0
     final_gl_scrubbed += _scrub_hidden_tileimp_gl_file(
@@ -5020,6 +5566,11 @@ def main():
     )
     if final_gl_scrubbed:
         print(f"  + final GL scrub removed {final_gl_scrubbed} hidden tile-improvement surface(s)")
+    # Must run after the GL scrubs: an icon record may only cite a section that
+    # survived them, or the panel silently falls back to base-tree prose.
+    advance_icons = _write_advance_icon_file()
+    if advance_icons:
+        print(f"  + advanceicon.txt rekeyed {advance_icons} advance(s) onto our GL sections")
     final_order_scrubbed = 0
     final_order_scrubbed += _scrub_hidden_order_gl_file(
         "english/gamedata/Great_Library.txt",

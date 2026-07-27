@@ -45,11 +45,12 @@ ADVANCE_AGRICULTURE {
 ADVANCE_ALCHEMY {
 
 
-   Cost 1025
+   Cost 1155
    Icon ICON_ADVANCE_ALCHEMY
    Branch 0
    Age AGE_TWO
    Prerequisites ADVANCE_PHILOSOPHY
+   Prerequisites ADVANCE_METAMORPHOSIS
 }
 
 ## 10 #########################################################
@@ -74,11 +75,12 @@ ADVANCE_BALLISTICS {
 ADVANCE_BANKING {
 
 
-   Cost 1075
+   Cost 2065
    Icon ICON_ADVANCE_BANKING
    Branch 0
-   Age AGE_THREE
+   Age AGE_FOUR
    Prerequisites ADVANCE_TRADE
+   Prerequisites ADVANCE_THE_REPUBLIC
 }
 
 ## 13 #########################################################
@@ -236,11 +238,12 @@ ADVANCE_DRAMA {
 ADVANCE_FEUDALISM {
 
 
-   Cost 460
+   Cost 520
    Icon ICON_ADVANCE_FEUDALISM
    Branch 0
    Age AGE_TWO
    Prerequisites ADVANCE_MASONRY
+   Prerequisites ADVANCE_WARRIOR_CODE
 }
 
 ## 38 #########################################################
@@ -339,12 +342,13 @@ ADVANCE_HULL_MAKING {
 ADVANCE_IRON_WORKING {
 
 
-   Cost 1645
+   Cost 1835
    Icon ICON_ADVANCE_IRON_WORKING
    Branch 0
    Age AGE_THREE
    Prerequisites ADVANCE_BRONZE_WORKING
    Prerequisites ADVANCE_TRADE
+   Prerequisites ADVANCE_WARRIOR_CODE
 }
 
 ## 57 #########################################################
@@ -394,11 +398,13 @@ ADVANCE_MASONRY {
 ADVANCE_MONARCHY {
 
 
-   Cost 1015
+   Cost 1280
    Icon ICON_ADVANCE_MONARCHY
    Branch 0
    Age AGE_THREE
    Prerequisites ADVANCE_PHILOSOPHY
+   Prerequisites ADVANCE_CEREMONIAL_BURIAL
+   Prerequisites ADVANCE_CODE_OF_LAWS
 }
 
 ## 68 #########################################################
@@ -471,11 +477,13 @@ ADVANCE_OPTICS {
 ADVANCE_PHILOSOPHY {
 
 
-   Cost 525
+   Cost 665
    Icon ICON_ADVANCE_PHILOSOPHY
    Branch 0
    Age AGE_TWO
    Prerequisites ADVANCE_TRADE
+   Prerequisites ADVANCE_MYSTICISM
+   Prerequisites ADVANCE_LITERACY
 }
 
 ## 82 #########################################################
@@ -576,11 +584,12 @@ ADVANCE_STONE_WORKING {
 ADVANCE_THEOLOGY {
 
 
-   Cost 1015
+   Cost 1150
    Icon ICON_ADVANCE_THEOLOGY
    Branch 0
    Age AGE_THREE
    Prerequisites ADVANCE_PHILOSOPHY
+   Prerequisites ADVANCE_FEUDALISM
 }
 
 ## 100 ########################################################
@@ -602,13 +611,15 @@ ADVANCE_TOOLMAKING {
 ADVANCE_TRADE {
 
 
-   Cost 565
+   Cost 715
    Icon ICON_ADVANCE_TRADE
    Branch 0
    Age AGE_TWO
    Roads
    KeyAdvanceAdvice KEY_GROWTH_ADVANCE_ADVICE
    Prerequisites ADVANCE_WRITING
+   Prerequisites ADVANCE_CURRENCY
+   Prerequisites ADVANCE_CODE_OF_LAWS
 }
 
 ## 102 ########################################################
@@ -622,10 +633,11 @@ ADVANCE_TRADE {
 ## 106 ########################################################
 
 ADVANCE_WRITING {
-   Cost 455
+   Prerequisites ADVANCE_ALPHABET
+   Cost 1025
    Icon ICON_ADVANCE_WRITING
    Branch 0
-   Age AGE_ONE
+   Age AGE_TWO
 }
 
 ## end ########################################################
@@ -1075,26 +1087,27 @@ ADVANCE_HEALING {
 }
 
 ADVANCE_LESSER_ENCHANMENTS {
-   Cost 455
+   Prerequisites ADVANCE_MYSTICISM
+   Cost 1725
    Icon ICON_ADVANCE_LESSER_ENCHANMENTS
    Branch 3
-   Age AGE_ONE
+   Age AGE_THREE
 }
 
 ADVANCE_METAMORPHOSIS {
-   Cost 4760
+   Cost 1155
    Icon ICON_ADVANCE_METAMORPHOSIS
    Branch 3
-   Age AGE_FIVE
+   Age AGE_TWO
    Prerequisites ADVANCE_RUNE_LORE
    Prerequisites ADVANCE_CONSTRUCTION
 }
 
 ADVANCE_CONSTRUCTION {
-   Cost 1645
+   Cost 945
    Icon ICON_ADVANCE_CONSTRUCTION
    Branch 4
-   Age AGE_THREE
+   Age AGE_TWO
    Prerequisites ADVANCE_MASONRY
    Prerequisites ADVANCE_CURRENCY
 }
@@ -1117,10 +1130,10 @@ ADVANCE_CURRENCY {
 }
 
 ADVANCE_RUNE_LORE {
-   Cost 3095
+   Cost 1155
    Icon ICON_ADVANCE_RUNE_LORE
    Branch 3
-   Age AGE_FOUR
+   Age AGE_TWO
    Prerequisites ADVANCE_OCCULT_STUDIES
    Prerequisites ADVANCE_LITERACY
 }
@@ -1142,10 +1155,10 @@ ADVANCE_SHAMANISM {
 }
 
 ADVANCE_THAUMATURGY {
-   Cost 4760
+   Cost 6580
    Icon ICON_ADVANCE_THAUMATURGY
    Branch 3
-   Age AGE_FIVE
+   Age AGE_SIX
    Prerequisites ADVANCE_SORCEROUS_LORE
    Prerequisites ADVANCE_OCCULT_STUDIES
 }
@@ -1172,6 +1185,9 @@ ADVANCE_GLYPHS {
    Icon ICON_ADVANCE_GLYPHS
    Branch 3
    Age AGE_ONE
+   Prerequisites ADVANCE_GLYPHS
+   GLHidden
+   GoodyHutExcluded
 }
 
 ADVANCE_LIFE_MAGIC {
@@ -1224,19 +1240,19 @@ ADVANCE_LIFE_MAGE {
 }
 
 ADVANCE_HOLY_WARRIORS {
-   Cost 3120
+   Cost 4940
    Icon ICON_ADVANCE_HOLY_WARRIORS
    Branch 0
-   Age AGE_FIVE
+   Age AGE_SIX
    Prerequisites ADVANCE_CHIVALRY
    Prerequisites ADVANCE_SORCEROUS_LORE
 }
 
 ADVANCE_LITERACY {
-   Cost 1950
+   Cost 1155
    Icon ICON_ADVANCE_LITERACY
    Branch 3
-   Age AGE_THREE
+   Age AGE_TWO
    Prerequisites ADVANCE_WRITING
    Prerequisites ADVANCE_CODE_OF_LAWS
 }
@@ -1398,10 +1414,11 @@ ADVANCE_NATURE_MAGE {
 }
 
 ADVANCE_GREATER_ENCHANTMENTS {
-   Cost 455
+   Prerequisites ADVANCE_LESSER_ENCHANMENTS
+   Cost 2735
    Icon ICON_ADVANCE_GREATER_ENCHANTMENTS
    Branch 3
-   Age AGE_ONE
+   Age AGE_FOUR
 }
 
 ADVANCE_NATURE_WIZARD {
@@ -1430,10 +1447,10 @@ ADVANCE_DEATH_LORE {
 }
 
 ADVANCE_THE_REPUBLIC {
-   Cost 1745
+   Cost 1015
    Icon ICON_ADVANCE_THE_REPUBLIC
    Branch 2
-   Age AGE_FOUR
+   Age AGE_THREE
    Prerequisites ADVANCE_LITERACY
 }
 
@@ -1570,10 +1587,10 @@ ADVANCE_SORCERY_ADEPT {
 }
 
 ADVANCE_ARTIFICING {
-   Cost 5820
+   Cost 7590
    Icon ICON_ADVANCE_ARTIFICING
    Branch 3
-   Age AGE_SIX
+   Age AGE_SEVEN
    Prerequisites ADVANCE_THAUMATURGY
 }
 
@@ -1610,5 +1627,14 @@ ADVANCE_NA {
    GoodyHutExcluded
    Prerequisites ADVANCE_NA
    Prerequisites ADVANCE_NA
+}
+
+ADVANCE_ECOGNOMICS {
+   Prerequisites ADVANCE_UNIVERSITY
+   Prerequisites ADVANCE_BANKING
+   Cost 3900
+   Icon ICON_ADVANCE_ECOGNOMICS
+   Branch 1
+   Age AGE_FIVE
 }
 
