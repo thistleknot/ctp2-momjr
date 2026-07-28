@@ -52,6 +52,38 @@ A frame at turn 15 reads *3750BC*, which matches the table exactly and refutes
 the earlier "turn 200 = 150AD" figure. So no 200- or 600-turn script could ever
 have ended the game on the clock, independent of the two bugs above.
 
+**CLOSED — the scenario reaches a terminal state, and the ending was being
+reported as the worst possible failure.** On the fixed scenario a walk ended in
+`DEFEAT` at **turn 390 / 1505AD**, score 4380, 1 city — the first run in this
+project to stop because the *game* ended. `decode_run.py` called it
+`STALLED at 117 checkpoints`, and it was not wrong: an ending and a freeze
+produce **identical zero-delta frames**. A pixel-delta instrument cannot
+separate them, so the single most important event a run can produce was
+classified as its worst failure. `detect_endgame.py` reads the `VictoryWindow`
+title strip instead, and was validated in both directions before being believed
+— it finds turn 390 in the run that ended and reports *no* ending for the run
+that genuinely froze.
+
+**Attribution by controlled experiment, one variable.** The defeat is the
+`LOST_SCIENCE` path (player still alive with a city), which per
+[[mom-endgame-autodefeat]] runs through `GaiaController`'s countdown — gated
+since the 2026-07-11 engine fix on someone actually HOLDING the Rune of
+Rulership. Populating the AI wonder lists is exactly what made an AI capable of
+building it. Rather than assert that, the same walk was re-run against a
+scenario with the lists emptied again: **420/420 turns, no endgame window, no
+stalls**. Populated lists end the game; empty lists do not. One run per arm on
+different maps, so this is the predicted direction, not a rate.
+
+**Play data beats static analysis.** The end-of-game Power graph shows **Nature
+Tribe** climbing to roughly two-thirds of all power, **Sorcery collapsing around
+turn 60** and never recovering, and **Chaos absent from the legend entirely**
+(with empty rows below it, so not a scroll artifact) despite having been alive
+and sending diplomacy in an earlier run — most likely eliminated. The static
+report ranks chaos the STRONGEST sphere (1165 total power, the Infernal Device)
+and nature second. The game says the opposite. Static power ranks a roster; it
+does not predict outcomes, which is why `balance_report.py` exits 0 and gates
+nothing.
+
 **Balance, first quantitative pass** (`tools/balance_report.py`, new). It scores
 the SHIPPED `Units.txt`, not `units.csv` — the generator rescales on the way out
 (cost x~100, attack x5), so the control plane cannot answer "what does a player

@@ -38,6 +38,22 @@ condition exists for the first time.
   again. The headless harness now rejects it every turn. Reject, never accept:
   an unattended playthrough must not hand over gold.
 
+### Verified
+
+- **The scenario now ends.** A headless playthrough on the fixed scenario
+  reached a terminal state — `DEFEAT` at **turn 390 / 1505AD**, score 4380 — the
+  first time any run has ended because the *game* ended rather than because the
+  script ran out. Attribution is by controlled experiment, one variable: the same
+  walk against a scenario whose wonder lists were emptied again played
+  **420/420 turns with no endgame window and no stalls**. Populated lists end the
+  game; empty lists do not. (One run per arm, different maps — the direction is
+  the prediction, not a rate.)
+
+- **Where the game actually ends on the clock**: `DiffDB.txt` TIME_SCALE runs
+  20 yr/turn to turn 150, then 10, 5, 2, and 1 from turn 600, so
+  `END_OF_GAME_YEAR 2300` falls at **turn 1000**. Turn 200 is 500BC and turn 600
+  is 1900AD — no 200- or 600-turn script could ever have ended the game on time.
+
 ### Added
 
 - **Gate 24, `check_wonder_build_lists`.** Asserts that every ident in the AI
@@ -52,6 +68,13 @@ condition exists for the first time.
   on a median/MAD band over log(power/cost), sphere parity, and a stat-twin
   check for units with an identical combat line at very different prices.
   Reports; does not gate.
+
+- **`tools/uiwalk/detect_endgame.py`** — tells an ENDING apart from a FREEZE.
+  Both produce identical zero-delta frames, so `decode_run.py` reported the
+  first real ending this project has ever reached as its worst failure class
+  (`STALLED at 117 checkpoints`). This reads the `VictoryWindow` title strip
+  instead. Validated both directions: it finds the ending at turn 390, and
+  reports no ending for the run that genuinely froze.
 
 - **`tools/uiwalk/make_full_game.py`** — the full-game walk is generated from a
   turn count instead of being a hand-maintained 1553-element JSON pinned at 200
