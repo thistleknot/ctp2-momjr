@@ -102,7 +102,7 @@ TRIBES_LIFE	#1
 	PluralCivName			TRIBES_LIFE_PLURAL
 	EmissaryPhotoMale		CELTIC_DIPLOMAT_FLAG
 	EmissaryPhotoFemale		CELTIC_DIPLOMAT_FLAG
-	Parchment			42
+	Parchment			3
 	CityStyle			CITY_STYLE_ROMAN
 	NationUnitFlag			MAPICON_CELTIC_FLAG
 	CityName			TRIBES_LIFE_CITY_1
@@ -134,7 +134,7 @@ TRIBES_NATURE	#2
 	PluralCivName			TRIBES_NATURE_PLURAL
 	EmissaryPhotoMale		NATIVE_AMERICAN_DIPLOMAT_FLAG
 	EmissaryPhotoFemale		NATIVE_AMERICAN_DIPLOMAT_FLAG
-	Parchment			43
+	Parchment			7
 	CityStyle			CITY_STYLE_CASTLE
 	NationUnitFlag			MAPICON_NATIVE_AMERICAN_FLAG
 	CityName			TRIBES_NATURE_CITY_1
@@ -166,7 +166,7 @@ TRIBES_SORCERY	#3
 	PluralCivName			TRIBES_SORCERY_PLURAL
 	EmissaryPhotoMale		ARABIAN_DIPLOMAT_FLAG
 	EmissaryPhotoFemale		ARABIAN_DIPLOMAT_FLAG
-	Parchment			44
+	Parchment			19
 	CityStyle			CITY_STYLE_ARAB
 	NationUnitFlag			MAPICON_ARABIAN_FLAG
 	CityName			TRIBES_SORCERY_CITY_1
@@ -198,7 +198,7 @@ TRIBES_DEATH	#4
 	PluralCivName			TRIBES_DEATH_PLURAL
 	EmissaryPhotoMale		EGYPTIAN_DIPLOMAT_FLAG
 	EmissaryPhotoFemale		EGYPTIAN_DIPLOMAT_FLAG
-	Parchment			45
+	Parchment			31
 	CityStyle			CITY_STYLE_EGYPTAIN
 	NationUnitFlag			MAPICON_EGYPTIAN_FLAG
 	CityName			TRIBES_DEATH_CITY_1
@@ -230,7 +230,7 @@ TRIBES_CHAOS	#5
 	PluralCivName			TRIBES_CHAOS_PLURAL
 	EmissaryPhotoMale		MONGOLIAN_DIPLOMAT_FLAG
 	EmissaryPhotoFemale		MONGOLIAN_DIPLOMAT_FLAG
-	Parchment			46
+	Parchment			39
 	CityStyle			CITY_STYLE_PALACE
 	NationUnitFlag			MAPICON_BARBARIAN_FLAG
 	CityName			TRIBES_CHAOS_CITY_1

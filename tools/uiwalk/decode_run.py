@@ -80,9 +80,17 @@ def main(argv: list[str]) -> int:
     # Anchored to uiwalk's own `NN_name.png` shot naming. A loose `*turn*.png`
     # also swept up hand-made debug crops sitting in the run dir and reported
     # two bogus SUSPECT frames off them (2026-07-27).
+    # Sort NUMERICALLY on the turn number, not lexically. A 200-turn run writes
+    # `100_turn190.png`, which sorts BEFORE `66_turn122.png` as a string -- the
+    # first run long enough to pass shot 99 silently reported its last
+    # checkpoint as turn 188 and compared the tail out of order (2026-07-27).
     import re
-    shots = sorted(p for p in run.glob("*.png")
-                   if re.fullmatch(r"\d+_turn\d+", p.stem))
+    shots = []
+    for p in run.glob("*.png"):
+        m = re.fullmatch(r"(\d+)_turn(\d+)", p.stem)
+        if m:
+            shots.append((int(m.group(2)), p))
+    shots = [p for _n, p in sorted(shots)]
     if not shots:
         print(f"{run.name}: no turn shots -- the run never reached the turn loop")
         return 1

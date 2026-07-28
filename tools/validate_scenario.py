@@ -485,6 +485,42 @@ def check_disabled_entities_unbuildable(scen: Path, fails: list[str]) -> None:
                              f"EnableAdvance {gate or 'NONE'}")
 
 
+def check_parchment_range(scen: Path, fails: list[str]) -> None:
+    """Gate 23: every civ's Parchment resolves to an art file that exists.
+
+    Require: a generated civilisation.txt.
+    Guarantee: every `Parchment` value is in 1..41 or is 99.
+
+    `dipwizard.cpp:2673` builds the diplomacy background filename at RUNTIME as
+    `UPDG%02d.tga` from this field -- there is no DB reference to dangle, so no
+    other gate can see it. A regex scan of every ctp2_data/**/*.zfs returns
+    exactly updg01..updg41 plus updg99, so anything outside that is a native
+    Targa Load Error modal that stops the engine's message pump: the harness
+    sees a frozen frame and no console line ([[ctp2-harness-cannot-see-console
+    -output]]). All five MoM tribes shipped 42-46 -- i.e. every tribe was
+    broken -- until 2026-07-27.
+    """
+    civ = scen / "default/gamedata/civilisation.txt"
+    if not civ.exists():
+        return
+    # Block headers carry a trailing `#N` comment and open their brace on the
+    # NEXT line, so a `^(\w+)\s*\{` block regex matches nothing here and the
+    # gate passes a file it should reject. Track the block by line instead.
+    block = "?"
+    for line in civ.read_text(encoding="latin-1", errors="replace").splitlines():
+        head = re.match(r"^([A-Za-z_]\w*)\b", line)
+        if head:
+            block = head.group(1)
+            continue
+        m = re.match(r"^\s*Parchment\s+(\d+)\s*$", line)
+        if m:
+            n = int(m.group(1))
+            if not (1 <= n <= 41 or n == 99):
+                fails.append(
+                    f"civilisation.txt: {block} Parchment {n} has no UPDG"
+                    f"{n:02d}.tga -- legal range is 1-41 or 99")
+
+
 def check_renaissance_age_cap(scen: Path, fails: list[str]) -> None:
     """Gate 22: ages 5-7 are purely magical; mundane tech ends at AGE_FOUR.
 
@@ -988,6 +1024,7 @@ def main() -> int:
     check_disabled_entities_unbuildable(scen, fails)
     check_gl_statistics_match_db(scen, fails)
     check_renaissance_age_cap(scen, fails)
+    check_parchment_range(scen, fails)
 
     if fails:
         for f in fails:

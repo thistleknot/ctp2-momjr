@@ -1,0 +1,14 @@
+[preflight] launch candidate: H:\Games\civctp2\ctp2_code\ctp\ctp2.exe (16,468,480 bytes)
+[preflight] marker 'MagicMenu': FOUND
+[preflight] primary display \\.\DISPLAY1: 1920x1080 orientation=0 (22 modes)
+[preflight] 1024x768: LEGAL on the primary display
+Traceback (most recent call last):
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 1260, in <module>
+    sys.exit(main())
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 1233, in main
+    results = run_steps(game, inp, steps, run_dir, args.baseline, args.dry)
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 1098, in run_steps
+    inp.click(step["x"], step["y"])
+  File "H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\uiwalk\uiwalk.py", line 650, in click
+    win32api.PostMessage(self.hwnd, win32con.WM_LBUTTONUP, 0, lp)
+pywintypes.error: (1400, 'PostMessage', 'Invalid window handle.')
