@@ -540,6 +540,11 @@ VK = {
     "left": win32con.VK_LEFT, "right": win32con.VK_RIGHT,
     "up": win32con.VK_UP, "down": win32con.VK_DOWN,
     **{c: ord(c.upper()) for c in "abcdefghijklmnopqrstuvwxyz0123456789"},
+    # Numpad digits, distinct VKs from the top row. keymap.txt binds unit
+    # movement to the digits 1-9 (MOVE_SOUTHWEST..MOVE_NORTHEAST), and which
+    # physical key that means is a question about the engine's key handling, not
+    # something to assume -- so both are addressable and the probe decides.
+    **{f"num{d}": 0x60 + d for d in range(10)},
 }
 
 
@@ -1132,6 +1137,14 @@ def run_steps(game: Game, inp, steps: list[dict], run_dir: Path, baseline: bool,
             inject_select(game.get_hwnd(), step["path"], int(step["index"]))
         elif verb == "press":
             inject_press(game.get_hwnd(), step["path"])
+        elif verb == "trigger":
+            # The IN-GAME counterpart of `press`. inject_trigger has existed since
+            # the SLIC work but was never wired into this dispatch, so steps could
+            # only ever reach controls that have a C++ m_ActionFunc -- i.e. menu
+            # buttons. `press` on an in-game control resolves the object, returns
+            # OK and changes nothing, which reads exactly like a dead input path.
+            # See inject_trigger's docstring for the two mechanisms.
+            inject_trigger(game.get_hwnd(), step["path"])
         elif verb == "click":
             # AIM THAT IS DERIVED FROM THE LIVE CLIENT IS SAFE; AIM THAT IS
             # PINNED IS NOT (preflight_display's standing finding -- a miss AVs

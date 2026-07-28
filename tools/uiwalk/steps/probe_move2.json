@@ -1,0 +1,332 @@
+[
+ {
+  "_comment": "MOVEMENT BATTERY v2. v1 gave 0 px on ALL arms INCLUDING the unbound-key control, which means it never tested movement -- the keys never reached the engine. Revision: ctp2-endturn-needs-mouse-input says an injected key only lands if a mouse message reached the engine, which is why the turn cycle hovers before enter. Every key here is now preceded by a hover. PREDICTION: `n` (NEXT_ITEM) now changes the frame; if it still gives 0 px the thesis is wrong and keys are unreachable in-game."
+ },
+ {
+  "do": "wait",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 30000
+ },
+ {
+  "do": "shot",
+  "name": "main_menu"
+ },
+ {
+  "do": "press",
+  "path": "InitPlayWindow.NewGameButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.ScenarioButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 3
+ },
+ {
+  "do": "wait",
+  "ms": 2000
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.StartButton"
+ },
+ {
+  "do": "wait",
+  "ms": 15000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 90000
+ },
+ {
+  "_comment": "(600,6) is empty chrome in the top menu bar, between the Options menu and the gold readout -- nothing is hit-tested there, so this delivers a mouse message without activating a control. This is the ONLY posted click in the file; every UI action below is injection or a key."
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "_comment": "PREDICTION: scrolling the view damages the whole viewport and forces terrain to paint. If these frames are still black the thesis is wrong and the repaint trigger is something else."
+ },
+ {
+  "do": "key",
+  "keys": "right"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "left"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "map_after_scroll"
+ },
+ {
+  "do": "key",
+  "keys": "down"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "up"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "peasant_on_open_map"
+ },
+ {
+  "_comment": "Found the city, then QUEUE Spearmen: UnitsList index 0 (measured in pass 1 -- Spearmen/Minotaur/Peasants at 8/12/14 turns, so unit costs are sane too). Add > appends it to the build queue; no Rush Buy, because gold is 106 and a rush-buy confirm is a modal that would freeze captures."
+ },
+ {
+  "do": "key",
+  "keys": "b"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 15000
+ },
+ {
+  "do": "press",
+  "path": "BuildEditorWindow.ItemsBox.UnitsButton"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 8000
+ },
+ {
+  "do": "select",
+  "path": "BuildEditorWindow.ItemsBox.UnitsList",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "BuildEditorWindow.ItemsBox.AddButton"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "spearmen_queued"
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 8000
+ },
+ {
+  "do": "shot",
+  "name": "city_founded_map"
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 250
+ },
+ {
+  "do": "key",
+  "keys": "n"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "shot",
+  "name": "v2_after_n"
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 250
+ },
+ {
+  "do": "key",
+  "keys": "6"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "shot",
+  "name": "v2_toprow6"
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 250
+ },
+ {
+  "do": "key",
+  "keys": "n"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 250
+ },
+ {
+  "do": "key",
+  "keys": "num6"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "shot",
+  "name": "v2_numpad6"
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 250
+ },
+ {
+  "do": "key",
+  "keys": "n"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 250
+ },
+ {
+  "do": "key",
+  "keys": "z"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 5000
+ },
+ {
+  "do": "shot",
+  "name": "v2_unbound_z"
+ }
+]
