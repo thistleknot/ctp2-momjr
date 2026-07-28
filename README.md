@@ -1,7 +1,15 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.0.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.0.1** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
+
+> **What 3.0.1 fixes — the diplomacy screen every tribe could not open.** All
+> five tribes pointed at a parchment image that does not exist, and because the
+> engine builds that filename at runtime, nothing in the database dangled and no
+> gate could see it. The symptom was a frozen frame with an empty console,
+> because the missing-art modal *is* the freeze. Saves are unaffected. The same
+> release took the harness from a 40-turn ceiling to a full **200-turn**
+> playthrough. See `CHANGELOG.md`.
 
 > **What's new in 3.0 — the Renaissance cap actually applies.** 2.0 announced
 > that mundane tech ends at the Renaissance; the code that enforced it asked the

@@ -9,6 +9,74 @@ noise is not a change.
 
 ---
 
+## [3.0.1] — 2026-07-27 — the diplomacy screen every tribe could not open
+
+**Patch.** No rule, cost, age, or save-format change — 3.0.0 saves load
+unchanged. One shipped art reference was wrong for all five tribes, and the
+harness that proves a playthrough could not survive its own success.
+
+### Fixed
+
+- **Every tribe's diplomacy parchment pointed at art that does not exist.**
+  `civilisation.txt` shipped `Parchment` 42–46 for the five tribes.
+  `dipwizard.cpp:2673` builds the diplomacy background filename at *runtime* as
+  `UPDG%02d.tga` from that field, so there is no database reference to dangle
+  and no existing gate could see it. A regex scan of every
+  `ctp2_data/**/*.zfs` returns exactly `updg01`–`updg41` plus `updg99` — so all
+  five tribes resolved to a missing Targa, i.e. a native load-error modal that
+  stops the engine's message pump. Fixed in the control plane
+  (`tools/momjr_csv/players.csv` → 3 / 7 / 19 / 31 / 39).
+
+  This is the failure mode worth remembering: the symptom is a frozen frame
+  with nothing in the console, because the modal *is* the freeze. It survived
+  three releases for exactly that reason.
+
+### Added
+
+- **Gate 23, `check_parchment_range`** — every `Parchment` must be in 1–41 or
+  99. Written, then run against the known-bad `civilisation.txt` **before** the
+  fix was generated; the first version used a `^(\w+)\s*\{` block regex and
+  *passed* the bad file, because block headers here carry a trailing `#N` and
+  open the brace on the next line. Rewritten line-wise and re-proven at 5
+  FAILs. A gate that has never rejected anything is not evidence.
+
+### Harness
+
+Ships in `tools/uiwalk/`; no scenario data touched.
+
+- **The per-turn ping lost its button.** An injected `enter` only advances the
+  turn if a mouse message reached the engine — but it does not need a *button*.
+  The old ping was a real click on "inert" top-bar chrome at a pinned
+  `(600, 6)`; once a DPI-scaled display became primary, that pixel was no
+  longer inert and three consecutive runs died `0xC0000005` on the first click.
+  Replaced with a button-free `WM_MOUSEMOVE` (`hover` verb) aimed by `fx`, a
+  fraction of the live client width. **Aim derived from the live frame is safe;
+  aim pinned to a pixel is not.** Result: **200 turns, 4000BC → 150AD**, five
+  times the previous 40-turn ceiling, zero stalls across 100 checkpoints.
+- **`decode_run.py` cried STALL on a healthy run.** Its 2000px threshold was
+  fitted on five-turn checkpoints; applied per-turn, a camera parked over
+  unexplored ocean legitimately redraws only the build counter (~300–1200 px).
+  The bug the decoder exists to catch produced *byte-identical* frames, so the
+  bar is now 100. A threshold carries the sampling density it was measured at.
+- **Shots are sorted numerically.** `100_turn190.png` sorts before
+  `66_turn122.png` as a string, so the first run past 99 checkpoints silently
+  reported its last turn as 188 and compared its tail out of order.
+- **Teardown kills the game on the abort path.** `kill()` derived the PID from
+  a window handle that is already dead when a run aborts, so it terminated
+  nothing and left a window on screen. The PID is now captured at window
+  acquisition.
+
+### Known open
+
+Both harness-side, neither blocks a full playthrough:
+
+- `BattleViewWindow.ExitButton` does not close the battle view, though the path
+  matches `battleview.ldl:149`. Turns still advance; the frame stays occluded.
+- The SLIC alertbox is never dismissed — one message persisted from turn 124
+  through turn 200.
+
+---
+
 ## [3.0.0] — 2026-07-27 — the Renaissance cap actually applies
 
 **Major.** 2.0 announced "mundane tech ends at the Renaissance." It did not. The
