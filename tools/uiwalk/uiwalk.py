@@ -607,6 +607,24 @@ class PostInput:
             win32api.PostMessage(self.hwnd, win32con.WM_CHAR, ord(ch), 1)
             time.sleep(0.03)
 
+    def hover(self, x: int, y: int):
+        """Deliver a mouse message WITHOUT a button press.
+
+        ctp2-endturn-needs-mouse-input: an injected `enter` only advances the
+        turn if some mouse message reached the engine that turn. The turn loop
+        satisfied that with a real click on inert top-bar chrome at (600,6) --
+        which worked until 2026-07-27, when three consecutive runs died
+        0xC0000005 on that exact click while a boot-only walk to the same frame
+        was clean (runs/20260727-180543). A button-down is what carries the
+        risk; WM_MOUSEMOVE alone is not hit-tested into any control, so it
+        cannot land on a widget and cannot AV. If the engine's requirement is
+        "a mouse message", this satisfies it with none of the exposure.
+        """
+        self._spoof_focus()
+        win32api.PostMessage(self.hwnd, win32con.WM_MOUSEMOVE, 0,
+                             win32api.MAKELONG(x, y))
+        time.sleep(0.05)
+
     def drag(self, x1: int, y1: int, x2: int, y2: int, steps: int = 12):
         """Press at (x1,y1), move in steps to (x2,y2), release. For slider thumbs."""
         self._spoof_focus()
@@ -912,6 +930,16 @@ class Game:
             hwnd = self._find_window()
             if hwnd:
                 self.hwnd = hwnd
+                # Remember the owning PID the moment we have one. kill() used to
+                # derive it from self.hwnd at teardown, which is exactly the
+                # handle that is ALREADY DEAD on the abort path -- so an aborted
+                # run terminated nothing and left a game window on the user's
+                # screen (observed 2026-07-27). HEADLESS IS ABSOLUTE, and it has
+                # to hold on the failure path too, or it does not hold.
+                try:
+                    self._game_pid = win32process.GetWindowThreadProcessId(hwnd)[1]
+                except Exception:
+                    pass
                 _stash_offscreen(self.hwnd)
                 return self.hwnd
             if self.proc is not None and self.proc.poll() is not None:
@@ -1004,9 +1032,19 @@ class Game:
         """Terminate the GAME by the PID owning our window handle (never
         name-based); the launcher script child then restores the runtime
         overlay and exits on its own."""
+        pid = None
         if self.hwnd:
             try:
-                _, pid = win32process.GetWindowThreadProcessId(self.hwnd)
+                pid = win32process.GetWindowThreadProcessId(self.hwnd)[1]
+            except Exception:
+                pid = None
+        # Fall back to the PID remembered at window acquisition. On the abort
+        # path self.hwnd is typically already invalid, and deriving the PID from
+        # it silently killed nothing at all.
+        if pid is None:
+            pid = getattr(self, "_game_pid", None)
+        if pid:
+            try:
                 handle = win32api.OpenProcess(win32con.PROCESS_TERMINATE, False, pid)
                 win32api.TerminateProcess(handle, 0)
                 win32api.CloseHandle(handle)
@@ -1095,7 +1133,27 @@ def run_steps(game: Game, inp, steps: list[dict], run_dir: Path, baseline: bool,
         elif verb == "press":
             inject_press(game.get_hwnd(), step["path"])
         elif verb == "click":
-            inp.click(step["x"], step["y"])
+            # AIM THAT IS DERIVED FROM THE LIVE CLIENT IS SAFE; AIM THAT IS
+            # PINNED IS NOT (preflight_display's standing finding -- a miss AVs
+            # the process). 2026-07-27: three consecutive runs died 0xC0000005
+            # on the FIRST click, at the pinned inert-chrome ping (600,6), after
+            # a third display became primary at a DPI-scaled 1536x864. The
+            # pixel that is inert at a 1024-wide client is not inert at another
+            # width. `fx` states the aim as a FRACTION of the live client width,
+            # so the ping tracks whatever client the engine actually made.
+            if "fx" in step:
+                cw, _ch = game.client_size()
+                inp.click(int(step["fx"] * cw), step["y"])
+            else:
+                inp.click(step["x"], step["y"])
+        elif verb == "hover":
+            # Mouse message, no button. See Input.hover -- this is the
+            # non-lethal way to satisfy ctp2-endturn-needs-mouse-input.
+            if "fx" in step:
+                cw, _ch = game.client_size()
+                inp.hover(int(step["fx"] * cw), step["y"])
+            else:
+                inp.hover(step["x"], step["y"])
         elif verb == "type":
             inp.type_text(step["text"])
         elif verb == "wait":
@@ -1168,6 +1226,11 @@ def main():
     ap.add_argument("--marker", default="MagicMenu", help="string that MUST be present in the exe under test ('none' to skip the check)")
     ap.add_argument("--use-debug-exe", action="store_true", help="prefer ctp2-dbg.exe (Debug-SDL); default is ctp2.exe, which build.bat actually refreshes")
     ap.add_argument("--skip-display-check", action="store_true", help="run even if the primary display cannot supply 1024x768 (expect black captures)")
+    ap.add_argument("--wait-display", type=int, default=0, metavar="SECONDS",
+                    help="park until the primary display can supply the wanted mode, then run "
+                         "(polls every 15s up to SECONDS). Fixing the geometry means changing "
+                         "the USER's desktop, so a long unattended walk should WAIT for that "
+                         "rather than abort and waste the window.")
     ap.add_argument("game_args", nargs="*", help="extra engine args")
     args = ap.parse_args()
 
@@ -1176,7 +1239,21 @@ def main():
     if args.marker.lower() != "none" and not args.attach:
         preflight_exe(args.marker)
     if not args.skip_display_check and not args.attach:
-        preflight_display()
+        # A long unattended walk must not die on the ONE precondition only the
+        # user can satisfy. 2026-07-27: a 200-turn run aborted instantly on a
+        # portrait primary and the whole hour that followed produced zero game
+        # turns. Waiting converts that into "starts the moment they flip it".
+        deadline = time.time() + max(0, args.wait_display)
+        while True:
+            try:
+                preflight_display()
+                break
+            except SystemExit:
+                if time.time() >= deadline:
+                    raise
+                print(f"[preflight] --wait-display: parking, "
+                      f"{int(deadline - time.time())}s left; re-checking in 15s")
+                time.sleep(15)
 
     # Deliberately NOT SetProcessDPIAware().  ctp2.exe has no DPI manifest, so
     # on a scaled primary (125% here) Windows virtualizes it.  If WE are aware

@@ -1,0 +1,6414 @@
+[
+ {
+  "_comment": "FULL GAME, 200 turns. Per-turn cycle = modal sweep (3 injection-only presses, idempotent-by-absence) + a BUTTON-FREE mouse move + enter. VERIFIED 2026-07-27 run 20260727-181047: 20/20 turns, zero 0xC0000005, Rush Buy counter monotonic 1200->12 so the clock really moved. The old inert-chrome CLICK ping at (600,6) was killing the process; a WM_MOUSEMOVE satisfies ctp2-endturn-needs-mouse-input without hit-testing into any control. Aim is fx (fraction of live client width), never a pinned pixel. Run with --save none; decode with decode_run.py."
+ },
+ {
+  "do": "wait",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 30000
+ },
+ {
+  "do": "shot",
+  "name": "main_menu"
+ },
+ {
+  "do": "press",
+  "path": "InitPlayWindow.NewGameButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.ScenarioButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 3
+ },
+ {
+  "do": "wait",
+  "ms": 2000
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.StartButton"
+ },
+ {
+  "do": "wait",
+  "ms": 15000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 90000
+ },
+ {
+  "_comment": "(600,6) is empty chrome in the top menu bar, between the Options menu and the gold readout -- nothing is hit-tested there, so this delivers a mouse message without activating a control. This is the ONLY posted click in the file; every UI action below is injection or a key."
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "_comment": "PREDICTION: scrolling the view damages the whole viewport and forces terrain to paint. If these frames are still black the thesis is wrong and the repaint trigger is something else."
+ },
+ {
+  "do": "key",
+  "keys": "right"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "left"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "map_after_scroll"
+ },
+ {
+  "do": "key",
+  "keys": "down"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "up"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "peasant_on_open_map"
+ },
+ {
+  "_comment": "Found the city, then QUEUE Spearmen: UnitsList index 0 (measured in pass 1 -- Spearmen/Minotaur/Peasants at 8/12/14 turns, so unit costs are sane too). Add > appends it to the build queue; no Rush Buy, because gold is 106 and a rush-buy confirm is a modal that would freeze captures."
+ },
+ {
+  "do": "key",
+  "keys": "b"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 15000
+ },
+ {
+  "do": "press",
+  "path": "BuildEditorWindow.ItemsBox.UnitsButton"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 8000
+ },
+ {
+  "do": "select",
+  "path": "BuildEditorWindow.ItemsBox.UnitsList",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "BuildEditorWindow.ItemsBox.AddButton"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "spearmen_queued"
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 8000
+ },
+ {
+  "do": "shot",
+  "name": "city_founded_map"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn002"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn004"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn006"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn008"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn010"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn012"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn014"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn016"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn018"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn020"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn022"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn024"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn026"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn028"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn030"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn032"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn034"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn036"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn038"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn040"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn042"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn044"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn046"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn048"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn050"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn052"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn054"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn056"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn058"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn060"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn062"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn064"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn066"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn068"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn070"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn072"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn074"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn076"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn078"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn080"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn082"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn084"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn086"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn088"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn090"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn092"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn094"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn096"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn098"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn100"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn102"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn104"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn106"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn108"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn110"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn112"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn114"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn116"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn118"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn120"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn122"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn124"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn126"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn128"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn130"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn132"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn134"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn136"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn138"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn140"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn142"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn144"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn146"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn148"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn150"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn152"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn154"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn156"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn158"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn160"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn162"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn164"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn166"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn168"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn170"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn172"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn174"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn176"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn178"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn180"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn182"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn184"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn186"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn188"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn190"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn192"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn194"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn196"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn198"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "hover",
+  "fx": 0.586,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn200"
+ }
+]

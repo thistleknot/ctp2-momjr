@@ -1,3 +1,45 @@
+## The turn-loop ping had to lose its button (2026-07-27)
+
+**Symptom.** Three consecutive runs died `0xC0000005` at scenario start,
+including the previously-proven 40-turn baseline. Traceback always at
+`inp.click`, ending `PostMessage: Invalid window handle`.
+
+**Not the mod.** `git checkout 9318619~1 -- scen0000` and re-run: identical
+failure. Restored immediately. This was never a v3.0.0 regression.
+
+**The discriminating probe.** `steps/boot_only.json` — the proven boot sequence
+with *zero* clicks after `StartButton`, then six timed shots. EXIT=0, healthy
+1024x768 client at 4000BC. Boot is fine; **the posted click was the killer.**
+
+**Why it started killing.** `ctp2-endturn-needs-mouse-input` says an injected
+`enter` only counts if some mouse message reached the engine that turn, and the
+loop satisfied that with a real click on "inert" top-bar chrome at a *pinned*
+(600,6). A third display had become primary at a DPI-scaled 1536x864; the pixel
+that is inert at a 1024-wide client is not inert at another width, and a miss AVs.
+
+**The fix is smaller than the bug.** The engine needs *a mouse message*, not a
+click. New `hover` verb posts `WM_MOUSEMOVE` alone — never hit-tested into a
+control, so it cannot land on a widget and cannot AV. Aim is `fx`, a **fraction
+of the live client width**, so it tracks whatever window the engine actually made.
+
+**Law: aim derived from the live frame is safe; aim pinned to a pixel is not.**
+And: when an input both *satisfies a requirement* and *carries a risk*, check
+whether the requirement needs the risky half at all. It usually doesn't.
+
+**Measured** run `20260727-181047`: 20/20 turns, zero AVs, Rush Buy counter
+1200 -> 743 -> 12 (monotonic), so the clock genuinely advanced.
+
+**Two things this run also fixed:**
+- `decode_run.py`'s `STALL_MAX` was 2000px, calibrated on *five*-turn intervals.
+  Per-turn it cried STALL six times on a run that was demonstrably progressing —
+  a parked camera legitimately redraws only the build counter (~300-1200px). The
+  real stall signature was always **byte-identical**; threshold is now 100. *A
+  threshold carries the sampling density it was measured at.*
+- `Game.kill()` derived the game PID from `self.hwnd` — the handle that is
+  already dead on the abort path, so an aborted run terminated **nothing** and
+  left a window on the user's screen. The PID is now remembered at acquisition.
+  **HEADLESS has to hold on the failure path, or it does not hold.**
+
 
 ## Base-tree fallback is the DB-Error blind spot (2026-07-26)
 

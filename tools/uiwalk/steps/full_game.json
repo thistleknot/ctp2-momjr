@@ -1,0 +1,4577 @@
+[
+ {
+  "_comment": "FULL GAME RUN. Extends the proven 40-turn cycle (ai_stall_40turns.json, run 20260727-075633: 3625BC->3000BC, zero zero-delta frames) to 200 turns to find what breaks PAST turn 40. Same injection-only boot, same per-turn cycle. shot every 5 turns so the game clock can be read from the frames. Run with --save none."
+ },
+ {
+  "do": "wait",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 30000
+ },
+ {
+  "do": "shot",
+  "name": "main_menu"
+ },
+ {
+  "do": "press",
+  "path": "InitPlayWindow.NewGameButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.ScenarioButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 3
+ },
+ {
+  "do": "wait",
+  "ms": 2000
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.StartButton"
+ },
+ {
+  "do": "wait",
+  "ms": 15000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 90000
+ },
+ {
+  "_comment": "(600,6) is empty chrome in the top menu bar, between the Options menu and the gold readout -- nothing is hit-tested there, so this delivers a mouse message without activating a control. This is the ONLY posted click in the file; every UI action below is injection or a key."
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "_comment": "PREDICTION: scrolling the view damages the whole viewport and forces terrain to paint. If these frames are still black the thesis is wrong and the repaint trigger is something else."
+ },
+ {
+  "do": "key",
+  "keys": "right"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "left"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "map_after_scroll"
+ },
+ {
+  "do": "key",
+  "keys": "down"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "up"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "peasant_on_open_map"
+ },
+ {
+  "_comment": "Found the city, then QUEUE Spearmen: UnitsList index 0 (measured in pass 1 -- Spearmen/Minotaur/Peasants at 8/12/14 turns, so unit costs are sane too). Add > appends it to the build queue; no Rush Buy, because gold is 106 and a rush-buy confirm is a modal that would freeze captures."
+ },
+ {
+  "do": "key",
+  "keys": "b"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 15000
+ },
+ {
+  "do": "press",
+  "path": "BuildEditorWindow.ItemsBox.UnitsButton"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 8000
+ },
+ {
+  "do": "select",
+  "path": "BuildEditorWindow.ItemsBox.UnitsList",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "BuildEditorWindow.ItemsBox.AddButton"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "spearmen_queued"
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 8000
+ },
+ {
+  "do": "shot",
+  "name": "city_founded_map"
+ },
+ {
+  "_comment": "TURN CYCLE x200. press SciAdvanceScreen.Background.BackButton clears the RESEARCH modal (injection is idempotent-by-absence, safe unconditionally); click(600,6) is inert top-bar chrome and is the mouse message that makes the injected enter count."
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn005"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn010"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn015"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn020"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn025"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn030"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn035"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn040"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn045"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn050"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn055"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn060"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn065"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn070"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn075"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn080"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn085"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn090"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn095"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn100"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn105"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn110"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn115"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn120"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn125"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn130"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn135"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn140"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn145"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn150"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn155"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn160"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn165"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn170"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn175"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn180"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn185"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn190"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn195"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn200"
+ }
+]

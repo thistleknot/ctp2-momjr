@@ -1,0 +1,155 @@
+[
+ {
+  "_comment": "BOOT-ONLY PROBE. QUESTION: does the MoM scenario start crash on its own, with ZERO input after StartButton? Three runs on 2026-07-27 died 0xC0000005; in at least one the watchdog reported the process gone BEFORE the first click was posted, so click-as-cause is unproven. This file posts no click at all. FALSIFIES click-as-cause if it still dies."
+ },
+ {
+  "do": "wait",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 30000
+ },
+ {
+  "do": "shot",
+  "name": "main_menu"
+ },
+ {
+  "do": "press",
+  "path": "InitPlayWindow.NewGameButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.ScenarioButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 3
+ },
+ {
+  "do": "wait",
+  "ms": 2000
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.StartButton"
+ },
+ {
+  "do": "wait",
+  "ms": 15000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 90000
+ },
+ {
+  "do": "shot",
+  "name": "boot00"
+ },
+ {
+  "do": "wait",
+  "ms": 5000
+ },
+ {
+  "do": "shot",
+  "name": "boot01"
+ },
+ {
+  "do": "wait",
+  "ms": 5000
+ },
+ {
+  "do": "shot",
+  "name": "boot02"
+ },
+ {
+  "do": "wait",
+  "ms": 5000
+ },
+ {
+  "do": "shot",
+  "name": "boot03"
+ },
+ {
+  "do": "wait",
+  "ms": 5000
+ },
+ {
+  "do": "shot",
+  "name": "boot04"
+ },
+ {
+  "do": "wait",
+  "ms": 5000
+ },
+ {
+  "do": "shot",
+  "name": "boot05"
+ },
+ {
+  "do": "wait",
+  "ms": 5000
+ }
+]

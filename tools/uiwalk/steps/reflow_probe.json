@@ -1,0 +1,813 @@
+[
+ {
+  "_comment": "REFLOW PROBE. 20 turns of the v2 cycle on an ILLEGAL primary geometry (portrait primary, 1024x768 not a legal mode -> the engine reflows its UI to a portrait client). QUESTION: does the turn cycle survive a reflowed surface at all? THESIS: it does, because the cycle has exactly ONE pinned aim point -- the inert-chrome ping at (600,6) -- and the top bar spans the client width, so at a ~1080-wide client (600,6) is still bar. FALSIFIED IF: the process dies 0xC0000005, or turn shots are byte-identical (the ping missed, so enter never counted). Requires UIWALK_ALLOW_ILLEGAL_RES=1."
+ },
+ {
+  "do": "wait",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 30000
+ },
+ {
+  "do": "shot",
+  "name": "main_menu"
+ },
+ {
+  "do": "press",
+  "path": "InitPlayWindow.NewGameButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.ScenarioButton"
+ },
+ {
+  "do": "wait",
+  "ms": 4000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 3
+ },
+ {
+  "do": "wait",
+  "ms": 2000
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "select",
+  "path": "ScenarioWindow.AvailableListBox",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "ScenarioWindow.LoadButton"
+ },
+ {
+  "do": "wait",
+  "ms": 3000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 20000
+ },
+ {
+  "do": "press",
+  "path": "SPNewGameWindow.StartButton"
+ },
+ {
+  "do": "wait",
+  "ms": 15000
+ },
+ {
+  "do": "wait_stable",
+  "ms": 90000
+ },
+ {
+  "_comment": "(600,6) is empty chrome in the top menu bar, between the Options menu and the gold readout -- nothing is hit-tested there, so this delivers a mouse message without activating a control. This is the ONLY posted click in the file; every UI action below is injection or a key."
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "_comment": "PREDICTION: scrolling the view damages the whole viewport and forces terrain to paint. If these frames are still black the thesis is wrong and the repaint trigger is something else."
+ },
+ {
+  "do": "key",
+  "keys": "right"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "left"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "map_after_scroll"
+ },
+ {
+  "do": "key",
+  "keys": "down"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "key",
+  "keys": "up"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "peasant_on_open_map"
+ },
+ {
+  "_comment": "Found the city, then QUEUE Spearmen: UnitsList index 0 (measured in pass 1 -- Spearmen/Minotaur/Peasants at 8/12/14 turns, so unit costs are sane too). Add > appends it to the build queue; no Rush Buy, because gold is 106 and a rush-buy confirm is a modal that would freeze captures."
+ },
+ {
+  "do": "key",
+  "keys": "b"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 15000
+ },
+ {
+  "do": "press",
+  "path": "BuildEditorWindow.ItemsBox.UnitsButton"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 8000
+ },
+ {
+  "do": "select",
+  "path": "BuildEditorWindow.ItemsBox.UnitsList",
+  "index": 0
+ },
+ {
+  "do": "wait",
+  "ms": 1500
+ },
+ {
+  "do": "press",
+  "path": "BuildEditorWindow.ItemsBox.AddButton"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 6000
+ },
+ {
+  "do": "shot",
+  "name": "spearmen_queued"
+ },
+ {
+  "do": "key",
+  "keys": "esc"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 8000
+ },
+ {
+  "do": "shot",
+  "name": "city_founded_map"
+ },
+ {
+  "_comment": "TURN CYCLE x200 with modal sweep. Order matters: clear modals FIRST, then ping inert chrome at (600,6) -- the mouse message is what makes the injected enter count (ctp2-endturn-needs-mouse-input) -- then enter."
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn005"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn010"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn015"
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "press",
+  "path": "SciAdvanceScreen.Background.BackButton"
+ },
+ {
+  "do": "press",
+  "path": "BattleViewWindow.ExitButton"
+ },
+ {
+  "do": "press",
+  "path": "ModalWindow.ModalResponseButton"
+ },
+ {
+  "do": "wait",
+  "ms": 400
+ },
+ {
+  "do": "click",
+  "x": 600,
+  "y": 6
+ },
+ {
+  "do": "key",
+  "keys": "enter"
+ },
+ {
+  "do": "wait_stable",
+  "ms": 25000
+ },
+ {
+  "do": "shot",
+  "name": "turn020"
+ }
+]
