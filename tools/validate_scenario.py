@@ -485,6 +485,70 @@ def check_disabled_entities_unbuildable(scen: Path, fails: list[str]) -> None:
                              f"EnableAdvance {gate or 'NONE'}")
 
 
+def check_wonder_build_lists(scen: Path, fails: list[str]) -> None:
+    """Gate 24: the AI's wonder lists cover every live wonder and nothing else.
+
+    Require: generated Wonder.txt and aidata/WonderBuildLists.txt.
+    Guarantee: every ident in the lists is a Wonder.txt block; no self-obsoleting
+      sentinel is offered; every live wonder appears in at least one list; and
+      the EndGameObjects wonder is among them.
+
+    The last clause is the one with teeth. EndGameObjects.txt makes holding
+    WONDER_RUNE_OF_RULERSHIP for 10 turns the scenario's victory, and the AI can
+    only choose a wonder that appears in one of these seven lists. The lists
+    shipped EMPTY -- deliberately, to stop stock aidata idents dangling -- which
+    also meant no AI could ever build any of the 23 MoM wonders, so in an AI-only
+    game the victory was unreachable by construction. Two headless playthroughs
+    (200 and 600 turns) ended only because the script ran out, never because the
+    game did.
+
+    An empty list is therefore not a safe default here: it is silent, it looks
+    tidy, and it deletes a win condition. Assert coverage explicitly.
+    """
+    wonder_txt = scen / "default/gamedata/Wonder.txt"
+    lists_txt = scen / "default/aidata/WonderBuildLists.txt"
+    if not wonder_txt.exists() or not lists_txt.exists():
+        return
+
+    wtext = wonder_txt.read_text(encoding="latin-1", errors="replace")
+    ltext = lists_txt.read_text(encoding="latin-1", errors="replace")
+    blocks = dict(re.findall(r"^(WONDER_[A-Z0-9_]+)\s*\{(.*?)^\}", wtext,
+                             re.S | re.M))
+    listed = set(re.findall(r"^\s*Wonder\s+(WONDER_\w+)", ltext, re.M))
+
+    def _adv(body: str, key: str) -> str | None:
+        m = re.search(r"\b" + key + r"\s+(\S+)", body)
+        return m.group(1) if m else None
+
+    # The disabled idiom: obsolete by the same advance that unlocks it.
+    disabled = {n for n, b in blocks.items()
+                if _adv(b, "EnableAdvance") is not None
+                and _adv(b, "EnableAdvance") == _adv(b, "ObsoleteAdvance")}
+    live = set(blocks) - disabled
+
+    for ident in sorted(listed - set(blocks)):
+        fails.append(f"WonderBuildLists.txt: {ident} is not a block in Wonder.txt")
+    for ident in sorted(listed & disabled):
+        fails.append(
+            f"WonderBuildLists.txt: {ident} is obsolete the moment it unlocks -- "
+            "offering it to the AI burns production on a dead end")
+    for ident in sorted(live - listed):
+        fails.append(
+            f"WonderBuildLists.txt: live wonder {ident} is in no AI list, so no "
+            "AI player can ever choose to build it")
+
+    endgame = scen / "default/gamedata/EndGameObjects.txt"
+    if endgame.exists():
+        want = set(re.findall(
+            r"^\s*Wonder\s+(WONDER_\w+)",
+            endgame.read_text(encoding="latin-1", errors="replace"), re.M))
+        for ident in sorted(want - listed):
+            fails.append(
+                f"WonderBuildLists.txt: {ident} decides the game in "
+                "EndGameObjects.txt but is in no AI build list -- the victory "
+                "condition is unreachable for every AI player")
+
+
 def check_parchment_range(scen: Path, fails: list[str]) -> None:
     """Gate 23: every civ's Parchment resolves to an art file that exists.
 
@@ -1025,6 +1089,7 @@ def main() -> int:
     check_gl_statistics_match_db(scen, fails)
     check_renaissance_age_cap(scen, fails)
     check_parchment_range(scen, fails)
+    check_wonder_build_lists(scen, fails)
 
     if fails:
         for f in fails:

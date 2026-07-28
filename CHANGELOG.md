@@ -9,6 +9,68 @@ noise is not a change.
 
 ---
 
+## [3.1.0] — 2026-07-27 — the victory nobody could reach
+
+**Minor.** 3.0.x saves load unchanged and every rule, cost and age is untouched.
+It is not a patch because it restores a whole system rather than repairing one
+value: the AI can now build wonders at all, which means the scenario's win
+condition exists for the first time.
+
+### Fixed
+
+- **No AI player could build any wonder, so the game had no winner.** All seven
+  lists in `aidata/WonderBuildLists.txt` shipped empty. The reason was sound —
+  an empty scenario override stops the engine falling back to stock aidata,
+  whose wonder idents do not exist in the MoM WonderDB and would dangle — but
+  the engine picks wonders for an AI goal *only* from these lists. Empty meant
+  none of the 23 live MoM wonders was ever a candidate. And since
+  `EndGameObjects.txt` makes the victory *hold `WONDER_RUNE_OF_RULERSHIP` for 10
+  turns*, an AI-only game had **no reachable terminal state except the year
+  2300**. The lists are now derived from the generated `Wonder.txt` — which
+  keeps the original guarantee, because every ident is read out of the
+  scenario's own database — and each wonder is filed by its own effect lines, so
+  it re-files itself when its effects change instead of drifting from a
+  hand-typed roster. 23 live wonders across 7 lists; the 5 self-obsoleting `X*`
+  stubs are excluded.
+
+- **A rival's diplomatic proposal froze the turn loop indefinitely.** A tribe
+  demanding tribute opens a modal `DipWizard` window, and END TURN never fires
+  again. The headless harness now rejects it every turn. Reject, never accept:
+  an unattended playthrough must not hand over gold.
+
+### Added
+
+- **Gate 24, `check_wonder_build_lists`.** Asserts that every ident in the AI
+  lists is a real `Wonder.txt` block, that no self-obsoleting stub is offered,
+  that every live wonder appears in at least one list, and that the wonder named
+  by `EndGameObjects.txt` is among them. Validated against the pre-fix scenario
+  first, where it produced **24 failures** — a gate that has never rejected
+  anything is not evidence.
+
+- **`tools/balance_report.py`** — the first check in this repo that asks whether
+  the mod is *fair* rather than whether it is *legal*. Cost-efficiency outliers
+  on a median/MAD band over log(power/cost), sphere parity, and a stat-twin
+  check for units with an identical combat line at very different prices.
+  Reports; does not gate.
+
+- **`tools/uiwalk/make_full_game.py`** — the full-game walk is generated from a
+  turn count instead of being a hand-maintained 1553-element JSON pinned at 200
+  turns. Reproduces the verified 200-turn file body-identically.
+
+### Known open
+
+- **All 55 units have `MaxHP 10`.** The civ2 source spreads hp across `1h..6h`;
+  the port flattens it, so durability differentiates nothing. This is the
+  largest dimension lost in the conversion and is **not** fixed here.
+- `UNDEAD_DRAGON` costs 1200 against `STORM_DRAKE`'s 4000 for an identical
+  60/30/10/2 line. Faithful to the civ2 source, which prices it 3 where Storm
+  Drake is 14 — an upstream MoMJR authoring bug, carried correctly.
+- `INFERNAL_DEVICE` delivers ~15x the median combat value per shield.
+- Sphere totals span 2.56x (chaos 1165, death 455); rosters span 1.86x.
+- `ADVANCE_RUNE_LORE` unlocks the victory wonder at **AGE_TWO of seven** and is
+  ungated, so the win is available before most of the magic ladder exists.
+- `BattleViewWindow.ExitButton` still does not close the battle view.
+
 ## [3.0.1] — 2026-07-27 — the diplomacy screen every tribe could not open
 
 **Patch.** No rule, cost, age, or save-format change — 3.0.0 saves load

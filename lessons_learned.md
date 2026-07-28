@@ -1,3 +1,90 @@
+## 2026-07-27 — A completed run is not a played run; an empty list is a deletion
+
+**Context:** the goal was a *complete* playthrough — run to a terminal game
+state and audit balance on the way. Two things stood in the way, and both were
+invisible to every gate the repo had, because both are failures of
+*reachability* rather than of *legality*.
+
+**CLOSED — the 600-turn run never played 600 turns.** Run `20260727-201217`
+reported 600/600, exit 0, 125 shots, in ~18 minutes. `decode_run.py` disagreed:
+**117 consecutive checkpoints at 0 px**, byte-identical, from turn 20 to turn
+600. Screenshotting the frozen frame answered it in one look — a rival tribe had
+opened a **DIPLOMATIC PROPOSAL** ("give us 100 gold or suffer our wrath"), which
+is modal, so END TURN never fired again. The per-turn sweep knew about the
+science and battle modals and not this one.
+
+The mechanism that hid it is worth keeping: **a frozen window is stable**, so
+`wait_stable` returns instantly. Turn count, shot count and exit code are all
+measures of what the SCRIPT did; only per-checkpoint pixel delta measures
+whether the GAME moved. Fixed by adding `DipWizard.ViewButtons.RejectButton`
+(`dipwizard.ldl:494`) to the sweep — reject, never accept, because an unattended
+walk must not hand over gold. Verified: 60/60 turns, all LIVE, no stalls.
+
+**CLOSED — the AI could not build any wonder, so the victory did not exist.**
+All seven lists in `aidata/WonderBuildLists.txt` shipped EMPTY. The reason was
+sound (an empty override stops the engine falling back to stock aidata idents
+that would dangle against the MoM WonderDB) and the consequence was not: the
+engine picks wonders for an AI goal *only* from these lists. So no AI could
+build any of the 23 live MoM wonders — and `EndGameObjects.txt` makes the
+scenario's victory *hold `WONDER_RUNE_OF_RULERSHIP` for 10 turns*. In an AI-only
+game the win condition was **unreachable by construction**.
+
+**The law: an empty allowlist is a silent deletion.** It looks tidy, it is
+conservative, and it passes every reference-integrity gate — nothing can dangle
+when nothing is referenced. The gates asked "does this resolve"; nothing asked
+"is this reachable".
+
+`_write_wonder_build_lists()` now derives the lists from the generated
+`Wonder.txt`, keeping the original guarantee (no stock ident can appear, because
+every ident is read out of the scenario's own DB) and categorising each wonder
+by its own effect lines, so a wonder re-files itself instead of desyncing from a
+hand-typed roster. **Pass ordering bit again:** it must run AFTER
+`_retire_x_sentinels()`, which stamps `ObsoleteAdvance` on the five `WONDER_X*`
+stubs; placed ~674 lines earlier the stubs still looked live and were offered to
+the AI. Gate 24 `check_wonder_build_lists` asserts coverage both ways and that
+the EndGameObjects wonder is listed — proven against the known-bad artifact
+first, where it produced **24 FAILs**.
+
+**The terminal state is turn 1000, and it always was.** `DiffDB.txt` TIME_SCALE:
+20 yr/turn to turn 150, then 10, 5, 2, and 1 from turn 600. `END_OF_GAME_YEAR`
+2300 therefore falls at **turn 1000**; turn 200 is 500BC and turn 600 is 1900AD.
+A frame at turn 15 reads *3750BC*, which matches the table exactly and refutes
+the earlier "turn 200 = 150AD" figure. So no 200- or 600-turn script could ever
+have ended the game on the clock, independent of the two bugs above.
+
+**Balance, first quantitative pass** (`tools/balance_report.py`, new). It scores
+the SHIPPED `Units.txt`, not `units.csv` — the generator rescales on the way out
+(cost x~100, attack x5), so the control plane cannot answer "what does a player
+experience". Measuring that immediately killed the first metric: **all 55 units
+have `MaxHP 10`**, the civ2 `1h..6h` spread having been flattened in the port,
+so `hp` is a constant and had to be dropped from the power proxy. Durability no
+longer differentiates any unit — the single largest dimension lost in the
+conversion.
+
+- **One outlier past 3 MAD:** `INFERNAL_DEVICE`, attack 495 for 480 shields,
+  ~15x the median efficiency.
+- **Stat twins** (identical line, same domain, different price) — the check an
+  outlier band structurally cannot make, since each unit is individually
+  reasonable: `UNDEAD_DRAGON` 1200 vs `STORM_DRAKE` 4000 (**3.33x**, both
+  60/30/10/2); `ALORRA` 470 vs `PALADINS` 1125 (2.39x); `KNIGHTS` 460 vs
+  `HELL_HOUNDS` 740 (1.61x). The dragon gap is faithful to `RULES.TXT:427`,
+  i.e. an upstream MoMJR authoring bug carried correctly — not a pipeline defect.
+- **Sphere spread** 2.56x by total power (chaos 1165 > nature 915 > sorcery 585
+  > life 570 > death 455) and 1.86x by roster size (nature 13, life 7).
+- **Structural:** `ADVANCE_RUNE_LORE`, which unlocks the victory wonder, is
+  **AGE_TWO of seven** and ungated — the win unlocks before most of the magic
+  ladder exists.
+
+The report exits 0 by design. Balance is a judgement call; the numbers are an
+input to it, not a verdict.
+
+**Tooling note that cost 30 minutes.** Writing generator code through a Python
+heredoc, `` inside a non-raw string is a **backspace**, not a word boundary —
+so `r'EnableAdvance'` reached the file as `r'<0x08>EnableAdvance'` and matched
+nothing, silently. `\s`, `\{` and `\}` survive because they are not valid
+escapes. The tell was `cat -A` showing `^H`. Generate code with raw strings or
+verify the bytes.
+
 ## 2026-07-26 — The SLIC mod hooks: `theCity.owner` works, `thePlayer` is a lie
 
 **Context:** per-tribe "who gets what" gating rides CTP2's four SLIC mod

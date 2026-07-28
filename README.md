@@ -1,7 +1,16 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.0.1** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.1.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
+
+> **What 3.1.0 fixes — the victory nobody could reach.** Every one of the AI's
+> seven wonder build lists shipped empty, so no AI player could build any of the
+> 23 MoM wonders — including `WONDER_RUNE_OF_RULERSHIP`, which
+> `EndGameObjects.txt` makes the scenario's win condition. An AI-only game
+> therefore had no reachable ending except the year 2300 (turn 1000). The lists
+> are now derived from the scenario's own wonder database. Saves are unaffected.
+> The same release fixes a diplomatic-proposal modal that froze the headless
+> turn loop, and adds the first balance audit. See `CHANGELOG.md`.
 
 > **What 3.0.1 fixes — the diplomacy screen every tribe could not open.** All
 > five tribes pointed at a parchment image that does not exist, and because the
