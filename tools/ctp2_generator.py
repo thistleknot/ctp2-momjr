@@ -1192,6 +1192,26 @@ def _prune_gl_sections(library: P.LibraryFile, keep_ids: set[str], prefixes: tup
     return removed
 
 
+def _wonder_article(display_name: str) -> str:
+    """The `#ARTICLE` string for a wonder, derived from its display name.
+
+    Require: the wonder's gl_str display name.
+    Guarantee: `""` for a name that already reads definite, `"the "` otherwise.
+
+    `#ARTICLE` is an ident-suffix lookup -- the engine reads `<IDENT>_ARTICLE`
+    out of gl_str.txt -- so this value IS the article, not a hint. Derived
+    rather than authored in a csv column so a rename can never desync the two.
+
+    Matches the base game's own convention exactly: WONDER_PYRAMIDS_ARTICLE
+    "the ", WONDER_THE_APPIAN_WAY_ARTICLE "" (already definite),
+    WONDER_ARISTOTLES_LYCEUM_ARTICLE "" (possessive).
+    """
+    name = display_name.strip()
+    if name.lower().startswith("the ") or "'s" in name.lower():
+        return ""
+    return "the "
+
+
 def _prune_gl_strings(strings: P.StringDBFile, keep_ids: set[str], prefixes: tuple[str, ...]) -> int:
     removed = 0
     for key in list(strings.entries):
@@ -1202,6 +1222,14 @@ def _prune_gl_strings(strings: P.StringDBFile, keep_ids: set[str], prefixes: tup
                 matched_id = candidate
         elif key.startswith(prefixes):
             matched_id = key
+        # `<IDENT>_ARTICLE` belongs to <IDENT>, the same way `DESCRIPTION_<IDENT>`
+        # does. Without this the suffixed key never matches a keep_id, so every
+        # inherited article string was deleted on every run -- and any we write
+        # later would be pruned straight back out. gl_str shipped ZERO articles,
+        # which made `{name#ARTICLE}{name}` fall back to the name and render it
+        # twice: `Bardic CollegeBardic College` (2026-07-28).
+        if matched_id and matched_id.endswith("_ARTICLE"):
+            matched_id = matched_id[:-len("_ARTICLE")]
         if matched_id and matched_id not in keep_ids:
             del strings.entries[key]
             removed += 1
@@ -3690,6 +3718,18 @@ def _ensure_runtime_wonder_gl_surfaces(
             if ident not in gl_strings.entries:
                 added_strings += 1
             gl_strings.entries[ident] = display_name
+
+        # Eleven messages in info_str.txt interpolate the name TWICE --
+        # `{wonder[0].name#ARTICLE}{wonder[0].name}` -- and #ARTICLE resolves
+        # `<IDENT>_ARTICLE` from here. A missing key falls back to the name, so
+        # the message reads `Bardic CollegeBardic College`. Wonders are the only
+        # database the engine uses this modifier for.
+        article_key = f"{ident}_ARTICLE"
+        article = _wonder_article(display_name)
+        if gl_strings.entries.get(article_key) != article:
+            if article_key not in gl_strings.entries:
+                added_strings += 1
+            gl_strings.entries[article_key] = article
 
         description_text = str(spec.get("gl_description") or "").strip() or gl_strings.entries.get(
             description_key,

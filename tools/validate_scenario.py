@@ -485,6 +485,58 @@ def check_disabled_entities_unbuildable(scen: Path, fails: list[str]) -> None:
                              f"EnableAdvance {gate or 'NONE'}")
 
 
+def check_wonder_articles(scen: Path, fails: list[str]) -> None:
+    """Gate 25: every wonder has the `_ARTICLE` string its messages interpolate.
+
+    Require: generated Wonder.txt and english/gamedata/gl_str.txt.
+    Guarantee: every WONDER_* block has a `<IDENT>_ARTICLE` key, and no
+      `_ARTICLE` key survives whose wonder is gone.
+
+    `#ARTICLE` is an IDENT-SUFFIX LOOKUP, not a computed article: the engine
+    resolves `{wonder[0].name#ARTICLE}` by reading `<IDENT>_ARTICLE` out of
+    gl_str.txt, and falls back to the NAME when the key is missing. Eleven
+    messages in ctp2_data/english/gamedata/info_str.txt are written as two
+    adjacent interpolations --
+
+        WONDER_STARTED "... has begun work on {wonder[0].name#ARTICLE}{wonder[0].name}."
+
+    -- so a missing key renders the name TWICE with nothing between it:
+    `Bardic CollegeBardic College`, observed in-game 2026-07-28. Affected:
+    WONDER_BUILT, WONDER_BUILT_QUEUE_EMPTY, WONDER_STARTED, WONDER_STOPPED,
+    WONDER_ALMOST_FINISHED, WONDER_COMPLETE_OWNER, WONDER_COMPLETE_ALL,
+    WONDER_DESTROYED, WONDER_OBSOLETE, NANITE_DEFUSER_ELIMINATES_NUKES,
+    PROTECTED_FROM_CONVERSION_BY_WONDER.
+
+    The base tree ships 30 of these keys and wonders are the ONLY database that
+    uses the modifier. MoM's gl_str.txt overrides the base file and shipped ZERO,
+    because two independent lanes were broken: _prune_gl_strings deleted every
+    inherited key (a trailing `_ARTICLE` never matched a keep_id), and the wonder
+    writer never emitted MoM's own. Fixing either alone leaves the bug, which is
+    why this gate asserts the RESULT rather than either lane.
+    """
+    wonder_txt = scen / "default/gamedata/Wonder.txt"
+    gl_str = scen / "english/gamedata/gl_str.txt"
+    if not wonder_txt.exists() or not gl_str.exists():
+        return
+
+    wonders = set(re.findall(
+        r"^(WONDER_[A-Z0-9_]+)\s*\{",
+        wonder_txt.read_text(encoding="latin-1", errors="replace"), re.M))
+    keys = set(re.findall(
+        r"^(\w+)\s+\"",
+        gl_str.read_text(encoding="latin-1", errors="replace"), re.M))
+
+    for ident in sorted(wonders):
+        if f"{ident}_ARTICLE" not in keys:
+            fails.append(
+                f"gl_str.txt: {ident} has no {ident}_ARTICLE key -- every "
+                "wonder message will print its name twice")
+    for key in sorted(k for k in keys if k.endswith("_ARTICLE")):
+        if key[:-len("_ARTICLE")] not in wonders:
+            fails.append(
+                f"gl_str.txt: {key} has no matching block in Wonder.txt")
+
+
 def check_wonder_build_lists(scen: Path, fails: list[str]) -> None:
     """Gate 24: the AI's wonder lists cover every live wonder and nothing else.
 
@@ -1090,6 +1142,7 @@ def main() -> int:
     check_renaissance_age_cap(scen, fails)
     check_parchment_range(scen, fails)
     check_wonder_build_lists(scen, fails)
+    check_wonder_articles(scen, fails)
 
     if fails:
         for f in fails:
