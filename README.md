@@ -1,9 +1,18 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.1.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.1.1** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
 
-> **What 3.1.0 fixes — the victory nobody could reach.** Every one of the AI's
+> **What 3.1.1 fixes — every wonder message printed its name twice.** The
+> rival-wonder warning read `Bardic CollegeBardic College`. `#ARTICLE` turns out
+> to be an ident-suffix lookup, not a computed article: the engine reads
+> `<IDENT>_ARTICLE` from `gl_str.txt` and falls back to the *name* when it is
+> missing, so the eleven messages written as `{name#ARTICLE}{name}` doubled it.
+> MoM's string file overrides the base one and shipped none of those keys — two
+> separate lanes, one deleting the inherited keys and one never writing our own.
+> Saves are unaffected. See `CHANGELOG.md`.
+
+> **What 3.1.0 fixed — the victory nobody could reach.** Every one of the AI's
 > seven wonder build lists shipped empty, so no AI player could build any of the
 > 23 MoM wonders — including `WONDER_RUNE_OF_RULERSHIP`, which
 > `EndGameObjects.txt` makes the scenario's win condition. An AI-only game

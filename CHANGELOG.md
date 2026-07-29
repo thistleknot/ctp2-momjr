@@ -9,6 +9,74 @@ noise is not a change.
 
 ---
 
+## [3.1.1] — 2026-07-29 — every wonder message printed its name twice
+
+**Patch.** No rule, cost, age, or save-format change — 3.1.0 saves load
+unchanged. A string the engine has always looked for was simply absent, so a
+message that was already supposed to read correctly now does.
+
+### Fixed
+
+- **`Bardic CollegeBardic College`.** Every wonder message rendered the wonder's
+  name twice, concatenated with nothing between — seen in the wild on the
+  rival-wonder warning. `#ARTICLE` is not a computed article: it is an
+  **ident-suffix lookup**, and the engine resolves
+  `{wonder[0].name#ARTICLE}` by reading `<IDENT>_ARTICLE` out of `gl_str.txt`,
+  falling back to the *name* when the key is missing. Eleven messages in
+  `info_str.txt` are written as two adjacent interpolations —
+
+  ```
+  WONDER_STARTED "... has begun work on {wonder[0].name#ARTICLE}{wonder[0].name}."
+  ```
+
+  — so one missing key doubles the name in all of them: `WONDER_BUILT`,
+  `WONDER_BUILT_QUEUE_EMPTY`, `WONDER_STARTED`, `WONDER_STOPPED`,
+  `WONDER_ALMOST_FINISHED`, `WONDER_COMPLETE_OWNER`, `WONDER_COMPLETE_ALL`,
+  `WONDER_DESTROYED`, `WONDER_OBSOLETE`, `NANITE_DEFUSER_ELIMINATES_NUKES`,
+  `PROTECTED_FROM_CONVERSION_BY_WONDER`. The base tree ships 30 of these keys and
+  wonders are the only database that uses the modifier; MoM's `gl_str.txt`
+  overrides the base file and shipped **zero**.
+
+  **Two independent lanes were broken, and fixing either alone leaves the bug.**
+  `_prune_gl_strings` deleted every *inherited* key, because a trailing
+  `_ARTICLE` never matched a keep-id — so `WONDER_PYRAMIDS_ARTICLE` read as an
+  orphan, and anything written later would have been pruned straight back out.
+  Meanwhile the wonder writer never emitted MoM's *own*. The pruner now
+  normalises `_ARTICLE` to its owning ident, exactly as it already did for a
+  leading `DESCRIPTION_`, and the writer derives the article from the display
+  name: `""` when the name is already definite or possessive, `"the "`
+  otherwise. That reproduces the base game's own convention
+  (`WONDER_THE_APPIAN_WAY_ARTICLE ""`, `WONDER_ARISTOTLES_LYCEUM_ARTICLE ""`,
+  `WONDER_PYRAMIDS_ARTICLE "the "`). Derived rather than authored in a csv
+  column, so renaming a wonder cannot desync the two.
+
+  Now reads *the Bardic College*, *the Guild of Legends*, *The Parthenon*,
+  *Gaia's Shrine*.
+
+### Added
+
+- **Gate 25 — `check_wonder_articles`.** Asserts the *result* rather than either
+  lane: every `WONDER_*` block has an article key, and no article key outlives
+  its wonder. Proven against the unfixed tree **before** the fix was written —
+  28 FAILs, one per wonder. A gate that has never rejected anything is not
+  evidence.
+
+### Known open
+
+- Five wonders still display a literal `X` — `Xlighthouse`, `Xapollo Program`,
+  `Xstatue Of Liberty`, `Xwomens Suffrage`, `Xcure For Cancer`. Traced to civ2
+  source `Rules.txt:251,267,269,273,275`, where MoMJR marks them
+  `xLighthouse, 20, 0, no,` — the `x` name prefix *and* the `no` never-buildable
+  sentinel. They are correctly disabled in the scenario (`EnableAdvance ==
+  ObsoleteAdvance`, no effects, absent from every AI build list, and gate 24
+  already enforces that), so this is cosmetic residue on the Great Library page
+  only.
+- The fix is verified statically, not on screen. The message fires only when a
+  rival starts a wonder, which cannot be triggered on demand, and the harness
+  reads pixels only.
+
+---
+
 ## [3.1.0] — 2026-07-27 — the victory nobody could reach
 
 **Minor.** 3.0.x saves load unchanged and every rule, cost and age is untouched.
