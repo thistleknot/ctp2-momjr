@@ -62,8 +62,15 @@ MOM_MSG_NOT_CHAOS		"Only a Chaos mage may summon demons."
 # sphere is locked out of it.
 MOM_MSG_BTN_SUMMON		"Summon Creature (75)"
 MOM_MSG_SUMMON_NOMANA		"You lack the mana for a summoning. A creature costs 75, and you hold {MomMagicCurDisp}."
-MOM_MSG_SUMMON_GUARD		"Your working completes. A Guardian Spirit manifests in your capital."
-MOM_MSG_SUMMON_BEAR		"Your working completes. Warbears lumber out of the forest into your capital."
-MOM_MSG_SUMMON_MAGE		"Your working completes. A Mage steps out of the aether in your capital."
-MOM_MSG_SUMMON_ZOMBIE		"Your working completes. Zombies claw their way up in your capital."
-MOM_MSG_SUMMON_HOUND		"Your working completes. Hell Hounds burn their way into your capital."
+# These five NAME NO CREATURE on purpose. The summon used to be one fixed unit
+# per sphere, so naming it was safe; as of 2026-07-29 it rolls over every rung
+# the caster has unlocked, and a message reading "Warbears lumber out" while a
+# Great Wyrm stands in the capital is worse than saying nothing. SLIC cannot
+# interpolate the creature either -- only plain {scalar} substitutions survive,
+# and a unit index is not a name (mom-slic-message-interpolation). The player
+# sees what arrived on the map.
+MOM_MSG_SUMMON_GUARD		"Your working completes. Radiant light gathers in your capital, and something steps out of it."
+MOM_MSG_SUMMON_BEAR		"Your working completes. The forest stirs, and something answers your call in your capital."
+MOM_MSG_SUMMON_MAGE		"Your working completes. The aether parts in your capital, and something walks through."
+MOM_MSG_SUMMON_ZOMBIE		"Your working completes. The ground breaks open in your capital, and something climbs out."
+MOM_MSG_SUMMON_HOUND		"Your working completes. Something burns its way into your capital."

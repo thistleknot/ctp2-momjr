@@ -75,6 +75,7 @@ HandleEvent(GrantAdvance) 'MomSphereBlessingMessages' post {
 
 HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     int_t p;
+    int_t summonPick;
     city_t tmpCity;
 
     p = player[0];
@@ -88,7 +89,12 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     if (p >= 1 && p <= 5 && MomSummonChoice[p] != 0 && player[0].cities > 0
         && MomMagicCur[p] >= 75) {
         GetCityByIndex(player[0], 0, tmpCity);
-        if (CityIsValid(tmpCity)) {
+        // Roll BEFORE the debit, and gate the debit on it. MomSummonRoll returns
+        // 0 when the caster has not reached rung 1 of its own ladder, and
+        // charging 75 mana for a creature that never appears would be a silent
+        // theft that looks exactly like a spawn that failed to render.
+        summonPick = MomSummonRoll(p);
+        if (CityIsValid(tmpCity) && summonPick != 0) {
             MomMagicCur[p] = MomMagicCur[p] - 75;
             if (IsHumanPlayer(p)) {
                 MomMagicCurDisp = MomMagicCur[p];
@@ -105,20 +111,26 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
             // calling it here is ONE level from the handler body, the same
             // depth mom_city_effects.slc already uses, so it is clear of the
             // 2-level 0xC0000005 chain.
+            // The creature is no longer a per-sphere CONSTANT. MomSummonRoll
+            // (mom_summon.slc, GENERATED) weights a roll over every rung the
+            // caster has unlocked, so researching up the ladder changes what 75
+            // mana buys. It used to be Warbears forever for Nature -- the
+            // cheapest of its 13 units -- which left 12 creatures unreachable.
+            //
+            // BOTH calls sit at depth 1 from this handler body, which is the
+            // whole reason the roll RETURNS an index instead of spawning: a
+            // 2-level user-function chain from a HandleEvent is a 0xC0000005
+            // (slic-two-crash-classes). Do NOT fold these into one helper.
+            MomSpawnSphereUnit(p, summonPick);
             if (p == 1) {
-                MomSpawnSphereUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT));
                 Message(p, 'MomSummonGuard');
             } elseif (p == 2) {
-                MomSpawnSphereUnit(p, UnitDB(UNIT_WARBEARS));
                 Message(p, 'MomSummonBear');
             } elseif (p == 3) {
-                MomSpawnSphereUnit(p, UnitDB(UNIT_MAGE));
                 Message(p, 'MomSummonMage');
             } elseif (p == 4) {
-                MomSpawnSphereUnit(p, UnitDB(UNIT_ZOMBIES));
                 Message(p, 'MomSummonZombie');
             } elseif (p == 5) {
-                MomSpawnSphereUnit(p, UnitDB(UNIT_HELL_HOUNDS));
                 Message(p, 'MomSummonHound');
             }
         }

@@ -71,6 +71,17 @@
     ],
     "air_transports": [
       "UNIT_AIRSHIP"
+    ],
+    "heroes": [
+      "UNIT_ARIEL",
+      "UNIT_FREYA",
+      "UNIT_JAFAR",
+      "UNIT_RJAK",
+      "UNIT_TAURON",
+      "UNIT_SERENA",
+      "UNIT_ALORRA",
+      "UNIT_WARRAX",
+      "UNIT_MALLEUS"
     ]
   },
   "icon_bad_tokens": [

@@ -48,6 +48,10 @@
 #include "mom_func.slc"
 #include "mom_turns.slc"
 #include "mom_city_effects.slc"
+// GENERATED. Declares MomSphereRung[] and int_f MomSummonRoll, so it must load
+// BEFORE mom_msg.slc (whose MomSummonOrderTick calls the roll) and before
+// mom_ai_magic.slc (which reads the same rung array).
+#include "mom_summon.slc"
 #include "mom_msg.slc"
 #include "mom_magic.slc"
 // B2 spellbook. Wired 2026-07-25 -- the file was complete but never included, so
@@ -59,6 +63,11 @@
 // repeated identifier (p, i, j, summon, focusCount) is indented, i.e. declared
 // inside a handler body and therefore segment-local, not file scope.
 #include "mom_spells.slc"
+// The AI's magic brain. After mom_summon.slc (MomSummonRoll, MomSphereRung) and
+// after mom_func.slc (MomSpawnSphereUnit). Before this file existed, AI tribes
+// accrued mana every turn and could never spend a point of it -- the only thing
+// that authorises a summon was set in a button body, which only a human reaches.
+#include "mom_ai_magic.slc"
 // Per-tribe gating via the engine's four mod functions. Last: it defines only
 // int_f mod_* segments, calls into nothing, and must be able to name every
 // UNIT_/IMPROVE_/ADVANCE_ symbol the other modules assume exists.

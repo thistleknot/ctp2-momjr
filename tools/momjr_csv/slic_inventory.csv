@@ -18,6 +18,8 @@ mom_func.slc,function,MomSpawnSphereUnit,"void_f(int_t p_13, int_t unitType)","s
 mom_turns.slc,handler,MomSphereTurnBlessings,HandleEvent(BeginTurn) post,per-turn sphere gold income by faction,B,ACTIVE,all
 mom_city_effects.slc,handler,MomSphereAdvanceBlessings,HandleEvent(GrantAdvance) post,sphere magic-advance milestone: grant blessing building + spawn sphere unit (Chaos = random gold),B,ACTIVE,all
 mom_city_effects.slc,handler,MomSphereCityEffects,HandleEvent(CreateBuilding) post,+30 burst gold on themed building completion,B,ACTIVE,all
+mom_summon.slc,handler,MomSphereRungTick,HandleEvent(GrantAdvance) post,,?,ACTIVE,all
+mom_summon.slc,function,MomSummonRoll,int_f(int_t p),,?,ACTIVE,neutral
 mom_msg.slc,handler,MomSphereBlessingMessages,HandleEvent(GrantAdvance) post,per-sphere blessing popup on the magic advance (human-only; base Message plumbing),C,ACTIVE,all
 mom_msg.slc,handler,MomSummonOrderTick,HandleEvent(BeginTurn) post,"spawn the creature ordered last turn, resolved from the CASTER'S OWN sphere; debits 75 mana",C,ACTIVE,neutral
 mom_msg.slc,messagebox,MomMsgSlicAlive,messagebox,segment: SLIC liveness confirmation text,C,ACTIVE,neutral
@@ -50,6 +52,7 @@ mom_spells.slc,alertbox,MomMsgFlameCast,alertbox,segment: Flame Strike cast conf
 mom_spells.slc,alertbox,MomMsgNoTarget,alertbox,segment: no enemy unit in range,M,ACTIVE,neutral
 mom_spells.slc,alertbox,MomMsgNoMana,alertbox,segment: insufficient mana for a spell (alertbox; distinct from mom_msg's summon variant),M,ACTIVE,neutral
 mom_spells.slc,alertbox,MomMsgNotChaos,alertbox,segment: caster's sphere does not grant this spell,M,ACTIVE,chaos
+mom_ai_magic.slc,handler,MomAiMagicTick,HandleEvent(BeginTurn) post,,?,ACTIVE,neutral
 mom_gating.slc,function,mod_CanPlayerHaveAdvance,"int_f(int_t thePlayer, int_t theAdvance)","deny a tribe every ladder advance outside its own sphere. Guards on g.player FIRST (ResetCanResearch calls this once per advance per player) and intercepts every acquisition path including scenario-start seeding, so seed advances are unnecessary.",?,ACTIVE,all
 mom_gating.slc,function,mod_CanCityBuildUnit,"int_f(city_t theCity, int_t theUnit)","deny a city any unit whose sphere is not its owner tribe; neutral units always permitted. Identity via theCity.owner (proven to resolve, probe B2).",?,ACTIVE,neutral
 mom_gating.slc,function,mod_CanCityBuildBuilding,"int_f(city_t theCity, int_t theBuilding)","same wall for improvements: deny off-sphere buildings, permit neutral ones.",?,ACTIVE,neutral

@@ -1,3 +1,88 @@
+## 2026-07-29 — A ladder nothing reads, and a resource one side cannot spend
+
+**Context:** two things noticed in a play session, both reported as vague
+impressions ("nature only ever spawns one unit"; "does the AI have any magic
+logic?"). Both turned out to be exactly true, and both were invisible to every
+gate in the repo because **nothing dangled**. Reference integrity cannot see a
+feature that resolves correctly to the wrong thing, or a code path no player can
+reach.
+
+**CLOSED — the six-rung sphere ladder governed nothing.** `MomSummonOrderTick`
+resolved the 75-mana summon through five CONSTANTS, one per player index. Nature
+was hardwired to `UNIT_WARBEARS` — cost 4, the *cheapest* of its 13 units — so
+`NATURE_LORE → ADEPT → MAGE → WIZARD → MASTER` changed nothing about what mana
+bought, and 12 Nature creatures were unreachable by summoning. The whole
+faction-gating and ladder effort was decorative *for the mod's headline feature*.
+The summon now rolls, weighted, over every rung the caster has unlocked.
+
+**The law:** *a feature that compiles, runs, and resolves to a legal ident can
+still be doing nothing.* Ask what READS a structure, not just whether it is
+well-formed. The ladder had six rungs and exactly one consumer, which ignored it.
+
+**CLOSED — the AI banked a resource it could never spend.** `MomMagicPoolTick`
+accrues mana for every sphere player 1..5, human or not — but `MomSummonChoice[p]`,
+the only thing that authorises a summon, is set in exactly ONE place: a **button
+body**. A button body runs only when a human clicks. So every AI tribe accrued to
+the 100 cap and sat there for the entire game, and the ten `IsHumanPlayer` guards
+in the magic modules only ever *suppressed* output for the AI — nothing replaced
+it with an action. This is part of why two long headless runs ended when the
+script ran out rather than when the game did: the AI was never doing the thing
+the mod is about.
+
+**The law:** *a guard that suppresses is not a guard that substitutes.* Every
+`if (IsHumanPlayer(p))` is a fork with a silent second branch — go read it.
+
+**What the mod corpus settles about SLIC AI (surveyed all 230 `.slc` under
+`H:\games\ctp2`).** Ages of Man's `AOM2_frenzy11.slc` is 2586 lines of exactly
+this: `if (!IsHumanPlayer(player[0]) && ...)` then a rule ladder over observable
+state, applied directly. Verb census — `GrantAdvance` 1561, `random`/`Random`
+1251, `CreateUnit` 829, `AddGold` 530, `KillUnit` 261, `MoveUnits` 61, `MoveArmy`
+35, `BreakAlliance` 16, `SetGovernment` 8. Two conclusions:
+
+- **A probability distribution over actions is the idiom, not an exotic.** 1251
+  uses of `random`.
+- **There is NO verb for the AI's build queue or research goal anywhere in the
+  corpus.** No `AddToBuildQueue`, no `SetResearchGoal`. **SLIC cannot instruct the
+  engine AI — only GRANT, PLACE and MOVE.** Design accordingly; do not go looking
+  for a steering API that does not exist.
+
+**AVOIDED — `HasAdvance` would have failed silently.** It is the obvious way to
+read rung attainment, it is used 700+ times across the other mods, and it was
+still the wrong choice here. Every one of those call sites passes a bare
+`ID_ADVANCE_*` ident, and two things make that unsafe: `scenario.slc`'s own header
+records that **the engine silently auto-creates unknown symbols** (so a name that
+does not resolve returns a permanent *false* instead of erroring), and
+`validate_all_surfaces.py`'s surface-7 regex is anchored `\bADVANCE_`, which
+**cannot match inside `ID_ADVANCE_`** — so nothing in the repo would have caught
+the typo. Rungs are tracked instead in a `MomSphereRung[]` array written by a
+`GrantAdvance` handler comparing `value[0] == AdvanceDB(...)` — primitives this
+mod has already proven, and covered by surface 7.
+
+**The law:** *before adopting a primitive because other code uses it, ask what
+happens when you get it WRONG.* A primitive whose failure mode is silent-false,
+in a codebase whose validator cannot see it, is worse than a more verbose one
+that fails loudly. Popularity elsewhere is not evidence of safety here.
+
+**Two defects the implementation itself introduced, both caught by instruments
+rather than review:**
+
+1. `;` is not a comment in a string table — `#` is. Seven comment lines added to
+   `scen_str.txt` produced `Could not find text for id ;` and killed the process
+   at load. `turnloop.py`'s **native-dialog error channel** surfaced the exact
+   file, line and text in one run. Pixels would never have shown this.
+2. Rung 0 owns no creature, so a tribe holding only its `*_MAGIC` root — i.e.
+   **every tribe at the start** — would have rolled 0 and summoned *nothing*,
+   while the arm still looked affordable. Spotted by reading the generated pools,
+   not the code. Fixed twice over: the root now maps to rung 1, *and*
+   `MomSummonRoll` floors `r` at 1 so grant timing cannot matter.
+
+**The law:** *a refactor from a constant to a lookup must be checked at the
+BOTTOM of the range.* The old code could not fail at rung 0 because it never
+consulted a rung; the new code's most common starting state was its one dead
+branch.
+
+---
+
 ## 2026-07-27 — A completed run is not a played run; an empty list is a deletion
 
 **Context:** the goal was a *complete* playthrough — run to a terminal game

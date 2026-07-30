@@ -1,0 +1,102 @@
+//=============================================================================
+// mom_ai_magic.slc -- the computer opponents' magic brain
+//=============================================================================
+// THE DEFECT THIS CLOSES (measured 2026-07-28):
+//
+// MomMagicPoolTick (mom_magic.slc) accrues mana for EVERY sphere player 1..5,
+// human or not -- but MomSummonChoice[p], the only thing that authorises a
+// summon, is set in exactly ONE place: a BUTTON BODY (mom_msg.slc). A button
+// body runs only when a human clicks. So every AI tribe banked mana to the 100
+// cap and never spent a single point, for the whole game. The mod's headline
+// system was a human-only privilege, and the ten IsHumanPlayer guards scattered
+// through the magic modules only ever SUPPRESSED output for the AI -- nothing
+// ever replaced it with an action.
+//
+// WHY A RULE LADDER AND NOT A REQUEST TO THE ENGINE AI: a census of all 230
+// .slc files under H:\games\ctp2 finds no verb that steers the engine AI's build
+// queue or research goal -- no AddToBuildQueue, no SetResearchGoal, in any mod.
+// SLIC can only GRANT, PLACE and MOVE (GrantAdvance 1561, CreateUnit 829,
+// AddGold 530, MoveUnits 61, MoveArmy 35, KillUnit 261, SetGovernment 8). So AI
+// magic has to be "decide, then apply the effect directly", which is what the
+// human path already does at its spend sites. Ages of Man's Frenzy AI
+// (AOM2_frenzy11.slc, 2586 lines) is the reference for this shape, and
+// random()/Random() appears 1251 times across that corpus -- a probability
+// distribution over actions is the idiomatic way to do this, not an exotic one.
+//
+// CONSTRAINTS honoured here (slic-two-crash-classes, ctp2-mod-hooks-owner-works-
+// player-lies):
+//   * the player bound `p >= 1 && p <= 5` comes FIRST, before any array index.
+//     Player 0 is the barbarian and indexing the magic arrays for it was the
+//     original turn-10 crash.
+//   * identity is player[0] in a BeginTurn body. NEVER thePlayer -- it is built
+//     as SLIC_SYM_PLAYER and always reads 0.
+//   * exactly ONE level of user-function call from this handler body
+//     (MomSummonRoll, then MomSpawnSphereUnit). A 2-level chain is a
+//     0xC0000005. Do not factor the ladder into a helper.
+//   * NO Message()/alertbox on this path. A messagebox aimed at an AI player is
+//     how the message-queue overflow AV was hit (mom_msg.slc:17), and there is
+//     no human to read it.
+//
+// Include order: AFTER mom_summon.slc (it calls MomSummonRoll and reads
+// MomSphereRung) and AFTER mom_func.slc (MomSpawnSphereUnit, MomMagic* globals).
+//=============================================================================
+
+HandleEvent(BeginTurn) 'MomAiMagicTick' post {
+    int_t p;
+    int_t pick;
+    int_t roll;
+    int_t atWar;
+    int_t i;
+    city_t tmpCity;
+
+    p = player[0];
+
+    // Bound first, then the human test. An AI-only body: the human's spending is
+    // deliberate and already handled by the button path, and doubling it here
+    // would drain a human pool without a click.
+    if (p >= 1 && p <= 5 && !IsHumanPlayer(p) && player[0].cities > 0) {
+        // War state via AtWarWith(a, b) -- the predicate the whole mod corpus
+        // uses (147 call sites across H:\games\ctp2). There is NO `.isAtWar`
+        // player property: the only properties any mod reads are units, cities,
+        // publicworkslevel, owner, militaryunits, armies, capital, name,
+        // government and a handful more, so inventing one would have compiled to
+        // a silently-false symbol -- the engine auto-creates unknowns rather than
+        // erroring.
+        atWar = 0;
+        for (i = 1; i <= 5; i = i + 1) {
+            if (i != p && AtWarWith(p, i)) {
+                atWar = 1;
+            }
+        }
+        roll = Random(100);
+
+        // The ladder, cheapest test first. Thresholds are the SAME prices the
+        // human pays -- 75 to summon, 50 for a working -- so the AI is playing
+        // the same economy rather than a discounted one. Below 50 it banks,
+        // which is what makes a later summon possible at all.
+        if (MomMagicCur[p] >= 75 && (atWar == 1 || roll < 70)) {
+            // The default sink, and the aggressive choice. At war it always
+            // prefers a creature; at peace it summons most of the time and
+            // otherwise holds, so two AI tribes on the same turn do not act
+            // identically.
+            GetCityByIndex(player[0], 0, tmpCity);
+            pick = MomSummonRoll(p);
+            if (CityIsValid(tmpCity) && pick != 0) {
+                MomMagicCur[p] = MomMagicCur[p] - 75;
+                // Reuses the human path's placement so an AI summon gets the
+                // same free-land-neighbour search. Spawning on the city tile
+                // would stack it under the garrison: CTP2 draws exactly one unit
+                // per tile and orders own units by MaxMovePoints, so a fast
+                // creature permanently hides whatever was standing there.
+                MomSpawnSphereUnit(p, pick);
+            }
+        } elseif (MomMagicCur[p] >= 50 && atWar == 1 && roll < 40) {
+            // A cheap working while it cannot yet afford a creature. Modelled as
+            // a war chest rather than a spell effect: the spell bodies in
+            // mom_spells.slc are button-driven and reaching them from here would
+            // be the 2-level chain this file is careful to avoid.
+            MomMagicCur[p] = MomMagicCur[p] - 50;
+            AddGold(p, 50 + Random(100));
+        }
+    }
+}

@@ -9,6 +9,104 @@ noise is not a change.
 
 ---
 
+## [3.2.0] — 2026-07-29 — the ladder starts mattering, and the AI starts casting
+
+**Minor.** Additive: 3.1.1 saves load unchanged and still make sense. Nothing is
+renamed, repriced, or deleted — but the AI now spends a resource it previously
+banked forever, so a save carried across this line will play differently from here.
+
+### Fixed
+
+- **Every sphere summoned exactly one creature, forever.** `MomSummonOrderTick`
+  resolved the 75-mana summon through five CONSTANTS, one per player index.
+  Nature was hardwired to `UNIT_WARBEARS` — **cost 4, the cheapest of its 13
+  units** — so researching `NATURE_LORE → ADEPT → MAGE → WIZARD → MASTER` changed
+  nothing about what mana bought, and 12 Nature creatures were unreachable by
+  summoning. The six-rung ladder that 2.0 and 3.0 built was decorative *for the
+  mod's headline feature*. Reported in play 2026-07-28.
+
+  The summon now rolls, weighted, over every rung the caster has unlocked: the
+  newest rung takes the widest band and older rungs keep a floor, with the bands
+  cut from the *count* of unlocked rungs so adding a rung cannot leave a dead one.
+  A fresh Nature tribe already rolls over Centaurs / Elven Archers / Warbears with
+  no research at all. Heroes are excluded — unique tribe leaders, not summonable
+  troops — via a new `unit_roles.heroes` roster in `mod_policy.json`.
+
+- **The AI accrued mana every turn and could never spend a point of it.**
+  `MomMagicPoolTick` accrues for all five sphere players, human or not, but
+  `MomSummonChoice[p]` — the only thing that authorises a summon — was set in
+  exactly ONE place: a **button body**, which only a human click reaches. So every
+  AI tribe banked to the 100 cap and sat there for the whole game, and the ten
+  `IsHumanPlayer` guards in the magic modules only ever *suppressed* output for
+  the AI rather than substituting an action. The mod's headline system was a
+  human-only privilege — and part of why two long headless runs ended when the
+  script ran out rather than when the game did.
+
+- **Summon result messages no longer name the creature.** Naming was safe while
+  the summon was fixed; "Warbears lumber out" while a Great Wyrm stands in the
+  capital is worse than saying nothing, and SLIC can only interpolate plain
+  `{scalar}` — a unit index is not a name.
+
+### Added
+
+- **`mom_ai_magic.slc` — the AI's magic brain.** One `BeginTurn` handler, bound
+  `p >= 1 && p <= 5` first and `!IsHumanPlayer` guarded, running a rule ladder over
+  war state (`AtWarWith`) and pool level with `Random(100)` breaking ties so two AI
+  tribes do not act identically. It pays the **same** 75/50 prices the human pays,
+  and reuses `MomSpawnSphereUnit` so its summons get the same occlusion-safe
+  placement instead of stacking on the capital tile. No `Message()` on this path —
+  a messagebox aimed at an AI player is the message-queue overflow AV.
+
+- **`mom_summon.slc` (generated) — rung tracking and the weighted roll.** The rung
+  is read back off each unit's *existing* gate advance, so the summon table and
+  `mom_gating.slc` cannot disagree about which rung owns a creature.
+
+- **Gate 26 — `tools/gate_ai_magic.py`.** Asserts behaviour rather than reference
+  integrity, because both defects above were invisible to every existing gate:
+  nothing dangled. Checks that no sphere can roll another's creature or a hero,
+  that every sphere offers more than one creature, that every ident is a live
+  block, that the AI handler is bounded and AI-only, and that every roll band
+  terminates at 100. **Each of those six assertion classes was proven to fire
+  against a deliberately broken file before the fix was accepted.**
+
+### Notes on what this cost to get right
+
+- **`HasAdvance` was rejected despite 700+ uses across the other mods.** All of
+  them pass a bare `ID_ADVANCE_*`, and the engine **silently auto-creates unknown
+  symbols** — an unresolvable name returns a permanent *false* rather than erroring
+  — while `validate_all_surfaces.py`'s surface-7 regex is anchored `\bADVANCE_` and
+  cannot match inside `ID_ADVANCE_`. Nothing in the repo would have caught the
+  typo. Rungs are tracked by comparing `value[0] == AdvanceDB(...)`, which is
+  covered.
+- Two self-inflicted defects were caught by instruments, not review: `;` is not a
+  comment in a string table (`#` is) and killed the load until the native-dialog
+  error channel named the exact line; and rung 0 owns no creature, so every tribe
+  at game start would have summoned *nothing* while the arm still looked
+  affordable — fixed at both the root mapping and with a floor in the roll.
+
+### Known open — what is NOT proven in a running game
+
+Both features below are verified **statically** (generated pools, seven gate
+assertions each proven against a broken file) and the SLIC layer is verified to
+load and run clean across 25 headless turns with **zero SLIC errors**. Neither
+has been observed happening on screen.
+
+- **Summon variety is unproven in-game.** Three probe attempts failed, all on one
+  root cause, all recorded in `tools/uiwalk/probe_summon_variety.py`'s parked
+  header: a hardcoded arm coordinate was swallowed by a `Message()` window
+  stacked above the alertbox; dismissing that at the measured close point opened
+  the OPTIONS menu instead, because the constant is only valid while a box is up;
+  and the frame-measuring third attempt found `0 buttons` because the MAGIC
+  STATUS box never opened at all in that driver. Its fall-through clicks panned
+  the map once per attempt — the operator watched the view scroll in a loop. The
+  blocker is upstream of the click (`j` not raising the menu from that driver,
+  while the same keypress works from a steps JSON), so it is a harness defect,
+  not a mod one.
+- **AI mana spending is not observable at all** by this harness: the pool renders
+  for the human alone, and the harness reads pixels only.
+
+---
+
 ## [3.1.1] — 2026-07-29 — every wonder message printed its name twice
 
 **Patch.** No rule, cost, age, or save-format change — 3.1.0 saves load

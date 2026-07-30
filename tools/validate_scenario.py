@@ -262,6 +262,26 @@ def check_faction_gating(scen: Path, fails: list[str]) -> None:
     fails.extend(F.audit(scen))
 
 
+def check_ai_magic(scen: Path, fails: list[str]) -> None:
+    """Gate 26: the summon ladder varies and the AI can actually spend mana.
+
+    Delegates to gate_ai_magic.check. Skipped (not failed) when that module or
+    the control plane is not importable, matching check_faction_gating -- this
+    validator is scenario-generic and MoM's csv dir is not guaranteed alongside.
+
+    Both defects this covers were invisible to every other gate because nothing
+    dangled: the summon resolved through five per-sphere CONSTANTS, and AI tribes
+    accrued mana they could never spend because the only authorisation was set in
+    a button body. Reference integrity cannot see either.
+    """
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        import gate_ai_magic as A
+    except Exception:
+        return
+    fails.extend(A.check(scen, _momjr_csv()))
+
+
 def _momjr_csv() -> Path:
     return TOOLS_DIR / "momjr_csv"
 
@@ -1143,6 +1163,7 @@ def main() -> int:
     check_parchment_range(scen, fails)
     check_wonder_build_lists(scen, fails)
     check_wonder_articles(scen, fails)
+    check_ai_magic(scen, fails)
 
     if fails:
         for f in fails:

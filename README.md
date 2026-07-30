@@ -1,9 +1,18 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.1.1** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.2.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
 
-> **What 3.1.1 fixes — every wonder message printed its name twice.** The
+> **What 3.2 adds — the ladder starts mattering, and the AI starts casting.** The
+> 75-mana summon used to be five constants: Nature always got Warbears, the
+> cheapest of its 13 units, at every rung of a six-rung ladder. It now rolls,
+> weighted, over everything you have unlocked. And the AI, which had been accruing
+> mana every turn since 1.0 and could never spend a point of it — the only thing
+> that authorises a summon sat in a button body, which only a human click reaches
+> — now has a magic brain of its own, paying the same prices you do. Saves load
+> unchanged. See `CHANGELOG.md`.
+
+> **What 3.1.1 fixed — every wonder message printed its name twice.** The
 > rival-wonder warning read `Bardic CollegeBardic College`. `#ARTICLE` turns out
 > to be an ident-suffix lookup, not a computed article: the engine reads
 > `<IDENT>_ARTICLE` from `gl_str.txt` and falls back to the *name* when it is
