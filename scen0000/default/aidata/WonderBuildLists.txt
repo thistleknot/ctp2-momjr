@@ -6,7 +6,7 @@
 #
 # Every ident below is read out of this scenario's own Wonder.txt, so no
 # stock aidata wonder reference can leak in. Wonders disabled by the
-# self-obsoleting idiom are excluded (5).
+# self-obsoleting idiom are excluded (0).
 #
 #----------------------------------------------------------------------------
 

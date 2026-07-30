@@ -105,6 +105,14 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
             MomMagicCurDisp = MomMagicCur[p];
             MomMagicMaxDisp = MomMagicMax[p];
             MomMagicGenDisp = MomMagicPerTurn[p];
+            // The rung decides WHICH creatures the 75-mana summon can roll
+            // (mom_summon.slc). Floored at 1 for the same reason MomSummonRoll
+            // floors it: a tribe that starts holding its sphere root never fires
+            // the GrantAdvance that would raise it off 0.
+            MomRungDisp = MomSphereRung[p];
+            if (MomRungDisp < 1) {
+                MomRungDisp = 1;
+            }
         }
 
         // Periodic popup every 10 rounds: REMOVED 2026-07-25, redundant and harmful.

@@ -1,9 +1,16 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.3.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.4.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
 
-> **What 3.3 fixes — a tribe can finally build its own troops.** Every sphere
+> **What 3.4 does — the sentinel wonders are gone.** Five "wonders" whose names
+> literally began with the civ2 disabled marker — `Xlighthouse`, `Xapollo
+> Program`, `Xstatue Of Liberty`, `Xwomens Suffrage`, `Xcure For Cancer` — were
+> being shown to players in the Great Library. They were never buildable and are
+> now culled: **28 → 23 wonders**. The MAGIC STATUS panel also tells you your
+> sphere rung, since that decides which creatures a summon can roll.
+
+> **What 3.3 fixed — a tribe can finally build its own troops.** Every sphere
 > unit had been locked behind the magic ladder, so a Nature city's build list was
 > literally two items, `Spearmen` and `Peasants`, and stayed that way until 1865
 > science. MoM splits racial troops (built, the mainstay) from fantastic

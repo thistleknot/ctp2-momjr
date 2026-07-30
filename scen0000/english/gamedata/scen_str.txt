@@ -21,7 +21,7 @@ MOM_MSG_BLESS_CHAOS		"Chaos magic floods your coffers with an unpredictable wind
 MOM_MSG_MAGIC_POWER		"Magic Power: {MomMagicCurDisp} / {MomMagicMaxDisp}  (+{MomMagicGenDisp} per turn)"
 
 # Interactive magic menu (hotkey 'j' -> keypress.cpp hook -> SLIC segment 'MagicMenu')
-MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome: +{MomMagicGenDisp} per turn"
+MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome: +{MomMagicGenDisp} per turn\nSphere rung: {MomRungDisp} of 5 - a summon rolls over every rung you have reached"
 
 # Phase D -- spellbook (mom_spells.slc). Added 2026-07-25: all nine were referenced
 # by messagebox Text()/Button() blocks but never defined. NOTE the two syntax rules

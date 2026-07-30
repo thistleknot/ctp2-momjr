@@ -52,7 +52,7 @@ import turnloop                    # noqa: E402
 
 PROLOGUE = 53          # full_game_v3.json 0..52: boot -> found city -> queue
 CYCLE = 7              # one turn: 3 modal presses, wait, hover, enter, settle
-TURNS = 80
+TURNS = 300
 SUMMON_EVERY = 6       # ~+16-19 mana/turn against a 75 cost
 
 

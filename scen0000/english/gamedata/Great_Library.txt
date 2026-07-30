@@ -110,7 +110,7 @@ Age: 2
 Branch: 0
 [END]
 [ADVANCE_WARRIOR_CODE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 120 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>. It enables the wonders <L:DATABASE_WONDERS,WONDER_XAPOLLO_PROGRAM>Xapollo Program<e>, <L:DATABASE_WONDERS,WONDER_XCURE_FOR_CANCER>Xcure For Cancer<e>, <L:DATABASE_WONDERS,WONDER_XLIGHTHOUSE>Xlighthouse<e>, <L:DATABASE_WONDERS,WONDER_XSTATUE_OF_LIBERTY>Xstatue Of Liberty<e> and <L:DATABASE_WONDERS,WONDER_XWOMENS_SUFFRAGE>Xwomens Suffrage<e>.
+<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 120 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>.
 [END]
 [ADVANCE_WARRIOR_CODE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The rules fighting men impose on themselves, which are what distinguish an army from a mob with weapons.
@@ -1832,23 +1832,6 @@ Costs:
 <c:245,240,225><h:0,0,0>Gives:
 <L:DATABASE_WONDERS,WONDER_FONT_OF_BOUNTY>Font of Bounty<e>
 [END]
-[WONDER_XLIGHTHOUSE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Xlighthouse costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
-[END]
-[WONDER_XLIGHTHOUSE_HISTORICAL]
-<c:245,240,225><h:0,0,0>A fire kept burning so that strangers can find the harbour. One of the few monuments built entirely for other people's benefit.
-[END]
-[WONDER_XLIGHTHOUSE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XLIGHTHOUSE_STATISTICS]
-<c:245,240,225><h:0,0,0>Gives:
-<L:DATABASE_WONDERS,WONDER_XLIGHTHOUSE>Xlighthouse<e>
-[END]
 [WONDER_GREAT_LIBRARY_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Great Library costs 2700 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. Across your empire, it increases science by 20% and adds 2 scientists to every city.
 [END]
@@ -2104,23 +2087,6 @@ Costs:
 <c:245,240,225><h:0,0,0>Gives:
 <L:DATABASE_WONDERS,WONDER_REYWINDS_DISCOVERY>Reywind's Discovery<e>
 [END]
-[WONDER_XSTATUE_OF_LIBERTY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Xstatue Of Liberty costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
-[END]
-[WONDER_XSTATUE_OF_LIBERTY_HISTORICAL]
-<c:245,240,225><h:0,0,0>A figure raised at a harbour mouth to state a proposition, addressed to arrivals rather than to residents.
-[END]
-[WONDER_XSTATUE_OF_LIBERTY_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XSTATUE_OF_LIBERTY_STATISTICS]
-<c:245,240,225><h:0,0,0>Gives:
-<L:DATABASE_WONDERS,WONDER_XSTATUE_OF_LIBERTY>Xstatue Of Liberty<e>
-[END]
 [WONDER_MESMERS_TOWER_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Mesmer's Tower costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LESSER_ENCHANMENTS>Lesser Enchanments<e>. Across your empire, it cuts crime by 30%, places a spy in every civilisation and opens an embassy with every civilisation.
 [END]
@@ -2137,23 +2103,6 @@ Costs:
 [WONDER_MESMERS_TOWER_STATISTICS]
 <c:245,240,225><h:0,0,0>Gives:
 <L:DATABASE_WONDERS,WONDER_MESMERS_TOWER>Mesmer's Tower<e>
-[END]
-[WONDER_XWOMENS_SUFFRAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Xwomens Suffrage costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
-[END]
-[WONDER_XWOMENS_SUFFRAGE_HISTORICAL]
-<c:245,240,225><h:0,0,0>The extension of the vote to half the population, resisted for a century on grounds nobody can now restate without embarrassment.
-[END]
-[WONDER_XWOMENS_SUFFRAGE_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XWOMENS_SUFFRAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Gives:
-<L:DATABASE_WONDERS,WONDER_XWOMENS_SUFFRAGE>Xwomens Suffrage<e>
 [END]
 [WONDER_FORGE_OF_CHAOS_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Forge of Chaos costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>. Across your empire, it increases production by 30% and cuts building maintenance by 25%.
@@ -2206,23 +2155,6 @@ Costs:
 <c:245,240,225><h:0,0,0>Gives:
 <L:DATABASE_WONDERS,WONDER_LEAGUE_OF_WIZARDS>League of Wizards<e>
 [END]
-[WONDER_XAPOLLO_PROGRAM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Xapollo Program costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
-[END]
-[WONDER_XAPOLLO_PROGRAM_HISTORICAL]
-<c:245,240,225><h:0,0,0>The organised decision to leave the world entirely, undertaken for reasons that were half curiosity and half rivalry.
-[END]
-[WONDER_XAPOLLO_PROGRAM_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XAPOLLO_PROGRAM_STATISTICS]
-<c:245,240,225><h:0,0,0>Gives:
-<L:DATABASE_WONDERS,WONDER_XAPOLLO_PROGRAM>Xapollo Program<e>
-[END]
 [WONDER_CELESTIAL_BEACON_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Celestial Beacon costs 7900 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>. Across your empire, it adds 3 happiness in every city and leaves every citizen content.
 [END]
@@ -2239,23 +2171,6 @@ Costs:
 [WONDER_CELESTIAL_BEACON_STATISTICS]
 <c:245,240,225><h:0,0,0>Gives:
 <L:DATABASE_WONDERS,WONDER_CELESTIAL_BEACON>Celestial Beacon<e>
-[END]
-[WONDER_XCURE_FOR_CANCER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Xcure For Cancer costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
-[END]
-[WONDER_XCURE_FOR_CANCER_HISTORICAL]
-<c:245,240,225><h:0,0,0>The end of one of the oldest quiet arithmetics of human life, achieved not by a genius but by an institution that refused to stop.
-[END]
-[WONDER_XCURE_FOR_CANCER_PREREQ]
-<c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XCURE_FOR_CANCER_STATISTICS]
-<c:245,240,225><h:0,0,0>Gives:
-<L:DATABASE_WONDERS,WONDER_XCURE_FOR_CANCER>Xcure For Cancer<e>
 [END]
 [UNIT_PEASANTS_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:

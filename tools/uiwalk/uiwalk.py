@@ -592,6 +592,34 @@ class PostInput:
         win32api.PostMessage(hwnd, win32con.WM_SETFOCUS, 0, 0)
         time.sleep(0.05)
 
+    def _drop_focus(self):
+        """Release the spoofed input focus once the input has been delivered.
+
+        WHY THIS EXISTS -- the map scrolled forever (operator, 2026-07-29:
+        "the game is open and scrolling to the left ... the screen only scrolls
+        like that if the mouse is at the edge").
+
+        CTP2's aui polls the REAL cursor via GetCursorPos; it does NOT read our
+        posted WM_MOUSEMOVE. The window is stashed at (3012,-1262), just past the
+        virtual right edge, so the operator's actual cursor -- anywhere on their
+        three-monitor desktop -- maps to client coordinates far OUTSIDE the
+        client rect. Measured: cursor (2428,-523) against that origin is client
+        x = -584, i.e. past the left edge, and the engine edge-scrolls left on
+        every frame.
+
+        The edge-scroll only runs while the window holds SDL_WINDOW_INPUT_FOCUS,
+        which _spoof_focus sets. Nothing ever cleared it, so one keypress armed a
+        scroll that continued for the rest of the run. Dropping the flag after
+        each input closes the window during which the engine consults the cursor.
+
+        Safe to drop: every input method calls _spoof_focus() FIRST, so the flag
+        is always re-armed immediately before it is needed. Never touch the real
+        cursor or ClipCursor to fix this -- the operator is using the machine.
+        """
+        win32api.PostMessage(self.hwnd, win32con.WM_KILLFOCUS, 0, 0)
+        win32api.PostMessage(self.hwnd, win32con.WM_ACTIVATE,
+                             win32con.WA_INACTIVE, 0)
+
     def _key(self, vk, down):
         msg = win32con.WM_KEYDOWN if down else win32con.WM_KEYUP
         win32api.PostMessage(self.hwnd, msg, vk, self._lparam_key(vk, up=not down))
@@ -605,12 +633,14 @@ class PostInput:
         for vk in reversed(vks):
             self._key(vk, False)
             time.sleep(0.03)
+        self._drop_focus()
 
     def type_text(self, text: str):
         self._spoof_focus()
         for ch in text:
             win32api.PostMessage(self.hwnd, win32con.WM_CHAR, ord(ch), 1)
             time.sleep(0.03)
+        self._drop_focus()
 
     def hover(self, x: int, y: int):
         """Deliver a mouse message WITHOUT a button press.
@@ -629,6 +659,7 @@ class PostInput:
         win32api.PostMessage(self.hwnd, win32con.WM_MOUSEMOVE, 0,
                              win32api.MAKELONG(x, y))
         time.sleep(0.05)
+        self._drop_focus()
 
     def drag(self, x1: int, y1: int, x2: int, y2: int, steps: int = 12):
         """Press at (x1,y1), move in steps to (x2,y2), release. For slider thumbs."""
@@ -647,6 +678,7 @@ class PostInput:
         time.sleep(0.10)
         win32api.PostMessage(self.hwnd, win32con.WM_LBUTTONUP, 0,
                              win32api.MAKELONG(x2, y2))
+        self._drop_focus()
 
     def click(self, x: int, y: int):
         """THESIS (2026-07-24): only the FIRST synthetic click registers unless the
@@ -671,6 +703,7 @@ class PostInput:
         win32api.PostMessage(self.hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lp)
         time.sleep(0.05)
         win32api.PostMessage(self.hwnd, win32con.WM_LBUTTONUP, 0, lp)
+        self._drop_focus()
 
 
 class GlobalInput:

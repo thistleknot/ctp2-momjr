@@ -556,6 +556,28 @@ def check_wonder_articles(scen: Path, fails: list[str]) -> None:
             fails.append(
                 f"gl_str.txt: {key} has no matching block in Wonder.txt")
 
+    # The civ2 `x` DISABLED SENTINEL must never reach the scenario. MOMJR writes
+    # a retired entry as `xLighthouse, 20, 0, no,` -- the x prefix AND the `no`
+    # never-buildable prereq -- and neither lane excluded it, so five stock CTP2
+    # wonders shipped with the sentinel baked into the DISPLAY NAME. This is not
+    # cosmetic-internal: the Great Library's Warrior Code page listed "Xapollo
+    # Program, Xcure For Cancer, Xlighthouse, Xstatue Of Liberty and Xwomens
+    # Suffrage" to the player as wonders it enables (measured in-game
+    # runs/20260729-174823). Culled at the control plane 2026-07-29, 28 -> 23.
+    for ident in sorted(wonders):
+        stem = ident[len("WONDER_"):]
+        if re.match(r"^X[A-Z]", stem):
+            fails.append(
+                f"Wonder.txt: {ident} carries the civ2 `x` disabled sentinel -- "
+                "it was marked `no` (never buildable) in the source and must be "
+                "culled from wonders.csv, not shipped")
+    for ident, name in re.findall(r"^(WONDER_[A-Z0-9_]+)\s+\"([^\"]+)\"", gl_str.read_text(
+            encoding="latin-1", errors="replace"), re.M):
+        if re.match(r"^X[a-zA-Z]", name) and ident in wonders:
+            fails.append(
+                f"gl_str.txt: {ident} display name {name!r} starts with the civ2 "
+                "`x` disabled sentinel")
+
 
 def check_wonder_build_lists(scen: Path, fails: list[str]) -> None:
     """Gate 24: the AI's wonder lists cover every live wonder and nothing else.

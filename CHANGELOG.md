@@ -9,6 +9,67 @@ noise is not a change.
 
 ---
 
+## [3.4.0] — 2026-07-29 — the sentinel wonders are gone, and the panel says which rung
+
+**Minor.** Additive plus a content removal that no save can be holding: the five
+wonders culled were never buildable.
+
+### Removed
+
+- **The five `x`-sentinel wonders.** `Xlighthouse`, `Xapollo Program`,
+  `Xstatue Of Liberty`, `Xwomens Suffrage`, `Xcure For Cancer` came from MOMJR's
+  `Rules.txt` as `xLighthouse, 20, 0, no,` — the `x` name prefix **and** the `no`
+  never-buildable sentinel — and neither lane excluded them, so they shipped with
+  the sentinel baked into the display name. Not cosmetic-internal as previously
+  filed: the Great Library's Warrior Code page listed all five to the player as
+  wonders it enables (measured in-game, `runs/20260729-174823`).
+
+  `wonders.csv` turned out to have an `IncludeInMoM` column that the generator
+  **never reads** and that is `True` on all 28 rows — the intended exclusion
+  mechanism did not exist. Culled at the control plane instead. **28 → 23
+  wonders**, which is the count gate 24's own docstring already claimed. Zero
+  `WONDER_X` references remain anywhere in `scen0000`; GL sections, `gl_str` keys
+  and icons went with them.
+
+### Added
+
+- **The MAGIC STATUS panel now shows your sphere rung.** *"Sphere rung: 1 of 5 -
+  a summon rolls over every rung you have reached."* Since 3.2 the summon draws
+  from every rung unlocked, and the player had no way to see which pool that was
+  — at rung 1 a sphere offers exactly one creature, which looks identical to the
+  bug 3.2 fixed. Verified on screen, `runs/20260729-181301-summonvar/menu_t144`.
+
+- **Gate 25 rejects the civ2 `x` sentinel** in any wonder ident or display name.
+  Proven against the pre-cull tree first: **10 FAILs**, 5 idents + 5 names.
+
+### Verified through the headless harness
+
+- **Summoning works end to end.** Turn 144: multiple **Guardian Spirit** stacks
+  standing on tiles *around* Eudoria — the caster's own sphere creature, placed by
+  the occlusion-safe neighbour search rather than stacked on the capital. The arm
+  click, the order surviving the turn boundary, and the spawn are all confirmed.
+- **Summon variety is still not observed, and now we know why:** the panel read
+  `Sphere rung: 1 of 5` at turn 144. At rung 1 a sphere's pool is exactly one
+  creature *by design* — the 5×4 grid widens with the ladder — and the seat never
+  researched up it. What remains unproven is only the rung ≥ 2 behaviour, which
+  the static gate covers.
+- Byte-stable; all scenario gates, faction gating 71/0, ai/summon, GL 784/784,
+  `mom_audit` 0 FAIL.
+
+### Harness (no player-visible effect)
+
+- **The map edge-scrolled for entire runs.** CTP2's aui polls the **real** cursor
+  via `GetCursorPos`, never our posted `WM_MOUSEMOVE`; with the window stashed
+  past the right edge of a three-monitor desktop, the operator's cursor mapped to
+  client `x = -584` and the engine scrolled left every frame. It never stopped
+  because edge-scroll runs only while the window holds `SDL_WINDOW_INPUT_FOCUS`,
+  which `_spoof_focus()` set before every input and nothing ever cleared.
+  `_drop_focus()` now releases it after each input. Measured: 10 consecutive
+  turns at exactly (0.0, 0.0) map translation, and the clock still advances
+  4000BC → 3725BC.
+
+---
+
 ## [3.3.0] — 2026-07-29 — a tribe can finally build its own troops
 
 **Minor.** Additive: 3.2.0 saves load unchanged. 23 units move from a magic

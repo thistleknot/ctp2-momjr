@@ -304,6 +304,10 @@ int_t MomMagicPerTurn[31];   // last computed per-turn generation
 int_t MomMagicCurDisp;       // plain display scalars for the popup: {scalar} is base-verified
 int_t MomMagicMaxDisp;       // (AlexanderTheGreat {cityScore}); array-indexed {Arr[Idx]} is
 int_t MomMagicGenDisp;       // unsupported and silently drops the whole message
+int_t MomRungDisp;           // highest sphere-ladder rung reached, 0-5. Shown on the
+                             // 'j' MAGIC STATUS panel because the summon rolls over
+                             // every rung unlocked (mom_summon.slc) and the player had
+                             // NO way to see which pool they were drawing from.
 
 // Phase D spellbook globals (mom_spells.slc). They live HERE, not there, for the
 // same reason MomMagic*Disp does: mom_func.slc is the FIRST include, and a

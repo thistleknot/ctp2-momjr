@@ -57,23 +57,6 @@ Costs:
 Gives:
 <L:DATABASE_WONDERS,WONDER_FONT_OF_BOUNTY>Font of Bounty<e>
 [END]
-[WONDER_XLIGHTHOUSE_GAMEPLAY]
-Xlighthouse is a Master of Magic world wonder.
-[END]
-[WONDER_XLIGHTHOUSE_HISTORICAL]
-Xlighthouse currently uses runtime wonder proxy data in the MoM scenario build.
-[END]
-[WONDER_XLIGHTHOUSE_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XLIGHTHOUSE_STATISTICS]
-Gives:
-<L:DATABASE_WONDERS,WONDER_XLIGHTHOUSE>Xlighthouse<e>
-[END]
 [WONDER_GREAT_LIBRARY_GAMEPLAY]
 Great Library is a Master of Magic world wonder.
 [END]
@@ -329,23 +312,6 @@ Costs:
 Gives:
 <L:DATABASE_WONDERS,WONDER_REYWINDS_DISCOVERY>Reywind's Discovery<e>
 [END]
-[WONDER_XSTATUE_OF_LIBERTY_GAMEPLAY]
-Xstatue Of Liberty is a Master of Magic world wonder.
-[END]
-[WONDER_XSTATUE_OF_LIBERTY_HISTORICAL]
-Xstatue Of Liberty currently uses runtime wonder proxy data in the MoM scenario build.
-[END]
-[WONDER_XSTATUE_OF_LIBERTY_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XSTATUE_OF_LIBERTY_STATISTICS]
-Gives:
-<L:DATABASE_WONDERS,WONDER_XSTATUE_OF_LIBERTY>Xstatue Of Liberty<e>
-[END]
 [WONDER_MESMERS_TOWER_GAMEPLAY]
 Mesmer's Tower is a Master of Magic world wonder.
 [END]
@@ -362,23 +328,6 @@ Costs:
 [WONDER_MESMERS_TOWER_STATISTICS]
 Gives:
 <L:DATABASE_WONDERS,WONDER_MESMERS_TOWER>Mesmer's Tower<e>
-[END]
-[WONDER_XWOMENS_SUFFRAGE_GAMEPLAY]
-Xwomens Suffrage is a Master of Magic world wonder.
-[END]
-[WONDER_XWOMENS_SUFFRAGE_HISTORICAL]
-Xwomens Suffrage currently uses runtime wonder proxy data in the MoM scenario build.
-[END]
-[WONDER_XWOMENS_SUFFRAGE_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XWOMENS_SUFFRAGE_STATISTICS]
-Gives:
-<L:DATABASE_WONDERS,WONDER_XWOMENS_SUFFRAGE>Xwomens Suffrage<e>
 [END]
 [WONDER_FORGE_OF_CHAOS_GAMEPLAY]
 Forge of Chaos is a Master of Magic world wonder.
@@ -431,23 +380,6 @@ Costs:
 Gives:
 <L:DATABASE_WONDERS,WONDER_LEAGUE_OF_WIZARDS>League of Wizards<e>
 [END]
-[WONDER_XAPOLLO_PROGRAM_GAMEPLAY]
-Xapollo Program is a Master of Magic world wonder.
-[END]
-[WONDER_XAPOLLO_PROGRAM_HISTORICAL]
-Xapollo Program currently uses runtime wonder proxy data in the MoM scenario build.
-[END]
-[WONDER_XAPOLLO_PROGRAM_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XAPOLLO_PROGRAM_STATISTICS]
-Gives:
-<L:DATABASE_WONDERS,WONDER_XAPOLLO_PROGRAM>Xapollo Program<e>
-[END]
 [WONDER_CELESTIAL_BEACON_GAMEPLAY]
 Celestial Beacon is a Master of Magic world wonder.
 [END]
@@ -464,23 +396,6 @@ Costs:
 [WONDER_CELESTIAL_BEACON_STATISTICS]
 Gives:
 <L:DATABASE_WONDERS,WONDER_CELESTIAL_BEACON>Celestial Beacon<e>
-[END]
-[WONDER_XCURE_FOR_CANCER_GAMEPLAY]
-Xcure For Cancer is a Master of Magic world wonder.
-[END]
-[WONDER_XCURE_FOR_CANCER_HISTORICAL]
-Xcure For Cancer currently uses runtime wonder proxy data in the MoM scenario build.
-[END]
-[WONDER_XCURE_FOR_CANCER_PREREQ]
-Requires:
-<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
-
-Costs:
-{WonderDB(Wonder[0]).ProductionCost} <L:DATABASE_CONCEPTS,CONCEPT_PRODUCTION>Production<e>
-[END]
-[WONDER_XCURE_FOR_CANCER_STATISTICS]
-Gives:
-<L:DATABASE_WONDERS,WONDER_XCURE_FOR_CANCER>Xcure For Cancer<e>
 [END]
 [CONCEPT_ACTIVE_DEFENSE_GAMEPLAY]
 There are two types of Active Defense:  Anti-Air and Anti-Naval.  A unit with Active Defense automatically <L:DATABASE_ORDERS,ORDER_BOMBARD>Bombards<e> any Unit of a specific type that comes within range.  Active Defense is a ranged attack, so the Unit does not put itself in danger when actively defending.
