@@ -1,9 +1,18 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.2.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.3.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
 
-> **What 3.2 adds — the ladder starts mattering, and the AI starts casting.** The
+> **What 3.3 fixes — a tribe can finally build its own troops.** Every sphere
+> unit had been locked behind the magic ladder, so a Nature city's build list was
+> literally two items, `Spearmen` and `Peasants`, and stayed that way until 1865
+> science. MoM splits racial troops (built, the mainstay) from fantastic
+> creatures (summoned) — and MOMJR always encoded which is which. 23 units move
+> back onto the mundane advance the source specified: Centaurs at 455 science
+> instead of 1865, **Minotaur on turn one**. They stay faction-walled, so only
+> Nature fields Elven Archers. See `CHANGELOG.md`.
+
+> **What 3.2 added — the ladder starts mattering, and the AI starts casting.** The
 > 75-mana summon used to be five constants: Nature always got Warbears, the
 > cheapest of its 13 units, at every rung of a six-rung ladder. It now rolls,
 > weighted, over everything you have unlocked. And the AI, which had been accruing

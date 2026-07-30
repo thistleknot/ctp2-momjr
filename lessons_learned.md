@@ -1,3 +1,76 @@
+## 2026-07-29 — I fixed the lane I was looking at, not the lane that was broken
+
+**Context:** the operator reported *"the tribes of nature would only ever spawn
+one unit."* I found that the SLIC summon resolved through five per-sphere
+constants, fixed it, and reported that as the explanation. The operator pushed
+back: *"summon != building... what about tribes of nature's ability to BUILD
+units?"* They were right, and the build lane was much worse.
+
+**CLOSED — every sphere unit was locked behind the magic ladder.** All 13 Nature
+units required `NATURE_LORE`: 1865 science, itself behind `GRAND_MASTERY` and
+`ELDRITCH_LORE`. Photographed in the Build Manager at turn 1 — Eudoria's Units tab
+offered **two** items, `Spearmen` and `Peasants`. At turn 78 the same capital
+reported *"there are already twelve units in that city, which is the maximum
+allowable units per tile"*: twelve identical Spearmen, because Spearmen was
+effectively the only choice. The unit the operator called "clayman" was almost
+certainly `IRON_GOLEM`, a neutral.
+
+**Cause:** 3.0's prereq rewrite pushed *every* sphere'd row onto a cost-derived
+ladder rung. Right for a fantastic creature, wrong for a racial troop — and MoM's
+whole design turns on that split: troops are BUILT and are the mainstay,
+creatures are SUMMONED. MOMJR already encoded it, in `advance_code_map.csv`'s
+`unit` lane. 23 normal / 20 fantastic, and the fix was to stop overriding data we
+already had.
+
+**The laws:**
+
+- *Fix the lane the symptom is in, not the lane you happen to be reading.* Two
+  mechanisms can produce one description. "Only ever one unit" fit both summon
+  and build; I checked one, found a real bug, and stopped. A real bug found is
+  not proof it is THE bug — it is the most seductive false positive there is.
+- *When a user says "you made it sound like X was the only reason", treat it as
+  evidence, not as a misunderstanding to correct.* They were describing the game
+  they played; I was describing the code I had read.
+- *Before overriding source data with a derived heuristic, check whether the
+  source already answers the question.* `cost_to_tier` was inventing an answer
+  that `advance_code_map.csv` already had. Same lesson as
+  [[mom-authored-rung-beats-derived-tier]], in the other direction: there the
+  derived tier demoted authored intent; here it erased a whole taxonomy.
+
+**The regression the fix caused, and what caught it.** The wall infers a block's
+sphere by reverse-looking-up its gate advance in the ladders. Once racial troops
+gated on mundane advances belonging to no ladder, that lookup returned nothing and
+**23 units silently fell out of `mod_CanCityBuildUnit`** — 87 walled idents down
+to 59, every tribe able to build everything. `gate_faction_gating`'s A9 caught it
+immediately. *An inference that reads a value back out of a derived field breaks
+the moment the field's domain widens; record the fact at the point you know it.*
+
+**A gate can outlive its premise.** A9 asserted "sphere'd but on a mundane advance
+⇒ every tribe reaches it". True only while every sphere'd block was forced onto a
+rung. There are TWO independent gates — the advance and the SLIC wall — so the
+real invariant is *sphere'd ⇒ walled*. Rewrote it and re-proved it by deleting
+Centaurs from the wall. *When a fix makes a gate fail, decide whether the code or
+the gate is wrong; do not assume the gate.*
+
+**Harness facts measured on the way (both cost a run):**
+
+- `ctrl+5` does NOT open the Great Library even though `keymap.txt:43` maps `^5`
+  to it — **the ctrl modifier does not survive injection**, so it arrives as a
+  plain `5` and opens the 5th top menu (Stats). What works in-game is
+  `press: BuildEditorWindow.LibraryButton`, then follow the `Requires:`
+  hyperlink. See [[ctp2-greatlibrary-reachable-from-buildmanager]].
+- The GL search box is at ~(434,301) at 1280x1024, not the (246,94) in
+  `steps/gl_advances.json`. Click the wrong spot and nothing has focus, so
+  subsequent `type:` text becomes **hotkeys**.
+
+**The GL is the best cheap witness for a data change.** Its GAMEPLAY prose is
+derived from the live DB every run, so its page IS the engine reporting the
+database back — reachable without playing to the tech that unlocks the thing.
+Verified: *"Warrior Code needs no prior research and is available from the first
+turn... It enables the units Minotaur, Peasants and Spearmen."*
+
+---
+
 ## 2026-07-29 — A ladder nothing reads, and a resource one side cannot spend
 
 **Context:** two things noticed in a play session, both reported as vague

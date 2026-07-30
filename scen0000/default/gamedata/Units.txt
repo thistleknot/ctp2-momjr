@@ -325,7 +325,7 @@ UNIT_WARLOCK {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_SORCERY_MAGE
+   EnableAdvance ADVANCE_ALCHEMY
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -376,7 +376,7 @@ UNIT_ARIEL {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_LIFE_LORE
+   EnableAdvance ADVANCE_MYSTICISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -427,7 +427,7 @@ UNIT_JAFAR {
    FoodHunger 0
    MaxMovePoints 400
    VisionRange 2
-   EnableAdvance ADVANCE_SORCERY_ADEPT
+   EnableAdvance ADVANCE_MYSTICISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -478,7 +478,7 @@ UNIT_RJAK {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_DEATH_ADEPT
+   EnableAdvance ADVANCE_MYSTICISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -529,7 +529,7 @@ UNIT_TAURON {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_CHAOS_ADEPT
+   EnableAdvance ADVANCE_MYSTICISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -580,7 +580,7 @@ UNIT_SERENA {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_LIFE_ADEPT
+   EnableAdvance ADVANCE_MYSTICISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -631,7 +631,7 @@ UNIT_FREYA {
    FoodHunger 0
    MaxMovePoints 300
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_LORE
+   EnableAdvance ADVANCE_MYSTICISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -682,7 +682,7 @@ UNIT_ALORRA {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_MAGE
+   EnableAdvance ADVANCE_MYSTICISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -733,7 +733,7 @@ UNIT_CENTAURS {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_LORE
+   EnableAdvance ADVANCE_SHAMANISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -784,7 +784,7 @@ UNIT_ELVEN_ARCHERS {
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_LORE
+   EnableAdvance ADVANCE_PANTHEISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -835,7 +835,7 @@ UNIT_MAGE {
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_SORCEROUS_LORE
+   EnableAdvance ADVANCE_OCCULT_STUDIES
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -886,7 +886,7 @@ UNIT_WYVERN {
    FoodHunger 0
    MaxMovePoints 300
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_MAGE
+   EnableAdvance ADVANCE_GREATER_FAUNA_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -980,7 +980,7 @@ UNIT_PALADINS {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_LIFE_ADEPT
+   EnableAdvance ADVANCE_HOLY_WARRIORS
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1337,7 +1337,7 @@ UNIT_GRIFFIN {
    FoodHunger 0
    MaxMovePoints 400
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_ADEPT
+   EnableAdvance ADVANCE_LESSER_FAUNA_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1605,7 +1605,7 @@ UNIT_MINOTAUR {
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_CHAOS_LORE
+   EnableAdvance ADVANCE_WARRIOR_CODE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1656,7 +1656,7 @@ UNIT_WAR_TROLL {
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_ADEPT
+   EnableAdvance ADVANCE_LEADERSHIP
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1844,7 +1844,7 @@ UNIT_SALAMANDER {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_CHAOS_MAGE
+   EnableAdvance ADVANCE_PYROTECHNICS
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1895,7 +1895,7 @@ UNIT_INFERNAL_DEVICE {
    FoodHunger 0
    MaxMovePoints 1000
    VisionRange 2
-   EnableAdvance ADVANCE_CHAOS_WIZARD
+   EnableAdvance ADVANCE_GRAND_MASTERY
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1938,7 +1938,7 @@ UNIT_MINION {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_DEATH_LORE
+   EnableAdvance ADVANCE_WRITING
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -2083,7 +2083,7 @@ UNIT_WAR_MAMMOTH {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_ADEPT
+   EnableAdvance ADVANCE_TACTICS
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -2271,7 +2271,7 @@ UNIT_WARRAX {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_CHAOS_MAGE
+   EnableAdvance ADVANCE_MYSTICISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -2467,7 +2467,7 @@ UNIT_MALLEUS {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_DEATH_MAGE
+   EnableAdvance ADVANCE_MYSTICISM
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -2518,7 +2518,7 @@ UNIT_MERFOLK {
    FoodHunger 0
    MaxMovePoints 400
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_ADEPT
+   EnableAdvance ADVANCE_SEA_LORE
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0

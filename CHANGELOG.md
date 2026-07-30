@@ -9,6 +9,83 @@ noise is not a change.
 
 ---
 
+## [3.3.0] — 2026-07-29 — a tribe can finally build its own troops
+
+**Minor.** Additive: 3.2.0 saves load unchanged. 23 units move from a magic
+ladder rung back onto the mundane advance MOMJR always specified for them, so a
+tribe gains access earlier — nothing is removed, renamed or repriced.
+
+### Fixed
+
+- **Every sphere unit was locked behind the magic ladder, so tribes had no
+  troops.** All 13 Nature units required `NATURE_LORE` — 1865 science, itself
+  behind `GRAND_MASTERY` and `ELDRITCH_LORE`. Photographed in the Build Manager
+  at turn 1: Eudoria's Units tab offered exactly **two** items, `Spearmen` and
+  `Peasants`. Seventy-eight turns later the same capital reported *"There are
+  already twelve units in that city, which is the maximum allowable units per
+  tile"* — twelve identical Spearmen, because Spearmen was effectively the only
+  choice. Reported in play 2026-07-28 as "the tribes of nature would only ever
+  spawn one unit"; the previous release wrongly attributed that to the summon.
+
+  **Cause.** 3.0's prereq rewrite pushed *every* sphere'd row onto a ladder rung
+  derived from its cost. That is right for a fantastic creature and wrong for a
+  racial troop, and MoM's design turns on exactly that distinction: troops are
+  **built** in cities and are the mainstay, creatures are **summoned**. MOMJR
+  already encodes which is which, in `advance_code_map.csv`'s `unit` lane —
+  Centaurs → `SHAMANISM`, Elven Archers → `PANTHEISM`, Minotaur →
+  `WARRIOR_CODE`, War Troll → `LEADERSHIP`, against Warbears → `NATURE_LORE`,
+  Cockatrice → `NATURE_ADEPT`, Great Wyrm → `NATURE_MASTER`. The cost-derived
+  tier is now a last resort rather than the default.
+
+  **23 normal / 20 fantastic.** Centaurs now cost 455 science (`SHAMANISM`,
+  AGE_ONE, no prerequisites) instead of 1865-behind-two-roots, and **Minotaur is
+  buildable on turn one** — `WARRIOR_CODE` is a start advance. Racial troops stay
+  faction-walled, so only Nature fields Elven Archers.
+
+- **The summon pool collapsed 34 → 20**, the clean 5 spheres × 4 rungs grid.
+  Centaurs and Elven Archers are no longer summonable, which was the other half
+  of the same report: summoning a racial troop never made sense.
+
+### Fixed (regressions caught during this change)
+
+- The wall infers a block's sphere by reverse-looking-up its gate advance in the
+  ladders. Once racial troops gated on mundane advances that belong to no ladder,
+  the lookup returned nothing and **23 units silently fell out of
+  `mod_CanCityBuildUnit`** — the wall dropped from 87 idents to 59 and every
+  tribe could build them. `gate_faction_gating`'s A9 caught it. The sphere is now
+  recorded at classification time instead of inferred.
+- **A9 itself was rewritten.** Its premise — "sphere'd but on a mundane advance
+  ⇒ every tribe reaches it" — held only while every sphere'd block was forced
+  onto a rung. There are two independent gates: the advance, and the SLIC wall.
+  It now asserts *sphere'd ⇒ walled*, and was re-proven by deleting Centaurs from
+  the wall and watching it fail.
+
+### Verified through the headless harness
+
+- **Build Manager, turn 1** (`runs/20260729-173656`): Units tab photographed.
+- **Great Library, Warrior Code page** (`runs/20260729-174823`), reached by
+  `press: BuildEditorWindow.LibraryButton` and following the `Requires:`
+  hyperlink — the engine rendering the live DB back: *"Warrior Code needs no
+  prior research and is available from the first turn... It enables the units
+  **Minotaur**, Peasants and Spearmen."*
+- Generator byte-stable; all scenario gates pass; `gate_faction_gating` 71
+  targets / 0 violations; `gate_ai_magic` PASS; GL 784/784; `mom_audit` 0 FAIL.
+
+### Known open
+
+- The five `x`-sentinel wonders are **player-visible**, not just internal: the
+  Warrior Code page lists "Xapollo Program, Xcure For Cancer, Xlighthouse,
+  Xstatue Of Liberty and Xwomens Suffrage" among the wonders it enables.
+- Summon variety is still not observed on screen. The 78-turn probe clicked the
+  arm 13 times and captured the SLIC reply *"You lack the mana for a summoning.
+  A creature costs 75, and you hold 58"* — so the arm body runs and the economy
+  is live — but early turns lacked mana and by the time the pool filled, the
+  capital had hit the twelve-unit tile cap so no summon could land. **The build
+  bug was masking the summon test.** Worth re-running now that cities are not
+  jammed with Spearmen.
+
+---
+
 ## [3.2.0] — 2026-07-29 — the ladder starts mattering, and the AI starts casting
 
 **Minor.** Additive: 3.1.1 saves load unchanged and still make sense. Nothing is

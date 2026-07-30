@@ -90,26 +90,22 @@ int_f MomSummonRoll(int_t p)
     if (p == 1) {
         if (r == 5) {
             if (roll < 16) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-            if (roll < 24) { return UnitDB(UNIT_PALADINS); }
             if (roll < 32) { return UnitDB(UNIT_UNICORN); }
             if (roll < 48) { return UnitDB(UNIT_PEGASUS); }
             if (roll < 100) { return UnitDB(UNIT_ARCHANGEL); }
         }
         if (r == 4) {
             if (roll < 25) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-            if (roll < 37) { return UnitDB(UNIT_PALADINS); }
             if (roll < 50) { return UnitDB(UNIT_UNICORN); }
             if (roll < 100) { return UnitDB(UNIT_PEGASUS); }
         }
         if (r == 3) {
             if (roll < 25) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-            if (roll < 37) { return UnitDB(UNIT_PALADINS); }
             if (roll < 50) { return UnitDB(UNIT_UNICORN); }
             if (roll < 100) { return UnitDB(UNIT_PEGASUS); }
         }
         if (r == 2) {
             if (roll < 50) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-            if (roll < 75) { return UnitDB(UNIT_PALADINS); }
             if (roll < 100) { return UnitDB(UNIT_UNICORN); }
         }
         if (r == 1) {
@@ -120,55 +116,26 @@ int_f MomSummonRoll(int_t p)
     // NATURE (player 2)
     if (p == 2) {
         if (r == 5) {
-            if (roll < 5) { return UnitDB(UNIT_CENTAURS); }
-            if (roll < 10) { return UnitDB(UNIT_ELVEN_ARCHERS); }
             if (roll < 16) { return UnitDB(UNIT_WARBEARS); }
-            if (roll < 19) { return UnitDB(UNIT_COCKATRICE); }
-            if (roll < 22) { return UnitDB(UNIT_GRIFFIN); }
-            if (roll < 25) { return UnitDB(UNIT_MERFOLK); }
-            if (roll < 28) { return UnitDB(UNIT_WAR_MAMMOTH); }
-            if (roll < 32) { return UnitDB(UNIT_WAR_TROLL); }
-            if (roll < 40) { return UnitDB(UNIT_BEHEMOTH); }
-            if (roll < 48) { return UnitDB(UNIT_WYVERN); }
+            if (roll < 32) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 48) { return UnitDB(UNIT_BEHEMOTH); }
             if (roll < 100) { return UnitDB(UNIT_GREAT_WYRM); }
         }
         if (r == 4) {
-            if (roll < 8) { return UnitDB(UNIT_CENTAURS); }
-            if (roll < 16) { return UnitDB(UNIT_ELVEN_ARCHERS); }
             if (roll < 25) { return UnitDB(UNIT_WARBEARS); }
-            if (roll < 30) { return UnitDB(UNIT_COCKATRICE); }
-            if (roll < 35) { return UnitDB(UNIT_GRIFFIN); }
-            if (roll < 40) { return UnitDB(UNIT_MERFOLK); }
-            if (roll < 45) { return UnitDB(UNIT_WAR_MAMMOTH); }
-            if (roll < 50) { return UnitDB(UNIT_WAR_TROLL); }
-            if (roll < 75) { return UnitDB(UNIT_BEHEMOTH); }
-            if (roll < 100) { return UnitDB(UNIT_WYVERN); }
+            if (roll < 50) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 100) { return UnitDB(UNIT_BEHEMOTH); }
         }
         if (r == 3) {
-            if (roll < 8) { return UnitDB(UNIT_CENTAURS); }
-            if (roll < 16) { return UnitDB(UNIT_ELVEN_ARCHERS); }
             if (roll < 25) { return UnitDB(UNIT_WARBEARS); }
-            if (roll < 30) { return UnitDB(UNIT_COCKATRICE); }
-            if (roll < 35) { return UnitDB(UNIT_GRIFFIN); }
-            if (roll < 40) { return UnitDB(UNIT_MERFOLK); }
-            if (roll < 45) { return UnitDB(UNIT_WAR_MAMMOTH); }
-            if (roll < 50) { return UnitDB(UNIT_WAR_TROLL); }
-            if (roll < 75) { return UnitDB(UNIT_BEHEMOTH); }
-            if (roll < 100) { return UnitDB(UNIT_WYVERN); }
+            if (roll < 50) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 100) { return UnitDB(UNIT_BEHEMOTH); }
         }
         if (r == 2) {
-            if (roll < 16) { return UnitDB(UNIT_CENTAURS); }
-            if (roll < 32) { return UnitDB(UNIT_ELVEN_ARCHERS); }
             if (roll < 50) { return UnitDB(UNIT_WARBEARS); }
-            if (roll < 60) { return UnitDB(UNIT_COCKATRICE); }
-            if (roll < 70) { return UnitDB(UNIT_GRIFFIN); }
-            if (roll < 80) { return UnitDB(UNIT_MERFOLK); }
-            if (roll < 90) { return UnitDB(UNIT_WAR_MAMMOTH); }
-            if (roll < 100) { return UnitDB(UNIT_WAR_TROLL); }
+            if (roll < 100) { return UnitDB(UNIT_COCKATRICE); }
         }
         if (r == 1) {
-            if (roll < 33) { return UnitDB(UNIT_CENTAURS); }
-            if (roll < 66) { return UnitDB(UNIT_ELVEN_ARCHERS); }
             if (roll < 100) { return UnitDB(UNIT_WARBEARS); }
         }
     }
@@ -176,34 +143,26 @@ int_f MomSummonRoll(int_t p)
     // SORCERY (player 3)
     if (p == 3) {
         if (r == 5) {
-            if (roll < 8) { return UnitDB(UNIT_MAGE); }
             if (roll < 16) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
             if (roll < 32) { return UnitDB(UNIT_AIR_ELEMENTAL); }
-            if (roll < 40) { return UnitDB(UNIT_STORM_GIANT); }
-            if (roll < 48) { return UnitDB(UNIT_WARLOCK); }
+            if (roll < 48) { return UnitDB(UNIT_STORM_GIANT); }
             if (roll < 100) { return UnitDB(UNIT_STORM_DRAKE); }
         }
         if (r == 4) {
-            if (roll < 12) { return UnitDB(UNIT_MAGE); }
             if (roll < 25) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
             if (roll < 50) { return UnitDB(UNIT_AIR_ELEMENTAL); }
-            if (roll < 75) { return UnitDB(UNIT_STORM_GIANT); }
-            if (roll < 100) { return UnitDB(UNIT_WARLOCK); }
+            if (roll < 100) { return UnitDB(UNIT_STORM_GIANT); }
         }
         if (r == 3) {
-            if (roll < 12) { return UnitDB(UNIT_MAGE); }
             if (roll < 25) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
             if (roll < 50) { return UnitDB(UNIT_AIR_ELEMENTAL); }
-            if (roll < 75) { return UnitDB(UNIT_STORM_GIANT); }
-            if (roll < 100) { return UnitDB(UNIT_WARLOCK); }
+            if (roll < 100) { return UnitDB(UNIT_STORM_GIANT); }
         }
         if (r == 2) {
-            if (roll < 25) { return UnitDB(UNIT_MAGE); }
             if (roll < 50) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
             if (roll < 100) { return UnitDB(UNIT_AIR_ELEMENTAL); }
         }
         if (r == 1) {
-            if (roll < 50) { return UnitDB(UNIT_MAGE); }
             if (roll < 100) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
         }
     }
@@ -211,31 +170,26 @@ int_f MomSummonRoll(int_t p)
     // DEATH (player 4)
     if (p == 4) {
         if (r == 5) {
-            if (roll < 8) { return UnitDB(UNIT_MINION); }
             if (roll < 16) { return UnitDB(UNIT_ZOMBIES); }
             if (roll < 32) { return UnitDB(UNIT_WRAITH); }
             if (roll < 48) { return UnitDB(UNIT_DEMON); }
             if (roll < 100) { return UnitDB(UNIT_UNDEAD_DRAGON); }
         }
         if (r == 4) {
-            if (roll < 12) { return UnitDB(UNIT_MINION); }
             if (roll < 25) { return UnitDB(UNIT_ZOMBIES); }
             if (roll < 50) { return UnitDB(UNIT_WRAITH); }
             if (roll < 100) { return UnitDB(UNIT_DEMON); }
         }
         if (r == 3) {
-            if (roll < 12) { return UnitDB(UNIT_MINION); }
             if (roll < 25) { return UnitDB(UNIT_ZOMBIES); }
             if (roll < 50) { return UnitDB(UNIT_WRAITH); }
             if (roll < 100) { return UnitDB(UNIT_DEMON); }
         }
         if (r == 2) {
-            if (roll < 25) { return UnitDB(UNIT_MINION); }
             if (roll < 50) { return UnitDB(UNIT_ZOMBIES); }
             if (roll < 100) { return UnitDB(UNIT_WRAITH); }
         }
         if (r == 1) {
-            if (roll < 50) { return UnitDB(UNIT_MINION); }
             if (roll < 100) { return UnitDB(UNIT_ZOMBIES); }
         }
     }
@@ -243,37 +197,27 @@ int_f MomSummonRoll(int_t p)
     // CHAOS (player 5)
     if (p == 5) {
         if (r == 5) {
-            if (roll < 6) { return UnitDB(UNIT_HELL_HOUNDS); }
-            if (roll < 12) { return UnitDB(UNIT_MINOTAUR); }
-            if (roll < 24) { return UnitDB(UNIT_GARGOYLE); }
-            if (roll < 30) { return UnitDB(UNIT_EFREET); }
-            if (roll < 36) { return UnitDB(UNIT_SALAMANDER); }
-            if (roll < 48) { return UnitDB(UNIT_INFERNAL_DEVICE); }
+            if (roll < 16) { return UnitDB(UNIT_HELL_HOUNDS); }
+            if (roll < 32) { return UnitDB(UNIT_GARGOYLE); }
+            if (roll < 48) { return UnitDB(UNIT_EFREET); }
             if (roll < 100) { return UnitDB(UNIT_HYDRA); }
         }
         if (r == 4) {
-            if (roll < 8) { return UnitDB(UNIT_HELL_HOUNDS); }
-            if (roll < 16) { return UnitDB(UNIT_MINOTAUR); }
-            if (roll < 32) { return UnitDB(UNIT_GARGOYLE); }
-            if (roll < 40) { return UnitDB(UNIT_EFREET); }
-            if (roll < 48) { return UnitDB(UNIT_SALAMANDER); }
-            if (roll < 100) { return UnitDB(UNIT_INFERNAL_DEVICE); }
+            if (roll < 25) { return UnitDB(UNIT_HELL_HOUNDS); }
+            if (roll < 50) { return UnitDB(UNIT_GARGOYLE); }
+            if (roll < 100) { return UnitDB(UNIT_EFREET); }
         }
         if (r == 3) {
-            if (roll < 12) { return UnitDB(UNIT_HELL_HOUNDS); }
-            if (roll < 25) { return UnitDB(UNIT_MINOTAUR); }
+            if (roll < 25) { return UnitDB(UNIT_HELL_HOUNDS); }
             if (roll < 50) { return UnitDB(UNIT_GARGOYLE); }
-            if (roll < 75) { return UnitDB(UNIT_EFREET); }
-            if (roll < 100) { return UnitDB(UNIT_SALAMANDER); }
+            if (roll < 100) { return UnitDB(UNIT_EFREET); }
         }
         if (r == 2) {
-            if (roll < 25) { return UnitDB(UNIT_HELL_HOUNDS); }
-            if (roll < 50) { return UnitDB(UNIT_MINOTAUR); }
+            if (roll < 50) { return UnitDB(UNIT_HELL_HOUNDS); }
             if (roll < 100) { return UnitDB(UNIT_GARGOYLE); }
         }
         if (r == 1) {
-            if (roll < 50) { return UnitDB(UNIT_HELL_HOUNDS); }
-            if (roll < 100) { return UnitDB(UNIT_MINOTAUR); }
+            if (roll < 100) { return UnitDB(UNIT_HELL_HOUNDS); }
         }
     }
 

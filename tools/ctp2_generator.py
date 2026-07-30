@@ -2322,6 +2322,16 @@ def _sphere_cost_tier(cost: int) -> str:
     return "master"
 
 
+# block ident -> owning sphere, populated as a side effect of
+# sphere_gate_targets(). The wall MUST read the sphere from here rather than
+# reverse-looking it up from the gate advance: a NORMAL racial troop gates on a
+# mundane advance that belongs to no ladder, so the reverse lookup silently
+# returns None and drops the unit out of mod_CanCityBuildUnit entirely. That
+# regression shipped for exactly one generator run on 2026-07-29 -- the wall fell
+# from 87 idents to 59 -- and gate_faction_gating's A9 caught it.
+_BLOCK_SPHERE: dict[str, str] = {}
+
+
 def sphere_gate_targets() -> dict[str, str]:
     """THE SHARED PREDICATE: block ident -> the advance it must gate on.
 
@@ -2329,8 +2339,33 @@ def sphere_gate_targets() -> dict[str, str]:
     writes; the two cannot drift apart. Rows whose sphere is `neutral` (or
     blank) are absent from the result -- they are deliberately universal and
     keep whatever prereq they already had.
+
+    NORMAL vs FANTASTIC (added 2026-07-29, and the whole point of this pass).
+    A sphere row is NOT automatically a magic creature. MoM's own design splits
+    a race's troops -- built in cities, the mainstay -- from its fantastic
+    creatures, which are summoned. MOMJR already encodes which is which, in the
+    `unit` lane of advance_code_map.csv: Centaurs -> SHAMANISM, Elven Archers ->
+    PANTHEISM, Minotaur -> WARRIOR_CODE, War Troll -> LEADERSHIP are RACIAL
+    TROOPS gated on mundane advances, while Warbears -> NATURE_LORE, Cockatrice
+    -> NATURE_ADEPT, Great Wyrm -> NATURE_MASTER already name a ladder rung.
+
+    This pass used to ignore that and push EVERY sphere row onto a rung derived
+    from its cost. The result shipped and was caught in play: all 13 Nature units
+    sat behind NATURE_LORE (1865 science, itself behind GRAND_MASTERY and
+    ELDRITCH_LORE), so for the entire early game a Nature city could build only
+    the 13 neutral units and produced nothing but Spearmen -- twelve of them,
+    until it hit the units-per-tile cap. A tribe with no racial troops has no
+    identity until the mid game, which is the opposite of what the faction work
+    was for. The cost-derived tier is a LAST RESORT now, not the default
+    ([[mom-authored-rung-beats-derived-tier]] -- same lesson, other direction).
+
+    Faction gating is UNAFFECTED: a normal unit still appears in this map, so
+    mod_CanCityBuildUnit still walls it to its own tribe. Only Nature may build
+    Elven Archers -- it may just do so from turn one instead of at 1865 science.
     """
+    ladder_advances = {a for s in _SPHERE_PLAYER for a in _sphere_ladder_idents(s)}
     targets: dict[str, str] = {}
+    _BLOCK_SPHERE.clear()
     for csv_name, prefixes in (("units.csv", ("UNIT_",)),
                                ("improvements.csv", ("IMPROVE_", "WONDER_"))):
         path = MOMJR / csv_name
@@ -2342,16 +2377,26 @@ def sphere_gate_targets() -> dict[str, str]:
                 if sphere not in {"life", "nature", "death", "chaos", "sorcery"}:
                     continue
                 prereq = (row.get("prereq") or "").strip()
+                mapped = MOM_UNIT_ADVANCE.get(prereq) or PREREQ_CODE_MAP.get(prereq)
                 if prereq in _SPHERE_LADDER_CODES:
                     # Authored rung wins outright.
-                    tier = _SPHERE_LADDER_CODES[prereq][1]
+                    advance = _sphere_rung_advance(
+                        sphere, _SPHERE_LADDER_CODES[prereq][1])
+                elif mapped and mapped not in ladder_advances:
+                    # NORMAL racial troop: the source gates it on a mundane
+                    # advance, so keep that. Buildable early, still tribe-walled.
+                    advance = mapped
+                elif mapped:
+                    # FANTASTIC: the source already names a ladder rung.
+                    advance = mapped
                 else:
-                    tier = _sphere_cost_tier(
-                        int(re.sub(r"[^0-9]", "", str(row.get("cost", "0"))) or 0))
-                advance = _sphere_rung_advance(sphere, tier)
+                    # No mapping at all -- fall back to the cost-derived rung.
+                    advance = _sphere_rung_advance(sphere, _sphere_cost_tier(
+                        int(re.sub(r"[^0-9]", "", str(row.get("cost", "0"))) or 0)))
                 base = sanitize(row.get("name", ""))
                 for prefix in prefixes:
                     targets[prefix + base] = advance
+                    _BLOCK_SPHERE[prefix + base] = sphere
     return targets
 
 
@@ -2404,10 +2449,13 @@ def _emit_mom_gating_slc() -> int:
         by_sphere[sphere]["advance"] = [a for a in _sphere_ladder_idents(sphere)
                                         if a in live_adv]
     for ident, advance in sorted(targets.items()):
-        # The sphere is read back off the gate advance, so the wall and the
-        # prereq rewrite cannot disagree about which tribe owns a block.
-        sphere = next((s for s in _SPHERE_PLAYER
-                       if advance in _sphere_ladder_idents(s)), None)
+        # The sphere comes from _BLOCK_SPHERE, recorded by the same pass that
+        # chose the advance. It must NOT be reverse-looked-up from the advance:
+        # a NORMAL racial troop gates on a mundane advance (Centaurs ->
+        # SHAMANISM) that belongs to no ladder, so the lookup would return None
+        # and silently drop it from the wall -- which is precisely how 23 units
+        # briefly became buildable by every tribe.
+        sphere = _BLOCK_SPHERE.get(ident)
         if sphere is None:
             continue
         for kind, (idents, _) in live.items():

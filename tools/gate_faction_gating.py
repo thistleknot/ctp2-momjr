@@ -222,15 +222,36 @@ def audit(scen: Path) -> list[str]:
         got = age_num.get(field(adv[rung], "Age"))
         if want is not None and got is not None and got != want:
             v.append(f"A9 {rung} is at age {got}, but its rung age is {want}")
+    # Everything the emitted wall actually names, in any of the four hooks.
+    walled = set(re.findall(r"\b(?:UNIT|IMPROVE|WONDER)_[A-Z0-9_]+", slc))
     for ident, gate in sorted(targets.items()):
         prefix = next(p for p in kinds if ident.startswith(p))
         if ident not in kinds[prefix]:
             continue
         enable = field(kinds[prefix][ident], "EnableAdvance")
         got = age_num.get(field(adv.get(enable, ""), "Age"), 0)
+        # A mundane enabling advance is NOT a leak. There are two independent
+        # gates: the advance (tech tree) and mod_CanCityBuildUnit/Building/Wonder
+        # in mom_gating.slc (the hard wall). This clause used to treat a mundane
+        # advance as proof that "every tribe reaches it", which was true only
+        # while EVERY sphere'd block was forced onto a ladder rung.
+        #
+        # That force was itself the bug (fixed 2026-07-29): it put all 13 Nature
+        # units behind NATURE_LORE -- 1865 science, behind GRAND_MASTERY and
+        # ELDRITCH_LORE -- so a Nature city could build nothing but the 13 neutral
+        # units and produced twelve identical Spearmen. MoM's design splits RACIAL
+        # TROOPS (built early, mundane advance, the mainstay) from FANTASTIC
+        # creatures (ladder-gated, summoned), and MOMJR encodes which is which in
+        # advance_code_map.csv's `unit` lane.
+        #
+        # So the real invariant is not "sphere'd => ladder advance"; it is
+        # "sphere'd => WALLED". Assert that instead, against the emitted wall.
         if got and got <= G._MUNDANE_MAX_AGE and enable not in all_rungs:
-            v.append(f"A9 {ident} is sphere'd but enabled by mundane {enable} "
-                     f"(age {got}) -- every tribe reaches it")
+            if ident not in walled:
+                v.append(
+                    f"A9 {ident} is sphere'd and enabled by mundane {enable} "
+                    f"(age {got}) but is absent from mom_gating.slc -- with no "
+                    "ladder gate AND no wall, every tribe can build it")
 
     return v
 
