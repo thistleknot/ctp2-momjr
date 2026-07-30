@@ -1,3 +1,73 @@
+## 2026-07-29 — The engine reads the REAL mouse, and a dead column excluded nothing
+
+**CLOSED — the map edge-scrolled through every run the harness has ever made.**
+The operator: *"the game is open and scrolling to the left ... my guess is the
+mouse likely isn't decoupled from MY mouse ... the screen only scrolls like that
+if the mouse is at the edge."* Right on every count.
+
+**CTP2's aui polls `GetCursorPos` — the operator's REAL cursor.** It never reads
+our posted `WM_MOUSEMOVE`. The window is stashed at (3012,-1262), past the right
+edge of a three-monitor virtual desktop (x 0..3004, y -1262..864). A cursor at
+(2428,-523) therefore converts to client **x = -584** — past the left edge — and
+the engine edge-scrolls left on every frame.
+
+It never *stopped* because edge-scroll only runs while the window holds
+`SDL_WINDOW_INPUT_FOCUS`, which `_spoof_focus()` sets before **every** input and
+which **nothing ever cleared**. One `enter` per turn armed a scroll that then ran
+until the process died. The earlier "scrolling up" report is the same mechanism
+armed by the turn ping, which hovers at `y=6` — the top edge.
+
+Fixed with `_drop_focus()` (`WM_KILLFOCUS` + `WM_ACTIVATE(WA_INACTIVE)`) after
+`hotkey`, `type_text`, `hover`, `drag` and `click`. Safe because each of those
+spoofs focus first, so the flag is re-armed immediately before it is needed.
+**Deliberately not fixed by moving the real cursor or by `ClipCursor`** — the
+operator is using the machine.
+
+Measured with phase correlation on the map region: **10 consecutive turns at
+exactly (0.0, 0.0) translation**, and the clock still advances 4000BC → 3725BC,
+so dropping focus does not break `enter`.
+
+**The laws:**
+
+- *An off-screen window is not an isolated window.* Anything the engine reads
+  from global state — cursor, keyboard, clock — still sees the real desktop.
+  Stashing hides the window from the operator; it does not decouple the input.
+- *Every flag you set, something must clear.* `_spoof_focus` had been correct and
+  incomplete for months: it enabled input delivery and also, invisibly, enabled a
+  cursor-polling loop.
+- *This silently polluted every frame comparison the harness has ever made.* A
+  scrolling map inflates deltas, so `decode_run`'s thresholds were fitted against
+  a moving background. Re-derive any threshold measured before this fix.
+- *Check the operator's monitor topology before claiming "off-screen".* My first
+  stash check compared against the PRIMARY display only and reported 0/40
+  on-screen — meaningless on a three-monitor desktop.
+
+**CLOSED — a control-plane column that excluded nothing.** The five `x`-sentinel
+wonders turned out to be **player-visible**: the Great Library's Warrior Code page
+listed *"Xapollo Program, Xcure For Cancer, Xlighthouse, Xstatue Of Liberty and
+Xwomens Suffrage"* among the wonders it enables. `wonders.csv` has an
+`IncludeInMoM` column — and the generator **never reads it**, on any row, and it
+is `True` on all 28. The intended exclusion mechanism did not exist; the column
+merely looked like governance. Culled the rows instead: **28 → 23**, which is the
+count gate 24's own docstring already asserted.
+
+**The law:** *a column nobody reads is not a control; it is a comment that looks
+like one.* Same shape as the dead `ident in momjr` discriminator
+([[mom-dead-discriminator-momjr]]) — grep for the reader before trusting a knob.
+
+**A one-creature pool is not the bug it resembles.** After the normal/fantastic
+split, every sphere has exactly ONE creature at rung 1, widening to four by rung
+5. That is the 5×4 grid working — but on screen it is indistinguishable from the
+five-constants bug 3.2 fixed. The MAGIC STATUS panel now states the rung, which is
+both the missing player information and the thing that let the harness explain a
+null result instead of mis-reading it: *"Sphere rung: 1 of 5"* at turn 144.
+
+**The law:** *when correct behaviour and a known bug produce the same
+observation, ship the discriminator.* Otherwise every future run re-opens the
+question.
+
+---
+
 ## 2026-07-29 — I fixed the lane I was looking at, not the lane that was broken
 
 **Context:** the operator reported *"the tribes of nature would only ever spawn
