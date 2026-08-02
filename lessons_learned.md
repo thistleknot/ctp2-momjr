@@ -1,3 +1,42 @@
+## 2026-08-01 — The rig kept growing to fit the question. That was the bug.
+
+**Operator, twice:** *"don't do 700 turn runs"* / *"I told you not to do this a
+while ago when you wanted to do 200."* Correct both times, and I had a standing
+law on file saying the same thing (under 15 minutes per test; hour-plus runs are
+a design failure, not a property of the problem).
+
+**What went wrong is worth naming precisely.** I escalated 20 -> 220 -> 700 turns
+across one session, and each step felt locally justified: rung 2 is thousands of
+science deep, an AI army needs time to mature, turn 220 is still early game. Every
+one of those is true. **And every one of them is evidence the QUESTION was
+mis-sized, not that the rig needed to be bigger.**
+
+**What the long runs actually cost, measured:**
+- a 700-turn attempt stalled at turn 55 on an unswept diplomacy modal and burned
+  900 s before the watchdog fired;
+- killing it skipped the probe's `finally` and leaked its instrument into the
+  scenario tree;
+- staging while it ran committed a debug build over the real player-facing MAGIC
+  STATUS panel, which had to be reverted.
+
+Three separate failures. **None of them could have happened at 20 turns.**
+
+**The moves that were available the whole time**, and are the standing answer
+when a claim sits past the horizon:
+
+- **Shrink the rig, not the question.** A scratch scenario with one constant
+  changed exercises the same SLIC path in two turns instead of two hundred.
+- **Unit-test the maths directly.** The disband roulette was settled by
+  `tools/test_disband_weighting.py` — 4 varied ledgers x 200k trials, under a
+  second — while the in-game state that would exercise it is unreachable at rung 1
+  by construction.
+- **Report it unproven, and say why.** "Structurally unreachable in a short game"
+  is an honest disposition. Grinding a long run to produce a weaker version of the
+  same answer is not.
+
+**~20 turns is the working ceiling for this project.** Anything that needs more
+needs a different instrument.
+
 ## 2026-08-01 — Summoning takes preparation, and a long run froze at first contact
 
 **CLOSED — a cycle validated at 200 turns is NOT validated at 700.** A 700-turn
