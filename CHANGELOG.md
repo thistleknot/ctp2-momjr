@@ -9,6 +9,117 @@ noise is not a change.
 
 ---
 
+## [3.7.0] — 2026-08-02 — summoning costs what building costs
+
+**Minor.** Behavioural. Old saves are unaffected because they cache compiled
+SLIC; the change applies to new games.
+
+### The imbalance
+
+The same creature cost **1970 science to build and 0 science to summon**:
+
+```
+SPEARMEN       150 shields   ADVANCE_WARRIOR_CODE   (start advance)
+CENTAURS       250 shields   ADVANCE_SHAMANISM      (455 science)
+WARBEARS       350 shields   ADVANCE_NATURE_LORE    (1970 science)
+```
+
+`MomSummonRoll` floored the ladder rung at 1, so every tribe had rung-1
+summoning from turn one and the summon path skipped the tech tree entirely. A
+tribe's only sphere-flavoured units were therefore ones it *could never have
+built* — which is why the Tribes of Nature arrived at your border as three
+identical Warbears, over and over.
+
+The floor was added in 3.2.0 against "a tribe that starts holding its sphere root
+never fires the `GrantAdvance` that would raise it off 0". **That premise is
+false here** — nothing in the scenario grants a `*_MAGIC` or `*_LORE` advance and
+there is no starting-advance mechanism, so no tribe ever starts holding its root.
+It guarded a case that does not exist, and cost a whole tech gate.
+
+### Changed
+
+- **A tribe cannot summon until it researches its sphere's magic.** Rung 0 now
+  falls through every band, `MomSummonRoll` returns 0, and the pool is not
+  debited. For Nature that is 1035 science — still earlier than the 1970 needed
+  to *build* a Warbears, so magic still reaches the creature first. It is simply
+  no longer free.
+- **The panel reports rung 0 honestly** instead of claiming "rung 1 of 5" while
+  every summon silently failed.
+- **The arm explains itself.** Clicking Summon with no magic learned now says so,
+  ahead of the no-mana and already-preparing branches.
+
+### Fixed
+
+- **The 3.6.1 leader names were applied to generated files and reverted by the
+  next regeneration.** `civilisation.txt` and `civ_str.txt` are generator-owned.
+  The generator already emitted `_LEADERF_NAME` whenever `players.csv` carried a
+  `civ2_leader_female` value — the column was simply blank for four realms and a
+  duplicate ("Freya") for Nature. Sophia / Raven / Zarah / Kali / Ignara now live
+  in the control plane and survive regeneration.
+
+### Verified in game
+
+Headless, new game, 20 turns, no SLIC errors:
+
+```
+Mana 100/100  inc 29 - up 0 = 29  rung 0
+units   3 4 5 0 0
+summon  0 0 0 0 0
+mana    100 60 52 100 0
+```
+
+Summon counts are zero for every tribe and mana **accumulates** instead of
+draining from turn ~5, while AI unit counts still grow — the armies are now
+city-built.
+
+### Known open
+
+- The rung-1 pool is still one creature per sphere, so variety returns as a
+  question once the gate is judged in play.
+- Summon price is still flat 75 mana for anything from 150 to 4000 shields of
+  value. Pricing by rung is designed but not implemented.
+- The creature power curve is linear (attack 5 → 75 in even steps) with **flat
+  HP 10 on every unit**. A saturating curve with a counter class is the intended
+  direction, not yet started.
+
+## [3.6.1] — 2026-08-02 — every realm has a queen
+
+**Patch.** Data only. No save impact; the name is read at display time.
+
+### The change
+
+Picking a female leader gave you the male leader's name. Four of the five realms
+pointed `LeaderNameFemale` straight at the `_LEADERM_NAME` key, and the fifth
+(Nature) pointed at a `_LEADERF_NAME` string whose value was just "Freya" again —
+so the female slot was male-aliased everywhere, by wiring rather than by accident.
+
+Each realm now has a distinct leader per gender:
+
+| realm | male | female |
+|---|---|---|
+| Life | Ariel | **Sophia** |
+| Nature | Freya | **Raven** |
+| Sorcery | Jafar | **Zarah** |
+| Death | Rjak | **Kali** |
+| Chaos | Tauron | **Ignara** |
+
+Raven and Kali are Master of Magic wizards, so they share the roster the five
+existing names came from. Sophia, Zarah, and Ignara are new — the canon has no
+unused female wizard for those spheres.
+
+### Files
+
+- `scen0000/english/gamedata/civ_str.txt` — added four `_LEADERF_NAME` strings,
+  replaced Nature's duplicate value
+- `scen0000/default/gamedata/civilisation.txt` — repointed `LeaderNameFemale`
+  for Life, Sorcery, Death, and Chaos off the male key
+
+### Known open
+
+The new-game screen still defaults to **Alexander**. `civilisation.txt` defines
+six civs while `civ_str.txt` retains the full stock CTP2 table, so the picker
+falls back to stock Greek. Unrelated to these strings; not fixed here.
+
 ## [3.6.0] — 2026-08-01 — summoning takes preparation
 
 **Minor.** Additive. Old saves load; a save made before this has nothing

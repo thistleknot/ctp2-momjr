@@ -283,13 +283,14 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
             // Income/Upkeep/Net lines fail to add up. MomRecalcMagicPerTurn
             // is the sole writer of all three.
             // The rung decides WHICH creatures the 75-mana summon can roll
-            // (mom_summon.slc). Floored at 1 for the same reason MomSummonRoll
-            // floors it: a tribe that starts holding its sphere root never fires
-            // the GrantAdvance that would raise it off 0.
+            // (mom_summon.slc). REPORTED HONESTLY, including 0.
+            //
+            // This used to be floored at 1 to match MomSummonRoll's floor. Both
+            // floors went on 2026-08-02: rung 0 means the tribe has learned no
+            // magic of its own sphere and genuinely cannot summon, so a panel
+            // claiming "rung 1 of 5" while every summon silently fails was
+            // reporting a capability that did not exist.
             MomRungDisp = MomSphereRung[p];
-            if (MomRungDisp < 1) {
-                MomRungDisp = 1;
-            }
         }
 
         // Periodic popup every 10 rounds: REMOVED 2026-07-25, redundant and harmful.

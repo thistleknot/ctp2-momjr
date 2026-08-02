@@ -187,6 +187,10 @@
     "purpose": "segment: Sorcery summon result (Mage)",
     "status": "ACTIVE"
   },
+  "mom_msg.slc:MomSummonNoMagic": {
+    "purpose": "",
+    "status": "ACTIVE"
+  },
   "mom_msg.slc:MomSummonNoMana": {
     "purpose": "segment: insufficient-mana answer for the Summon arm; messagebox NOT alertbox, so no modal stacks on the Kill() path",
     "status": "ACTIVE"

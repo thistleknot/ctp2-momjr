@@ -32,6 +32,7 @@ mom_msg.slc,messagebox,MomBlessChaos,messagebox,segment: Chaos sphere blessing p
 mom_msg.slc,messagebox,MomUpkeepDisband,messagebox,,C,ACTIVE,neutral
 mom_msg.slc,messagebox,MomSummonBegun,messagebox,,C,ACTIVE,neutral
 mom_msg.slc,messagebox,MomSummonBusy,messagebox,,C,ACTIVE,neutral
+mom_msg.slc,messagebox,MomSummonNoMagic,messagebox,,C,ACTIVE,neutral
 mom_msg.slc,messagebox,MomSummonGuard,messagebox,"segment: Life summon result (Guardian Spirit) -- names the creature, so one frame settles which branch ran",C,ACTIVE,neutral
 mom_msg.slc,messagebox,MomSummonBear,messagebox,segment: Nature summon result (War Bear),C,ACTIVE,neutral
 mom_msg.slc,messagebox,MomSummonMage,messagebox,segment: Sorcery summon result (Mage),C,ACTIVE,neutral

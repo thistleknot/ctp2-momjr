@@ -585,6 +585,46 @@ def _a11_cheap_spend_cannot_starve_summon(srcs: dict[str, str]) -> list[str]:
     return fails
 
 
+def _a12_no_rung_floor(srcs: dict[str, str]) -> list[str]:
+    """Summoning must require the research that building the same creature does.
+
+    MEASURED 2026-08-02, and it is the defect behind "every Nature unit I meet is
+    a Warbears". A Warbears costs 1970 science to BUILD (ADVANCE_NATURE_LORE) and
+    used to cost 0 science to SUMMON, because MomSummonRoll floored the ladder
+    rung at 1:
+
+        if (r < 1) { r = 1; }
+
+    So every tribe had rung-1 summoning from turn one and the summon path skipped
+    the tech tree entirely. The tribe's only sphere-flavoured units were ones it
+    could never have built.
+
+    The floor was added in v3.2.0 against "a tribe that starts holding its sphere
+    root never fires the GrantAdvance that would raise it off 0" -- a premise that
+    is FALSE here: nothing in the scenario grants a *_MAGIC or *_LORE advance and
+    there is no starting-advance mechanism, so no tribe ever starts holding its
+    root. The floor guarded a case that does not exist and cost a whole tech gate.
+
+    Rung 0 must fall through every band so MomSummonRoll returns 0, which every
+    caller already reads as "no summon" and which leaves the pool undebited.
+    """
+    fails: list[str] = []
+    summon = srcs.get("mom_summon.slc", "")
+    if not summon:
+        return fails
+    if re.search(r"if\s*\(\s*r\s*<\s*1\s*\)", summon):
+        fails.append(
+            "mom_summon.slc: MomSummonRoll floors the rung at 1, so a tribe with "
+            "NO magic research can still summon -- the summon bypasses the tech "
+            "gate that building the same creature respects")
+    # Rung 0 must own no band in any sphere.
+    if re.search(r"if\s*\(\s*r\s*==\s*0\s*\)", summon):
+        fails.append(
+            "mom_summon.slc: a band exists for r == 0 -- rung 0 is 'no magic "
+            "learned' and must yield no creature at all")
+    return fails
+
+
 def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     """Return a list of violation strings; empty means the gate passes."""
     srcs = _sources(scen)
@@ -603,6 +643,7 @@ def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     fails += _a9_preparation(srcs)
     fails += _a10_rate_is_one_knob(srcs)
     fails += _a11_cheap_spend_cannot_starve_summon(srcs)
+    fails += _a12_no_rung_floor(srcs)
     return fails
 
 

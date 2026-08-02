@@ -27,6 +27,11 @@ MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}
 # the rate is still discoverable from the Income/upkeep arithmetic on the line above.
 MOM_MSG_SUMMON_BEGUN		"You begin the summoning. The power leaves you now, and the creature will take shape in {MomPrepDisp} turn(s).\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}"
 MOM_MSG_SUMMON_BUSY		"A summoning is already under way, with {MomPrepDisp} turn(s) still to run. You cannot prepare two at once."
+# Added 2026-08-02 with the removal of the rung floor. A tribe that has not researched
+# its sphere's magic advance now genuinely cannot summon -- MomSummonRoll returns 0 for
+# rung 0 -- so the arm needs to say why instead of taking the click and resolving into
+# nothing. Summoning a creature you could not yet build was the imbalance this closes.
+MOM_MSG_SUMMON_NOMAGIC		"You have not yet learned the magic of your sphere. Research it before you can call a creature out of the aether."
 # KEPT COMPACT ON PURPOSE, measured 2026-08-01: the alertbox does NOT grow to fit its
 # text. An earlier six-line version rendered Income/Upkeep/Net on separate lines and
 # pushed the 'Sphere rung' line clean off the bottom of the box, silently losing it --

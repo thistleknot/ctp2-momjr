@@ -294,6 +294,11 @@ messagebox 'MomSummonBusy' {
 	Text(ID_MOM_MSG_SUMMON_BUSY);
 }
 
+messagebox 'MomSummonNoMagic' {
+	Show();
+	Text(ID_MOM_MSG_SUMMON_NOMAGIC);
+}
+
 messagebox 'MomSummonGuard' {
 	Show();
 	Text(ID_MOM_MSG_SUMMON_GUARD);
@@ -398,7 +403,15 @@ alertbox 'MagicMenu' {
 	// resolve time). Still comparisons and Message(), both builtins, so the body
 	// remains at call depth 0 and the Class 1 budget is untouched.
 	Button(ID_MOM_MSG_BTN_SUMMON) {
-		if (MomSummonPrep[g.player] > 0) {
+		// NO MAGIC LEARNED comes FIRST, ahead of both other refusals. With the
+		// rung floor gone (2026-08-02) a tribe that has not researched its
+		// sphere's MAGIC advance genuinely cannot summon -- MomSummonRoll
+		// returns 0 for rung 0 -- and without this branch the arm would take
+		// the click, place an order, and resolve into nothing. Silence is the
+		// one outcome a button must never produce.
+		if (MomSphereRung[g.player] < 1) {
+			Message(g.player, 'MomSummonNoMagic');
+		} elseif (MomSummonPrep[g.player] > 0) {
 			Message(g.player, 'MomSummonBusy');
 		} elseif (MomMagicCur[g.player] >= 75) {
 			MomSummonChoice[g.player] = 1;

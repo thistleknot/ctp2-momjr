@@ -1,7 +1,14 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.6.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.7.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
+
+> **What 3.7 fixes — summoning no longer skips the tech tree.** A Warbears cost
+> 1970 science to *build* and 0 science to *summon*, because the summon roll
+> floored the sphere rung at 1. Every tribe had rung-1 summoning from turn one, so
+> the units you met at a border were creatures that tribe could never have built —
+> three identical bears, forever. A tribe must now research its sphere's magic
+> before it can summon anything at all. See `CHANGELOG.md`.
 
 > **What 3.6 adds — summoning takes preparation.** A summon used to resolve next
 > turn no matter what it was, so a Great Wyrm and a Warbears arrived on the same
