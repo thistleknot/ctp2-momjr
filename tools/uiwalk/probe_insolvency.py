@@ -111,13 +111,31 @@ def main() -> int:
         return True
 
     def clear(tag: str, limit: int = 4) -> int:
+        """Dismiss stacked boxes by their CLOSE arm, not arm 0.
+
+        MEASURED 2026-08-01, and it stalled a whole run: alertbox arms render in
+        REVERSE declaration order, so on MAGIC STATUS index 0 is
+        `Summon Creature (75)` and index 1 is `Close`. Clearing with index 0
+        therefore placed a fresh summon order instead of closing anything, boxes
+        stacked, `enter` never reached the game, and turns 11-16 captured the
+        SAME frame -- identical mana, identical countdown, identical 3875BC date.
+        Repeated identical frames are the signature to watch for; they look like
+        a stuck mechanic and are actually a stuck turn loop.
+
+        Try index 1 first (Close on a two-arm panel), fall back to 0 for a plain
+        one-button message.
+        """
         n = 0
         for i in range(limit):
             if not turnloop.alert_box_open(game.screenshot()):
                 break
-            if not turnloop.click_alert_arm(game, inp, 0, f"{tag}{i}"):
-                break
-            n += 1
+            if turnloop.click_alert_arm(game, inp, 1, f"{tag}{i}c"):
+                n += 1
+                continue
+            if turnloop.click_alert_arm(game, inp, 0, f"{tag}{i}"):
+                n += 1
+                continue
+            break
         return n
 
     try:
@@ -145,12 +163,17 @@ def main() -> int:
                     turnloop.click_alert_arm(game, inp, 0, f"commit{turn}")
                     print(f"  [ins] t{turn}: committed", flush=True)
             elif turn > SUMMON_AT:
-                # Every turn after the commit: the creature arrives, upkeep
-                # explodes past income, and the disband must follow.
-                clear(f"t{turn:03d}pre")
-                go([{"do": "key", "keys": "j"}, {"do": "wait_stable", "ms": 7000}])
-                snap(f"panel_t{turn:03d}")
-                clear(f"t{turn:03d}post")
+                # MESSAGE-DRIVEN from here, deliberately. The disband POPUP is
+                # the evidence, and it is captured by the snap at the top of the
+                # turn above. Opening MAGIC STATUS every turn as well is what
+                # stacked boxes and froze the loop on the previous attempt, so
+                # the panel is sampled only every third turn -- enough to watch
+                # upkeep spike and fall back, few enough to keep turns flowing.
+                if turn % 3 == 0:
+                    go([{"do": "key", "keys": "j"},
+                        {"do": "wait_stable", "ms": 7000}])
+                    snap(f"panel_t{turn:03d}")
+                    clear(f"t{turn:03d}post")
     finally:
         watcher.stop()
         game.kill()
