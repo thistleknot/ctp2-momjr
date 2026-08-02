@@ -9,11 +9,12 @@ built on the Apolyton Edition.
 > pool piled up identical creatures, and at sphere rung 1 Nature's pool is one
 > creature. Now a summoned creature costs mana **every turn it lives**, scaled by
 > the rung it was rolled at; the sphere's own buildings generate mana so you can
-> invest in income; and when upkeep outruns income the newest creature is
-> released, one per turn. The AI checks whether it can *feed* a creature, not
-> just afford it — so its army goes back to being mostly city-built troops, with
-> summons as the parlor trick they were meant to be. Saves load unchanged. See
-> `CHANGELOG.md`.
+> invest in income; and the `j` panel shows the whole ledger — income, upkeep,
+> net. Over-summon and one creature evaporates, chosen by a draw **weighted by
+> its own upkeep**, so the hungriest is the likeliest to go. The AI checks
+> whether it can *feed* a creature, not just afford it — so its army goes back to
+> being mostly city-built troops, with summons as the parlor trick they were
+> meant to be. Saves load unchanged. See `CHANGELOG.md`.
 
 > **What 3.4 does — the sentinel wonders are gone.** Five "wonders" whose names
 > literally began with the civ2 disabled marker — `Xlighthouse`, `Xapollo

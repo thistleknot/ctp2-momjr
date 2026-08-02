@@ -38,11 +38,20 @@ lane, by accumulation.
   Guild, plus a smaller second tier — add to the tally, so a tribe can *invest*
   in income instead of only waiting on population. Deliberately the same
   buildings the sphere already rewards on construction, not a second table.
-- **Hard insolvency.** When upkeep outruns income and the pool cannot pay, the
-  **newest** creature is released — last in, first out — at most **one per
-  turn**, so a deficit bleeds off gradually instead of wiping an army in a tick.
-- **The MAGIC STATUS panel shows the books**: net income and upkeep alongside the
-  pool, so a pool that stops growing is legible rather than mysterious.
+- **Hard insolvency, weighted by upkeep.** When upkeep outruns income and the
+  pool cannot pay, one creature is released — chosen by a random draw
+  **weighted by its own upkeep**, so the hungrier the creature the likelier it
+  is to evaporate. A rung-5 Great Wyrm is five times as likely to go as a rung-1
+  Warbears; among nine cheap creatures and one dear one, the dear one carries
+  **35.7%** of the risk. At most **one per turn**, so a deficit bleeds off
+  gradually instead of wiping an army in a tick. Weighted rather than
+  last-in-first-out because the creature most likely to go is then also the one
+  that frees the most mana — the pool recovers fastest — and because a
+  positional rule lets you shield an expensive creature by summoning a cheap one
+  after it. **None of this happens unless you over-summon.**
+- **The MAGIC STATUS panel shows the whole ledger** — income, upkeep and net on
+  separate lines — so a pool that stops growing is legible rather than
+  mysterious, and the arithmetic is checkable at a glance.
 - **The AI now checks sustainability, not affordability.** It summons only while
   projected net income stays non-negative; when it cannot feed another creature
   it banks, and its production goes where it should — city units, the mainstay.
@@ -64,10 +73,18 @@ lane, by accumulation.
 
 - `tools/gate_mana_upkeep.py` (gate 27): ledger sizing, spawn-call arity,
   clear-on-invalid in the scan, bounded disband, call depth <= 1, no user call
-  nested in another's argument list, and quoted-ident builtins. Proven to reject
-  the pre-fix tree at **12 violations** before being trusted.
+  nested in another's argument list, quoted-ident builtins, and an
+  upkeep-weighted disband draw. Proven to reject the pre-fix tree at **12
+  violations** before being trusted; each later assertion proven to fire against
+  the specific defect it describes.
 - `tools/uiwalk/probe_mana_upkeep.py`: headless in-game probe of the panel
   arithmetic.
+- `tools/test_disband_weighting.py`: the roulette draw ported verbatim from SLIC
+  and measured over four varied ledgers, including the sparse and all-equal
+  cases. Insolvency is genuinely hard to reach in play — a summon needs 75
+  banked mana and each creature lowers net income, so a rung-1 tribe walks net
+  down to exactly zero and can never bank 75 again — so the selection maths is
+  tested directly rather than waited for.
 
 ---
 

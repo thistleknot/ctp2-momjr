@@ -21,14 +21,20 @@ MOM_MSG_BLESS_CHAOS		"Chaos magic floods your coffers with an unpredictable wind
 MOM_MSG_MAGIC_POWER		"Magic Power: {MomMagicCurDisp} / {MomMagicMaxDisp}  (+{MomMagicGenDisp} per turn)"
 
 # Interactive magic menu (hotkey 'j' -> keypress.cpp hook -> SLIC segment 'MagicMenu')
-MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nNet income: {MomNetDisp} per turn\nUpkeep: {MomUpkeepDisp} per turn for summoned creatures\nSphere rung: {MomRungDisp} of 5 - a summon rolls over every rung you have reached"
+MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome {MomMagicGenDisp} - upkeep {MomUpkeepDisp} = {MomNetDisp} per turn\nUpkeep is charged per summoned creature, by its rung\nSphere rung: {MomRungDisp} of 5 - a summon rolls over every rung you have reached"
+# KEPT COMPACT ON PURPOSE, measured 2026-08-01: the alertbox does NOT grow to fit its
+# text. An earlier six-line version rendered Income/Upkeep/Net on separate lines and
+# pushed the 'Sphere rung' line clean off the bottom of the box, silently losing it --
+# the frame looked fine, it was just missing information. One arithmetic line shows the
+# same tally-minus-upkeep and leaves room for the rung. Add a line here only after
+# checking a captured frame.
 # Upkeep line added 2026-08-01. Summoned creatures cost mana every turn they live,
 # scaled by the rung they came from, so net income can go NEGATIVE and a tribe that
 # over-summons loses its newest creature. Showing upkeep and net is what makes that
 # legible instead of feeling like the pool mysteriously stopped growing -- and it is
 # also the only instrument the headless harness has, since it reads pixels and
 # cannot see the pool any other way.
-MOM_MSG_UPKEEP_DISBAND		"Your power will not stretch so far. The newest creature you summoned fades back into the aether.\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nUpkeep: -{MomUpkeepDisp} per turn"
+MOM_MSG_UPKEEP_DISBAND		"Your power will not stretch so far. One of your summoned creatures fades back into the aether - the hungrier the creature, the likelier it was to go.\n\nIncome: {MomMagicGenDisp} per turn\nUpkeep: {MomUpkeepDisp} per turn\nNet: {MomNetDisp} per turn"
 
 # Phase D -- spellbook (mom_spells.slc). Added 2026-07-25: all nine were referenced
 # by messagebox Text()/Button() blocks but never defined. NOTE the two syntax rules

@@ -407,6 +407,40 @@ def _a7_builtin_arg_types(srcs: dict[str, str]) -> list[str]:
     return fails
 
 
+def _a8_disband_is_weighted(srcs: dict[str, str]) -> list[str]:
+    """Insolvency must pick its victim by UPKEEP-WEIGHTED draw, not by position.
+
+    Operator, 2026-08-01: "units that cost more are more likely to evaporate."
+    The first cut released the NEWEST creature (last-in-first-out), which is
+    positional: it frees whatever happens to sit highest in the ledger, so a
+    tribe could shield an expensive creature by summoning a cheap one after it,
+    and the pool recovers slowest exactly when it is most in deficit.
+
+    Asserted rather than reviewed because a regression to positional selection
+    is invisible in play -- both versions disband exactly one creature per turn
+    and print the same message. Only the DISTRIBUTION differs.
+    """
+    fails: list[str] = []
+    magic = srcs.get("mom_magic.slc", "")
+    if "KillUnit" not in magic:
+        return fails
+    for label, body in _entry_bodies(magic).items():
+        if "KillUnit" not in body:
+            continue
+        if not re.search(r"\bRandom\s*\(", body):
+            fails.append(
+                f"mom_magic.slc {label}: the disband path never calls Random() "
+                "-- selection is positional, so an expensive creature can be "
+                "shielded by summoning a cheap one after it")
+        if not re.search(r"MomSummonRung\s*\[[^\]]+\]\s*;?\s*$", body, re.M) \
+                and "insTotal" not in body and "Total" not in body:
+            fails.append(
+                f"mom_magic.slc {label}: the disband draw does not accumulate a "
+                "weight total over MomSummonRung[] -- an unweighted draw makes "
+                "a rung-1 Warbears as likely to go as a rung-5 Great Wyrm")
+    return fails
+
+
 def _a6_ai_sustainability(srcs: dict[str, str]) -> list[str]:
     fails: list[str] = []
     ai = srcs.get("mom_ai_magic.slc", "")
@@ -434,6 +468,7 @@ def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     fails += _a5b_no_nested_arg_calls(srcs)
     fails += _a6_ai_sustainability(srcs)
     fails += _a7_builtin_arg_types(srcs)
+    fails += _a8_disband_is_weighted(srcs)
     return fails
 
 

@@ -100,7 +100,11 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
             if (IsHumanPlayer(p)) {
                 MomMagicCurDisp = MomMagicCur[p];
                 MomMagicMaxDisp = MomMagicMax[p];
-                MomMagicGenDisp = MomMagicPerTurn[p];
+                // MomMagicGenDisp is NOT refreshed here: MomMagicPerTurn[] holds NET
+                // income since upkeep landed, so copying it into the gross
+                // 'Income' scalar would print net twice and make the panel's
+                // Income/Upkeep/Net lines fail to add up. MomRecalcMagicPerTurn
+                // is the sole writer of all three.
             }
             // OCCLUSION-SAFE PLACEMENT. These used to CreateUnit on
             // tmpCity.location, so every summon landed on the capital tile --

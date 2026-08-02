@@ -118,10 +118,18 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
         }
     }
 
-    // Guarded: this function runs for AI tribes too, and an unguarded write
-    // would leak an AI's books into the human's MAGIC STATUS panel -- the same
-    // reason the other Disp scalars sit behind IsHumanPlayer in the tick below.
+    // THE WHOLE LEDGER IS PUBLISHED HERE, all three lines together, because
+    // this is the only scope that still holds gross `gen` and `upkeep` as
+    // separate values -- everything downstream sees only the net return.
+    //
+    // MomMagicGenDisp is set HERE and nowhere else now. It used to be assigned
+    // from MomMagicPerTurn[] in the tick below, which was correct while that
+    // array held gross generation; upkeep made it NET, so that assignment would
+    // have printed net income under an "Income" label -- the books would not
+    // have added up on screen and the upkeep line would have looked like it was
+    // being charged twice.
     if (IsHumanPlayer(mp_1)) {
+        MomMagicGenDisp = gen;
         MomUpkeepDisp = upkeep;
         MomNetDisp = gen - upkeep;
     }
@@ -143,6 +151,9 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
     int_t insSlot;
     int_t insIdx;
     int_t insI;
+    int_t insTotal;
+    int_t insRoll;
+    int_t insAcc;
 
     p = player[0];
 
@@ -175,11 +186,47 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
         // KillUnit never moves inside a loop.
         if (MomMagicCur[p] < 0) {
             insBase = (p - 1) * 32;
+
+            // WEIGHTED BY UPKEEP, not last-in-first-out (operator, 2026-08-01:
+            // "units that cost more are more likely to evaporate"). Roulette
+            // selection with weight = rung, which IS the upkeep rate up to the
+            // constant factor, so a rung-5 Great Wyrm is five times as likely to
+            // be released as a rung-1 Warbears.
+            //
+            // Two reasons this beats the LIFO it replaces: the creature most
+            // likely to go is also the one that frees the most mana, so the pool
+            // recovers fastest; and it is stochastic, so a player cannot bank a
+            // cheap creature last to shield an expensive one.
+            //
+            // PROPORTIONAL, not a strict "above average" filter. Above-average
+            // degenerates: when every creature shares a rung none is above the
+            // mean and nothing would ever be released, leaving the pool stuck
+            // negative forever. Proportional weighting collapses to a uniform
+            // draw in that case, which is the right behaviour.
+            //
+            // Free slots hold rung 0 and so contribute zero weight -- the sum
+            // needs no occupancy test.
+            insTotal = 0;
+            for (insI = 0; insI < 32; insI = insI + 1) {
+                insTotal = insTotal + MomSummonRung[insBase + insI];
+            }
             insSlot = -1;
-            for (insI = 31; insI >= 0; insI = insI - 1) {
-                if (insSlot < 0) {
-                    if (MomSummonRung[insBase + insI] > 0) {
-                        insSlot = insI;
+            if (insTotal > 0) {
+                insRoll = Random(insTotal);
+                insAcc = 0;
+                for (insI = 0; insI < 32; insI = insI + 1) {
+                    if (insSlot < 0) {
+                        if (MomSummonRung[insBase + insI] > 0) {
+                            insAcc = insAcc + MomSummonRung[insBase + insI];
+                            // Strict > against a 0-based roll lands the pick
+                            // inside this slot's band; the final slot always
+                            // satisfies it, so the walk cannot fall off the end
+                            // and return "nothing to disband" while creatures
+                            // are still standing.
+                            if (insAcc > insRoll) {
+                                insSlot = insI;
+                            }
+                        }
                     }
                 }
             }
@@ -219,7 +266,11 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
         if (IsHumanPlayer(p)) {
             MomMagicCurDisp = MomMagicCur[p];
             MomMagicMaxDisp = MomMagicMax[p];
-            MomMagicGenDisp = MomMagicPerTurn[p];
+            // MomMagicGenDisp is NOT refreshed here: MomMagicPerTurn[] holds NET
+            // income since upkeep landed, so copying it into the gross
+            // 'Income' scalar would print net twice and make the panel's
+            // Income/Upkeep/Net lines fail to add up. MomRecalcMagicPerTurn
+            // is the sole writer of all three.
             // The rung decides WHICH creatures the 75-mana summon can roll
             // (mom_summon.slc). Floored at 1 for the same reason MomSummonRoll
             // floors it: a tribe that starts holding its sphere root never fires
@@ -288,7 +339,11 @@ HandleEvent(GrantAdvance) 'MomMagicSchoolGrant' post {
         MomMagicPerTurn[p] = MomRecalcMagicPerTurn(p);
         MomMagicCurDisp = MomMagicCur[p];
         MomMagicMaxDisp = MomMagicMax[p];
-        MomMagicGenDisp = MomMagicPerTurn[p];
+        // MomMagicGenDisp is NOT refreshed here: MomMagicPerTurn[] holds NET
+        // income since upkeep landed, so copying it into the gross
+        // 'Income' scalar would print net twice and make the panel's
+        // Income/Upkeep/Net lines fail to add up. MomRecalcMagicPerTurn
+        // is the sole writer of all three.
         Message(g.player, 'MomMagicPower');
     }
 

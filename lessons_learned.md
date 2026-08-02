@@ -1,3 +1,56 @@
+## 2026-08-01 — Upkeep-weighted disband, and a panel line that fell off the box
+
+**CLOSED — insolvency releases creatures by upkeep-weighted draw, not LIFO.**
+Operator: *"should just be a random sampled weighted by over average upkeep? this
+way units that cost more are more likely to evaporate."* Right, and better than
+the last-in-first-out it replaced on two counts: the creature likeliest to go is
+also the one that frees the most mana, so the pool recovers fastest; and a
+positional rule lets a player shield an expensive creature by summoning a cheap
+one after it.
+
+Implemented as a roulette walk with weight = rung (which IS the upkeep rate up to
+a constant), inline in `MomMagicPoolTick`, `KillUnit` still outside every loop so
+the one-disband-per-turn bound holds. Measured over four varied ledgers
+(`tools/test_disband_weighting.py`, 200k trials each): proportional to within
+0.5% everywhere, free slots never selected. The telling case is nine rung-1
+creatures plus one rung-5 — the single expensive creature carries **35.7%** of
+the risk.
+
+**PROPORTIONAL, not a strict "above average" filter.** Above-average degenerates:
+when every creature shares a rung, none is above the mean, nothing is ever
+released, and the pool stays negative forever. Proportional collapses to a
+uniform draw in that case, which is the correct behaviour.
+
+**Worth knowing: over-summoning is largely self-preventing.** A summon needs 75
+banked mana and each creature permanently lowers net income, so a rung-1 tribe
+walks net down 2 at a time and lands exactly ON zero — after which it can never
+bank 75 again. Net only goes negative when one creature's keep exceeds the
+remaining headroom (a high rung taken on thin margins) or when income falls
+afterwards (a city or mana node lost). Disband is a backstop for income LOSS, not
+a routine tax — which is also why a short rung-1 game structurally cannot
+exercise it, and why the selection maths is unit-tested rather than waited for.
+
+**CLOSED — the alertbox is FIXED HEIGHT and silently drops the tail.** Growing
+MAGIC STATUS to six lines pushed `Sphere rung: N of 5` clean off the bottom. No
+error, no clipping artifact, no log line — the panel simply rendered without it
+and looked entirely correct. This is nastier than the interpolation failure it
+sits next to: a bad `{Arr[Idx]}` drops the WHOLE message so you notice at once,
+whereas overflow drops only what you did not re-read.
+
+**The rule:** *after changing any panel string, COUNT the rendered lines in a
+captured frame and confirm the last line you wrote is present.* Budget ~5 visual
+lines of body; a long line wraps and costs two. The fix that keeps content is to
+collapse a breakdown into one arithmetic line — `Income 27 - upkeep 4 = 23 per
+turn` carries the same tally in a third of the space.
+
+**Also fixed: a scalar that quietly changed meaning.** `MomMagicPerTurn[]` became
+NET when upkeep landed, but three sites still copied it into `MomMagicGenDisp`,
+the *gross* Income scalar. The panel would have printed net under an "Income"
+label and its three lines would not have reconciled. `MomRecalcMagicPerTurn` is
+now the sole writer of all three display scalars — the only scope that still
+holds gross and upkeep separately. **When a variable's MEANING changes, grep
+every reader, not every writer.**
+
 ## 2026-08-01 — A green static suite shipped a dead feature, twice over
 
 **CLOSED — SLIC builtins disagree about ident quoting, and the wrong form is a
