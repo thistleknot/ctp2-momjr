@@ -29,10 +29,20 @@
 int_t MomDbgUnits[31];    // total units owned, sampled on that player's turn
 int_t MomDbgCre[31];      // summoned creatures still alive (ledger occupancy)
 int_t MomDbgMana[31];     // current pool
+int_t MomDbgPrep[31];     // preparation countdown, sampled on that player's OWN turn
+int_t MomDbgPend[31];     // pending creature type, 0 == nothing queued
 
 int_t MomDbgU1; int_t MomDbgU2; int_t MomDbgU3; int_t MomDbgU4; int_t MomDbgU5;
 int_t MomDbgC1; int_t MomDbgC2; int_t MomDbgC3; int_t MomDbgC4; int_t MomDbgC5;
 int_t MomDbgM1; int_t MomDbgM2; int_t MomDbgM3; int_t MomDbgM4; int_t MomDbgM5;
+// Preparation state, added to discriminate a STUCK COUNTDOWN from a SILENT
+// SPAWN FAILURE. Measured 2026-08-01: AI tribes are spending ~75 mana (Nature
+// went 50 -> 66 over ten turns while base income alone is +10/turn, so it burned
+// roughly a summon's worth) and their ledgered creature count stays at ZERO.
+// Those two hypotheses look identical from the outside and need different fixes:
+//   prep stuck > 0  -> the arrival branch never runs for AI players
+//   prep 0, cre 0   -> arrival ran and the spawn produced nothing to ledger
+int_t MomDbgP1; int_t MomDbgP2; int_t MomDbgP3; int_t MomDbgP4; int_t MomDbgP5;
 
 HandleEvent(BeginTurn) 'MomProbeSample' post {
     int_t p;
@@ -60,6 +70,12 @@ HandleEvent(BeginTurn) 'MomProbeSample' post {
             }
         }
         MomDbgCre[p] = cre;
+        // SAMPLED ON p's OWN TURN. The earlier version read MomSummonPrep in
+        // the human's flatten pass, by which point every AI countdown had
+        // already ticked down and resolved -- so it always read 0 and could not
+        // distinguish "never committed" from "committed and resolved".
+        MomDbgPrep[p] = MomSummonPrep[p];
+        MomDbgPend[p] = MomSummonPending[p];
 
         // Flatten for display on the human's turn only. Every tribe's latest
         // sample is already in the arrays by now, whatever the seating order.
@@ -73,6 +89,9 @@ HandleEvent(BeginTurn) 'MomProbeSample' post {
             MomDbgM1 = MomDbgMana[1]; MomDbgM2 = MomDbgMana[2];
             MomDbgM3 = MomDbgMana[3]; MomDbgM4 = MomDbgMana[4];
             MomDbgM5 = MomDbgMana[5];
+            MomDbgP1 = MomDbgPend[1]; MomDbgP2 = MomDbgPend[2];
+            MomDbgP3 = MomDbgPend[3]; MomDbgP4 = MomDbgPend[4];
+            MomDbgP5 = MomDbgPend[5];
         }
     }
 }

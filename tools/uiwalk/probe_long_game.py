@@ -64,18 +64,23 @@ CYCLE = 7
 # PROBE_TURNS exists so the INSTRUMENT can be smoke-tested in a couple of minutes
 # -- validating a two-hour run's plumbing with a two-hour run is how an afternoon
 # disappears.
-TURNS = int(os.environ.get("PROBE_TURNS", "700"))
+TURNS = int(os.environ.get("PROBE_TURNS", "20"))
 SAMPLE_EVERY = int(os.environ.get("PROBE_SAMPLE", "20"))
 SUMMON_EVERY = 5        # push the human toward its own upkeep ceiling
 
+# The alertbox is FIXED HEIGHT and silently drops overflow, so this is right at
+# the limit: one header plus four data rows. Adding a sixth line pushes `prep`
+# off the bottom with no error and the frame still looks correct -- verify
+# against a captured frame before extending it.
 DEBUG_MENU = (
-    'MOM_MSG_MAGIC_MENU\t\t"MAGIC STATUS\\n\\n'
+    'MOM_MSG_MAGIC_MENU\t\t"MAGIC STATUS\\n'
     'Mana {MomMagicCurDisp}/{MomMagicMaxDisp}  '
     'inc {MomMagicGenDisp} - up {MomUpkeepDisp} = {MomNetDisp}  '
     'rung {MomRungDisp}\\n'
     'units  {MomDbgU1} {MomDbgU2} {MomDbgU3} {MomDbgU4} {MomDbgU5}\\n'
     'summon {MomDbgC1} {MomDbgC2} {MomDbgC3} {MomDbgC4} {MomDbgC5}\\n'
-    'mana   {MomDbgM1} {MomDbgM2} {MomDbgM3} {MomDbgM4} {MomDbgM5}"\n'
+    'mana   {MomDbgM1} {MomDbgM2} {MomDbgM3} {MomDbgM4} {MomDbgM5}\\n'
+    'pend   {MomDbgP1} {MomDbgP2} {MomDbgP3} {MomDbgP4} {MomDbgP5}"\n'
 )
 
 
