@@ -9,6 +9,68 @@ noise is not a change.
 
 ---
 
+## [3.5.0] — 2026-08-01 — mana is an economy: creatures cost upkeep, not just a deposit
+
+**Minor.** Additive. Old saves load and keep playing; creatures summoned before
+the upgrade are simply untracked and are never charged, so nothing a save is
+holding becomes invalid.
+
+### The defect
+
+Summoning cost **75 mana once and nothing afterwards**. That gave mana exactly
+one sink, the sink was repeatable, and nothing bounded it — so a tribe with no
+other use for the pool accumulated an unbounded pile of identical creatures. At
+sphere rung 1 a Nature tribe's pool is `[Warbears]`, one creature, which is why
+the report was *"I've still only seen one unit type from tribes of nature."*
+
+The build lane was **not** the cause this time — v3.3.0 holds. Both gating walls
+are exclusion-shaped, so Nature can research every mundane advance and build all
+13 of its own units plus every neutral one. What flooded the map was the summon
+lane, by accumulation.
+
+### Added
+
+- **Mana upkeep.** Summoned creatures cost mana every turn they live, scaled by
+  the sphere rung they were rolled at (`rung x 2`), so a rung-5 Great Wyrm is a
+  real commitment and a rung-1 Warbears is cheap. Income minus upkeep is the net.
+- **Buildings generate mana.** Each sphere's own thematic buildings — Wizard's
+  Fortress, Primal Source, Beacon of Wisdom, Mechanician's Guild, Merchant's
+  Guild, plus a smaller second tier — add to the tally, so a tribe can *invest*
+  in income instead of only waiting on population. Deliberately the same
+  buildings the sphere already rewards on construction, not a second table.
+- **Hard insolvency.** When upkeep outruns income and the pool cannot pay, the
+  **newest** creature is released — last in, first out — at most **one per
+  turn**, so a deficit bleeds off gradually instead of wiping an army in a tick.
+- **The MAGIC STATUS panel shows the books**: net income and upkeep alongside the
+  pool, so a pool that stops growing is legible rather than mysterious.
+- **The AI now checks sustainability, not affordability.** It summons only while
+  projected net income stays non-negative; when it cannot feed another creature
+  it banks, and its production goes where it should — city units, the mainstay.
+
+### Fixed
+
+- **`CityHasBuilding` takes a QUOTED string**, unlike the `UnitDB(UNIT_X)` /
+  `AdvanceDB(ADVANCE_X)` family. The bare form is a runtime *"Wrong type of
+  argument"*, not a compile error, so the first cut of the building tally was
+  byte-stable and passed **every** static gate, `mom_audit.py` (0 FAIL) and
+  `backcast_slic.py --check` while being completely dead. Only the running game
+  caught it.
+- **`gate_ai_magic`'s pool parser** split the whole of `mom_summon.slc` and
+  attributed every trailing `UnitDB(...)` to the last sphere block — so adding
+  the upkeep rate table after the roll made it report Chaos rolling 16 other
+  spheres' creatures. It now scopes to `MomSummonRoll`'s body.
+
+### Tooling
+
+- `tools/gate_mana_upkeep.py` (gate 27): ledger sizing, spawn-call arity,
+  clear-on-invalid in the scan, bounded disband, call depth <= 1, no user call
+  nested in another's argument list, and quoted-ident builtins. Proven to reject
+  the pre-fix tree at **12 violations** before being trusted.
+- `tools/uiwalk/probe_mana_upkeep.py`: headless in-game probe of the panel
+  arithmetic.
+
+---
+
 ## [3.4.0] — 2026-07-29 — the sentinel wonders are gone, and the panel says which rung
 
 **Minor.** Additive plus a content removal that no save can be holding: the five

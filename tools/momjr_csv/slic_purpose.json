@@ -191,6 +191,10 @@
     "purpose": "segment: Death summon result (Zombies)",
     "status": "ACTIVE"
   },
+  "mom_msg.slc:MomUpkeepDisband": {
+    "purpose": "",
+    "status": "ACTIVE"
+  },
   "mom_spells.slc:-": {
     "purpose": "MoM spellcasting layer (Phase D) -- imports the momjr-source spell features",
     "status": "ACTIVE"
@@ -256,6 +260,10 @@
     "status": "ACTIVE"
   },
   "mom_summon.slc:MomSummonRoll": {
+    "purpose": "",
+    "status": "ACTIVE"
+  },
+  "mom_summon.slc:MomSummonRungOf": {
     "purpose": "",
     "status": "ACTIVE"
   },

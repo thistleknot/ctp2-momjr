@@ -76,6 +76,7 @@ HandleEvent(GrantAdvance) 'MomSphereBlessingMessages' post {
 HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     int_t p;
     int_t summonPick;
+    int_t summonRung;
     city_t tmpCity;
 
     p = player[0];
@@ -121,7 +122,19 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
             // whole reason the roll RETURNS an index instead of spawning: a
             // 2-level user-function chain from a HandleEvent is a 0xC0000005
             // (slic-two-crash-classes). Do NOT fold these into one helper.
-            MomSpawnSphereUnit(p, summonPick);
+            // The third argument is the creature's own rung, which is what it
+            // will be charged in mana upkeep every turn it stays alive
+            // (mom_magic.slc). MomSummonRungOf is GENERATED from the same pools
+            // as the roll.
+            //
+            // RESOLVED INTO A LOCAL FIRST, deliberately. Writing this as
+            // MomSpawnSphereUnit(p, summonPick, MomSummonRungOf(summonPick))
+            // puts a user-function call in an argument position of another user
+            // function call, which is the ambiguous form of the 2-level chain
+            // that is a 0xC0000005. Two sequential statements are unambiguously
+            // two depth-1 calls.
+            summonRung = MomSummonRungOf(summonPick);
+            MomSpawnSphereUnit(p, summonPick, summonRung);
             if (p == 1) {
                 Message(p, 'MomSummonGuard');
             } elseif (p == 2) {
@@ -194,6 +207,15 @@ messagebox 'MomBlessChaos' {
 // segment is reachable from another sphere's branch. Message(p, 'Key') needs
 // 'Key' to be a DEFINED SEGMENT (see the block comment above) -- adding the
 // scen_str.txt keys alone would have displayed nothing.
+// Declared HERE rather than in mom_magic.slc, which is what raises it: segments
+// share ONE flat namespace but still need declaring before use, and mom_msg.slc
+// is #included before mom_magic.slc. Message(p, 'Key') needs 'Key' to be a
+// defined segment -- adding the scen_str.txt key alone displays nothing.
+messagebox 'MomUpkeepDisband' {
+	Show();
+	Text(ID_MOM_MSG_UPKEEP_DISBAND);
+}
+
 messagebox 'MomSummonGuard' {
 	Show();
 	Text(ID_MOM_MSG_SUMMON_GUARD);

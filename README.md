@@ -1,7 +1,19 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.4.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.5.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
+
+> **What 3.5 does — mana became an economy instead of a deposit box.** Summoning
+> cost 75 mana *once* and nothing afterwards, so mana had exactly one sink, the
+> sink was repeatable, and nothing bounded it — a tribe with no other use for the
+> pool piled up identical creatures, and at sphere rung 1 Nature's pool is one
+> creature. Now a summoned creature costs mana **every turn it lives**, scaled by
+> the rung it was rolled at; the sphere's own buildings generate mana so you can
+> invest in income; and when upkeep outruns income the newest creature is
+> released, one per turn. The AI checks whether it can *feed* a creature, not
+> just afford it — so its army goes back to being mostly city-built troops, with
+> summons as the parlor trick they were meant to be. Saves load unchanged. See
+> `CHANGELOG.md`.
 
 > **What 3.4 does — the sentinel wonders are gone.** Five "wonders" whose names
 > literally began with the civ2 disabled marker — `Xlighthouse`, `Xapollo

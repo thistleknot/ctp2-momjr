@@ -14,18 +14,47 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
     int_t gen;
     int_t pct;
     int_t nodes;
+    int_t upkeep;
+    int_t base;
+    int_t idx;
     city_t tmpCity;
     location_t cloc;
     location_t nloc;
 
     gen = 10;
     nodes = 0;
+    upkeep = 0;
     // NEVER player[mp_1]: player[N] indexes the event ARG array (size 1), so mp_1>=1
     // throws "Array index 1 out of bounds". The turn player is player[0].
     for (i = 0; i < player[0].cities; i = i + 1) {
         GetCityByIndex(player[0], i, tmpCity);
         if (CityIsValid(tmpCity)) {
             gen = gen + tmpCity.population * 2;
+
+            // BUILDING TALLY (2026-08-01). The sphere's own thematic buildings
+            // generate mana, so a tribe can INVEST in income rather than only
+            // waiting on population. The lists are deliberately the same ones
+            // mom_city_effects.slc already rewards on construction -- one set of
+            // sphere-defining buildings, not a second table to keep in sync.
+            // Builtins only: CityHasBuilding is a builtin (217 uses in corpus),
+            // so this adds no user-function call level.
+            if (mp_1 == 1) {
+                if (CityHasBuilding(tmpCity, "IMPROVE_WIZARDS_FORTRESS")) { gen = gen + 8; }
+                if (CityHasBuilding(tmpCity, "IMPROVE_TEMPLE")) { gen = gen + 3; }
+            } elseif (mp_1 == 2) {
+                if (CityHasBuilding(tmpCity, "IMPROVE_PRIMAL_SOURCE")) { gen = gen + 8; }
+                if (CityHasBuilding(tmpCity, "IMPROVE_FANTASTIC_STABLE")) { gen = gen + 3; }
+            } elseif (mp_1 == 3) {
+                if (CityHasBuilding(tmpCity, "IMPROVE_BEACON_OF_WISDOM")) { gen = gen + 8; }
+                if (CityHasBuilding(tmpCity, "IMPROVE_LIBRARY")) { gen = gen + 3; }
+            } elseif (mp_1 == 4) {
+                if (CityHasBuilding(tmpCity, "IMPROVE_MECHANICIANS_GUILD")) { gen = gen + 8; }
+                if (CityHasBuilding(tmpCity, "IMPROVE_BARRACKS")) { gen = gen + 3; }
+            } elseif (mp_1 == 5) {
+                if (CityHasBuilding(tmpCity, "IMPROVE_MERCHANTS_GUILD")) { gen = gen + 8; }
+                if (CityHasBuilding(tmpCity, "IMPROVE_COLOSSEUM")) { gen = gen + 3; }
+            }
+
             // M4 mana nodes: good-bearing tiles in the city inner radius (center + 8 neighbors).
             cloc = tmpCity.location;
             if (HasGood(cloc) >= 0) {
@@ -61,7 +90,45 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
         pct = 100;
     }
     gen = gen * pct / 100;
-    return gen;
+
+    // ---------------------------------------------------------------------
+    // UPKEEP (2026-08-01) -- the deduction half of "tally - upkeep".
+    //
+    // Charged on SUMMONED creatures only, scaled by the rung they came from, so
+    // a rung-5 Great Wyrm is a real commitment and a rung-1 Warbears is cheap.
+    // The scan is a LIVE read of the ledger rather than a running counter,
+    // which makes it self-correcting: a creature lost in combat leaves a handle
+    // that is no longer .valid, and the slot is reclaimed right here. That is
+    // why no KillUnit handler is needed to keep the books straight.
+    //
+    // Inline and builtins-only ON PURPOSE. This function is already called at
+    // depth 1 from the MomMagicPoolTick handler, and a 2-level user-function
+    // chain from a handler body is the documented 0xC0000005.
+    if (mp_1 >= 1 && mp_1 <= 5) {
+        base = (mp_1 - 1) * 32;
+        for (i = 0; i < 32; i = i + 1) {
+            idx = base + i;
+            if (MomSummonRung[idx] > 0) {
+                if (MomSummonUnit[idx].valid) {
+                    upkeep = upkeep + MomSummonRung[idx] * 2;
+                } else {
+                    MomSummonRung[idx] = 0;   // creature died -- free the slot
+                }
+            }
+        }
+    }
+
+    // Guarded: this function runs for AI tribes too, and an unguarded write
+    // would leak an AI's books into the human's MAGIC STATUS panel -- the same
+    // reason the other Disp scalars sit behind IsHumanPlayer in the tick below.
+    if (IsHumanPlayer(mp_1)) {
+        MomUpkeepDisp = upkeep;
+        MomNetDisp = gen - upkeep;
+    }
+    // Deliberately allowed to go NEGATIVE. A tribe that over-summons must feel
+    // its pool drain; MomMagicPoolTick is what turns a sustained deficit into a
+    // disband, and it needs to see the real shortfall to do that.
+    return gen - upkeep;
 }
 
 // MomSphereSummonUnit() was REMOVED 2026-07-26 along with its only caller, the
@@ -72,6 +139,10 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
 
 HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
     int_t p;
+    int_t insBase;
+    int_t insSlot;
+    int_t insIdx;
+    int_t insI;
 
     p = player[0];
 
@@ -87,6 +158,50 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
         MomMagicCur[p] = MomMagicCur[p] + MomMagicPerTurn[p];
         if (MomMagicCur[p] > MomMagicMax[p]) {
             MomMagicCur[p] = MomMagicMax[p];
+        }
+
+        // -----------------------------------------------------------------
+        // HARD INSOLVENCY (2026-08-01). Upkeep can push the pool below zero.
+        // When it does, the tribe cannot feed what it has summoned and the
+        // NEWEST creature is released -- last in, first out, so a long-held
+        // high-rung creature is not the first thing lost.
+        //
+        // EXACTLY ONE disband per turn, by construction. The loop only FINDS
+        // the victim; the single KillUnit sits outside it. That bound is
+        // deliberate on two counts: a sustained deficit should bleed off
+        // gradually rather than wipe an army in one tick, and an unbounded
+        // kill loop inside a BeginTurn handler sits right next to the known
+        // AI end-turn stack-overflow class. tools/gate_mana_upkeep.py asserts
+        // KillUnit never moves inside a loop.
+        if (MomMagicCur[p] < 0) {
+            insBase = (p - 1) * 32;
+            insSlot = -1;
+            for (insI = 31; insI >= 0; insI = insI - 1) {
+                if (insSlot < 0) {
+                    if (MomSummonRung[insBase + insI] > 0) {
+                        insSlot = insI;
+                    }
+                }
+            }
+            if (insSlot >= 0) {
+                insIdx = insBase + insSlot;
+                if (MomSummonUnit[insIdx].valid) {
+                    KillUnit(MomSummonUnit[insIdx]);
+                }
+                // Refund this turn's charge for the creature just released, so
+                // the pool reflects the lighter army immediately instead of
+                // disbanding a second one next turn for a debt already paid.
+                MomMagicCur[p] = MomMagicCur[p] + MomSummonRung[insIdx] * 2;
+                MomSummonRung[insIdx] = 0;
+                if (IsHumanPlayer(p)) {
+                    Message(p, 'MomUpkeepDisband');
+                }
+            }
+        }
+        // Floor at zero whether or not a creature was available to release: a
+        // tribe with nothing left to disband simply sits at empty.
+        if (MomMagicCur[p] < 0) {
+            MomMagicCur[p] = 0;
         }
 
         // M3 pool-overflow auto-summon: REMOVED 2026-07-26. It zeroed the pool the

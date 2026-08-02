@@ -282,6 +282,29 @@ def check_ai_magic(scen: Path, fails: list[str]) -> None:
     fails.extend(A.check(scen, _momjr_csv()))
 
 
+def check_mana_upkeep(scen: Path, fails: list[str]) -> None:
+    """Gate 27: the mana economy tallies AND deducts, and the books self-clean.
+
+    Delegates to gate_mana_upkeep.check, same skip-not-fail contract as
+    check_ai_magic above.
+
+    Summoning used to cost 75 mana once and nothing afterwards, which gave mana a
+    single repeatable sink and let a tribe accumulate an unbounded pile of
+    identical rung-1 creatures -- the "only ever one unit type" report of
+    2026-08-01. Upkeep fixes that, and brings three silent failure modes with it:
+    a dead creature still being billed (looks like balance, not a bug), a spawn
+    call site left at the old arity (ledgers nothing, so that path stays free),
+    and an unbounded disband loop inside a BeginTurn handler. None of the three
+    dangles, so no reference-integrity gate can see them.
+    """
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        import gate_mana_upkeep as U
+    except Exception:
+        return
+    fails.extend(U.check(scen, _momjr_csv()))
+
+
 def _momjr_csv() -> Path:
     return TOOLS_DIR / "momjr_csv"
 
@@ -1186,6 +1209,7 @@ def main() -> int:
     check_wonder_build_lists(scen, fails)
     check_wonder_articles(scen, fails)
     check_ai_magic(scen, fails)
+    check_mana_upkeep(scen, fails)
 
     if fails:
         for f in fails:

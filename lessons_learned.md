@@ -1,3 +1,45 @@
+## 2026-08-01 — A green static suite shipped a dead feature, twice over
+
+**CLOSED — SLIC builtins disagree about ident quoting, and the wrong form is a
+RUNTIME error.** Building the mana tally I wrote
+`CityHasBuilding(tmpCity, IMPROVE_TEMPLE)`, by analogy with the `UnitDB(UNIT_X)`
+/ `AdvanceDB(ADVANCE_X)` / `BuildingDB(IMPROVE_X)` family this mod uses
+everywhere. The engine answered on turn 3:
+
+```
+Slic Error | In object MomRecalcMagicPerTurn,
+            function _CityHasBuilding: Wrong type of argument
+```
+
+All 217 `CityHasBuilding` call sites under `H:\games\ctp2` pass a **quoted
+string** — `CityHasBuilding(city[0], "IMPROVE_CAPITOL")`. There is no mixed
+usage; I inferred the shape from a neighbouring builtin instead of reading one.
+
+**Why nothing static caught it.** This is not the familiar
+auto-created-unknown-symbol failure. A bare `IMPROVE_TEMPLE` in an argument
+position resolves fine — it is the wrong *kind* of thing, raised at call time.
+So the broken tree was **byte-stable**, passed **every** `validate_scenario.py`
+gate, passed `mom_audit.py` with 0 FAIL, and passed `backcast_slic.py --check`.
+Green suite, dead feature.
+
+**The law:** *when calling a builtin this mod has not used before, read a real
+call site out of the corpus — never infer the argument shape from a neighbouring
+builtin.* Conventions are per-builtin, not per-family. Closed by
+`tools/gate_mana_upkeep.py` assertion 7, proven to fire against the bare form
+before being trusted.
+
+**The second dead-feature lane, same day: a gate that measured the wrong text.**
+`gate_ai_magic._pools()` split the WHOLE of `mom_summon.slc` on `if (p == N) {`
+and attributed every later `UnitDB(...)` to the last sphere seen. That silently
+assumed nothing follows `MomSummonRoll`. The moment `MomSummonRungOf` — the
+upkeep rate table, every creature in one flat list — was emitted after it, the
+gate reported **CHAOS rolling 16 other spheres' creatures**. The pools live in
+the roll, so the parser now scopes to the roll's body first. Verified it was a
+fix and not a neutering by re-parsing: 5 spheres x 4 creatures, each sphere-pure.
+
+**A parser that reads "everything after the last marker" is asserting that
+nothing will ever be appended.** Scope to the construct you mean.
+
 ## 2026-07-29 — The engine reads the REAL mouse, and a dead column excluded nothing
 
 **CLOSED — the map edge-scrolled through every run the harness has ever made.**

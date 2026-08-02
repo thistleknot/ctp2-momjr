@@ -31,22 +31,22 @@ HandleEvent(GrantAdvance) 'MomSphereAdvanceBlessings' post {
     if (value[0] != 0) {
         if (MomPlayerIsLife(p) && value[0] == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
             MomGrantLifeBuilding(p);
-            MomSpawnSphereUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT));
+            MomSpawnSphereUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT), 0);
         } elseif (MomPlayerIsNature(p) && value[0] == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
             MomGrantNatureBuilding(p);
-            MomSpawnSphereUnit(p, UnitDB(UNIT_WARBEARS));
+            MomSpawnSphereUnit(p, UnitDB(UNIT_WARBEARS), 0);
         } elseif (MomPlayerIsSorcery(p) && value[0] == AdvanceDB(ADVANCE_SORCERY)) {
             MomGrantSorceryBuilding(p);
-            MomSpawnSphereUnit(p, UnitDB(UNIT_MAGE));
+            MomSpawnSphereUnit(p, UnitDB(UNIT_MAGE), 0);
         } elseif (MomPlayerIsDeath(p) && value[0] == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
             MomGrantDeathBuilding(p);
-            MomSpawnSphereUnit(p, UnitDB(UNIT_ZOMBIES));
+            MomSpawnSphereUnit(p, UnitDB(UNIT_ZOMBIES), 0);
         } elseif (MomPlayerIsChaos(p) && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
             // Chaos KEEPS its random windfall -- that is its B1 identity -- but
             // it now also gets the building+unit milestone every other sphere
             // had, so the 5-column matrix is square.
             MomGrantChaosBuilding(p);
-            MomSpawnSphereUnit(p, UnitDB(UNIT_HELL_HOUNDS));
+            MomSpawnSphereUnit(p, UnitDB(UNIT_HELL_HOUNDS), 0);
             AddGold(p, 50 + Random(100));
         }
     }

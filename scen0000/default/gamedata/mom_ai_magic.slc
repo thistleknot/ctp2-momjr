@@ -44,6 +44,7 @@
 HandleEvent(BeginTurn) 'MomAiMagicTick' post {
     int_t p;
     int_t pick;
+    int_t pickRung;
     int_t roll;
     int_t atWar;
     int_t i;
@@ -81,6 +82,23 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
             // identically.
             GetCityByIndex(player[0], 0, tmpCity);
             pick = MomSummonRoll(p);
+            // See the note above the spawn: resolved into a local, never nested
+            // into an argument position.
+            pickRung = MomSummonRungOf(pick);
+
+            // SUSTAINABILITY, not just affordability (2026-08-01). Creatures now
+            // cost mana every turn they live (mom_magic.slc), so "I have 75
+            // banked" is no longer a reason to summon -- an AI that spends on
+            // that test alone marches into insolvency and the pool tick disbands
+            // the creature it just bought, burning 75 mana per turn forever.
+            //
+            // MomMagicPerTurn[p] is last turn's NET (generation minus upkeep),
+            // so requiring it to stay >= 0 after taking on this creature's keep
+            // is the whole check. When it fails the AI simply banks, and its
+            // production goes where it should -- city units, the mainstay.
+            if (MomMagicPerTurn[p] - pickRung * 2 < 0) {
+                pick = 0;
+            }
             if (CityIsValid(tmpCity) && pick != 0) {
                 MomMagicCur[p] = MomMagicCur[p] - 75;
                 // Reuses the human path's placement so an AI summon gets the
@@ -88,7 +106,7 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
                 // would stack it under the garrison: CTP2 draws exactly one unit
                 // per tile and orders own units by MaxMovePoints, so a fast
                 // creature permanently hides whatever was standing there.
-                MomSpawnSphereUnit(p, pick);
+                MomSpawnSphereUnit(p, pick, pickRung);
             }
         } elseif (MomMagicCur[p] >= 50 && atWar == 1 && roll < 40) {
             // A cheap working while it cannot yet afford a creature. Modelled as

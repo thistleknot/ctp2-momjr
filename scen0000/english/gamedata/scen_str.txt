@@ -21,7 +21,14 @@ MOM_MSG_BLESS_CHAOS		"Chaos magic floods your coffers with an unpredictable wind
 MOM_MSG_MAGIC_POWER		"Magic Power: {MomMagicCurDisp} / {MomMagicMaxDisp}  (+{MomMagicGenDisp} per turn)"
 
 # Interactive magic menu (hotkey 'j' -> keypress.cpp hook -> SLIC segment 'MagicMenu')
-MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome: +{MomMagicGenDisp} per turn\nSphere rung: {MomRungDisp} of 5 - a summon rolls over every rung you have reached"
+MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nNet income: {MomNetDisp} per turn\nUpkeep: {MomUpkeepDisp} per turn for summoned creatures\nSphere rung: {MomRungDisp} of 5 - a summon rolls over every rung you have reached"
+# Upkeep line added 2026-08-01. Summoned creatures cost mana every turn they live,
+# scaled by the rung they came from, so net income can go NEGATIVE and a tribe that
+# over-summons loses its newest creature. Showing upkeep and net is what makes that
+# legible instead of feeling like the pool mysteriously stopped growing -- and it is
+# also the only instrument the headless harness has, since it reads pixels and
+# cannot see the pool any other way.
+MOM_MSG_UPKEEP_DISBAND		"Your power will not stretch so far. The newest creature you summoned fades back into the aether.\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nUpkeep: -{MomUpkeepDisp} per turn"
 
 # Phase D -- spellbook (mom_spells.slc). Added 2026-07-25: all nine were referenced
 # by messagebox Text()/Button() blocks but never defined. NOTE the two syntax rules

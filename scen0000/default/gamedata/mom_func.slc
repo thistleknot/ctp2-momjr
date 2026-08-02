@@ -248,13 +248,47 @@ int_f MomCountChaosFoci(int_t p_16)
     return focusCount;
 }
 
-void_f MomSpawnSphereUnit(int_t p_13, int_t unitType)
+// ---------------------------------------------------------------------------
+// SUMMONED-CREATURE LEDGER (2026-08-01)
+//
+// Upkeep is charged on SUMMONED creatures only -- a Centaur built in a city is
+// free, an identical Centaur that was summoned is not. SLIC has no per-unit
+// storage to hang an "I was summoned" flag on, so origin is recorded here
+// instead: MomSpawnSphereUnit stores the handle CreateUnit hands back, together
+// with the sphere rung that decides the rate.
+//
+// Layout is flat because SLIC has no 2-D arrays: index = (p-1)*32 + slot, for p
+// in 1..5. MomSummonRung[i] == 0 IS the free-slot sentinel, so the array is
+// self-describing and needs no separate occupancy counter.
+//
+// The ledger is SELF-CLEANING and deliberately needs no KillUnit handler: a
+// creature that dies leaves a handle that stops being .valid, and the per-turn
+// scan in mom_magic.slc frees the slot when it sees that. Billing a corpse
+// forever would look like balance rather than a bug, which is why
+// tools/gate_mana_upkeep.py asserts the clear-on-invalid branch specifically.
+//
+// DECLARED HERE, immediately above the only writer, for the same reason the
+// magic-power block sits above its readers: SLIC needs declaration-before-use
+// WITHIN a file, not just across the include order.
+unit_t MomSummonUnit[160];   // 5 players x 32 slots -- the creature handle
+int_t  MomSummonRung[160];   // its rung 1..5; 0 == FREE SLOT
+int_t  MomUpkeepDisp;        // display scalars for the 'j' MAGIC STATUS panel
+int_t  MomNetDisp;           // net = generation - upkeep, may be negative
+
+// rung == 0 means DO NOT LEDGER: the one-time *_MAGIC milestone creature in
+// mom_city_effects.slc is a gift and correctly carries no upkeep. Every
+// repeatable spend path passes the real rung.
+void_f MomSpawnSphereUnit(int_t p_13, int_t unitType, int_t rung)
 {
     city_t tmpCity;
     location_t spawnLoc;
     location_t tryLoc;
     int_t d;
     int_t placed;
+    int_t s;
+    int_t base;
+    int_t slot;
+    unit_t newUnit;
 
     // NEVER player[1]: player[] is the event ARG array (size 1), so player[1] is
     // out of bounds -- the same rule mom_turns.slc documents. It did not raise a
@@ -291,7 +325,32 @@ void_f MomSpawnSphereUnit(int_t p_13, int_t unitType)
                     }
                 }
             }
-            CreateUnit(p_13, unitType, spawnLoc, 1);
+            // 5-arg CreateUnit hands the new unit back in its out-arg (62 uses
+            // across the mod corpus). That handle is the ONLY way to tell a
+            // summoned creature from an identical one built in a city, which is
+            // what "only summoned creatures pay upkeep" requires.
+            CreateUnit(p_13, unitType, spawnLoc, 1, newUnit);
+
+            if (rung > 0) {
+                if (p_13 >= 1 && p_13 <= 5) {
+                    base = (p_13 - 1) * 32;
+                    slot = -1;
+                    for (s = 0; s < 32; s = s + 1) {
+                        if (slot < 0) {
+                            if (MomSummonRung[base + s] == 0) {
+                                slot = s;
+                            }
+                        }
+                    }
+                    // No free slot: spawn anyway, ledger nothing. A hard cap on
+                    // TRACKED creatures is better than overwriting a live entry,
+                    // which would orphan that creature into permanent free upkeep.
+                    if (slot >= 0) {
+                        MomSummonUnit[base + slot] = newUnit;
+                        MomSummonRung[base + slot] = rung;
+                    }
+                }
+            }
         }
     }
 }

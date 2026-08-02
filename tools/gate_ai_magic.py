@@ -106,6 +106,24 @@ def _pools(summon_src: str) -> dict[int, list[str]]:
     generator by construction and prove nothing.
     """
     pools: dict[int, list[str]] = {}
+    # SCOPE TO MomSummonRoll'S BODY FIRST. This used to split the whole file,
+    # which silently assumed nothing followed the roll -- so when
+    # MomSummonRungOf (the upkeep rate table, every creature in one flat list)
+    # was emitted after it, all 16 of its idents were attributed to the LAST
+    # sphere block and the gate reported CHAOS rolling every other sphere's
+    # creatures. The pools live in the roll; read them from the roll.
+    m = re.search(r"int_f\s+MomSummonRoll\s*\([^)]*\)\s*\{", summon_src)
+    if m:
+        start = m.end()
+        depth = 1
+        i = start
+        while i < len(summon_src) and depth:
+            if summon_src[i] == "{":
+                depth += 1
+            elif summon_src[i] == "}":
+                depth -= 1
+            i += 1
+        summon_src = summon_src[start:i - 1]
     # `if (p == N) {` opens a sphere; collect UnitDB(...) until the next one.
     parts = re.split(r"\bif\s*\(\s*p\s*==\s*(\d+)\s*\)\s*\{", summon_src)
     for i in range(1, len(parts) - 1, 2):

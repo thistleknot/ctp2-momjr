@@ -2724,6 +2724,44 @@ def _emit_mom_summon_slc() -> int:
         "}",
         "",
     ]
+
+    # ------------------------------------------------------------------
+    # Creature -> rung, the rate table for mana upkeep.
+    #
+    # Upkeep is scaled by the rung the CREATURE belongs to, not by the caster's
+    # current rung, so a master summoner who happens to roll a Guardian Spirit
+    # pays the Guardian Spirit's keep. Emitted from the same `pools` structure
+    # the roll is built from, so the two cannot disagree about which rung owns a
+    # creature -- recomputing it in SLIC or hand-typing it would reintroduce
+    # exactly the drift this generator exists to prevent.
+    #
+    # FLAT and returns an int, for the same reason MomSummonRoll does: the
+    # handler calls both at depth 1 and neither may call a user function.
+    # Returns 0 for anything not summonable, which the ledger reads as
+    # "do not charge" -- the correct answer for a milestone gift or a built unit.
+    unit_rung: dict[str, int] = {}
+    for pool in pools.values():
+        for rung, units in enumerate(pool):
+            for unit in units:
+                # Lowest rung wins: a creature reachable at rung 2 is charged at
+                # rung 2 even if it also appears in the rung-5 pool.
+                if rung and (unit not in unit_rung or rung < unit_rung[unit]):
+                    unit_rung[unit] = rung
+    lines += [
+        "// Rung that owns each summonable creature -- the mana-upkeep rate table.",
+        "// GENERATED alongside the roll above from the same pools, so the rate a",
+        "// creature is charged can never drift from the rung it was rolled at.",
+        "int_f MomSummonRungOf(int_t unitType)",
+        "{",
+    ]
+    for unit in sorted(unit_rung):
+        lines.append(
+            f"    if (unitType == UnitDB({unit})) {{ return {unit_rung[unit]}; }}")
+    lines += [
+        "    return 0;",
+        "}",
+        "",
+    ]
     _write_rel(_SUMMON_SLC_REL, "\n".join(lines))
     return sum(len(u) for pool in pools.values() for u in pool)
 

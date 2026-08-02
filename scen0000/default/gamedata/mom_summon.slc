@@ -223,3 +223,31 @@ int_f MomSummonRoll(int_t p)
 
     return 0;
 }
+
+// Rung that owns each summonable creature -- the mana-upkeep rate table.
+// GENERATED alongside the roll above from the same pools, so the rate a
+// creature is charged can never drift from the rung it was rolled at.
+int_f MomSummonRungOf(int_t unitType)
+{
+    if (unitType == UnitDB(UNIT_AIR_ELEMENTAL)) { return 2; }
+    if (unitType == UnitDB(UNIT_ARCHANGEL)) { return 5; }
+    if (unitType == UnitDB(UNIT_BEHEMOTH)) { return 3; }
+    if (unitType == UnitDB(UNIT_COCKATRICE)) { return 2; }
+    if (unitType == UnitDB(UNIT_DEMON)) { return 3; }
+    if (unitType == UnitDB(UNIT_EFREET)) { return 3; }
+    if (unitType == UnitDB(UNIT_GARGOYLE)) { return 2; }
+    if (unitType == UnitDB(UNIT_GREAT_WYRM)) { return 5; }
+    if (unitType == UnitDB(UNIT_GUARDIAN_SPIRIT)) { return 1; }
+    if (unitType == UnitDB(UNIT_HELL_HOUNDS)) { return 1; }
+    if (unitType == UnitDB(UNIT_HYDRA)) { return 5; }
+    if (unitType == UnitDB(UNIT_PEGASUS)) { return 3; }
+    if (unitType == UnitDB(UNIT_PHANTOM_WARRIORS)) { return 1; }
+    if (unitType == UnitDB(UNIT_STORM_DRAKE)) { return 5; }
+    if (unitType == UnitDB(UNIT_STORM_GIANT)) { return 3; }
+    if (unitType == UnitDB(UNIT_UNDEAD_DRAGON)) { return 5; }
+    if (unitType == UnitDB(UNIT_UNICORN)) { return 2; }
+    if (unitType == UnitDB(UNIT_WARBEARS)) { return 1; }
+    if (unitType == UnitDB(UNIT_WRAITH)) { return 2; }
+    if (unitType == UnitDB(UNIT_ZOMBIES)) { return 1; }
+    return 0;
+}
