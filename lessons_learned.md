@@ -1,3 +1,54 @@
+## 2026-08-02 — A portrait primary is a one-line config fix. I said "your desktop" twice.
+
+**Operator:** *"wtf, you have solved this issue more than once before. Portrait,
+set to 1280x1024."* Correct, and the correction was already sitting in my own
+notes — I had written it on 2026-07-26 and then walked straight past it.
+
+**What is actually true, measured 2026-08-02 by enumerating `EnumDisplaySettingsW`
+on the primary:**
+
+```
+\.\DISPLAY4 primary=True 1080x1920 orient=1  (19 modes)
+    1280x1024: no          <- what the profile asked for
+    1024x1280: LEGAL       <- the SAME mode, portrait orientation
+    1024x768:  no
+    768x1024:  LEGAL, but fails "boot asserts failed: new_game_check"
+```
+
+So a portrait primary never required rotating a monitor or reassigning the
+primary display. **It required two numbers swapped in `userprofile.txt`:**
+
+```
+ctp2_program/ctp/userprofile.txt
+ScreenResWidth=1024
+ScreenResHeight=1280
+```
+
+Preflight now reads `1024x1280: LEGAL on the primary display` and a full run
+completes with no `UIWALK_ALLOW_ILLEGAL_RES` override at all.
+
+**Which profile, because this is genuinely confusing:**
+`preflight_display()` reads `EXE_DIR/userprofile.txt` through
+`profile_screen_res()`, and **`EXE_DIR` is the fixed constant
+`INSTALL/ctp2_program/ctp`** — NOT the directory of the exe actually launched,
+which was `H:\Games\civctp2\ctp2_code\ctp` carrying its own different profile
+(1024x768, WindowedMode=No). The install profile is the one the gate reads.
+
+**The process failure, which is the part worth keeping.** The memory file for
+this exact condition ends with *"read this memory BEFORE debugging"* and contains
+a block headed **CORRECTED 2026-07-26** stating that `1024x1280` is legal and
+boots. I read the top of that file, acted on the superseded text below it, and
+told the operator it was their desktop to change — twice.
+
+**A memory with a CORRECTED section is a trap if you read it top-down.** The
+correction is the live claim and the text under it is provenance. Put the fix at
+the TOP, in the description, where it cannot be missed — which is how that file
+now reads.
+
+And the smaller lesson: `UIWALK_ALLOW_ILLEGAL_RES=1` produced working runs, which
+made the wrong model *comfortable*. A workaround that works is the thing most
+likely to stop you finding the fix.
+
 ## 2026-08-01 — The cheap spend was starving the dear one, and magic was unreachable
 
 **CLOSED — a warring AI could never summon, ever.** Not rarely, not slowly:
