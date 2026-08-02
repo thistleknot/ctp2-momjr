@@ -1,3 +1,45 @@
+## 2026-08-01 — The upkeep rate became one knob, which is what made the test cheap
+
+**SHIPPED — `MomUpkeepRate`, a single seeded global.** The rate was a bare `* 2`
+at three sites: the upkeep scan, the insolvency refund, and the AI's
+sustainability projection. Three copies of a balance constant is an ordinary
+drift hazard, and a **correctness** hazard in the AI's: had its projection ever
+diverged from the rate actually charged, it would compute sustainability against
+a fiction and either starve itself or summon straight into a deficit.
+
+SLIC has no `#define`, so the rate is a global lazily seeded by
+`MomRecalcMagicPerTurn`. **The seeding is load-bearing, not decorative** — a SLIC
+global starts at 0, and a rate of 0 makes every creature free and upkeep silently
+dead. Gate 27 assertion 10 asserts both the single home and the seeding, proven
+against a reintroduced bare `* 2`.
+
+**The payoff is testability, and that was the point.** Insolvency is unreachable
+in a short game at shipped rates BY DESIGN — a summon needs 75 banked and each
+creature lowers net income, so a rung-1 tribe steps down 2 at a time against
+~20-25 income and it takes on the order of a hundred turns. With the rate behind
+one knob, `probe_insolvency.py` patches **that one line** to a rate where a single
+creature outruns income immediately and the disband fires within two turns.
+Everything else — ledger, weighted draw, `KillUnit`, refund, floor, message — is
+the shipped path untouched.
+
+**This is the general move, and it is the one I should reach for instead of a
+longer run: SHRINK THE RIG, NOT THE QUESTION.** Note precisely what it buys and
+what it does not — it proves the branch EXECUTES; it does not prove the shipped
+rate produces disbands in play, which it should not at rung 1, because disband is
+a backstop for income LOSS rather than a routine tax.
+
+**BLOCKED, and worth recording because it is invisible from inside the repo:**
+the harness preflight now ABORTS. The primary display became `\.\DISPLAY4` at
+1080x1920 **portrait**. CTP2 enumerates legal modes from display 0 only
+(`display.cpp display_EnumerateDisplayModes`), so 1280x1024 is not available, the
+engine REFLOWS its in-game UI to whatever client size it gets, and every pinned
+aim point authored at another resolution is wrong. Captures stay readable;
+**pointing** is what breaks. The preflight refuses rather than clicking blind,
+which is correct — a miss AVs.
+
+Fixing it means making a landscape display primary, which is a change to the
+operator's own desktop and is theirs to make, never something to do silently.
+
 ## 2026-08-01 — The rig kept growing to fit the question. That was the bug.
 
 **Operator, twice:** *"don't do 700 turn runs"* / *"I told you not to do this a
