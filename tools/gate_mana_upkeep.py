@@ -454,6 +454,69 @@ def _a6_ai_sustainability(srcs: dict[str, str]) -> list[str]:
     return fails
 
 
+def _a9_preparation(srcs: dict[str, str]) -> list[str]:
+    """Summon preparation: a countdown that must start, tick and CLEAR.
+
+    Operator, 2026-08-01: "some summons should take more than a single turn to
+    summon (preparation)". Committing mana starts a countdown equal to the
+    creature's rung; the creature arrives when it expires.
+
+    The failure modes are all silent, which is why they are asserted:
+
+      * pending not cleared on arrival -> the creature respawns EVERY turn
+        forever. An infinite free army, and the worst bug this machine can have.
+      * the arrival branch not mutually exclusive with the commit branch -> a
+        rung-1 creature commits and arrives in the same tick and preparation is
+        invisible for exactly the tier most summons produce.
+      * the AI re-committing while a creature is already on the way -> it pays 75
+        every turn for one arrival, a mana leak that just looks like a poor AI.
+      * the countdown seeded from something other than the rung -> the feature
+        exists but does not scale, which no other check would notice.
+    """
+    fails: list[str] = []
+    msg = srcs.get("mom_msg.slc", "")
+    ai = srcs.get("mom_ai_magic.slc", "")
+    func = srcs.get("mom_func.slc", "")
+
+    for name in ("MomSummonPrep", "MomSummonPending", "MomSummonPendRung"):
+        if not re.search(rf"\bint_t\s+{name}\s*\[\s*31\s*\]", func):
+            fails.append(
+                f"mom_func.slc: {name}[31] is not declared -- summon "
+                "preparation has nowhere to keep its state")
+    if not msg:
+        return fails
+
+    if not re.search(r"MomSummonPrep\s*\[\s*p\s*\]\s*=\s*MomSummonPendRung", msg):
+        fails.append(
+            "mom_msg.slc: the countdown is not seeded from the creature's rung "
+            "-- preparation would not scale with creature power, which is the "
+            "entire point of the mechanic")
+    if not re.search(r"MomSummonPending\s*\[\s*p\s*\]\s*=\s*0", msg):
+        fails.append(
+            "mom_msg.slc: MomSummonPending[] is never cleared -- once a creature "
+            "arrives it would respawn on EVERY later turn, an infinite free army")
+    if not re.search(r"\belseif\s*\([^)]*MomSummonPrep\s*\[\s*p\s*\]\s*>\s*0", msg):
+        fails.append(
+            "mom_msg.slc: the arrival branch is not `elseif` against the commit "
+            "branch -- a rung-1 creature would commit and arrive in the same "
+            "tick and its preparation would never be visible")
+    if not re.search(r"MomSummonPrep\s*\[\s*g\.player\s*\]\s*>\s*0", msg):
+        fails.append(
+            "mom_msg.slc: the summon button does not refuse a second order while "
+            "one is preparing -- preparation becomes a queue rather than a plan")
+    if ai and not re.search(r"MomSummonPrep\s*\[\s*p\s*\]\s*==\s*0", ai):
+        fails.append(
+            "mom_ai_magic.slc: the AI does not check MomSummonPrep before "
+            "committing -- it would pay 75 every turn while a creature is "
+            "already on the way, a silent mana leak")
+    if ai and re.search(r"\bMomSpawnSphereUnit\s*\(", ai):
+        fails.append(
+            "mom_ai_magic.slc: the AI still spawns directly -- arrival must go "
+            "through MomSummonOrderTick so one writer owns placement, ledgering "
+            "and timing for both sides")
+    return fails
+
+
 def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     """Return a list of violation strings; empty means the gate passes."""
     srcs = _sources(scen)
@@ -469,6 +532,7 @@ def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     fails += _a6_ai_sustainability(srcs)
     fails += _a7_builtin_arg_types(srcs)
     fails += _a8_disband_is_weighted(srcs)
+    fails += _a9_preparation(srcs)
     return fails
 
 

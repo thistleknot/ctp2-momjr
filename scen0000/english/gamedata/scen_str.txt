@@ -21,7 +21,12 @@ MOM_MSG_BLESS_CHAOS		"Chaos magic floods your coffers with an unpredictable wind
 MOM_MSG_MAGIC_POWER		"Magic Power: {MomMagicCurDisp} / {MomMagicMaxDisp}  (+{MomMagicGenDisp} per turn)"
 
 # Interactive magic menu (hotkey 'j' -> keypress.cpp hook -> SLIC segment 'MagicMenu')
-MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome {MomMagicGenDisp} - upkeep {MomUpkeepDisp} = {MomNetDisp} per turn\nUpkeep is charged per summoned creature, by its rung\nSphere rung: {MomRungDisp} of 5 - a summon rolls over every rung you have reached"
+MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome {MomMagicGenDisp} - upkeep {MomUpkeepDisp} = {MomNetDisp} per turn\nSphere rung {MomRungDisp} of 5 - a summon rolls over every rung reached\nPreparing: {MomPrepDisp} turn(s) left  (0 = nothing on the way)"
+# The 'Preparing' line REPLACED the standing "upkeep is charged per creature, by its
+# rung" note rather than being added under it, for the fixed-height reason below --
+# the rate is still discoverable from the Income/upkeep arithmetic on the line above.
+MOM_MSG_SUMMON_BEGUN		"You begin the summoning. The power leaves you now, and the creature will take shape in {MomPrepDisp} turn(s).\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}"
+MOM_MSG_SUMMON_BUSY		"A summoning is already under way, with {MomPrepDisp} turn(s) still to run. You cannot prepare two at once."
 # KEPT COMPACT ON PURPOSE, measured 2026-08-01: the alertbox does NOT grow to fit its
 # text. An earlier six-line version rendered Income/Upkeep/Net on separate lines and
 # pushed the 'Sphere rung' line clean off the bottom of the box, silently losing it --

@@ -1,3 +1,55 @@
+## 2026-08-01 — Summoning takes preparation, and a long run froze at first contact
+
+**CLOSED — a cycle validated at 200 turns is NOT validated at 700.** A 700-turn
+run **stalled dead at turn 55** and sat for 900+ seconds until the watchdog
+tripped. The turn cycle sliced out of `full_game_v3.json` sweeps exactly three
+modals — `SciAdvanceScreen`, `BattleViewWindow`, `ModalWindow` — and
+`grep -c DipWizard steps/full_game_v3.json` returns **0**. A diplomatic proposal
+modal is a documented turn-loop freezer here; earlier 200-turn runs simply never
+reached AI contact, so the gap never showed.
+
+Fixed by prepending `DipWizard.ViewButtons.RejectButton` to the cycle **in the
+probe**, not in the shared steps file, so the 200-turn-validated cycle stays
+byte-identical and the addition is visibly additive. `press` on an unrealised
+path is a no-op, which is why all four can sit unconditionally in every turn.
+**Confirmed, not merely plausible: the re-run reached turn 85 and exited clean**
+— past the stall, which is the falsifier the thesis had named in advance.
+
+**The law: turn count is a coverage dimension.** A longer game unlocks whole
+classes of modal a short game never produces, so a harness proven at one horizon
+carries no guarantee at a longer one.
+
+**SHIPPED — summons now require preparation.** Committing a summon debits the
+mana, rolls the creature, and starts a countdown equal to its sphere rung: a
+rung-1 Warbears still arrives next turn exactly as before, a rung-5 Great Wyrm is
+a five-turn commitment. One preparation at a time, and no cancel — a commitment
+you can walk away from for free is not a commitment.
+
+This is deliberately not a duplicate of upkeep. **Upkeep bounds how many
+creatures you can KEEP; preparation bounds how fast you can GET them.**
+
+The AI goes through the *same* state machine rather than spawning directly, so
+one writer owns placement, ledgering and timing for both sides and the two paths
+cannot drift. That change put five messagebox calls on the AI path for the first
+time, so the arrival popups needed an `IsHumanPlayer` guard they never previously
+required — a messagebox aimed at an AI player is how the message-queue AV was
+hit.
+
+**Two ordering traps found while building it:**
+- `MOM_MSG_SUMMON_BEGUN` interpolates `{MomPrepDisp}`, but that scalar is
+  refreshed by `mom_magic.slc` (include **56**) while the popup is raised from
+  `mom_msg.slc` (include **55**). Left alone it would have announced the previous
+  turn's value — *"will take shape in 0 turns"* on every single commit. Set
+  explicitly at commit. **Include order decides which handler sees fresh state.**
+- The arrival branch must be `elseif` against commit. As a separate `if`, a
+  rung-1 creature would commit and arrive in the same tick and preparation would
+  be invisible for exactly the tier most summons produce.
+
+**And an operational one, earned the hard way:** *never edit or stage a file a
+running probe owns.* The long-game probe swaps `scen_str.txt`, so an edit made
+mid-run is silently reverted by its restore — and a `git add -A` mid-run commits
+the instrumented tree, which is exactly what happened and had to be reverted.
+
 ## 2026-08-01 — `finally` is not cleanup, and civ2 MoM Jr never summoned anything
 
 **CLOSED — a killed probe leaks its instrument, and `finally` will not save you.**

@@ -132,6 +132,9 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
         MomMagicGenDisp = gen;
         MomUpkeepDisp = upkeep;
         MomNetDisp = gen - upkeep;
+        // Published from the same place as the rest of the books so the panel
+        // never shows a countdown from a turn other than the one it is reporting.
+        MomPrepDisp = MomSummonPrep[mp_1];
     }
     // Deliberately allowed to go NEGATIVE. A tribe that over-summons must feel
     // its pool drain; MomMagicPoolTick is what turns a sustained deficit into a

@@ -1,7 +1,15 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.5.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.6.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
+
+> **What 3.6 adds — summoning takes preparation.** A summon used to resolve next
+> turn no matter what it was, so a Great Wyrm and a Warbears arrived on the same
+> schedule. Committing one now debits the mana, rolls the creature, and starts a
+> countdown equal to its sphere rung: a rung-1 Warbears still arrives next turn,
+> a rung-5 Great Wyrm takes five. One at a time, and no cancel. **Upkeep bounds
+> how many creatures you can keep; preparation bounds how fast you can get
+> them.** See `CHANGELOG.md`.
 
 > **What 3.5 does — mana became an economy instead of a deposit box.** Summoning
 > cost 75 mana *once* and nothing afterwards, so mana had exactly one sink, the

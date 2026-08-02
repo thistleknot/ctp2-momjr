@@ -9,6 +9,67 @@ noise is not a change.
 
 ---
 
+## [3.6.0] — 2026-08-01 — summoning takes preparation
+
+**Minor.** Additive. Old saves load; a save made before this has nothing
+preparing, which is the same state as a fresh game.
+
+### The change
+
+A summon used to resolve on the next `BeginTurn` regardless of what was rolled,
+so a Great Wyrm and a Warbears arrived on exactly the same schedule and there was
+nothing to plan around. Committing a summon now debits the mana, rolls the
+creature, and starts a **countdown equal to its sphere rung**:
+
+| rung | creature tier | turns |
+|---|---|---|
+| 1 | Warbears, Guardian Spirit | **1** — unchanged from before |
+| 3 | Behemoth, Demon | 3 |
+| 5 | Great Wyrm, Archangel | **5** |
+
+This is deliberately not a second helping of upkeep. **Upkeep bounds how many
+creatures you can keep; preparation bounds how fast you can get them.**
+
+- **One at a time.** An order placed while a countdown runs is refused, with a
+  message saying how many turns remain. That is what makes it a plan rather than
+  a queue.
+- **No cancel.** The mana is committed when the clock starts. A commitment you
+  can walk away from for free is not a commitment.
+- **The AI plays the same rules** — it goes through the same state machine rather
+  than spawning directly, so one writer owns placement, ledgering and timing for
+  both sides and the two paths cannot drift apart.
+- **The panel shows the countdown**, replacing the standing note about upkeep
+  rates (the rate is still readable from the income arithmetic on the line above).
+  The alertbox is fixed height and silently drops overflow, so lines are
+  exchanged rather than added.
+
+### Fixed
+
+- **Headless runs froze at first AI contact.** The turn cycle swept three modals
+  and had no `DipWizard` sweep at all, so a 700-turn run stalled dead at turn 55.
+  Earlier 200-turn runs never reached contact, which is why it never showed —
+  *a cycle validated at one horizon is not validated at a longer one.* Confirmed
+  fixed: the re-run reached turn 85 and exited clean.
+
+### Tooling
+
+- `tools/gate_mana_upkeep.py` assertion 9: the countdown is seeded from the rung,
+  pending is cleared on arrival (otherwise the creature respawns every turn
+  forever), the arrival branch is mutually exclusive with commit (otherwise a
+  rung-1 preparation is invisible), both the button and the AI refuse a second
+  order while preparing, and the AI no longer spawns directly. Each proven to
+  fire against its specific defect before being trusted.
+- `tools/uiwalk/probe_summon_prep.py`: samples the panel **every turn** across a
+  commit, because a rung-1 countdown is one turn long and any coarser cadence
+  steps straight over the mechanic and sees nothing.
+- `tools/uiwalk/probe_long_game.py` + `probe_slic/mom_probe.slc`: a read-only
+  per-tribe sampler that surfaces AI mana, unit counts and creature counts onto
+  the human panel, since the harness reads pixels and no AI's state is ever
+  rendered. Install is idempotent at startup — a probe killed mid-run skips its
+  `finally` and leaks its instrument into the scenario.
+
+---
+
 ## [3.5.0] — 2026-08-01 — mana is an economy: creatures cost upkeep, not just a deposit
 
 **Minor.** Additive. Old saves load and keep playing; creatures summoned before

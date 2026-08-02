@@ -75,7 +75,13 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
         // human pays -- 75 to summon, 50 for a working -- so the AI is playing
         // the same economy rather than a discounted one. Below 50 it banks,
         // which is what makes a later summon possible at all.
-        if (MomMagicCur[p] >= 75 && (atWar == 1 || roll < 70)) {
+        // MomSummonPrep == 0 is the same one-at-a-time rule the human's button
+        // enforces. Without it the AI would re-commit 75 mana every turn while a
+        // creature was already on the way, overwriting its own pending creature
+        // and paying repeatedly for a single arrival -- a silent mana leak that
+        // would look exactly like the AI being poor.
+        if (MomMagicCur[p] >= 75 && MomSummonPrep[p] == 0
+            && (atWar == 1 || roll < 70)) {
             // The default sink, and the aggressive choice. At war it always
             // prefers a creature; at peace it summons most of the time and
             // otherwise holds, so two AI tribes on the same turn do not act
@@ -101,12 +107,21 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
             }
             if (CityIsValid(tmpCity) && pick != 0) {
                 MomMagicCur[p] = MomMagicCur[p] - 75;
-                // Reuses the human path's placement so an AI summon gets the
-                // same free-land-neighbour search. Spawning on the city tile
-                // would stack it under the garrison: CTP2 draws exactly one unit
-                // per tile and orders own units by MaxMovePoints, so a fast
-                // creature permanently hides whatever was standing there.
-                MomSpawnSphereUnit(p, pick, pickRung);
+                // PREPARATION (2026-08-01): the AI no longer spawns here. It
+                // commits the mana and starts the same countdown the human uses,
+                // and MomSummonOrderTick's arrival branch (mom_msg.slc) does the
+                // spawning for BOTH sides -- one writer for the whole lifecycle,
+                // so the two paths cannot drift on placement, ledgering or
+                // timing. The AI is playing the same economy, not a faster one.
+                //
+                // That arrival branch already reuses MomSpawnSphereUnit, so the
+                // free-land-neighbour search still applies: spawning on the city
+                // tile would stack the creature under the garrison, because CTP2
+                // draws one unit per tile ordered by MaxMovePoints.
+                MomSummonPendRung[p] = pickRung;
+                if (pickRung < 1) { MomSummonPendRung[p] = 1; }
+                MomSummonPending[p] = pick;
+                MomSummonPrep[p] = MomSummonPendRung[p];
             }
         } elseif (MomMagicCur[p] >= 50 && atWar == 1 && roll < 40) {
             // A cheap working while it cannot yet afford a creature. Modelled as

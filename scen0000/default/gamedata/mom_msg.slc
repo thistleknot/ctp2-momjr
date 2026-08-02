@@ -87,19 +87,43 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     // accrual, which is monotonically upward, so a click that was affordable stays
     // affordable -- but a future spender on the same turn must not be able to push
     // this negative. The check is a plain comparison at call depth 0.
-    if (p >= 1 && p <= 5 && MomSummonChoice[p] != 0 && player[0].cities > 0
-        && MomMagicCur[p] >= 75) {
+    // COMMIT. An order only starts a preparation when nothing is already
+    // preparing -- one at a time, so this is a plan and not a queue.
+    if (p >= 1 && p <= 5 && MomSummonChoice[p] != 0 && MomSummonPrep[p] == 0
+        && player[0].cities > 0 && MomMagicCur[p] >= 75) {
         GetCityByIndex(player[0], 0, tmpCity);
         // Roll BEFORE the debit, and gate the debit on it. MomSummonRoll returns
         // 0 when the caster has not reached rung 1 of its own ladder, and
         // charging 75 mana for a creature that never appears would be a silent
         // theft that looks exactly like a spawn that failed to render.
         summonPick = MomSummonRoll(p);
+        summonRung = MomSummonRungOf(summonPick);
         if (CityIsValid(tmpCity) && summonPick != 0) {
+            // Mana is committed the moment preparation STARTS, not on arrival.
+            // Paying at arrival would let the pool be spent elsewhere while the
+            // creature was notionally on its way, and there is no cancel, so the
+            // commitment has to bite immediately or it is not a commitment.
             MomMagicCur[p] = MomMagicCur[p] - 75;
+
+            // The countdown IS the creature's rung: 1 turn for a rung-1 Warbears
+            // (unchanged from the old instant-next-turn behaviour) up to 5 for a
+            // rung-5 Great Wyrm. Floored at 1 so a creature that somehow reports
+            // rung 0 still arrives rather than sticking forever at zero without
+            // ever passing through the arrival branch.
+            MomSummonPendRung[p] = summonRung;
+            if (summonRung < 1) { MomSummonPendRung[p] = 1; }
+            MomSummonPending[p] = summonPick;
+            MomSummonPrep[p] = MomSummonPendRung[p];
             if (IsHumanPlayer(p)) {
                 MomMagicCurDisp = MomMagicCur[p];
                 MomMagicMaxDisp = MomMagicMax[p];
+                // SET HERE, not left to mom_magic.slc. That file is #included at
+                // 56 and this one at 55, so MomMagicPoolTick refreshes
+                // MomPrepDisp AFTER this handler has already raised the "you
+                // begin the summoning" popup -- which would have announced the
+                // PREVIOUS turn's value, reading "will take shape in 0 turns"
+                // on every single commit.
+                MomPrepDisp = MomSummonPrep[p];
                 // MomMagicGenDisp is NOT refreshed here: MomMagicPerTurn[] holds NET
                 // income since upkeep landed, so copying it into the gross
                 // 'Income' scalar would print net twice and make the panel's
@@ -137,18 +161,54 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
             // function call, which is the ambiguous form of the 2-level chain
             // that is a 0xC0000005. Two sequential statements are unambiguously
             // two depth-1 calls.
-            summonRung = MomSummonRungOf(summonPick);
-            MomSpawnSphereUnit(p, summonPick, summonRung);
-            if (p == 1) {
-                Message(p, 'MomSummonGuard');
-            } elseif (p == 2) {
-                Message(p, 'MomSummonBear');
-            } elseif (p == 3) {
-                Message(p, 'MomSummonMage');
-            } elseif (p == 4) {
-                Message(p, 'MomSummonZombie');
-            } elseif (p == 5) {
-                Message(p, 'MomSummonHound');
+            //
+            // THE SPAWN NO LONGER HAPPENS HERE. It moved to the arrival branch
+            // below, which is the whole point of preparation: this block only
+            // takes the payment and starts the clock. The per-sphere arrival
+            // Message moved with it, so the popup announces a creature that has
+            // actually appeared rather than one that is merely on its way.
+            if (IsHumanPlayer(p)) {
+                Message(p, 'MomSummonBegun');
+            }
+        }
+    }
+
+    // ARRIVAL. Runs on every later turn until the countdown expires. `elseif` is
+    // load-bearing: a commit and an arrival must never happen in the same tick,
+    // or a rung-1 creature would be committed and spawned in one turn and the
+    // preparation would be invisible for exactly the tier most people summon.
+    elseif (p >= 1 && p <= 5 && MomSummonPrep[p] > 0) {
+        MomSummonPrep[p] = MomSummonPrep[p] - 1;
+        if (MomSummonPrep[p] == 0) {
+            // OCCLUSION-SAFE PLACEMENT, and the rung carried from commit time so
+            // the creature is ledgered for upkeep at the tier it was rolled at
+            // -- re-rolling MomSummonRungOf here would work but would re-derive
+            // state that is already known, and a mismatch would bill the wrong
+            // rate for the rest of the creature's life.
+            MomSpawnSphereUnit(p, MomSummonPending[p], MomSummonPendRung[p]);
+            // CLEARED ON ARRIVAL. Without this the pending creature would spawn
+            // again on every subsequent turn -- an infinite free army, and the
+            // single worst failure this state machine can have.
+            MomSummonPending[p] = 0;
+            MomSummonPendRung[p] = 0;
+            // HUMAN-GUARDED, newly required. These Messages used to be reachable
+            // only from an order the human's button had placed; the AI spawned
+            // directly in mom_ai_magic.slc and never came through here. Routing
+            // the AI through this same arrival branch puts five messagebox calls
+            // on the AI path for the first time, and a messagebox aimed at an AI
+            // player is how the message-queue overflow AV was hit.
+            if (IsHumanPlayer(p)) {
+                if (p == 1) {
+                    Message(p, 'MomSummonGuard');
+                } elseif (p == 2) {
+                    Message(p, 'MomSummonBear');
+                } elseif (p == 3) {
+                    Message(p, 'MomSummonMage');
+                } elseif (p == 4) {
+                    Message(p, 'MomSummonZombie');
+                } elseif (p == 5) {
+                    Message(p, 'MomSummonHound');
+                }
             }
         }
     }
@@ -218,6 +278,20 @@ messagebox 'MomBlessChaos' {
 messagebox 'MomUpkeepDisband' {
 	Show();
 	Text(ID_MOM_MSG_UPKEEP_DISBAND);
+}
+
+// Preparation segments (2026-08-01). 'MomSummonBegun' fires when the mana is
+// committed and the clock starts; the per-sphere arrival popups now fire when
+// the creature actually appears, which is a different turn for anything above
+// rung 1. 'MomSummonBusy' answers a click made while a preparation is running.
+messagebox 'MomSummonBegun' {
+	Show();
+	Text(ID_MOM_MSG_SUMMON_BEGUN);
+}
+
+messagebox 'MomSummonBusy' {
+	Show();
+	Text(ID_MOM_MSG_SUMMON_BUSY);
 }
 
 messagebox 'MomSummonGuard' {
@@ -316,8 +390,17 @@ alertbox 'MagicMenu' {
 	// rather than a button that appears to do nothing and then produces nothing
 	// next turn. Both branches are comparisons and builtins (Message is a builtin),
 	// so the body is still at call depth 0 -- the Class 1 budget is untouched.
+	// PREPARATION CHECK FIRST, before affordability. A tribe already preparing a
+	// creature cannot start a second one -- one at a time is what makes this a
+	// plan rather than a queue -- and it must be told so at the moment it clicks,
+	// not left with a button that appears to work and then silently does nothing
+	// (the same reasoning that put the cost check here rather than only at
+	// resolve time). Still comparisons and Message(), both builtins, so the body
+	// remains at call depth 0 and the Class 1 budget is untouched.
 	Button(ID_MOM_MSG_BTN_SUMMON) {
-		if (MomMagicCur[g.player] >= 75) {
+		if (MomSummonPrep[g.player] > 0) {
+			Message(g.player, 'MomSummonBusy');
+		} elseif (MomMagicCur[g.player] >= 75) {
 			MomSummonChoice[g.player] = 1;
 		} else {
 			Message(g.player, 'MomSummonNoMana');

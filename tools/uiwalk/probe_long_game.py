@@ -158,6 +158,21 @@ def main() -> int:
     prologue, cycle = steps[:PROLOGUE], steps[PROLOGUE:PROLOGUE + CYCLE]
     assert cycle[4]["do"] == "hover" and cycle[5]["keys"] == "enter", cycle
 
+    # EXTRA MODAL SWEEP, prepended to the proven cycle rather than edited into
+    # it, so full_game_v3.json's 200-turn-validated steps stay byte-identical and
+    # the addition is visibly additive.
+    #
+    # WHY: a 700-turn run STALLED DEAD at turn 55 (measured 2026-08-01, watchdog
+    # tripped after 900s). The sliced cycle sweeps SciAdvanceScreen,
+    # BattleViewWindow and ModalWindow -- and nothing else; full_game_v3.json
+    # contains ZERO references to DipWizard. A diplomatic proposal modal is a
+    # documented turn-loop freezer here, and earlier 200-turn runs simply never
+    # reached AI contact, so the gap never showed.
+    #
+    # `press` on a path that is not currently realised is a no-op, which is
+    # exactly why the other three can sit unconditionally in every single turn.
+    cycle = [{"do": "press", "path": "DipWizard.ViewButtons.RejectButton"}] + cycle
+
     run_dir = uiwalk.RUNS / (time.strftime("%Y%m%d-%H%M%S") + "-longgame")
     run_dir.mkdir(parents=True, exist_ok=True)
     print(f"artifacts -> {run_dir}")

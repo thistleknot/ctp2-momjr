@@ -167,6 +167,14 @@
     "purpose": "segment: Nature summon result (War Bear)",
     "status": "ACTIVE"
   },
+  "mom_msg.slc:MomSummonBegun": {
+    "purpose": "",
+    "status": "ACTIVE"
+  },
+  "mom_msg.slc:MomSummonBusy": {
+    "purpose": "",
+    "status": "ACTIVE"
+  },
   "mom_msg.slc:MomSummonGuard": {
     "purpose": "segment: Life summon result (Guardian Spirit) -- names the creature, so one frame settles which branch ran",
     "status": "ACTIVE"

@@ -383,5 +383,27 @@ int_t MomSpellMaxDisp;
 // 0 = no pending order. Set by an alertbox arm, consumed and cleared by
 // MomSummonOrderTick in mom_msg.slc.
 int_t MomSummonChoice[31];
+
+// ---------------------------------------------------------------------------
+// SUMMON PREPARATION (2026-08-01)
+//
+// A summon is no longer instant. Committing one debits the mana, rolls the
+// creature, and starts a countdown equal to that creature's sphere rung -- so a
+// rung-1 Warbears still arrives next turn exactly as it always did, while a
+// rung-5 Great Wyrm is a five-turn commitment you have to plan around.
+//
+// This is the other half of the mana economy and deliberately not a duplicate of
+// it: UPKEEP bounds how many creatures you can KEEP, PREPARATION bounds how fast
+// you can GET them.
+//
+// ONE preparation at a time. An order placed while a countdown is running is
+// discarded, which is what makes the mechanic a plan rather than a queue -- and
+// there is no cancel, because a commitment you can walk away from for free is
+// not a commitment.
+int_t MomSummonPrep[31];     // turns remaining; 0 == nothing preparing
+int_t MomSummonPending[31];  // the rolled unit type awaiting arrival
+int_t MomSummonPendRung[31]; // its rung, carried so arrival can ledger upkeep
+int_t MomPrepDisp;           // countdown scalar for the 'j' panel
+
 int_t MomMagicShownTurn[31]; // per-round re-entry latch for the popup (flood safety)
 int_t MomMagicSchoolPct[31]; // per-turn multiplier as integer percent (M2); 0 read as 100
