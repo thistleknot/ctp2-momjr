@@ -102,7 +102,7 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
             // so requiring it to stay >= 0 after taking on this creature's keep
             // is the whole check. When it fails the AI simply banks, and its
             // production goes where it should -- city units, the mainstay.
-            if (MomMagicPerTurn[p] - pickRung * 2 < 0) {
+            if (MomMagicPerTurn[p] - pickRung * MomUpkeepRate < 0) {
                 pick = 0;
             }
             if (CityIsValid(tmpCity) && pick != 0) {

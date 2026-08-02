@@ -517,6 +517,42 @@ def _a9_preparation(srcs: dict[str, str]) -> list[str]:
     return fails
 
 
+def _a10_rate_is_one_knob(srcs: dict[str, str]) -> list[str]:
+    """The upkeep rate must live in MomUpkeepRate and nowhere else.
+
+    It was originally a bare `* 2` at three sites: the upkeep scan, the
+    insolvency refund, and the AI's sustainability projection. Three copies of a
+    balance constant is a drift hazard in the ordinary case, and specifically a
+    correctness hazard in the AI's: if its projection used a different rate from
+    the one actually charged, it would compute sustainability against a fiction
+    and either starve itself or summon into a deficit.
+
+    Consolidating also makes the rate patchable in ONE line, which is what lets
+    tools/uiwalk/probe_insolvency.py reach a disband in a couple of turns on a
+    shrunken rig instead of the couple of hundred a shipped-rate game needs.
+    """
+    fails: list[str] = []
+    func = srcs.get("mom_func.slc", "")
+    if not re.search(r"\bint_t\s+MomUpkeepRate\s*;", func):
+        fails.append(
+            "mom_func.slc: MomUpkeepRate is not declared -- the upkeep rate has "
+            "no single home and cannot be retuned or patched in one place")
+    magic = srcs.get("mom_magic.slc", "")
+    if not re.search(r"MomUpkeepRate\s*==\s*0", magic):
+        fails.append(
+            "mom_magic.slc: MomUpkeepRate is never seeded -- SLIC globals start "
+            "at 0, so every creature would be FREE and upkeep silently dead")
+    # No bare rate left anywhere it is applied to a rung.
+    for mod in ("mom_magic.slc", "mom_ai_magic.slc"):
+        src = srcs.get(mod, "")
+        for m in re.finditer(r"(MomSummonRung\s*\[[^\]]+\]|pickRung|summonRung)"
+                             r"\s*\*\s*(\d+)", src):
+            fails.append(
+                f"{mod}: rung is multiplied by the literal {m.group(2)} rather "
+                "than MomUpkeepRate -- a second copy of the rate that will drift")
+    return fails
+
+
 def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     """Return a list of violation strings; empty means the gate passes."""
     srcs = _sources(scen)
@@ -533,6 +569,7 @@ def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     fails += _a7_builtin_arg_types(srcs)
     fails += _a8_disband_is_weighted(srcs)
     fails += _a9_preparation(srcs)
+    fails += _a10_rate_is_one_knob(srcs)
     return fails
 
 

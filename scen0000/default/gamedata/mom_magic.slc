@@ -104,13 +104,21 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
     // Inline and builtins-only ON PURPOSE. This function is already called at
     // depth 1 from the MomMagicPoolTick handler, and a 2-level user-function
     // chain from a handler body is the documented 0xC0000005.
+    // Seed the rate once. SLIC globals start at 0, and 0 would make every
+    // creature free -- so the lazy default is what keeps upkeep alive, not a
+    // convenience. Tests patch this single line to make insolvency reachable in
+    // a couple of turns rather than the couple of hundred a shipped-rate game
+    // would need (MOM_UPKEEP_RATE_DEFAULT).
+    if (MomUpkeepRate == 0) {
+        MomUpkeepRate = 2;
+    }
     if (mp_1 >= 1 && mp_1 <= 5) {
         base = (mp_1 - 1) * 32;
         for (i = 0; i < 32; i = i + 1) {
             idx = base + i;
             if (MomSummonRung[idx] > 0) {
                 if (MomSummonUnit[idx].valid) {
-                    upkeep = upkeep + MomSummonRung[idx] * 2;
+                    upkeep = upkeep + MomSummonRung[idx] * MomUpkeepRate;
                 } else {
                     MomSummonRung[idx] = 0;   // creature died -- free the slot
                 }
@@ -241,7 +249,7 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
                 // Refund this turn's charge for the creature just released, so
                 // the pool reflects the lighter army immediately instead of
                 // disbanding a second one next turn for a debt already paid.
-                MomMagicCur[p] = MomMagicCur[p] + MomSummonRung[insIdx] * 2;
+                MomMagicCur[p] = MomMagicCur[p] + MomSummonRung[insIdx] * MomUpkeepRate;
                 MomSummonRung[insIdx] = 0;
                 if (IsHumanPlayer(p)) {
                     Message(p, 'MomUpkeepDisband');

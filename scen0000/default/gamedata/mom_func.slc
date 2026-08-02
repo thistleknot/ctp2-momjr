@@ -400,6 +400,12 @@ int_t MomSummonChoice[31];
 // discarded, which is what makes the mechanic a plan rather than a queue -- and
 // there is no cancel, because a commitment you can walk away from for free is
 // not a commitment.
+// THE UPKEEP RATE, in mana per turn per rung. A rung-1 creature costs this, a
+// rung-5 costs five times it. SLIC has no #define, so this is a global lazily
+// seeded to its default by MomRecalcMagicPerTurn -- one place to retune the
+// whole economy, and one place a test can patch to make insolvency reachable in
+// two turns instead of the two hundred a shipped-rate game would need.
+int_t MomUpkeepRate;         // 0 == unseeded; MOM_UPKEEP_RATE_DEFAULT is 2
 int_t MomSummonPrep[31];     // turns remaining; 0 == nothing preparing
 int_t MomSummonPending[31];  // the rolled unit type awaiting arrival
 int_t MomSummonPendRung[31]; // its rung, carried so arrival can ledger upkeep
