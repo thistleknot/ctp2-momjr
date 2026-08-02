@@ -1,3 +1,52 @@
+## 2026-08-01 — `finally` is not cleanup, and civ2 MoM Jr never summoned anything
+
+**CLOSED — a killed probe leaks its instrument, and `finally` will not save you.**
+`probe_long_game.py` injects a read-only diagnostic into `scen0000` (a
+`mom_probe.slc`, an `#include` in `scenario.slc`, a swapped MAGIC STATUS string)
+and restores all three in a `finally`. The round-trip was tested CLEAN before
+first use. Then the run was cancelled mid-flight and **`finally` never ran**,
+leaving all three in the tree.
+
+Worse than an ordinary leak on two counts: the next run would have silently
+measured an INSTRUMENTED scenario and reported it as shipped, and the leak sat
+one `git add -A` from committing a debug string over the real player-facing
+panel.
+
+**The law:** *`finally` handles the exceptional path, not the killed path.
+Anything that mutates the tree under test must be IDEMPOTENT at startup — strip
+your own prior leavings before installing, every time.* Exit cleanup is the
+optimisation; startup cleanup is the guarantee. Strip precisely (line match on
+the include, key match on the string) rather than with `git checkout`, which
+would discard unrelated edits. Where the original cannot be reconstructed — a
+REPLACED line rather than an ADDED one — refuse to run and name the restore
+command, because guessing what the real string said is how a probe ships a wrong
+value.
+
+**ANSWERED — what does civ2 MoM Jr do about upkeep for summoned units?** The
+question dissolves: **MOMJR has no summoning at all.** Zero `CREATEUNIT` in any
+file of the mod; `Events.txt` is 85 lines holding a CD track on scenario load and
+five `UNITKILLED` text messages for the heroes. Every fantastic creature —
+Warbears, Great Wyrm, Archangel — is BUILT in a city. Summoning is our own
+addition in the CTP2 port, so there was never a precedent for "free forever"; we
+invented that and are now correcting it.
+
+**But MOMJR did charge creatures ongoing upkeep**, through civ2 government
+support (`@COSMIC`: Monarchy and Communism pay for all units past 3,
+Fundamentalism past 10). "Creatures drain you continuously and you can field only
+as many as your economy sustains" is authentic MoM Jr — denominated in shields,
+because shields were the only lever civ2 had.
+
+**And in our port they were never free either.** Every unit already carries
+`ShieldHunger` (Spearmen 1, Warbears 1, Great Wyrm 2, Archangel 2), so the engine
+has been charging production upkeep on summons all along. Mana upkeep is a
+second, magic-specific layer: shields are the mundane cost every unit pays, mana
+is the magical cost only summoned creatures pay.
+
+**Balance note, unmeasured:** a Great Wyrm now costs 3490 to build, 2 shields per
+turn AND 10 mana per turn. High-rung creatures are expensive on three axes at
+once. Defensible — they are meant to be commitments, and it is what makes the
+weighted disband pick them first — but the stacking is real and untested in play.
+
 ## 2026-08-01 — Upkeep-weighted disband, and a panel line that fell off the box
 
 **CLOSED — insolvency releases creatures by upkeep-weighted draw, not LIFO.**

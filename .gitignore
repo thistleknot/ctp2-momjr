@@ -9,3 +9,10 @@ __pycache__/
 # Pre-reframe ICON_UNIT originals saved by tools/reframe_unit_icons.py.
 # Redundant with git history (the icons themselves are tracked); local safety net only.
 scen0000/default/graphics/pictures/_icon_backup/
+
+# Harness instrument injected into scen0000 by tools/uiwalk/probe_long_game.py.
+# It is REMOVED at the end of a run and stripped again at the start of the next
+# one, but a probe killed mid-flight leaves it behind (measured 2026-08-01) --
+# and a leaked debug build committed into the mod would replace the real MAGIC
+# STATUS panel for players. Ignored so that can never happen via `git add -A`.
+scen0000/default/gamedata/mom_probe.slc

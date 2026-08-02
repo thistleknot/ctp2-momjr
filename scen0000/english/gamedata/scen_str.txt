@@ -21,7 +21,7 @@ MOM_MSG_BLESS_CHAOS		"Chaos magic floods your coffers with an unpredictable wind
 MOM_MSG_MAGIC_POWER		"Magic Power: {MomMagicCurDisp} / {MomMagicMaxDisp}  (+{MomMagicGenDisp} per turn)"
 
 # Interactive magic menu (hotkey 'j' -> keypress.cpp hook -> SLIC segment 'MagicMenu')
-MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome {MomMagicGenDisp} - upkeep {MomUpkeepDisp} = {MomNetDisp} per turn\nUpkeep is charged per summoned creature, by its rung\nSphere rung: {MomRungDisp} of 5 - a summon rolls over every rung you have reached"
+MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana {MomMagicCurDisp}/{MomMagicMaxDisp}  inc {MomMagicGenDisp} - up {MomUpkeepDisp} = {MomNetDisp}  rung {MomRungDisp}\nunits  {MomDbgU1} {MomDbgU2} {MomDbgU3} {MomDbgU4} {MomDbgU5}\nsummon {MomDbgC1} {MomDbgC2} {MomDbgC3} {MomDbgC4} {MomDbgC5}\nmana   {MomDbgM1} {MomDbgM2} {MomDbgM3} {MomDbgM4} {MomDbgM5}"
 # KEPT COMPACT ON PURPOSE, measured 2026-08-01: the alertbox does NOT grow to fit its
 # text. An earlier six-line version rendered Income/Upkeep/Net on separate lines and
 # pushed the 'Sphere rung' line clean off the bottom of the box, silently losing it --

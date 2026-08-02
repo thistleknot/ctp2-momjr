@@ -1,0 +1,78 @@
+// mom_probe.slc -- HARNESS INSTRUMENT, NOT PART OF THE MOD.
+//
+// Injected into scen0000 by tools/uiwalk/probe_long_game.py for the duration of
+// one headless run and REMOVED afterwards. It must never be committed into the
+// scenario; the probe restores scenario.slc and scen_str.txt in a finally block.
+//
+// WHY IT EXISTS. The harness reads PIXELS. An AI player's mana, its unit count
+// and its summoned-creature count are never rendered for anybody, so three
+// claims about v3.5.0 were unfalsifiable from the outside:
+//
+//   1. the AI's summon respects sustainability rather than bare affordability;
+//   2. insolvency actually releases a creature (rung 1 cannot reach it);
+//   3. an AI army is now mostly BUILT units with summons as a minority --
+//      the original "only ever one unit type" report.
+//
+// WHY IT IS SAFE TO TEST WITH THIS PRESENT. It is strictly READ-ONLY with
+// respect to the logic under test: it reads MomMagicCur[], MomSummonRung[] and
+// player[0].units, and writes ONLY display scalars that nothing else reads. It
+// adds no spend, no spawn, no kill, and takes no branch that game logic sees. So
+// the economy it measures is the shipped economy, not an instrumented variant.
+//
+// THE player[0] RULE STILL APPLIES. player[N] indexes the event ARG array, so a
+// player's own data can only be read during that player's own BeginTurn -- which
+// is exactly what this does, accumulating into per-player arrays that the human's
+// own tick then flattens into interpolatable scalars. Array-indexed {Arr[Idx]}
+// interpolation silently drops the whole message, so the flat copies are
+// mandatory, not stylistic.
+
+int_t MomDbgUnits[31];    // total units owned, sampled on that player's turn
+int_t MomDbgCre[31];      // summoned creatures still alive (ledger occupancy)
+int_t MomDbgMana[31];     // current pool
+
+int_t MomDbgU1; int_t MomDbgU2; int_t MomDbgU3; int_t MomDbgU4; int_t MomDbgU5;
+int_t MomDbgC1; int_t MomDbgC2; int_t MomDbgC3; int_t MomDbgC4; int_t MomDbgC5;
+int_t MomDbgM1; int_t MomDbgM2; int_t MomDbgM3; int_t MomDbgM4; int_t MomDbgM5;
+
+HandleEvent(BeginTurn) 'MomProbeSample' post {
+    int_t p;
+    int_t i;
+    int_t base;
+    int_t cre;
+
+    p = player[0];
+
+    if (p >= 1 && p <= 5) {
+        // Own-turn sampling: player[0] IS p here, so .units is p's unit count.
+        MomDbgUnits[p] = player[0].units;
+        MomDbgMana[p] = MomMagicCur[p];
+
+        // Ledger occupancy = creatures this player summoned that are still
+        // alive. Counts slots, not upkeep, so "how many creatures" is separated
+        // from "what they cost" -- the mix question needs the count.
+        base = (p - 1) * 32;
+        cre = 0;
+        for (i = 0; i < 32; i = i + 1) {
+            if (MomSummonRung[base + i] > 0) {
+                if (MomSummonUnit[base + i].valid) {
+                    cre = cre + 1;
+                }
+            }
+        }
+        MomDbgCre[p] = cre;
+
+        // Flatten for display on the human's turn only. Every tribe's latest
+        // sample is already in the arrays by now, whatever the seating order.
+        if (IsHumanPlayer(p)) {
+            MomDbgU1 = MomDbgUnits[1]; MomDbgU2 = MomDbgUnits[2];
+            MomDbgU3 = MomDbgUnits[3]; MomDbgU4 = MomDbgUnits[4];
+            MomDbgU5 = MomDbgUnits[5];
+            MomDbgC1 = MomDbgCre[1]; MomDbgC2 = MomDbgCre[2];
+            MomDbgC3 = MomDbgCre[3]; MomDbgC4 = MomDbgCre[4];
+            MomDbgC5 = MomDbgCre[5];
+            MomDbgM1 = MomDbgMana[1]; MomDbgM2 = MomDbgMana[2];
+            MomDbgM3 = MomDbgMana[3]; MomDbgM4 = MomDbgMana[4];
+            MomDbgM5 = MomDbgMana[5];
+        }
+    }
+}
