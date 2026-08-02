@@ -1,3 +1,37 @@
+## 2026-08-01 — The cheap spend was starving the dear one, and magic was unreachable
+
+**CLOSED — a warring AI could never summon, ever.** Not rarely, not slowly:
+structurally. MoM's AI has two spends against ONE pool — a war-chest working at
+**50** and a summon at **75**. At war the pool crosses 50 before it crosses 75, so
+the cheap branch fired first every single time and the pool never reached 75.
+Measured at turn 12: Sorcery on **26 mana, 0 creatures, prep 0** — it had spent
+everything on gold.
+
+**Neither branch was wrong.** Both are individually correct and nothing dangles,
+which is exactly why no gate saw it: *the defect lived entirely in the
+interaction.* Reference integrity and per-branch review both step over that.
+
+**The law, and it is not specific to this mod:** *when two spends share one
+resource, the cheaper one starves the dearer unless something stops it.* Whenever
+a second sink is added to an existing pool, ask which threshold is crossed first
+and whether the expensive option is reachable at all.
+
+The fix guards the cheap branch with the SAME sustainability test the summon
+uses: convert power to gold only when the tribe could not feed even a rung-1
+creature. The cheap option becomes the fallback for tribes that cannot use magic
+as force, instead of a tax on every tribe that can. Gate 27 assertion 11 asserts
+the guard exists, proven to fire with it removed.
+
+**How it became findable, which is the transferable part.** "The AI spent mana
+and has no creature" had two indistinguishable explanations — a stuck countdown,
+or a spawn that silently produced nothing — and BOTH were wrong. Adding a `prep`
+row to the read-only instrument printed `prep 0 0 0 0 0`, eliminating both at
+once and pointing at the spend itself.
+
+**When two hypotheses predict the same observation, add the column that splits
+them rather than reasoning harder.** I had spent several minutes arguing myself
+toward each hypothesis in turn; one extra measured row settled it immediately.
+
 ## 2026-08-01 — The upkeep rate became one knob, which is what made the test cheap
 
 **SHIPPED — `MomUpkeepRate`, a single seeded global.** The rate was a bare `* 2`

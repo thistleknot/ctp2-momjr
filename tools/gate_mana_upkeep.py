@@ -553,6 +553,38 @@ def _a10_rate_is_one_knob(srcs: dict[str, str]) -> list[str]:
     return fails
 
 
+def _a11_cheap_spend_cannot_starve_summon(srcs: dict[str, str]) -> list[str]:
+    """A cheaper AI spend must not starve the more expensive one.
+
+    MEASURED 2026-08-01. The AI's war-chest working costs 50 and its summon
+    costs 75, sharing one pool. At war the AI drained the pool at 50 every time
+    it could, so it NEVER reached 75 and magic was structurally unreachable for a
+    warring tribe -- Sorcery sat at 26 mana on turn 12 with zero creatures and no
+    preparation pending, having converted everything to gold.
+
+    Nothing dangled and no gate could see it: both branches were individually
+    correct. The defect was only in their INTERACTION, which is why it is
+    asserted structurally -- the cheap branch must carry a guard that keeps it
+    from firing while a creature is still affordable.
+    """
+    fails: list[str] = []
+    ai = srcs.get("mom_ai_magic.slc", "")
+    if not ai:
+        return fails
+    # The cheap branch is the one that adds gold; find its condition.
+    m = re.search(r"elseif\s*\(([^{]*?)\)\s*\{[^}]*AddGold", ai, re.S)
+    if not m:
+        return fails
+    cond = m.group(1)
+    if "MomMagicPerTurn" not in cond and "MomUpkeepRate" not in cond:
+        fails.append(
+            "mom_ai_magic.slc: the cheap gold working has no sustainability "
+            "guard, so it fires whenever the pool passes ITS threshold and the "
+            "AI can never save for the dearer summon -- the cheaper spend "
+            "starves the more expensive one and magic becomes unreachable")
+    return fails
+
+
 def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     """Return a list of violation strings; empty means the gate passes."""
     srcs = _sources(scen)
@@ -570,6 +602,7 @@ def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     fails += _a8_disband_is_weighted(srcs)
     fails += _a9_preparation(srcs)
     fails += _a10_rate_is_one_knob(srcs)
+    fails += _a11_cheap_spend_cannot_starve_summon(srcs)
     return fails
 
 

@@ -123,11 +123,23 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
                 MomSummonPending[p] = pick;
                 MomSummonPrep[p] = MomSummonPendRung[p];
             }
-        } elseif (MomMagicCur[p] >= 50 && atWar == 1 && roll < 40) {
-            // A cheap working while it cannot yet afford a creature. Modelled as
-            // a war chest rather than a spell effect: the spell bodies in
-            // mom_spells.slc are button-driven and reaching them from here would
-            // be the 2-level chain this file is careful to avoid.
+        } elseif (MomMagicCur[p] >= 50 && atWar == 1 && roll < 40
+                  && MomMagicPerTurn[p] - MomUpkeepRate < 0) {
+            // A cheap working, and ONLY when a creature is out of reach anyway.
+            //
+            // THE STARVATION BUG THIS GUARD CLOSES (measured 2026-08-01). The
+            // working costs 50 and a summon costs 75, so an AI at war drained
+            // its pool at 50 every time it got the chance and COULD NEVER SAVE
+            // TO 75. Magic was structurally unreachable for a warring tribe --
+            // Sorcery was observed at 26 mana on turn 12 with zero creatures and
+            // no preparation pending, having burned everything on gold. The
+            // cheaper option starving the more expensive one is the shape to
+            // watch for whenever two spends share a pool.
+            //
+            // The guard is sustainability, the same test the summon uses: if the
+            // tribe could not feed even a rung-1 creature, magic-as-force is not
+            // available to it and converting power to gold is the right call.
+            // If it COULD feed one, it saves instead.
             MomMagicCur[p] = MomMagicCur[p] - 50;
             AddGold(p, 50 + Random(100));
         }
