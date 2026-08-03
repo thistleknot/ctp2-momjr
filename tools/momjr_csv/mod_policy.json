@@ -27,17 +27,38 @@
   },
   "mod_display_name": "Master of Magic",
   "unit_stat_scaling": {
-    "attack_mult": 5,
-    "defense_mult": 5,
-    "defense_min": 5,
     "shield_cost_mult": 100,
     "shield_hunger_div": 5,
     "shield_hunger_min": 1,
-    "hp": 10,
-    "firepower_min": 1,
     "default_advance": "ADVANCE_WARRIOR_CODE",
     "air_sound_set": "FIGHTER",
-    "land_sound_set": "WARRIOR"
+    "land_sound_set": "WARRIOR",
+    "stat_curve": {
+      "_doc": "Rank-cast, not a linear multiply. Each unit's civ2 value is placed by its RANK POSITION within the civ2 distribution, then re-cast onto the CTP2 target range anchored on min/median/max. The warp is smoothstep w=p^2(3-2p): its gradient rises to a peak at the midpoint then decays, so power climbs steeply at the bottom and saturates at the top instead of running away. target = [min, median, max].",
+      "_source_outlier_cutoff": "civ2 values >= this are excluded when measuring the SOURCE distribution, so one broken row cannot stretch the scale for everyone. Infernal Device is 99a at cost 480 -- 6.6x the next attack for a seventh of the price. It is still cast, it just no longer defines the maximum.",
+      "source_outlier_cutoff": 90,
+      "attack": [
+        10,
+        40,
+        100
+      ],
+      "defense": [
+        10,
+        15,
+        100
+      ],
+      "hp": [
+        10,
+        20,
+        60
+      ],
+      "firepower": [
+        1,
+        2,
+        6
+      ],
+      "_target_provenance": "attack/defense/firepower are stock CTP2's own min/median/max, so no value lands outside a range the engine already ships. HP has NO stock spread to match -- stock is flat 10 on all 74 units -- so its target preserves the SOURCE ratios instead: civ2 hp runs 1/2/6, and 10/20/60 is that same 1x/2x/6x with the floor left at today's universal value so no unit loses HP."
+    }
   },
   "settler_category_units": [
     "Peasants"

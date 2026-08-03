@@ -9,6 +9,82 @@ noise is not a change.
 
 ---
 
+## [3.8.0] — 2026-08-02 — unit stats are rank-cast from the source, not multiplied
+
+**Minor.** Data. Every combat unit's stats change; saves keep whatever the
+database said when they were made.
+
+### The defect
+
+The port rescaled civ2 stats with flat multipliers:
+
+```python
+attack    = attack_raw * 5
+defense   = max(5, def_raw * 5)
+hp        = 10              # hp_raw parsed, then DISCARDED
+```
+
+Three consequences, all of them the balance complaint:
+
+- **Linear multiply lets the top run away.** civ2's attack median is 5.5, so x5
+  pinned most of the roster at 5–30 while a 15a Great Wyrm reached 75. The gap
+  between a dragon and an army grew without bound instead of saturating.
+- **The floor crushed the bottom.** civ2's defence median is 2–3, so
+  `max(5, d*5)` put nearly every buildable unit at 5–15 and threw away the real
+  spread the source has — War Troll 5d, Iron Golem 5d, Ariel 8d all collapsed
+  together. This is why built units looked like they had no armour: they had it
+  in the source, and the map destroyed it.
+- **MaxHP shipped as a literal 10 on every unit.** civ2 carries a real durability
+  axis, 1h Spearmen through 6h Great Wyrm, and the port parsed `hp` only to pick
+  a sprite size before writing the constant. The engine *does* honour MaxHP
+  (`UnitData.cpp:6256`); stock CTP2 simply never varies it. A dragon died as fast
+  as a peasant.
+
+### Changed
+
+Stats are now **rank-cast**: each unit is placed by its rank position within the
+civ2 distribution, then re-cast onto a CTP2 target range anchored so source
+min/median/max land exactly on target min/median/max. The ordering is the
+original designer's; only the range and the curve are ours.
+
+The warp is `smoothstep`, `w = p²(3−2p)` — its gradient rises to a peak at the
+midpoint and decays after, so power climbs steeply out of the trash tier then
+saturates. Massed cheap units stay relevant against a top-tier creature.
+
+```
+              before            after
+SPEARMEN       5/  5/10/1     10/ 10/10/1
+CATAPULT      30/  5/10/1     45/ 10/10/1
+WAR_TROLL     25/ 25/10/1     54/ 43/35/1     <- buildable, real armour
+GUARDIAN_SPT   5/ 25/10/1     10/ 43/35/1
+ARCHANGEL     60/ 60/10/2     92/100/20/5
+GREAT_WYRM    75/ 45/10/2    100/ 87/60/5
+INFERNAL_DEV 495/  5/10/1    100/ 10/10/1     <- outlier tamed
+                                (attack/defense/HP/firepower)
+```
+
+Resulting spread: attack 10–100 (median 35), defence 10–100 (median 15), **HP
+10–60 across 5 distinct values**, firepower 1–6.
+
+Targets live in `mod_policy.json` under `unit_stat_scaling.stat_curve`.
+Attack/defence/firepower use **stock CTP2's own min/median/max**, so nothing
+lands outside a range the engine already ships. HP has no stock spread to match —
+stock is flat 10 on all 74 units — so its target preserves the *source* ratios
+instead: civ2's 1/2/6 becomes 10/20/60, floor left at today's universal value so
+no unit loses HP.
+
+Infernal Device's 99a (at cost 480, 6.6× the next attack for a seventh of the
+price) is excluded when measuring the source distribution, so one broken row
+cannot stretch the scale for everyone. It is still cast — it just no longer
+defines the maximum.
+
+### Tooling
+
+- `validate_scenario.py` gate 28: no combat stat may collapse to a single value
+  across the roster, and none may exceed stock CTP2's own maximum. Proven to
+  reject a re-flattened MaxHP before being trusted. A stat with one distinct
+  value is a dropped column, not balance.
+
 ## [3.7.0] — 2026-08-02 — summoning costs what building costs
 
 **Minor.** Behavioural. Old saves are unaffected because they cache compiled

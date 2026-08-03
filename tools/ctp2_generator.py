@@ -355,6 +355,95 @@ def _parse_move(s: str) -> int:
     return int(float(s.strip()) * 100)
 
 
+# --------------------------------------------------------------------------
+# STAT RANK-CAST
+#
+# The civ2 source and CTP2 use different magnitudes for the same concepts
+# (civ2 attack runs 1..15, CTP2's own units run 10..100), so the port has to
+# rescale. It used to do that with a flat multiplier -- `attack_raw * 5`,
+# `max(5, def_raw * 5)`, `hp = 10` -- and that is what produced the balance the
+# operator reported:
+#
+#   * LINEAR MULTIPLY LETS THE TOP RUN AWAY. civ2's attack median is 5.5, so
+#     x5 pins most of the roster at 5-30 while a 15a Great Wyrm reaches 75. The
+#     gap between a dragon and an army grows without bound instead of saturating.
+#   * A FLOOR CRUSHES THE BOTTOM. civ2's defense median is 2-3, so `max(5, d*5)`
+#     put nearly every buildable unit at 5-15 and threw away the real spread the
+#     source has (built units run 0d-8d: War Troll 5d, Iron Golem 5d, Ariel 8d).
+#   * hp_raw WAS PARSED AND DISCARDED. Every unit shipped MaxHP 10, so civ2's
+#     own durability axis -- 1h Spearmen through 6h Great Wyrm -- was lost. The
+#     engine does honour MaxHP (UnitData.cpp:6256), stock simply never varies it.
+#
+# The replacement places each unit by its RANK POSITION within the civ2
+# distribution and re-casts that onto the CTP2 target range, anchored so source
+# min/median/max land exactly on target min/median/max. Ordering is the
+# designer's; only the range and the curve are ours.
+#
+# The warp is smoothstep, w = p^2 * (3 - 2p). Its GRADIENT rises to a peak at the
+# midpoint and decays after -- power climbs steeply out of the trash tier and
+# then saturates, so massed cheap units stay relevant against a top-tier
+# creature. That is the shape asked for: S-curve up to a peak, decay past it.
+#
+# Require: MOD_POLICY["unit_stat_scaling"]["stat_curve"] carries a [min, median,
+#   max] target per axis and a source_outlier_cutoff.
+# Guarantee: returns an int within the axis target range; monotonic in `raw`, so
+#   a unit stronger in the source is never weaker in the output.
+# --------------------------------------------------------------------------
+_STAT_SOURCE_CACHE: dict[str, tuple[float, float, float]] = {}
+
+
+def _stat_source_dist(axis: str) -> tuple[float, float, float]:
+    """(min, median, max) of the civ2 values for `axis`, outliers excluded.
+
+    Measured from the control plane itself rather than hardcoded, so editing
+    units.csv reshapes the scale instead of silently disagreeing with it. The
+    cutoff keeps one broken row from stretching the range for all 63 units --
+    Infernal Device is 99a where the next attack is 15a.
+    """
+    if axis in _STAT_SOURCE_CACHE:
+        return _STAT_SOURCE_CACHE[axis]
+    import statistics as _st
+    cut = int(MOD_POLICY["unit_stat_scaling"]["stat_curve"]["source_outlier_cutoff"])
+    vals = []
+    for row in _policy_csv_rows("units.csv"):
+        name = (row.get("name") or "").strip()
+        if not name or name.lower() == "blah":
+            continue
+        if len(name) == 2 and name[0].upper() == "B" and name[1].isdigit():
+            continue
+        v = _parse_int_stat(row.get(axis, "") or "0")
+        if 0 < v < cut:
+            vals.append(v)
+    if not vals:                      # degenerate control plane; caller floors it
+        vals = [1]
+    dist = (float(min(vals)), float(_st.median(vals)), float(max(vals)))
+    _STAT_SOURCE_CACHE[axis] = dist
+    return dist
+
+
+def _stat_cast(raw: int, axis: str) -> int:
+    """Cast one civ2 stat onto its CTP2 target range by rank position."""
+    lo, mid, hi = _stat_source_dist(axis)
+    tlo, tmid, thi = (float(x) for x in
+                      MOD_POLICY["unit_stat_scaling"]["stat_curve"][axis])
+    if raw <= lo or hi == lo:
+        p = 0.0
+    elif raw >= hi:
+        p = 1.0
+    elif raw <= mid:
+        # Two half-ranges so the SOURCE median lands exactly on the TARGET
+        # median. A single min->max interpolation would drift the middle
+        # wherever the distribution happens to be skewed, and civ2's stats are
+        # heavily bottom-skewed (attack median 5.5 against a max of 15).
+        p = 0.5 * (raw - lo) / (mid - lo) if mid > lo else 0.0
+    else:
+        p = 0.5 + 0.5 * (raw - mid) / (hi - mid) if hi > mid else 1.0
+    w = p * p * (3.0 - 2.0 * p)
+    out = (tlo + (tmid - tlo) * (w / 0.5) if w <= 0.5
+           else tmid + (thi - tmid) * ((w - 0.5) / 0.5))
+    return int(round(out))
+
+
 _AVAILABLE_SPRITES_CACHE = None
 
 
@@ -4750,10 +4839,11 @@ def main():
             fp_raw     = _parse_int_stat(row['firepower'])
             cost_raw   = int(row['cost'].strip() or '1')
             prereq     = row['prereq'].strip()
-            # Scale to CTP2 internal units (per-mod policy: unit_stat_scaling)
+            # Scale to CTP2 internal units (per-mod policy: unit_stat_scaling).
+            # RANK-CAST, not a linear multiply -- see _stat_cast().
             _scal = MOD_POLICY["unit_stat_scaling"]
-            attack     = attack_raw * int(_scal["attack_mult"])
-            defense    = max(int(_scal["defense_min"]), def_raw * int(_scal["defense_mult"]))
+            attack     = _stat_cast(attack_raw, "attack")
+            defense    = _stat_cast(def_raw,    "defense")
             shield_cost = cost_raw * int(_scal["shield_cost_mult"])
             shield_hunger = max(int(_scal["shield_hunger_min"]),
                                 cost_raw // int(_scal["shield_hunger_div"]))
@@ -4794,8 +4884,8 @@ def main():
                 ident=ident, name=name, category=category,
                 attack=attack, defense=defense,
                 sprite=sprite, desc=f"{name}: a {MOD_DISPLAY_NAME} unit.",
-                advance=advance, move=move, hp=int(_scal["hp"]),
-                firepower=max(int(_scal["firepower_min"]), fp_raw), armor=1, zbrange=0,
+                advance=advance, move=move, hp=_stat_cast(hp_raw, "hp"),
+                firepower=_stat_cast(fp_raw, "firepower"), armor=1, zbrange=0,
                 shield_cost=shield_cost, shield_hunger=shield_hunger,
                 gold_hunger=0, sound_set=sound_set,
                 domain=domain, size=size,

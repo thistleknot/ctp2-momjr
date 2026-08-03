@@ -305,6 +305,61 @@ def check_mana_upkeep(scen: Path, fails: list[str]) -> None:
     fails.extend(U.check(scen, _momjr_csv()))
 
 
+def check_stat_spread(scen: Path, fails: list[str]) -> None:
+    """Gate 28: no combat stat may collapse to a single value across the roster.
+
+    MaxHP shipped as a CONSTANT 10 on every unit for the whole life of this mod.
+    civ2 MOMJR carries a real durability axis -- 1h Spearmen through 6h Great
+    Wyrm -- and the port parsed `hp` only to pick a sprite size, then wrote a
+    literal. Nothing dangled, every gate passed, and the axis was simply absent:
+    a dragon died as fast as a peasant.
+
+    A stat with one distinct value is not balance, it is a dropped column. This
+    asserts each axis keeps a spread, so a future refactor cannot quietly put the
+    literal back.
+
+    Also asserts no value exceeds what stock CTP2 itself ships, so the rescale
+    cannot wander into ranges the engine's combat maths and the AI's own unit
+    evaluation have never seen.
+    """
+    import re as _re
+    path = scen / "default/gamedata/Units.txt"
+    if not path.exists():
+        return
+    txt = path.read_text(encoding="latin-1", errors="replace")
+
+    def _stat(block: str, key: str) -> int:
+        m = _re.search(rf"^\s*{key}\s+([0-9]+)", block, _re.M)
+        return int(m.group(1)) if m else 0
+
+    rows = []
+    for m in _re.finditer(r"^(UNIT_[A-Z0-9_]+) \{(.*?)^\}", txt, _re.S | _re.M):
+        b = m.group(2)
+        if _stat(b, "Attack") > 0:
+            rows.append((m.group(1), _stat(b, "Attack"), _stat(b, "Defense"),
+                         _stat(b, "MaxHP"), _stat(b, "Firepower")))
+    if len(rows) < 10:
+        return
+
+    # Stock CTP2's own maxima -- the ceiling the engine already ships with.
+    CEIL = {"Attack": 1000, "Defense": 100, "MaxHP": 100, "Firepower": 6}
+    for idx, key in ((1, "Attack"), (2, "Defense"), (3, "MaxHP"), (4, "Firepower")):
+        vals = [r[idx] for r in rows if r[idx] > 0]
+        if not vals:
+            continue
+        if len(set(vals)) < 2:
+            fails.append(
+                f"Units.txt: {key} is a CONSTANT {vals[0]} across {len(vals)} "
+                "units -- the axis has been dropped, not balanced; civ2 carries "
+                "a real spread for it")
+        over = [r[0] for r in rows if r[idx] > CEIL[key]]
+        if over:
+            fails.append(
+                f"Units.txt: {key} exceeds stock CTP2's maximum {CEIL[key]} on "
+                f"{', '.join(over[:4])} -- outside any range the engine has been "
+                "exercised at")
+
+
 def _momjr_csv() -> Path:
     return TOOLS_DIR / "momjr_csv"
 
@@ -1210,6 +1265,7 @@ def main() -> int:
     check_wonder_articles(scen, fails)
     check_ai_magic(scen, fails)
     check_mana_upkeep(scen, fails)
+    check_stat_spread(scen, fails)
 
     if fails:
         for f in fails:

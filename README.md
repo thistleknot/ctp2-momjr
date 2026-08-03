@@ -1,7 +1,16 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v3.7.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v3.8.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
+
+> **What 3.8 fixes — a dragon is finally tougher than a peasant.** Unit stats
+> were rescaled from civ2 with flat multipliers, which let the top run away, and
+> `MaxHP` was written as the literal 10 on every single unit — civ2's own
+> durability axis (1h Spearmen to 6h Great Wyrm) was parsed and thrown away.
+> Stats are now **rank-cast**: each unit keeps its position in the source
+> ordering and is re-cast onto stock CTP2's range through an S-curve that
+> saturates at the top. Great Wyrm 100/87/60, Spearmen 10/10/10 — and War Troll,
+> a unit you *build*, comes out 54/43/35. See `CHANGELOG.md`.
 
 > **What 3.7 fixes — summoning no longer skips the tech tree.** A Warbears cost
 > 1970 science to *build* and 0 science to *summon*, because the summon roll
