@@ -16,10 +16,10 @@ description: 'Cast numeric unit/entity stats between game mods by rank-transplan
 - :TargetDistribution: is the multiset the destination game's *stock* entities
   take on the corresponding axis. It is the evidence for what the destination
   engine has actually been exercised at.
-- :MomentVector: is `(mean, sdev, skew, kurtosis, median, MAD)` — the first four
-  moments plus a robust location/scale pair. It is the **contract**, not the
-  mechanism. Median and MAD are carried alongside the moments because the moments
-  are not robust: one outlier moved stock CTP2's attack skew from 0.46 to 6.22.
+- :ShapeSummary: is `(L-location, L-scale, L-skew, L-kurtosis)` — Hosking's
+  L-moments, linear combinations of ORDER STATISTICS. It is **diagnostic
+  reporting only**, never the contract. Conventional moments are not used: see
+  the note under the mechanism requirement.
 - :Copula: is the joint rank structure across axes — which entities are glass
   cannons, which are walls. Formally the dependence function once each margin is
   mapped to uniform by its own rank. It is what makes a unit *coherent*, and it
@@ -54,27 +54,41 @@ perfect while the units they describe are incoherent.
 > the rank representation *is* the empirical copula. The residual is integer
 > rounding and ties collapsing at the range bounds.
 
-**The cast SHALL report its :MomentVector: against the target's, per
-:AgeStratum:.** Moments are the reporting contract. They are compared like with
-like — a MoM unit gated on an age-3 advance is measured against stock's age-3
-distribution, not against a global range that spans a warrior and a nuke.
+**The cast SHALL report its :ShapeSummary: per :AgeStratum:, as a DIAGNOSTIC.**
+Compared like with like — a MoM unit gated on an age-3 advance against stock's
+age-3 distribution, not against a global range spanning a warrior and a nuke. A
+divergence is a prompt to look, not a failure.
+
+> CONVENTIONAL MOMENTS ARE NOT A CONTRACT, and an earlier draft of this spec was
+> wrong to make them one. `UNIT_NUKE` at attack 1000 is not measurement error —
+> it is a real unit that is SUPPOSED to be off-scale. The question is not "remove
+> the outlier" but "which statistic am I willing to let one unit control", and
+> skew and kurtosis are exactly that statistic.
+>
+> MEASURED, n=46: excess kurtosis is **41.02** whether the outlier sits at 10x,
+> 1000x, or 1,000,000x — identical to four significant figures. It saturates
+> against an order-statistic ceiling of n-2 = 44. Stock CTP2's attack kurtosis of
+> 38.16 is 87% of the maximum a sample that size can express, so it reports the
+> SAMPLE SIZE, not the design. Matching it would be matching n.
+>
+> L-moments are used instead because they carry no fourth-power term for one
+> entity to dominate: conventional skew swings 13.5x with and without the nuke,
+> L-skew swings 4.5x and is bounded to [-1,1] by construction (Hosking 1990).
 
 **The cast SHALL NOT exceed the target's observed range.** No output value may
 fall outside `[min, max]` of the :TargetDistribution:. Beyond that range the
 destination engine's combat maths and its AI's own unit evaluation are untested.
 
-**The mechanism SHALL be quantile transplant.** Map each entity's
-:RankPosition: to its percentile `p`, then take the :TargetDistribution:'s value
-at percentile `p`. This is monotone by construction (so rank is preserved by
-construction) and matches every moment by construction, rather than correcting
-moments one at a time and hoping monotonicity survives.
+**The mechanism SHALL be quantile transplant, and that IS the contract.** Map
+each entity's :RankPosition: to its percentile `p`, then take the
+:TargetDistribution:'s value at percentile `p`, interpolated. Shape matches
+exactly by construction, the map is monotone, and there is no estimator to break.
+An off-scale entity simply lands in the top slot.
 
-> Rejected alternative: standardise-and-reshape (Cornish–Fisher on skew and
-> kurtosis). It matches moments explicitly, which is appealing, but the
-> polynomial correction is **not monotone** for large |z| — it can invert the
-> order of the very top entities, which are precisely the ones the transplant
-> exists to place. Quantile transplant gets the same moments for free and cannot
-> reorder.
+> This is the probability integral transform, and in one dimension "quantile
+> mapping" and "copula mapping" are the SAME operation. Stating it directly is
+> the point: "change the units, keep the design" is a rank statement, and
+> approximating it through four summary numbers can only lose information.
 
 **A :DegenerateAxis: SHALL NOT be moment-matched.** With fewer than
 `min_distinct` source values there is no distribution to transplant; a percentile
@@ -146,23 +160,49 @@ Per-mod, in `mod_policy.json` under `unit_stat_scaling.stat_curve`:
 
 ***acceptance***
 
+**Assertions** — these fail the build:
+
 1. Rank order is preserved on every axis — assert pairwise for all entities.
-1b. :Copula: drift <= `copula_tolerance` across every axis pair.
-2. Output :MomentVector: matches the :TargetDistribution: within
-   `moment_tolerance`, per axis, reported as a table.
+2. :Copula: drift <= `copula_tolerance` across every axis pair, measured with
+   **Spearman**, never Pearson.
 3. No output exceeds the target's observed `[min, max]`.
 4. No axis collapses to a single distinct value (`validate_scenario.py` gate 28).
 5. The generator remains byte-stable across two consecutive runs.
 
+**Diagnostics** — these are reported and looked at, and fail nothing:
+
+6. :ShapeSummary: per axis per :AgeStratum:, source beside output beside target.
+   A divergence is a prompt to investigate, not a build failure — the cast's
+   correctness is defined by 1–3, which quantile transplant satisfies by
+   construction. Reporting shape is how a BAD TARGET gets noticed (a stratum with
+   two entities, an axis that is degenerate in one game and rich in the other),
+   not how the cast is judged.
+
 ***rejected***
 
-- **Box-Cox normalisation before matching.** It would matter if moments were
-  fitted parametrically. Rank transplant is distribution-free, so normalising
-  first buys nothing and adds a transform to invert.
-- **Cornish-Fisher moment correction.** Matches skew and kurtosis explicitly, but
-  the polynomial is not monotone for large |z| — it can reorder the top
-  entities, breaking both rank preservation and the :Copula:. The whole point of
-  the transplant is that those entities keep their place.
+- **Matching conventional moments.** Skew and kurtosis saturate against an
+  order-statistic bound at these sample sizes; see the measurement above. They
+  describe n, not the design.
+- **Box-Cox / Yeo-Johnson before matching.** Only relevant if moments are fitted
+  parametrically. Rank transplant is distribution-free. The deeper catch: moments
+  matched in transformed space do NOT stay matched after inverting.
+- **Cornish-Fisher moment correction.** Not monotone for large |z|, so it can
+  reorder exactly the top entities the transplant exists to place — breaking both
+  rank order and the :Copula:.
+- **ZCA / whitening.** Affine (`W = V L^-1/2 V^T`), so it touches variance and
+  correlation ONLY; standardised third and fourth moments pass through unchanged
+  and the off-scale entity is still far out the other side. Different problem.
+- **NORTA / Iman-Conover.** The right tool for IMPOSING a target dependence
+  structure. This cast wants the opposite — to PRESERVE the source's, which is
+  what "keep the design" means, and which per-axis rank transplant already
+  delivers (measured drift 0.014). Adopt NORTA only if the goal ever inverts to
+  giving ported entities the destination game's correlation structure.
+
+***cautions***
+
+- **Assert the :Copula: on Spearman or Kendall, never Pearson.** Pearson is NOT
+  preserved under a rank transform; rank correlations are. Asserting on Pearson
+  would measure a number that changes the moment the marginals are remapped.
 
 ***open***
 
