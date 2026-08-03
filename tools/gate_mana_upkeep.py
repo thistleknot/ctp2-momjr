@@ -678,6 +678,76 @@ def _a13_summon_price_scales(srcs: dict[str, str]) -> list[str]:
     return fails
 
 
+def _a14_fixed_anchor(srcs: dict[str, str]) -> list[str]:
+    """Assertion 14: the mana subsystem obeys specs/fixed-anchor-scaling.md.
+
+    ONE value is held constant -- the 200 pool -- and every other number is
+    expressed against it. The point is identifiability before balance: if the
+    pool may vary AND prices may vary, then (pool x k, prices x k) is the same
+    game, so the parameter space has a direction along which nothing observable
+    changes. That free parameter cannot be measured and makes two runs
+    incomparable. The anchor is the reference level that removes it.
+
+    Four checks, each a defect this mod actually shipped:
+
+      1. ONE anchor, identical for every civ. Caps used to run 200/220/260/240/
+         300, which handed the price ceiling to whichever civ had the smallest.
+      2. No price exceeds anchor * headroom, so a civ's own best creature is
+         never priced out of its own pool.
+      3. Every civ can afford its own maximum -- a price a peer cannot reach is
+         a feature deleted for that peer, silently.
+      4. NO TWO DIALS MAY RANK THE CIVS THE SAME WAY. Independent dials add;
+         correlated dials multiply. Pool capacity and the generation multiplier
+         used to rank the civs identically, so Chaos held 50% more mana AND
+         earned 40% faster -- neither number looking wrong on its own.
+    """
+    ANCHOR, HEADROOM, RUNGS = 200, 0.90, 5
+    fails: list[str] = []
+    src = srcs.get("mom_magic.slc", "")
+    if not src:
+        return fails
+    civs = ["Life", "Nature", "Sorcery", "Death", "Chaos"]
+
+    def dial(key: str) -> dict[str, int]:
+        out = {}
+        for c in civs:
+            m = re.search(rf"MomPlayerIs{c}\(p\).*?{key}\[p\] = (\d+);", src, re.S)
+            if m:
+                out[c] = int(m.group(1))
+        return out
+
+    cap, gen, price = dial("MomMagicMax"), dial("MomMagicSchoolPct"), dial("MomSummonCivPct")
+    if len(cap) == len(civs) and set(cap.values()) != {ANCHOR}:
+        fails.append(
+            f"mom_magic.slc: the mana pool is the ANCHOR and must be {ANCHOR} for "
+            f"every civ, found {cap} -- a per-civ anchor hands the price ceiling "
+            "to the smallest one and makes runs incomparable")
+    if len(price) == len(civs):
+        top = max(((45 + 30 * RUNGS) * p) // 100 for p in price.values())
+        if top > ANCHOR * HEADROOM:
+            fails.append(
+                f"mom_magic.slc: dearest summon {top} exceeds anchor*headroom "
+                f"{int(ANCHOR * HEADROOM)} -- recompress the map, do not raise the anchor")
+        for c, p in price.items():
+            if ((45 + 30 * RUNGS) * p) // 100 > ANCHOR:
+                fails.append(
+                    f"mom_magic.slc: {c} cannot afford its own rung-5 creature within "
+                    f"the {ANCHOR} pool -- that feature is deleted for {c}")
+    if len(gen) == len(civs) and len(price) == len(civs):
+        xs = [sorted(price.values()).index(price[c]) for c in civs]
+        ys = [sorted(gen.values()).index(gen[c]) for c in civs]
+        n = len(civs)
+        mx, my = sum(xs) / n, sum(ys) / n
+        den = ((sum((x - mx) ** 2 for x in xs) * sum((y - my) ** 2 for y in ys)) ** 0.5)
+        r = (sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / den) if den else 0.0
+        if abs(r) >= 0.6:
+            fails.append(
+                f"mom_magic.slc: the price and generation dials rank the civs the same "
+                f"way (Spearman {r:+.2f}) -- correlated dials compound into a dominant "
+                "tribe instead of adding")
+    return fails
+
+
 def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     """Return a list of violation strings; empty means the gate passes."""
     srcs = _sources(scen)
@@ -698,6 +768,7 @@ def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     fails += _a11_cheap_spend_cannot_starve_summon(srcs)
     fails += _a12_no_rung_floor(srcs)
     fails += _a13_summon_price_scales(srcs)
+    fails += _a14_fixed_anchor(srcs)
     return fails
 
 
