@@ -647,12 +647,22 @@ def _a13_summon_price_scales(srcs: dict[str, str]) -> list[str]:
     was missed, which is exactly how a flat price comes back one site at a time.
     """
     fails: list[str] = []
+    # The full expression, both dials: (45 + 30*rung) * civ percent / 100.
+    # Matching only the rung half would let the civ scale be dropped from one
+    # site while the gate still passed -- and a gate that a partial edit slips
+    # through is the same shape as the flat rate it replaced.
     price = re.compile(r"45\s*\+\s*30\s*\*")
+    civ = re.compile(r"MomSummonCivPct\[")
     for mod, what in (("mom_msg.slc", "human"), ("mom_ai_magic.slc", "AI")):
         src = srcs.get(mod, "")
         if not src:
             continue
         body = re.sub(r"//[^\r\n]*", "", src)
+        if len(civ.findall(body)) < len(price.findall(body)):
+            fails.append(
+                f"{mod}: the {what} path applies the rung curve at more sites than "
+                "it applies MomSummonCivPct -- every price must carry BOTH dials, "
+                "or one civ silently pays the unscaled base curve")
         if len(price.findall(body)) < 2:
             fails.append(
                 f"{mod}: the {what} path should price a summon with the shared "

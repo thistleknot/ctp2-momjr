@@ -9,6 +9,75 @@ noise is not a change.
 
 ---
 
+## [3.11.0] — 2026-08-03 — a fixed pool, and a price that varies by tribe
+
+**Minor.** Gameplay. Requires a NEW game: saves cache compiled SLIC.
+
+### The anchor
+
+**Every civ's mana pool is now a fixed 200.** It used to vary — Life 200 /
+Nature 220 / Sorcery 260 / Death 240 / Chaos 300 — and it varied *in the same
+direction* as the generation multiplier (`MomMagicSchoolPct` 100/110/125/115/140),
+so Chaos held 50% more mana AND earned 40% faster: two advantages stacking
+multiplicatively. Worse, the SMALLEST cap silently dictated the price ceiling for
+everyone.
+
+A fixed pool decouples the dials and gives one constant to express every other
+number against — the player always knows they have 200, and every cost is legible
+as a fraction of it.
+
+### Changed
+
+- **Summon price = `(45 + 30 * rung) * MomSummonCivPct / 100`.** The rung curve
+  shipped in 3.10.0 is unchanged and still does the work it did; the civ
+  percentage multiplies on top of it.
+
+  | civ | pct | r1 | r2 | r3 | r4 | r5 | r5 as % of pool |
+  |---|---|---|---|---|---|---|---|
+  | Chaos | 92 | 69 | 96 | 124 | 151 | 179 | 90% |
+  | Nature | 68 | 51 | 71 | 91 | 112 | 132 | 66% |
+  | Life | 64 | 48 | 67 | 86 | 105 | 124 | 62% |
+  | Sorcery | 54 | 40 | 56 | 72 | 89 | 105 | 53% |
+  | Death | 54 | 40 | 56 | 72 | 89 | 105 | 53% |
+
+  **The percentages are derived, not chosen.** Each is that sphere's own roster
+  cost at equal rung against the all-sphere mean (Chaos creatures are 1.39x the
+  mean, Death 0.81x), rescaled so the dearest civ's rung-5 creature costs 179 —
+  90% of the fixed pool. Cheapest summon in the game is 40, dearest 179, and every
+  civ can afford its own best creature.
+
+  **Two dials, deliberately separable.** RUNG is knowable before you click — it is
+  your own ladder position. CIV is a fixed property of your tribe. What the roll
+  *returns* stays unknown; that is the spin, and it is not the price.
+
+  Death and Sorcery land on the same 54 because their rosters genuinely cost the
+  same at equal rung. Their distinction is meant to come from other dials, not
+  from a number invented to separate them.
+
+### Fixed
+
+- Corrects a claim in the 3.10.0 entry: the 195 ceiling was justified there by the
+  per-sphere caps, which no longer exist. The ceiling is now set by the fixed 200
+  pool and the dearest civ percentage.
+
+### Added (gates)
+
+- `gate_mana_upkeep.py` assertion 13 extended: every site applying the rung curve
+  must also apply `MomSummonCivPct`. Proven by removing the civ scale from one of
+  the four sites and watching it fail — matching only the rung half would let a
+  partial edit through, which is the same shape as the flat rate it replaced.
+
+### Verified
+
+In-frame at 3900BC, playing Life (pct 64) at rung 1: *"You begin the summoning...
+Mana: 22 / 200"* — `75 * 64 / 100 = 48` charged against a 200 cap. All five pools
+read under 200.
+
+Rungs 2-5 remain unobserved; they are thousands of science away and out of reach
+of a short run.
+
+---
+
 ## [3.10.0] — 2026-08-03 — a summon costs what it is worth
 
 **Minor.** Gameplay. Requires a NEW game: saves cache compiled SLIC.

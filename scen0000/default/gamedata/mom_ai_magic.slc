@@ -72,8 +72,9 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
         roll = Random(100);
 
         // The ladder, cheapest test first. Thresholds are the SAME prices the
-        // human pays -- 75 to summon, 50 for a working -- so the AI is playing
-        // the same economy rather than a discounted one. Below 50 it banks,
+        // human pays -- the shared rung x civ expression to summon, 50 for a
+        // working -- so the AI plays the same economy rather than a discounted
+        // one. Below the summon price it banks,
         // which is what makes a later summon possible at all.
         // MomSummonPrep == 0 is the same one-at-a-time rule the human's button
         // enforces. Without it the AI would re-commit 75 mana every turn while a
@@ -86,7 +87,7 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
         // the player; when these two drifted on the UPKEEP rate it produced an
         // AI that could afford what a human could not, which is the defect gate
         // 27 assertion 10 exists to catch.
-        if (MomMagicCur[p] >= 45 + 30 * MomSphereRung[p] && MomSummonPrep[p] == 0
+        if (MomMagicCur[p] >= ((45 + 30 * MomSphereRung[p]) * MomSummonCivPct[p]) / 100 && MomSummonPrep[p] == 0
             && (atWar == 1 || roll < 70)) {
             // The default sink, and the aggressive choice. At war it always
             // prefers a creature; at peace it summons most of the time and
@@ -114,9 +115,9 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
             if (CityIsValid(tmpCity) && pick != 0) {
                 // pickRung is floored to >= 1 below before it is stored, so
                 // floor it HERE too -- the debit must not read a rung of 0 and
-                // hand a creature over for 45 mana.
+                // hand a creature over at the curve's intercept.
                 if (pickRung < 1) { pickRung = 1; }
-                MomMagicCur[p] = MomMagicCur[p] - (45 + 30 * pickRung);
+                MomMagicCur[p] = MomMagicCur[p] - (((45 + 30 * pickRung) * MomSummonCivPct[p]) / 100);
                 // PREPARATION (2026-08-01): the AI no longer spawns here. It
                 // commits the mana and starts the same countdown the human uses,
                 // and MomSummonOrderTick's arrival branch (mom_msg.slc) does the

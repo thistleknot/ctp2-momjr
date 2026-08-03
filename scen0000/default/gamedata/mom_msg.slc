@@ -80,7 +80,7 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     city_t tmpCity;
 
     p = player[0];
-    // COST 75 (added 2026-07-26). The order is placed at click time and PAID here,
+    // The order is placed at click time and PAID here,
     // at spawn time, so the pool is only debited when a creature actually appears.
     // Re-checking the balance is not redundant with the button-body check: the
     // only thing that can move the pool between the two is MomMagicPoolTick's
@@ -98,11 +98,25 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     // pushed play the wrong way: summoning was poor value at rung 1 and absurd
     // value at rung 5.
     //
-    // THE CEILING IS 195 AND IT IS NOT ARBITRARY. MomMagicSchoolGrant caps the
-    // pool per sphere at Life 200 / Nature 220 / Sorcery 260 / Chaos 300. A
-    // curve topping above 200 would make rung 5 literally unaffordable for Life
-    // -- its pool cannot hold the price -- so 195 is the largest step that keeps
-    // every sphere able to reach its own best creature.
+    // THEN SCALED PER CIV: * MomSummonCivPct / 100, Life 64 / Nature 68 /
+    // Sorcery 54 / Death 54 / Chaos 92. Two dials, deliberately separable --
+    // RUNG is what the player can know before clicking (it is their own ladder
+    // position), and CIV is a fixed property of the tribe. Which creature the
+    // roll returns stays unknown; that is the spin, and it is not the price.
+    //
+    // THE POOL IS A FIXED 200 FOR EVERY CIV and that is the anchor the whole
+    // economy is measured against. It used to vary (Life 200 / Nature 220 /
+    // Sorcery 260 / Death 240 / Chaos 300) AND correlate with the generation
+    // multiplier, so Chaos got 140% income and a 50% bigger bank -- two
+    // advantages stacking multiplicatively. Worse, the SMALLEST cap silently
+    // dictated the price ceiling for everyone. Fixing the pool decouples the
+    // dials and gives a constant to express every other number against.
+    //
+    // The percentages are DERIVED, not chosen: each sphere's own roster cost at
+    // equal rung (Chaos creatures are 1.39x the all-sphere mean, Death 0.81x),
+    // rescaled so the dearest civ's rung-5 creature costs 179 -- 90% of the
+    // fixed pool. Cheapest summon in the game is 40, dearest 179, and every civ
+    // can afford its own best creature.
     //
     // THE GATE USES THE LADDER RUNG, THE DEBIT USES THE ROLLED RUNG. The roll
     // can return any creature at or below the caster's rung, so requiring
@@ -111,7 +125,7 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     // then pay for what you actually got, not for what you might have got.
     if (p >= 1 && p <= 5 && MomSummonChoice[p] != 0 && MomSummonPrep[p] == 0
         && player[0].cities > 0
-        && MomMagicCur[p] >= 45 + 30 * MomSphereRung[p]) {
+        && MomMagicCur[p] >= ((45 + 30 * MomSphereRung[p]) * MomSummonCivPct[p]) / 100) {
         GetCityByIndex(player[0], 0, tmpCity);
         // Roll BEFORE the debit, and gate the debit on it. MomSummonRoll returns
         // 0 when the caster has not reached rung 1 of its own ladder, and
@@ -121,14 +135,14 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
         summonRung = MomSummonRungOf(summonPick);
         // Floor BEFORE the debit so price and countdown read the same rung. A
         // creature reporting rung 0 is charged and timed as rung 1 rather than
-        // being handed out for 45 mana on a zero-turn wait.
+        // being handed over at the curve's intercept on a zero-turn wait.
         if (summonRung < 1) { summonRung = 1; }
         if (CityIsValid(tmpCity) && summonPick != 0) {
             // Mana is committed the moment preparation STARTS, not on arrival.
             // Paying at arrival would let the pool be spent elsewhere while the
             // creature was notionally on its way, and there is no cancel, so the
             // commitment has to bite immediately or it is not a commitment.
-            MomMagicCur[p] = MomMagicCur[p] - (45 + 30 * summonRung);
+            MomMagicCur[p] = MomMagicCur[p] - (((45 + 30 * summonRung) * MomSummonCivPct[p]) / 100);
 
             // The countdown IS the creature's rung: 1 turn for a rung-1 Warbears
             // (unchanged from the old instant-next-turn behaviour) up to 5 for a
@@ -442,7 +456,7 @@ alertbox 'MagicMenu' {
 		// or the button accepts an order the commit then refuses, which reads
 		// to the player as the arm doing nothing. That divergence class already
 		// bit this mod once on the upkeep rate and is what gate 27 watches for.
-		} elseif (MomMagicCur[g.player] >= 45 + 30 * MomSphereRung[g.player]) {
+		} elseif (MomMagicCur[g.player] >= ((45 + 30 * MomSphereRung[g.player]) * MomSummonCivPct[g.player]) / 100) {
 			MomSummonChoice[g.player] = 1;
 		} else {
 			Message(g.player, 'MomSummonNoMana');

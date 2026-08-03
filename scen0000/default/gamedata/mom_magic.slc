@@ -113,6 +113,13 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
         MomUpkeepRate = 2;
     }
     if (mp_1 >= 1 && mp_1 <= 5) {
+        // Same lazy-seed idiom as MomUpkeepRate above, and for the same
+        // reason: SLIC globals start at 0, and a 0 percent would make every
+        // summon FREE. 100 means 'pay the base rung curve', so an unseeded
+        // player is merely un-discounted rather than exploitable.
+        if (MomSummonCivPct[mp_1] == 0) {
+            MomSummonCivPct[mp_1] = 100;
+        }
         base = (mp_1 - 1) * 32;
         for (i = 0; i < 32; i = i + 1) {
             idx = base + i;
@@ -296,7 +303,7 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
             // moment price scaled with rung -- a button that misquotes its own
             // price is worse than one that quotes none. Same expression as the
             // click gate and the AI gate: 45 + 30*ladder rung.
-            MomSummonCostDisp = 45 + 30 * MomSphereRung[p];
+            MomSummonCostDisp = ((45 + 30 * MomSphereRung[p]) * MomSummonCivPct[p]) / 100;
         }
 
         // Periodic popup every 10 rounds: REMOVED 2026-07-25, redundant and harmful.
@@ -334,22 +341,27 @@ HandleEvent(GrantAdvance) 'MomMagicSchoolGrant' post {
     if (MomPlayerIsLife(p) && value[0] == AdvanceDB(ADVANCE_LIFE_MAGIC)) {
         MomMagicSchoolPct[p] = 100;
         MomMagicMax[p] = 200;
+        MomSummonCivPct[p] = 64;
         granted = 1;
     } elseif (MomPlayerIsNature(p) && value[0] == AdvanceDB(ADVANCE_NATURE_MAGIC)) {
         MomMagicSchoolPct[p] = 110;
-        MomMagicMax[p] = 220;
+        MomMagicMax[p] = 200;
+        MomSummonCivPct[p] = 68;
         granted = 1;
     } elseif (MomPlayerIsSorcery(p) && value[0] == AdvanceDB(ADVANCE_SORCERY)) {
         MomMagicSchoolPct[p] = 125;
-        MomMagicMax[p] = 260;
+        MomMagicMax[p] = 200;
+        MomSummonCivPct[p] = 54;
         granted = 1;
     } elseif (MomPlayerIsDeath(p) && value[0] == AdvanceDB(ADVANCE_DEATH_MAGIC)) {
         MomMagicSchoolPct[p] = 115;
-        MomMagicMax[p] = 240;
+        MomMagicMax[p] = 200;
+        MomSummonCivPct[p] = 54;
         granted = 1;
     } elseif (MomPlayerIsChaos(p) && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGIC)) {
         MomMagicSchoolPct[p] = 140;
-        MomMagicMax[p] = 300;
+        MomMagicMax[p] = 200;
+        MomSummonCivPct[p] = 92;
         granted = 1;
     }
 

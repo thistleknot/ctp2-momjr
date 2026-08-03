@@ -410,6 +410,13 @@ int_t MomSummonPrep[31];     // turns remaining; 0 == nothing preparing
 int_t MomSummonPending[31];  // the rolled unit type awaiting arrival
 int_t MomSummonPendRung[31]; // its rung, carried so arrival can ledger upkeep
 int_t MomPrepDisp;           // countdown scalar for the 'j' panel
+int_t MomSummonCivPct[31];   // per-civ summon price, as a PERCENT of the rung curve.
+                             // Life 64 / Nature 68 / Sorcery 54 / Death 54 / Chaos 92,
+                             // derived from each sphere's own roster cost at equal rung
+                             // and scaled so the dearest civ's rung-5 creature lands at
+                             // 90% of the fixed 200 pool. 0 is read as 100 by every
+                             // caller, so an unseeded player pays the base curve rather
+                             // than summoning for free.
 int_t MomSummonCostDisp;     // price the summon arm quotes: 45 + 30*rung.
                              // A scalar, not an array -- an undeclared scalar is
                              // silently auto-created and would read a permanent 0,
