@@ -89,29 +89,53 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
     // this negative. The check is a plain comparison at call depth 0.
     // COMMIT. An order only starts a preparation when nothing is already
     // preparing -- one at a time, so this is a plan and not a queue.
+    // PRICE SCALES WITH RUNG: 45 + 30*rung -> 75 / 105 / 135 / 165 / 195.
+    //
+    // It was a FLAT 75 for everything, which priced a 150-shield Phantom
+    // Warriors and a 4000-shield Storm Drake identically -- a 27x swing in what
+    // the same coin bought. Upkeep already scaled (rung * MomUpkeepRate) since
+    // v3.5.0, so acquisition was the missing half of that system, and the gap
+    // pushed play the wrong way: summoning was poor value at rung 1 and absurd
+    // value at rung 5.
+    //
+    // THE CEILING IS 195 AND IT IS NOT ARBITRARY. MomMagicSchoolGrant caps the
+    // pool per sphere at Life 200 / Nature 220 / Sorcery 260 / Chaos 300. A
+    // curve topping above 200 would make rung 5 literally unaffordable for Life
+    // -- its pool cannot hold the price -- so 195 is the largest step that keeps
+    // every sphere able to reach its own best creature.
+    //
+    // THE GATE USES THE LADDER RUNG, THE DEBIT USES THE ROLLED RUNG. The roll
+    // can return any creature at or below the caster's rung, so requiring
+    // 45+30*MomSphereRung up front means whatever comes back is affordable and
+    // a click can never be consumed by a summon that cannot be paid for. You
+    // then pay for what you actually got, not for what you might have got.
     if (p >= 1 && p <= 5 && MomSummonChoice[p] != 0 && MomSummonPrep[p] == 0
-        && player[0].cities > 0 && MomMagicCur[p] >= 75) {
+        && player[0].cities > 0
+        && MomMagicCur[p] >= 45 + 30 * MomSphereRung[p]) {
         GetCityByIndex(player[0], 0, tmpCity);
         // Roll BEFORE the debit, and gate the debit on it. MomSummonRoll returns
         // 0 when the caster has not reached rung 1 of its own ladder, and
-        // charging 75 mana for a creature that never appears would be a silent
+        // charging mana for a creature that never appears would be a silent
         // theft that looks exactly like a spawn that failed to render.
         summonPick = MomSummonRoll(p);
         summonRung = MomSummonRungOf(summonPick);
+        // Floor BEFORE the debit so price and countdown read the same rung. A
+        // creature reporting rung 0 is charged and timed as rung 1 rather than
+        // being handed out for 45 mana on a zero-turn wait.
+        if (summonRung < 1) { summonRung = 1; }
         if (CityIsValid(tmpCity) && summonPick != 0) {
             // Mana is committed the moment preparation STARTS, not on arrival.
             // Paying at arrival would let the pool be spent elsewhere while the
             // creature was notionally on its way, and there is no cancel, so the
             // commitment has to bite immediately or it is not a commitment.
-            MomMagicCur[p] = MomMagicCur[p] - 75;
+            MomMagicCur[p] = MomMagicCur[p] - (45 + 30 * summonRung);
 
             // The countdown IS the creature's rung: 1 turn for a rung-1 Warbears
             // (unchanged from the old instant-next-turn behaviour) up to 5 for a
-            // rung-5 Great Wyrm. Floored at 1 so a creature that somehow reports
-            // rung 0 still arrives rather than sticking forever at zero without
-            // ever passing through the arrival branch.
+            // rung-5 Great Wyrm. summonRung was floored to >= 1 above, before
+            // the debit, so the price and the wait always describe the same
+            // creature.
             MomSummonPendRung[p] = summonRung;
-            if (summonRung < 1) { MomSummonPendRung[p] = 1; }
             MomSummonPending[p] = summonPick;
             MomSummonPrep[p] = MomSummonPendRung[p];
             if (IsHumanPlayer(p)) {
@@ -413,7 +437,12 @@ alertbox 'MagicMenu' {
 			Message(g.player, 'MomSummonNoMagic');
 		} elseif (MomSummonPrep[g.player] > 0) {
 			Message(g.player, 'MomSummonBusy');
-		} elseif (MomMagicCur[g.player] >= 75) {
+		// SAME PRICE EXPRESSION AS THE COMMIT, deliberately. The click must
+		// demand exactly what the commit will demand -- 45 + 30*ladder rung --
+		// or the button accepts an order the commit then refuses, which reads
+		// to the player as the arm doing nothing. That divergence class already
+		// bit this mod once on the upkeep rate and is what gate 27 watches for.
+		} elseif (MomMagicCur[g.player] >= 45 + 30 * MomSphereRung[g.player]) {
 			MomSummonChoice[g.player] = 1;
 		} else {
 			Message(g.player, 'MomSummonNoMana');

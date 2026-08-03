@@ -625,6 +625,49 @@ def _a12_no_rung_floor(srcs: dict[str, str]) -> list[str]:
     return fails
 
 
+def _a13_summon_price_scales(srcs: dict[str, str]) -> list[str]:
+    """Assertion 13: the summon price scales with rung and is ONE expression.
+
+    It was a flat 75 for every creature, so a 150-shield Phantom Warriors and a
+    4000-shield Storm Drake cost the same -- a 27x swing in what the coin bought.
+    Upkeep had scaled by rung since v3.5.0, so acquisition was the missing half:
+    summoning was poor value at rung 1 and absurd value at rung 5.
+
+    Now 45 + 30*rung -> 75/105/135/165/195. The ceiling is load-bearing: pools
+    cap at Life 200 / Nature 220 / Sorcery 260 / Chaos 300, so a price above 200
+    would put rung 5 permanently out of Life's reach.
+
+    THE REAL RISK IS DIVERGENCE, not the formula. The human gate (mom_msg button
+    body), the human debit (MomSummonOrderTick), the AI gate and the AI debit
+    (mom_ai_magic) must all price the same creature the same way. When the two
+    sides drifted on the UPKEEP rate the AI could afford what the player could
+    not -- the defect assertion 10 exists for. This is that assertion for price.
+
+    A bare `75` surviving anywhere on the summon path means one of the four sites
+    was missed, which is exactly how a flat price comes back one site at a time.
+    """
+    fails: list[str] = []
+    price = re.compile(r"45\s*\+\s*30\s*\*")
+    for mod, what in (("mom_msg.slc", "human"), ("mom_ai_magic.slc", "AI")):
+        src = srcs.get(mod, "")
+        if not src:
+            continue
+        body = re.sub(r"//[^\r\n]*", "", src)
+        if len(price.findall(body)) < 2:
+            fails.append(
+                f"{mod}: the {what} path should price a summon with the shared "
+                "'45 + 30 * rung' expression at BOTH its gate and its debit -- "
+                "fewer than two occurrences means one site still charges a flat "
+                "rate, and gate and debit disagreeing is how a click gets "
+                "accepted and then silently refused")
+        for m in re.finditer(r"MomMagicCur\[[^\]]+\]\s*(?:>=|-)\s*75\b", body):
+            fails.append(
+                f"{mod}: `{m.group(0)}` is a flat 75 on the summon path -- price "
+                "must derive from the rung (45 + 30 * rung), or a rung-5 creature "
+                "costs what a rung-1 creature costs")
+    return fails
+
+
 def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     """Return a list of violation strings; empty means the gate passes."""
     srcs = _sources(scen)
@@ -644,6 +687,7 @@ def check(scen: Path, csv_dir: Path | None = None) -> list[str]:
     fails += _a10_rate_is_one_knob(srcs)
     fails += _a11_cheap_spend_cannot_starve_summon(srcs)
     fails += _a12_no_rung_floor(srcs)
+    fails += _a13_summon_price_scales(srcs)
     return fails
 
 

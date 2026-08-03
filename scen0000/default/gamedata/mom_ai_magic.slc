@@ -80,7 +80,13 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
         // creature was already on the way, overwriting its own pending creature
         // and paying repeatedly for a single arrival -- a silent mana leak that
         // would look exactly like the AI being poor.
-        if (MomMagicCur[p] >= 75 && MomSummonPrep[p] == 0
+        // PRICE SCALES WITH RUNG: 45 + 30*rung -> 75/105/135/165/195, the SAME
+        // expression the human pays in mom_msg.slc (gate on the ladder rung,
+        // debit the rolled rung). The AI must not play a cheaper economy than
+        // the player; when these two drifted on the UPKEEP rate it produced an
+        // AI that could afford what a human could not, which is the defect gate
+        // 27 assertion 10 exists to catch.
+        if (MomMagicCur[p] >= 45 + 30 * MomSphereRung[p] && MomSummonPrep[p] == 0
             && (atWar == 1 || roll < 70)) {
             // The default sink, and the aggressive choice. At war it always
             // prefers a creature; at peace it summons most of the time and
@@ -106,7 +112,11 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
                 pick = 0;
             }
             if (CityIsValid(tmpCity) && pick != 0) {
-                MomMagicCur[p] = MomMagicCur[p] - 75;
+                // pickRung is floored to >= 1 below before it is stored, so
+                // floor it HERE too -- the debit must not read a rung of 0 and
+                // hand a creature over for 45 mana.
+                if (pickRung < 1) { pickRung = 1; }
+                MomMagicCur[p] = MomMagicCur[p] - (45 + 30 * pickRung);
                 // PREPARATION (2026-08-01): the AI no longer spawns here. It
                 // commits the mana and starts the same countdown the human uses,
                 // and MomSummonOrderTick's arrival branch (mom_msg.slc) does the
@@ -118,8 +128,9 @@ HandleEvent(BeginTurn) 'MomAiMagicTick' post {
                 // free-land-neighbour search still applies: spawning on the city
                 // tile would stack the creature under the garrison, because CTP2
                 // draws one unit per tile ordered by MaxMovePoints.
+                // pickRung was floored to >= 1 at the debit above, so price,
+                // countdown and ledger all describe one rung.
                 MomSummonPendRung[p] = pickRung;
-                if (pickRung < 1) { MomSummonPendRung[p] = 1; }
                 MomSummonPending[p] = pick;
                 MomSummonPrep[p] = MomSummonPendRung[p];
             }

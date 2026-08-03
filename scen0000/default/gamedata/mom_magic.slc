@@ -291,6 +291,12 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
             // claiming "rung 1 of 5" while every summon silently fails was
             // reporting a capability that did not exist.
             MomRungDisp = MomSphereRung[p];
+            // The summon arm's LABEL reads this. It used to be the literal
+            // string "Summon Creature (75)", which stopped being true the
+            // moment price scaled with rung -- a button that misquotes its own
+            // price is worse than one that quotes none. Same expression as the
+            // click gate and the AI gate: 45 + 30*ladder rung.
+            MomSummonCostDisp = 45 + 30 * MomSphereRung[p];
         }
 
         // Periodic popup every 10 rounds: REMOVED 2026-07-25, redundant and harmful.

@@ -410,6 +410,10 @@ int_t MomSummonPrep[31];     // turns remaining; 0 == nothing preparing
 int_t MomSummonPending[31];  // the rolled unit type awaiting arrival
 int_t MomSummonPendRung[31]; // its rung, carried so arrival can ledger upkeep
 int_t MomPrepDisp;           // countdown scalar for the 'j' panel
+int_t MomSummonCostDisp;     // price the summon arm quotes: 45 + 30*rung.
+                             // A scalar, not an array -- an undeclared scalar is
+                             // silently auto-created and would read a permanent 0,
+                             // so the arm would advertise 'Summon Creature (0)'.
 
 int_t MomMagicShownTurn[31]; // per-round re-entry latch for the popup (flood safety)
 int_t MomMagicSchoolPct[31]; // per-turn multiplier as integer percent (M2); 0 read as 100

@@ -21,7 +21,7 @@ MOM_MSG_BLESS_CHAOS		"Chaos magic floods your coffers with an unpredictable wind
 MOM_MSG_MAGIC_POWER		"Magic Power: {MomMagicCurDisp} / {MomMagicMaxDisp}  (+{MomMagicGenDisp} per turn)"
 
 # Interactive magic menu (hotkey 'j' -> keypress.cpp hook -> SLIC segment 'MagicMenu')
-MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome {MomMagicGenDisp} - upkeep {MomUpkeepDisp} = {MomNetDisp} per turn\nSphere rung {MomRungDisp} of 5 - a summon rolls over every rung reached\nPreparing: {MomPrepDisp} turn(s) left  (0 = nothing on the way)"
+MOM_MSG_MAGIC_MENU		"MAGIC STATUS\n\nMana: {MomMagicCurDisp} / {MomMagicMaxDisp}\nIncome {MomMagicGenDisp} - upkeep {MomUpkeepDisp} = {MomNetDisp} per turn\nSphere rung {MomRungDisp} of 5 - a summon costs {MomSummonCostDisp} mana\nPreparing: {MomPrepDisp} turn(s) left  (0 = nothing on the way)"
 # The 'Preparing' line REPLACED the standing "upkeep is charged per creature, by its
 # rung" note rather than being added under it, for the fixed-height reason below --
 # the rate is still discoverable from the Income/upkeep arithmetic on the line above.
@@ -83,8 +83,8 @@ MOM_MSG_NOT_CHAOS		"Only a Chaos mage may summon demons."
 # working in the game that costs nothing. 75 sits above Flame Strike (50) and
 # below Demon Strike (100), and is reachable inside the base 100 cap, so no
 # sphere is locked out of it.
-MOM_MSG_BTN_SUMMON		"Summon Creature (75)"
-MOM_MSG_SUMMON_NOMANA		"You lack the mana for a summoning. A creature costs 75, and you hold {MomMagicCurDisp}."
+MOM_MSG_BTN_SUMMON		"Summon Creature"
+MOM_MSG_SUMMON_NOMANA		"You lack the mana for a summoning. A creature of your rung costs {MomSummonCostDisp}, and you hold {MomMagicCurDisp}."
 # These five NAME NO CREATURE on purpose. The summon used to be one fixed unit
 # per sphere, so naming it was safe; as of 2026-07-29 it rolls over every rung
 # the caster has unlocked, and a message reading "Warbears lumber out" while a

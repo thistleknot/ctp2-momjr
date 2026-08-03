@@ -9,6 +9,72 @@ noise is not a change.
 
 ---
 
+## [3.10.0] — 2026-08-03 — a summon costs what it is worth
+
+**Minor.** Gameplay. Requires a NEW game: saves cache compiled SLIC.
+
+### The defect
+
+Every summon cost a flat **75 mana**, at every rung:
+
+| rung | creature | shields | mana |
+|---|---|---|---|
+| 1 | Phantom Warriors | 150 | 75 |
+| 1 | Warbears | 350 | 75 |
+| 3 | Storm Giant | 1500 | 75 |
+| 5 | Storm Drake | 4000 | 75 |
+
+A **27x swing in value at one price**. Upkeep had scaled with rung since v3.5.0,
+so acquisition was the missing half of that system — and the gap pushed play the
+wrong way: summoning was poor value at rung 1 and absurd value at rung 5.
+
+### Changed
+
+- **Summon price is `45 + 30 * rung` → 75 / 105 / 135 / 165 / 195.**
+
+  The ceiling is load-bearing, not taste: `MomMagicSchoolGrant` caps pools at
+  Life 200 / Nature 220 / Sorcery 260 / Chaos 300, so a price above 200 would put
+  rung 5 permanently beyond Life's reach.
+
+  **The gate uses the ladder rung; the debit uses the rolled rung.** A roll can
+  return any creature at or below the caster's rung, so requiring
+  `45 + 30 * MomSphereRung` up front guarantees whatever comes back is
+  affordable — a click can never be consumed by a summon that cannot be paid for
+  — and you then pay for what you actually got.
+
+  All four sites use one expression: human gate (button body), human debit
+  (`MomSummonOrderTick`), AI gate and AI debit. The AI must not play a cheaper
+  economy than the player; that exact divergence already bit this mod once on the
+  upkeep rate.
+
+- The summon arm no longer misquotes its own price. `"Summon Creature (75)"`
+  became false the moment price scaled; the arm is now `"Summon Creature"` and
+  the price appears on the panel's rung line and in the refusal message.
+
+### Fixed
+
+- `MOM_MSG_SUMMON_NOMANA` hardcoded "A creature costs 75". It now reads the live
+  price.
+
+### Added (gates)
+
+- `gate_mana_upkeep.py` assertion 13: the price must derive from the rung at
+  BOTH the gate and the debit of BOTH paths, and no bare `75` may survive on the
+  summon path. Proven by reintroducing a flat 75 in the AI debit and watching it
+  fail, then restoring.
+
+### Known
+
+- **Button labels do not interpolate.** `{Scalar}` substitution works in message
+  bodies but a `MOM_MSG_BTN_*` label renders the literal braces — measured, both
+  surfaces in one frame. Arms must be static strings.
+- The curve is verified at **rung 1 only** (in-frame: "a creature of your rung
+  costs 75, and you hold 50"). Rungs 2-5 are thousands of science away and were
+  not reachable in a short run; the arithmetic is `45 + 30*r`, the behaviour at
+  those rungs is unobserved.
+
+---
+
 ## [3.9.0] — 2026-08-03 — a tribe begins knowing its own sphere
 
 **Minor.** Gameplay + tooling. Requires a NEW game: saves cache compiled SLIC.
