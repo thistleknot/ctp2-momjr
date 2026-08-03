@@ -64,6 +64,16 @@ CYCLE = 7
 # PROBE_TURNS exists so the INSTRUMENT can be smoke-tested in a couple of minutes
 # -- validating a two-hour run's plumbing with a two-hour run is how an afternoon
 # disappears.
+# OBSERVE-ONLY MODE. Every posted click is an access-violation risk on this
+# display: the engine renders its 800x600 UI letterboxed inside a 1024x1280
+# client, and a posted WM_LBUTTONDOWN faults where injection and keys do not.
+# That is what killed the prologue ping (steps 27) and then the alertbox arm
+# click at turn 5. Injection (`press`), keys and `hover` are all unaffected, so a
+# run that never clicks can still drive the turn loop and read the 'j' panel --
+# it simply cannot press a summon arm. Set PROBE_OBSERVE=1 to get the long-run
+# telemetry without the click that ends the run.
+OBSERVE_ONLY = os.environ.get("PROBE_OBSERVE") == "1"
+
 TURNS = int(os.environ.get("PROBE_TURNS", "20"))
 SAMPLE_EVERY = int(os.environ.get("PROBE_SAMPLE", "20"))
 SUMMON_EVERY = 5        # push the human toward its own upkeep ceiling
@@ -160,6 +170,21 @@ def main() -> int:
     ctypes.windll.user32.SetProcessDPIAware()
 
     steps = json.loads((HERE / "steps/full_game_v3.json").read_text())
+
+    # RE-DERIVE THE SCENARIO ROW. The steps file pins one, and that number goes
+    # stale whenever a pack is added to Scenarios/ -- creating Scenarios/smm
+    # moved mom from row 3 to row 5, after which every run loaded NuclearDetente
+    # and died with 0xC0000005 a few steps later. Patch it here rather than
+    # editing the file so the 200-turn-validated steps stay byte-identical and
+    # the correction is visibly derived from the filesystem.
+    _row = uiwalk.scenario_pack_index("mom")
+    for _s in steps[:PROLOGUE]:
+        if _s.get("path") == "ScenarioWindow.AvailableListBox" and _s.get("index"):
+            if _s["index"] != _row:
+                print(f"[probe] scenario row {_s['index']} -> {_row} (derived)")
+            _s["index"] = _row
+            break
+
     prologue, cycle = steps[:PROLOGUE], steps[PROLOGUE:PROLOGUE + CYCLE]
     assert cycle[4]["do"] == "hover" and cycle[5]["keys"] == "enter", cycle
 
@@ -197,6 +222,13 @@ def main() -> int:
 
     def clear(tag: str, limit: int = 4) -> int:
         n = 0
+        if OBSERVE_ONLY:
+            # An alertbox left standing does NOT block the turn loop -- the
+            # cycle's ModalWindow.ModalResponseButton press (injection, not a
+            # click) dismisses what would otherwise stack. Skipping the click
+            # trades the ability to answer a summon prompt for the ability to
+            # finish the run at all.
+            return 0
         for i in range(limit):
             if not turnloop.alert_box_open(game.screenshot()):
                 break
@@ -254,7 +286,7 @@ def main() -> int:
                     }, indent=2))
                 clear(f"t{turn:03d}pan")
 
-            if turn % SUMMON_EVERY == 0:
+            if turn % SUMMON_EVERY == 0 and not OBSERVE_ONLY:
                 go([{"do": "key", "keys": "j"}, {"do": "wait_stable", "ms": 7000}])
                 if turnloop.alert_box_open(game.screenshot()):
                     if turnloop.click_alert_arm(game, inp, 0, f"sum{turn}"):

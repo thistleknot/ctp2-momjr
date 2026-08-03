@@ -19,7 +19,7 @@ UNIT_ZOMBIES {
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_DEATH_LORE
+   EnableAdvance ADVANCE_DEATH_MAGIC
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -172,7 +172,7 @@ UNIT_PHANTOM_WARRIORS {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_SORCEROUS_LORE
+   EnableAdvance ADVANCE_SORCERY
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -223,7 +223,7 @@ UNIT_HELL_HOUNDS {
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_CHAOS_LORE
+   EnableAdvance ADVANCE_CHAOS_MAGIC
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -274,7 +274,7 @@ UNIT_WARBEARS {
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 2
-   EnableAdvance ADVANCE_NATURE_LORE
+   EnableAdvance ADVANCE_NATURE_MAGIC
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0
@@ -1750,7 +1750,7 @@ UNIT_GUARDIAN_SPIRIT {
    FoodHunger 0
    MaxMovePoints 200
    VisionRange 2
-   EnableAdvance ADVANCE_LIFE_LORE
+   EnableAdvance ADVANCE_LIFE_MAGIC
    ActiveDefenseRange 0
    LossMoveToDmgNone
    MaxFuel 0

@@ -3135,6 +3135,44 @@ def _apply_sphere_gating(reg) -> tuple[int, list[str]]:
     buildings.txt and Wonder.txt.
     """
     targets = sphere_gate_targets()
+
+    # THE LORE RUNG IS DEMOTED TO THE SPHERE ROOT -- BUILD GATE ONLY (2026-08-02).
+    #
+    # A tribe now begins play holding its sphere root (mom_magic.slc
+    # MomSphereRootGrant), which opens rung-1 SUMMONING at turn one. Leaving the
+    # same creature's BUILD gate on the lore advance is the asymmetry the
+    # operator reported: a Warbears cost 1970 science to build and nothing but
+    # mana to summon, so the summon path bypassed the tech tree outright.
+    # Pointing both at the root makes the choice an honest trade -- 75 mana plus
+    # preparation against 350 shields -- instead of a bypass. The creature is
+    # still production-gated by its shield cost.
+    #
+    # It also closes a gap measured across the AI build lists: before this, NO
+    # tribe had a single racial unit buildable under 455 science, so every early
+    # army was neutral Spearmen and Swordsmen and the only sphere-flavoured units
+    # on the map were summoned ones. Same lesson as the cost-derived-tier
+    # regression recorded in _sphere_gate_targets, from the other direction.
+    #
+    # IT LIVES HERE, NOT IN sphere_gate_targets(), AND THAT PLACEMENT IS THE
+    # WHOLE POINT. This function is the only consumer that WRITES a build gate.
+    # The other two read the same map as the ladder and each breaks if the lore
+    # rung moves under them:
+    #   * _emit_mom_gating_slc  -- collapsing lore to the root DELETES the lore
+    #     advance from mod_CanPlayerHaveAdvance, letting a Death tribe research
+    #     ADVANCE_LIFE_LORE, and emits a duplicate dead branch in
+    #     MomSphereRungTick.
+    #   * _summon_pool_by_rung  -- reads the rung back off this map, so demoting
+    #     it moves every rung-1 creature into the root's pool, which the emitted
+    #     roll never reads; the entire lowest tier silently stops being
+    #     summonable.
+    # Both were observed: the first from putting this in _sphere_rung_advance,
+    # the second from putting it in sphere_gate_targets one attempt later.
+    _lore_to_root = {
+        _sphere_rung_advance(s, "lore"): _sphere_ladder_idents(s)[0]
+        for s in _SPHERE_PLAYER
+    }
+    targets = {k: _lore_to_root.get(v, v) for k, v in targets.items()}
+
     # Registry-backed files, rewritten through ._text so reg.save_all() emits
     # them. buildings.txt is deliberately NOT here: it has no PARSER_MAP entry
     # (it is produced wholesale by _merge_mom_improvements_into_buildings and

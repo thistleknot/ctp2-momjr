@@ -360,6 +360,75 @@ def check_stat_spread(scen: Path, fails: list[str]) -> None:
                 "exercised at")
 
 
+def check_slic_arrays_declared(scen: Path, fails: list[str]) -> None:
+    """Gate 29: every Mom* array indexed in SLIC must be declared somewhere.
+
+    Shipped to the operator as a load-time modal on 2026-08-02: a new handler
+    used MomSphereRootDone[p] and the declaration was never added, so the game
+    opened on "Symbol 'MomSphereRootDone' is undefined".
+
+    Worth knowing WHY this class is catchable when so much SLIC breakage is not:
+    unknown SCALARS are silently auto-created by the engine (a typo becomes a
+    permanent false with no diagnostic), but an undeclared ARRAY is a hard error
+    at load. So this one can be caught statically and cheaply, and there is no
+    excuse for it reaching a playtest.
+
+    Declaration ORDER is not checked -- the include order puts shared state in
+    mom_func.slc, which loads first -- only existence.
+    """
+    import re as _re
+    gd = scen / "default/gamedata"
+    if not gd.is_dir():
+        return
+    scen_slc = gd / "scenario.slc"
+    if not scen_slc.is_file():
+        return
+    # The REAL load order, read from scenario.slc rather than assumed. A file
+    # absent from the include list is unreachable; rank it last so its uses are
+    # never blamed for an ordering fault.
+    order = {name: i for i, name in enumerate(_re.findall(
+        r'^\s*#include\s+"([^"]+)"',
+        scen_slc.read_text(encoding="latin-1", errors="replace"), _re.M))}
+
+    def rank(fn: str) -> int:
+        return order.get(fn, len(order))
+
+    declared: dict[str, str] = {}
+    used: dict[str, str] = {}
+    decl_re = _re.compile(r"\b(?:int_t|unit_t|city_t|location_t)\s+([A-Za-z_]\w*)\s*\[")
+    use_re = _re.compile(r"\b(Mom\w*)\s*\[")
+    for f in sorted(gd.glob("mom_*.slc")):
+        src = _re.sub(r"//[^\r\n]*", "", f.read_text(encoding="latin-1", errors="replace"))
+        for m in decl_re.finditer(src):
+            # EARLIEST-LOADING declaration wins: a later duplicate cannot rescue
+            # a use that runs before the first one.
+            n = m.group(1)
+            if n not in declared or rank(f.name) < rank(declared[n]):
+                declared[n] = f.name
+        for m in use_re.finditer(src):
+            # EARLIEST-LOADING USE, not the alphabetically first. This directory
+            # is walked in sorted() order, so a naive setdefault records
+            # mom_ai_magic.slc (include 7) and lets a genuine violation in
+            # mom_turns.slc (include 1) pass -- measured while proving this gate
+            # against the exact bug it exists to catch.
+            n = m.group(1)
+            if n not in used or rank(f.name) < rank(used[n]):
+                used[n] = f.name
+
+    for name in sorted(used):
+        if name not in declared:
+            fails.append(
+                f"{used[name]}: array {name}[] is indexed but never declared -- an "
+                "undeclared ARRAY is a hard 'Symbol is undefined' error at load, "
+                "unlike a scalar which the engine silently auto-creates")
+        elif rank(used[name]) < rank(declared[name]):
+            fails.append(
+                f"{used[name]} (include {rank(used[name])}) indexes {name}[] but it is "
+                f"declared in {declared[name]} (include {rank(declared[name])}) -- a use "
+                "before its declaring file loads is the same hard 'Symbol is "
+                "undefined' error as no declaration at all")
+
+
 def _momjr_csv() -> Path:
     return TOOLS_DIR / "momjr_csv"
 
@@ -1266,6 +1335,7 @@ def main() -> int:
     check_ai_magic(scen, fails)
     check_mana_upkeep(scen, fails)
     check_stat_spread(scen, fails)
+    check_slic_arrays_declared(scen, fails)
 
     if fails:
         for f in fails:

@@ -361,3 +361,64 @@ HandleEvent(GrantAdvance) 'MomMagicSchoolGrant' post {
 
     }   // advance[0] != 0
 }
+
+
+// ---------------------------------------------------------------------------
+// SPHERE ROOT GRANT (2026-08-02) -- a tribe BEGINS knowing its own sphere.
+//
+// In Master of Magic a wizard PICKS their spheres up front and starts play
+// holding them. MoM tribes never did: nothing granted a *_MAGIC advance and
+// there is no starting-advance mechanism, so a tribe's own magic sat 27
+// advances and ~19,300 science away, because ADVANCE_*_MAGIC hangs off
+// ADVANCE_GRAND_MASTERY. The player saw "You have not yet learned the magic of
+// your sphere" in 3675BC, which is the wrong answer to the right question.
+//
+// TWO PLACEMENT CONSTRAINTS:
+//
+// 1. NO NEW ARRAY -- because none is NEEDED, not because one is forbidden. The
+//    obvious shape is a MomSphereRootDone[] latch, and the first attempt used
+//    one; it shipped undeclared and the operator got "SLIC Error: Symbol
+//    'MomSphereRootDone' is undefined" at load (an undeclared ARRAY is a hard
+//    error, unlike a scalar, which the engine silently auto-creates -- now
+//    validate_scenario.py gate 29).
+//
+//    MomSphereRung[] removes the question entirely: it is not a substitute for
+//    the latch, it IS the condition. The grant exists to move a tribe off rung
+//    0; the GrantAdvance raises MomSphereRungTick, which sets the rung to 1; so
+//    the guard clears itself on success. A re-grant would be harmless anyway
+//    (GrantAdvance on a held advance is a no-op). Redundant state that can
+//    disagree with the state it mirrors is the thing being avoided.
+//
+//    (An earlier draft of this comment claimed the declaration itself AV'd the
+//    engine at boot. It did not. That came from a bisect whose control was
+//    broken -- the verdict filter greped for one crash signature, so a baseline
+//    that failed a different way was reported CLEAN. The real boot crash was a
+//    posted click in the harness prologue and had nothing to do with SLIC.)
+//
+// 2. THIS FILE, NOT mom_turns.slc. MomSphereRung[] is declared in
+//    mom_summon.slc (include 54); mom_turns.slc is 49, so referencing it there
+//    is an undefined symbol at load. mom_magic.slc is 56 -- after the
+//    declaration, and already the owner of magic state.
+//
+// STATUS: works for at least Nature and Sorcery -- both hold summoned creatures
+// by turn 20, far too early to have researched a 1035-science root. Death shows
+// rung-0 behaviour for 200 turns and is an OPEN question; see lessons_learned.md.
+HandleEvent(BeginTurn) 'MomSphereRootGrant' post {
+    int_t rp;
+
+    rp = player[0];
+
+    if (rp >= 1 && rp <= 5 && MomSphereRung[rp] < 1) {
+        if (rp == 1) {
+            GrantAdvance(rp, AdvanceDB(ADVANCE_LIFE_MAGIC));
+        } elseif (rp == 2) {
+            GrantAdvance(rp, AdvanceDB(ADVANCE_NATURE_MAGIC));
+        } elseif (rp == 3) {
+            GrantAdvance(rp, AdvanceDB(ADVANCE_SORCERY));
+        } elseif (rp == 4) {
+            GrantAdvance(rp, AdvanceDB(ADVANCE_DEATH_MAGIC));
+        } elseif (rp == 5) {
+            GrantAdvance(rp, AdvanceDB(ADVANCE_CHAOS_MAGIC));
+        }
+    }
+}

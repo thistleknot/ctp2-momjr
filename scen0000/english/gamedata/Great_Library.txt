@@ -461,7 +461,7 @@ Age: 1
 Branch: 0
 [END]
 [ADVANCE_NATURE_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Lore requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1865 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARBEARS>Warbears<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_FONT_OF_BOUNTY>Font of Bounty<e>.
+<c:245,240,225><h:0,0,0>Researching Nature Lore requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1865 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_NATURE_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The collected knowledge of growing things, weather and beasts, held mostly by people who distrust cities.
@@ -537,7 +537,7 @@ Age: 7
 Branch: 1
 [END]
 [ADVANCE_NATURE_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 970 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Nature Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 970 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARBEARS>Warbears<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_FONT_OF_BOUNTY>Font of Bounty<e>.
 [END]
 [ADVANCE_NATURE_MAGIC_HISTORICAL]
 <c:245,240,225><h:0,0,0>Power borrowed from living systems, on the strict understanding that it is a loan.
@@ -967,7 +967,7 @@ Age: 2
 Branch: 3
 [END]
 [ADVANCE_LIFE_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1035 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Life Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1035 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GUARDIAN_SPIRIT>Guardian Spirit<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENCHANTED_GROTTO>Enchanted Grotto<e>.
 [END]
 [ADVANCE_LIFE_MAGIC_HISTORICAL]
 <c:245,240,225><h:0,0,0>Power drawn from growth and continuation rather than from force. The slowest school to show results and the hardest to break.
@@ -982,7 +982,7 @@ Age: 2
 Branch: 2
 [END]
 [ADVANCE_LIFE_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Lore requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1970 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GUARDIAN_SPIRIT>Guardian Spirit<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENCHANTED_GROTTO>Enchanted Grotto<e>.
+<c:245,240,225><h:0,0,0>Researching Life Lore requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1970 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_LIFE_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The gathered record of what can be mended, what can be strengthened, and what should be left exactly as it is.
@@ -1058,7 +1058,7 @@ Age: 7
 Branch: 2
 [END]
 [ADVANCE_DEATH_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Lore requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1995 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ZOMBIES>Zombies<e>.
+<c:245,240,225><h:0,0,0>Researching Death Lore requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1995 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_DEATH_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>Accumulated study of the boundary between living and not, compiled by scholars whom no city willingly houses.
@@ -1134,7 +1134,7 @@ Age: 7
 Branch: 3
 [END]
 [ADVANCE_DEATH_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1050 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Death Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1050 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ZOMBIES>Zombies<e>.
 [END]
 [ADVANCE_DEATH_MAGIC_HISTORICAL]
 <c:245,240,225><h:0,0,0>The art of reaching past the end of a life and finding that something still answers. Universally condemned, and widely practised in wartime.
@@ -1149,7 +1149,7 @@ Age: 2
 Branch: 3
 [END]
 [ADVANCE_SORCERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1185 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Sorcery requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1185 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_PHANTOM_WARRIORS>Phantom Warriors<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_PLEASURE_DOME>Pleasure Dome<e>.
 [END]
 [ADVANCE_SORCERY_HISTORICAL]
 <c:245,240,225><h:0,0,0>The disciplined manipulation of force at a distance. Less spectacular than chaos, and considerably more reliable.
@@ -1209,7 +1209,7 @@ Age: 7
 Branch: 4
 [END]
 [ADVANCE_SORCEROUS_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcerous Lore requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2210 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_PHANTOM_WARRIORS>Phantom Warriors<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_PLEASURE_DOME>Pleasure Dome<e>.
+<c:245,240,225><h:0,0,0>Researching Sorcerous Lore requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2210 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_SORCEROUS_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The theoretical backbone of sorcery, written down by practitioners who wanted successors rather than rivals.
@@ -1240,7 +1240,7 @@ Age: 4
 Branch: 4
 [END]
 [ADVANCE_CHAOS_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1265 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Chaos Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1265 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_HELL_HOUNDS>Hell Hounds<e>.
 [END]
 [ADVANCE_CHAOS_MAGIC_HISTORICAL]
 <c:245,240,225><h:0,0,0>The discipline of drawing power from the raw unmade, where nothing is stable and therefore nothing is forbidden. Its practitioners trade safety for reach.
@@ -1255,7 +1255,7 @@ Age: 2
 Branch: 0
 [END]
 [ADVANCE_CHAOS_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Lore requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2340 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_HELL_HOUNDS>Hell Hounds<e>.
+<c:245,240,225><h:0,0,0>Researching Chaos Lore requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2340 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_CHAOS_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The collected findings of wizards who studied disorder itself, and the smaller collection of those who survived doing so.
@@ -1799,7 +1799,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_GAIAS_SHRINE>Gaia's Shrine<e>
 [END]
 [WONDER_PLEASURE_DOME_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Pleasure Dome costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. Across your empire, it adds 2 happiness in every city and makes every city fully content for 10 turns.
+<c:245,240,225><h:0,0,0>Pleasure Dome costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>. Across your empire, it adds 2 happiness in every city and makes every city fully content for 10 turns.
 [END]
 [WONDER_PLEASURE_DOME_HISTORICAL]
 <c:245,240,225><h:0,0,0>A monument to the argument that a contented population is cheaper to rule than a frightened one.
@@ -1816,7 +1816,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_PLEASURE_DOME>Pleasure Dome<e>
 [END]
 [WONDER_FONT_OF_BOUNTY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Font of Bounty costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>. Across your empire, it adds 3 food to every city.
+<c:245,240,225><h:0,0,0>Font of Bounty costs 3240 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e>. Across your empire, it adds 3 food to every city.
 [END]
 [WONDER_FONT_OF_BOUNTY_HISTORICAL]
 <c:245,240,225><h:0,0,0>A spring that will not run dry and a field that will not fail. Every famine legend in the world is a story about looking for this.
@@ -2020,7 +2020,7 @@ Costs:
 <L:DATABASE_WONDERS,WONDER_ELIXIR_OF_METAMORPHOSIS>Elixir of Metamorphosis<e>
 [END]
 [WONDER_ENCHANTED_GROTTO_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Enchanted Grotto costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>. Across your empire, it adds 2 food to every city and adds 2 happiness in every city.
+<c:245,240,225><h:0,0,0>Enchanted Grotto costs 2160 production, and only one may exist in the world. It becomes available with <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e>. Across your empire, it adds 2 food to every city and adds 2 happiness in every city.
 [END]
 [WONDER_ENCHANTED_GROTTO_HISTORICAL]
 <c:245,240,225><h:0,0,0>A cave the land itself has enchanted, tended rather than built. Its keepers claim, plausibly, that it predates them.
@@ -2213,7 +2213,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_ZOMBIES_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Zombies: attack 12, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Zombies: attack 12, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_ZOMBIES_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Zombies is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2282,7 +2282,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_PHANTOM_WARRIORS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Phantom Warriors: attack 18, defense 10, 10 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Phantom Warriors: attack 18, defense 10, 10 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_PHANTOM_WARRIORS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Phantom Warriors is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2305,7 +2305,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_HELL_HOUNDS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Hell Hounds: attack 26, defense 12, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 740 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Hell Hounds: attack 26, defense 12, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 740 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_HELL_HOUNDS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Hell Hounds is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2328,7 +2328,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WARBEARS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warbears: attack 18, defense 15, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Warbears: attack 18, defense 15, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_WARBEARS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Warbears is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3018,7 +3018,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_GUARDIAN_SPIRIT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Guardian Spirit: attack 10, defense 43, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Guardian Spirit: attack 10, defense 43, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_GUARDIAN_SPIRIT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Guardian Spirit is represented here as a proxy unit while the final MoM art swap is in progress.

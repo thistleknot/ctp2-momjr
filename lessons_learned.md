@@ -3297,3 +3297,122 @@ Observed headlessly: the turn-one Build Manager buildings tab now offers
 
 **The law:** when a sentinel is collapsed in one place, grep every consumer of
 that constant before calling the class closed. One fixed lane is not a fixed bug.
+
+## The fake control: a one-signature verdict filter (2026-08-02)
+
+Chasing a `0xC0000005` at scenario boot, the probe watcher classified runs as
+`grep -q 0xC0000005 → CRASH, else CLEAN`. The **baseline** run — the control the
+whole bisect rested on — died on `pywintypes.error: Invalid window handle`
+instead. No match, so it was reported CLEAN.
+
+Every run that day failed, including HEAD. The crash was never in the mod. Four
+bisect verdicts (the `GrantAdvance` calls, the `MomSphereRootDone[]` declaration,
+the generator change, the no-new-symbol rewrite) were each a real game boot spent
+comparing a failure against a failure that had been labelled a success.
+
+**The tell was free and ignored:** every run directory contained exactly one
+file, `01_main_menu.png`. Uniform stop at the first input step, in every
+configuration. One `ls` would have ended the chain before the first bisect.
+
+Two rules, both cheap:
+
+* **Assert the SUCCESS signature** (`turns reached`, `panels:`), never the
+  absence of one failure string. A harness has many ways to die and one way to
+  finish. Classify *which* failure only after success is ruled out.
+* **Look at the artifacts before the log.** Run dirs are a coverage measure the
+  log's grep is not.
+
+Second lesson, from the same session: the lore-rung demotion was moved twice
+before it landed. `sphere_gate_targets()` is read by three consumers, and only
+one of them writes a build gate. Putting the demotion in the shared helper
+deleted `ADVANCE_*_LORE` from the faction wall; putting it in the shared map
+emptied the rung-1 summon pools (a 50-line drop in `mom_summon.slc`, caught only
+by diffing generated output against HEAD). It belongs in `_apply_sphere_gating`,
+the sole writer. **Before editing a shared derivation, list its consumers and
+name what each one would do with the new value.**
+
+## The fatal pattern that was fixed in one place and not swept (2026-08-02)
+
+The boot crash chased through four bisect rounds was a **posted mouse click**,
+`full_game_v3.json` prologue step 27, `{"do":"click","x":600,"y":6}`. The very
+same ping had already been diagnosed as fatal six days earlier and migrated to
+`hover` — but only in the per-turn CYCLE. The prologue kept its copy, in the same
+file, twenty-six lines above the fixed one, under a comment that read "This is
+the ONLY posted click in the file."
+
+Three things worth keeping:
+
+* **It failed uniformly** — at HEAD, with every change reverted, in every
+  scenario. A failure that survives reverting the mod is not a mod regression,
+  and one `git stash` run should have said so before any bisect began.
+* **The generalised law is broader than the ping.** Any posted click can AV when
+  the engine letterboxes its 800x600 UI inside a 1024x1280 client: after the
+  prologue was fixed the run died at turn 5 in `click_alert_arm`, and a
+  scrollbar-arrow click killed a separate probe. Injection (`press`/`select`),
+  keys and `hover` are unaffected. Hence `PROBE_OBSERVE=1`.
+* **Sweep one degree out when a pattern is declared fatal.** Grep the corpus for
+  the pattern at the moment you learn it kills, not just the site that bit you.
+
+### A correction that was itself the defect
+
+Mid-diagnosis the scenario row was "fixed" from 3 to 5 on the theory that adding
+`Scenarios/smm` had shifted it. It had not: **the engine sorts the picker
+case-insensitively**, so `mom` is row 3 (`ae_mod, alexanderthegreat,
+magnificentsamurai, mom, nucleardetente, smm, worldmaps`) and always was. Row 5
+is `smm`, and selecting it loaded the wrong scenario for the first time all
+session — provable only because smm's stale SLIC fork raised errors naming
+`scenarios\smm\` in the path. ASCII and folded order agree on rows 0..2, so the
+picker screenshot could not distinguish them; only a run could.
+`uiwalk.scenario_pack_index()` now derives it with `key=str.casefold`.
+
+## What a 200-turn run actually showed (2026-08-02)
+
+First long run of the session, once the posted-click crash was fixed. Rows are
+Life / Nature / Sorcery / Death / Chaos; the human is Life.
+
+```
+t020   units  4  5 10  2 0   summon 0  3  4 0 0   mana 200 39 72 240 0
+t080   units 15 38 38 16 0   summon 3 21 25 0 0   mana 200 18 26 240 0
+t200   units 15 46 43 15 0   summon 3 26 30 0 0   mana 200 55 71 240 0
+```
+
+Four defects, each measured rather than argued:
+
+1. **Majority-summoned armies.** Nature 26/46 (57%), Sorcery 30/43 (70%). Stable
+   from t80 to t200, so it is the equilibrium, not a transient. This is the
+   operator's original "every Nature unit I meet is a Warbears" report, in
+   numbers. Cause: `mom_ai_magic.slc` summons on a 70% per-turn roll whenever
+   solvent, with **no bound relative to army size**. A ratio cap is the obvious
+   lever and is a design choice, not a bug fix.
+
+2. **Dead capital: a full bank with no income can never be spent.** Death held
+   exactly 240 mana -- its cap -- at t20 AND t200, and summoned nothing across
+   180 turns. The gate read `MomMagicPerTurn[p] - keep >= 0`; Death built neither
+   of its mana buildings (MECHANICIANS_GUILD, BARRACKS) so net was 0 and
+   `0 - 2 < 0` would reject every roll forever.
+
+   **That hypothesis was tested and FALSIFIED.** Patching the gate to also accept
+   a bank covering price plus ~25 turns of keep changed nothing: Death still read
+   240 mana and zero summons. The patch was reverted rather than shipped
+   unvalidated. What it eliminates: the block is not affordability, and Death's
+   rung-1 pool is populated (UNIT_ZOMBIES), so it is not an empty pool. Surviving
+   hypothesis: `MomSphereRung[4]` is still 0. **Next test is to READ that
+   variable** -- the probe samples per-player mana but not rung -- rather than
+   infer it from behaviour again.
+
+   Method note earned here: the scenario generates a fresh map per new game, so
+   two runs are NOT a controlled before/after. A summon-count comparison across
+   seeds cannot confirm a fix; the rung readout can.
+
+3. **A whole tribe never played.** Chaos shows 0 units AND 0 mana in all ten
+   samples. Zero *mana* is the tell -- the pool is seeded per player, so player 5
+   never took a turn. All five tribes exist in `players.csv`, so this is starting
+   placement in the map, not SLIC.
+
+4. **The human is pinned at its mana cap**, 200/200 with +33/turn, discarding
+   income it cannot store.
+
+Also: the run reported "200 turns reached" while a DEFEAT screen (CITIES 0,
+POPULATION 0) was standing -- the human had been wiped out and the loop kept
+ending turns. Same trap as [[ctp2-ending-and-freeze-look-identical]]: turn count
+is not evidence the game is still being played. Read the frames.

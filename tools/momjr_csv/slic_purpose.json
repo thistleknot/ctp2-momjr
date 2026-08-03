@@ -123,6 +123,10 @@
     "purpose": "recompute a player's mana income from cities + owned mana nodes (base 10/turn)",
     "status": "ACTIVE"
   },
+  "mom_magic.slc:MomSphereRootGrant": {
+    "purpose": "",
+    "status": "ACTIVE"
+  },
   "mom_msg.slc:-": {
     "purpose": "MoM sphere event messages (Phase C). Included LAST in the entry-point chain, after",
     "status": "ACTIVE"

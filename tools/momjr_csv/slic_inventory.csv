@@ -44,6 +44,7 @@ mom_msg.slc,alertbox,MagicMenu,alertbox,INTERACTIVE: MAGIC STATUS alertbox; Summ
 mom_magic.slc,function,MomRecalcMagicPerTurn,int_f(int_t mp_1),recompute a player's mana income from cities + owned mana nodes (base 10/turn),M,ACTIVE,neutral
 mom_magic.slc,handler,MomMagicPoolTick,HandleEvent(BeginTurn) post,"per-turn mana accrual into MomMagicCur, clamped at the per-sphere MomMagicMax ceiling (200-300, set by MomMagicSchoolGrant; 100 only as the pre-grant default). Gated to players 1..5 -- running for player 0 was the turn-10 crash. The old pool-overflow auto-summon is REMOVED: it zeroed the pool on cap, so the 50/100-cost workings were unreachable by construction.",M,ACTIVE,neutral
 mom_magic.slc,handler,MomMagicSchoolGrant,HandleEvent(GrantAdvance) post,apply per-school mana multipliers when a magic advance is granted,M,ACTIVE,all
+mom_magic.slc,handler,MomSphereRootGrant,HandleEvent(BeginTurn) post,,M,ACTIVE,all
 mom_spells.slc,function,MomCastFlameStrike,void_f(int_t p),"Chaos spell: damage the nearest enemy unit. The targeting scan is INLINED because a 2-level user-function chain from an engine callback is an access violation (slic-two-crash-classes), not because of any call-count budget.",M,ACTIVE,neutral
 mom_spells.slc,function,MomCastDemonStrike,void_f(int_t p),Death spell: damage the nearest enemy unit; targeting scan inlined for the same 2-level-chain reason as MomCastFlameStrike.,M,ACTIVE,chaos
 mom_spells.slc,function,MomSpellShowBook,void_f(int_t p),"open the spellbook popup, choosing the per-sphere variant at call time",M,ACTIVE,chaos

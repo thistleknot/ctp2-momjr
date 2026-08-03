@@ -9,6 +9,94 @@ noise is not a change.
 
 ---
 
+## [3.9.0] — 2026-08-03 — a tribe begins knowing its own sphere
+
+**Minor.** Gameplay + tooling. Requires a NEW game: saves cache compiled SLIC.
+
+### The defect
+
+A tribe's own magic sat 27 advances and ~19,300 science away, because
+`ADVANCE_*_MAGIC` hangs off `ADVANCE_GRAND_MASTERY` and nothing anywhere granted
+it. The player met this as "You have not yet learned the magic of your sphere" in
+3675BC. Removing the v3.2.0 rung floor in 3.7.0 fixed a real tech-tree bypass and
+exposed what the floor had been imitating: a starting-advance mechanism that was
+never built.
+
+### Changed
+
+- **Tribes start holding their sphere root.** `MomSphereRootGrant`
+  (`mom_magic.slc`) grants `ADVANCE_LIFE_MAGIC` / `NATURE_MAGIC` / `SORCERY` /
+  `DEATH_MAGIC` / `CHAOS_MAGIC` to players 1..5. It is guarded on
+  `MomSphereRung[p] < 1`, which `MomSphereRungTick` clears on the grant — the
+  guard latches itself, so no separate latch array is needed and no new SLIC
+  state was added.
+
+  **Verified for Nature and Sorcery**, both of which hold summoned creatures by
+  turn 20 — far too early to have researched a 1035-science root. **Death shows
+  rung-0 behaviour for a full 200 turns and is unexplained**; see *Known* below.
+  Ship this knowing the grant is not confirmed for every tribe.
+- **The five rung-1 creatures are buildable at the sphere root**, not the lore
+  advance. Previously a Warbears cost 1970 science to BUILD and nothing but mana
+  to SUMMON; both now open together, so the choice is an honest trade of 75 mana
+  plus preparation against 350 shields. Only these five `EnableAdvance` values
+  move (`LIFE_LORE` → `LIFE_MAGIC`, and the four siblings). The creature is still
+  production-gated by its shield cost.
+
+  This also closes a gap measured across the AI build lists: before it, **no
+  tribe had a single racial unit buildable under 455 science**, so every early
+  army was neutral Spearmen and Swordsmen and the only sphere-flavoured units on
+  the map were summoned ones.
+
+### Fixed (harness)
+
+- **The 200-turn probe could not boot.** `full_game_v3.json` prologue step 27 was
+  a posted click at (600,6). The identical ping had been diagnosed as fatal and
+  migrated to `hover` in the per-turn cycle only; the prologue's copy survived,
+  in the same file, under a comment reading "This is the ONLY posted click in the
+  file". Every run died `0xC0000005` right after the main-menu shot — at HEAD,
+  with the mod reverted, in every scenario. Now `hover`, and two consecutive
+  200-turn runs complete.
+- `uiwalk.scenario_pack_index()` derives the scenario row instead of pinning it.
+  The engine sorts the picker **case-insensitively**, so `mom` is row 3; a pinned
+  row was correct but unverifiable, and "correcting" it to 5 loaded `smm`.
+- `probe_long_game.py` gains `PROBE_OBSERVE=1`: no posted clicks at all, for
+  displays where the engine letterboxes its 800x600 UI and any posted click
+  faults.
+- New `tools/uiwalk/probe_scenario_list.py` — captures the picker without
+  selecting, since `inject_select`'s `SelectItem` has no bounds check.
+
+### Added (gates)
+
+- `validate_scenario.py` gate 29 `check_slic_arrays_declared`: an undeclared SLIC
+  **array** is a hard "Symbol is undefined" error at load, unlike a scalar, which
+  the engine silently auto-creates — one reached the operator as a load-time
+  modal. Catchable statically, so it should never reach a playtest again.
+
+  It also checks declaration **order** against the real `#include` sequence in
+  `scenario.slc`: a use in a file that loads before the declaring file is the
+  same hard error, and the first draft of `MomSphereRootGrant` had exactly that
+  (`mom_turns.slc` include 49 reading `MomSphereRung[]` from `mom_summon.slc`
+  include 54). Proven against a 4-case battery — clean tree passes, the ordering
+  bug fails, an undeclared array fails, restored tree passes.
+
+### Known, measured, NOT fixed
+
+Two 200-turn runs (see `lessons_learned.md`):
+
+- **AI armies are majority-summoned** — Nature 26/46 (57%), Sorcery 30/43 (70%),
+  stable t80→t200. The AI summons on a 70% per-turn roll whenever solvent, with
+  no bound relative to army size. A ratio cap is a design decision, not a bug fix.
+- **Death never summons**, holding exactly its 240 mana cap from t20 to t200. The
+  income-only-gate hypothesis was patched, tested, **falsified**, and reverted.
+  Affordability and an empty pool are both eliminated; the surviving hypothesis is
+  that `MomSphereRung[4]` is still 0, i.e. the sphere-root grant above does not
+  reach Death. The next step is to READ that variable — the probe samples
+  per-player mana but not rung — rather than infer it from behaviour again.
+- **Chaos never plays** — 0 units and 0 mana in all ten samples, so player 5 never
+  takes a turn. Starting placement in the map, not SLIC.
+
+---
+
 ## [3.8.0] — 2026-08-02 — unit stats are rank-cast from the source, not multiplied
 
 **Minor.** Data. Every combat unit's stats change; saves keep whatever the

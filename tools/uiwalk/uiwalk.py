@@ -50,6 +50,51 @@ import win32ui
 TOOL_DIR = Path(__file__).resolve().parent
 INSTALL = TOOL_DIR.parents[3]                     # <install>/Scenarios/mom/tools/uiwalk
 EXE_DIR = INSTALL / "ctp2_program" / "ctp"
+
+
+def scenario_pack_index(pack: str = "mom") -> int:
+    """Row of `pack` in ScenarioWindow.AvailableListBox, DERIVED not pinned.
+
+    Require: <install>/Scenarios exists.
+    Guarantee: returns the 0-based row the engine will show for `pack`.
+    Raises: LookupError if the pack is not enumerable -- never a silent guess,
+      because a wrong row here is unrecoverable downstream.
+
+    THE ENGINE ENUMERATES Scenarios/*/ THAT CONTAIN scen0000, SORTED
+    CASE-INSENSITIVELY. The folding is the whole subtlety and it is worth two
+    measurements to state plainly:
+
+      case-insensitive          ASCII (uppercase first)
+      0 AE_Mod                  0 AE_Mod
+      1 AlexanderTheGreat       1 AlexanderTheGreat
+      2 MagnificentSamurai      2 MagnificentSamurai
+      3 mom            <--      3 NuclearDetente
+      4 NuclearDetente          4 WorldMaps
+      5 smm                     5 mom
+      6 WorldMaps               6 smm
+
+    Both orders agree on rows 0..2, so the picker capture that shows "Apolyton
+    Edition Mod Pack / Alexander the Great / Sieben Samurai" cannot distinguish
+    them. What distinguishes them is a run: selecting row 5 loaded **smm** (its
+    SLIC errors named scenarios\smm\ in the path), which only the folded order
+    predicts. `archived/` has no scen0000 and does not appear.
+
+    So `mom` is row 3 -- exactly what full_game_v3.json has always pinned. This
+    function exists to keep that true as packs come and go, NOT because the
+    pinned value was wrong: an earlier version of this docstring blamed the boot
+    crash on Scenarios/smm shifting the row, computed the ASCII order, "fixed"
+    row 3 to row 5, and thereby loaded the wrong scenario for the first time.
+    The constant was right and the correction was the defect.
+    """
+    root = INSTALL / "Scenarios"
+    packs = sorted((d.name for d in root.iterdir()
+                    if d.is_dir() and (d / "scen0000").is_dir()),
+                   key=str.casefold)
+    if pack not in packs:
+        raise LookupError(
+            f"scenario pack {pack!r} is not enumerable under {root} -- "
+            f"the engine would show {packs}")
+    return packs.index(pack)
 EXE_CANDIDATES = ["ctp2-dbg.exe", "ctp2-log.exe", "ctp2.exe"]  # unused; real
 # selection happens in run-ctp2-dbg-crashcapture.ps1 (Resolve-LaunchSource).
 

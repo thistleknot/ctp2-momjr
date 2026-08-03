@@ -10,7 +10,7 @@ WONDER_GAIAS_SHRINE {
 WONDER_PLEASURE_DOME {
    DefaultIcon ICON_WONDER_PLEASURE_DOME
    Description DESCRIPTION_WONDER_PLEASURE_DOME
-   EnableAdvance ADVANCE_SORCEROUS_LORE
+   EnableAdvance ADVANCE_SORCERY
    ProductionCost 3240
    IncHappinessEmpire 2
    TemporaryFullHappiness 10
@@ -19,7 +19,7 @@ WONDER_PLEASURE_DOME {
 WONDER_FONT_OF_BOUNTY {
    DefaultIcon ICON_WONDER_FONT_OF_BOUNTY
    Description DESCRIPTION_WONDER_FONT_OF_BOUNTY
-   EnableAdvance ADVANCE_NATURE_LORE
+   EnableAdvance ADVANCE_NATURE_MAGIC
    ProductionCost 3240
    IncreaseFoodAllCities 3
 }
@@ -127,7 +127,7 @@ WONDER_ELIXIR_OF_METAMORPHOSIS {
 WONDER_ENCHANTED_GROTTO {
    DefaultIcon ICON_WONDER_ENCHANTED_GROTTO
    Description DESCRIPTION_WONDER_ENCHANTED_GROTTO
-   EnableAdvance ADVANCE_LIFE_LORE
+   EnableAdvance ADVANCE_LIFE_MAGIC
    ProductionCost 2160
    IncreaseFoodAllCities 2
    IncHappinessEmpire 2
