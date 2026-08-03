@@ -1,148 +1,120 @@
 ---
-description: 'Cast numeric unit/entity stats between game mods by rank-transplanting the source distribution onto the destination''s own, stratified by tech age. Preserves rank order and the cross-axis copula by construction; reports four moments plus median/MAD as the acceptance contract. Generalises the civ2 -> CTP2 stat rescale beyond MoM.'
+description: 'Rescale a source mod''s numeric entity stats onto a wider destination range. The mod is compared ONLY TO ITSELF — its own ordering and relative spacing are the design and are preserved; the destination game supplies range BOUNDS, never a shape to match. Generalises the civ2 MOMJR -> CTP2 stat rescale.'
 ---
 
 ***definitions***
 
-- :StatAxis: is one numeric column that both games express the same *concept* on
-  but not necessarily the same *magnitude* — attack, defence, hitpoints,
-  firepower, movement, cost. Each axis is cast SEPARATELY but not
-  independently: because every entity keeps its own rank on every axis, the
-  cross-axis :Copula: survives without being modelled.
-- :SourceDistribution: is the multiset of values a :StatAxis: takes across the
-  source mod's own entities, read from the control plane (`units.csv`), never
+- :StatAxis: is one numeric column both games express the same *concept* on but
+  not the same *magnitude* — attack, defence, hitpoints, firepower, movement,
+  cost. Each is cast separately but not independently: because every entity keeps
+  its own rank on every axis, the cross-axis :Copula: survives without being
+  modelled.
+- :SourceDistribution: is the multiset of values a :StatAxis: takes across **the
+  source mod's own entities**, read from the control plane (`units.csv`), never
   hardcoded. Editing the control plane must reshape the scale, not silently
   disagree with it.
-- :TargetDistribution: is the multiset the destination game's *stock* entities
-  take on the corresponding axis. It is the evidence for what the destination
-  engine has actually been exercised at.
-- :ShapeSummary: is `(L-location, L-scale, L-skew, L-kurtosis)` — Hosking's
-  L-moments, linear combinations of ORDER STATISTICS. It is **diagnostic
-  reporting only**, never the contract. Conventional moments are not used: see
-  the note under the mechanism requirement.
+- :RangeBound: is `[min, max]` for an axis in the destination game — the interval
+  the destination engine has actually been exercised at. It is a **constraint**,
+  not a distribution: only its endpoints are used, never its shape.
 - :Copula: is the joint rank structure across axes — which entities are glass
-  cannons, which are walls. Formally the dependence function once each margin is
-  mapped to uniform by its own rank. It is what makes a unit *coherent*, and it
-  is invisible to any per-axis check.
-- :AgeStratum: is the tech age an entity's enabling advance belongs to. Stock
-  CTP2 spans ten ages, so its global stat range is a TIME SERIES, not a power
-  ladder — a warrior and a tank in one distribution. Targets are measured per
-  stratum so like is compared with like.
+  cannons, which are walls. It is what makes an entity *coherent*, and it is
+  invisible to any per-axis check.
 - :RankPosition: is an entity's ordinal position within the
   :SourceDistribution:, ties shared. It encodes the original designer's intent
   about relative power and is the one thing a cast must never alter.
 - :DegenerateAxis: is a :StatAxis: whose :SourceDistribution: has fewer than
-  `min_distinct` distinct values. Moments are not meaningful on it.
+  `min_distinct` distinct values — too coarse for a percentile map to say
+  anything a passthrough would not.
 - :SharedScaleAxis: is a :StatAxis: whose two games use the same semantic units,
-  so a value means the same thing in both without rescaling.
+  so a value already means the correct thing in the destination.
 
 ***requirements***
 
+**The mod SHALL be compared only to itself.** The cast rescales the
+:SourceDistribution: onto a wider interval. The destination game's own entity
+stats are NOT a target distribution and their shape is NOT matched — importing
+them would overwrite the source designer's intent with the destination's, which
+is the opposite of porting a mod.
+
+> An earlier draft of this spec got this wrong: it transplanted MOMJR onto stock
+> CTP2's distribution, which dragged in stock's age structure (ten tech eras in
+> one distribution) and stock's outliers (`UNIT_NUKE` at attack 1000, pinning
+> sample kurtosis at 87% of its order-statistic ceiling). None of that is MOMJR's
+> design and none of it should reach the output.
+
 **The cast SHALL preserve rank order.** For any two entities `a`, `b` on the same
-axis, `source(a) < source(b)` implies `output(a) <= output(b)`. A cast that
-reorders entities has overwritten the source designer's intent, which is the one
-thing being transplanted.
+axis, `source(a) < source(b)` implies `output(a) <= output(b)`. Reordering
+entities overwrites the design being ported.
 
-**The cast SHALL preserve the :Copula:.** Spearman rank-correlation between
-every pair of axes MUST agree between source and output within `copula_tolerance`.
-This is the invariant that per-axis checks cannot see: margins can each be
-perfect while the units they describe are incoherent.
+**The cast SHALL preserve the :Copula:.** Spearman rank-correlation between every
+pair of axes MUST agree between source and output within `copula_tolerance`.
+Margins can each be perfect while the entities they describe are incoherent, and
+no per-axis check can see it.
 
-> MEASURED on the 3.8.0 cast: max |difference| across all 16 axis pairs was
-> **0.0140** (e.g. defence-hp 0.779 -> 0.788). Rank transplant preserves the
-> copula BY CONSTRUCTION — each entity keeps its percentile on every axis, and
-> the rank representation *is* the empirical copula. The residual is integer
-> rounding and ties collapsing at the range bounds.
+> MEASURED on the 3.8.0 cast: max drift **0.0140** across all 16 axis pairs
+> (defence-hp 0.779 -> 0.788). Preserved BY CONSTRUCTION — each entity keeps its
+> percentile on every axis, and the rank representation *is* the empirical
+> copula. Residual is integer rounding and ties at the bounds.
 
-**The cast SHALL report its :ShapeSummary: per :AgeStratum:, as a DIAGNOSTIC.**
-Compared like with like — a MoM unit gated on an age-3 advance against stock's
-age-3 distribution, not against a global range spanning a warrior and a nuke. A
-divergence is a prompt to look, not a failure.
+**Use Spearman or Kendall for that assertion, never Pearson.** Pearson is not
+preserved under a rank transform; rank correlations are. Asserting on Pearson
+measures a number that changes the moment the marginals are remapped.
 
-> CONVENTIONAL MOMENTS ARE NOT A CONTRACT, and an earlier draft of this spec was
-> wrong to make them one. `UNIT_NUKE` at attack 1000 is not measurement error —
-> it is a real unit that is SUPPOSED to be off-scale. The question is not "remove
-> the outlier" but "which statistic am I willing to let one unit control", and
-> skew and kurtosis are exactly that statistic.
->
-> MEASURED, n=46: excess kurtosis is **41.02** whether the outlier sits at 10x,
-> 1000x, or 1,000,000x — identical to four significant figures. It saturates
-> against an order-statistic ceiling of n-2 = 44. Stock CTP2's attack kurtosis of
-> 38.16 is 87% of the maximum a sample that size can express, so it reports the
-> SAMPLE SIZE, not the design. Matching it would be matching n.
->
-> L-moments are used instead because they carry no fourth-power term for one
-> entity to dominate: conventional skew swings 13.5x with and without the nuke,
-> L-skew swings 4.5x and is bounded to [-1,1] by construction (Hosking 1990).
+**Output SHALL stay inside the :RangeBound:.** Beyond it the destination engine's
+combat maths and its AI's unit evaluation are untested.
 
-**The cast SHALL NOT exceed the target's observed range.** No output value may
-fall outside `[min, max]` of the :TargetDistribution:. Beyond that range the
-destination engine's combat maths and its AI's own unit evaluation are untested.
+**Relative spacing SHALL be preserved, not just order.** The map is anchored on
+the source's own min / median / max so an entity at the source median lands at
+the target median. Rank alone would flatten a bottom-heavy distribution — civ2
+attack has median 5.5 against a max of 15, and that skew is design, not noise.
 
-**The mechanism SHALL be quantile transplant, and that IS the contract.** Map
-each entity's :RankPosition: to its percentile `p`, then take the
-:TargetDistribution:'s value at percentile `p`, interpolated. Shape matches
-exactly by construction, the map is monotone, and there is no estimator to break.
-An off-scale entity simply lands in the top slot.
+**A :DegenerateAxis: SHALL NOT be rescaled.** With too few distinct source values
+a percentile map *invents* spread the source never expressed. If the axis is also
+a :SharedScaleAxis:, pass values through **unchanged**; otherwise apply a plain
+affine map and record the axis as degenerate in the run log.
 
-> This is the probability integral transform, and in one dimension "quantile
-> mapping" and "copula mapping" are the SAME operation. Stating it directly is
-> the point: "change the units, keep the design" is a rank statement, and
-> approximating it through four summary numbers can only lose information.
+**Source outliers SHALL be excluded from the MEASURE and still cast.** The cutoff
+is DERIVED from the source by Tukey fence (`Q3 + 1.5*IQR`) cross-checked against
+`median + 3 * 1.4826 * MAD`, never a literal. One broken row must not stretch the
+scale for every other entity — but removing it from the measure and removing it
+from the output are different things; it still lands at the top.
 
-**A :DegenerateAxis: SHALL NOT be moment-matched.** With fewer than
-`min_distinct` source values there is no distribution to transplant; a percentile
-map onto a wider target *invents* spread that the source never expressed. Two
-cases:
-
-- If the axis is a :SharedScaleAxis:, pass the value through **unchanged**. The
-  source value already means the correct thing in the destination.
-- Otherwise apply a plain affine map onto the target range and record the axis as
-  degenerate in the run log, so the weakness is visible rather than implied.
-
-**Outliers SHALL be detected robustly and DERIVED, never hardcoded.** The cutoff
-is computed from the data by Tukey fence (`Q3 + 1.5*IQR`) cross-checked against
-`median + 3 * 1.4826 * MAD`; the two SHOULD agree, and a divergence is itself a
-signal that the distribution is odd. Outliers are excluded from the *measure* on
-BOTH sides — source and target — and are still cast, landing at the top of the
-range. Removing a row from the measure and removing it from the output are
-different things.
-
-> MEASURED on stock CTP2 attack: Tukey gives 129.4, MAD gives 129.0, and both
-> flag exactly one unit — `UNIT_NUKE` at 1000. Excluding it moves the target from
-> (mean 61.7, sdev 142.2, skew 6.22, kurt 38.16) to (40.9, 26.2, 0.46, -0.85).
-> A hardcoded cutoff would have been a magic constant that silently rots as the
-> control plane changes; these are two independent estimators agreeing.
+**Interpolation within the range SHALL be justified, not merely computed.** The
+endpoints and the curve between them are a design judgment informed by the
+subject matter — what a dragon should be relative to a spearman, what the engine
+can express, what the source's own ratios imply. Record the reasoning beside the
+numbers. A number no one can defend is a magic constant regardless of how it was
+produced.
 
 ***scenarios***
 
-**Given** civ2 attack values `1..15` with median 5.5, **when** cast onto stock
-CTP2 attack `10..100` with median 40, **then** a 1a entity outputs 10, a 15a
-entity outputs 100, and the output median SHALL be within `moment_tolerance` of
-40.
+**Given** civ2 attack `1..15` and a CTP2 :RangeBound: of `10..100`, **when**
+cast, **then** the lowest-ranked entity outputs 10, the highest outputs 100, and
+an entity at the source median outputs the target median — because the percentile
+map places it there, not because a tolerance was met.
 
 **Given** civ2 firepower `1..3` (3 distinct) and CTP2 firepower `1..6`, **when**
-`min_distinct` is 5, **then** firepower is a :DegenerateAxis:; and **given**
-firepower is declared a :SharedScaleAxis:, **then** values pass through unchanged
-— `1f -> 1`, `2f -> 2`, `3f -> 3`.
+`min_distinct` is 5, **then** firepower is a :DegenerateAxis:; and **given** it is
+declared a :SharedScaleAxis:, **then** values pass through unchanged —
+`1f -> 1`, `2f -> 2`, `3f -> 3`.
 
-> This scenario is why the rule exists. The 3.8.0 cast mapped `2f -> 5` on 16
-> units, because a source median of 1 pushes anything above it past the median
-> anchor. Firepower is damage-per-round in *both* games, so that was inventing
-> 2.5x damage the source never specified.
+> This is why the rule exists. The 3.8.0 cast mapped `2f -> 5` on 16 units,
+> because a source median of 1 pushes anything above it past the median anchor.
+> Firepower is damage-per-round in *both* games, so that invented 2.5x damage
+> MOMJR never specified.
 
-**Given** an entity beyond the DERIVED outlier fence — `UNIT_NUKE` at attack
-1000, or `Infernal Device` at 99a — **when** the axis is cast, **then** it SHALL
-NOT contribute to the measured distribution on its side, and it SHALL still
-receive an output at the top of the target range.
+**Given** `Infernal Device` at 99a where the next-highest source attack is 15a,
+**when** the axis is cast, **then** it SHALL NOT contribute to the measured
+:SourceDistribution:, and it SHALL still receive an output at the top of the
+range.
 
 **Given** two axes with a source Spearman correlation of 0.779 (defence-hp),
 **when** both are cast, **then** the output correlation SHALL remain within
 `copula_tolerance` — measured 0.788, drift 0.009.
 
-**Given** any axis after casting, **when** the roster is inspected, **then** the
-axis SHALL have at least two distinct values. A single value means the column was
-dropped, not balanced.
+**Given** any axis after casting, **when** the roster is inspected, **then** it
+SHALL have at least two distinct values. One value means the column was dropped,
+not balanced.
 
 ***policy***
 
@@ -152,66 +124,54 @@ Per-mod, in `mod_policy.json` under `unit_stat_scaling.stat_curve`:
 |---|---|
 | `outlier_method` | `tukey` or `mad`; the cutoff is DERIVED, never a literal |
 | `min_distinct` | below this many distinct source values, the axis is degenerate |
-| `moment_tolerance` | allowed relative deviation per reported moment |
 | `copula_tolerance` | allowed Spearman drift per axis pair (0.02 measured) |
-| `stratify_by` | the field defining an :AgeStratum:, or null for a global cast |
 | `shared_scale_axes` | axes that pass through unchanged when degenerate |
-| `<axis>` | target distribution, per stratum, as the destination game's own values |
+| `<axis>` | `[min, median, max]` of the destination RANGE, with provenance |
 
 ***acceptance***
 
 **Assertions** — these fail the build:
 
-1. Rank order is preserved on every axis — assert pairwise for all entities.
-2. :Copula: drift <= `copula_tolerance` across every axis pair, measured with
-   **Spearman**, never Pearson.
-3. No output exceeds the target's observed `[min, max]`.
+1. Rank order preserved on every axis, pairwise across all entities.
+2. :Copula: drift <= `copula_tolerance`, measured with Spearman.
+3. No output outside the :RangeBound:.
 4. No axis collapses to a single distinct value (`validate_scenario.py` gate 28).
-5. The generator remains byte-stable across two consecutive runs.
+5. Generator byte-stable across two consecutive runs.
 
-**Diagnostics** — these are reported and looked at, and fail nothing:
+**Diagnostics** — reported, looked at, fail nothing:
 
-6. :ShapeSummary: per axis per :AgeStratum:, source beside output beside target.
-   A divergence is a prompt to investigate, not a build failure — the cast's
-   correctness is defined by 1–3, which quantile transplant satisfies by
-   construction. Reporting shape is how a BAD TARGET gets noticed (a stratum with
-   two entities, an axis that is degenerate in one game and rich in the other),
-   not how the cast is judged.
+6. Per-axis source-vs-output summary using **L-moments** (Hosking 1990), not
+   conventional moments. L-moments are linear combinations of order statistics,
+   so no fourth-power term lets one entity dominate: on this data conventional
+   skew swings 13.5x with and without an outlier, L-skew 4.5x and is bounded to
+   [-1,1]. Conventional skew and kurtosis saturate against an order-statistic
+   ceiling at these sample sizes — measured excess kurtosis was 41.02 whether the
+   outlier sat at 10x or 1,000,000x — so they report n, not shape.
 
 ***rejected***
 
-- **Matching conventional moments.** Skew and kurtosis saturate against an
-  order-statistic bound at these sample sizes; see the measurement above. They
-  describe n, not the design.
-- **Box-Cox / Yeo-Johnson before matching.** Only relevant if moments are fitted
-  parametrically. Rank transplant is distribution-free. The deeper catch: moments
-  matched in transformed space do NOT stay matched after inverting.
-- **Cornish-Fisher moment correction.** Not monotone for large |z|, so it can
-  reorder exactly the top entities the transplant exists to place — breaking both
-  rank order and the :Copula:.
-- **ZCA / whitening.** Affine (`W = V L^-1/2 V^T`), so it touches variance and
-  correlation ONLY; standardised third and fourth moments pass through unchanged
-  and the off-scale entity is still far out the other side. Different problem.
-- **NORTA / Iman-Conover.** The right tool for IMPOSING a target dependence
-  structure. This cast wants the opposite — to PRESERVE the source's, which is
-  what "keep the design" means, and which per-axis rank transplant already
-  delivers (measured drift 0.014). Adopt NORTA only if the goal ever inverts to
-  giving ported entities the destination game's correlation structure.
-
-***cautions***
-
-- **Assert the :Copula: on Spearman or Kendall, never Pearson.** Pearson is NOT
-  preserved under a rank transform; rank correlations are. Asserting on Pearson
-  would measure a number that changes the moment the marginals are remapped.
+- **Matching the destination's distribution.** Imports the destination's design
+  over the source's. The mod is compared only to itself.
+- **Matching conventional moments.** They saturate against an order-statistic
+  bound at these sample sizes; they describe n, not the design.
+- **Box-Cox / Yeo-Johnson.** Relevant only if moments are fitted parametrically.
+  The cast is distribution-free, and moments matched in transformed space do not
+  stay matched after inverting.
+- **Cornish-Fisher.** Not monotone for large |z|, so it reorders exactly the top
+  entities the cast exists to place — breaking rank order and the :Copula:.
+- **ZCA / whitening.** Affine, so it touches variance and correlation only;
+  standardised third and fourth moments pass through unchanged.
+- **NORTA / Iman-Conover.** The tool for IMPOSING a target dependence structure.
+  This cast preserves the source's, which per-axis rank transplant already
+  delivers.
 
 ***open***
 
-- **The target for an axis the destination never varies.** CTP2 ships `MaxHP` as
-  a flat 10 on all 74 stock units, so there is no :TargetDistribution: to
-  transplant onto. 3.8.0 chose `10/20/60` by preserving the *source's* ratios
-  (civ2 `1h/2h/6h`) with the floor at the destination's universal value. That is
-  a defensible convention, not a measurement, and it is the one number in the
+- **The HP range has no destination precedent.** CTP2 ships `MaxHP` flat at 10 on
+  all 74 stock units, so there is no interval to read off. 3.8.0 chose `10/20/60`
+  by preserving the source's own ratios (civ2 `1h/2h/6h`) with the floor at the
+  destination's universal value. Defensible, and still the one number in the
   system with no empirical backing.
-- Whether `cost` and `move` should be cast this way too. Cost is currently a
-  linear `x100`, which is arguably correct for a currency; move is a small
-  integer range where quantile transplant would be degenerate anyway.
+- Whether `cost` and `move` should be cast this way. Cost is a linear `x100`,
+  arguably right for a currency; move is a small integer range where the axis
+  would be degenerate anyway.
