@@ -3513,3 +3513,35 @@ both Back arms died at load with "BUTTON_BACK not found in string databse". Ever
 gate passed them because the gates validate `MOM_*` keys and never stock ones.
 Assuming a sibling key exists because one does is the same mistake that left the
 spellbook arms reading "Research" and "Goal".
+
+## Sphere is bound to the SEAT, not the civ (2026-08-04)
+
+`MomPlayerIsLife(p)` is `if (p_1 == 1) { return 1; }`. All five predicates are
+seat-index tests, and summon pools, the faction wall, mana caps, per-civ price
+and sphere income all key off them.
+
+The New Game screen has an EMPIRE selector. It defaults to **Tribes of Nature**,
+and the human sits at **seat 1** -- so the human is Nature and receives LIFE's
+magic. Visible in a build list: playing Tribes of Nature, the Build Manager
+offers **Guardian Spirit**, Life's rung-1 creature, because the wall checks the
+seat rather than the civ.
+
+The same screen sets **# EMPIRES to 4**, so only four of the five tribes ever
+spawn. A seat census (counting ticks per player index, outside the p<=5 guard)
+showed seat 4 ticking and seats 5-8 never ticking. Chaos reading 0 units AND
+0 mana in every run was never "Chaos loses early" -- it usually is not dealt in.
+
+**This invalidates every per-sphere conclusion drawn from telemetry**, including
+the nine-hypothesis Death investigation: the tribe at seat 4 need not be Death.
+
+The fix is idiomatic and heavily proven -- PlayerCivilization and
+CivilizationIndex have 484 call sites each in Ages of Man:
+
+    if (PlayerCivilization(p) == CivilizationIndex("TRIBES_LIFE")) { ... }
+
+Two lessons. **A comment asserting a premise is not evidence for it** -- "Player
+1 == Tribes of Life (civ #1)" sat above the code for weeks and was simply wrong.
+And **when a system is parameterised by a menu the harness never touches, the
+harness is testing one arbitrary configuration** -- rotating the EMPIRE selector
+would have surfaced this immediately, which is exactly what the operator asked
+for.

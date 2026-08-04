@@ -31,6 +31,7 @@ int_t MomDbgCre[31];      // summoned creatures still alive (ledger occupancy)
 int_t MomDbgMana[31];     // current pool
 int_t MomDbgPrep[31];     // preparation countdown, sampled on that player's OWN turn
 int_t MomDbgPend[31];     // pending creature type, 0 == nothing queued
+int_t MomDbgTick[31];     // turns taken by EACH seat, spheres or not
 int_t MomDbgHum[31];      // 1 == this seat is the human
 int_t MomDbgCity[31];     // cities owned -- the AI summon gate's first clause
 int_t MomDbgRung[31];     // sphere-ladder rung 0..5 -- the surviving hypothesis
@@ -62,6 +63,10 @@ HandleEvent(BeginTurn) 'MomProbeSample' post {
 
     p = player[0];
 
+    if (p >= 0 && p <= 15) {
+        MomDbgTick[p] = MomDbgTick[p] + 1;
+    }
+
     if (p >= 1 && p <= 5) {
         // Own-turn sampling: player[0] IS p here, so .units is p's unit count.
         MomDbgUnits[p] = player[0].units;
@@ -92,7 +97,11 @@ HandleEvent(BeginTurn) 'MomProbeSample' post {
         // MUST read zero summons with a monotonically climbing pool. That is
         // Death's exact signature, and it would make the whole investigation an
         // observer effect rather than a defect.
-        if (IsHumanPlayer(p)) { MomDbgHum[p] = 1; } else { MomDbgHum[p] = 0; }
+        if (IsHumanPlayer(p)) {
+            MomDbgHum[p] = 1;
+        } else {
+            MomDbgHum[p] = 0;
+        }
         // CITIES. The AI magic tick is gated on `player[0].cities > 0` before
         // anything else, so a tribe with no city can hold a full pool at rung 1
         // and never summon -- which is exactly Death's signature. Sampled on
@@ -124,9 +133,12 @@ HandleEvent(BeginTurn) 'MomProbeSample' post {
             // creature's keep of 2, no matter how full its bank is. Death sits
             // pinned at its cap, which is exactly what a tribe that cannot
             // spend looks like.
-            MomDbgY1 = MomDbgHum[1]; MomDbgY2 = MomDbgHum[2];
-            MomDbgY3 = MomDbgHum[3]; MomDbgY4 = MomDbgHum[4];
-            MomDbgY5 = MomDbgHum[5];
+            // Seats 4..8. If a sphere is seated above 5 it gets no magic at
+            // all -- every magic handler is guarded p >= 1 && p <= 5 -- which
+            // would be a hard defect rather than a balance problem.
+            MomDbgY1 = MomDbgTick[4]; MomDbgY2 = MomDbgTick[5];
+            MomDbgY3 = MomDbgTick[6]; MomDbgY4 = MomDbgTick[7];
+            MomDbgY5 = MomDbgTick[8];
         }
     }
 }
