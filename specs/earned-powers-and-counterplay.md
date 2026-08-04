@@ -174,16 +174,37 @@ undisclosed :Site:, not destroyed.**
 **A :Vessel: SHALL declare BOTH a :Boon: and a :Bane:, and they SHALL be
 inseparable.**
 
-> Artifacts give and they taketh away. This is not flavour — it is the only
-> thing that makes them CIRCULATE. A pure-benefit artifact never changes hands
-> after the first pickup, because nobody has a reason to put it down; every
-> holder hoards and the system goes static. A cost means carrying it is a
-> standing decision that can be re-answered, and abandoning it is how the next
-> owner gets a turn.
+> Artifacts give and they taketh away. Same design language as the
+> :PoisonedGift: volcano, applied to an object instead of a place: power arrives
+> attached to a liability.
 >
-> Same design language as the :PoisonedGift: volcano, applied to an object
-> instead of a place: power arrives attached to a liability, and the interesting
-> play is deciding whether to keep paying.
+> An earlier draft of this spec called abandonment "the release valve that keeps
+> artifacts moving". **That was wrong — an artifact CANNOT be abandoned**, and
+> the correction changes what the :Bane: is for. It is not a cost you re-answer
+> each turn; it is a cost you accepted once and now cannot escape.
+
+**A :Vessel: SHALL NOT be abandoned, dropped, disbanded or gifted. It leaves a
+player ONLY by loss.**
+
+> This is what makes an artifact a commitment rather than a tool. You cannot put
+> it down when the :Bane: turns inconvenient, so picking it up is irreversible
+> and the cost runs for as long as you hold it — which is until somebody takes
+> it from you.
+>
+> **Circulation therefore happens by VIOLENCE, not by choice.** That is a
+> stronger economy than the abandonment model it replaces: an artifact makes its
+> bearer a target, everyone can see who carries it, and the only way to get one
+> is to go and take it. It also composes with the rest of this spec — the
+> Artifacts menu has no Drop arm, and :Binding: is the one sanctioned disposal
+> route in the whole system, which is exactly why it should be costly.
+
+**A :Bane: SHALL be disclosed BEFORE the artifact is taken.**
+
+> Irreversible AND hidden is a gotcha, and this mod's design language is
+> legibility everywhere else — visible unlock conditions, stated counters,
+> prices on arms. An irreversible commitment has to be an informed one. The
+> gamble in this game lives in what the void sends you when you summon, not in
+> traps you cannot walk back out of.
 
 **A :Vessel: SHALL be a `Civilian` unit with `MaxMovePoints 0` and no defence.**
 
@@ -279,8 +300,12 @@ resolves, **then** the lamp SHALL remain on the tile, undefended, and SHALL pass
 to whoever reaches it first.
 
 **Given** an artifact whose :Bane: has become intolerable, **when** its bearer
-abandons it, **then** it SHALL become claimable by anyone — abandonment is the
-release valve that keeps artifacts moving.
+looks for a way to be rid of it, **then** there SHALL be none short of losing it
+— no Drop arm, no disband, no gift.
+
+**Given** an artifact on offer, **when** the player decides whether to take it,
+**then** its :Bane: SHALL already be visible — the commitment is irreversible,
+so it must be informed.
 
 **Given** any artifact, **when** its :Boon: is taken, **then** its :Bane: SHALL
 apply for as long as it is borne, with no way to hold one without the other.
