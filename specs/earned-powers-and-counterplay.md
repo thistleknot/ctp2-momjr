@@ -198,6 +198,21 @@ player ONLY by loss.**
 > Artifacts menu has no Drop arm, and :Binding: is the one sanctioned disposal
 > route in the whole system, which is exactly why it should be costly.
 
+**A :Boon: SHALL be BOUNDED. A transformation belongs to the sphere ladder, not
+to an artifact.**
+
+> The operator reached for lichdom as an artifact boon and then corrected it in
+> the same breath — *"lichdom would be a pretty powerful death power, not
+> necessarily tied to a semi-cursed artifact"* — and that correction is the
+> rule. An artifact is a trinket with a price: it modifies what you already do.
+> Becoming something else is a CAPSTONE, earned up your own sphere's ladder or
+> through a :ConditionalUnlock:, and it should cost the research and the
+> commitment that implies.
+>
+> The test is whether losing the object would undo it. You can lose a lamp; you
+> cannot un-become a lich. Anything that fails that test is not an artifact
+> boon.
+
 **A :Bane: SHALL be disclosed BEFORE the artifact is taken.**
 
 > Irreversible AND hidden is a gotcha, and this mod's design language is
@@ -386,11 +401,18 @@ an engine change.
   right, but it makes the hazard predictable to a player who works out the rule.
 - **Whether a :PoisonedGift: can be cast on oneself.** It is coherent Chaos
   play and it is also an exploit surface if the yield outruns the risk.
-- **`UNIT_ZOMBIES` has `MaxMovePoints 0`** — the only zero-move unit in the mod,
-  and it is the whole of Death's rung-1 summon pool. Even once Death's summoning
-  is fixed it would conjure something that cannot move. Unrelated to this spec,
-  found while looking for the immobility vocabulary, and it needs checking
-  against MOMJR's own value rather than assumed wrong.
+- **`UNIT_ZOMBIES` has `MaxMovePoints 0` and that is a CONFIRMED PORT DEFECT.**
+  MOMJR's own `Rules.txt` gives it `1.` — one move point:
+  `Zombies, nil, 0, 1.,0, 2a,2d, 2h,1f, 4,0, 5, Rfg`. It is the only zero-move
+  unit in the mod and it is the whole of Death's rung-1 summon pool, so even
+  once Death's summoning is fixed it would conjure something inert. Fix belongs
+  in the movement lane of the generator, not here.
+- **Death's roster is the thinnest in the game and a DEATH KNIGHT would fill
+  it.** Measured: Death's rung-5 creatures average 760 shields against
+  1412–1590 for every other sphere, and its whole line is Zombies / Wraith /
+  Undead Dragon. MOMJR has no lich, death knight, skeleton or vampire, so this
+  is an ADDITION rather than a port — justified by a measured gap rather than by
+  flavour, which is the bar an addition has to clear.
 - **Where the lost cities come from.** `TileHasDeadCity` (10 corpus sites) and
   `StoreDeadCityLocation` (4) exist, but a dead city is normally the ruin of a
   city destroyed IN PLAY, so at turn 1 there may be none. Two readings, and they
