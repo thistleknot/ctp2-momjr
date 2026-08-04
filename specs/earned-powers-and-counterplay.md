@@ -38,6 +38,11 @@ description: 'Powers a player EARNS rather than buys — capacity granted by art
 - :Hero: is one of the nine named units already in the roster. Five of them ARE
   their tribe's leader — `UNIT_ARIEL` is both a unit and the Tribes of Life's
   named leader — so the wizard is the lord and walks the map.
+- :Anchored: describes a :Vessel: with `MaxMovePoints 0`. It never travels; it
+  is a PLACE, and the only way to hold one is to build a city around it.
+- :Borne: describes a :Vessel: carried with a group. Its movement is set at the
+  roster's ceiling so it is never the slowest member and therefore never slows
+  the party nor gets left behind.
 - :Bearing: is a :Hero: and a :Vessel: sharing a tile or army. It is the whole
   equipment system, because CTP2 has no inventory.
 - :SummonLane: is the part of a sphere's roster the summon roll may return.
@@ -45,6 +50,10 @@ description: 'Powers a player EARNS rather than buys — capacity granted by art
   something, researching a capstone, or capturing. Nothing in it is ever rolled.
 - :WishGiver: is an entity that grants :Wish:es. A :Genie: and a :Lich: sit at
   the SAME tier; only a captured :Avatar: grants the top wish.
+- :SharedCreature: is a creature more than one sphere may roll — demons belong
+  to both Death and Chaos.
+- :WildRoll: is Chaos's signature: a chance for its summon to return a creature
+  from ANY sphere, including one no other sphere would give it.
 - :Boon: is what an artifact gives its bearer.
 - :Bane: is what the same artifact takes. It is not optional and cannot be
   declined separately from the :Boon:.
@@ -228,6 +237,35 @@ the roll SHALL only ever return from the :SummonLane:.**
 | **Death Knight** | champion | never summoned — Death's hero-class unit |
 | **Lich** | capstone | never summoned — a transformation, per the bounded-boon rule |
 
+**A creature MAY belong to more than one sphere.**
+
+> Demons are a fair split between Death and Chaos — they are of the underworld,
+> which is Death's, and they are destruction without order, which is Chaos's.
+> Nothing requires a roster to partition cleanly, and the pools are DERIVED from
+> each unit's sphere rather than hand-listed, so sharing costs only a second
+> sphere tag.
+
+**Chaos SHALL have a :WildRoll: — a chance to summon from ANY sphere.**
+
+> This is the x-factor that makes Chaos itself rather than "Death with better
+> numbers": it can call a demon or an ANGEL, and it does not get to choose. It
+> is also the only mechanic in the mod where a sphere reaches outside its own
+> roster, which is precisely why it should belong to Chaos and to nothing else.
+>
+> It composes with the existing economy without new machinery — the roll already
+> exists, the wild branch just draws from a wider pool — and it pairs with the
+> measurement that Chaos already pays the highest prices (92%) and earns the
+> fastest (140%). High variance on all three axes is one coherent identity.
+
+**Creature slots per rung SHALL NOT be capped at one.**
+
+> The one-creature-per-rung shape of today's pools is an ACCIDENT of a thin
+> roster, not a design: pools are derived from whichever units carry that rung's
+> advance, and rung 1 happens to have one each. Splitting champions and
+> capstones into the :EarnedLane: frees rung slots, and there is prior art to
+> draw on rather than invent — `H:\games\ctp2` carries Lord of the Rings with
+> BALROG, SMAUG, KRAKEN, LEVIATHON and WATCHER already modelled as CTP2 units.
+
 **A :Lich: SHALL be a :WishGiver: at the same tier as a :Genie: — every wish
 EXCEPT the top one.**
 
@@ -259,8 +297,41 @@ to an artifact.**
 > gamble in this game lives in what the void sends you when you summon, not in
 > traps you cannot walk back out of.
 
-**A :Vessel: SHALL be a `Civilian` unit with `MaxMovePoints 0` and no defence.**
+**A :Vessel: SHALL be either :Anchored: or :Borne:. Both are `Civilian` with no
+defence; they differ only in movement.**
 
+| class | movement | consequence |
+|---|---|---|
+| :Anchored: | `MaxMovePoints 0` | cannot flee, cannot be carried — hold it by founding a city on it |
+| :Borne: | roster ceiling (`1000`) | never the slowest in a group, so never a bottleneck and never left behind |
+
+> **:Anchored: artifacts are why you settle somewhere bad.** One that cannot move
+> and cannot defend is taken by anyone who walks up to it — so the only way to
+> keep it is to plant a city around it, in whatever treacherous terrain it was
+> hidden in. That closes the loop with the :Site: rule: the reward is guarded by
+> geography, and claiming it permanently means committing a city to that
+> geography. The artifact stops being loot and becomes a map objective.
+>
+> **:Borne: artifacts need NO SLIC.** CTP2 armies move at their SLOWEST member's
+> speed, so an artifact that is never the slowest is never the constraint. Set
+> its movement at the mod's ceiling — 1000, the fastest unit in the roster — and
+> "moves with the group, never left behind" falls out of one data field. It
+> still cannot act or defend, so moving it alone is suicide rather than a
+> strategy.
+>
+> Splitting the class rather than choosing one is TRIZ *local quality*: the
+> property varies where varying it does work.
+
+> PRIOR ART, and it validates the shape: Lord of the Rings models the palantiri
+> as UNITS — `UNIT_PALANTIR_I`, `MaxMovePoints 0`, `VisionRange 2`, `NoZoc`. So
+> artifact-as-immobile-unit is a road already walked in a shipped CTP2 mod.
+>
+> One deliberate divergence: LOTR gave its palantir `Attack 15 / Defense 15`, so
+> theirs fights for itself. Ours must NOT — an artifact cannot be defended and
+> passes to whoever survives on its tile, which needs `Civilian`. Their
+> `VisionRange 2` is worth stealing though: a :Boon: expressed in the unit's own
+> stats costs no SLIC at all.
+>
 > The engine already has this exact vocabulary — `Civilian` and `CanBeExpelled`
 > are live flags in Units.txt — and a civilian is CAPTURED rather than fought.
 > So "a sole artifact cannot be defended, it is picked up by whoever survives"
@@ -439,12 +510,14 @@ an engine change.
   right, but it makes the hazard predictable to a player who works out the rule.
 - **Whether a :PoisonedGift: can be cast on oneself.** It is coherent Chaos
   play and it is also an exploit surface if the yield outruns the risk.
-- **`UNIT_ZOMBIES` has `MaxMovePoints 0` and that is a CONFIRMED PORT DEFECT.**
-  MOMJR's own `Rules.txt` gives it `1.` — one move point:
-  `Zombies, nil, 0, 1.,0, 2a,2d, 2h,1f, 4,0, 5, Rfg`. It is the only zero-move
-  unit in the mod and it is the whole of Death's rung-1 summon pool, so even
-  once Death's summoning is fixed it would conjure something inert. Fix belongs
-  in the movement lane of the generator, not here.
+- ~~`UNIT_ZOMBIES` has `MaxMovePoints 0`~~ — **RETRACTED, this was never true.**
+  Zombies has `MaxMovePoints 100`, which on CTP2's x100 scale is one move point
+  and matches MOMJR's `1.` exactly. The port is correct. The claim came from a
+  regex whose non-greedy `.*?` under `re.S` ran past the end of the Zombies
+  block and matched `UNIT_CITY`'s legitimate zero far later in the file — the
+  only zero-move unit in the mod, and correctly so. Left here rather than
+  deleted because a spec that quietly drops a retracted "confirmed defect" is
+  how the same false finding gets rediscovered.
 - **Which rung Dracolich replaces.** Undead Dragon already exists at 12a/6d and
   a dracolich is a lich-dragon, so they may be the same creature renamed, or the
   dracolich may sit above it. Rungs 3 and 5 are also unassigned once Demon is
