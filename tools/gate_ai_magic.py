@@ -160,6 +160,16 @@ def check(scen: Path, csv_dir: Path) -> list[str]:
                                 _read(gd / "Units.txt"), re.M))
     spheres = _unit_spheres(csv_dir)
     heroes = _heroes(csv_dir)
+    # EXCISE Chaos's wild branch BEFORE deriving pools, rather than exempting
+    # its units afterwards. Exempting by NAME was measurably too wide: it let a
+    # cross-sphere creature sit in Chaos's ORDINARY bands undetected, because
+    # that same unit is legitimately reachable through the wild branch. Cutting
+    # the branch out means Chaos's pool holds only its bands, so the purity rule
+    # binds Chaos exactly as it binds everyone else and the wild picks are
+    # simply not pool members at all.
+    _wild = re.search(r"wild = Random\(100\);(.*?)\n        \}", summon, re.S)
+    if _wild:
+        summon = summon.replace(_wild.group(0), "")
     pools = _pools(summon)
     player_sphere = {v: k for k, v in SPHERE_PLAYER.items()}
 
@@ -174,6 +184,9 @@ def check(scen: Path, csv_dir: Path) -> list[str]:
         for unit in pool:
             owner = spheres.get(unit)
             if owner and owner != "neutral" and owner != sphere:
+                # Chaos's WildRoll is the one sanctioned way to cross spheres,
+                # and it is EXCISED above rather than exempted here -- so this
+                # rule still binds every band of every sphere, Chaos included.
                 fails.append(
                     f"mom_summon.slc: {sphere.upper()} can roll {unit}, which "
                     f"belongs to {owner.upper()}")

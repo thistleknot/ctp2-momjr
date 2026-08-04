@@ -75,6 +75,7 @@ int_f MomSummonRoll(int_t p)
 {
     int_t r;
     int_t roll;
+    int_t wild;
 
     r = MomSphereRung[p];
     // NO FLOOR. Rung 0 means 'this tribe has learned no magic of its own
@@ -210,6 +211,76 @@ int_f MomSummonRoll(int_t p)
 
     // CHAOS (player 5)
     if (p == 5) {
+        wild = Random(100);
+        if (wild < 15) {
+            if (r == 5) {
+                wild = Random(16);
+                if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+                if (wild < 2) { return UnitDB(UNIT_ARCHANGEL); }
+                if (wild < 3) { return UnitDB(UNIT_BEHEMOTH); }
+                if (wild < 4) { return UnitDB(UNIT_COCKATRICE); }
+                if (wild < 5) { return UnitDB(UNIT_DEMON); }
+                if (wild < 6) { return UnitDB(UNIT_GREAT_WYRM); }
+                if (wild < 7) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 8) { return UnitDB(UNIT_PEGASUS); }
+                if (wild < 9) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 10) { return UnitDB(UNIT_STORM_DRAKE); }
+                if (wild < 11) { return UnitDB(UNIT_STORM_GIANT); }
+                if (wild < 12) { return UnitDB(UNIT_UNDEAD_DRAGON); }
+                if (wild < 13) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 14) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 15) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 16) { return UnitDB(UNIT_ZOMBIES); }
+            }
+            if (r == 4) {
+                wild = Random(12);
+                if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+                if (wild < 2) { return UnitDB(UNIT_BEHEMOTH); }
+                if (wild < 3) { return UnitDB(UNIT_COCKATRICE); }
+                if (wild < 4) { return UnitDB(UNIT_DEMON); }
+                if (wild < 5) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 6) { return UnitDB(UNIT_PEGASUS); }
+                if (wild < 7) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 8) { return UnitDB(UNIT_STORM_GIANT); }
+                if (wild < 9) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 10) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 11) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 12) { return UnitDB(UNIT_ZOMBIES); }
+            }
+            if (r == 3) {
+                wild = Random(12);
+                if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+                if (wild < 2) { return UnitDB(UNIT_BEHEMOTH); }
+                if (wild < 3) { return UnitDB(UNIT_COCKATRICE); }
+                if (wild < 4) { return UnitDB(UNIT_DEMON); }
+                if (wild < 5) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 6) { return UnitDB(UNIT_PEGASUS); }
+                if (wild < 7) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 8) { return UnitDB(UNIT_STORM_GIANT); }
+                if (wild < 9) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 10) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 11) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 12) { return UnitDB(UNIT_ZOMBIES); }
+            }
+            if (r == 2) {
+                wild = Random(8);
+                if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+                if (wild < 2) { return UnitDB(UNIT_COCKATRICE); }
+                if (wild < 3) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 4) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 5) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 6) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 7) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 8) { return UnitDB(UNIT_ZOMBIES); }
+            }
+            if (r == 1) {
+                wild = Random(4);
+                if (wild < 1) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 2) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 3) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 4) { return UnitDB(UNIT_ZOMBIES); }
+            }
+        }
         if (r == 5) {
             if (roll < 16) { return UnitDB(UNIT_HELL_HOUNDS); }
             if (roll < 32) { return UnitDB(UNIT_GARGOYLE); }

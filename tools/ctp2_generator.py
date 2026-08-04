@@ -2492,6 +2492,10 @@ def sphere_gate_targets() -> dict[str, str]:
 # Tribe player index, fixed by the SLIC faction predicates (mom_func.slc
 # MomPlayerIsLife is p == 1, ... MomPlayerIsChaos is p == 5) and corroborated by
 # the summon table in mom_msg.slc. Player 0 is the barbarian.
+# Chaos's WildRoll chance, in percent. One knob, documented where the sphere
+# seating is, because it is a property OF Chaos rather than of the roll.
+_WILDROLL_PCT = 15
+
 _SPHERE_PLAYER = {"life": 1, "nature": 2, "sorcery": 3, "death": 4, "chaos": 5}
 
 _GATING_SLC_REL = "default/gamedata/mom_gating.slc"
@@ -2753,6 +2757,7 @@ def _emit_mom_summon_slc() -> int:
         "{",
         "    int_t r;",
         "    int_t roll;",
+        "    int_t wild;",
         "",
         "    r = MomSphereRung[p];",
         "    // NO FLOOR. Rung 0 means 'this tribe has learned no magic of its own",
@@ -2783,6 +2788,47 @@ def _emit_mom_summon_slc() -> int:
         pool = pools[sphere]
         lines.append(f"    // {sphere.upper()} (player {index})")
         lines.append(f"    if (p == {index}) {{")
+        if sphere == "chaos":
+            # THE WILDROLL -- Chaos, and only Chaos, may draw from ANY sphere.
+            #
+            # This is the x-factor that makes Chaos itself rather than "Death
+            # with better numbers": it can call a demon or an angel and does not
+            # get to choose. It is the one mechanic where a sphere reaches
+            # outside its own roster, which is exactly why no other sphere gets
+            # it, and it pairs with Chaos already paying the most (92%) and
+            # earning the fastest (140%) -- high variance on every axis is one
+            # identity rather than three unrelated bonuses.
+            #
+            # A SEPARATE Random() rather than a slice of `roll`: carving the wild
+            # case out of the low band would silently rob whichever creature owns
+            # that band, so Chaos's own ladder would quietly change shape as a
+            # side effect. Two independent draws keep the normal distribution
+            # exactly what every other sphere's is.
+            #
+            # Draws are restricted to rung <= r, so the wild roll widens WHAT
+            # answers, never how far up the ladder Chaos can reach.
+            wild_by_rung: dict[int, list[str]] = {}
+            for rung in range(1, 6):
+                union: list[str] = []
+                for other in sorted(_SPHERE_PLAYER):
+                    if other == "chaos":
+                        continue
+                    for lo in range(1, rung + 1):
+                        union.extend(pools[other][lo] if lo < len(pools[other]) else [])
+                if union:
+                    wild_by_rung[rung] = sorted(set(union))
+            if wild_by_rung:
+                lines.append(f"        wild = Random(100);")
+                lines.append(f"        if (wild < {_WILDROLL_PCT}) {{")
+                for rung in sorted(wild_by_rung, reverse=True):
+                    units = wild_by_rung[rung]
+                    lines.append(f"            if (r == {rung}) {{")
+                    lines.append(f"                wild = Random({len(units)});")
+                    for k, unit in enumerate(units):
+                        lines.append(
+                            f"                if (wild < {k + 1}) {{ return UnitDB({unit}); }}")
+                    lines.append("            }")
+                lines.append("        }")
         # Walk rungs high -> low. At rung r the top populated rung wins the widest
         # band; each lower populated rung keeps an equal share of the remainder.
         for cur in range(len(pool) - 1, 0, -1):
