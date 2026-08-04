@@ -40,6 +40,11 @@ description: 'Powers a player EARNS rather than buys — capacity granted by art
   named leader — so the wizard is the lord and walks the map.
 - :Bearing: is a :Hero: and a :Vessel: sharing a tile or army. It is the whole
   equipment system, because CTP2 has no inventory.
+- :SummonLane: is the part of a sphere's roster the summon roll may return.
+- :EarnedLane: is the rest of it — units a player may only reach by holding
+  something, researching a capstone, or capturing. Nothing in it is ever rolled.
+- :WishGiver: is an entity that grants :Wish:es. A :Genie: and a :Lich: sit at
+  the SAME tier; only a captured :Avatar: grants the top wish.
 - :Boon: is what an artifact gives its bearer.
 - :Bane: is what the same artifact takes. It is not optional and cannot be
   declined separately from the :Boon:.
@@ -197,6 +202,39 @@ player ONLY by loss.**
 > is to go and take it. It also composes with the rest of this spec — the
 > Artifacts menu has no Drop arm, and :Binding: is the one sanctioned disposal
 > route in the whole system, which is exactly why it should be costly.
+
+**A sphere's roster SHALL be split into a :SummonLane: and an :EarnedLane:, and
+the roll SHALL only ever return from the :SummonLane:.**
+
+> Not everything a sphere owns should be conjurable. A death knight is a
+> CHAMPION and a lich is a TRANSFORMATION; handing either out on a 70% per-turn
+> roll makes the ladder's top indistinguishable from its bottom. The machinery
+> for this already exists and is already correct — `_summon_pool_by_rung`
+> excludes heroes from every pool — so the :EarnedLane: is that exclusion
+> generalised from "heroes" to "heroes, champions and capstones".
+
+**Death's ladder, as specified:**
+
+| rung | :SummonLane: | notes |
+|---|---|---|
+| 1 | Zombies, **Skeletons** | the cheap dead; Skeletons is an addition |
+| 2 | Wraiths | already at rung 2 today |
+| 3 | *(unassigned)* | Demon sits here now and is Chaos-flavoured |
+| 4 | **Dracolich** | an addition; Undead Dragon's relationship to it is open |
+| 5 | *(unassigned)* | |
+
+| :EarnedLane: | tier | how |
+|---|---|---|
+| **Death Knight** | champion | never summoned — Death's hero-class unit |
+| **Lich** | capstone | never summoned — a transformation, per the bounded-boon rule |
+
+**A :Lich: SHALL be a :WishGiver: at the same tier as a :Genie: — every wish
+EXCEPT the top one.**
+
+> That boundary is the whole tier system in one line: minor and middling wishes
+> are reachable by holding the right entity, and the single most powerful wish
+> is reachable only by CAPTURING a rival's :Avatar:. It also generalises — each
+> sphere should own a wish-giver at this tier, and Death's is the lich.
 
 **A :Boon: SHALL be BOUNDED. A transformation belongs to the sphere ladder, not
 to an artifact.**
@@ -407,6 +445,13 @@ an engine change.
   unit in the mod and it is the whole of Death's rung-1 summon pool, so even
   once Death's summoning is fixed it would conjure something inert. Fix belongs
   in the movement lane of the generator, not here.
+- **Which rung Dracolich replaces.** Undead Dragon already exists at 12a/6d and
+  a dracolich is a lich-dragon, so they may be the same creature renamed, or the
+  dracolich may sit above it. Rungs 3 and 5 are also unassigned once Demon is
+  reconsidered — it is currently in Death's pool but reads as Chaos.
+- **Undead Dragon costs 3, the CHEAPEST unit Death owns, with its STRONGEST
+  statline (12a/6d).** A pricing inversion that predates all of this and that
+  any rung assignment will inherit.
 - **Death's roster is the thinnest in the game and a DEATH KNIGHT would fill
   it.** Measured: Death's rung-5 creatures average 760 shields against
   1412–1590 for every other sphere, and its whole line is Zombies / Wraith /
