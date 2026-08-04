@@ -3490,3 +3490,26 @@ Two lessons worth more than the finding:
 Death's roster being the thinnest in the game (r5 mean 760 shields vs 1412-1590)
 is the likely reason it loses, which makes the death-knight/skeleton additions a
 BALANCE fix rather than flavour.
+
+## The preflight blamed the wrong monitor for two days (2026-08-04)
+
+`preflight_display` selected the first display device with the PRIMARY bit and
+never checked ATTACHED. `EnumDisplayDevicesW` enumerates adapters that are not
+part of the desktop, so it named `\.\DISPLAY4` -- rotated, unused -- and
+aborted every run. Meanwhile the real primary, `\.\DISPLAY1`, was landscape
+with `1280x1024` legal the whole time.
+
+I relayed that verdict to the operator as a fact about their hardware and
+declared the day's work unverifiable. It cost two rounds of "your display is
+rotated" before one read of the display list settled it in seconds.
+
+**A gate that blocks work must be at least as careful as the thing it protects,
+and its diagnosis is a hypothesis until its own inputs are checked.** Fixed by
+requiring ATTACHED **and** PRIMARY.
+
+The run that followed immediately found a real defect the static gates could not:
+`ID_BUTTON_BACK` is not a stock CTP2 string -- only `ID_BUTTON_CLOSE` is -- so
+both Back arms died at load with "BUTTON_BACK not found in string databse". Every
+gate passed them because the gates validate `MOM_*` keys and never stock ones.
+Assuming a sibling key exists because one does is the same mistake that left the
+spellbook arms reading "Research" and "Goal".
