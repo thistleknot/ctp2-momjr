@@ -40,6 +40,9 @@ description: 'Powers a player EARNS rather than buys — capacity granted by art
   named leader — so the wizard is the lord and walks the map.
 - :Bearing: is a :Hero: and a :Vessel: sharing a tile or army. It is the whole
   equipment system, because CTP2 has no inventory.
+- :Boon: is what an artifact gives its bearer.
+- :Bane: is what the same artifact takes. It is not optional and cannot be
+  declined separately from the :Boon:.
 - :Precondition: is the terrain-and-neighbourhood test a tile must pass to be a
   :Site:. Because it depends only on the map, it can be evaluated ONCE at game
   start rather than per turn.
@@ -168,6 +171,32 @@ undisclosed :Site:, not destroyed.**
 > The banishment SHALL NOT be announced to the binder. Knowing where you sent it
 > turns a banishment into a deposit.
 
+**A :Vessel: SHALL declare BOTH a :Boon: and a :Bane:, and they SHALL be
+inseparable.**
+
+> Artifacts give and they taketh away. This is not flavour — it is the only
+> thing that makes them CIRCULATE. A pure-benefit artifact never changes hands
+> after the first pickup, because nobody has a reason to put it down; every
+> holder hoards and the system goes static. A cost means carrying it is a
+> standing decision that can be re-answered, and abandoning it is how the next
+> owner gets a turn.
+>
+> Same design language as the :PoisonedGift: volcano, applied to an object
+> instead of a place: power arrives attached to a liability, and the interesting
+> play is deciding whether to keep paying.
+
+**A :Vessel: SHALL be a `Civilian` unit with `MaxMovePoints 0` and no defence.**
+
+> The engine already has this exact vocabulary — `Civilian` and `CanBeExpelled`
+> are live flags in Units.txt — and a civilian is CAPTURED rather than fought.
+> So "a sole artifact cannot be defended, it is picked up by whoever survives"
+> needs no new mechanism; it is stock behaviour. Immobility follows from
+> `MaxMovePoints 0`: an artifact never travels on its own, only in company.
+>
+> Neutrality when abandoned is EMERGENT rather than a special rule: an
+> unattended civilian is claimable by anyone who reaches it, barbarians
+> included. An artifact dropped in the field really is loose in the world.
+
 **A :Vessel: SHALL be usable only while BORNE by a :Hero:.**
 
 > This is what makes heroes matter without inventing a hero system. MoM proper
@@ -246,8 +275,15 @@ recomputed on any later turn.
 arm is sought, **then** it SHALL be unavailable — an unborne :Vessel: is inert.
 
 **Given** a :Hero: bearing a lamp who dies in the field, **when** the loss
-resolves, **then** the lamp SHALL be at risk with them rather than returning
-safely home.
+resolves, **then** the lamp SHALL remain on the tile, undefended, and SHALL pass
+to whoever reaches it first.
+
+**Given** an artifact whose :Bane: has become intolerable, **when** its bearer
+abandons it, **then** it SHALL become claimable by anyone — abandonment is the
+release valve that keeps artifacts moving.
+
+**Given** any artifact, **when** its :Boon: is taken, **then** its :Bane: SHALL
+apply for as long as it is borne, with no way to hold one without the other.
 
 **Given** any :Hero:'s death, **when** it resolves, **then** the tribe SHALL be
 told, because five of the nine are that tribe's leader.
@@ -325,6 +361,11 @@ an engine change.
   right, but it makes the hazard predictable to a player who works out the rule.
 - **Whether a :PoisonedGift: can be cast on oneself.** It is coherent Chaos
   play and it is also an exploit surface if the yield outruns the risk.
+- **`UNIT_ZOMBIES` has `MaxMovePoints 0`** — the only zero-move unit in the mod,
+  and it is the whole of Death's rung-1 summon pool. Even once Death's summoning
+  is fixed it would conjure something that cannot move. Unrelated to this spec,
+  found while looking for the immobility vocabulary, and it needs checking
+  against MOMJR's own value rather than assumed wrong.
 - **Where the lost cities come from.** `TileHasDeadCity` (10 corpus sites) and
   `StoreDeadCityLocation` (4) exist, but a dead city is normally the ruin of a
   city destroyed IN PLAY, so at turn 1 there may be none. Two readings, and they
