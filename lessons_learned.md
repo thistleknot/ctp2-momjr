@@ -3448,3 +3448,45 @@ bank did nothing, lowering its price did nothing. `MomSphereRung[4] == 0` is the
 only surviving hypothesis and the next step is to READ that variable.
 
 Chaos remains at 0 units and 0 mana in all ten samples: it never enters play.
+
+## Death and Chaos: one root cause, nine falsified hypotheses (2026-08-03)
+
+Death never summons. Chaos never appears. After instrumenting every input to the
+AI summon gate, both reduce to the SAME cause and neither is a magic-system bug.
+
+Falsified, each by measurement: insufficient bank; price too high; rung stuck at
+0 (measured rung 1); no cities (measured 2); stuck preparation (measured 0);
+negative net income (measured 33, the HIGHEST of any tribe); asymmetric generated
+SLIC (the p==4 branch is byte-identical to p==2's); mana refilling too fast to
+observe (per-turn sampling showed a perfectly MONOTONE climb 10->21->32->...->200
+while Nature and Sorcery visibly oscillate); and the human seat sitting on Death
+(measured `human 1 0 0 0 0` -- Death is an AI).
+
+**The actual cause is army size.** Across four runs:
+
+    run    Life  Nature  Sorcery  Death  Chaos
+    t30      8     15      16       4      0
+    t30      6      9      12       4      0
+    t40     10     14      24       5      0
+    t8       3      1       3       0      0
+
+Death never exceeds 5 units while its neighbours reach 9-24; Chaos is at zero in
+every sample of every run. A tribe with no cities fails the AI tick's very first
+clause (`player[0].cities > 0`), so it can hold a full pool at rung 1 forever and
+never spend a point. That is Death's whole signature, and it is downstream of
+being crippled early rather than of anything in the summon path.
+
+Two lessons worth more than the finding:
+
+* **A gate with many inputs should be instrumented as a WHOLE, not narrowed one
+  variable per run.** Nine runs went into eliminating clauses one at a time; a
+  single pass that dumped every input at once would have cost one.
+* **A constant is not evidence of inaction.** "Death's mana is pinned at 200"
+  was read as "never spends", but with net 33 and a price of 40 it refills in
+  1.2 turns and a 20-turn sample would read 200 either way. Only per-turn
+  sampling could tell a monotone climb from a sawtooth, and the sampling
+  interval had to be shorter than the phenomenon.
+
+Death's roster being the thinnest in the game (r5 mean 760 shields vs 1412-1590)
+is the likely reason it loses, which makes the death-knight/skeleton additions a
+BALANCE fix rather than flavour.

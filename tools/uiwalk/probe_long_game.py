@@ -90,7 +90,7 @@ DEBUG_MENU = (
     'units  {MomDbgU1} {MomDbgU2} {MomDbgU3} {MomDbgU4} {MomDbgU5}\\n'
     'summon {MomDbgC1} {MomDbgC2} {MomDbgC3} {MomDbgC4} {MomDbgC5}\\n'
     'mana   {MomDbgM1} {MomDbgM2} {MomDbgM3} {MomDbgM4} {MomDbgM5}\\n'
-    'pend   {MomDbgP1} {MomDbgP2} {MomDbgP3} {MomDbgP4} {MomDbgP5}"\n'
+    'human  {MomDbgY1} {MomDbgY2} {MomDbgY3} {MomDbgY4} {MomDbgY5}"\n'
 )
 
 
