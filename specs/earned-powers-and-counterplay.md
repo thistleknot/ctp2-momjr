@@ -33,6 +33,8 @@ description: 'Powers a player EARNS rather than buys — capacity granted by art
   bare random roll.
 - :Vessel: is a discovered object that carries a power rather than being one — a
   lamp holding a :Genie:. Found, not built; the power comes out of it later.
+- :Binding: is the act of forcing a defeated :Genie: back into a :Vessel:, after
+  which the vessel is banished to a :Site: nobody is told about.
 - :Precondition: is the terrain-and-neighbourhood test a tile must pass to be a
   :Site:. Because it depends only on the map, it can be evaluated ONCE at game
   start rather than per turn.
@@ -145,6 +147,21 @@ recomputed per turn.**
 
 **A :Site: SHALL raise the barbarian presence around it**, so the reward is
 guarded by something the map itself explains.
+
+**A defeated :Genie: SHALL be BOUND into a :Vessel: and banished to an
+undisclosed :Site:, not destroyed.**
+
+> This is the loop that makes the whole system self-feeding, and it costs
+> nothing extra: a genie removed from play re-enters the world as a lamp
+> somewhere unknown, findable by anyone including the player who just lost it.
+> Genies are therefore CONSERVED rather than consumed — the world holds roughly
+> as much magic as it started with, redistributed by who is willing to go and
+> get it. It also answers where lamps come from after turn one without seeding
+> more, and it is the same emergent principle as letting the ruins of cities
+> that actually fell become the sites.
+
+> The banishment SHALL NOT be announced to the binder. Knowing where you sent it
+> turns a banishment into a deposit.
 
 **A :ConditionalUnlock: or :Wish: SHALL NOT be granted to a player who is not in
 play.**
