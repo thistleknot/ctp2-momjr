@@ -325,7 +325,7 @@ alertbox 'MomMsgSpellbook' {
     }
     // BACK to the hub. MagicMenu is declared in mom_msg.slc (include 55), which
     // loads BEFORE this file (65), so naming it here is safe in both directions.
-    Button(ID_BUTTON_BACK) {
+    Button(ID_MOM_MSG_BTN_BACK) {
         Kill();
         Message(g.player, 'MagicMenu');
     }
@@ -351,7 +351,7 @@ alertbox 'MomMsgSpellbookChaos' {
     Button(ID_BUTTON_CLOSE) {
         Kill();
     }
-    Button(ID_BUTTON_BACK) {
+    Button(ID_MOM_MSG_BTN_BACK) {
         Kill();
         Message(g.player, 'MagicMenu');
     }

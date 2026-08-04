@@ -54,6 +54,9 @@ def main() -> int:
         cv2.imwrite(str(run_dir / "10_before.png"), before)
 
         uiwalk.run_steps(game, inp, [
+            {"do": "key", "keys": "j"},
+            {"do": "wait_stable", "ms": 6000},
+            {"do": "shot", "name": "hub"},
             {"do": "trigger", "path": MAGIC},
             {"do": "wait", "ms": 2500},
             {"do": "shot", "name": "spellbook"},

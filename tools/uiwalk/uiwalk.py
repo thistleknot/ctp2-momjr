@@ -310,10 +310,22 @@ def preflight_display(want=None):
                     ("DeviceID", ctypes.c_wchar * 128),
                     ("DeviceKey", ctypes.c_wchar * 128)]
 
+    DISPLAY_DEVICE_ATTACHED = 0x1
     DISPLAY_DEVICE_PRIMARY = 0x4
     ENUM_CURRENT_SETTINGS = -1
     u32 = ctypes.windll.user32
 
+    # ATTACHED **AND** PRIMARY, not primary alone. EnumDisplayDevicesW walks
+    # adapters that are not currently part of the desktop, and taking the first
+    # device that merely carries the primary bit can name a head the desktop is
+    # not actually using -- at which point this gate reports a resolution as
+    # illegal because of a monitor nobody is looking at, and the operator gets
+    # told to rotate a display that is not their primary.
+    #
+    # This aborted a run on 2026-08-03 naming \\.\DISPLAY4, while an independent
+    # enumeration filtering on ATTACHED showed \\.\DISPLAY1 primary, landscape,
+    # with 1280x1024 legal. A preflight that blocks work must be at least as
+    # careful as the thing it is protecting.
     primary = None
     i = 0
     while True:
@@ -321,7 +333,8 @@ def preflight_display(want=None):
         dd.cb = ctypes.sizeof(DISPLAY_DEVICE)
         if not u32.EnumDisplayDevicesW(None, i, ctypes.byref(dd), 0):
             break
-        if dd.StateFlags & DISPLAY_DEVICE_PRIMARY:
+        if (dd.StateFlags & DISPLAY_DEVICE_ATTACHED
+                and dd.StateFlags & DISPLAY_DEVICE_PRIMARY):
             primary = dd.DeviceName
             break
         i += 1
