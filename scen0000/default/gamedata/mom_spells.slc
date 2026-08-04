@@ -318,11 +318,27 @@ HandleEvent(BeginTurn) 'MomSpellAICast' post {
 alertbox 'MomMsgSpellbook' {
     Show();
     Text(ID_MOM_MSG_SPELLBOOK);
+    // CLOSE FIRST -- overflow is dropped from the TAIL of the declaration list,
+    // silently, so the first-declared arm is the one guaranteed to survive.
+    Button(ID_BUTTON_CLOSE) {
+        Kill();
+    }
+    // BACK to the hub. MagicMenu is declared in mom_msg.slc (include 55), which
+    // loads BEFORE this file (65), so naming it here is safe in both directions.
+    Button(ID_BUTTON_BACK) {
+        Kill();
+        Message(g.player, 'MagicMenu');
+    }
     Button(ID_MOM_MSG_BTN_FLAME) {
         MomCastFlameStrike(g.player);
         Kill();
     }
-    Button(ID_BUTTON_CLOSE) {
+    // STORE POWER -- the honest third option beside spend-50 and spend-100, and
+    // what makes the body's own promise ("or store your power for later") true.
+    // Banking is simply declining to cast, so the body is a bare Kill(); the
+    // arm exists to SAY so rather than leaving Close to mean two different
+    // things. MOM_MSG_BTN_STORE was authored long ago and never bound.
+    Button(ID_MOM_MSG_BTN_STORE) {
         Kill();
     }
 }
@@ -330,6 +346,15 @@ alertbox 'MomMsgSpellbook' {
 alertbox 'MomMsgSpellbookChaos' {
     Show();
     Text(ID_MOM_MSG_SPELLBOOK);
+    // FIVE ARMS EXACTLY -- the measured ceiling. Do not add a sixth: it would
+    // not error, it would silently delete whichever arm is declared last.
+    Button(ID_BUTTON_CLOSE) {
+        Kill();
+    }
+    Button(ID_BUTTON_BACK) {
+        Kill();
+        Message(g.player, 'MagicMenu');
+    }
     Button(ID_MOM_MSG_BTN_DEMON) {
         MomCastDemonStrike(g.player);
         Kill();
@@ -338,7 +363,7 @@ alertbox 'MomMsgSpellbookChaos' {
         MomCastFlameStrike(g.player);
         Kill();
     }
-    Button(ID_BUTTON_CLOSE) {
+    Button(ID_MOM_MSG_BTN_STORE) {
         Kill();
     }
 }

@@ -159,10 +159,6 @@
     "purpose": "segment: mana pool / income readout body",
     "status": "ACTIVE"
   },
-  "mom_msg.slc:MomMsgSlicAlive": {
-    "purpose": "segment: SLIC liveness confirmation text",
-    "status": "ACTIVE"
-  },
   "mom_msg.slc:MomSphereBlessingMessages": {
     "purpose": "per-sphere blessing popup on the magic advance (human-only; base Message plumbing)",
     "status": "ACTIVE"

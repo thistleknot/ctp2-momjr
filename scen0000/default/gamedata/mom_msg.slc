@@ -273,10 +273,6 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
 // (24 base messageboxes omit it) and is deliberately omitted here.
 // ---------------------------------------------------------------------------
 
-messagebox 'MomMsgSlicAlive' {
-	Show();
-	Text(ID_MOM_MSG_SLIC_ALIVE);
-}
 
 messagebox 'MomBlessLife' {
 	Show();
@@ -413,6 +409,15 @@ alertbox 'MagicMenu' {
 	Show();
 	Text(ID_MOM_MSG_MAGIC_MENU);
 
+	// CLOSE IS DECLARED FIRST, and that ordering is load-bearing. MEASURED
+	// 2026-08-03: an alertbox renders at most FIVE arms, drops the overflow
+	// from the TAIL of the declaration list in silence, and paints what
+	// survives in REVERSE order. Declaring Close last is how a sixth arm
+	// silently deletes the player's only way out.
+	Button(ID_BUTTON_CLOSE) {
+		Kill();
+	}
+
 	// SUMMON: place a summon ORDER. The body only writes a global; the spawn
 	// happens next BeginTurn in MomSummonOrderTick, which resolves the creature
 	// from the caster's own sphere. The body stays assignment-only -- a button
@@ -471,7 +476,27 @@ alertbox 'MagicMenu' {
 	// magic menu. The boundary is still exercised in play by the summon path's
 	// CreateUnit, so nothing is lost as evidence.
 
-	Button(ID_BUTTON_CLOSE) {
+	// WORKINGS -- the NavArm into the spellbook spoke.
+	//
+	// Kill() FIRST, then Message(). Boxes STACK rather than replace, and a
+	// stacked pair freezes the turn loop; the base-verified navigation pattern
+	// is tut2_msg.slc's TMTurn0B, which does exactly this and whose statements
+	// after Kill() demonstrably still run.
+	//
+	// The Chaos branch is inline rather than delegated to MomSpellShowBook,
+	// which lives in mom_spells.slc (include 65) -- FIVE INCLUDES AFTER this
+	// file. Calling it from here would reference a symbol whose declaring file
+	// has not loaded, the same hard error that bit MomSphereRung. Segment names
+	// are resolved by the engine when Message() runs, not at include time, so
+	// naming a later-defined segment is safe where calling a later-defined
+	// FUNCTION is not.
+	Button(ID_MOM_MSG_BTN_WORKINGS) {
 		Kill();
+		if (MomPlayerIsChaos(g.player)) {
+			Message(g.player, 'MomMsgSpellbookChaos');
+		} else {
+			Message(g.player, 'MomMsgSpellbook');
+		}
 	}
+
 }

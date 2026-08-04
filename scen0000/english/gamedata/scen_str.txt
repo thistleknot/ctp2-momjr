@@ -6,7 +6,6 @@
 #
 #----------------------------------------------------------------------------
 
-MOM_MSG_SLIC_ALIVE		"Master of Magic: sphere-magic SLIC layer online."
 
 # Phase C -- sphere blessing popups (fired once when a faction researches its magic
 # advance). Voice adapted from the original MoM magic-system script (h:\games\ctp2\mom).
@@ -84,6 +83,7 @@ MOM_MSG_NOT_CHAOS		"Only a Chaos mage may summon demons."
 # below Demon Strike (100), and is reachable inside the base 100 cap, so no
 # sphere is locked out of it.
 MOM_MSG_BTN_SUMMON		"Summon Creature"
+MOM_MSG_BTN_WORKINGS		"Cast a Working"
 MOM_MSG_SUMMON_NOMANA		"You lack the mana for a summoning. A creature of your rung costs {MomSummonCostDisp}, and you hold {MomMagicCurDisp}."
 # These five NAME NO CREATURE on purpose. The summon used to be one fixed unit
 # per sphere, so naming it was safe; as of 2026-07-29 it rolls over every rung
