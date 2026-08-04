@@ -28,6 +28,14 @@ description: 'Powers a player EARNS rather than buys — capacity granted by art
   under threat, and that choice is the mechanic.
 - :Attributable: describes a divergence between players that can be traced to a
   named in-game event, as opposed to a constant that differed from turn one.
+- :Site: is a map location where a :Vessel: may be found — a cavern, a ruin, the
+  remains of a lost city. It is defined by terrain and neighbourhood, never by a
+  bare random roll.
+- :Vessel: is a discovered object that carries a power rather than being one — a
+  lamp holding a :Genie:. Found, not built; the power comes out of it later.
+- :Precondition: is the terrain-and-neighbourhood test a tile must pass to be a
+  :Site:. Because it depends only on the map, it can be evaluated ONCE at game
+  start rather than per turn.
 
 ***requirements***
 
@@ -117,6 +125,27 @@ reachable by the target before the effect is available to the attacker.**
 > `DetrenchOrder` events into state this mod maintains — which costs an array
 > and a lifetime, and must be judged against that cost rather than assumed free.
 
+**A :Vessel: SHALL be found at a :Site:, never scattered at random.**
+
+> Reward density and danger density are the same map. A lamp in open grassland is
+> a lottery ticket that pays whoever built the most explorers; a lamp in the
+> caverns of a lost city, in bad terrain, with barbarians thick around it, is a
+> CONTESTED OBJECTIVE — it asks whether you will commit force, which makes it a
+> mid-game decision instead of an early-game scramble.
+
+**A :Site:'s :Precondition: SHALL be evaluated at GAME START and stored, not
+recomputed per turn.**
+
+> The test is "treacherous terrain AND near a lost city", and both halves are
+> map facts that do not change. Evaluating a neighbourhood predicate over every
+> tile every turn would be the most expensive thing in the mod for an answer
+> that is constant. Compute the set once, keep the sites, spend nothing after.
+> This is the operator's own point: some huts carry PRE-CALCULATED
+> preconditions, and the alternative is a per-turn distance scan.
+
+**A :Site: SHALL raise the barbarian presence around it**, so the reward is
+guarded by something the map itself explains.
+
 **A :ConditionalUnlock: or :Wish: SHALL NOT be granted to a player who is not in
 play.**
 
@@ -158,6 +187,13 @@ neutralised stops being a hazard and becomes free fertility.
 
 **Given** a plague :Wish:, **when** it resolves, **then** it SHALL spread and
 decay on its own schedule rather than resolving in one turn.
+
+**Given** the map at game start, **when** :Site: :Precondition:s are evaluated,
+**then** the set of sites SHALL be fixed for the game and SHALL NOT be
+recomputed on any later turn.
+
+**Given** a tile in open grassland far from any ruin, **when** sites are chosen,
+**then** it SHALL NOT be one — a :Vessel: is earned by reaching somewhere hard.
 
 **Given** any two players at turn 1, **when** their pools are compared, **then**
 they SHALL be equal — every later difference :Attributable: to a named event.
@@ -232,6 +268,12 @@ an engine change.
   right, but it makes the hazard predictable to a player who works out the rule.
 - **Whether a :PoisonedGift: can be cast on oneself.** It is coherent Chaos
   play and it is also an exploit surface if the yield outruns the risk.
+- **Where the lost cities come from.** `TileHasDeadCity` (10 corpus sites) and
+  `StoreDeadCityLocation` (4) exist, but a dead city is normally the ruin of a
+  city destroyed IN PLAY, so at turn 1 there may be none. Two readings, and they
+  are different games: designate sites from terrain alone at game start (available
+  immediately, arbitrary), or let the ruins of cities that actually fell in THIS
+  game become the sites (emergent, narratively excellent, unavailable early).
 - **Sequencing.** Death does not summon and Chaos does not play. Both are open
   defects, and every power in this spec lands on top of the summon system they
   are failing to reach.
