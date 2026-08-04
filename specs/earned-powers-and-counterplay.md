@@ -35,6 +35,11 @@ description: 'Powers a player EARNS rather than buys — capacity granted by art
   lamp holding a :Genie:. Found, not built; the power comes out of it later.
 - :Binding: is the act of forcing a defeated :Genie: back into a :Vessel:, after
   which the vessel is banished to a :Site: nobody is told about.
+- :Hero: is one of the nine named units already in the roster. Five of them ARE
+  their tribe's leader — `UNIT_ARIEL` is both a unit and the Tribes of Life's
+  named leader — so the wizard is the lord and walks the map.
+- :Bearing: is a :Hero: and a :Vessel: sharing a tile or army. It is the whole
+  equipment system, because CTP2 has no inventory.
 - :Precondition: is the terrain-and-neighbourhood test a tile must pass to be a
   :Site:. Because it depends only on the map, it can be evaluated ONCE at game
   start rather than per turn.
@@ -163,6 +168,31 @@ undisclosed :Site:, not destroyed.**
 > The banishment SHALL NOT be announced to the binder. Knowing where you sent it
 > turns a banishment into a deposit.
 
+**A :Vessel: SHALL be usable only while BORNE by a :Hero:.**
+
+> This is what makes heroes matter without inventing a hero system. MoM proper
+> gave heroes equipment slots; CTP2 has none, so :Bearing: is co-location —
+> "equipping" is moving, and a lamp left in a city is inert until someone
+> carries it. It also puts the artifact at risk exactly where the hero is, which
+> is the interesting place for it to be.
+
+**A :Hero:'s death SHALL be an EVENT, not a unit loss.**
+
+> The nine heroes exist in the roster today and have ZERO mechanics — each name
+> appears exactly once across all SLIC, in the summon-pool exclusion, and
+> nowhere else. Meanwhile MOMJR's own `Events.txt` carries death events for
+> Ariel, Freya, Jafar, Rjak and Warrax — *"Ariel has been killed. The Tribes of
+> Life are in disarray."* That is the one piece of the source mod this port
+> never brought across, and five of the nine heroes ARE tribe leaders, so their
+> deaths are already narratively load-bearing whether or not the mod says so.
+
+**A :Hero: SHALL be able to acquire a :Vessel: from battle, hut or conquest.**
+
+> All three triggers exist: `HandleEvent(Battle)` (40 corpus sites),
+> `HandleEvent(CaptureCity)` (39), and the hut/:Site: path this spec already
+> defines. Acquisition is therefore about WHERE a hero has been, which is what
+> makes a hero a piece you move rather than a statline.
+
 **A :ConditionalUnlock: or :Wish: SHALL NOT be granted to a player who is not in
 play.**
 
@@ -211,6 +241,16 @@ recomputed on any later turn.
 
 **Given** a tile in open grassland far from any ruin, **when** sites are chosen,
 **then** it SHALL NOT be one — a :Vessel: is earned by reaching somewhere hard.
+
+**Given** a lamp sitting in a city with no :Hero: present, **when** its Wishes
+arm is sought, **then** it SHALL be unavailable — an unborne :Vessel: is inert.
+
+**Given** a :Hero: bearing a lamp who dies in the field, **when** the loss
+resolves, **then** the lamp SHALL be at risk with them rather than returning
+safely home.
+
+**Given** any :Hero:'s death, **when** it resolves, **then** the tribe SHALL be
+told, because five of the nine are that tribe's leader.
 
 **Given** any two players at turn 1, **when** their pools are compared, **then**
 they SHALL be equal — every later difference :Attributable: to a named event.

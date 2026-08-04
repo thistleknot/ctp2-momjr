@@ -60,6 +60,39 @@ when unaffordable — never silently inert.
 
 **An :Affordance: SHALL be driven by state the player can see.**
 
+**A segment SHALL declare AT MOST FIVE arms, and `Close` SHALL be declared
+FIRST.**
+
+> MEASURED 2026-08-03, eight arms declared, five rendered:
+> `[ARM 4] [ARM 3] [ARM 2] [ARM 1] [Summon Creature]`. Two facts, and the second
+> is a trap. Render order is REVERSED against declaration order. Overflow is
+> dropped from the TAIL of the declaration list, silently — so ARM 5, ARM 6 and
+> **`Close` itself** all disappeared. A sixth arm deletes your close button and
+> nothing says so.
+>
+> Hence the ordering rule: declaring `Close` first is what guarantees it
+> survives, and it lands rightmost on screen because of the reversal. The tree
+> below fits with one slot spare at every node.
+
+***decisions***
+
+Three questions were left open when this tree was first drafted. Settled:
+
+- **Summon stays a single roll; it does NOT become a spoke with rung choice.**
+  Letting a player pick the rung collapses the ladder into one decision — always
+  take the dearest you can afford — and it deletes the gamble that makes a
+  summon feel like magic rather than a purchase. The caster chooses WHETHER to
+  call and pays a known price; the void chooses what answers.
+- **An artifact is a UNIT, not a building or a player flag.** This is decided by
+  the hero requirement, not by convenience: a hero must be able to BEAR an
+  artifact, which means the artifact has to be portable, co-locatable and
+  losable. A player flag cannot be taken from you, and a building cannot travel.
+  A unit can be carried, captured, killed and banished — which is also exactly
+  what the :Binding: loop needs.
+- **Bearing is CO-LOCATION, not an equipment slot.** CTP2 has no inventory. A
+  hero bears an artifact while they share a tile or army, so "equipping" is
+  moving, and losing the hero in the field risks the artifact with them.
+
 ***the tree***
 
 ```
@@ -129,10 +162,9 @@ opens, **then** that arm SHALL be absent or SHALL refuse with a stated reason.
 
 ***open***
 
-- **Maximum arms per alertbox is unmeasured.** Shipped segments carry two or
-  three. The box is fixed-height and drops overflow silently, so the ceiling
-  must be measured before the Workings spoke grows past three.
-- **Whether Summon becomes a spoke with choices** rather than a single roll. It
-  is currently one arm that rolls; a spoke would let the player pick a rung.
-- **Where a captured lamp is held** — unit, building, or a player flag — which
-  decides whether Artifacts can be a simple list.
+- **What happens at exactly five arms plus a Back arm.** The tree fits today,
+  but Artifacts is a list whose length is the player's, not the designer's. A
+  list longer than four entries needs paging, and paging costs two arms.
+- **The panel quotes the UNDISCOUNTED price before the sphere-root grant lands.**
+  At rung 0 it reads "a summon costs 45 mana" — the lazy 100% default, before
+  the civ percentage is assigned. Cosmetic, and only visible on turn 1.
