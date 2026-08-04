@@ -185,26 +185,33 @@ int_f MomSummonRoll(int_t p)
     // DEATH (player 4)
     if (p == 4) {
         if (r == 5) {
-            if (roll < 16) { return UnitDB(UNIT_ZOMBIES); }
-            if (roll < 32) { return UnitDB(UNIT_WRAITH); }
-            if (roll < 48) { return UnitDB(UNIT_DEMON); }
+            if (roll < 6) { return UnitDB(UNIT_SKELETONS); }
+            if (roll < 12) { return UnitDB(UNIT_ZOMBIES); }
+            if (roll < 24) { return UnitDB(UNIT_WRAITH); }
+            if (roll < 36) { return UnitDB(UNIT_DEMON); }
+            if (roll < 48) { return UnitDB(UNIT_DRACOLICH); }
             if (roll < 100) { return UnitDB(UNIT_UNDEAD_DRAGON); }
         }
         if (r == 4) {
-            if (roll < 25) { return UnitDB(UNIT_ZOMBIES); }
-            if (roll < 50) { return UnitDB(UNIT_WRAITH); }
-            if (roll < 100) { return UnitDB(UNIT_DEMON); }
+            if (roll < 8) { return UnitDB(UNIT_SKELETONS); }
+            if (roll < 16) { return UnitDB(UNIT_ZOMBIES); }
+            if (roll < 32) { return UnitDB(UNIT_WRAITH); }
+            if (roll < 48) { return UnitDB(UNIT_DEMON); }
+            if (roll < 100) { return UnitDB(UNIT_DRACOLICH); }
         }
         if (r == 3) {
+            if (roll < 12) { return UnitDB(UNIT_SKELETONS); }
             if (roll < 25) { return UnitDB(UNIT_ZOMBIES); }
             if (roll < 50) { return UnitDB(UNIT_WRAITH); }
             if (roll < 100) { return UnitDB(UNIT_DEMON); }
         }
         if (r == 2) {
+            if (roll < 25) { return UnitDB(UNIT_SKELETONS); }
             if (roll < 50) { return UnitDB(UNIT_ZOMBIES); }
             if (roll < 100) { return UnitDB(UNIT_WRAITH); }
         }
         if (r == 1) {
+            if (roll < 50) { return UnitDB(UNIT_SKELETONS); }
             if (roll < 100) { return UnitDB(UNIT_ZOMBIES); }
         }
     }
@@ -214,41 +221,45 @@ int_f MomSummonRoll(int_t p)
         wild = Random(100);
         if (wild < 15) {
             if (r == 5) {
-                wild = Random(16);
+                wild = Random(18);
                 if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
                 if (wild < 2) { return UnitDB(UNIT_ARCHANGEL); }
                 if (wild < 3) { return UnitDB(UNIT_BEHEMOTH); }
                 if (wild < 4) { return UnitDB(UNIT_COCKATRICE); }
                 if (wild < 5) { return UnitDB(UNIT_DEMON); }
-                if (wild < 6) { return UnitDB(UNIT_GREAT_WYRM); }
-                if (wild < 7) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-                if (wild < 8) { return UnitDB(UNIT_PEGASUS); }
-                if (wild < 9) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 10) { return UnitDB(UNIT_STORM_DRAKE); }
-                if (wild < 11) { return UnitDB(UNIT_STORM_GIANT); }
-                if (wild < 12) { return UnitDB(UNIT_UNDEAD_DRAGON); }
-                if (wild < 13) { return UnitDB(UNIT_UNICORN); }
-                if (wild < 14) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 15) { return UnitDB(UNIT_WRAITH); }
-                if (wild < 16) { return UnitDB(UNIT_ZOMBIES); }
+                if (wild < 6) { return UnitDB(UNIT_DRACOLICH); }
+                if (wild < 7) { return UnitDB(UNIT_GREAT_WYRM); }
+                if (wild < 8) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 9) { return UnitDB(UNIT_PEGASUS); }
+                if (wild < 10) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 11) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 12) { return UnitDB(UNIT_STORM_DRAKE); }
+                if (wild < 13) { return UnitDB(UNIT_STORM_GIANT); }
+                if (wild < 14) { return UnitDB(UNIT_UNDEAD_DRAGON); }
+                if (wild < 15) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 16) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 17) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 18) { return UnitDB(UNIT_ZOMBIES); }
             }
             if (r == 4) {
-                wild = Random(12);
+                wild = Random(14);
                 if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
                 if (wild < 2) { return UnitDB(UNIT_BEHEMOTH); }
                 if (wild < 3) { return UnitDB(UNIT_COCKATRICE); }
                 if (wild < 4) { return UnitDB(UNIT_DEMON); }
-                if (wild < 5) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-                if (wild < 6) { return UnitDB(UNIT_PEGASUS); }
-                if (wild < 7) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 8) { return UnitDB(UNIT_STORM_GIANT); }
-                if (wild < 9) { return UnitDB(UNIT_UNICORN); }
-                if (wild < 10) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 11) { return UnitDB(UNIT_WRAITH); }
-                if (wild < 12) { return UnitDB(UNIT_ZOMBIES); }
+                if (wild < 5) { return UnitDB(UNIT_DRACOLICH); }
+                if (wild < 6) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 7) { return UnitDB(UNIT_PEGASUS); }
+                if (wild < 8) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 9) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 10) { return UnitDB(UNIT_STORM_GIANT); }
+                if (wild < 11) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 12) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 13) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 14) { return UnitDB(UNIT_ZOMBIES); }
             }
             if (r == 3) {
-                wild = Random(12);
+                wild = Random(13);
                 if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
                 if (wild < 2) { return UnitDB(UNIT_BEHEMOTH); }
                 if (wild < 3) { return UnitDB(UNIT_COCKATRICE); }
@@ -256,29 +267,32 @@ int_f MomSummonRoll(int_t p)
                 if (wild < 5) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
                 if (wild < 6) { return UnitDB(UNIT_PEGASUS); }
                 if (wild < 7) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 8) { return UnitDB(UNIT_STORM_GIANT); }
-                if (wild < 9) { return UnitDB(UNIT_UNICORN); }
-                if (wild < 10) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 11) { return UnitDB(UNIT_WRAITH); }
-                if (wild < 12) { return UnitDB(UNIT_ZOMBIES); }
+                if (wild < 8) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 9) { return UnitDB(UNIT_STORM_GIANT); }
+                if (wild < 10) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 11) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 12) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 13) { return UnitDB(UNIT_ZOMBIES); }
             }
             if (r == 2) {
-                wild = Random(8);
+                wild = Random(9);
                 if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
                 if (wild < 2) { return UnitDB(UNIT_COCKATRICE); }
                 if (wild < 3) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
                 if (wild < 4) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 5) { return UnitDB(UNIT_UNICORN); }
-                if (wild < 6) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 7) { return UnitDB(UNIT_WRAITH); }
-                if (wild < 8) { return UnitDB(UNIT_ZOMBIES); }
+                if (wild < 5) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 6) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 7) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 8) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 9) { return UnitDB(UNIT_ZOMBIES); }
             }
             if (r == 1) {
-                wild = Random(4);
+                wild = Random(5);
                 if (wild < 1) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
                 if (wild < 2) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 3) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 4) { return UnitDB(UNIT_ZOMBIES); }
+                if (wild < 3) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 4) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 5) { return UnitDB(UNIT_ZOMBIES); }
             }
         }
         if (r == 5) {
@@ -319,6 +333,7 @@ int_f MomSummonRungOf(int_t unitType)
     if (unitType == UnitDB(UNIT_BEHEMOTH)) { return 3; }
     if (unitType == UnitDB(UNIT_COCKATRICE)) { return 2; }
     if (unitType == UnitDB(UNIT_DEMON)) { return 3; }
+    if (unitType == UnitDB(UNIT_DRACOLICH)) { return 4; }
     if (unitType == UnitDB(UNIT_EFREET)) { return 3; }
     if (unitType == UnitDB(UNIT_GARGOYLE)) { return 2; }
     if (unitType == UnitDB(UNIT_GREAT_WYRM)) { return 5; }
@@ -327,6 +342,7 @@ int_f MomSummonRungOf(int_t unitType)
     if (unitType == UnitDB(UNIT_HYDRA)) { return 5; }
     if (unitType == UnitDB(UNIT_PEGASUS)) { return 3; }
     if (unitType == UnitDB(UNIT_PHANTOM_WARRIORS)) { return 1; }
+    if (unitType == UnitDB(UNIT_SKELETONS)) { return 1; }
     if (unitType == UnitDB(UNIT_STORM_DRAKE)) { return 5; }
     if (unitType == UnitDB(UNIT_STORM_GIANT)) { return 3; }
     if (unitType == UnitDB(UNIT_UNDEAD_DRAGON)) { return 5; }

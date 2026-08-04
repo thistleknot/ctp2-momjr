@@ -159,7 +159,7 @@ UNIT_PHANTOM_WARRIORS {
    DefaultIcon ICON_UNIT_PHANTOM_WARRIORS
    DefaultSprite SPRITE_PHANTOM_WARRIORS
    Category UNIT_CATEGORY_ATTACK
-   Attack 18
+   Attack 16
    Defense 10
    ZBRangeAttack 0
    Firepower 5
@@ -210,7 +210,7 @@ UNIT_HELL_HOUNDS {
    DefaultIcon ICON_UNIT_HELL_HOUNDS
    DefaultSprite SPRITE_HELL_HOUNDS
    Category UNIT_CATEGORY_ATTACK
-   Attack 26
+   Attack 23
    Defense 12
    ZBRangeAttack 0
    Firepower 1
@@ -261,7 +261,7 @@ UNIT_WARBEARS {
    DefaultIcon ICON_UNIT_WARBEARS
    DefaultSprite SPRITE_WARBEARS
    Category UNIT_CATEGORY_ATTACK
-   Attack 18
+   Attack 16
    Defense 15
    ZBRangeAttack 0
    Firepower 1
@@ -312,7 +312,7 @@ UNIT_WARLOCK {
    DefaultIcon ICON_UNIT_WARLOCK
    DefaultSprite SPRITE_WARLOCK
    Category UNIT_CATEGORY_ATTACK
-   Attack 92
+   Attack 91
    Defense 12
    ZBRangeAttack 0
    Firepower 5
@@ -363,7 +363,7 @@ UNIT_ARIEL {
    DefaultIcon ICON_UNIT_ARIEL
    DefaultSprite SPRITE_ARIEL
    Category UNIT_CATEGORY_ATTACK
-   Attack 18
+   Attack 16
    Defense 79
    ZBRangeAttack 0
    Firepower 5
@@ -414,7 +414,7 @@ UNIT_JAFAR {
    DefaultIcon ICON_UNIT_JAFAR
    DefaultSprite SPRITE_JAFAR
    Category UNIT_CATEGORY_ATTACK
-   Attack 45
+   Attack 40
    Defense 29
    ZBRangeAttack 0
    Firepower 5
@@ -465,7 +465,7 @@ UNIT_RJAK {
    DefaultIcon ICON_UNIT_RJAK
    DefaultSprite SPRITE_RJAK
    Category UNIT_CATEGORY_ATTACK
-   Attack 45
+   Attack 40
    Defense 56
    ZBRangeAttack 0
    Firepower 5
@@ -516,7 +516,7 @@ UNIT_TAURON {
    DefaultIcon ICON_UNIT_TAURON
    DefaultSprite SPRITE_TAURON
    Category UNIT_CATEGORY_ATTACK
-   Attack 63
+   Attack 60
    Defense 15
    ZBRangeAttack 0
    Firepower 6
@@ -567,7 +567,7 @@ UNIT_SERENA {
    DefaultIcon ICON_UNIT_SERENA
    DefaultSprite SPRITE_SERENA
    Category UNIT_CATEGORY_ATTACK
-   Attack 18
+   Attack 16
    Defense 29
    ZBRangeAttack 0
    Firepower 1
@@ -618,7 +618,7 @@ UNIT_FREYA {
    DefaultIcon ICON_UNIT_FREYA
    DefaultSprite SPRITE_FREYA
    Category UNIT_CATEGORY_ATTACK
-   Attack 26
+   Attack 23
    Defense 43
    ZBRangeAttack 0
    Firepower 5
@@ -669,7 +669,7 @@ UNIT_ALORRA {
    DefaultIcon ICON_UNIT_ALORRA
    DefaultSprite SPRITE_ALORRA
    Category UNIT_CATEGORY_ATTACK
-   Attack 45
+   Attack 40
    Defense 12
    ZBRangeAttack 0
    Firepower 1
@@ -771,7 +771,7 @@ UNIT_ELVEN_ARCHERS {
    DefaultIcon ICON_UNIT_ELVEN_ARCHERS
    DefaultSprite SPRITE_ELVEN_ARCHERS
    Category UNIT_CATEGORY_ATTACK
-   Attack 18
+   Attack 16
    Defense 10
    ZBRangeAttack 0
    Firepower 1
@@ -822,7 +822,7 @@ UNIT_MAGE {
    DefaultIcon ICON_UNIT_MAGE
    DefaultSprite SPRITE_MAGE
    Category UNIT_CATEGORY_ATTACK
-   Attack 18
+   Attack 16
    Defense 10
    ZBRangeAttack 0
    Firepower 1
@@ -873,7 +873,7 @@ UNIT_WYVERN {
    DefaultIcon ICON_UNIT_WYVERN
    DefaultSprite SPRITE_WYVERN
    Category UNIT_CATEGORY_AERIAL
-   Attack 63
+   Attack 60
    Defense 29
    ZBRangeAttack 0
    Firepower 5
@@ -916,7 +916,7 @@ UNIT_KNIGHTS {
    DefaultIcon ICON_UNIT_KNIGHTS
    DefaultSprite SPRITE_KNIGHTS
    Category UNIT_CATEGORY_ATTACK
-   Attack 26
+   Attack 23
    Defense 12
    ZBRangeAttack 0
    Firepower 1
@@ -967,7 +967,7 @@ UNIT_PALADINS {
    DefaultIcon ICON_UNIT_PALADINS
    DefaultSprite SPRITE_PALADINS
    Category UNIT_CATEGORY_ATTACK
-   Attack 45
+   Attack 40
    Defense 12
    ZBRangeAttack 0
    Firepower 1
@@ -1018,7 +1018,7 @@ UNIT_UNICORN {
    DefaultIcon ICON_UNIT_UNICORN
    DefaultSprite SPRITE_UNICORN
    Category UNIT_CATEGORY_ATTACK
-   Attack 18
+   Attack 16
    Defense 56
    ZBRangeAttack 0
    Firepower 1
@@ -1069,7 +1069,7 @@ UNIT_IRON_GOLEM {
    DefaultIcon ICON_UNIT_IRON_GOLEM
    DefaultSprite SPRITE_IRON_GOLEM
    Category UNIT_CATEGORY_ATTACK
-   Attack 63
+   Attack 60
    Defense 43
    ZBRangeAttack 0
    Firepower 1
@@ -1120,7 +1120,7 @@ UNIT_CATAPULT {
    DefaultIcon ICON_UNIT_CATAPULT
    DefaultSprite SPRITE_CATAPULT
    Category UNIT_CATEGORY_ATTACK
-   Attack 45
+   Attack 40
    Defense 10
    ZBRangeAttack 0
    Firepower 1
@@ -1171,7 +1171,7 @@ UNIT_STEAM_CANNON {
    DefaultIcon ICON_UNIT_STEAM_CANNON
    DefaultSprite SPRITE_STEAM_CANNON
    Category UNIT_CATEGORY_ATTACK
-   Attack 79
+   Attack 77
    Defense 12
    ZBRangeAttack 0
    Firepower 5
@@ -1222,7 +1222,7 @@ UNIT_EFREET {
    DefaultIcon ICON_UNIT_EFREET
    DefaultSprite SPRITE_EFREET
    Category UNIT_CATEGORY_ATTACK
-   Attack 54
+   Attack 50
    Defense 15
    ZBRangeAttack 0
    Firepower 5
@@ -1273,7 +1273,7 @@ UNIT_WRAITH {
    DefaultIcon ICON_UNIT_WRAITH
    DefaultSprite SPRITE_WRAITH
    Category UNIT_CATEGORY_ATTACK
-   Attack 26
+   Attack 23
    Defense 15
    ZBRangeAttack 0
    Firepower 1
@@ -1324,7 +1324,7 @@ UNIT_GRIFFIN {
    DefaultIcon ICON_UNIT_GRIFFIN
    DefaultSprite SPRITE_GRIFFIN
    Category UNIT_CATEGORY_AERIAL
-   Attack 26
+   Attack 23
    Defense 29
    ZBRangeAttack 0
    Firepower 1
@@ -1367,7 +1367,7 @@ UNIT_PEGASUS {
    DefaultIcon ICON_UNIT_PEGASUS
    DefaultSprite SPRITE_PEGASUS
    Category UNIT_CATEGORY_AERIAL
-   Attack 35
+   Attack 31
    Defense 12
    ZBRangeAttack 0
    Firepower 5
@@ -1454,7 +1454,7 @@ UNIT_WARSHIP {
    DefaultIcon ICON_UNIT_WARSHIP
    DefaultSprite SPRITE_WARSHIP
    Category UNIT_CATEGORY_NAVAL
-   Attack 54
+   Attack 50
    Defense 15
    ZBRangeAttack 0
    Firepower 1
@@ -1498,7 +1498,7 @@ UNIT_HYDRA {
    DefaultIcon ICON_UNIT_HYDRA
    DefaultSprite SPRITE_HYDRA
    Category UNIT_CATEGORY_ATTACK
-   Attack 92
+   Attack 91
    Defense 15
    ZBRangeAttack 0
    Firepower 5
@@ -1549,7 +1549,7 @@ UNIT_AIRSHIP {
    DefaultIcon ICON_UNIT_AIRSHIP
    DefaultSprite SPRITE_AIRSHIP
    Category UNIT_CATEGORY_AERIAL
-   Attack 35
+   Attack 31
    Defense 10
    ZBRangeAttack 0
    Firepower 1
@@ -1643,7 +1643,7 @@ UNIT_WAR_TROLL {
    DefaultIcon ICON_UNIT_WAR_TROLL
    DefaultSprite SPRITE_WAR_TROLL
    Category UNIT_CATEGORY_ATTACK
-   Attack 54
+   Attack 50
    Defense 43
    ZBRangeAttack 0
    Firepower 1
@@ -1788,7 +1788,7 @@ UNIT_COCKATRICE {
    DefaultIcon ICON_UNIT_COCKATRICE
    DefaultSprite SPRITE_COCKATRICE
    Category UNIT_CATEGORY_AERIAL
-   Attack 45
+   Attack 40
    Defense 10
    ZBRangeAttack 0
    Firepower 6
@@ -1831,7 +1831,7 @@ UNIT_SALAMANDER {
    DefaultIcon ICON_UNIT_SALAMANDER
    DefaultSprite SPRITE_SALAMANDER
    Category UNIT_CATEGORY_ATTACK
-   Attack 79
+   Attack 77
    Defense 15
    ZBRangeAttack 0
    Firepower 1
@@ -1976,7 +1976,7 @@ UNIT_DEMON {
    DefaultIcon ICON_UNIT_DEMON
    DefaultSprite SPRITE_DEMON
    Category UNIT_CATEGORY_AERIAL
-   Attack 26
+   Attack 23
    Defense 43
    ZBRangeAttack 0
    Firepower 1
@@ -2070,7 +2070,7 @@ UNIT_WAR_MAMMOTH {
    DefaultIcon ICON_UNIT_WAR_MAMMOTH
    DefaultSprite SPRITE_WAR_MAMMOTH
    Category UNIT_CATEGORY_ATTACK
-   Attack 79
+   Attack 77
    Defense 43
    ZBRangeAttack 0
    Firepower 1
@@ -2121,7 +2121,7 @@ UNIT_STORM_GIANT {
    DefaultIcon ICON_UNIT_STORM_GIANT
    DefaultSprite SPRITE_STORM_GIANT
    Category UNIT_CATEGORY_ATTACK
-   Attack 63
+   Attack 60
    Defense 29
    ZBRangeAttack 0
    Firepower 1
@@ -2172,7 +2172,7 @@ UNIT_AIR_ELEMENTAL {
    DefaultIcon ICON_UNIT_AIR_ELEMENTAL
    DefaultSprite SPRITE_AIR_ELEMENTAL
    Category UNIT_CATEGORY_AERIAL
-   Attack 45
+   Attack 40
    Defense 15
    ZBRangeAttack 0
    Firepower 1
@@ -2215,7 +2215,7 @@ UNIT_STORM_DRAKE {
    DefaultIcon ICON_UNIT_STORM_DRAKE
    DefaultSprite SPRITE_STORM_DRAKE
    Category UNIT_CATEGORY_AERIAL
-   Attack 92
+   Attack 91
    Defense 56
    ZBRangeAttack 0
    Firepower 5
@@ -2258,7 +2258,7 @@ UNIT_WARRAX {
    DefaultIcon ICON_UNIT_WARRAX
    DefaultSprite SPRITE_WARRAX
    Category UNIT_CATEGORY_ATTACK
-   Attack 63
+   Attack 60
    Defense 15
    ZBRangeAttack 0
    Firepower 5
@@ -2309,7 +2309,7 @@ UNIT_UNDEAD_DRAGON {
    DefaultIcon ICON_UNIT_UNDEAD_DRAGON
    DefaultSprite SPRITE_UNDEAD_DRAGON
    Category UNIT_CATEGORY_AERIAL
-   Attack 92
+   Attack 91
    Defense 56
    ZBRangeAttack 0
    Firepower 5
@@ -2403,7 +2403,7 @@ UNIT_BEHEMOTH {
    DefaultIcon ICON_UNIT_BEHEMOTH
    DefaultSprite SPRITE_BEHEMOTH
    Category UNIT_CATEGORY_ATTACK
-   Attack 35
+   Attack 31
    Defense 29
    ZBRangeAttack 0
    Firepower 1
@@ -2454,7 +2454,7 @@ UNIT_MALLEUS {
    DefaultIcon ICON_UNIT_MALLEUS
    DefaultSprite SPRITE_MALLEUS
    Category UNIT_CATEGORY_ATTACK
-   Attack 63
+   Attack 60
    Defense 12
    ZBRangeAttack 0
    Firepower 1
@@ -2505,7 +2505,7 @@ UNIT_MERFOLK {
    DefaultIcon ICON_UNIT_MERFOLK
    DefaultSprite SPRITE_MERFOLK
    Category UNIT_CATEGORY_NAVAL
-   Attack 26
+   Attack 23
    Defense 15
    ZBRangeAttack 0
    Firepower 1
@@ -2549,7 +2549,7 @@ UNIT_ARCHANGEL {
    DefaultIcon ICON_UNIT_ARCHANGEL
    DefaultSprite SPRITE_ARCHANGEL
    Category UNIT_CATEGORY_AERIAL
-   Attack 92
+   Attack 91
    Defense 100
    ZBRangeAttack 0
    Firepower 5
@@ -2585,6 +2585,203 @@ UNIT_ARCHANGEL {
    MovementType: Air
    Size: Small
    VisionClass: Standard
+}
+
+
+UNIT_SKELETONS {
+   Description DESCRIPTION_UNIT_SKELETONS
+   DefaultIcon ICON_UNIT_SKELETONS
+   DefaultSprite SPRITE_SKELETONS
+   Category UNIT_CATEGORY_ATTACK
+   Attack 10
+   Defense 12
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 150
+   PowerPoints 100
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_DEATH_MAGIC
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_DRACOLICH {
+   Description DESCRIPTION_UNIT_DRACOLICH
+   DefaultIcon ICON_UNIT_DRACOLICH
+   DefaultSprite SPRITE_DRACOLICH
+   Category UNIT_CATEGORY_AERIAL
+   Attack 99
+   Defense 68
+   ZBRangeAttack 0
+   Firepower 5
+   Armor 1
+   MaxHP 48
+   ShieldCost 3500
+   PowerPoints 1750
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 300
+   VisionRange 2
+   EnableAdvance ADVANCE_DEATH_WIZARD
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CantCaptureCity
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_FIGHTER
+   SoundSelect2 SOUND_SELECT2_FIGHTER
+   SoundMove SOUND_MOVE_FIGHTER
+   SoundAcknowledge SOUND_ACKNOWLEDGE_FIGHTER
+   SoundCantMove SOUND_CANTMOVE_FIGHTER
+   SoundAttack SOUND_ATTACK_FIGHTER
+   SoundWork SOUND_WORK_FIGHTER
+   SoundVictory SOUND_VICTORY_FIGHTER
+   SoundDeath SOUND_DEATH_FIGHTER
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanAttack: Air
+   CanSee: Standard
+   MovementType: Air
+   Size: Medium
+   VisionClass: Standard
+}
+
+UNIT_DEATH_KNIGHT {
+   Description DESCRIPTION_UNIT_DEATH_KNIGHT
+   DefaultIcon ICON_UNIT_DEATH_KNIGHT
+   DefaultSprite SPRITE_DEATH_KNIGHT
+   Category UNIT_CATEGORY_ATTACK
+   Attack 60
+   Defense 56
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 35
+   ShieldCost 470
+   PowerPoints 235
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 200
+   VisionRange 2
+   EnableAdvance ADVANCE_MYSTICISM
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Medium
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_LICH {
+   Description DESCRIPTION_UNIT_LICH
+   DefaultIcon ICON_UNIT_LICH
+   DefaultSprite SPRITE_LICH
+   Category UNIT_CATEGORY_ATTACK
+   Attack 40
+   Defense 79
+   ZBRangeAttack 0
+   Firepower 5
+   Armor 1
+   MaxHP 35
+   ShieldCost 2980
+   PowerPoints 1490
+   ShieldHunger 2
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 100
+   VisionRange 2
+   EnableAdvance ADVANCE_DEATH_MASTER
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Medium
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
 }
 
 UNIT_SETTLER {

@@ -2653,7 +2653,16 @@ def _summon_pool_by_rung() -> dict[str, list[list[str]]]:
     """
     live = set(re.findall(r"^(UNIT_[A-Z0-9_]+)\s*\{",
                           _read_rel("default/gamedata/Units.txt"), re.M))
-    heroes = set(MOD_POLICY.get("unit_roles", {}).get("heroes", []))
+    # THE EARNED LANE. A sphere's roster splits into what the roll may return and
+    # what must be earned some other way. Heroes were always excluded; champions
+    # (a Death Knight) and capstones (a Lich) join them, because handing either
+    # out on a 70% per-turn roll makes the top of the ladder indistinguishable
+    # from its bottom. Each list has real members, so this guarantee enforces
+    # something rather than shipping as decoration.
+    _roles = MOD_POLICY.get("unit_roles", {})
+    heroes = (set(_roles.get("heroes", []))
+              | set(_roles.get("champions", []))
+              | set(_roles.get("capstones", [])))
     targets = sphere_gate_targets()
     pools: dict[str, list[list[str]]] = {}
     for sphere in _SPHERE_PLAYER:

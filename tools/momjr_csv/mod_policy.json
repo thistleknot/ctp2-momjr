@@ -103,6 +103,12 @@
       "UNIT_ALORRA",
       "UNIT_WARRAX",
       "UNIT_MALLEUS"
+    ],
+    "champions": [
+      "UNIT_DEATH_KNIGHT"
+    ],
+    "capstones": [
+      "UNIT_LICH"
     ]
   },
   "icon_bad_tokens": [

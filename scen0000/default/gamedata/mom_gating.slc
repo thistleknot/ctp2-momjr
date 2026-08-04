@@ -119,12 +119,16 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         || theUnit == UnitDB(UNIT_WARLOCK)
         ) { return 0; }
     }
-    // DEATH -- 7 block(s)
+    // DEATH -- 11 block(s)
     if (theCity.owner != 4) {
-        if (theUnit == UnitDB(UNIT_DEMON)
+        if (theUnit == UnitDB(UNIT_DEATH_KNIGHT)
+        || theUnit == UnitDB(UNIT_DEMON)
+        || theUnit == UnitDB(UNIT_DRACOLICH)
+        || theUnit == UnitDB(UNIT_LICH)
         || theUnit == UnitDB(UNIT_MALLEUS)
         || theUnit == UnitDB(UNIT_MINION)
         || theUnit == UnitDB(UNIT_RJAK)
+        || theUnit == UnitDB(UNIT_SKELETONS)
         || theUnit == UnitDB(UNIT_UNDEAD_DRAGON)
         || theUnit == UnitDB(UNIT_WRAITH)
         || theUnit == UnitDB(UNIT_ZOMBIES)
