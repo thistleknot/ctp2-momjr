@@ -3416,3 +3416,35 @@ Also: the run reported "200 turns reached" while a DEFEAT screen (CITIES 0,
 POPULATION 0) was standing -- the human had been wiped out and the loop kept
 ending turns. Same trap as [[ctp2-ending-and-freeze-look-identical]]: turn count
 is not evidence the game is still being played. Read the frames.
+
+## v3.11.0 measured, and two lessons about reading the measurement (2026-08-03)
+
+First 200-turn run on the shipped economy (uniform 200 anchor + per-civ price).
+
+```
+t120   units 16 34 42  1 0   summon 5 19 32 0 0   mana 200 40  32 200 0
+t200   units 19 68 98  3 0   summon 8 32 32 0 0   mana 200 36 137 200 0
+```
+
+**Do not read a ratio mid-climb.** At t120 Sorcery was 32/42 = 76% summoned and
+I reported the change had made things WORSE. At t200 it was 32/98 = 33%: the
+summon count had **plateaued at 32** while the built army kept growing. The
+plateau is the success criterion the probe was written to test, and I called a
+negative result off the sample taken before it flattened. A ratio whose
+denominator is still growing is not a verdict.
+
+**Two fresh runs are not an A/B.** `civapp.cpp:1762` reseeds from `time(0)` on
+every scenario start and there is no seed flag, so the improvement against the
+pre-3.10 baseline (Nature 57%->47%, Sorcery 70%->33%) is a non-contradiction,
+not causal evidence. A controlled arm has to start from a shared SAVE, which
+restores the seed (`g_oldRandSeed`, civapp.cpp:2709) and which `uiwalk` already
+supports via `-l<save>`. See [[ctp2-scenario-seed-is-wallclock]].
+
+**What IS attributable** is the within-run observation, because it compares
+tribes inside one game: Death holds the joint-cheapest price (54%), sits at its
+200 cap for 200 turns, and summons nothing while every other living tribe does.
+Price is now falsified as Death's blocker from BOTH directions -- raising its
+bank did nothing, lowering its price did nothing. `MomSphereRung[4] == 0` is the
+only surviving hypothesis and the next step is to READ that variable.
+
+Chaos remains at 0 units and 0 mana in all ten samples: it never enters play.
