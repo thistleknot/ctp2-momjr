@@ -308,10 +308,17 @@ HandleEvent(BeginTurn) 'MomSpellAICast' post {
 // DEFINED segment; names must not collide with handlers or string keys).
 // ---------------------------------------------------------------------------
 
+// THE ARMS WERE LABELLED WITH STOCK CTP2 STRINGS UNTIL 2026-08-03, and that is
+// the whole reason this layer read as unfinished. ID_BUTTON_RESEARCH cast Flame
+// Strike and ID_BUTTON_GOAL cast Demon Strike, so a fully working spellbook
+// rendered its arms as "Research" and "Goal" -- no player could know either was
+// a spell. MOM_MSG_BTN_FLAME and MOM_MSG_BTN_DEMON were already authored in
+// scen_str.txt and simply never bound. The code was done; the wiring to the
+// words was the only thing missing.
 alertbox 'MomMsgSpellbook' {
     Show();
     Text(ID_MOM_MSG_SPELLBOOK);
-    Button(ID_BUTTON_RESEARCH) {
+    Button(ID_MOM_MSG_BTN_FLAME) {
         MomCastFlameStrike(g.player);
         Kill();
     }
@@ -323,11 +330,11 @@ alertbox 'MomMsgSpellbook' {
 alertbox 'MomMsgSpellbookChaos' {
     Show();
     Text(ID_MOM_MSG_SPELLBOOK);
-    Button(ID_BUTTON_GOAL) {
+    Button(ID_MOM_MSG_BTN_DEMON) {
         MomCastDemonStrike(g.player);
         Kill();
     }
-    Button(ID_BUTTON_RESEARCH) {
+    Button(ID_MOM_MSG_BTN_FLAME) {
         MomCastFlameStrike(g.player);
         Kill();
     }
