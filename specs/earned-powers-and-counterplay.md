@@ -20,6 +20,12 @@ description: 'Powers a player EARNS rather than buys — capacity granted by art
   unit belonging to another player.
 - :Counter: is the stated, reachable condition under which a :TargetedEffect:
   fails or rebounds — mounted ballistae on a city wall, a veteran escort.
+- :PersistentHazard: is a :TargetedEffect: that changes the RULES of a place
+  rather than its state: it alters the ground, then recurs on a schedule the
+  victim can see coming but not prevent.
+- :PoisonedGift: is a :PersistentHazard: whose altered ground is also BETTER
+  than what it replaced. The victim chooses between abandoning it and working it
+  under threat, and that choice is the mechanic.
 - :Attributable: describes a divergence between players that can be traced to a
   named in-game event, as opposed to a constant that differed from turn one.
 
@@ -54,15 +60,46 @@ counter is not.
 > CAPTURED — a tribe leader taken alive — which is rare, costly, and visible to
 > the victim before it happens.
 
-**A :TargetedEffect: SHALL NOT destroy a city outright, and SHALL NOT target a
-capital.**
+**A :TargetedEffect: SHALL leave the target something to DO, and SHALL NOT
+target a capital.**
 
-> Annihilation is the CTP2 nuke, and the nuke is special-cased throughout the
-> engine for good reason. Two bounded effects carry the same fantasy without the
-> same swing: reduce population (`KillPop`, 38 call sites in the corpus) or flip
-> allegiance (`GiveCity`, 8 sites). The allegiance flip is the more interesting
-> of the two — it is the "mixed wish", it leaves the city standing, and it can
-> be answered by retaking it.
+> This supersedes an earlier draft that said "SHALL NOT destroy a city outright"
+> and justified it by magnitude. Magnitude was the wrong axis. A one-shot
+> deletion is bad because it removes the victim's ability to respond; a hazard
+> ten times larger is fine if it demands a response instead of ending the
+> conversation. **Duration and answerability are the axes, not size.**
+
+**Magic SHALL be calibrated to a FANTASY ERA'S imagination, not to a modern
+weapon.**
+
+> Vesuvius was the ancient world's apocalypse. The scale to reach for sits
+> between the era's most powerful conventional weapon and the unthinkable — and
+> the unthinkable in that frame is a mountain opening, a plague, a river of
+> fire. Magic does not have to out-do a warhead to be terrifying; it has to
+> out-do a catapult by enough that no catapult answers it.
+
+**A :PersistentHazard: SHALL be preferred to an instant effect of the same
+weight.** Six TRIZ inversions produce it from "destroy the city", and each one
+is a design gain rather than a compromise:
+
+| TRIZ move | applied |
+|---|---|
+| The other way round (13) | change the GROUND, not the city |
+| Segmentation (1) | one apocalypse → many small eruptions |
+| Periodic action (19) | intermittent, so there are planning windows |
+| Local quality (3) | exposure varies with distance from the mountain |
+| Prior counteraction (9) | defences buildable BEFORE the first blast |
+| **Harm into benefit (22)** | **volcanic soil is the most fertile there is** |
+
+> Move 22 is the one that changes the design. A cursed tile that is also the
+> best tile turns grief into a :PoisonedGift: — and that IS the operator's
+> "mixed wish", arrived at from the other direction. It also makes the effect
+> usable on ONESELF: accepting recurring devastation for yield is a coherent
+> Chaos strategy rather than an own-goal.
+
+**A :PersistentHazard: SHALL be geographically conditioned.** A volcano needs a
+mountain. Terrain that must already be there makes the wish a matter of where
+the victim settled, which is a decision they made and can learn from.
 
 **Every :TargetedEffect: SHALL declare a :Counter:, and that :Counter: SHALL be
 reachable by the target before the effect is available to the attacker.**
@@ -107,6 +144,21 @@ resolves, **then** the dragon SHALL take damage.
 **Given** a captured :Avatar: and a `major` :Wish: flipping a city, **when** the
 target is a capital, **then** the wish SHALL be refused with a stated reason.
 
+**Given** a `major` :Wish: aimed at a tile with no mountain in range, **when** it
+is cast, **then** it SHALL be refused — the volcano has nowhere to come from.
+
+**Given** a tile converted to `TERRAIN_VOLCANIC`, **when** it is worked, **then**
+it SHALL yield MORE than the terrain it replaced, and **when** the eruption
+timer fires, **then** the adjacent city SHALL lose population and tile
+improvements.
+
+**Given** a volcanic tile and a built ward, **when** the eruption fires, **then**
+the loss SHALL be reduced rather than prevented — a hazard that can be fully
+neutralised stops being a hazard and becomes free fertility.
+
+**Given** a plague :Wish:, **when** it resolves, **then** it SHALL spread and
+decay on its own schedule rather than resolving in one turn.
+
 **Given** any two players at turn 1, **when** their pools are compared, **then**
 they SHALL be equal — every later difference :Attributable: to a named event.
 
@@ -120,6 +172,13 @@ Per-mod, in `mod_policy.json` under `earned_powers`:
 | `conditional_unlocks` | visible condition -> what it opens |
 | `wishes` | tier -> the enumerated effect list |
 | `counters` | effect -> its :Counter: and the advance that reaches it |
+| `hazards` | terrain it creates, its recurrence odds, and its yield change |
+
+Feasibility is settled, not assumed. Corpus call sites: `Terraform` 6,
+`TerrainType` 472, `TerrainDB` 491, `Plague` 16, `PlagueDamage` 24,
+`GetCityByLocation` 195, `CutImprovements` 46, `HappinessHit` 156. MoM owns
+`terrain.txt` with 26 entries, so `TERRAIN_VOLCANIC` is an addition rather than
+an engine change.
 
 ***acceptance***
 
@@ -144,9 +203,13 @@ Per-mod, in `mod_policy.json` under `earned_powers`:
 - **Varying the starting pool per tribe.** The defect
   [[fixed-anchor-scaling]] exists to prevent; unchanged by anything here.
 - **Open-ended wishes.** Unspecifiable, ungateable, and unbalanceable.
-- **Outright city destruction.** The nuke already occupies that slot and is
-  special-cased; population loss and allegiance flip carry the fantasy at a
-  fraction of the swing.
+- **Outright city destruction** — but for AGENCY, not magnitude. It ends the
+  conversation instead of starting one. The nuke also already occupies that slot
+  and is special-cased through the engine.
+- **A hazard that a defence fully neutralises.** Then the wish is a gift of
+  fertile land with a tax the victim pays once, and the threat evaporates.
+- **Benchmarking magic against modern weapons.** The reference frame is the
+  era's own imagination; a mountain opening is apocalyptic enough.
 - **A :Counter: gated behind a later advance than its threat.** That is a delay
   dressed as counterplay.
 
@@ -162,6 +225,13 @@ Per-mod, in `mod_policy.json` under `earned_powers`:
   income or lowering price by the same fraction. All three are expressible
   against the :Anchor:; only the first changes the constant the player has
   learned to trust.
+- **Who owns the eruption timer.** A per-tile schedule needs state per volcanic
+  tile. SLIC arrays are flat and fixed-size, so either the count of volcanic
+  tiles is capped or the timer is derived from the turn number and tile
+  coordinates — deriving it costs nothing and cannot leak, and is probably
+  right, but it makes the hazard predictable to a player who works out the rule.
+- **Whether a :PoisonedGift: can be cast on oneself.** It is coherent Chaos
+  play and it is also an exploit surface if the yield outruns the risk.
 - **Sequencing.** Death does not summon and Chaos does not play. Both are open
   defects, and every power in this spec lands on top of the summon system they
   are failing to reach.
