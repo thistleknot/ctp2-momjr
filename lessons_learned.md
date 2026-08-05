@@ -3545,3 +3545,48 @@ And **when a system is parameterised by a menu the harness never touches, the
 harness is testing one arbitrary configuration** -- rotating the EMPIRE selector
 would have surfaced this immediately, which is exactly what the operator asked
 for.
+
+## Sphere follows the CIV now, and the rotation that proved it (2026-08-04)
+
+`MomPlayerIsLife(p)` was `if (p_1 == 1)`. Forty seat tests across five
+predicates, the building tally, the sphere-root grant, and three generator
+emitters (summon roll, rung tick, faction wall) all assumed sphere == seat. The
+New Game screen's EMPIRE selector makes that false, and the default pairing --
+Tribes of Nature at seat 1 -- meant the human played Nature and received LIFE's
+magic.
+
+Fixed by resolving each seat once per turn from `PlayerCivilization` into
+`MomSphere[]`, which every predicate then reads. An array rather than a call:
+these predicates are invoked from handlers AND from inside other user functions,
+so calling another user function would build the 2-level chain that is the
+documented 0xC0000005.
+
+**The proof is that the sphere row is no longer the identity function:**
+
+    chose Chaos:  sphere 2 3 1 4 0
+    chose Death:  sphere 2 1 3 4 0
+
+Seat 1 holds sphere 2 in both games; seat 2 holds Sorcery in one and Life in the
+other. Under the old code every one of those seats would have been mislabelled.
+
+### Four things the rotation harness cost, each a wrong assumption
+
+* `SPNewGameWindow.CivButton` and `.NumPlayersButton` do not exist. The real
+  controls are `TribeButton` and `PlayersButton`, found in spnewgame.ldl.
+* TribeButton opens a MODAL (`SPNewGameTribeScreen`) with its own listbox
+  (`CivBox`), not a cycling button.
+* Arrow keys do not move that listbox -- measured, the highlight stayed on the
+  preselected row -- so it needs `select` by index.
+* **The choice commits when the modal CLOSES.** `press` on its BackButton left
+  it open, and StartButton was pressed straight through, so two whole runs
+  launched with the DEFAULT tribe while the screenshots showed the intended one
+  selected. press -> trigger -> esc closes it.
+
+The list is ALPHABETICAL (Chaos, Death, Life, Nature, Sorcery) with Nature
+preselected, so row order is not sphere order and guessing it would have played
+the wrong tribe while reporting the right one.
+
+**And the near-miss worth remembering:** staging `scen0000/` wholesale while the
+probe was running staged the LIVE instrument -- an instrumented scenario.slc and
+a debug scen_str.txt, plus a mom.zip built from them. Caught before commit. Stage
+explicit paths, never a tree, while anything is running.
