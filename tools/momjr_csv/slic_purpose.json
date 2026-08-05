@@ -87,6 +87,10 @@
     "purpose": "spawn a sphere unit on a free non-water NEIGHBOUR of the first city, never the city tile: CTP2 draws exactly ONE unit per tile and orders own units by MaxMovePoints, so a fast summon on the capital permanently hides the garrison. GetNeighbor returns 0 at the map edge and does not write its out-arg, so the return value gates the read.",
     "status": "ACTIVE"
   },
+  "mom_func.slc:MomSphereIdentify": {
+    "purpose": "",
+    "status": "ACTIVE"
+  },
   "mom_gating.slc:-": {
     "purpose": "GENERATED per-tribe who-gets-what wall via the engine mod functions. Identity comes from g.player (advance hook) and theCity.owner (build hooks); the thePlayer PARAMETER cannot carry identity -- CallMod builds it as SLIC_SYM_PLAYER and SetIntValue only writes SLIC_SYM_IVAR, so it always reads 0. Do not hand-edit.",
     "status": "ACTIVE"
