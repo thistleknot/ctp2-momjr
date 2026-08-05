@@ -138,6 +138,15 @@ spellbook; the default is Tribes of Nature.
 
 ```
 MAGIC STATUS  (the Hub)          mana / income - upkeep = net / rung / price
+├─ Artifacts ───────→ what you bear, its Boon and its Bane
+│     ├─ Wishes ────→ the genie's three, enumerated
+│     │     ├─ Riches            500 gold
+│     │     ├─ Power             fill your pool
+│     │     ├─ Servant           an efreet answers
+│     │     ├─ Back
+│     │     └─ Close
+│     ├─ Back
+│     └─ Close
 ├─ Cast a Working ──→ Workings, the spellbook for your sphere
 │     ├─ Flame Strike (50)
 │     ├─ Demon Strike (100)       Chaos only
@@ -148,15 +157,19 @@ MAGIC STATUS  (the Hub)          mana / income - upkeep = net / rung / price
 └─ Close
 ```
 
-**That is the whole interactive surface today: two menus, the Hub and Workings.**
-The v4 plan in [`specs/magic-ui-architecture.md`](specs/magic-ui-architecture.md)
-adds two more — an **Artifacts** spoke shown only while you hold one, with a
-**Wishes** spoke nested under it shown only while you hold a lamp — plus a
-control-panel shortcut that jumps straight into Workings. Neither spoke is built
-yet; everything else in the magic system (artifacts as units, lichdom, heroes,
-counterplay) is specified in
-[`specs/earned-powers-and-counterplay.md`](specs/earned-powers-and-counterplay.md)
-and not yet implemented. If it is not in the tree above, it is not in the game.
+**Everything in that tree is built and has been walked in game** — arms pressed
+headlessly, panels captured and read. What is NOT built, and is specified in
+[`specs/earned-powers-and-counterplay.md`](specs/earned-powers-and-counterplay.md),
+is the rest of the artifact system: sites and huts to find vessels in, major
+wishes from a captured avatar, heroes, lichdom, and the persistent-hazard
+counterplay. If it is not in the tree above, it is not in the game.
+
+**The Lamp** is the one vessel that exists. It is *anchored* (`MaxMovePoints 0`)
+and can never be built, so it is found rather than made — today it comes from
+destroying an efreet, which frees the vessel its servant was bound into. Holding
+it raises your pool from 200 to 250 and drains 4 mana every turn, and you cannot
+put it down. That pairing is the design: **the same resource is raised and
+lowered**, so an artifact is a decision rather than a pickup.
 
 A hard engine limit shapes that tree: **a segment renders at most five arms and
 silently drops the overflow from the tail** — measured, eight declared and five

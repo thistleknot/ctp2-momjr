@@ -3632,3 +3632,67 @@ readout is an instrument, not a behaviour.
   *"inlined MomSphereSummonUnit: seating is player N == civ N"* — the false
   premise written down, in the file, the entire time. Whoever inlines a shortcut
   usually records why; that sentence is searchable and would have found all five.
+
+## Artifacts and Wishes: what four failed launches taught (2026-08-05)
+
+The two remaining v4 menus turned out not to be menu work. Nothing existed for
+them to operate on -- zero vessel units, in the control plane or the 60 shipped
+units -- so an Artifacts spoke had nothing to list. The menus were the last 10%.
+
+Built: a Lamp unit (`MaxMovePoints 0`, never buildable via a new
+`unit_roles.vessels` policy role), its art authored as CODE in
+`tools/make_vessel_art.py` because civ2 MoM has no lamp to extract, a +25%
+capacity Boon against a 4-mana-per-turn Bane, three enumerated wishes, and a
+source. Verified in game: the panels render, the scalars interpolate, and the
+Riches wish pays out.
+
+### Four launches, four defects the static suite could not see
+
+1. **Fourteen strings with real newlines.** Each value swallowed the lines
+   beneath it; the engine aborted at load. `check_string_refs` verifies a
+   referenced key EXISTS and never looks at the value, so nothing static could
+   catch it. Now gated by `check_string_grammar`.
+2. **A write to a gold property that does not exist.** It is `AddGold(p, n)`.
+   The parser blamed the `} else {` two lines below -- **read UPWARD from a
+   reported syntax-error line.**
+3. **`HandleEvent(KillUnit)` at all.** "-1 is not a valid player index", with no
+   file and no line because it comes from inside a builtin. It fires before turn
+   1, since units die during initial placement, so it looks like a load defect.
+4. **A clipped button label.** Only a capture could show it.
+
+### The rule that would have saved two of those launches
+
+**An error with no line gets a BISECT, not a hypothesis.** I reasoned my way to
+two plausible fixes for #3 -- both wrong, one launch each. Renaming the handler's
+segment so the engine never fires it attributed it in a single pass, and
+`tools/uiwalk/bisect_slic_error.py` now does that automatically. Renaming rather
+than deleting keeps declarations and include order intact, so a disabled handler
+cannot introduce a different bug than the one under test.
+
+The workaround is worth remembering on its own: **derive the event from a COUNT
+DROP.** The BeginTurn sweep already walks every unit, so counting a type there
+and acting when the count falls gives the same signal with no event at all -- and
+it catches disbands for free.
+
+### The test suite was INVERTED, not merely stale
+
+`test_mom_slic.py` read 0 PASS / 64 FAIL, and three of its assertions demanded
+exactly the forms that are known broken:
+
+* *"TRIBES_* is not a SLIC symbol, use the numeric player index"* -- the
+  seat-is-sphere premise that cost a full day.
+* *"CityHasBuilding takes BuildingDB(), not a quoted string"* -- backwards.
+* *"burst buildings compare building[0].type"* -- CreateBuilding does not
+  populate `building[]`.
+
+**A suite asserting falsehoods with authority is worse than no suite**, because
+following it reintroduces the bugs it claims to prevent. Now all-pass, and a
+three-case battery confirms it still bites.
+
+### And the display gate blamed the operator a fourth time
+
+It aborted naming a portrait display as primary. Minutes later, unchanged code on
+an unchanged desktop read the landscape display primary with 1280x1024 legal --
+it had sampled a value in flux and I relayed it as fact. It now corroborates the
+PRIMARY flag against the display at the desktop origin and re-reads when they
+disagree. **A gate that BLOCKS work must re-read before it blocks.**
