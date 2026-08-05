@@ -31,6 +31,7 @@ int_t MomDbgCre[31];      // summoned creatures still alive (ledger occupancy)
 int_t MomDbgMana[31];     // current pool
 int_t MomDbgPrep[31];     // preparation countdown, sampled on that player's OWN turn
 int_t MomDbgPend[31];     // pending creature type, 0 == nothing queued
+int_t MomDbgSph[31];      // sphere resolved from the CIV, 0 == not a tribe
 int_t MomDbgTick[31];     // turns taken by EACH seat, spheres or not
 int_t MomDbgHum[31];      // 1 == this seat is the human
 int_t MomDbgCity[31];     // cities owned -- the AI summon gate's first clause
@@ -52,6 +53,7 @@ int_t MomDbgM1; int_t MomDbgM2; int_t MomDbgM3; int_t MomDbgM4; int_t MomDbgM5;
 //   prep stuck > 0  -> the arrival branch never runs for AI players
 //   prep 0, cre 0   -> arrival ran and the spawn produced nothing to ledger
 int_t MomDbgP1; int_t MomDbgP2; int_t MomDbgP3; int_t MomDbgP4; int_t MomDbgP5;
+int_t MomDbgS1; int_t MomDbgS2; int_t MomDbgS3; int_t MomDbgS4; int_t MomDbgS5;
 int_t MomDbgR1; int_t MomDbgR2; int_t MomDbgR3; int_t MomDbgR4; int_t MomDbgR5;
 int_t MomDbgY1; int_t MomDbgY2; int_t MomDbgY3; int_t MomDbgY4; int_t MomDbgY5;
 
@@ -92,6 +94,12 @@ HandleEvent(BeginTurn) 'MomProbeSample' post {
         MomDbgPrep[p] = MomSummonPrep[p];
         MomDbgPend[p] = MomSummonPending[p];
         MomDbgRung[p] = MomSphereRung[p];
+        // THE SPHERE THE MOD RESOLVED for this seat. Before 2026-08-04 sphere
+        // WAS the seat, so this row would have been the identity function and
+        // told us nothing; now it reads MomSphere[], set from
+        // PlayerCivilization, and a mismatch between the tribe chosen at setup
+        // and the sphere granted is visible directly.
+        MomDbgSph[p] = MomSphere[p];
         // WHICH SEAT IS THE HUMAN. mom_ai_magic skips !IsHumanPlayer(p), and an
         // observe-only run never clicks the summon arm -- so the human's column
         // MUST read zero summons with a monotonically climbing pool. That is
@@ -136,9 +144,9 @@ HandleEvent(BeginTurn) 'MomProbeSample' post {
             // Seats 4..8. If a sphere is seated above 5 it gets no magic at
             // all -- every magic handler is guarded p >= 1 && p <= 5 -- which
             // would be a hard defect rather than a balance problem.
-            MomDbgY1 = MomDbgTick[4]; MomDbgY2 = MomDbgTick[5];
-            MomDbgY3 = MomDbgTick[6]; MomDbgY4 = MomDbgTick[7];
-            MomDbgY5 = MomDbgTick[8];
+            MomDbgS1 = MomDbgSph[1]; MomDbgS2 = MomDbgSph[2];
+            MomDbgS3 = MomDbgSph[3]; MomDbgS4 = MomDbgSph[4];
+            MomDbgS5 = MomDbgSph[5];
         }
     }
 }

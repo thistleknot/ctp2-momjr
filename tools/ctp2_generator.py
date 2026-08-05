@@ -2564,7 +2564,12 @@ def _emit_mom_gating_slc() -> int:
                 continue
             terms = [f"{var} == {db}({i})" for i in idents]
             out.append(f"{indent}// {sphere.upper()} -- {len(idents)} block(s)")
-            out.append(f"{indent}if ({owner} != {index}) {{")
+            # SPHERE, NOT SEAT. `owner` is a player index and the seat a
+            # tribe occupies is chosen at setup, so comparing it to a
+            # sphere number walled the wrong civ -- a Nature player at
+            # seat 1 was handed Life's roster. MomSphere[] is resolved
+            # from PlayerCivilization once per turn (mom_func.slc).
+            out.append(f"{indent}if (MomSphere[{owner}] != {index}) {{")
             out.append(f"{indent}    if ({terms[0]}")
             for term in terms[1:]:
                 out.append(f"{indent}    || {term}")
@@ -2598,7 +2603,7 @@ def _emit_mom_gating_slc() -> int:
         "int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)",
         "{",
         "    // Barbarians and any out-of-range player are unrestricted.",
-        "    if (g.player < 1 || g.player > 5) { return 1; }",
+        "    if (MomSphere[g.player] < 1) { return 1; }",
         *_deny_block("advance", "theAdvance", "g.player"),
         "    return 1;",
         "}",
@@ -2750,7 +2755,7 @@ def _emit_mom_summon_slc() -> int:
             # pool around it.
             effective = max(rung, 1)
             lines.append(
-                f"        if (p == {index} && value[0] == AdvanceDB({adv})"
+                f"        if (MomSphere[p] == {index} && value[0] == AdvanceDB({adv})"
                 f" && MomSphereRung[p] < {effective})"
                 f" {{ MomSphereRung[p] = {effective}; }}")
     lines += [
@@ -2796,7 +2801,7 @@ def _emit_mom_summon_slc() -> int:
     for sphere, index in sorted(_SPHERE_PLAYER.items(), key=lambda kv: kv[1]):
         pool = pools[sphere]
         lines.append(f"    // {sphere.upper()} (player {index})")
-        lines.append(f"    if (p == {index}) {{")
+        lines.append(f"    if (MomSphere[p] == {index}) {{")
         if sphere == "chaos":
             # THE WILDROLL -- Chaos, and only Chaos, may draw from ANY sphere.
             #

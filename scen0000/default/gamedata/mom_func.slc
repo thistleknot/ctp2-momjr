@@ -13,10 +13,67 @@
 //     BuildingDB() refs or variables raise "Wrong type of argument".
 //   Helpers take int_t p (a player index); callers pass the event-local player[0].
 
+// Seat -> sphere, 1..5, 0 == not a MoM tribe. Written only by MomSphereIdentify.
+int_t MomSphere[31];
+
+// ---------------------------------------------------------------------------
+// SPHERE IDENTITY COMES FROM THE CIVILISATION, NOT THE SEAT (2026-08-04).
+//
+// These predicates used to be `p == 1`, `p == 2` ... with a comment asserting
+// "Player 1 == Tribes of Life (civ #1)". That premise is FALSE and the comment
+// was the only thing defending it. The New Game screen has an EMPIRE selector:
+// it defaults to Tribes of Nature while the human sits at SEAT 1, so the human
+// was Nature and received LIFE's magic. Visible in a build list -- playing
+// Tribes of Nature, the Build Manager offered Guardian Spirit, Life's rung-1
+// creature, because mod_CanCityBuildUnit walled by seat.
+//
+// The seat is now resolved to a sphere ONCE PER TURN, in MomSphereIdentify
+// below, and every predicate reads that array. Three reasons it is an array and
+// not a function call:
+//
+//   * CALL DEPTH. These predicates are already called FROM handlers, and
+//     several are called from inside other user functions. Adding a
+//     PlayerCivilization() lookup inside them is free (it is a builtin), but
+//     making them call another USER function would build a 2-level chain, which
+//     is the documented 0xC0000005.
+//   * COST. PlayerCivilization/CivilizationIndex per predicate per call would
+//     run dozens of times a turn for an answer that cannot change mid-game.
+//   * ONE WRITER. The mapping is established in exactly one place, so a seat
+//     that is not a tribe reads 0 everywhere rather than accidentally matching.
+//
+// CivilizationIndex takes a QUOTED civ record name ("TRIBES_LIFE" from
+// civilisation.txt), unlike UnitDB()/AdvanceDB() which take bare idents -- the
+// same split documented in slic-builtin-ident-quoting-splits. Verified against
+// 484 call sites of this idiom in Ages of Man.
+// ---------------------------------------------------------------------------
+
+HandleEvent(BeginTurn) 'MomSphereIdentify' post {
+    int_t sp;
+
+    sp = player[0];
+
+    // Guard the index before touching the array, as everywhere else in this mod:
+    // player 0 is the barbarian and indexing the sphere arrays for it was the
+    // original turn-10 crash.
+    if (sp >= 0 && sp <= 30) {
+        MomSphere[sp] = 0;
+        if (PlayerCivilization(sp) == CivilizationIndex("TRIBES_LIFE")) {
+            MomSphere[sp] = 1;
+        } elseif (PlayerCivilization(sp) == CivilizationIndex("TRIBES_NATURE")) {
+            MomSphere[sp] = 2;
+        } elseif (PlayerCivilization(sp) == CivilizationIndex("TRIBES_SORCERY")) {
+            MomSphere[sp] = 3;
+        } elseif (PlayerCivilization(sp) == CivilizationIndex("TRIBES_DEATH")) {
+            MomSphere[sp] = 4;
+        } elseif (PlayerCivilization(sp) == CivilizationIndex("TRIBES_CHAOS")) {
+            MomSphere[sp] = 5;
+        }
+    }
+}
+
 int_f MomPlayerIsLife(int_t p_1)
 {
-    // Player 1 == Tribes of Life (civ #1). Numeric index, not TRIBES_LIFE (undefined in SLIC).
-    if (p_1 == 1) {
+    if (MomSphere[p_1] == 1) {
         return 1;
     }
     return 0;
@@ -24,7 +81,7 @@ int_f MomPlayerIsLife(int_t p_1)
 
 int_f MomPlayerIsNature(int_t p_2)
 {
-    if (p_2 == 2) {
+    if (MomSphere[p_2] == 2) {
         return 1;
     }
     return 0;
@@ -32,7 +89,7 @@ int_f MomPlayerIsNature(int_t p_2)
 
 int_f MomPlayerIsSorcery(int_t p_3)
 {
-    if (p_3 == 3) {
+    if (MomSphere[p_3] == 3) {
         return 1;
     }
     return 0;
@@ -40,7 +97,7 @@ int_f MomPlayerIsSorcery(int_t p_3)
 
 int_f MomPlayerIsDeath(int_t p_4)
 {
-    if (p_4 == 4) {
+    if (MomSphere[p_4] == 4) {
         return 1;
     }
     return 0;
@@ -48,7 +105,7 @@ int_f MomPlayerIsDeath(int_t p_4)
 
 int_f MomPlayerIsChaos(int_t p_5)
 {
-    if (p_5 == 5) {
+    if (MomSphere[p_5] == 5) {
         return 1;
     }
     return 0;

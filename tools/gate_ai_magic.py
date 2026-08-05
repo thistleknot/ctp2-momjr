@@ -125,7 +125,11 @@ def _pools(summon_src: str) -> dict[int, list[str]]:
             i += 1
         summon_src = summon_src[start:i - 1]
     # `if (p == N) {` opens a sphere; collect UnitDB(...) until the next one.
-    parts = re.split(r"\bif\s*\(\s*p\s*==\s*(\d+)\s*\)\s*\{", summon_src)
+    # Accepts both the historical seat form `if (p == N)` and the current sphere
+    # form `if (MomSphere[p] == N)`. The emitted test moved from seat to sphere
+    # on 2026-08-04, because the seat a tribe occupies is chosen at setup; this
+    # gate must keep reading whichever one ships.
+    parts = re.split(r"\bif\s*\(\s*(?:MomSphere\[p\]|p)\s*==\s*(\d+)\s*\)\s*\{", summon_src)
     for i in range(1, len(parts) - 1, 2):
         idx = int(parts[i])
         body = parts[i + 1]
@@ -239,7 +243,7 @@ def check(scen: Path, csv_dir: Path) -> list[str]:
 
     # 7
     for index, sphere in sorted(player_sphere.items()):
-        body = re.split(r"\bif\s*\(\s*p\s*==\s*%d\s*\)\s*\{" % index, summon)
+        body = re.split(r"\bif\s*\(\s*(?:MomSphere\[p\]|p)\s*==\s*%d\s*\)\s*\{" % index, summon)
         if len(body) < 2:
             continue
         for rung_body in re.findall(r"if\s*\(\s*r\s*==\s*\d+\s*\)\s*\{(.*?)\n\s*\}",

@@ -38,19 +38,19 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
             // sphere-defining buildings, not a second table to keep in sync.
             // Builtins only: CityHasBuilding is a builtin (217 uses in corpus),
             // so this adds no user-function call level.
-            if (mp_1 == 1) {
+            if (MomSphere[mp_1] == 1) {
                 if (CityHasBuilding(tmpCity, "IMPROVE_WIZARDS_FORTRESS")) { gen = gen + 8; }
                 if (CityHasBuilding(tmpCity, "IMPROVE_TEMPLE")) { gen = gen + 3; }
-            } elseif (mp_1 == 2) {
+            } elseif (MomSphere[mp_1] == 2) {
                 if (CityHasBuilding(tmpCity, "IMPROVE_PRIMAL_SOURCE")) { gen = gen + 8; }
                 if (CityHasBuilding(tmpCity, "IMPROVE_FANTASTIC_STABLE")) { gen = gen + 3; }
-            } elseif (mp_1 == 3) {
+            } elseif (MomSphere[mp_1] == 3) {
                 if (CityHasBuilding(tmpCity, "IMPROVE_BEACON_OF_WISDOM")) { gen = gen + 8; }
                 if (CityHasBuilding(tmpCity, "IMPROVE_LIBRARY")) { gen = gen + 3; }
-            } elseif (mp_1 == 4) {
+            } elseif (MomSphere[mp_1] == 4) {
                 if (CityHasBuilding(tmpCity, "IMPROVE_MECHANICIANS_GUILD")) { gen = gen + 8; }
                 if (CityHasBuilding(tmpCity, "IMPROVE_BARRACKS")) { gen = gen + 3; }
-            } elseif (mp_1 == 5) {
+            } elseif (MomSphere[mp_1] == 5) {
                 if (CityHasBuilding(tmpCity, "IMPROVE_MERCHANTS_GUILD")) { gen = gen + 8; }
                 if (CityHasBuilding(tmpCity, "IMPROVE_COLOSSEUM")) { gen = gen + 3; }
             }
@@ -426,16 +426,16 @@ HandleEvent(BeginTurn) 'MomSphereRootGrant' post {
 
     rp = player[0];
 
-    if (rp >= 1 && rp <= 5 && MomSphereRung[rp] < 1) {
-        if (rp == 1) {
+    if (rp >= 1 && rp <= 30 && MomSphere[rp] >= 1 && MomSphereRung[rp] < 1) {
+        if (MomSphere[rp] == 1) {
             GrantAdvance(rp, AdvanceDB(ADVANCE_LIFE_MAGIC));
-        } elseif (rp == 2) {
+        } elseif (MomSphere[rp] == 2) {
             GrantAdvance(rp, AdvanceDB(ADVANCE_NATURE_MAGIC));
-        } elseif (rp == 3) {
+        } elseif (MomSphere[rp] == 3) {
             GrantAdvance(rp, AdvanceDB(ADVANCE_SORCERY));
-        } elseif (rp == 4) {
+        } elseif (MomSphere[rp] == 4) {
             GrantAdvance(rp, AdvanceDB(ADVANCE_DEATH_MAGIC));
-        } elseif (rp == 5) {
+        } elseif (MomSphere[rp] == 5) {
             GrantAdvance(rp, AdvanceDB(ADVANCE_CHAOS_MAGIC));
         }
     }

@@ -23,9 +23,9 @@
 int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)
 {
     // Barbarians and any out-of-range player are unrestricted.
-    if (g.player < 1 || g.player > 5) { return 1; }
+    if (MomSphere[g.player] < 1) { return 1; }
     // LIFE -- 6 block(s)
-    if (g.player != 1) {
+    if (MomSphere[g.player] != 1) {
         if (theAdvance == AdvanceDB(ADVANCE_LIFE_MAGIC)
         || theAdvance == AdvanceDB(ADVANCE_LIFE_LORE)
         || theAdvance == AdvanceDB(ADVANCE_LIFE_ADEPT)
@@ -35,7 +35,7 @@ int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)
         ) { return 0; }
     }
     // NATURE -- 6 block(s)
-    if (g.player != 2) {
+    if (MomSphere[g.player] != 2) {
         if (theAdvance == AdvanceDB(ADVANCE_NATURE_MAGIC)
         || theAdvance == AdvanceDB(ADVANCE_NATURE_LORE)
         || theAdvance == AdvanceDB(ADVANCE_NATURE_ADEPT)
@@ -45,7 +45,7 @@ int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)
         ) { return 0; }
     }
     // SORCERY -- 6 block(s)
-    if (g.player != 3) {
+    if (MomSphere[g.player] != 3) {
         if (theAdvance == AdvanceDB(ADVANCE_SORCERY)
         || theAdvance == AdvanceDB(ADVANCE_SORCEROUS_LORE)
         || theAdvance == AdvanceDB(ADVANCE_SORCERY_ADEPT)
@@ -55,7 +55,7 @@ int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)
         ) { return 0; }
     }
     // DEATH -- 6 block(s)
-    if (g.player != 4) {
+    if (MomSphere[g.player] != 4) {
         if (theAdvance == AdvanceDB(ADVANCE_DEATH_MAGIC)
         || theAdvance == AdvanceDB(ADVANCE_DEATH_LORE)
         || theAdvance == AdvanceDB(ADVANCE_DEATH_ADEPT)
@@ -65,7 +65,7 @@ int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)
         ) { return 0; }
     }
     // CHAOS -- 6 block(s)
-    if (g.player != 5) {
+    if (MomSphere[g.player] != 5) {
         if (theAdvance == AdvanceDB(ADVANCE_CHAOS_MAGIC)
         || theAdvance == AdvanceDB(ADVANCE_CHAOS_LORE)
         || theAdvance == AdvanceDB(ADVANCE_CHAOS_ADEPT)
@@ -81,7 +81,7 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
 {
     if (theCity.owner < 1 || theCity.owner > 5) { return 1; }
     // LIFE -- 7 block(s)
-    if (theCity.owner != 1) {
+    if (MomSphere[theCity.owner] != 1) {
         if (theUnit == UnitDB(UNIT_ARCHANGEL)
         || theUnit == UnitDB(UNIT_ARIEL)
         || theUnit == UnitDB(UNIT_GUARDIAN_SPIRIT)
@@ -92,7 +92,7 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         ) { return 0; }
     }
     // NATURE -- 13 block(s)
-    if (theCity.owner != 2) {
+    if (MomSphere[theCity.owner] != 2) {
         if (theUnit == UnitDB(UNIT_ALORRA)
         || theUnit == UnitDB(UNIT_BEHEMOTH)
         || theUnit == UnitDB(UNIT_CENTAURS)
@@ -109,7 +109,7 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         ) { return 0; }
     }
     // SORCERY -- 7 block(s)
-    if (theCity.owner != 3) {
+    if (MomSphere[theCity.owner] != 3) {
         if (theUnit == UnitDB(UNIT_AIR_ELEMENTAL)
         || theUnit == UnitDB(UNIT_JAFAR)
         || theUnit == UnitDB(UNIT_MAGE)
@@ -120,7 +120,7 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         ) { return 0; }
     }
     // DEATH -- 11 block(s)
-    if (theCity.owner != 4) {
+    if (MomSphere[theCity.owner] != 4) {
         if (theUnit == UnitDB(UNIT_DEATH_KNIGHT)
         || theUnit == UnitDB(UNIT_DEMON)
         || theUnit == UnitDB(UNIT_DRACOLICH)
@@ -135,7 +135,7 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         ) { return 0; }
     }
     // CHAOS -- 9 block(s)
-    if (theCity.owner != 5) {
+    if (MomSphere[theCity.owner] != 5) {
         if (theUnit == UnitDB(UNIT_EFREET)
         || theUnit == UnitDB(UNIT_GARGOYLE)
         || theUnit == UnitDB(UNIT_HELL_HOUNDS)
@@ -154,13 +154,13 @@ int_f mod_CanCityBuildBuilding(city_t theCity, int_t theBuilding)
 {
     if (theCity.owner < 1 || theCity.owner > 5) { return 1; }
     // NATURE -- 2 block(s)
-    if (theCity.owner != 2) {
+    if (MomSphere[theCity.owner] != 2) {
         if (theBuilding == BuildingDB(IMPROVE_FANTASTIC_STABLE)
         || theBuilding == BuildingDB(IMPROVE_PRIMAL_SOURCE)
         ) { return 0; }
     }
     // SORCERY -- 1 block(s)
-    if (theCity.owner != 3) {
+    if (MomSphere[theCity.owner] != 3) {
         if (theBuilding == BuildingDB(IMPROVE_BEACON_OF_WISDOM)
         ) { return 0; }
     }
@@ -171,32 +171,32 @@ int_f mod_CanCityBuildWonder(city_t theCity, int_t theWonder)
 {
     if (theCity.owner < 1 || theCity.owner > 5) { return 1; }
     // LIFE -- 2 block(s)
-    if (theCity.owner != 1) {
+    if (MomSphere[theCity.owner] != 1) {
         if (theWonder == WonderDB(WONDER_CELESTIAL_BEACON)
         || theWonder == WonderDB(WONDER_ENCHANTED_GROTTO)
         ) { return 0; }
     }
     // NATURE -- 2 block(s)
-    if (theCity.owner != 2) {
+    if (MomSphere[theCity.owner] != 2) {
         if (theWonder == WonderDB(WONDER_FONT_OF_BOUNTY)
         || theWonder == WonderDB(WONDER_GAIAS_SHRINE)
         ) { return 0; }
     }
     // SORCERY -- 3 block(s)
-    if (theCity.owner != 3) {
+    if (MomSphere[theCity.owner] != 3) {
         if (theWonder == WonderDB(WONDER_ELDRITCH_COLLEGE)
         || theWonder == WonderDB(WONDER_LEAGUE_OF_WIZARDS)
         || theWonder == WonderDB(WONDER_PLEASURE_DOME)
         ) { return 0; }
     }
     // DEATH -- 2 block(s)
-    if (theCity.owner != 4) {
+    if (MomSphere[theCity.owner] != 4) {
         if (theWonder == WonderDB(WONDER_ENTROPY_ENGINE)
         || theWonder == WonderDB(WONDER_WALL_OF_BONE)
         ) { return 0; }
     }
     // CHAOS -- 2 block(s)
-    if (theCity.owner != 5) {
+    if (MomSphere[theCity.owner] != 5) {
         if (theWonder == WonderDB(WONDER_ELIXIR_OF_METAMORPHOSIS)
         || theWonder == WonderDB(WONDER_FORGE_OF_CHAOS)
         ) { return 0; }

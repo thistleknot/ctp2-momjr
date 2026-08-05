@@ -29,40 +29,40 @@ HandleEvent(GrantAdvance) 'MomSphereRungTick' post {
     p = player[0];
     if (p >= 1 && p <= 5 && value[0] != 0) {
         // LIFE (player 1)
-        if (p == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_MAGIC) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
-        if (p == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
-        if (p == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
-        if (p == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
+        if (MomSphere[p] == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_MAGIC) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
+        if (MomSphere[p] == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
+        if (MomSphere[p] == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
+        if (MomSphere[p] == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
         // NATURE (player 2)
-        if (p == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_MAGIC) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
-        if (p == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
-        if (p == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
-        if (p == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
+        if (MomSphere[p] == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_MAGIC) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
+        if (MomSphere[p] == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
+        if (MomSphere[p] == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
+        if (MomSphere[p] == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
         // SORCERY (player 3)
-        if (p == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 3 && value[0] == AdvanceDB(ADVANCE_SORCEROUS_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
-        if (p == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
-        if (p == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
-        if (p == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
+        if (MomSphere[p] == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 3 && value[0] == AdvanceDB(ADVANCE_SORCEROUS_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
+        if (MomSphere[p] == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
+        if (MomSphere[p] == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
+        if (MomSphere[p] == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
         // DEATH (player 4)
-        if (p == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_MAGIC) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
-        if (p == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
-        if (p == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
-        if (p == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
+        if (MomSphere[p] == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_MAGIC) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
+        if (MomSphere[p] == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
+        if (MomSphere[p] == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
+        if (MomSphere[p] == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
         // CHAOS (player 5)
-        if (p == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGIC) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
-        if (p == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
-        if (p == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
-        if (p == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
-        if (p == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
+        if (MomSphere[p] == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGIC) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_LORE) && MomSphereRung[p] < 1) { MomSphereRung[p] = 1; }
+        if (MomSphere[p] == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_ADEPT) && MomSphereRung[p] < 2) { MomSphereRung[p] = 2; }
+        if (MomSphere[p] == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_MAGE) && MomSphereRung[p] < 3) { MomSphereRung[p] = 3; }
+        if (MomSphere[p] == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_WIZARD) && MomSphereRung[p] < 4) { MomSphereRung[p] = 4; }
+        if (MomSphere[p] == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_MASTER) && MomSphereRung[p] < 5) { MomSphereRung[p] = 5; }
     }
 }
 
@@ -102,7 +102,7 @@ int_f MomSummonRoll(int_t p)
     roll = Random(100);
 
     // LIFE (player 1)
-    if (p == 1) {
+    if (MomSphere[p] == 1) {
         if (r == 5) {
             if (roll < 16) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
             if (roll < 32) { return UnitDB(UNIT_UNICORN); }
@@ -129,7 +129,7 @@ int_f MomSummonRoll(int_t p)
     }
 
     // NATURE (player 2)
-    if (p == 2) {
+    if (MomSphere[p] == 2) {
         if (r == 5) {
             if (roll < 16) { return UnitDB(UNIT_WARBEARS); }
             if (roll < 32) { return UnitDB(UNIT_COCKATRICE); }
@@ -156,7 +156,7 @@ int_f MomSummonRoll(int_t p)
     }
 
     // SORCERY (player 3)
-    if (p == 3) {
+    if (MomSphere[p] == 3) {
         if (r == 5) {
             if (roll < 16) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
             if (roll < 32) { return UnitDB(UNIT_AIR_ELEMENTAL); }
@@ -183,7 +183,7 @@ int_f MomSummonRoll(int_t p)
     }
 
     // DEATH (player 4)
-    if (p == 4) {
+    if (MomSphere[p] == 4) {
         if (r == 5) {
             if (roll < 6) { return UnitDB(UNIT_SKELETONS); }
             if (roll < 12) { return UnitDB(UNIT_ZOMBIES); }
@@ -217,7 +217,7 @@ int_f MomSummonRoll(int_t p)
     }
 
     // CHAOS (player 5)
-    if (p == 5) {
+    if (MomSphere[p] == 5) {
         wild = Random(100);
         if (wild < 15) {
             if (r == 5) {
