@@ -3590,3 +3590,45 @@ the wrong tribe while reporting the right one.
 probe was running staged the LIVE instrument -- an instrumented scenario.slc and
 a debug scen_str.txt, plus a mom.zip built from them. Caught before commit. Stage
 explicit paths, never a tree, while anything is running.
+
+## The summon lane still picked by seat, and my 250-turn run could not have caught it (2026-08-04)
+
+The predicates in `mom_func.slc` were converted to read `MomSphere[]`. Five
+sites never used a predicate, because they had **deliberately inlined** the old
+comparison to dodge the 2-level user-call `0xC0000005`:
+
+    mom_spells.slc:71-75   the summon unit picker   <-- the one that matters
+    mom_spells.slc:153     Demon Strike's Chaos gate, written `p != 5`
+    mom_spells.slc:220     which spellbook variant opens
+    mom_spells.slc:297     the AI's Demon-vs-Flame choice
+    mom_msg.slc:239-247    the summon arrival message
+
+So a Chaos player at seat 1 could BUILD Hell Hounds (the build lane goes through
+the generator's faction wall, which was fixed) while SUMMONING Life's Guardian
+Spirit. Two lanes, one concept, and only one of them was converted.
+
+**The fix is safe on these paths precisely because `MomSphere` is an ARRAY.** A
+subscript is not a call, so it adds no depth. That is the whole reason the
+predicates resolve into an array instead of staying functions — and it means the
+inline sites can now read the true sphere without reintroducing the crash.
+
+### Why 250 turns of "verification" proved nothing here
+
+The rotation read the sphere row off the `j` panel. **That row is populated from
+`MomSphere[]` — the array I had just fixed.** The test read my change back out
+and confirmed it equalled itself. A test whose observable IS the thing you
+changed cannot fail. It never touched the five consumers.
+
+Before calling a run a verification: **name the consumer.** What reads this value
+to do something the player can see, and did the run exercise that path? A debug
+readout is an instrument, not a behaviour.
+
+### Two smaller traps, both mine
+
+* **Sweep the mechanism, not one syntax.** My first grep was `p == [1-5]` and it
+  reported clean. `p != 5` survived it. If the defect is "compares a player to a
+  seat literal", cover every operator, every alias, and the negated form.
+* **Grep the assumption's WORDING.** The code said, in a comment,
+  *"inlined MomSphereSummonUnit: seating is player N == civ N"* — the false
+  premise written down, in the file, the entire time. Whoever inlines a shortcut
+  usually records why; that sentence is searchable and would have found all five.
