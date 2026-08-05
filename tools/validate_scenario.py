@@ -24,6 +24,7 @@ Exit codes: 0 = all gates pass; 1 = failures listed on stdout.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from pathlib import Path
@@ -145,6 +146,56 @@ def check_string_grammar(scen: Path, fails: list[str]) -> None:
             first, last = line.find('"'), line.rfind('"')
             if 0 <= first < last and '"' in line[first + 1:last]:
                 fails.append(f"{Path(rel).name}:{n}: stray quote inside the value")
+
+
+def check_vessel_units(scen: Path, fails: list[str]) -> None:
+    """Artifact vessels must not carry the combat-unit template.
+
+    WHY. `unit_roles.vessels` marks a unit as an artifact, and the ONLY thing
+    units.csv can express about that is `move 0`. Everything else -- category,
+    attack, the land-combat flag block, upkeep -- comes from the generator's
+    default template, so a vessel silently shipped as `UNIT_CATEGORY_ATTACK`
+    with Attack 10, CanAttack Land/Mountain, CanPillage, CanPirate,
+    ExertsMartialLaw, CanReform and a shield upkeep. A lamp that could pillage.
+
+    Setting the movement to zero stopped it MOVING and nothing else, which is
+    exactly the shape of defect a data-driven pipeline hides: the one field you
+    set looks right, and the twenty you did not are wrong.
+
+    Forbidden here means "meaningless or harmful on an object that sits on the
+    ground". `MovementType:` is NOT forbidden -- it declares which terrain a unit
+    may occupy, not that it can travel, and a unit with none has nowhere to be
+    placed.
+    """
+    policy = _momjr_csv() / "mod_policy.json"
+    units = scen / "default/gamedata/Units.txt"
+    if not policy.exists() or not units.exists():
+        return
+    vessels = json.loads(policy.read_text(encoding="utf-8")).get(
+        "unit_roles", {}).get("vessels", [])
+    if not vessels:
+        return
+    text = units.read_text(encoding="latin-1")
+    forbidden = ("CanAttack:", "CanPillage", "CanPirate", "CanExpel",
+                 "ExertsMartialLaw", "CanEntrench", "CanReform")
+    for ident in vessels:
+        m = re.search(rf"^{re.escape(ident)} \{{(.*?)^\}}", text, re.M | re.S)
+        if not m:
+            fails.append(f"Units.txt: vessel {ident} declared in policy but not emitted")
+            continue
+        block = m.group(1)
+        for flag in forbidden:
+            if flag in block:
+                fails.append(f"Units.txt: vessel {ident} carries {flag} -- an "
+                             f"artifact is not a combatant")
+        for field, want in (("MaxMovePoints", "0"), ("Attack", "0"),
+                            ("Defense", "0"), ("ShieldHunger", "0")):
+            got = re.search(rf"^\s*{field}\s+(\S+)", block, re.M)
+            if got and got.group(1) != want:
+                fails.append(f"Units.txt: vessel {ident} has {field} "
+                             f"{got.group(1)}, expected {want}")
+        if "UNIT_CATEGORY_ATTACK" in block:
+            fails.append(f"Units.txt: vessel {ident} is UNIT_CATEGORY_ATTACK")
 
 
 MAX_ALERT_ARMS = 5
@@ -1414,6 +1465,7 @@ def main() -> int:
     check_string_refs(scen, fails)
     check_string_grammar(scen, fails)
     check_alertbox_arms(scen, fails)
+    check_vessel_units(scen, fails)
     check_icon_refs(scen, fails)
     check_advance_prereq_cap(scen, fails)
     check_visible_art(scen, fails)

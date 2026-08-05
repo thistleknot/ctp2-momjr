@@ -6,9 +6,19 @@
 //
 // THESIS. A vessel is a UNIT, not a player flag and not a building. CTP2 has no
 // inventory, so "holding" an artifact is owning the unit and BEARING it is
-// co-location. That single decision is what makes an artifact contestable: it
-// stands on a tile, it can be taken by whoever wins the fight over that tile,
-// and none of that needs new engine support.
+// co-location. A vessel therefore stands on a tile and can be reached, which is
+// what makes it contestable at all.
+//
+// WHAT "CONTESTABLE" CAN AND CANNOT MEAN HERE. Verified against the engine
+// source, not assumed: there is no SetOwner path for a unit in gs/gameobj and no
+// SLIC verb for one. CTP2 captures CITIES, never units. So an enemy who reaches
+// a vessel DESTROYS it -- they cannot take it.
+//
+// That makes the contest DENIAL rather than seizure: killing a rival's lamp
+// strips their +50 capacity and whatever wishes they had left. The operator's
+// "picked up by the survivor" is NOT implemented and cannot be, on stock rules,
+// without a transfer mechanism the engine does not have. Vessels are conserved
+// at the level of the SYSTEM instead -- every efreet that dies frees one.
 //
 // THE LAMP, concretely:
 //   * :Anchored:  MaxMovePoints 0 -- it never travels on its own. Someone must

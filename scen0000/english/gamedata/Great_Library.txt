@@ -3547,7 +3547,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_LAMP_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Lamp: attack 10, defense 10, 10 hit points, firepower 1. Moves 0 tiles per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Lamp: attack 0, defense 0, 10 hit points, firepower 1. Moves 0 tiles per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>.
 [END]
 [UNIT_LAMP_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Lamp is represented here as a proxy unit while the final MoM art swap is in progress.

@@ -1255,7 +1255,27 @@ class ModUnit:
             f"   LossMoveToDmgNone",
             f"   MaxFuel 0",
         ]
-        if self.domain == 0:
+        if self.category == 'UNIT_CATEGORY_GENERIC':
+            # ARTIFACT VESSEL. None of the land-combat flags belong on an object
+            # that sits on the ground: it does not entrench, expel, pillage,
+            # pirate, or impose martial law, and it must not capture a city.
+            #
+            # Civilian + zero defense means the vessel never fights and never
+            # survives being attacked.
+            #
+            # IT DOES NOT MEAN IT CHANGES HANDS. Verified in the engine source:
+            # there is no SetOwner path for a unit anywhere in gs/gameobj, and no
+            # SLIC verb for it -- CTP2 captures CITIES, never units. So a vessel
+            # can be created and destroyed, never taken. An earlier version of
+            # this comment claimed capture; that was asserted, not checked.
+            #
+            # NoZoc keeps it from projecting a zone of control it has no business
+            # projecting. CanBeExpelled only applies OFF the owner's territory
+            # (Unit::CanBeExpelled) and only on the path where a non-hostile AI
+            # would rather push past than attack -- a courtesy, not a transfer.
+            lines += ["   Civilian", "   CantCaptureCity", "   NoZoc",
+                      "   CanBeExpelled"]
+        elif self.domain == 0:
             lines += ["   CanEntrench", "   CanExpel", "   CanPillage",
                       "   CanPirate", "   ExertsMartialLaw", "   DeathEffectsHappy"]
         elif self.domain == 1:
@@ -1290,7 +1310,17 @@ class ModUnit:
             f"   SoundDeath SOUND_DEATH_{snd}",
             "",
         ]
-        if self.domain == 0:
+        if self.category == 'UNIT_CATEGORY_GENERIC':
+            # No CanAttack, and no CanReform. MovementType: Land is still
+            # required -- it declares which terrain the unit may OCCUPY, not
+            # that it can travel; without it the engine has nowhere to place a
+            # unit whose MaxMovePoints is 0.
+            lines += [
+                "   CanSee: Standard",
+                "   MovementType: Land", "   MovementType: Mountain",
+                f"   Size: {self.size}", "   VisionClass: Standard",
+            ]
+        elif self.domain == 0:
             terrain = [
                 "   CanAttack: Land", "   CanAttack: Mountain",
                 "   CanSee: Standard",

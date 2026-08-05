@@ -344,15 +344,37 @@ defence; they differ only in movement.**
 > `VisionRange 2` is worth stealing though: a :Boon: expressed in the unit's own
 > stats costs no SLIC at all.
 >
-> The engine already has this exact vocabulary — `Civilian` and `CanBeExpelled`
-> are live flags in Units.txt — and a civilian is CAPTURED rather than fought.
-> So "a sole artifact cannot be defended, it is picked up by whoever survives"
-> needs no new mechanism; it is stock behaviour. Immobility follows from
-> `MaxMovePoints 0`: an artifact never travels on its own, only in company.
+> **RETRACTED 2026-08-05 — the capture claim was wrong, and I asserted it
+> without checking.** The two paragraphs that stood here said a civilian is
+> "CAPTURED rather than fought", so "picked up by whoever survives" was stock
+> behaviour needing no new mechanism. Both are false:
 >
-> Neutrality when abandoned is EMERGENT rather than a special rule: an
-> unattended civilian is claimable by anyone who reaches it, barbarians
-> included. An artifact dropped in the field really is loose in the world.
+> * **CTP2 has no unit-ownership transfer at all.** No `SetOwner` path for a
+>   unit anywhere in `gs/gameobj`, and no SLIC verb for one. The engine captures
+>   CITIES, never units. A vessel can be created and destroyed — never taken.
+> * **`CanBeExpelled` is not a transfer.** `Unit::CanBeExpelled` requires the
+>   unit to be OFF its owner's territory, and the only caller is the path where
+>   a non-hostile AI would rather push past than attack (`armyevent.cpp`). It is
+>   a courtesy, not a capture.
+> * **The prior art does not support it either.** `UNIT_PALANTIR_I` carries no
+>   `Civilian` flag; it is `UNIT_CATEGORY_RANGED` with `BombRounds 3` and
+>   `ShieldHunger 7` — a buildable bombard tower, not a transferable artifact.
+>
+> What survives is the part that was actually checked: **immobility follows from
+> `MaxMovePoints 0`**, and the palantir confirms artifact-as-immobile-unit is a
+> road already walked.
+>
+> **So the contest is DENIAL, not seizure.** An enemy who reaches a vessel
+> destroys it, stripping the holder's capacity boon and any unspent wishes. That
+> is a real mechanic and it is what ships. "Picked up by the survivor" and
+> "neutral when abandoned" are NOT implemented and cannot be on stock rules
+> without a transfer mechanism the engine does not have — reaching them needs a
+> SLIC scheme that can attribute a kill, which the unusable `KillUnit` handler
+> currently rules out.
+>
+> Vessels are conserved at the level of the SYSTEM rather than the tile: every
+> efreet that dies frees one, so the world keeps roughly as much magic as it
+> started with even though no single lamp ever changes hands.
 
 **A :Vessel: SHALL be usable only while BORNE by a :Hero:.**
 

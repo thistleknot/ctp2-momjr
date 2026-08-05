@@ -164,12 +164,18 @@ is the rest of the artifact system: sites and huts to find vessels in, major
 wishes from a captured avatar, heroes, lichdom, and the persistent-hazard
 counterplay. If it is not in the tree above, it is not in the game.
 
-**The Lamp** is the one vessel that exists. It is *anchored* (`MaxMovePoints 0`)
-and can never be built, so it is found rather than made — today it comes from
-destroying an efreet, which frees the vessel its servant was bound into. Holding
-it raises your pool from 200 to 250 and drains 4 mana every turn, and you cannot
-put it down. That pairing is the design: **the same resource is raised and
-lowered**, so an artifact is a decision rather than a pickup.
+**The Lamp** is the one vessel that exists. It is *anchored* (`MaxMovePoints 0`,
+`Attack 0`, `Defense 0`, `Civilian`) and can never be built, so it is found
+rather than made — today it comes from destroying an efreet, which frees the
+vessel its servant was bound into. Holding it raises your pool from 200 to 250
+and drains 4 mana every turn, and you cannot put it down. That pairing is the
+design: **the same resource is raised and lowered**, so an artifact is a
+decision rather than a pickup.
+
+A vessel **cannot change hands.** CTP2 has no unit-ownership transfer — the
+engine captures cities, never units — so an enemy who reaches your lamp destroys
+it and takes your capacity boon and unspent wishes with it. The contest over an
+artifact is denial, not seizure.
 
 A hard engine limit shapes that tree: **a segment renders at most five arms and
 silently drops the overflow from the tail** — measured, eight declared and five

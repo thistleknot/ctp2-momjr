@@ -4982,9 +4982,28 @@ def main():
             _scal = MOD_POLICY["unit_stat_scaling"]
             attack     = _stat_cast(attack_raw, "attack")
             defense    = _stat_cast(def_raw,    "defense")
+
+            # VESSELS BYPASS THE STAT CURVE. _stat_cast rank-casts every unit
+            # onto the shipped CTP2 min/median/max, and its floor is 10 -- so a
+            # csv row of `0a,1d` came out Attack 10 / Defense 10. That floor is
+            # right for a creature and wrong for an artifact: the spec is that a
+            # sole artifact CANNOT BE DEFENDED and is picked up by whoever holds
+            # the field. Zero defense plus the Civilian flag is what makes CTP2's
+            # own capture behaviour deliver that, instead of the lamp fighting
+            # back and dying.
+            if ident in set(MOD_POLICY.get("unit_roles", {}).get("vessels", [])):
+                attack = 0
+                defense = 0
             shield_cost = cost_raw * int(_scal["shield_cost_mult"])
             shield_hunger = max(int(_scal["shield_hunger_min"]),
                                 cost_raw // int(_scal["shield_hunger_div"]))
+            # A vessel is not maintained. Its cost is the Bane it inflicts every
+            # turn (4 mana for the Lamp), which is the whole point of the boon /
+            # bane pairing -- charging production upkeep on top would tax the
+            # same decision twice, in a currency the artifact has nothing to do
+            # with.
+            if ident in set(MOD_POLICY.get("unit_roles", {}).get("vessels", [])):
+                shield_hunger = 0
             _default_advance = _scal["default_advance"]
 
             # Advance prereq — heroes (nil/no) default to earliest advance so
@@ -5011,6 +5030,14 @@ def main():
                 # Per-mod policy: these units must be able to build cities
                 if name in set(MOD_POLICY["settler_category_units"]):
                     category = 'UNIT_CATEGORY_SETTLER'
+                elif ident in set(MOD_POLICY.get("unit_roles", {}).get("vessels", [])):
+                    # A VESSEL IS NOT A COMBATANT. Left on the default ATTACK
+                    # template it shipped as a warrior with the wheels taken off:
+                    # Attack 10, CanAttack Land/Mountain, CanPillage, CanPirate,
+                    # ExertsMartialLaw, CanReform and a shield upkeep -- on a lamp.
+                    # Setting MaxMovePoints 0 in the CSV stopped it MOVING and
+                    # nothing else.
+                    category = 'UNIT_CATEGORY_GENERIC'
                 else:
                     category = 'UNIT_CATEGORY_ATTACK'
 

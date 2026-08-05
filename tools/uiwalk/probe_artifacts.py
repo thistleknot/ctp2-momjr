@@ -95,6 +95,13 @@ def _shot(game, run_dir: Path, name: str) -> Path:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--turns", type=int, default=6)
+    ap.add_argument("--capture-only", action="store_true",
+                    help="Boot, play, and read the 'j' panel -- no arm clicks. "
+                         "Valid on a display geometry the pointing gate rejects, "
+                         "because the panel is opened by a KEY (injection) and "
+                         "only the arm presses need correct aim. Use to verify a "
+                         "DATA change (a unit record, a string) without claiming "
+                         "the spokes were re-walked.")
     args = ap.parse_args()
 
     uiwalk.PREFER_RELEASE = True
@@ -154,6 +161,16 @@ def main() -> int:
         _shot(game, run_dir, "01_hub")
         n = len(turnloop.find_alert_buttons(game.screenshot()))
         print(f"  hub arms rendered: {n} (expect 4)", flush=True)
+
+        if args.capture_only:
+            # Stop here deliberately. The hub proves the game booted with the
+            # current DBs, the lamp exists, and the boon reached the pool -- all
+            # of which a data change can break. It proves NOTHING about the
+            # spokes, and saying otherwise would be the same mistake as reading
+            # a value back out of the array that wrote it.
+            print("  capture-only: stopping before arm presses", flush=True)
+            ok = not watcher.hits
+            return 0 if ok else 1
 
         turnloop.click_alert_arm(game, inp, 3, "Artifacts")
         _shot(game, run_dir, "02_artifacts")

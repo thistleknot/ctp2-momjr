@@ -31,7 +31,6 @@ UNIT_BUILD_LIST_AIR_TRANSPORT {
 
 ## 3 #########################################################
 UNIT_BUILD_LIST_DEFENSE {
-  Unit UNIT_LAMP
   Unit UNIT_SKELETONS
   Unit UNIT_PHANTOM_WARRIORS
   Unit UNIT_SPEARMEN
@@ -93,7 +92,6 @@ UNIT_BUILD_LIST_NAVAL_SPECIAL {
 
 ## 7 #########################################################
 UNIT_BUILD_LIST_OFFENSE {
-  Unit UNIT_LAMP
   Unit UNIT_SKELETONS
   Unit UNIT_PHANTOM_WARRIORS
   Unit UNIT_SPEARMEN
