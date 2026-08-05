@@ -117,19 +117,86 @@ panel](docs/img/mom_ingame_3775bc.png)
 node east of the ridge; Knights — a neutral unit every tribe may field — in the
 build panel. Captured headlessly through `tools/uiwalk/uiwalk.py`.*
 
+## Playing it — where the magic lives
+
+![The MAGIC STATUS hub open at 2975BC over the Chaos cities Darkstone and
+Hellrock: mana 200/200, income 37 minus upkeep 2 for 35 per turn, sphere rung 1
+of 5, a summon priced at 69, and three arms — Cast a Working, Summon Creature,
+Close](docs/img/mom_magic_menu_hub.png)
+
+*2975BC, playing Chaos. The panel is the whole magic economy in five lines.*
+
+**Launch `ctp2_program/ctp/ctp2.exe`.** Not `ctp2-dbg.exe` — the `j` key is a
+bespoke engine patch and the debug build does not carry it, so on that binary
+the menus appear not to exist.
+
+**New Game → Scenario → Master of Magic**, then choose your tribe from the
+**EMPIRE** selector. That selector decides your sphere and therefore your entire
+spellbook; the default is Tribes of Nature.
+
+**Press `j` in game** to open the hub:
+
+```
+MAGIC STATUS  (the Hub)          mana / income - upkeep = net / rung / price
+├─ Cast a Working ──→ Workings, the spellbook for your sphere
+│     ├─ Flame Strike (50)
+│     ├─ Demon Strike (100)       Chaos only
+│     ├─ Store Power              bank toward the next rung
+│     ├─ Back                     returns to the Hub
+│     └─ Close
+├─ Summon Creature                places an order; resolves next turn
+└─ Close
+```
+
+**That is the whole interactive surface today: two menus, the Hub and Workings.**
+The v4 plan in [`specs/magic-ui-architecture.md`](specs/magic-ui-architecture.md)
+adds two more — an **Artifacts** spoke shown only while you hold one, with a
+**Wishes** spoke nested under it shown only while you hold a lamp — plus a
+control-panel shortcut that jumps straight into Workings. Neither spoke is built
+yet; everything else in the magic system (artifacts as units, lichdom, heroes,
+counterplay) is specified in
+[`specs/earned-powers-and-counterplay.md`](specs/earned-powers-and-counterplay.md)
+and not yet implemented. If it is not in the tree above, it is not in the game.
+
+A hard engine limit shapes that tree: **a segment renders at most five arms and
+silently drops the overflow from the tail** — measured, eight declared and five
+drawn, with `Close` among the casualties. So `Close` is always declared first,
+arms paint right-to-left from declaration order (which is why `Close` sits
+rightmost on screen), and affordance-gating is a necessity rather than polish —
+the Artifacts and Wishes arms can only appear when they are relevant because
+there is no room for them otherwise.
+
+Three things the panel is telling you, using the capture above as the worked
+example. **The summon price is yours alone** — 69 there, from Chaos's 92% civ
+rate against `45 + 30 × rung`; a Sorcery or Death player at the same rung pays
+54. **`Preparing: 0 turns left` means nothing is on the way**; a summon is an
+order, not an instant, so end a turn before expecting the creature. And **income
+minus upkeep is what actually accrues** — 37 − 2 = 35 above, and a large standing
+summoned army drives that toward zero and stalls the pool where it sits.
+
+The arms paint right-to-left from the order they are declared in, which is why
+`Close` sits last on screen despite being declared first. That ordering is
+load-bearing rather than cosmetic: the box renders at most five arms and drops
+overflow silently from the tail, so `Close` is declared first to guarantee it
+survives.
+
 ## What this mod adds
 
 - **Interactive SLIC, per civ.** The magic system is a real modal the player
   acts on, not a notification stream: `MAGIC STATUS` shows the mana pool and
-  income, and its `Summon Creature (75)` arm places an order that survives the
+  income, and its `Summon Creature` arm places an order that survives the
   turn boundary and resolves next `BeginTurn`. The creature is chosen from the
   **caster's own sphere** — a Life tribe summons a Guardian Spirit and *cannot*
   raise Death's zombies. Each of the five spheres (Life, Nature, Sorcery, Death,
   Chaos) has its own predicates, buildings, income, blessings, spellbook and
   result popups.
-- **Mana is a real resource.** 100-point pool, income from cities and owned mana
-  nodes, and a priced spellbook — summons and spells compete for the same pool
-  instead of being free.
+- **Mana is a real resource, and the pool is the one fixed anchor.** Every tribe
+  gets the same **200**-point pool, deliberately: it is the constant the rest of
+  the numbers are expressed against, so a player always knows the ceiling and
+  the edge lives in price, income and rung instead. Income comes from cities and
+  owned mana nodes; summons and spells compete for the same pool rather than
+  being free. Summon price varies **by sphere** — Chaos pays 92% of the base
+  ladder, Sorcery and Death 54%.
 - **Centred unit art.** MoM's units are rebuilt into CTP2 sprites whose draw
   anchor matches the vanilla convention, so they stand on their tile instead of
   drifting off it. Extent and anchor are derived together from the measured

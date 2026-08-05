@@ -66,13 +66,21 @@ void_f MomCastFlameStrike(int_t p)
                 Message(g.player, 'MomMsgNoMana');
             }
         } else {
-            // inlined MomSphereSummonUnit: seating is player N == civ N
+            // Sphere, NOT seat. This block used to read `p == 1` with a comment
+            // asserting "seating is player N == civ N" -- false, because the New
+            // Game EMPIRE selector decides the civ. A Chaos player at seat 1 was
+            // handed Life's Guardian Spirit here.
+            //
+            // MomSphere[] is an ARRAY, so this is a bare read and adds no call
+            // depth -- which is why the predicates resolve into an array rather
+            // than staying as functions. Calling MomPlayerIsChaos(p) from this
+            // body would rebuild the 2-level chain that kills the process.
             summon = 0;
-            if (p == 1) { summon = UnitDB(UNIT_GUARDIAN_SPIRIT); }
-            if (p == 2) { summon = UnitDB(UNIT_WARBEARS); }
-            if (p == 3) { summon = UnitDB(UNIT_MAGE); }
-            if (p == 4) { summon = UnitDB(UNIT_ZOMBIES); }
-            if (p == 5) { summon = UnitDB(UNIT_HELL_HOUNDS); }
+            if (MomSphere[p] == 1) { summon = UnitDB(UNIT_GUARDIAN_SPIRIT); }
+            if (MomSphere[p] == 2) { summon = UnitDB(UNIT_WARBEARS); }
+            if (MomSphere[p] == 3) { summon = UnitDB(UNIT_MAGE); }
+            if (MomSphere[p] == 4) { summon = UnitDB(UNIT_ZOMBIES); }
+            if (MomSphere[p] == 5) { summon = UnitDB(UNIT_HELL_HOUNDS); }
 
             // inlined MomCastAtNearestEnemy(p, summon, 50, 0)
             found = 0;
@@ -140,10 +148,11 @@ void_f MomCastDemonStrike(int_t p)
     location_t bestLoc;
 
     if (p >= 1 && p <= 5) {
-        // Inlined (p == 5) rather than MomPlayerIsChaos(p): this runs from a
-        // Button body, and a nested user call on that path is the measured
-        // 0xC0000005 documented in MomSpellShowBook below.
-        if (p != 5) {
+        // Inlined MomSphere[p] read rather than a MomPlayerIsChaos(p) call:
+        // this runs from a Button body, and a nested user call on that path is
+        // the measured 0xC0000005 documented in MomSpellShowBook below. An
+        // array subscript is not a call, so it is safe here.
+        if (MomSphere[p] != 5) {
             if (IsHumanPlayer(p)) {
                 Message(g.player, 'MomMsgNotChaos');
             }
@@ -214,10 +223,11 @@ void_f MomSpellShowBook(int_t p)
         // One level of user call from a trigger body is fine; a SECOND level is
         // not. No SLIC error dialog -- the process dies. An explicit `== 1`
         // comparison does NOT help; the crash is the nested call itself, not the
-        // truthiness form. MomPlayerIsChaos is just `p == 5` (mom_func.slc:49),
-        // so inline the comparison here rather than call it. Any other helper
-        // reached from a trigger or Button body needs the same treatment.
-        if (p == 5) {
+        // truthiness form. MomPlayerIsChaos is now just a read of MomSphere[p]
+        // (mom_func.slc), so inline that read here rather than call it -- an
+        // array subscript costs no call depth. Any other helper reached from a
+        // trigger or Button body needs the same treatment.
+        if (MomSphere[p] == 5) {
             Message(g.player, 'MomMsgSpellbookChaos');
         } else {
             Message(g.player, 'MomMsgSpellbook');
@@ -294,7 +304,7 @@ HandleEvent(BeginTurn) 'MomSpellAICast' post {
     if (p >= 1 && p <= 5 && IsHumanPlayer(p) == 0 && MomMagicMax[p] > 0) {
         if (MomMagicCur[p] * 4 >= MomMagicMax[p] * 3) {
             // Inlined chaos test -- see MomSpellShowBook for the nested-call crash.
-            if (p == 5 && MomMagicCur[p] >= 100) {
+            if (MomSphere[p] == 5 && MomMagicCur[p] >= 100) {
                 MomCastDemonStrike(p);
             } else {
                 MomCastFlameStrike(p);

@@ -236,15 +236,16 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
             // on the AI path for the first time, and a messagebox aimed at an AI
             // player is how the message-queue overflow AV was hit.
             if (IsHumanPlayer(p)) {
-                if (p == 1) {
+                // Sphere, NOT seat -- an array read, so no call depth added.
+                if (MomSphere[p] == 1) {
                     Message(p, 'MomSummonGuard');
-                } elseif (p == 2) {
+                } elseif (MomSphere[p] == 2) {
                     Message(p, 'MomSummonBear');
-                } elseif (p == 3) {
+                } elseif (MomSphere[p] == 3) {
                     Message(p, 'MomSummonMage');
-                } elseif (p == 4) {
+                } elseif (MomSphere[p] == 4) {
                     Message(p, 'MomSummonZombie');
-                } elseif (p == 5) {
+                } elseif (MomSphere[p] == 5) {
                     Message(p, 'MomSummonHound');
                 }
             }
