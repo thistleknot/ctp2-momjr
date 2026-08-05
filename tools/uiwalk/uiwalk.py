@@ -326,18 +326,65 @@ def preflight_display(want=None):
     # enumeration filtering on ATTACHED showed \\.\DISPLAY1 primary, landscape,
     # with 1280x1024 legal. A preflight that blocks work must be at least as
     # careful as the thing it is protecting.
+    def _scan():
+        """Return (flag_primary, origin_primary) from one enumeration pass.
+
+        TWO INDEPENDENT WITNESSES, because one of them can lie mid-transition:
+          * flag_primary -- the device carrying ATTACHED and PRIMARY.
+          * origin_primary -- the device whose current mode sits at (0,0). The
+            Windows desktop origin IS the primary by definition, so this cannot
+            be true of anything else once the desktop has settled.
+        """
+        flag = origin = None
+        j = 0
+        while True:
+            dd = DISPLAY_DEVICE()
+            dd.cb = ctypes.sizeof(DISPLAY_DEVICE)
+            if not u32.EnumDisplayDevicesW(None, j, ctypes.byref(dd), 0):
+                break
+            if dd.StateFlags & DISPLAY_DEVICE_ATTACHED:
+                if dd.StateFlags & DISPLAY_DEVICE_PRIMARY and flag is None:
+                    flag = dd.DeviceName
+                dm = DEVMODE()
+                dm.dmSize = ctypes.sizeof(DEVMODE)
+                if (u32.EnumDisplaySettingsW(dd.DeviceName, ENUM_CURRENT_SETTINGS,
+                                             ctypes.byref(dm))
+                        and dm.dmPosition_x == 0 and dm.dmPosition_y == 0
+                        and origin is None):
+                    origin = dd.DeviceName
+            j += 1
+        return flag, origin
+
+    # RE-READ BEFORE BELIEVING A BLOCKING VERDICT. A display waking, a mode
+    # change, or a monitor being switched reports briefly inconsistent state, and
+    # this gate ABORTS THE RUN -- so a single sample of a value in flux is not
+    # enough to act on.
+    #
+    # Measured 2026-08-04: this named \\.\DISPLAY4 (portrait, no 1280x1024) and
+    # reported \\.\DISPLAY1 as not even attached. Minutes later, unchanged code
+    # on an unchanged desktop read \\.\DISPLAY1 primary at (0,0), landscape,
+    # 1280x1024 legal. The operator was told to change their displays on the
+    # strength of the first reading. That is the FOURTH time this gate has
+    # blamed the environment for its own reading.
+    #
+    # The two witnesses must AGREE, and disagreement is retried rather than
+    # resolved -- disagreement means the desktop is mid-transition, which is
+    # exactly when a verdict is worthless.
     primary = None
-    i = 0
-    while True:
-        dd = DISPLAY_DEVICE()
-        dd.cb = ctypes.sizeof(DISPLAY_DEVICE)
-        if not u32.EnumDisplayDevicesW(None, i, ctypes.byref(dd), 0):
+    for attempt in range(4):
+        flag, origin = _scan()
+        if flag and origin and flag == origin:
+            primary = flag
             break
-        if (dd.StateFlags & DISPLAY_DEVICE_ATTACHED
-                and dd.StateFlags & DISPLAY_DEVICE_PRIMARY):
-            primary = dd.DeviceName
-            break
-        i += 1
+        print(f"[preflight] display state unsettled (flags say {flag}, origin "
+              f"says {origin}); re-reading ({attempt + 1}/4)")
+        time.sleep(1.5)
+    if primary is None:
+        flag, origin = _scan()
+        # Prefer the ORIGIN witness: the desktop origin is the primary by
+        # definition, whereas the primary BIT can be stale on a device the
+        # desktop has already stopped using.
+        primary = origin or flag
     if primary is None:
         print("[preflight] display: could not identify primary monitor; skipping check")
         return

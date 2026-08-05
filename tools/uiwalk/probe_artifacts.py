@@ -115,6 +115,22 @@ def main() -> int:
     prologue, cycle = steps[:PROLOGUE], steps[PROLOGUE:PROLOGUE + CYCLE]
     cycle = [{"do": "press", "path": "DipWizard.ViewButtons.RejectButton"}] + cycle
 
+    # SEED THE ALERTBOX SEND FACTOR INSTEAD OF CALIBRATING IT.
+    #
+    # turnloop._calibrate discovers the factor by clicking and asking "did the
+    # box CLOSE". That test is valid for a Close arm and WRONG for a navigation
+    # arm, which replaces the box with another one -- so calibration reports
+    # failure on every candidate, leaves the provisional 1.0 latched, and every
+    # later click in the walk misses. Measured: the Artifacts arm still navigated
+    # (one of the trial clicks happened to land) while the Wishes arm did not,
+    # which is exactly the signature of a bad latched factor rather than a bad
+    # target.
+    #
+    # x1.25 for the alertbox surface is settled and measured -- it is not derived
+    # from geometry, and the message surface latches x0.80 in the same run.
+    # Seeding it skips a calibration whose success test cannot work here.
+    turnloop.SEND_SCALE["alertbox"] = 1.25
+
     backup = _install()
     turnloop._CALIB_DEBUG_DIR = run_dir
     game = uiwalk.Game()

@@ -480,6 +480,8 @@ int_t MomSummonPending[31];  // the rolled unit type awaiting arrival
 // ---------------------------------------------------------------------------
 int_t MomHasLamp[31];        // 1 while this player owns a lamp, else 0
 int_t MomLampWishes[31];     // minor wishes left in the lamp they hold
+int_t MomEfreetCount[31];    // efreets owned last sweep; a DROP frees a vessel
+int_t MomEfreetSeen[31];     // 1 once this player has been swept at least once
 
 // Panel scalars. A message body can only interpolate a plain {scalar} -- an
 // {Array[Index]} form silently DROPS the whole message, so per-player values

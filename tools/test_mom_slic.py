@@ -34,7 +34,7 @@ SPHERES = [
     {
         "name": "Life", "index": 1, "predicate": "MomPlayerIsLife",
         "counter": "MomCountLifeBlessings",
-        "formula": "6 + player[p].cities * 3 + MomCountLifeBlessings(p) * 4",
+        "formula": "6 + player[0].cities * 3 + MomCountLifeBlessings(p) * 4",
         "buildings": ["IMPROVE_TEMPLE", "IMPROVE_CITY_WALLS", "IMPROVE_WIZARDS_FORTRESS"],
         # B2 milestone: advance -> (blessing building, blessing unit); burst = buildings above.
         "advance": "ADVANCE_LIFE_MAGIC",
@@ -43,7 +43,7 @@ SPHERES = [
     {
         "name": "Nature", "index": 2, "predicate": "MomPlayerIsNature",
         "counter": "MomCountNatureFoci",
-        "formula": "4 + player[p].cities * 2 + MomCountNatureFoci(p) * 3",
+        "formula": "4 + player[0].cities * 2 + MomCountNatureFoci(p) * 3",
         "buildings": ["IMPROVE_GRANARY", "IMPROVE_PRIMAL_SOURCE", "IMPROVE_FANTASTIC_STABLE"],
         "advance": "ADVANCE_NATURE_MAGIC",
         "blessing_building": "IMPROVE_GRANARY", "blessing_unit": "UNIT_WARBEARS",
@@ -51,7 +51,7 @@ SPHERES = [
     {
         "name": "Sorcery", "index": 3, "predicate": "MomPlayerIsSorcery",
         "counter": "MomCountSorceryFoci",
-        "formula": "4 + player[p].cities * 2 + MomCountSorceryFoci(p) * 3",
+        "formula": "4 + player[0].cities * 2 + MomCountSorceryFoci(p) * 3",
         "buildings": ["IMPROVE_LIBRARY", "IMPROVE_BEACON_OF_WISDOM"],
         "advance": "ADVANCE_SORCERY",
         "blessing_building": "IMPROVE_LIBRARY", "blessing_unit": "UNIT_MAGE",
@@ -59,7 +59,7 @@ SPHERES = [
     {
         "name": "Death", "index": 4, "predicate": "MomPlayerIsDeath",
         "counter": None,
-        "formula": "4 + player[p].cities * 2 + (player[p].units / 3)",
+        "formula": "4 + player[0].cities * 2 + (player[0].units / 3)",
         "buildings": [],
         # Death has no per-turn building counter (B1 income is unit-based), but its B2
         # milestone burst set is military buildings.
@@ -70,7 +70,7 @@ SPHERES = [
     {
         "name": "Chaos", "index": 5, "predicate": "MomPlayerIsChaos",
         "counter": None,
-        "formula": "4 + Random(6 + player[p].cities * 10)",
+        "formula": "4 + Random(6 + player[0].cities * 10)",
         "buildings": [],
         # Chaos milestone = random gold windfall (no building/unit, no burst) per its theme.
         "advance": "ADVANCE_CHAOS_MAGIC",
@@ -110,7 +110,10 @@ def main() -> int:
     for name, text in ascii_files:
         raw = (GD / name).read_bytes() if (GD / name).exists() else b""
         _check(all(b < 128 for b in raw), f"{name}: contains non-ASCII bytes (SLIC lexer is ASCII-only)")
-        _check(b"\r" not in raw, f"{name}: contains CRLF (use LF)")
+        # NO CRLF ASSERTION. mom_city_effects.slc, mom_magic.slc and
+        # mom_spells.slc all ship with CRLF and the engine loads them on every
+        # run, so the old "use LF" rule was asserting a preference as a defect.
+        # The ASCII rule above IS evidenced -- the SLIC lexer is byte-oriented.
 
     # Strip comments so token checks only see code.
     code = "\n".join(re.sub(r"//.*$", "", ln) for ln in (func + "\n" + turns + "\n" + effects).splitlines())
@@ -118,29 +121,53 @@ def main() -> int:
     # --- guards against the B1a mistakes (must never reappear) ---
     _check("playerTurn" not in code,
            "code uses `playerTurn` (undefined SLIC symbol) -> use player[0]")
-    _check(not re.search(r"\bTRIBES_[A-Z]+\b", code),
-           "code references a TRIBES_* symbol (not a SLIC symbol) -> use numeric player index")
+    # INVERTED 2026-08-05. This used to assert `TRIBES_*` must NEVER appear,
+    # on the belief that a tribe's identity is its SEAT (p == 1 is Life). That
+    # belief was FALSE -- the New Game EMPIRE selector decides the civ, so a
+    # Nature player at seat 1 was handed Life's magic -- and the assertion was
+    # actively defending the bug. Identity now comes from the civilisation, and
+    # the quoted record name is how you name one.
+    _check(re.search(r'CivilizationIndex\s*\(\s*"TRIBES_[A-Z]+"\s*\)', code) is not None,
+           "sphere identity must come from CivilizationIndex(\"TRIBES_*\"), not the "
+           "player's seat index -- see mom-sphere-is-seat-index-not-civ")
+    _check(not re.search(r"int_f MomPlayerIs[A-Za-z]+\(int_t (p_\d)\)\s*\{\s*if\s*\(\s*\1\s*==\s*\d", code),
+           "a MomPlayerIs* predicate compares its argument to a literal seat number "
+           "-- read MomSphere[] instead; the seat is not the sphere")
+
     _check(not re.search(r"AddGold\s*\(\s*player\s*\[", code),
            "AddGold called with a player[] object -> pass the integer index (AddGold(p, ...))")
-    _check(not re.search(r'CityHasBuilding\s*\([^)]*"IMPROVE_', code),
-           'CityHasBuilding called with a quoted "IMPROVE_..." string -> use BuildingDB(IMPROVE_...)')
+
+    # INVERTED 2026-08-05. The engine REQUIRES a hard quoted string literal here
+    # (slicfunc.cpp: SA_TYPE_HARD_STRING, looked up via StringDB); a BuildingDB()
+    # reference or a variable raises "Wrong type of argument" at runtime. The old
+    # assertion demanded exactly the form that fails.
+    _check(not re.search(r"CityHasBuilding\s*\([^)]*BuildingDB\s*\(", code),
+           "CityHasBuilding called with BuildingDB(...) -> the engine needs a hard "
+           'quoted string: CityHasBuilding(city, "IMPROVE_X")')
     _check(not re.search(r"CreateUnit\s*\(\s*player\s*\[", code),
            "CreateUnit called with a player[] object -> pass the integer index (CreateUnit(p, UnitDB(...), ...))")
 
     # --- per-sphere element contract ---
     for s in SPHERES:
-        _check(re.search(rf"int_f\s+{s['predicate']}\s*\(\s*int_t\s+p\s*\)", func) is not None,
-               f"{s['name']}: predicate {s['predicate']}(int_t p) not defined")
-        _check(re.search(rf"p\s*==\s*{s['index']}\b", func) is not None,
-               f"{s['name']}: faction check `p == {s['index']}` not found in mom_func.slc")
+        _check(re.search(rf"int_f\s+{s['predicate']}\s*\(\s*int_t\s+p_\d\s*\)", func) is not None,
+               f"{s['name']}: predicate {s['predicate']}(int_t p_N) not defined")
+        # SPHERE, NOT SEAT. This used to assert `p == <index>`, i.e. that a
+        # tribe's identity is which seat it occupies. That is false and cost a
+        # full day: the EMPIRE selector decides the civ, so the predicate must
+        # read the resolved MomSphere[] array.
+        _check(re.search(rf"MomSphere\s*\[\s*p_\d\s*\]\s*==\s*{s['index']}\b", func) is not None,
+               f"{s['name']}: predicate must test MomSphere[p_N] == {s['index']}, "
+               f"not the player's seat number")
         if s["counter"]:
             _check(s["counter"] in func, f"{s['name']}: counter {s['counter']} not defined")
         norm = re.sub(r"\s+", " ", turns)
         _check(re.sub(r"\s+", " ", s["formula"]) in norm,
                f"{s['name']}: per-turn gold formula not found: {s['formula']}")
         for b in s["buildings"]:
-            _check(re.search(rf"CityHasBuilding\s*\([^)]*BuildingDB\s*\(\s*{b}\s*\)", func) is not None,
-                   f"{s['name']}: blessing building {b} not counted via BuildingDB()")
+            _check(re.search(rf'CityHasBuilding\s*\([^)]*"{b}"', func) is not None,
+                   f"{s['name']}: blessing building {b} not counted via "
+                   f'CityHasBuilding(city, "{b}") -- the engine requires a hard '
+                   f"quoted string here")
 
     # --- include order: func -> turns -> city_effects -> msg (msg LAST) ---
     fi = scenario.find('#include "mom_func.slc"')
@@ -161,8 +188,15 @@ def main() -> int:
                "mom_city_effects.slc: missing CreateBuilding burst handler")
         _check("city[0].owner" in effects,
                "CreateBuilding handler must derive the player from city[0].owner")
-        for h in ("MomGrantSphereBuilding", "MomSpawnSphereUnit"):
-            _check(h in func, f"mom_func.slc missing milestone helper {h}")
+        _check("MomSpawnSphereUnit" in func,
+               "mom_func.slc missing milestone helper MomSpawnSphereUnit")
+        # Fanned out per sphere rather than one generic helper: CityHasBuilding
+        # requires a hard string literal, so a generic BuildingDB() parameter is
+        # impossible. There is no MomGrantSphereBuilding and there cannot be one.
+        for s in SPHERES:
+            if s.get("blessing_building"):
+                h = f"MomGrant{s['name']}Building"
+                _check(h in func, f"mom_func.slc missing milestone helper {h}")
         ecode = "\n".join(re.sub(r"//.*$", "", ln) for ln in effects.splitlines())
         enorm = re.sub(r"\s+", " ", ecode)
         for s in SPHERES:
@@ -175,15 +209,16 @@ def main() -> int:
                                  enorm) is not None,
                        f"{s['name']}: expected a Random gold windfall on {s['advance']}")
                 continue
-            _check(re.search(rf"MomGrantSphereBuilding\s*\(\s*p\s*,\s*BuildingDB\s*\(\s*{s['blessing_building']}\s*\)",
-                             ecode) is not None,
-                   f"{s['name']}: blessing building {s['blessing_building']} not granted on advance")
+            _check(re.search(rf"MomGrant{s['name']}Building\s*\(\s*p\s*\)", ecode) is not None,
+                   f"{s['name']}: MomGrant{s['name']}Building(p) not called on advance")
             _check(re.search(rf"MomSpawnSphereUnit\s*\(\s*p\s*,\s*UnitDB\s*\(\s*{s['blessing_unit']}\s*\)",
                              ecode) is not None,
                    f"{s['name']}: blessing unit {s['blessing_unit']} not spawned on advance")
             for b in s.get("burst_buildings", s["buildings"]):
-                _check(re.search(rf"building\[0\]\.type\s*==\s*BuildingDB\s*\(\s*{b}\s*\)", ecode) is not None,
-                       f"{s['name']}: burst building {b} not rewarded in CreateBuilding handler")
+                _check(re.search(rf"value\[0\]\s*==\s*BuildingDB\s*\(\s*{b}\s*\)", ecode) is not None,
+                       f"{s['name']}: burst building {b} not rewarded -- compare "
+                       f"value[0] == BuildingDB({b}); CreateBuilding does not "
+                       f"populate building[]")
 
     # --- Phase C sphere blessing popups (mom_msg.slc), once present ---
     if msg:
@@ -198,34 +233,53 @@ def main() -> int:
             key = "MomBless" + s["name"]
             _check(re.search(rf"Message\s*\(\s*g\.player\s*,\s*'{key}'\s*\)", mnorm) is not None,
                    f"{s['name']}: mom_msg.slc does not Message('{key}') for its advance")
-            _check(re.search(rf'^{key}\s+"', strtext, re.M) is not None,
-                   f"{s['name']}: scen_str.txt missing string key {key}")
+            # The scen_str KEY is the segment's Text() id without the ID_
+            # prefix -- MomBlessLife is a segment name and was never a key.
+            skey = "MOM_MSG_BLESS_" + s["name"].upper()
+            _check(re.search(rf'^{skey}\s', strtext, re.M) is not None,
+                   f"{s['name']}: scen_str.txt missing string key {skey}")
 
     # --- M1 magic-power pool (mom_magic.slc), once present ---
     if magic:
         mgcode = "\n".join(re.sub(r"//.*$", "", ln) for ln in magic.splitlines())
         _check("HandleEvent(BeginTurn)" in magic and "MomMagicPoolTick" in magic,
                "mom_magic.slc: missing BeginTurn 'MomMagicPoolTick' handler")
+        # Declared in mom_func.slc (include 48), not mom_magic.slc (56):
+        # mom_msg.slc reads them at 55, so declaring them in mom_magic would be
+        # too late. Search both rather than assuming a home.
+        decls = func + "\n" + magic
         for arr in ("MomMagicCur", "MomMagicMax", "MomMagicPerTurn"):
-            _check(re.search(rf"int_t\s+{arr}\s*\[\s*31\s*\]", magic) is not None,
-                   f"mom_magic.slc: missing file-scope pool array {arr}[31]")
+            _check(re.search(rf"int_t\s+{arr}\s*\[\s*31\s*\]", decls) is not None,
+                   f"missing file-scope pool array {arr}[31] (expected in mom_func.slc)")
         _check("MomRecalcMagicPerTurn" in magic,
                "mom_magic.slc: missing MomRecalcMagicPerTurn helper")
         # FLOOD SAFETY: the popup Message must be a single call, NOT inside a for-loop
         # (unlatched Message in a repeat context = 0xC0000005, the B1a lesson). Assert the
         # global interpolation index is set immediately before a single Message.
-        _check(re.search(r"MomMagicGenDisp\s*=\s*MomMagicPerTurn\s*\[\s*p\s*\]\s*;\s*Message\s*\(\s*g\.player\s*,\s*'MomMagicPower'\s*\)",
-                         re.sub(r"\s+", " ", mgcode)) is not None,
-               "mom_magic.slc: expected display scalars set then a single `Message(g.player,'MomMagicPower')` (safe single-Message pattern)")
+        # The property that matters is that this Message happens ONCE per tick,
+        # not that a particular scalar is assigned on the line above it.
+        #
+        # The old assertion demanded `MomMagicGenDisp = MomMagicPerTurn[p];`
+        # immediately before the Message. That assignment was REMOVED on purpose:
+        # MomMagicPerTurn holds NET income since upkeep landed, so copying it into
+        # the gross 'Income' scalar printed net twice and made the panel's
+        # Income - Upkeep = Net line fail to add up. MomRecalcMagicPerTurn is now
+        # the sole writer of all three scalars. Asserting the adjacency was
+        # asserting a display bug.
+        _check(mgcode.count("Message(g.player, 'MomMagicPower')") == 1,
+               "mom_magic.slc: MomMagicPower must be sent from exactly ONE site "
+               "(an unlatched Message in a repeat context is the 0xC0000005 "
+               "flood class)")
         _check(re.search(r"for\s*\([^)]*\)\s*\{[^}]*Message\s*\(", mgcode) is None,
                "mom_magic.slc: a Message() appears inside a for-loop — flood risk (0xC0000005)")
         # popup values go through plain int_t display scalars (base-verified {scalar} form)
         for disp in ("MomMagicCurDisp", "MomMagicMaxDisp", "MomMagicGenDisp"):
-            _check(re.search(rf"int_t\s+{disp}\s*;", magic) is not None,
-                   f"mom_magic.slc: missing display scalar {disp}")
+            _check(re.search(rf"int_t\s+{disp}\s*;", decls) is not None,
+                   f"missing display scalar {disp} (expected in mom_func.slc)")
         strtext_m = (GD.parents[1] / "english" / "gamedata" / "scen_str.txt").read_text(encoding="latin-1")
-        _check(re.search(r'^MomMagicPower\s+"', strtext_m, re.M) is not None,
-               "scen_str.txt: missing MomMagicPower key")
+        _check(re.search(r"^MOM_MSG_MAGIC_POWER\s", strtext_m, re.M) is not None,
+               "scen_str.txt: missing MOM_MSG_MAGIC_POWER key (MomMagicPower is "
+               "the SEGMENT name, not the string key)")
         _check("{MomMagicCurDisp}" in strtext_m and "{MomMagicMaxDisp}" in strtext_m
                and "{MomMagicGenDisp}" in strtext_m,
                "scen_str.txt: MomMagicPower must interpolate scalar {MomMagicCurDisp}/{MomMagicMaxDisp}/{MomMagicGenDisp}")
@@ -239,8 +293,8 @@ def main() -> int:
                "scenario.slc must #include mom_magic.slc after mom_msg.slc")
 
         # --- M2 school multipliers (mom_magic.slc) ---
-        _check(re.search(r"int_t\s+MomMagicSchoolPct\s*\[\s*31\s*\]", magic) is not None,
-               "mom_magic.slc: missing file-scope MomMagicSchoolPct[31] (M2 multiplier)")
+        _check(re.search(r"int_t\s+MomMagicSchoolPct\s*\[\s*31\s*\]", decls) is not None,
+               "missing file-scope MomMagicSchoolPct[31] (expected in mom_func.slc)")
         _check("HandleEvent(GrantAdvance)" in magic and "MomMagicSchoolGrant" in magic,
                "mom_magic.slc: missing GrantAdvance 'MomMagicSchoolGrant' handler (M2)")
         # recalc must scale gen by the integer-percent multiplier (0 -> 100 baseline)
@@ -264,19 +318,29 @@ def main() -> int:
         _check(re.search(r"MomMagicCur\s*\[\s*p\s*\]\s*=[^=]", grant) is None,
                "mom_magic.slc: M2 grant handler must NOT assign MomMagicCur[p] (pool refills only on tick; reading it for the milestone popup is fine)")
 
-        # --- M3 pool-overflow auto-summon (mom_magic.slc) ---
-        _check("MomSphereSummonUnit" in magic,
-               "mom_magic.slc: missing MomSphereSummonUnit helper (M3)")
-        for u in ("UNIT_GUARDIAN_SPIRIT", "UNIT_WARBEARS", "UNIT_MAGE", "UNIT_ZOMBIES", "UNIT_HELL_HOUNDS"):
-            _check(u in magic, f"mom_magic.slc: M3 summon helper missing {u}")
-        _check(re.search(r"MomMagicCur\s*\[\s*p\s*\]\s*>=\s*MomMagicMax\s*\[\s*p\s*\]", mgcode) is not None,
-               "mom_magic.slc: M3 must trigger on a full pool (MomMagicCur[p] >= MomMagicMax[p])")
-        _check(re.search(r"MomSpawnSphereUnit\s*\(\s*p\s*,\s*summon\s*\)", mgcode) is not None,
-               "mom_magic.slc: M3 must summon via MomSpawnSphereUnit(p, summon)")
-        _check(re.search(r"player\s*\[\s*p\s*\]\.cities\s*>\s*0", mgcode) is not None,
-               "mom_magic.slc: M3 must fail closed when the player has no city")
-        _check(re.search(r"MomMagicCur\s*\[\s*p\s*\]\s*=\s*0\s*;", mgcode) is not None,
-               "mom_magic.slc: M3 must spend the pool (MomMagicCur[p] = 0) on summon")
+        # --- M3 REGRESSION GUARD: the auto-summon must stay GONE ---
+        # mom_magic.slc used to summon a creature whenever the pool filled. That
+        # made mana free and the priced spellbook unaffordable by construction --
+        # the pool could never sit at a level where a 75-mana working was
+        # reachable. Summoning is now an ORDER placed from the menu and paid for
+        # (mom_msg.slc), and the AI has its own brain (mom_ai_magic.slc).
+        #
+        # These assert the old design has not crept back, which is the opposite
+        # of what this block used to check.
+        _check(re.search(r"MomMagicCur\s*\[\s*p\s*\]\s*>=\s*MomMagicMax\s*\[\s*p\s*\]"
+                         r"[^}]*MomSpawnSphereUnit", re.sub(r"\s+", " ", mgcode)) is None,
+               "mom_magic.slc: a full pool triggers a summon again -- the "
+               "auto-summon was removed because it made priced magic unaffordable")
+        # A floor clamp (`if (MomMagicCur[p] < 0) { MomMagicCur[p] = 0; }`) is
+        # correct and must stay; what must not return is zeroing the pool as the
+        # PRICE of something. Only flag a zeroing with no `< 0` guard above it.
+        for m in re.finditer(r"MomMagicCur\s*\[\s*p\s*\]\s*=\s*0\s*;", mgcode):
+            preceding = mgcode[max(0, m.start() - 200):m.start()]
+            _check("MomMagicCur[p] < 0" in preceding.replace(" ", "").replace(
+                       "MomMagicCur[p]<0", "MomMagicCur[p] < 0"
+                   ) or re.search(r"MomMagicCur\s*\[\s*p\s*\]\s*<\s*0", preceding) is not None,
+                   "mom_magic.slc: the pool is zeroed outside a floor clamp -- "
+                   "summons are DEBITED by price (mom_msg.slc), never emptied")
         _check(re.search(r"for\s*\([^)]*\)\s*\{[^}]*CreateUnit\s*\(", mgcode) is None,
                "mom_magic.slc: no CreateUnit inside a for-loop (summon-flood safety)")
 

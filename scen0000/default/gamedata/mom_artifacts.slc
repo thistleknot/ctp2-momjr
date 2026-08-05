@@ -54,11 +54,14 @@ HandleEvent(BeginTurn) 'MomArtifactScan' post {
     int_t n;
     int_t t;
     int_t held;
+    int_t efreets;
     unit_t u;
+    city_t homeCity;
 
     p = player[0];
     if (p >= 1 && p <= 5) {
         held = 0;
+        efreets = 0;
         n = player[0].units;
         for (i = 0; i < n; i = i + 1) {
             GetUnitByIndex(p, i, u);
@@ -66,7 +69,41 @@ HandleEvent(BeginTurn) 'MomArtifactScan' post {
             if (t == UnitDB(UNIT_LAMP)) {
                 held = 1;
             }
+            if (t == UnitDB(UNIT_EFREET)) {
+                efreets = efreets + 1;
+            }
         }
+
+        // WHERE LAMPS COME FROM. An efreet is MoM's djinn and the lamp is what
+        // it was bound into, so destroying the servant does not destroy the
+        // vessel -- it frees it, and it returns to the master it served.
+        //
+        // THIS IS A COUNT DROP, NOT A KillUnit HANDLER, and that is a measured
+        // decision rather than a stylistic one. The KillUnit version aborted the
+        // game before turn 1 with "-1 is not a valid player index" -- a RUNTIME
+        // SLIC error, which reports no file and no line, so it took a bisect to
+        // attribute. Reading `unit[0]` in that handler is not safe here; nesting
+        // the `.owner` read inside the type test did NOT fix it, which retired
+        // the obvious explanation.
+        //
+        // Counting from the sweep that is already running avoids the event
+        // entirely and uses only calls this handler has already proven safe.
+        // It also fires for a disband, which is the same outcome by a different
+        // route: the servant is gone, the vessel is not.
+        //
+        // MomEfreetSeen gates the FIRST sweep. Without it a player who starts
+        // with no efreets would read 0 -> 0 as no change (harmless), but a
+        // player whose first sweep happens after acquiring one would read a
+        // phantom drop from an uninitialised zero.
+        if (MomEfreetSeen[p] == 1 && efreets < MomEfreetCount[p]
+            && player[0].cities > 0) {
+            GetCityByIndex(player[0], 0, homeCity);
+            if (CityIsValid(homeCity)) {
+                CreateUnit(p, UnitDB(UNIT_LAMP), homeCity.location, 0);
+            }
+        }
+        MomEfreetCount[p] = efreets;
+        MomEfreetSeen[p] = 1;
 
         // Transition IN: a lamp just came into this player's hands. Charge it
         // with its wishes. Guarded on the transition rather than on `held` so a
@@ -113,47 +150,6 @@ HandleEvent(BeginTurn) 'MomArtifactScan' post {
             if (held == 1) {
                 MomLampBaneDisp = 4;
             }
-        }
-    }
-}
-
-// ---------------------------------------------------------------------------
-// WHERE LAMPS COME FROM. An efreet is MoM's djinn, and the lamp is what it was
-// bound into -- so destroying the servant does not destroy the vessel, it frees
-// it. The lamp drops at the spot, in the hands of the player the efreet served.
-//
-// DELIBERATE DEVIATION FROM SPEC, recorded here and in the spec itself: the
-// spec has a defeated genie BANISHED to an unknown hut, unannounced. That needs
-// the :Site: system (huts with stored preconditions), which is not built. Until
-// it is, the vessel stays where its servant fell. What that preserves is the
-// part that matters -- a lamp enters play through combat rather than being
-// handed out -- and what it loses is the mystery of where it went.
-//
-// `pre`, not `post`: the unit must still exist to read its location and owner.
-// CreateUnit is a BUILTIN, so calling it from a handler adds no user-call depth.
-// ---------------------------------------------------------------------------
-HandleEvent(KillUnit) 'MomGenieFreesVessel' pre {
-    int_t t;
-    int_t o;
-    unit_t dying;
-
-    dying = unit[0];
-    t = dying.type;
-
-    // .owner IS READ ONLY INSIDE THE TYPE TEST, and that nesting is the fix for
-    // a measured runtime abort, not tidiness. Reading `.owner` on EVERY dying
-    // unit reaches barbarian and unowned ones, whose owner resolves to -1, and
-    // the engine raises "-1 is not a valid player index" -- with no file and no
-    // line, because it comes from inside a builtin. It fired before turn 1,
-    // since units die during initial placement.
-    //
-    // Guarding the CreateUnit on `o >= 1` was not enough: the fault is the READ,
-    // not the use. The reference handler in Ages of Man has the same shape --
-    // `.type` unguarded, `.owner` only behind a test.
-    if (t == UnitDB(UNIT_EFREET)) {
-        o = dying.owner;
-        if (o >= 1 && o <= 5) {
-            CreateUnit(o, UnitDB(UNIT_LAMP), dying.location, 0);
         }
     }
 }
