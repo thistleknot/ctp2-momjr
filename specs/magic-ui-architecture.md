@@ -132,6 +132,22 @@ on screen afterwards.
 **Given** a player with no lamp, **when** the :Hub: opens, **then** no Wishes arm
 SHALL appear.
 
+> BUILT 2026-08-04, AND THIS ONE IS NOT MET AT THE HUB. The `j` key reaches the
+> hub as `SlicObject("MagicMenu")` from keypress.cpp, so the segment's NAME is
+> fixed in the exe. SLIC can substitute a variant with a different arm set only
+> where IT controls the `Message()` call — which is how the Chaos spellbook works
+> — and nothing controls this one. An alertbox's arms are static per segment and
+> no body runs on open, so there is no way to add or drop a hub arm at runtime.
+>
+> The Artifacts arm is therefore ALWAYS present, and the affordance moves one
+> level in: pressing it empty-handed opens `MomMsgNoArtifact`, which says so and
+> says where vessels come from. The Wishes arm itself IS gated as specified — it
+> lives on the Artifacts spoke, which SLIC opens, so an empty lamp routes to
+> `MomMsgWishesSpent` instead.
+>
+> The requirement stands as written for every spoke. It is unreachable only for
+> the one segment whose name the engine owns.
+
 **Given** a working the player cannot afford, **when** the Workings :Spoke:
 opens, **then** that arm SHALL be absent or SHALL refuse with a stated reason.
 

@@ -185,6 +185,18 @@ undisclosed :Site:, not destroyed.**
 > The banishment SHALL NOT be announced to the binder. Knowing where you sent it
 > turns a banishment into a deposit.
 
+> PARTIALLY BUILT 2026-08-04. Killing an efreet frees its vessel WHERE IT FELL,
+> in the hands of the player it served, rather than banishing it to an
+> undisclosed :Site:. The banishment half needs the :Site: system — huts with
+> preconditions evaluated and stored at game start — and that is not built.
+>
+> What the partial keeps is the load-bearing part: genies are CONSERVED, and a
+> lamp enters play through combat rather than being handed out. What it loses is
+> the redistribution — the vessel does not change hands or location, so it does
+> not become findable by anyone else, and the loop is not yet self-feeding.
+>
+> This is a deviation to close when :Site: lands, not a settled design.
+
 **A :Vessel: SHALL declare BOTH a :Boon: and a :Bane:, and they SHALL be
 inseparable.**
 

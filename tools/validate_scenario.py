@@ -104,6 +104,49 @@ def check_string_refs(scen: Path, fails: list[str]) -> None:
                              f"has no gl_str entry (Expected-string-ID crash)")
 
 
+def check_string_grammar(scen: Path, fails: list[str]) -> None:
+    """Every scen_str/gl_str entry must be ONE line: KEY, tab(s), quoted value.
+
+    WHY THIS GATE EXISTS. A value written with REAL newlines instead of literal
+    `\\n` escapes swallows the lines beneath it and the engine aborts at load with
+    "scen_str.txt line N: Error". Every other gate passed that file --
+    `check_string_refs` verifies that a referenced key EXISTS, never that its
+    value is well formed -- so the whole static suite was blind to it and only
+    launching the game found it.
+
+    Measured 2026-08-04: fourteen artifact strings written with embedded newlines
+    (and two carrying a stray doubled quote from Python adjacent-literal
+    concatenation) shipped past every gate and killed the run at boot.
+
+    Two things make a line legal: balanced double quotes, and a key that starts
+    the line. A continuation line has neither, so it is caught by both tests.
+    """
+    for rel in ("english/gamedata/scen_str.txt", "english/gamedata/gl_str.txt"):
+        path = scen / rel
+        if not path.exists():
+            continue
+        for n, line in enumerate(path.read_text(encoding="latin-1").split("\n"), 1):
+            if not line.strip() or line.lstrip().startswith(("#", "//")):
+                continue
+            if line.count('"') % 2:
+                fails.append(f"{Path(rel).name}:{n}: unbalanced quotes -- a value "
+                             f"with a real newline swallows the lines below it; "
+                             f"use a literal \\n escape")
+                continue
+            # A value line must begin with a key. Anything else is a stray
+            # continuation that the engine will refuse.
+            if not re.match(r"^[A-Za-z_][A-Za-z0-9_]*[\t ]", line):
+                fails.append(f"{Path(rel).name}:{n}: does not start with a key -- "
+                             f"stray continuation line")
+            # A stray quote INSIDE the value. Tested on the value's interior, not
+            # on the raw line: `KEY ""` is a legitimate EMPTY string and 27 of
+            # them ship in gl_str.txt, so matching `""` anywhere fails the clean
+            # tree.
+            first, last = line.find('"'), line.rfind('"')
+            if 0 <= first < last and '"' in line[first + 1:last]:
+                fails.append(f"{Path(rel).name}:{n}: stray quote inside the value")
+
+
 def check_icon_refs(scen: Path, fails: list[str]) -> None:
     """Icon-DB integrity: every DefaultIcon/Icon ref must exist in its icon
     database ('X not found in Icon database' dialog class)."""
@@ -1311,6 +1354,7 @@ def main() -> int:
     unit_idents = check_units_idents(scen, fails)
     check_reserved(scen, unit_idents, fails)
     check_string_refs(scen, fails)
+    check_string_grammar(scen, fails)
     check_icon_refs(scen, fails)
     check_advance_prereq_cap(scen, fails)
     check_visible_art(scen, fails)
@@ -1343,7 +1387,8 @@ def main() -> int:
         print(f"\n{len(fails)} failure(s).")
         return 1
     print("all scenario gates pass (newsprite grammar, ident charset, "
-          "reserved tokens, string-ref integrity, gl_str grammar, faction gating)")
+          "reserved tokens, string-ref integrity, string grammar, gl_str grammar, "
+          "faction gating)")
     return 0
 
 

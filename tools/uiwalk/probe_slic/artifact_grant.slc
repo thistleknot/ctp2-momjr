@@ -1,0 +1,42 @@
+// artifact_grant.slc -- HARNESS INSTRUMENT, NOT PART OF THE MOD.
+//
+// Injected for one headless run and removed afterwards. Never commit it into
+// scen0000; the probe restores scenario.slc in a finally block, and the probe
+// also strips any leftover at STARTUP because a killed run skips that finally.
+//
+// WHY. The shipped source of a lamp is killing an efreet. The harness cannot
+// fight a battle, so with only shipped rules there is no way to reach the
+// Artifacts or Wishes panels headlessly and no way to verify them at all.
+//
+// WHAT IT DOES AND DOES NOT DO. It places one lamp in the human's first city,
+// once. It does not touch mana, capacity, wishes, or any menu logic -- the boon,
+// the bane, the wish counter and the panel strings are all the SHIPPED code
+// reacting to a lamp existing. So what the run measures is the real feature; the
+// only thing faked is how the lamp arrived.
+//
+// A dedicated latch rather than a turn number: the probe cares that the grant
+// happens exactly once, not when, and a turn-indexed guard would silently
+// re-fire if the run were resumed.
+
+int_t ProbeArtTick;
+int_t ProbeArtGiven;
+
+HandleEvent(BeginTurn) 'ProbeGrantLamp' post {
+    int_t p;
+    city_t c;
+
+    p = player[0];
+    if (p >= 1 && p <= 5) {
+        if (IsHumanPlayer(p)) {
+            ProbeArtTick = ProbeArtTick + 1;
+            // Wait a few turns so the city exists and the magic tick has run at
+            // least once -- granting on turn 1 would race the pool's own setup
+            // and make the boon's 200->250 change unreadable.
+            if (ProbeArtTick >= 3 && ProbeArtGiven == 0 && player[0].cities > 0) {
+                GetCityByIndex(player[0], 0, c);
+                CreateUnit(p, UnitDB(UNIT_LAMP), c.location, 0);
+                ProbeArtGiven = 1;
+            }
+        }
+    }
+}

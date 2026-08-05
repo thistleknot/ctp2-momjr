@@ -103,34 +103,12 @@ MOM_MSG_BTN_WISHES		"Wishes"
 MOM_MSG_BTN_WISH_GOLD		"Wish: Riches"
 MOM_MSG_BTN_WISH_POWER		"Wish: Power"
 MOM_MSG_BTN_WISH_SERVANT		"Wish: A Servant"
-MOM_MSG_ARTIFACTS		"ARTIFACTS
-
-You bear the Lamp. It cannot be set down.
-Boon: your pool holds 250 instead of 200.
-Bane: the thing inside drains {MomLampBaneDisp} mana each turn.
-Wishes remaining: {MomLampWishesDisp} of 3."
-MOM_MSG_NO_ARTIFACT		"ARTIFACTS
-
-You bear no artifact.
-
-Vessels are found, never built. One is left behind wherever a genie is put down."
-MOM_MSG_WISHES		"WISHES
-
-The genie grants minor wishes only.
-Wishes remaining: {MomLampWishesDisp} of 3.
-
-Riches: 500 gold. Power: fill your pool. A Servant: an efreet answers."
-MOM_MSG_WISHES_SPENT		"WISHES
-
-The lamp is cold. Its wishes are spent.
-
-You still bear it, and it still drains you."
+MOM_MSG_ARTIFACTS		"ARTIFACTS\n\nYou bear the Lamp. It cannot be set down.\nBoon: your pool holds 250 instead of 200.\nBane: the thing inside drains {MomLampBaneDisp} mana each turn.\nWishes remaining: {MomLampWishesDisp} of 3."
+MOM_MSG_NO_ARTIFACT		"ARTIFACTS\n\nYou bear no artifact.\n\nVessels are found, never built. One is freed wherever a genie falls."
+MOM_MSG_WISHES		"WISHES\n\nThe genie grants minor wishes only.\nWishes remaining: {MomLampWishesDisp} of 3.\nRiches: 500 gold. Power: fill your pool. A Servant: an efreet answers."
+MOM_MSG_WISHES_SPENT		"WISHES\n\nThe lamp is cold. Its wishes are spent.\n\nYou still bear it, and it still drains you."
 MOM_MSG_WISH_GOLD_DONE		"The genie scatters coin across your treasury. 500 gold."
 MOM_MSG_WISH_POWER_DONE		"Power floods back. Your pool is full."
 MOM_MSG_WISH_SERVANT_DONE		"An efreet steps out of the smoke. It arrives next turn."
-MOM_MSG_LAMP_FOUND		"You have taken a Lamp.
-
-It raises what you can hold, and it takes a ""little every turn. It cannot be abandoned."
-MOM_MSG_LAMP_LOST		"The Lamp has left your hands.
-
-Your pool returns to 200, and anything ""above that is gone."
+MOM_MSG_LAMP_FOUND		"You have taken a Lamp.\n\nIt raises what you can hold, and it takes a little every turn. It cannot be abandoned."
+MOM_MSG_LAMP_LOST		"The Lamp has left your hands.\n\nYour pool returns to 200, and anything above that is gone."

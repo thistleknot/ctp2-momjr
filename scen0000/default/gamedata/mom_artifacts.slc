@@ -139,9 +139,22 @@ HandleEvent(KillUnit) 'MomGenieFreesVessel' pre {
 
     dying = unit[0];
     t = dying.type;
-    o = dying.owner;
-    if (t == UnitDB(UNIT_EFREET) && o >= 1 && o <= 5) {
-        CreateUnit(o, UnitDB(UNIT_LAMP), dying.location, 0);
+
+    // .owner IS READ ONLY INSIDE THE TYPE TEST, and that nesting is the fix for
+    // a measured runtime abort, not tidiness. Reading `.owner` on EVERY dying
+    // unit reaches barbarian and unowned ones, whose owner resolves to -1, and
+    // the engine raises "-1 is not a valid player index" -- with no file and no
+    // line, because it comes from inside a builtin. It fired before turn 1,
+    // since units die during initial placement.
+    //
+    // Guarding the CreateUnit on `o >= 1` was not enough: the fault is the READ,
+    // not the use. The reference handler in Ages of Man has the same shape --
+    // `.type` unguarded, `.owner` only behind a test.
+    if (t == UnitDB(UNIT_EFREET)) {
+        o = dying.owner;
+        if (o >= 1 && o <= 5) {
+            CreateUnit(o, UnitDB(UNIT_LAMP), dying.location, 0);
+        }
     }
 }
 
@@ -204,7 +217,11 @@ alertbox 'MomMsgWishes' {
         Kill();
         if (MomLampWishes[g.player] > 0) {
             MomLampWishes[g.player] = MomLampWishes[g.player] - 1;
-            g.player.gold = g.player.gold + 500;
+            // AddGold, not `g.player.gold = ...`. There is no writable gold
+            // property: g.player is a player INDEX, so the assignment form is a
+            // syntax error, and the parser reports it at the NEXT structural
+            // token (the `} else {` below) rather than at the offending line.
+            AddGold(g.player, 500);
             Message(g.player, 'MomMsgWishGoldDone');
         } else {
             Message(g.player, 'MomMsgWishesSpent');
