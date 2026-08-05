@@ -63,8 +63,8 @@ UNIT_SPEARMEN {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 150
-   PowerPoints 100
+   ShieldCost 230
+   PowerPoints 115
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -114,8 +114,8 @@ UNIT_SWORDSMEN {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 250
-   PowerPoints 125
+   ShieldCost 320
+   PowerPoints 160
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -726,8 +726,8 @@ UNIT_CENTAURS {
    Firepower 1
    Armor 1
    MaxHP 10
-   ShieldCost 250
-   PowerPoints 125
+   ShieldCost 320
+   PowerPoints 160
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -1598,8 +1598,8 @@ UNIT_MINOTAUR {
    Firepower 1
    Armor 1
    MaxHP 20
-   ShieldCost 350
-   PowerPoints 175
+   ShieldCost 400
+   PowerPoints 200
    ShieldHunger 1
    GoldHunger 0
    FoodHunger 0
@@ -2777,6 +2777,57 @@ UNIT_LICH {
    MovementType: Land
    MovementType: Mountain
    Size: Medium
+   VisionClass: Standard
+   CanReform {
+      Sound SOUND_ID_REFORM_CITY
+      Effect SPECEFFECT_REFORMCITY
+   }
+}
+
+UNIT_LAMP {
+   Description DESCRIPTION_UNIT_LAMP
+   DefaultIcon ICON_UNIT_LAMP
+   DefaultSprite SPRITE_LAMP
+   Category UNIT_CATEGORY_ATTACK
+   Attack 10
+   Defense 10
+   ZBRangeAttack 0
+   Firepower 1
+   Armor 1
+   MaxHP 10
+   ShieldCost 150
+   PowerPoints 100
+   ShieldHunger 1
+   GoldHunger 0
+   FoodHunger 0
+   MaxMovePoints 0
+   VisionRange 2
+   EnableAdvance ADVANCE_WARRIOR_CODE
+   ActiveDefenseRange 0
+   LossMoveToDmgNone
+   MaxFuel 0
+   CanEntrench
+   CanExpel
+   CanPillage
+   CanPirate
+   ExertsMartialLaw
+   DeathEffectsHappy
+   SoundSelect1 SOUND_SELECT1_WARRIOR
+   SoundSelect2 SOUND_SELECT2_WARRIOR
+   SoundMove SOUND_MOVE_WARRIOR
+   SoundAcknowledge SOUND_ACKNOWLEDGE_WARRIOR
+   SoundCantMove SOUND_CANTMOVE_WARRIOR
+   SoundAttack SOUND_ATTACK_WARRIOR
+   SoundWork SOUND_WORK_WARRIOR
+   SoundVictory SOUND_VICTORY_WARRIOR
+   SoundDeath SOUND_DEATH_WARRIOR
+
+   CanAttack: Land
+   CanAttack: Mountain
+   CanSee: Standard
+   MovementType: Land
+   MovementType: Mountain
+   Size: Small
    VisionClass: Standard
    CanReform {
       Sound SOUND_ID_REFORM_CITY

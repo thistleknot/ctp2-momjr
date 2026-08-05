@@ -500,4 +500,33 @@ alertbox 'MagicMenu' {
 		}
 	}
 
+	// ARTIFACTS. Fourth of a maximum five arms -- one spare left.
+	//
+	// The spec asks for this arm to be an :Affordance:, shown only while you
+	// hold a vessel. IT CANNOT BE, at this level: `j` reaches this segment as
+	// SlicObject("MagicMenu") from keypress.cpp, so the hub's NAME is fixed in
+	// the exe and SLIC cannot substitute a variant with a different arm set the
+	// way the Chaos spellbook does. The arm is therefore always present and the
+	// gate moves one level in -- an empty-handed player gets told so, rather
+	// than being shown a spoke listing nothing. specs/magic-ui-architecture.md
+	// records this deviation and why.
+	//
+	// MomHasLamp is read as an ARRAY here, not through a predicate call: this is
+	// a Button body, and a user call from one is the documented 0xC0000005.
+	Button(ID_MOM_MSG_BTN_ARTIFACTS) {
+		Kill();
+		if (MomHasLamp[g.player] == 1) {
+			Message(g.player, 'MomMsgArtifacts');
+		} else {
+			Message(g.player, 'MomMsgNoArtifact');
+		}
+	}
+
+}
+
+// Shown when the Artifacts arm is pressed empty-handed. This is the affordance
+// gate the hub's static arm list cannot express (see the arm body above).
+alertbox 'MomMsgNoArtifact' {
+	Text(ID_MOM_MSG_NO_ARTIFACT);
+	Button(ID_BUTTON_CLOSE) { Kill(); }
 }

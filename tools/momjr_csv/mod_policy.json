@@ -109,7 +109,11 @@
     ],
     "capstones": [
       "UNIT_LICH"
-    ]
+    ],
+    "vessels": [
+      "UNIT_LAMP"
+    ],
+    "_doc_vessels": "Artifact VESSELS. Never buildable in any city by any tribe -- they are FOUND, or left behind when a genie is defeated. The generator emits an unconditional block for these in mod_CanCityBuildUnit, ahead of the per-sphere walls, so the rule does not depend on a vessel having a sphere."
   },
   "icon_bad_tokens": [
     "\"CM2_Upap001l.tga\"",

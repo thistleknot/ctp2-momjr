@@ -465,6 +465,29 @@ int_t MomSummonChoice[31];
 int_t MomUpkeepRate;         // 0 == unseeded; MOM_UPKEEP_RATE_DEFAULT is 2
 int_t MomSummonPrep[31];     // turns remaining; 0 == nothing preparing
 int_t MomSummonPending[31];  // the rolled unit type awaiting arrival
+
+// ---------------------------------------------------------------------------
+// ARTIFACTS. A vessel is a UNIT (spec: earned-powers-and-counterplay), because
+// CTP2 has no inventory -- so "holding" one is owning that unit, and BEARING it
+// is co-location. These are refreshed by MomArtifactScan each BeginTurn from a
+// real sweep of the player's units, never set speculatively: the vessel can
+// change hands by combat at any time, so a cached flag would go stale silently.
+//
+// Declared HERE rather than in mom_artifacts.slc because the menu segments in
+// mom_msg.slc (include 55) read MomHasLamp to decide which hub to open, and
+// mom_func.slc is include 48 -- an array must be declared before the file that
+// reads it loads, or the read is a hard load error.
+// ---------------------------------------------------------------------------
+int_t MomHasLamp[31];        // 1 while this player owns a lamp, else 0
+int_t MomLampWishes[31];     // minor wishes left in the lamp they hold
+
+// Panel scalars. A message body can only interpolate a plain {scalar} -- an
+// {Array[Index]} form silently DROPS the whole message, so per-player values
+// have to be mirrored into scalars for the human before they can be shown.
+// Same contract as MomMagicCurDisp: refreshed every BeginTurn under an
+// IsHumanPlayer guard, so the panel is current whenever it is opened.
+int_t MomLampWishesDisp;     // wishes left, for the Artifacts panel
+int_t MomLampBaneDisp;       // mana the lamp drained this turn, for the panel
 int_t MomSummonPendRung[31]; // its rung, carried so arrival can ledger upkeep
 int_t MomPrepDisp;           // countdown scalar for the 'j' panel
 int_t MomSummonCivPct[31];   // per-civ summon price, as a PERCENT of the rung curve.

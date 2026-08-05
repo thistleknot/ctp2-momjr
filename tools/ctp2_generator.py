@@ -2555,6 +2555,39 @@ def _emit_mom_gating_slc() -> int:
             if ident in idents:
                 by_sphere[sphere][kind].append(ident)
 
+    def _vessel_block(indent: str = "    ") -> list[str]:
+        """Emit the unconditional never-build wall for artifact vessels.
+
+        A vessel is FOUND, or left behind when a genie is defeated -- never
+        produced in a city by anyone. That is a property of the vessel, not of
+        any tribe, so unlike `_deny_block` this carries no sphere test and no
+        owner term.
+
+        Sourced from `mod_policy.json:unit_roles.vessels`, and filtered against
+        the live unit DB the same way the sphere walls are, so a vessel that was
+        declared in policy but never emitted as a unit cannot leave a dangling
+        `UnitDB()` reference here (mom-db-error-class).
+        """
+        declared = MOD_POLICY.get("unit_roles", {}).get("vessels", [])
+        live_units = live["unit"][0]
+        idents = [i for i in declared if i in live_units]
+        missing = [i for i in declared if i not in live_units]
+        if missing:
+            raise ValueError(
+                f"unit_roles.vessels names {missing}, which the unit DB does not "
+                f"contain. Either add the unit to units.csv or drop it from policy "
+                f"-- emitting it here would be a dangling UnitDB() reference."
+            )
+        if not idents:
+            return []
+        out = [f"{indent}// VESSELS -- {len(idents)}, never buildable by anyone"]
+        terms = [f"theUnit == {live['unit'][1]}({i})" for i in idents]
+        out.append(f"{indent}if ({terms[0]}")
+        for term in terms[1:]:
+            out.append(f"{indent}|| {term}")
+        out.append(f"{indent}) {{ return 0; }}")
+        return out
+
     def _deny_block(kind: str, var: str, owner: str, indent: str = "    ") -> list[str]:
         db = "AdvanceDB" if kind == "advance" else live[kind][1]
         out: list[str] = []
@@ -2610,6 +2643,13 @@ def _emit_mom_gating_slc() -> int:
         "",
         "int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)",
         "{",
+        # VESSELS FIRST, ahead of the owner guard. A vessel is FOUND or left
+        # behind by a defeated genie -- it is never produced. This block sits
+        # before the guard deliberately: the guard ALLOWS out-of-range owners
+        # through (it exists to keep barbarians out of the sphere walls), so a
+        # vessel rule placed after it would leave a hole for exactly the players
+        # the sphere system does not model.
+        *_vessel_block(),
         "    if (theCity.owner < 1 || theCity.owner > 5) { return 1; }",
         *_deny_block("unit", "theUnit", "theCity.owner"),
         "    return 1;",

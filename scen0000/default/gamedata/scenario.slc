@@ -68,6 +68,13 @@
 // accrued mana every turn and could never spend a point of it -- the only thing
 // that authorises a summon was set in a button body, which only a human reaches.
 #include "mom_ai_magic.slc"
+// Artifacts load after the magic core because MomArtifactScan writes
+// MomMagicMax/MomMagicCur (the lamp's boon and bane), and both arrays are
+// declared in mom_func.slc at 48. Its segments are reached by NAME from
+// mom_msg.slc's hub arm, and segment names resolve when Message() runs rather
+// than at include time, so loading after mom_msg is fine -- a FUNCTION called
+// across that boundary would not be.
+#include "mom_artifacts.slc"
 // Per-tribe gating via the engine's four mod functions. Last: it defines only
 // int_f mod_* segments, calls into nothing, and must be able to name every
 // UNIT_/IMPROVE_/ADVANCE_ symbol the other modules assume exists.

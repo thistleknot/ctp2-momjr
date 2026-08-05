@@ -79,6 +79,9 @@ int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)
 
 int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
 {
+    // VESSELS -- 1, never buildable by anyone
+    if (theUnit == UnitDB(UNIT_LAMP)
+    ) { return 0; }
     if (theCity.owner < 1 || theCity.owner > 5) { return 1; }
     // LIFE -- 7 block(s)
     if (MomSphere[theCity.owner] != 1) {

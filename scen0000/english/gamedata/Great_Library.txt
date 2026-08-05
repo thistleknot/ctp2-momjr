@@ -110,7 +110,7 @@ Age: 2
 Branch: 0
 [END]
 [ADVANCE_WARRIOR_CODE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 120 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>.
+<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 120 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_LAMP>Lamp<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>.
 [END]
 [ADVANCE_WARRIOR_CODE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The rules fighting men impose on themselves, which are what distinguish an army from a mob with weapons.
@@ -2236,7 +2236,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_SPEARMEN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Spearmen: attack 10, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Spearmen: attack 10, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 230 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_SPEARMEN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Spearmen is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2259,7 +2259,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_SWORDSMEN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Swordsmen: attack 12, defense 12, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 250 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Swordsmen: attack 12, defense 12, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 320 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_SWORDSMEN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Swordsmen is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2535,7 +2535,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_CENTAURS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Centaurs: attack 12, defense 10, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 250 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Centaurs: attack 12, defense 10, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 320 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_CENTAURS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Centaurs is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2949,7 +2949,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_MINOTAUR_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Minotaur: attack 10, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Minotaur: attack 10, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 400 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_MINOTAUR_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Minotaur is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3528,6 +3528,29 @@ Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_LICH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Lich is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_LAMP_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
+[END]
+[UNIT_LAMP_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_LAMP_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Lamp: attack 10, defense 10, 10 hit points, firepower 1. Moves 0 tiles per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_LAMP_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Lamp is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [ADVANCE_AGE_OF_REASON_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
@@ -6058,6 +6081,9 @@ Conservation
 [END]
 [UNIT_KNIGHTS_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Knights.
+[END]
+[UNIT_LAMP_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Lamp.
 [END]
 [UNIT_LICH_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Lich.
