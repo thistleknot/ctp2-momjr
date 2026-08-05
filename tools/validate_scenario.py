@@ -147,6 +147,64 @@ def check_string_grammar(scen: Path, fails: list[str]) -> None:
                 fails.append(f"{Path(rel).name}:{n}: stray quote inside the value")
 
 
+MAX_ALERT_ARMS = 5
+
+
+def check_alertbox_arms(scen: Path, fails: list[str]) -> None:
+    """No segment may declare more than five arms, and Close must be first.
+
+    TWO MEASURED ENGINE BEHAVIOURS, neither of which produces an error:
+
+    * A box renders at most five arms and DROPS THE OVERFLOW FROM THE TAIL.
+      Measured 2026-08-03 with eight declared: five drawn, three gone, and
+      because the tail is dropped, `Close` itself was among the casualties. The
+      frame still looks correct, so the only symptom is a box the player cannot
+      dismiss.
+    * Arms PAINT IN REVERSE of declaration order, so declaring `Close` first is
+      what puts it last on screen -- and, more importantly, is what guarantees it
+      survives a later edit that pushes the segment over the limit.
+
+    Both rules are invisible at runtime until they bite, and the mod currently
+    ships two segments sitting exactly ON the limit, so the next arm added to
+    either silently deletes its close button. That is what this gate protects.
+
+    The parser is deliberately shallow -- it counts `Button(ID_...)` between a
+    segment header and its closing brace at column 0 -- because SLIC segments are
+    never nested and a full parse would be more failure surface than the check.
+    """
+    gamedata = scen / "default/gamedata"
+    if not gamedata.is_dir():
+        return
+    header = re.compile(r"^(alertbox|messagebox)\s+'([A-Za-z_][A-Za-z0-9_]*)'")
+    button = re.compile(r"^\s*Button\(\s*(ID_[A-Za-z0-9_]+)\s*\)")
+    for path in sorted(gamedata.glob("*.slc")):
+        name = None
+        arms: list[str] = []
+        for line in path.read_text(encoding="latin-1").split("\n"):
+            m = header.match(line)
+            if m:
+                name, arms = m.group(2), []
+                continue
+            if name is None:
+                continue
+            b = button.match(line)
+            if b:
+                arms.append(b.group(1))
+            elif line.startswith("}"):
+                if len(arms) > MAX_ALERT_ARMS:
+                    fails.append(
+                        f"{path.name}: segment {name} declares {len(arms)} arms; "
+                        f"the box renders {MAX_ALERT_ARMS} and drops the tail "
+                        f"SILENTLY -- {', '.join(arms[MAX_ALERT_ARMS:])} will "
+                        f"never appear")
+                if arms and arms[0] != "ID_BUTTON_CLOSE":
+                    fails.append(
+                        f"{path.name}: segment {name} declares {arms[0]} first, "
+                        f"not ID_BUTTON_CLOSE -- arms paint in reverse, so Close "
+                        f"must be declared first to survive tail-dropping")
+                name = None
+
+
 def check_icon_refs(scen: Path, fails: list[str]) -> None:
     """Icon-DB integrity: every DefaultIcon/Icon ref must exist in its icon
     database ('X not found in Icon database' dialog class)."""
@@ -1355,6 +1413,7 @@ def main() -> int:
     check_reserved(scen, unit_idents, fails)
     check_string_refs(scen, fails)
     check_string_grammar(scen, fails)
+    check_alertbox_arms(scen, fails)
     check_icon_refs(scen, fails)
     check_advance_prereq_cap(scen, fails)
     check_visible_art(scen, fails)
@@ -1387,7 +1446,8 @@ def main() -> int:
         print(f"\n{len(fails)} failure(s).")
         return 1
     print("all scenario gates pass (newsprite grammar, ident charset, "
-          "reserved tokens, string-ref integrity, string grammar, gl_str grammar, "
+          "reserved tokens, string-ref integrity, string grammar, alertbox arms, "
+          "gl_str grammar, "
           "faction gating)")
     return 0
 
