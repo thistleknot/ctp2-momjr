@@ -9,9 +9,16 @@ noise is not a change.
 
 ---
 
-## [3.12.0] — 2026-08-05 — the lamp, and a tech tree that could be researched
+## [4.0.0] — 2026-08-05 — artifacts are vessels, and the magic UI is one tree
 
-**Minor.** Gameplay + tools. Requires a NEW game: saves cache compiled SLIC.
+**Major.** Gameplay + UI + tools. Requires a NEW game: saves cache compiled SLIC.
+
+This is the release the `spec(v4)` commits were written against. It breaks with
+3.x in four places a save cannot survive: a tribe's sphere is now derived from
+its civilisation rather than its seat, magic is reached through one tree instead
+of two parallel systems, artifacts exist as owned objects on the map, and the
+menu system was rebuilt rather than patched — every message the player reaches
+through is newly declared, so the old message IDs a save caches are gone.
 
 ### The anchor
 
@@ -30,6 +37,27 @@ capture moves the unit carrying it. Nothing needed a special case.
   than from per-player scratch state.
 - **`mom_summon.slc` and `mom_ai_magic.slc`** split out of the magic core and
   wired into `scenario.slc`. Same behaviour, separable surfaces.
+- **One magic tree.** `j` opens the hub; the control-panel button is a shortcut
+  into the same hub rather than a second, divergent entry point. The spellbook
+  arms bind to their own labels instead of inheriting the layer's.
+- **The menu system was rebuilt, not patched.** Every arm the player can reach —
+  hub, spellbook, summon, artifacts, wishes, store — is declared once with its
+  own message and its own button labels. Previously arms inherited text from the
+  layer that opened them, which is why the wrong string appeared depending on how
+  you arrived. Close is now always the first arm declared, and no menu exceeds
+  the five-arm alertbox ceiling; both rules are enforced by the build rather than
+  by care. New menus this cycle: artifacts, wishes, the wish-grant arms, and the
+  summon menus for the Death and Chaos additions.
+- **Death gains Skeletons, Dracolich, Death Knight and Lich**, with real
+  sprites rather than placeholder art.
+- **Chaos gets the WildRoll** — a demon or an angel, and the player does not
+  choose which.
+
+### Changed — breaking
+
+- **A tribe's SPHERE now follows its CIVILISATION, not its player seat.** The
+  seat assumption was inlined at five further sites in the SUMMON lane; all
+  five now use the predicate. Verified across all five tribes over 250 turns.
 
 ### Fixed
 
@@ -40,6 +68,13 @@ capture moves the unit carrying it. Nothing needed a special case.
   self-prereqs and the validator refuses to emit one again.
 - **Advanced farm tile improvements were gated behind an advance that could not
   be reached**, for the reason above.
+- **The Lamp shipped as a warrior with the wheels taken off** — it carried a
+  combat unit's template rather than a vessel's.
+- **The preflight blamed the wrong monitor**, and assumed stock string keys form
+  a family; `ID_BUTTON_BACK` does not exist.
+- **Three defects the static gates could not see**, plus gates so two of them
+  cannot recur: the alertbox five-arm ceiling (MEASURED, not assumed) and the
+  Close-first rule now fail the build.
 
 ### Tools
 
