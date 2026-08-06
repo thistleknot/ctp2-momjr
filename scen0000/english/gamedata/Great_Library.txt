@@ -2213,7 +2213,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_ZOMBIES_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Zombies: attack 12, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Zombies: attack 11, defense 21, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_ZOMBIES_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Zombies is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2282,7 +2282,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_PHANTOM_WARRIORS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Phantom Warriors: attack 16, defense 10, 10 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Phantom Warriors: attack 14, defense 15, 20 hit points, firepower 4. Moves 2 tiles per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_PHANTOM_WARRIORS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Phantom Warriors is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2305,7 +2305,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_HELL_HOUNDS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Hell Hounds: attack 23, defense 12, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 740 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Hell Hounds: attack 19, defense 21, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 740 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_HELL_HOUNDS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Hell Hounds is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2328,7 +2328,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WARBEARS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warbears: attack 16, defense 15, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Warbears: attack 14, defense 35, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_WARBEARS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Warbears is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2673,7 +2673,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_UNICORN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Unicorn: attack 16, defense 56, 20 hit points, firepower 1. Moves 3 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Unicorn: attack 14, defense 66, 35 hit points, firepower 1. Moves 3 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_UNICORN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Unicorn is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2765,7 +2765,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_EFREET_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Efreet: attack 50, defense 15, 20 hit points, firepower 5. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Efreet: attack 37, defense 35, 35 hit points, firepower 4. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_EFREET_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Efreet is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2788,7 +2788,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WRAITH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Wraith: attack 23, defense 15, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Wraith: attack 19, defense 35, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_WRAITH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Wraith is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2834,7 +2834,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_PEGASUS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Pegasus: attack 31, defense 12, 20 hit points, firepower 5. Moves 5 tiles per turn and sees 2 tiles. Costs 1180 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>.
+<c:245,240,225><h:0,0,0>Pegasus: attack 24, defense 21, 35 hit points, firepower 4. Moves 5 tiles per turn and sees 2 tiles. Costs 1180 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>.
 [END]
 [UNIT_PEGASUS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Pegasus is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2903,7 +2903,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_HYDRA_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Hydra: attack 91, defense 15, 35 hit points, firepower 5. Moves 1 tile per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MASTER>Chaos Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Hydra: attack 64, defense 35, 50 hit points, firepower 4. Moves 1 tile per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MASTER>Chaos Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_HYDRA_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Hydra is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2995,7 +2995,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_GARGOYLE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Gargoyle: attack 12, defense 29, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>.
+<c:245,240,225><h:0,0,0>Gargoyle: attack 11, defense 46, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>.
 [END]
 [UNIT_GARGOYLE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Gargoyle is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3018,7 +3018,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_GUARDIAN_SPIRIT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Guardian Spirit: attack 10, defense 43, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Guardian Spirit: attack 10, defense 56, 50 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_GUARDIAN_SPIRIT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Guardian Spirit is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3041,7 +3041,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_COCKATRICE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Cockatrice: attack 40, defense 10, 10 hit points, firepower 6. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>.
+<c:245,240,225><h:0,0,0>Cockatrice: attack 30, defense 15, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>.
 [END]
 [UNIT_COCKATRICE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Cockatrice is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3133,7 +3133,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_DEMON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Demon: attack 23, defense 43, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 860 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>.
+<c:245,240,225><h:0,0,0>Demon: attack 19, defense 56, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 860 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>.
 [END]
 [UNIT_DEMON_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Demon is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3202,7 +3202,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_STORM_GIANT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Storm Giant: attack 60, defense 29, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Storm Giant: attack 43, defense 46, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_STORM_GIANT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Storm Giant is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3225,7 +3225,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_AIR_ELEMENTAL_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Air Elemental: attack 40, defense 15, 10 hit points, firepower 1. Moves 8 tiles per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>.
+<c:245,240,225><h:0,0,0>Air Elemental: attack 30, defense 35, 20 hit points, firepower 1. Moves 8 tiles per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>.
 [END]
 [UNIT_AIR_ELEMENTAL_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Air Elemental is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3248,7 +3248,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_STORM_DRAKE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Storm Drake: attack 91, defense 56, 35 hit points, firepower 5. Moves 5 tiles per turn and sees 2 tiles. Costs 4000 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MASTER>Sorcery Master<e>.
+<c:245,240,225><h:0,0,0>Storm Drake: attack 64, defense 66, 50 hit points, firepower 4. Moves 5 tiles per turn and sees 2 tiles. Costs 4000 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MASTER>Sorcery Master<e>.
 [END]
 [UNIT_STORM_DRAKE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Storm Drake is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3294,7 +3294,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_UNDEAD_DRAGON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Undead Dragon: attack 91, defense 56, 48 hit points, firepower 5. Moves 3 tiles per turn and sees 2 tiles. Costs 1200 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MASTER>Death Master<e>.
+<c:245,240,225><h:0,0,0>Undead Dragon: attack 64, defense 66, 62 hit points, firepower 4. Moves 3 tiles per turn and sees 2 tiles. Costs 1200 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MASTER>Death Master<e>.
 [END]
 [UNIT_UNDEAD_DRAGON_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Undead Dragon is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3317,7 +3317,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_GREAT_WYRM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Great Wyrm: attack 100, defense 87, 60 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MASTER>Nature Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Great Wyrm: attack 70, defense 90, 75 hit points, firepower 4. Moves 2 tiles per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MASTER>Nature Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_GREAT_WYRM_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Great Wyrm is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3340,7 +3340,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_BEHEMOTH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Behemoth: attack 31, defense 29, 48 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Behemoth: attack 24, defense 46, 62 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_BEHEMOTH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Behemoth is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3409,7 +3409,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_ARCHANGEL_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Archangel: attack 91, defense 100, 20 hit points, firepower 5. Moves 4 tiles per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MASTER>Life Master<e>.
+<c:245,240,225><h:0,0,0>Archangel: attack 64, defense 100, 35 hit points, firepower 4. Moves 4 tiles per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MASTER>Life Master<e>.
 [END]
 [UNIT_ARCHANGEL_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Archangel is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3455,7 +3455,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_SKELETONS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Skeletons: attack 10, defense 12, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Skeletons: attack 10, defense 21, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_SKELETONS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Skeletons is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3478,7 +3478,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_DRACOLICH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Dracolich: attack 99, defense 68, 48 hit points, firepower 5. Moves 3 tiles per turn and sees 2 tiles. Costs 3500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>.
+<c:245,240,225><h:0,0,0>Dracolich: attack 69, defense 75, 62 hit points, firepower 4. Moves 3 tiles per turn and sees 2 tiles. Costs 3500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>.
 [END]
 [UNIT_DRACOLICH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Dracolich is represented here as a proxy unit while the final MoM art swap is in progress.

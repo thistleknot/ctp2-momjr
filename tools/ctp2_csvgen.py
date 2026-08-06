@@ -26,7 +26,7 @@ def export_csv(rows, name):
 
 def export_flatlist(src, dst):
     f = P.FlatListFile()
-    f.parse(load("default/gamedata/wondermovie.txt"))
+    f.parse(load(src))
     export_csv([['key', 'value']] + [(k, v.strip('"')) for k, v in f.entries.items()], dst)
 
 
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     print("Generating CSVs from scenario files...")
     export_blocks("default/gamedata/Wonder.txt", "wonder.csv")
     export_blocks("default/gamedata/Improve.txt", "improve.csv")
-    export_flatlist("wondermovie.csv")
+    export_flatlist("default/gamedata/wondermovie.txt", "wondermovie.csv")
     export_wondericon("wondericon.csv")
     export_strings("gl_str.csv")
     export_gl("great_library.csv")

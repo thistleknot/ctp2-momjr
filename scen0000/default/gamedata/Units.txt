@@ -6,12 +6,12 @@ UNIT_ZOMBIES {
    DefaultIcon ICON_UNIT_ZOMBIES
    DefaultSprite SPRITE_ZOMBIES
    Category UNIT_CATEGORY_ATTACK
-   Attack 12
-   Defense 12
+   Attack 11
+   Defense 21
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 350
    PowerPoints 175
    ShieldHunger 1
@@ -159,12 +159,12 @@ UNIT_PHANTOM_WARRIORS {
    DefaultIcon ICON_UNIT_PHANTOM_WARRIORS
    DefaultSprite SPRITE_PHANTOM_WARRIORS
    Category UNIT_CATEGORY_ATTACK
-   Attack 16
-   Defense 10
+   Attack 14
+   Defense 15
    ZBRangeAttack 0
-   Firepower 5
+   Firepower 4
    Armor 1
-   MaxHP 10
+   MaxHP 20
    ShieldCost 150
    PowerPoints 100
    ShieldHunger 1
@@ -210,12 +210,12 @@ UNIT_HELL_HOUNDS {
    DefaultIcon ICON_UNIT_HELL_HOUNDS
    DefaultSprite SPRITE_HELL_HOUNDS
    Category UNIT_CATEGORY_ATTACK
-   Attack 23
-   Defense 12
+   Attack 19
+   Defense 21
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 10
+   MaxHP 20
    ShieldCost 740
    PowerPoints 370
    ShieldHunger 1
@@ -261,12 +261,12 @@ UNIT_WARBEARS {
    DefaultIcon ICON_UNIT_WARBEARS
    DefaultSprite SPRITE_WARBEARS
    Category UNIT_CATEGORY_ATTACK
-   Attack 16
-   Defense 15
+   Attack 14
+   Defense 35
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 350
    PowerPoints 175
    ShieldHunger 1
@@ -1018,12 +1018,12 @@ UNIT_UNICORN {
    DefaultIcon ICON_UNIT_UNICORN
    DefaultSprite SPRITE_UNICORN
    Category UNIT_CATEGORY_ATTACK
-   Attack 16
-   Defense 56
+   Attack 14
+   Defense 66
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 630
    PowerPoints 315
    ShieldHunger 1
@@ -1222,12 +1222,12 @@ UNIT_EFREET {
    DefaultIcon ICON_UNIT_EFREET
    DefaultSprite SPRITE_EFREET
    Category UNIT_CATEGORY_ATTACK
-   Attack 50
-   Defense 15
+   Attack 37
+   Defense 35
    ZBRangeAttack 0
-   Firepower 5
+   Firepower 4
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 1500
    PowerPoints 750
    ShieldHunger 1
@@ -1273,12 +1273,12 @@ UNIT_WRAITH {
    DefaultIcon ICON_UNIT_WRAITH
    DefaultSprite SPRITE_WRAITH
    Category UNIT_CATEGORY_ATTACK
-   Attack 23
-   Defense 15
+   Attack 19
+   Defense 35
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 630
    PowerPoints 315
    ShieldHunger 1
@@ -1367,12 +1367,12 @@ UNIT_PEGASUS {
    DefaultIcon ICON_UNIT_PEGASUS
    DefaultSprite SPRITE_PEGASUS
    Category UNIT_CATEGORY_AERIAL
-   Attack 31
-   Defense 12
+   Attack 24
+   Defense 21
    ZBRangeAttack 0
-   Firepower 5
+   Firepower 4
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 1180
    PowerPoints 590
    ShieldHunger 1
@@ -1498,12 +1498,12 @@ UNIT_HYDRA {
    DefaultIcon ICON_UNIT_HYDRA
    DefaultSprite SPRITE_HYDRA
    Category UNIT_CATEGORY_ATTACK
-   Attack 91
-   Defense 15
+   Attack 64
+   Defense 35
    ZBRangeAttack 0
-   Firepower 5
+   Firepower 4
    Armor 1
-   MaxHP 35
+   MaxHP 50
    ShieldCost 3490
    PowerPoints 1745
    ShieldHunger 2
@@ -1694,12 +1694,12 @@ UNIT_GARGOYLE {
    DefaultIcon ICON_UNIT_GARGOYLE
    DefaultSprite SPRITE_GARGOYLE
    Category UNIT_CATEGORY_AERIAL
-   Attack 12
-   Defense 29
+   Attack 11
+   Defense 46
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 630
    PowerPoints 315
    ShieldHunger 1
@@ -1738,11 +1738,11 @@ UNIT_GUARDIAN_SPIRIT {
    DefaultSprite SPRITE_GUARDIAN_SPIRIT
    Category UNIT_CATEGORY_ATTACK
    Attack 10
-   Defense 43
+   Defense 56
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 35
+   MaxHP 50
    ShieldCost 350
    PowerPoints 175
    ShieldHunger 1
@@ -1788,12 +1788,12 @@ UNIT_COCKATRICE {
    DefaultIcon ICON_UNIT_COCKATRICE
    DefaultSprite SPRITE_COCKATRICE
    Category UNIT_CATEGORY_AERIAL
-   Attack 40
-   Defense 10
+   Attack 30
+   Defense 15
    ZBRangeAttack 0
-   Firepower 6
+   Firepower 5
    Armor 1
-   MaxHP 10
+   MaxHP 20
    ShieldCost 630
    PowerPoints 315
    ShieldHunger 1
@@ -1976,12 +1976,12 @@ UNIT_DEMON {
    DefaultIcon ICON_UNIT_DEMON
    DefaultSprite SPRITE_DEMON
    Category UNIT_CATEGORY_AERIAL
-   Attack 23
-   Defense 43
+   Attack 19
+   Defense 56
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 860
    PowerPoints 430
    ShieldHunger 1
@@ -2121,12 +2121,12 @@ UNIT_STORM_GIANT {
    DefaultIcon ICON_UNIT_STORM_GIANT
    DefaultSprite SPRITE_STORM_GIANT
    Category UNIT_CATEGORY_ATTACK
-   Attack 60
-   Defense 29
+   Attack 43
+   Defense 46
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 1500
    PowerPoints 750
    ShieldHunger 1
@@ -2172,12 +2172,12 @@ UNIT_AIR_ELEMENTAL {
    DefaultIcon ICON_UNIT_AIR_ELEMENTAL
    DefaultSprite SPRITE_AIR_ELEMENTAL
    Category UNIT_CATEGORY_AERIAL
-   Attack 40
-   Defense 15
+   Attack 30
+   Defense 35
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 10
+   MaxHP 20
    ShieldCost 540
    PowerPoints 270
    ShieldHunger 1
@@ -2215,12 +2215,12 @@ UNIT_STORM_DRAKE {
    DefaultIcon ICON_UNIT_STORM_DRAKE
    DefaultSprite SPRITE_STORM_DRAKE
    Category UNIT_CATEGORY_AERIAL
-   Attack 91
-   Defense 56
+   Attack 64
+   Defense 66
    ZBRangeAttack 0
-   Firepower 5
+   Firepower 4
    Armor 1
-   MaxHP 35
+   MaxHP 50
    ShieldCost 4000
    PowerPoints 2000
    ShieldHunger 2
@@ -2309,12 +2309,12 @@ UNIT_UNDEAD_DRAGON {
    DefaultIcon ICON_UNIT_UNDEAD_DRAGON
    DefaultSprite SPRITE_UNDEAD_DRAGON
    Category UNIT_CATEGORY_AERIAL
-   Attack 91
-   Defense 56
+   Attack 64
+   Defense 66
    ZBRangeAttack 0
-   Firepower 5
+   Firepower 4
    Armor 1
-   MaxHP 48
+   MaxHP 62
    ShieldCost 1200
    PowerPoints 600
    ShieldHunger 1
@@ -2352,12 +2352,12 @@ UNIT_GREAT_WYRM {
    DefaultIcon ICON_UNIT_GREAT_WYRM
    DefaultSprite SPRITE_GREAT_WYRM
    Category UNIT_CATEGORY_ATTACK
-   Attack 100
-   Defense 87
+   Attack 70
+   Defense 90
    ZBRangeAttack 0
-   Firepower 5
+   Firepower 4
    Armor 1
-   MaxHP 60
+   MaxHP 75
    ShieldCost 3490
    PowerPoints 1745
    ShieldHunger 2
@@ -2403,12 +2403,12 @@ UNIT_BEHEMOTH {
    DefaultIcon ICON_UNIT_BEHEMOTH
    DefaultSprite SPRITE_BEHEMOTH
    Category UNIT_CATEGORY_ATTACK
-   Attack 31
-   Defense 29
+   Attack 24
+   Defense 46
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 48
+   MaxHP 62
    ShieldCost 1500
    PowerPoints 750
    ShieldHunger 1
@@ -2549,12 +2549,12 @@ UNIT_ARCHANGEL {
    DefaultIcon ICON_UNIT_ARCHANGEL
    DefaultSprite SPRITE_ARCHANGEL
    Category UNIT_CATEGORY_AERIAL
-   Attack 91
+   Attack 64
    Defense 100
    ZBRangeAttack 0
-   Firepower 5
+   Firepower 4
    Armor 1
-   MaxHP 20
+   MaxHP 35
    ShieldCost 3490
    PowerPoints 1745
    ShieldHunger 2
@@ -2594,11 +2594,11 @@ UNIT_SKELETONS {
    DefaultSprite SPRITE_SKELETONS
    Category UNIT_CATEGORY_ATTACK
    Attack 10
-   Defense 12
+   Defense 21
    ZBRangeAttack 0
    Firepower 1
    Armor 1
-   MaxHP 10
+   MaxHP 20
    ShieldCost 150
    PowerPoints 100
    ShieldHunger 1
@@ -2644,12 +2644,12 @@ UNIT_DRACOLICH {
    DefaultIcon ICON_UNIT_DRACOLICH
    DefaultSprite SPRITE_DRACOLICH
    Category UNIT_CATEGORY_AERIAL
-   Attack 99
-   Defense 68
+   Attack 69
+   Defense 75
    ZBRangeAttack 0
-   Firepower 5
+   Firepower 4
    Armor 1
-   MaxHP 48
+   MaxHP 62
    ShieldCost 3500
    PowerPoints 1750
    ShieldHunger 1

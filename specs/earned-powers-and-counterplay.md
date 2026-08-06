@@ -238,11 +238,19 @@ the roll SHALL only ever return from the :SummonLane:.**
 
 | rung | :SummonLane: | notes |
 |---|---|---|
-| 1 | Zombies, **Skeletons** | the cheap dead; Skeletons is an addition |
+| 1 | Zombies, **Skeletons** | the cheap dead; Skeletons was an addition |
 | 2 | Wraiths | already at rung 2 today |
-| 3 | *(unassigned)* | Demon sits here now and is Chaos-flavoured |
-| 4 | **Dracolich** | an addition; Undead Dragon's relationship to it is open |
-| 5 | *(unassigned)* | |
+| 3 | Demon | shared with Chaos, per the multi-sphere rule below |
+| 4 | **Dracolich** | an addition; sits BELOW Undead Dragon, not in place of it |
+| 5 | Undead Dragon | the sphere's capstone summon |
+
+> Rungs 3 and 5 were unassigned when this was written and Dracolich's
+> relationship to Undead Dragon was open. Both are now settled in
+> `mom_summon.slc`: Demon stayed at 3 rather than moving to Chaos, and the
+> dracolich turned out to be a DISTINCT creature one rung below the dragon
+> rather than the dragon renamed. `MomSummonRungOf` is generated from the same
+> pools as the roll, so these rungs and the mana-upkeep rates charged for them
+> cannot drift apart.
 
 | :EarnedLane: | tier | how |
 |---|---|---|
@@ -552,10 +560,11 @@ an engine change.
   only zero-move unit in the mod, and correctly so. Left here rather than
   deleted because a spec that quietly drops a retracted "confirmed defect" is
   how the same false finding gets rediscovered.
-- **Which rung Dracolich replaces.** Undead Dragon already exists at 12a/6d and
-  a dracolich is a lich-dragon, so they may be the same creature renamed, or the
-  dracolich may sit above it. Rungs 3 and 5 are also unassigned once Demon is
-  reconsidered — it is currently in Death's pool but reads as Chaos.
+- **RESOLVED — Which rung Dracolich replaces.** It replaces none. Undead Dragon
+  keeps rung 5 and Dracolich shipped at rung 4 as a distinct creature, not the
+  dragon renamed. Demon was reconsidered and STAYED at rung 3, shared between
+  Death and Chaos under the multi-sphere rule rather than moved out of Death.
+  Rungs 3 and 5 are no longer unassigned.
 - **Undead Dragon costs 3, the CHEAPEST unit Death owns, with its STRONGEST
   statline (12a/6d).** A pricing inversion that predates all of this and that
   any rung assignment will inherit.

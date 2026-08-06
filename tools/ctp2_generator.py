@@ -46,7 +46,10 @@ def _policy_csv_rows(name: str) -> list[dict[str, str]]:
             f"ctp2_generator: missing control-plane policy file {path} "
             f"(bootstrap with dump_mod_policy.py or author one for this mod)")
     with path.open(newline="", encoding="utf-8-sig") as handle:
-        return list(csv.DictReader(handle))
+        # '#' lines are documentation, not data: these files are the mod's
+        # control plane and the rationale has to live next to the numbers.
+        lines = [ln for ln in handle if not ln.lstrip().startswith("#")]
+    return list(csv.DictReader(lines))
 
 
 def _load_mod_policy() -> dict:
@@ -421,11 +424,48 @@ def _stat_source_dist(axis: str) -> tuple[float, float, float]:
     return dist
 
 
-def _stat_cast(raw: int, axis: str) -> int:
-    """Cast one civ2 stat onto its CTP2 target range by rank position."""
+_SUMMON_ROSTER_CACHE = None
+
+
+def _summon_roster() -> set:
+    """UNIT_* idents that mom_summon.slc can actually summon.
+
+    Read from the SLIC rather than restated in mod_policy.json: that file is the
+    engine-side gate on what a summon spell may produce, so a creature added or
+    removed there cannot silently disagree with the summon curve. Every
+    UnitDB(UNIT_X) reference in the file is a thing the summon path can create.
+    Empty set is a safe fallback -- every unit then keeps the general curve,
+    i.e. exactly today's behaviour.
+    """
+    global _SUMMON_ROSTER_CACHE
+    if _SUMMON_ROSTER_CACHE is None:
+        try:
+            txt = (SCENARIO / "default" / "gamedata" / "mom_summon.slc").read_text(
+                encoding="latin-1")
+            _SUMMON_ROSTER_CACHE = set(
+                re.findall(r"UnitDB\(\s*(UNIT_[A-Z0-9_]+)\s*\)", txt))
+        except OSError:
+            _SUMMON_ROSTER_CACHE = set()
+    return _SUMMON_ROSTER_CACHE
+
+
+def _stat_cast(raw: int, axis: str, ident: str = "") -> int:
+    """Cast one civ2 stat onto its CTP2 target range by rank position.
+
+    `ident` selects WHICH target range. Summonable creatures use
+    summon_stat_curve -- same source distribution and same smoothstep, only a
+    different destination box, so a summon stays ranked correctly against its
+    peers while being capped as a wall rather than a bomb. Callers that pass no
+    ident get the general curve unchanged.
+    """
+    curve = "stat_curve"
+    if ident and ident in _summon_roster():
+        summon_curve = MOD_POLICY["unit_stat_scaling"].get("summon_stat_curve")
+        if summon_curve and axis in summon_curve:
+            curve = "summon_stat_curve"
     lo, mid, hi = _stat_source_dist(axis)
     tlo, tmid, thi = (float(x) for x in
-                      MOD_POLICY["unit_stat_scaling"]["stat_curve"][axis])
+                      MOD_POLICY["unit_stat_scaling"][curve][axis])
     if raw <= lo or hi == lo:
         p = 0.0
     elif raw >= hi:
@@ -575,6 +615,156 @@ def _ensure_diffdb_start_government(rel: str = "default/gamedata/DiffDB.txt") ->
         _write_rel(rel, final_text)
         return True
     return False
+
+
+def _calendar_periods() -> dict[int, list[tuple[int, int]]]:
+    """Load calendar_periods.csv into {tier: [(start_turn, years_per_turn), ...]}.
+
+    Validates the surface the engine actually depends on: six tiers, each
+    starting at turn 0, start turns strictly ascending, positive years/turn.
+    """
+    tiers: dict[int, list[tuple[int, int]]] = {}
+    for row in _policy_csv_rows("calendar_periods.csv"):
+        if not (row.get("tier") or "").strip():
+            continue
+        tier = int(row["tier"])
+        start = int(row["start_turn"])
+        ypt = int(row["years_per_turn"])
+        if ypt < 1:
+            raise SystemExit(
+                f"calendar_periods.csv: tier {tier} start_turn {start} has "
+                f"years_per_turn {ypt}; must be >= 1 or the calendar stalls")
+        tiers.setdefault(tier, []).append((start, ypt))
+    if sorted(tiers) != list(range(6)):
+        raise SystemExit(
+            f"calendar_periods.csv: expected tiers 0-5 (one per DiffDB "
+            f"difficulty block), got {sorted(tiers)}")
+    for tier, periods in tiers.items():
+        periods.sort()
+        if periods[0][0] != 0:
+            raise SystemExit(
+                f"calendar_periods.csv: tier {tier} has no start_turn 0 row; "
+                f"the engine has no rule for turns before the first period")
+        starts = [p[0] for p in periods]
+        if len(set(starts)) != len(starts):
+            raise SystemExit(
+                f"calendar_periods.csv: tier {tier} has duplicate start_turn "
+                f"values {starts}")
+    return tiers
+
+
+def _calendar_end_turn(periods: list[tuple[int, int]], end_year: int,
+                       start_year: int, cap: int = 20000) -> int:
+    """First turn on which the calendar has reached end_year for these periods."""
+    year = start_year
+    ypt = periods[0][1]
+    for turn in range(cap):
+        for start, per_turn in periods:
+            if start <= turn:
+                ypt = per_turn
+        if year >= end_year:
+            return turn
+        year += ypt
+    return cap
+
+
+def _calendar_year_at(periods: list[tuple[int, int]], turns: int,
+                      start_year: int) -> int:
+    """Calendar year reached after advancing `turns` turns from start_year."""
+    year = start_year
+    ypt = periods[0][1]
+    for turn in range(turns):
+        for start, per_turn in periods:
+            if start <= turn:
+                ypt = per_turn
+        year += ypt
+    return year
+
+
+def _write_calendar() -> dict[str, int]:
+    """Own the game calendar: DiffDB TIME_SCALE blocks + Const END_OF_GAME_YEAR.
+
+    SHAPE (years per turn, per difficulty tier) comes from
+    calendar_periods.csv; PACE comes from mod_policy calendar.turns_target,
+    which says how many turns the reference tier's game should run. The end
+    year is derived by walking the reference tier's periods for that many
+    turns, so pace can be retuned without re-authoring the shape.
+
+    The engine ends the game on a YEAR, not a turn, so tiers whose calendar
+    runs faster get shorter games. That is intended, but silent, so the return
+    value carries each tier's resulting end turn for the caller to print.
+    """
+    policy = MOD_POLICY.get("calendar")
+    if not policy:
+        raise SystemExit("mod_policy.json: missing 'calendar' block")
+    start_year = int(policy["start_year"])
+    ref_tier = int(policy["reference_tier"])
+    turns_target = int(policy["turns_target"])
+    warn_gap = int(policy["early_warning_years_before_end"])
+    tiers = _calendar_periods()
+    if ref_tier not in tiers:
+        raise SystemExit(
+            f"mod_policy calendar.reference_tier {ref_tier} has no rows in "
+            f"calendar_periods.csv")
+
+    end_year = _calendar_year_at(tiers[ref_tier], turns_target, start_year)
+
+    # --- DiffDB TIME_SCALE blocks, in file order == difficulty tier order ---
+    rel = "default/gamedata/DiffDB.txt"
+    text = _read_rel(rel)
+    block_re = re.compile(r"(?ms)^TIME_SCALE\{\n.*?^\}")
+    seen = 0
+
+    def _replace(match: re.Match[str]) -> str:
+        nonlocal seen
+        tier = seen
+        seen += 1
+        periods = tiers[tier]
+        lines = [
+            "TIME_SCALE{",
+            f"\tSTART_YEAR\t{start_year}",
+            f"\tNUM_PERIODS\t{len(periods)}",
+        ]
+        for start, ypt in periods:
+            lines += ["\tPERIOD {",
+                      f"\t\tSTART_TURN\t{start}",
+                      f"\t\tYEARS_PER_TURN\t{ypt}",
+                      "\t}"]
+        lines += ["\tNEGATIVE_YEAR_FORMAT BC_YEAR_FORMAT",
+                  "\tPOSITIVE_YEAR_FORMAT AD_YEAR_FORMAT",
+                  "}"]
+        return "\n".join(lines)
+
+    new_text = block_re.sub(_replace, text)
+    if seen != 6:
+        raise SystemExit(
+            f"{rel}: expected 6 TIME_SCALE blocks (one per difficulty), "
+            f"found {seen}")
+    path = SCENARIO / rel
+    if not path.exists() or path.read_text(encoding="latin-1") != new_text:
+        _write_rel(rel, new_text)
+
+    # --- Const.txt end-of-game year, derived from the reference tier ---
+    const_rel = "default/gamedata/Const.txt"
+    const_text = _read_rel(const_rel)
+    for key, value in (("END_OF_GAME_YEAR", end_year),
+                       ("END_OF_GAME_YEAR_EARLY_WARNING", end_year - warn_gap)):
+        const_text, hits = re.subn(
+            rf"(?m)^({re.escape(key)}\s+)-?\d+$",
+            lambda m, v=value: f"{m.group(1)}{v}",
+            const_text)
+        if hits != 1:
+            raise SystemExit(
+                f"{const_rel}: expected exactly one {key} line, found {hits}")
+    const_path = SCENARIO / const_rel
+    if not const_path.exists() or const_path.read_text(encoding="latin-1") != const_text:
+        _write_rel(const_rel, const_text)
+
+    result = {"end_year": end_year, "reference_tier": ref_tier}
+    for tier in sorted(tiers):
+        result[f"end_turn_tier_{tier}"] = _calendar_end_turn(
+            tiers[tier], end_year, start_year)
+    return result
 
 
 def _retire_x_sentinels() -> int:
@@ -1929,10 +2119,17 @@ def _load_ae_advance_cost_bands() -> dict[str, tuple[int, int]]:
     fixed, monotonic, absolute curve anchored so AGE_ONE first techs cost <640 (<40 turns at
     ~16 science/turn) and AGE_TEN caps in the low tens of thousands (~50-140 turns at
     late-game science). Every advance is now retuned into this curve (the coverage gate in
-    _retune_mom_advance_costs is removed), so no raw base/WAW tail survives. Tune here.
+    _retune_mom_advance_costs is removed), so no raw base/WAW tail survives.
+
+    The curve's SHAPE lives in advance_cost_bands.csv; the overall research PACE
+    lives in mod_policy advance_cost_scaling.cost_mult, a percentage applied to
+    both ends of every band here. Splitting them means pace can be retuned
+    without re-editing ten rows, and shape can be retuned without disturbing
+    pace. 100 is neutral and reproduces the CSV exactly.
     """
+    mult = int(MOD_POLICY.get("advance_cost_scaling", {}).get("cost_mult", 100))
     return {
-        r["age"]: (int(r["low"]), int(r["high"]))
+        r["age"]: (int(r["low"]) * mult // 100, int(r["high"]) * mult // 100)
         for r in _policy_csv_rows("advance_cost_bands.csv")
     }
 
@@ -4975,8 +5172,11 @@ def main():
             # Scale to CTP2 internal units (per-mod policy: unit_stat_scaling).
             # RANK-CAST, not a linear multiply -- see _stat_cast().
             _scal = MOD_POLICY["unit_stat_scaling"]
-            attack     = _stat_cast(attack_raw, "attack")
-            defense    = _stat_cast(def_raw,    "defense")
+            # `ident` routes summonable creatures onto summon_stat_curve: a
+            # summon is a wall, so its attack is capped near the era average
+            # while its defense and HP carry the difference.
+            attack     = _stat_cast(attack_raw, "attack",  ident)
+            defense    = _stat_cast(def_raw,    "defense", ident)
 
             # VESSELS BYPASS THE STAT CURVE. _stat_cast rank-casts every unit
             # onto the shipped CTP2 min/median/max, and its floor is 10 -- so a
@@ -5044,8 +5244,8 @@ def main():
                 ident=ident, name=name, category=category,
                 attack=attack, defense=defense,
                 sprite=sprite, desc=f"{name}: a {MOD_DISPLAY_NAME} unit.",
-                advance=advance, move=move, hp=_stat_cast(hp_raw, "hp"),
-                firepower=_stat_cast(fp_raw, "firepower"), armor=1, zbrange=0,
+                advance=advance, move=move, hp=_stat_cast(hp_raw, "hp", ident),
+                firepower=_stat_cast(fp_raw, "firepower", ident), armor=1, zbrange=0,
                 shield_cost=shield_cost, shield_hunger=shield_hunger,
                 gold_hunger=0, sound_set=sound_set,
                 domain=domain, size=size,
@@ -6288,6 +6488,13 @@ def main():
 
     if _ensure_diffdb_start_government():
         print(f"  + DiffDB.txt: guaranteed {START_GUARANTEED_ADVANCES} across all start-tech blocks")
+
+    cal = _write_calendar()
+    print(f"  + calendar: END_OF_GAME_YEAR {cal['end_year']} "
+          f"(tier {cal['reference_tier']} reference, "
+          f"{MOD_POLICY['calendar']['turns_target']} turns target)")
+    print("    game length in turns by difficulty tier 0-5: " + ", ".join(
+        str(cal[f"end_turn_tier_{t}"]) for t in range(6)))
 
     retired_x = _retire_x_sentinels()
     if retired_x:

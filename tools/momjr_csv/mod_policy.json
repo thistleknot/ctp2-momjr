@@ -13,6 +13,10 @@
   "retire_sentinel_prefix": "X",
   "retire_sentinel_obsolete_advance": "ADVANCE_WARRIOR_CODE",
   "advance_cost_scaling": {
+    "_base_bands_source": "Per-Age (low, high) research-cost bands are read from advance_cost_bands.csv, NOT derived from the base Apolyton-Edition Advance.txt. AE's own bands are pathological (AGE_SIX 18876-55927, AGE_TEN 142969-234743) and projecting MoM costs into them made mid/late research take thousands of turns. The CSV holds a fixed monotonic absolute curve instead; edit it to reshape the curve.",
+    "_cost_mult": "Global percentage lever applied to both ends of every band AFTER the CSV is read, so the SHAPE of the curve lives in the CSV and the overall research PACE lives here. 100 = neutral, i.e. bands exactly as the CSV states. Raise it to slow research down, lower it to speed research up, without re-editing ten rows.",
+    "base_bands_source": "advance_cost_bands.csv",
+    "cost_mult": 100,
     "weight_min": 2,
     "weight_max": 62,
     "prereq_factor": 0.15,
@@ -27,7 +31,7 @@
   },
   "mod_display_name": "Master of Magic",
   "unit_stat_scaling": {
-    "shield_cost_mult": 100,
+    "shield_cost_mult": 215,
     "shield_hunger_div": 5,
     "shield_hunger_min": 1,
     "default_advance": "ADVANCE_WARRIOR_CODE",
@@ -58,12 +62,39 @@
         6
       ],
       "_target_provenance": "attack/defense/firepower are stock CTP2's own min/median/max, so no value lands outside a range the engine already ships. HP has NO stock spread to match -- stock is flat 10 on all 74 units -- so its target preserves the SOURCE ratios instead: civ2 hp runs 1/2/6, and 10/20/60 is that same 1x/2x/6x with the floor left at today's universal value so no unit loses HP."
+    },
+    "summon_stat_curve": {
+      "_doc": "SECOND target range for the SAME rank-cast, applied only to summonable creatures. Identical machinery to stat_curve -- same source distribution, same smoothstep, same source_outlier_cutoff -- only the destination box differs. A summon should be a WALL: it survives and holds ground, and is answered by massed conventional units rather than deleting them. So attack is capped well below the general curve while defense and HP are raised to carry the difference.",
+      "_why_attack_max_70": "Measured average attack of a NON-summon unit by era: 41 (AGE_TWO), 47 (AGE_FOUR), 50 (AGE_SIX), 49 (AGE_SEVEN) -- about 47 overall. The rule adopted is that a summon lands between 50% and 150% of the era-average unit. 150% of 47 is ~70, so 70 caps the top summon at strong-but-answerable. Under the shared curve the top summons cast to 91-100, i.e. 190-210% of era average, which is the imbalance being corrected.",
+      "_why_defense_max_100": "100 is stock CTP2's own maximum defense, so this stays inside a range the engine already ships -- the same constraint stat_curve._target_provenance holds itself to. Median rises 15 -> 35 because that is where mid-tier summons need to sit to actually hold a tile; only the top few reach the cap.",
+      "_why_hp": "Floor 10 -> 20 so no summon is as fragile as a base conventional unit; median 20 -> 35; max 60 -> 75. HP has no stock spread to violate (stock is flat 10 on all 74 units), so this is the axis free to absorb the survivability removed from attack.",
+      "_source": "The roster this applies to is deliberately NOT duplicated here. It is read from mom_summon.slc at generation time, since that file is the authoritative gate on what can actually be summoned -- a creature added or removed there cannot silently disagree with this curve.",
+      "attack": [
+        10,
+        30,
+        70
+      ],
+      "defense": [
+        15,
+        35,
+        100
+      ],
+      "hp": [
+        20,
+        35,
+        75
+      ],
+      "firepower": [
+        1,
+        2,
+        5
+      ]
     }
   },
   "settler_category_units": [
     "Peasants"
   ],
-  "improvement_cost_mult": 100,
+  "improvement_cost_mult": 215,
   "improvement_merge": {
     "fallback_advance": "ADVANCE_ALPHABET",
     "prereq_remap": {
@@ -155,5 +186,13 @@
       "find": "EnableAdvance ADVANCE_RAILROAD",
       "replace": "EnableAdvance ADVANCE_GREATER_ENCHANTMENTS"
     }
-  ]
+  ],
+  "calendar": {
+    "_doc": "Game PACE. calendar_periods.csv holds the SHAPE (years per turn per difficulty tier); this holds how long the game should run. END_OF_GAME_YEAR in Const.txt is derived: walk reference_tier's periods for turns_target turns, add start_year. Every tier then ends at that same YEAR, so faster tiers get fewer turns -- the generator prints each tier's end turn.",
+    "reference_tier": 2,
+    "turns_target": 500,
+    "start_year": -4000,
+    "early_warning_years_before_end": 100,
+    "_doc_early_warning": "Const END_OF_GAME_YEAR_EARLY_WARNING is derived as END_OF_GAME_YEAR minus this many calendar years (stock gap is 100)."
+  }
 }
