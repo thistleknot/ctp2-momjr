@@ -9,6 +9,49 @@ noise is not a change.
 
 ---
 
+## [3.12.0] — 2026-08-05 — the lamp, and a tech tree that could be researched
+
+**Minor.** Gameplay + tools. Requires a NEW game: saves cache compiled SLIC.
+
+### The anchor
+
+**Artifacts are vessels, not powers.** The lamp is the first one: a thing that
+sits on the map, is owned by whoever holds it, and can be taken. Every rule in
+the new system falls out of that one decision — the genie is BOUND to a vessel,
+banished to `Site` when unowned, and never destroyed; a wish spends from the
+holder's pool, not from a hidden budget; capture moves the artifact because
+capture moves the unit carrying it. Nothing needed a special case.
+
+### Added
+
+- **Artifacts and wishes** (`mom_artifacts.slc`, newly included by
+  `scenario.slc`). The lamp grants Riches, Power, Servant, or Artifacts. Wishes
+  are enumerated and consumed; the panel reads its counts from the vessel rather
+  than from per-player scratch state.
+- **`mom_summon.slc` and `mom_ai_magic.slc`** split out of the magic core and
+  wired into `scenario.slc`. Same behaviour, separable surfaces.
+
+### Fixed
+
+- **Advances that listed themselves as their own prerequisite could never be
+  researched.** `ADVANCE_AGRICULTURE` was the visible case — the generator
+  emitted a self-prereq, and the engine treats an unmet prereq as unmet forever,
+  so the button was live but the research never landed. The generator now drops
+  self-prereqs and the validator refuses to emit one again.
+- **Advanced farm tile improvements were gated behind an advance that could not
+  be reached**, for the reason above.
+
+### Tools
+
+- **`validate_scenario.py` grew gates for the failure modes this cycle actually
+  produced**: unbalanced quotes in `scen_str.txt`, stray newlines swallowing the
+  following key, self-prerequisites, dangling advance references, and unit
+  category/flag combinations that cannot be built.
+- **`uiwalk` probes** for the artifact and wish panels, so the panel contract is
+  checked against a running game rather than by reading.
+
+---
+
 ## [3.11.0] — 2026-08-03 — a fixed pool, and a price that varies by tribe
 
 **Minor.** Gameplay. Requires a NEW game: saves cache compiled SLIC.

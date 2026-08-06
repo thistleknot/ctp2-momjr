@@ -4815,7 +4815,6 @@ def main():
 
     hidden_advances = 0
     goody_excluded_advances = 0
-    unresearchable_foreign = 0
     for ident in sorted(adv_file.blocks):
         if ident in momjr_visible_idents:
             continue
@@ -4823,14 +4822,10 @@ def main():
             hidden_advances += 1
         if adv_file.ensure_flags(ident, ["GoodyHutExcluded"]):
             goody_excluded_advances += 1
-        if adv_file.ensure_self_prerequisite(ident):
-            unresearchable_foreign += 1
     if hidden_advances:
         print(f"  + hid {hidden_advances} foreign advance(s) from Great Library index")
     if goody_excluded_advances:
         print(f"  + excluded {goody_excluded_advances} foreign advance(s) from goody-hut rewards")
-    if unresearchable_foreign:
-        print(f"  + made {unresearchable_foreign} foreign advance(s) unresearchable (self-prereq)")
 
     # Sphere-home exclusivity (mod_policy "sphere_home_exclusivity"): each
     # magic sphere's research ladder additionally requires an unresearchable
