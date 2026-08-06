@@ -8,9 +8,17 @@ opaque TGA keeps it in the control plane: the palette, the proportions and the
 anchoring are all readable and re-runnable, and a change is a diff rather than a
 binary blob.
 
-THE FORMAT CONTRACT, measured from SPRITE_EFREET.tga rather than assumed:
+THE FORMAT CONTRACT, measured by BYTES across all 572 shipped pictures/*.tga
+(an earlier revision of this file claimed to have measured EFREET and then wrote
+RGBA anyway -- that shipped the fuglies; see lessons_learned "compound fugly",
+cause 2. PIL's Image.save() writes 32bpp RGBA with a TGA-2.0 footer, which is
+NOT this family and the engine never paints it):
 
-  * 160x120 RGBA.
+  * 160x120, 16bpp ARGB1555, 18-byte header, descriptor byte (offset 17) = 0,
+    NO TRUEVISION-XFILE footer -> exactly 18 + 160*120*2 = 38418 bytes.
+    570/572 shipped files are (38418,16,0); the top alpha bit is 0 in every
+    pixel of every file, and 0x0000 is the transparent key.
+  * Write with `_write_tga16` below. Never use Image.save() for these.
   * The background is PURE BLACK (0,0,0) and is chromakeyed out by makespr --
     it is NOT alpha. Every shipped sprite has a fully-opaque alpha channel, so
     transparency comes from the key colour alone.
@@ -100,6 +108,26 @@ def _lamp(draw: ImageDraw.ImageDraw, cx: int, floor: int, scale: float = 1.0) ->
                  fill=HILIGHT, outline=OUTLINE)
 
 
+def _write_tga16(im: "Image.Image", path: Path) -> None:
+    """Write `im` as the 16bpp ARGB1555 TGA this family uses (see module docstring).
+
+    Uncompressed true-colour (type 2), descriptor 0, no footer. The alpha bit is
+    left 0 to match every shipped file; transparency is the black key colour,
+    which encodes to 0x0000 exactly as it does in the shipped art.
+    """
+    im = im.convert("RGB")
+    px = im.load()
+    w, h = im.size
+    header = bytes([0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                    w & 0xFF, w >> 8, h & 0xFF, h >> 8, 16, 0])
+    out = bytearray(header)
+    for y in range(h):
+        for x in range(w):
+            r, g, b = px[x, y]
+            out += ((r >> 3) << 10 | (g >> 3) << 5 | (b >> 3)).to_bytes(2, "little")
+    path.write_bytes(bytes(out))
+
+
 def build(name: str = "LAMP") -> list[Path]:
     """Write SPRITE_<name>.tga and ICON_UNIT_<name>.tga; return what was written.
 
@@ -112,13 +140,13 @@ def build(name: str = "LAMP") -> list[Path]:
     sprite = Image.new("RGBA", (W, H), KEY + (255,))
     _lamp(ImageDraw.Draw(sprite), cx=W // 2, floor=H - 6, scale=1.0)
     p = PICTURES / f"SPRITE_{name}.tga"
-    sprite.save(p)
+    _write_tga16(sprite, p)
     written.append(p)
 
     icon = Image.new("RGBA", (W, H), KEY + (255,))
     _lamp(ImageDraw.Draw(icon), cx=W // 2, floor=H // 2 + 24, scale=1.10)
     p = PICTURES / f"ICON_UNIT_{name}.tga"
-    icon.save(p)
+    _write_tga16(icon, p)
     written.append(p)
 
     return written
