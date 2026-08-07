@@ -4,10 +4,20 @@
 
 ### Spellbook shows only 2 spells per page (middle pages)
 - Close + Prev + 2 spells + Next = 5 arms (engine max)
-- First/last pages can fit 3 spells (no Prev or no Next)
-- Middle pages stuck at 2. Consider: fewer rarity groups, or accept it.
-- Alternatively: remove Prev entirely, Close returns to hub, Next advances.
-  That gives Close + 3 spells + Next = 5 on every page.
+- FIX PLANNED: single-char button labels ([1] [2] [3] [N] [X])
+- Body text becomes the legend: "1) Bless (10)  2) Endurance (10)  3) Holy Weapon (10)"
+- No Prev button — X returns to hub, forward-only paging
+- 3 spells per page uniform, aim for equal distribution across max 3 pages per rarity
+- With ~3-6 spells per rarity per sphere, most rarity groups fit on 1-2 pages
+
+### Spells should be research-gated (total conversion gap)
+- Original MoM: spells are RESEARCHED, not freely available
+- CTP2 advances = MoM spell research (mapping already exists)
+- Spellbook currently shows ALL spells regardless of research state
+- FIX: each spell needs EnableAdvance mapping; spellbook checks
+  PlayerHasAdvance before showing a button arm
+- This makes the tech tree meaningful — you research to unlock spells
+- Priority: after the UI fix (no point gating invisible spells)
 
 ### Control-plane reconciliation spec needed
 - Two repos: harness (ctp2-modding) and mod payload (ctp2-momjr)
