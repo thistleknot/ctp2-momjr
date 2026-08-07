@@ -493,10 +493,16 @@ alertbox 'MagicMenu' {
 	// FUNCTION is not.
 	Button(ID_MOM_MSG_BTN_WORKINGS) {
 		Kill();
-		if (MomPlayerIsChaos(g.player)) {
-			Message(g.player, 'MomMsgSpellbookChaos');
+		if (MomSphere[g.player] == 5) {
+			Message(g.player, 'MomSpellHub_chaos');
+		} elseif (MomSphere[g.player] == 4) {
+			Message(g.player, 'MomSpellHub_death');
+		} elseif (MomSphere[g.player] == 3) {
+			Message(g.player, 'MomSpellHub_sorcery');
+		} elseif (MomSphere[g.player] == 2) {
+			Message(g.player, 'MomSpellHub_nature');
 		} else {
-			Message(g.player, 'MomMsgSpellbook');
+			Message(g.player, 'MomSpellHub_life');
 		}
 	}
 
