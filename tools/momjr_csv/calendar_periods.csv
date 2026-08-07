@@ -17,38 +17,32 @@
 #
 # Overall PACE is not here -- it is mod_policy.json calendar.turns_target,
 # which sets how long the reference tier's game runs and back-solves the year.
+#
+# Tuned 2026-08: target game lengths by difficulty tier:
+#   Beginner=800, Easy=940, Medium=1080, Hard=1220, VHard=1360, Impossible=1500
+# Solved by distributing turn chunks across descending year rates per tier.
 tier,start_turn,years_per_turn
-0,0,20
-0,150,10
-0,340,5
-0,500,2
-0,600,1
-1,0,20
-1,150,10
-1,340,5
-1,500,2
-1,600,1
-2,0,25
-2,80,20
-2,180,10
-2,300,5
-2,400,2
-2,500,1
-3,0,25
-3,80,20
-3,180,10
-3,300,5
-3,400,2
-3,500,1
-4,0,25
-4,160,20
-4,200,10
-4,250,5
-4,350,2
-4,400,1
-5,0,25
-5,160,20
-5,200,10
-5,250,5
-5,350,2
-5,400,1
+0,0,9
+0,108,7
+0,307,6
+0,507,5
+1,0,8
+1,207,6
+1,442,5
+1,677,3
+2,0,7
+2,245,5
+2,515,4
+2,785,3
+3,0,6
+3,418,4
+3,724,3
+3,1029,2
+4,0,5
+4,430,4
+4,770,3
+4,1110,2
+5,0,5
+5,302,4
+5,676,3
+5,1051,2

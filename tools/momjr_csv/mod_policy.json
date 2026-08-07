@@ -17,6 +17,19 @@
     "_cost_mult": "Global percentage lever applied to both ends of every band AFTER the CSV is read, so the SHAPE of the curve lives in the CSV and the overall research PACE lives here. 100 = neutral, i.e. bands exactly as the CSV states. Raise it to slow research down, lower it to speed research up, without re-editing ten rows.",
     "base_bands_source": "advance_cost_bands.csv",
     "cost_mult": 100,
+    "cost_mult_by_age": {
+      "_doc": "Per-age percentage multipliers from calendar_mapping.xlsx. 100=neutral, 500=5x. Early ages expensive to spread techs across the long early game; mid-game cheaper as science ramps; late-game very expensive for endgame feel.",
+      "AGE_ONE": 500,
+      "AGE_TWO": 500,
+      "AGE_THREE": 500,
+      "AGE_FOUR": 200,
+      "AGE_FIVE": 200,
+      "AGE_SIX": 300,
+      "AGE_SEVEN": 300,
+      "AGE_EIGHT": 300,
+      "AGE_NINE": 400,
+      "AGE_TEN": 800
+    },
     "weight_min": 2,
     "weight_max": 62,
     "prereq_factor": 0.15,
@@ -190,9 +203,115 @@
   "calendar": {
     "_doc": "Game PACE. calendar_periods.csv holds the SHAPE (years per turn per difficulty tier); this holds how long the game should run. END_OF_GAME_YEAR in Const.txt is derived: walk reference_tier's periods for turns_target turns, add start_year. Every tier then ends at that same YEAR, so faster tiers get fewer turns -- the generator prints each tier's end turn.",
     "reference_tier": 2,
-    "turns_target": 500,
+    "turns_target": 1080,
     "start_year": -4000,
     "early_warning_years_before_end": 100,
     "_doc_early_warning": "Const END_OF_GAME_YEAR_EARLY_WARNING is derived as END_OF_GAME_YEAR minus this many calendar years (stock gap is 100)."
+  },
+  "mana_economy": {
+    "_doc": "Single source of truth for mana constants. Generator emits as SLIC globals.",
+    "base_per_turn": 10,
+    "pop_coef": 2,
+    "node_bonus": 5,
+    "pool_max": 200,
+    "upkeep_rate": 2,
+    "school_pct": {
+      "life": 100,
+      "nature": 110,
+      "death": 115,
+      "sorcery": 125,
+      "chaos": 140
+    },
+    "summon_civ_pct": {
+      "life": 64,
+      "nature": 68,
+      "death": 54,
+      "sorcery": 54,
+      "chaos": 92
+    },
+    "building_bonus": {
+      "primary": 8,
+      "secondary": 3
+    },
+    "sphere_buildings": {
+      "life": [
+        "IMPROVE_WIZARDS_FORTRESS",
+        "IMPROVE_TEMPLE"
+      ],
+      "nature": [
+        "IMPROVE_PRIMAL_SOURCE",
+        "IMPROVE_FANTASTIC_STABLE"
+      ],
+      "sorcery": [
+        "IMPROVE_BEACON_OF_WISDOM",
+        "IMPROVE_LIBRARY"
+      ],
+      "death": [
+        "IMPROVE_MECHANICIANS_GUILD",
+        "IMPROVE_BARRACKS"
+      ],
+      "chaos": [
+        "IMPROVE_MERCHANTS_GUILD",
+        "IMPROVE_COLOSSEUM"
+      ]
+    }
+  },
+  "sphere_identity": {
+    "_doc": "Per-sphere UI identity markers. Used by the generator to emit sphere-specific strings in scen_str.txt.",
+    "life": {
+      "color": "white",
+      "title": "Life",
+      "greeting": "The light guides your path."
+    },
+    "nature": {
+      "color": "green",
+      "title": "Nature",
+      "greeting": "The wild answers your call."
+    },
+    "sorcery": {
+      "color": "blue",
+      "title": "Sorcery",
+      "greeting": "Knowledge is the truest power."
+    },
+    "death": {
+      "color": "purple",
+      "title": "Death",
+      "greeting": "The grave holds no secrets from you."
+    },
+    "chaos": {
+      "color": "red",
+      "title": "Chaos",
+      "greeting": "Let the world burn and be remade."
+    }
+  },
+  "spellbook": {
+    "_doc": "Paged spellbook configuration. 5 arms max per alertbox page (engine ceiling). Spells sourced from spells.csv, filtered by sphere and effect_kind != flavour.",
+    "spells_per_page": 5,
+    "implementable_kinds": [
+      "summon",
+      "unit_enchant",
+      "city_enchant",
+      "global_enchant",
+      "instant_damage",
+      "dispel"
+    ],
+    "cost_rescale": {
+      "_doc": "Wiki costs are raw MoM numbers (up to 5000). Rescaled to fit the 200-pool using rarity-aware factors. Common spells should cost 10-30, uncommon 30-60, rare 60-120, very rare 120-180.",
+      "rescale_factor": 0.1,
+      "min_cost": 10,
+      "max_cost": 180,
+      "rarity_factors": {
+        "common": 0.06,
+        "uncommon": 0.10,
+        "rare": 0.15,
+        "very rare": 0.20
+      }
+    }
+  },
+  "research_pacing": {
+    "_doc": "Phase 3 QoL: research pacing ensures mid-tier magic is reachable by turn 50-80. Tuned via advance_cost_bands.csv (already generator-owned since v4.1.0).",
+    "target_mid_magic_turn": 60,
+    "target_late_magic_turn": 120,
+    "_status": "PENDING: needs in-game calibration after Phase 0 verify"
   }
 }

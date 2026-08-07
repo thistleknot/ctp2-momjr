@@ -209,6 +209,14 @@ void_f MomCastDemonStrike(int_t p)
     }
 }
 
+// ---------------------------------------------------------------------------
+// FLAT SPELL DISPATCHER -- SUPERSEDED by generated mom_spellbook_cast.slc
+//
+// The comprehensive 135-spell MomCastSpell is now generated per-run from
+// spells.csv. It lives in mom_spellbook_cast.slc (loaded before per-sphere
+// page files in scenario.slc). The legacy 2-spell prototype is removed.
+// ---------------------------------------------------------------------------
+
 // Show the spellbook popup for player p (pool status + cast buttons).
 void_f MomSpellShowBook(int_t p)
 {
@@ -305,9 +313,9 @@ HandleEvent(BeginTurn) 'MomSpellAICast' post {
         if (MomMagicCur[p] * 4 >= MomMagicMax[p] * 3) {
             // Inlined chaos test -- see MomSpellShowBook for the nested-call crash.
             if (MomSphere[p] == 5 && MomMagicCur[p] >= 100) {
-                MomCastDemonStrike(p);
+                MomCastSpell(p, 2);
             } else {
-                MomCastFlameStrike(p);
+                MomCastSpell(p, 1);
             }
         }
     }
@@ -325,39 +333,52 @@ HandleEvent(BeginTurn) 'MomSpellAICast' post {
 // a spell. MOM_MSG_BTN_FLAME and MOM_MSG_BTN_DEMON were already authored in
 // scen_str.txt and simply never bound. The code was done; the wiring to the
 // words was the only thing missing.
+// REPLACED by generated spellbook (mom_spellbook.slc)
+// The hub's Workings arm (mom_msg.slc) still reaches these segments by name.
+// They now redirect into the paged spellbook's page 1 for the caster's sphere,
+// rather than offering two hand-wired spells.
 alertbox 'MomMsgSpellbook' {
     Show();
     Text(ID_MOM_MSG_SPELLBOOK);
-    // CLOSE FIRST -- overflow is dropped from the TAIL of the declaration list,
-    // silently, so the first-declared arm is the one guaranteed to survive.
     Button(ID_BUTTON_CLOSE) {
         Kill();
     }
-    // BACK to the hub. MagicMenu is declared in mom_msg.slc (include 55), which
-    // loads BEFORE this file (65), so naming it here is safe in both directions.
     Button(ID_MOM_MSG_BTN_BACK) {
         Kill();
         Message(g.player, 'MagicMenu');
     }
-    Button(ID_MOM_MSG_BTN_FLAME) {
-        MomCastFlameStrike(g.player);
+    // REPLACED by generated spellbook (mom_spellbook.slc)
+    // Old hand-wired Flame Strike arm:
+    // Button(ID_MOM_MSG_BTN_FLAME) {
+    //     MomCastSpell(g.player, 1);
+    //     Kill();
+    // }
+    // Old Store Power arm:
+    // Button(ID_MOM_MSG_BTN_STORE) {
+    //     Kill();
+    // }
+    // Navigate to sphere page 1 via the generated spellbook pages.
+    // Sphere detection: Message() resolves segment names at runtime, so naming
+    // a segment declared in mom_spellbook.slc (loaded after this file) is safe.
+    Button(ID_MOM_SPELL_NEXT) {
         Kill();
-    }
-    // STORE POWER -- the honest third option beside spend-50 and spend-100, and
-    // what makes the body's own promise ("or store your power for later") true.
-    // Banking is simply declining to cast, so the body is a bare Kill(); the
-    // arm exists to SAY so rather than leaving Close to mean two different
-    // things. MOM_MSG_BTN_STORE was authored long ago and never bound.
-    Button(ID_MOM_MSG_BTN_STORE) {
-        Kill();
+        if (MomSphere[g.player] == 1) {
+            Message(g.player, 'MomSpellHub_life');
+        } elseif (MomSphere[g.player] == 2) {
+            Message(g.player, 'MomSpellHub_nature');
+        } elseif (MomSphere[g.player] == 3) {
+            Message(g.player, 'MomSpellHub_sorcery');
+        } elseif (MomSphere[g.player] == 4) {
+            Message(g.player, 'MomSpellHub_death');
+        } elseif (MomSphere[g.player] == 5) {
+            Message(g.player, 'MomSpellHub_chaos');
+        }
     }
 }
 
 alertbox 'MomMsgSpellbookChaos' {
     Show();
     Text(ID_MOM_MSG_SPELLBOOK);
-    // FIVE ARMS EXACTLY -- the measured ceiling. Do not add a sixth: it would
-    // not error, it would silently delete whichever arm is declared last.
     Button(ID_BUTTON_CLOSE) {
         Kill();
     }
@@ -365,16 +386,25 @@ alertbox 'MomMsgSpellbookChaos' {
         Kill();
         Message(g.player, 'MagicMenu');
     }
-    Button(ID_MOM_MSG_BTN_DEMON) {
-        MomCastDemonStrike(g.player);
+    // REPLACED by generated spellbook (mom_spellbook.slc)
+    // Old hand-wired Demon Strike arm:
+    // Button(ID_MOM_MSG_BTN_DEMON) {
+    //     MomCastSpell(g.player, 2);
+    //     Kill();
+    // }
+    // Old hand-wired Flame Strike arm:
+    // Button(ID_MOM_MSG_BTN_FLAME) {
+    //     MomCastSpell(g.player, 1);
+    //     Kill();
+    // }
+    // Old Store Power arm:
+    // Button(ID_MOM_MSG_BTN_STORE) {
+    //     Kill();
+    // }
+    // Navigate directly to Chaos page 1.
+    Button(ID_MOM_SPELL_NEXT) {
         Kill();
-    }
-    Button(ID_MOM_MSG_BTN_FLAME) {
-        MomCastFlameStrike(g.player);
-        Kill();
-    }
-    Button(ID_MOM_MSG_BTN_STORE) {
-        Kill();
+        Message(g.player, 'MomSpellPage_chaos_1');
     }
 }
 

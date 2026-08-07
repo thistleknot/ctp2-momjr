@@ -156,8 +156,8 @@ PACT_CAPTURE_CITY_EXPIRES          10      # number of rounds before this agreem
 # REWARD_CAPTURE_CITY_EXPIRES      10      # number of rounds before this agreement expires
 CEASE_FIRE_EXPIRES                 10      # number of rounds before this agreement expires
 SHORT_CEASE_FIRE_EXPIRES           5       # number of rounds before any other agreement expires
-END_OF_GAME_YEAR_EARLY_WARNING     1800
-END_OF_GAME_YEAR                   1900
+END_OF_GAME_YEAR_EARLY_WARNING     930
+END_OF_GAME_YEAR                   1030
 CAPTURE_CITY_FOR_GOLD_MULTIPLIER   100     # amount to multiply gold reward by
 PACT_END_POLLUTION_EXPIRES         50      # number of rounds before this agreement expires
 LEAVE_OUR_LANDS_EXPIRES            10      # number of rounds before this agreement expires
