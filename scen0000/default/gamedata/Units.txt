@@ -2839,7 +2839,7 @@ UNIT_LAMP {
 UNIT_WAR_MAGE {
    Description DESCRIPTION_UNIT_WAR_MAGE
    DefaultIcon ICON_UNIT_WAR_MAGE
-   DefaultSprite SPRITE_MAGE
+   DefaultSprite SPRITE_WAR_MAGE
    Category UNIT_CATEGORY_ATTACK
    Attack 29
    Defense 12
@@ -2890,7 +2890,7 @@ UNIT_WAR_MAGE {
 UNIT_ARCH_MAGE {
    Description DESCRIPTION_UNIT_ARCH_MAGE
    DefaultIcon ICON_UNIT_ARCH_MAGE
-   DefaultSprite SPRITE_WARLOCK
+   DefaultSprite SPRITE_ARCH_MAGE
    Category UNIT_CATEGORY_ATTACK
    Attack 49
    Defense 15
@@ -2941,7 +2941,7 @@ UNIT_ARCH_MAGE {
 UNIT_DWARF_WARRIOR {
    Description DESCRIPTION_UNIT_DWARF_WARRIOR
    DefaultIcon ICON_UNIT_DWARF_WARRIOR
-   DefaultSprite SPRITE_IRON_GOLEM
+   DefaultSprite SPRITE_DWARF_WARRIOR
    Category UNIT_CATEGORY_ATTACK
    Attack 29
    Defense 43
@@ -2992,7 +2992,7 @@ UNIT_DWARF_WARRIOR {
 UNIT_DWARF_CROSSBOW {
    Description DESCRIPTION_UNIT_DWARF_CROSSBOW
    DefaultIcon ICON_UNIT_DWARF_CROSSBOW
-   DefaultSprite SPRITE_CATAPULT
+   DefaultSprite SPRITE_DWARF_CROSSBOW
    Category UNIT_CATEGORY_ATTACK
    Attack 19
    Defense 15
@@ -3043,7 +3043,7 @@ UNIT_DWARF_CROSSBOW {
 UNIT_DWARF_RUNESMITH {
    Description DESCRIPTION_UNIT_DWARF_RUNESMITH
    DefaultIcon ICON_UNIT_DWARF_RUNESMITH
-   DefaultSprite SPRITE_IRON_GOLEM
+   DefaultSprite SPRITE_DWARF_RUNESMITH
    Category UNIT_CATEGORY_ATTACK
    Attack 40
    Defense 56
@@ -3094,7 +3094,7 @@ UNIT_DWARF_RUNESMITH {
 UNIT_PRIEST {
    Description DESCRIPTION_UNIT_PRIEST
    DefaultIcon ICON_UNIT_PRIEST
-   DefaultSprite SPRITE_GUARDIAN_SPIRIT
+   DefaultSprite SPRITE_PRIEST
    Category UNIT_CATEGORY_ATTACK
    Attack 12
    Defense 35
@@ -3145,7 +3145,7 @@ UNIT_PRIEST {
 UNIT_CRUSADER {
    Description DESCRIPTION_UNIT_CRUSADER
    DefaultIcon ICON_UNIT_CRUSADER
-   DefaultSprite SPRITE_KNIGHTS
+   DefaultSprite SPRITE_CRUSADER
    Category UNIT_CATEGORY_ATTACK
    Attack 23
    Defense 46
@@ -3196,7 +3196,7 @@ UNIT_CRUSADER {
 UNIT_TEMPLAR {
    Description DESCRIPTION_UNIT_TEMPLAR
    DefaultIcon ICON_UNIT_TEMPLAR
-   DefaultSprite SPRITE_PALADINS
+   DefaultSprite SPRITE_TEMPLAR
    Category UNIT_CATEGORY_ATTACK
    Attack 36
    Defense 56
@@ -3247,7 +3247,7 @@ UNIT_TEMPLAR {
 UNIT_TREANT {
    Description DESCRIPTION_UNIT_TREANT
    DefaultIcon ICON_UNIT_TREANT
-   DefaultSprite SPRITE_WAR_MAMMOTH
+   DefaultSprite SPRITE_TREANT
    Category UNIT_CATEGORY_ATTACK
    Attack 16
    Defense 84
@@ -3298,7 +3298,7 @@ UNIT_TREANT {
 UNIT_DRUID {
    Description DESCRIPTION_UNIT_DRUID
    DefaultIcon ICON_UNIT_DRUID
-   DefaultSprite SPRITE_MAGE
+   DefaultSprite SPRITE_DRUID
    Category UNIT_CATEGORY_ATTACK
    Attack 16
    Defense 35
@@ -3349,7 +3349,7 @@ UNIT_DRUID {
 UNIT_APPRENTICE {
    Description DESCRIPTION_UNIT_APPRENTICE
    DefaultIcon ICON_UNIT_APPRENTICE
-   DefaultSprite SPRITE_PHANTOM_WARRIORS
+   DefaultSprite SPRITE_APPRENTICE
    Category UNIT_CATEGORY_ATTACK
    Attack 12
    Defense 15
@@ -3400,7 +3400,7 @@ UNIT_APPRENTICE {
 UNIT_CRYSTAL_GOLEM {
    Description DESCRIPTION_UNIT_CRYSTAL_GOLEM
    DefaultIcon ICON_UNIT_CRYSTAL_GOLEM
-   DefaultSprite SPRITE_IRON_GOLEM
+   DefaultSprite SPRITE_CRYSTAL_GOLEM
    Category UNIT_CATEGORY_ATTACK
    Attack 23
    Defense 66
@@ -3451,7 +3451,7 @@ UNIT_CRYSTAL_GOLEM {
 UNIT_DJINN {
    Description DESCRIPTION_UNIT_DJINN
    DefaultIcon ICON_UNIT_DJINN
-   DefaultSprite SPRITE_AIR_ELEMENTAL
+   DefaultSprite SPRITE_DJINN
    Category UNIT_CATEGORY_AERIAL
    Attack 47
    Defense 56
@@ -3494,7 +3494,7 @@ UNIT_DJINN {
 UNIT_VAMPIRE {
    Description DESCRIPTION_UNIT_VAMPIRE
    DefaultIcon ICON_UNIT_VAMPIRE
-   DefaultSprite SPRITE_WRAITH
+   DefaultSprite SPRITE_VAMPIRE
    Category UNIT_CATEGORY_ATTACK
    Attack 30
    Defense 46
@@ -3545,7 +3545,7 @@ UNIT_VAMPIRE {
 UNIT_BONE_GOLEM {
    Description DESCRIPTION_UNIT_BONE_GOLEM
    DefaultIcon ICON_UNIT_BONE_GOLEM
-   DefaultSprite SPRITE_IRON_GOLEM
+   DefaultSprite SPRITE_BONE_GOLEM
    Category UNIT_CATEGORY_ATTACK
    Attack 23
    Defense 75
@@ -3596,7 +3596,7 @@ UNIT_BONE_GOLEM {
 UNIT_GOBLIN {
    Description DESCRIPTION_UNIT_GOBLIN
    DefaultIcon ICON_UNIT_GOBLIN
-   DefaultSprite SPRITE_MINION
+   DefaultSprite SPRITE_GOBLIN
    Category UNIT_CATEGORY_ATTACK
    Attack 10
    Defense 15
@@ -3647,7 +3647,7 @@ UNIT_GOBLIN {
 UNIT_ORC {
    Description DESCRIPTION_UNIT_ORC
    DefaultIcon ICON_UNIT_ORC
-   DefaultSprite SPRITE_MINOTAUR
+   DefaultSprite SPRITE_ORC
    Category UNIT_CATEGORY_ATTACK
    Attack 16
    Defense 21
@@ -3698,7 +3698,7 @@ UNIT_ORC {
 UNIT_OGRE {
    Description DESCRIPTION_UNIT_OGRE
    DefaultIcon ICON_UNIT_OGRE
-   DefaultSprite SPRITE_WAR_TROLL
+   DefaultSprite SPRITE_OGRE
    Category UNIT_CATEGORY_ATTACK
    Attack 36
    Defense 35
@@ -3749,7 +3749,7 @@ UNIT_OGRE {
 UNIT_TROLL {
    Description DESCRIPTION_UNIT_TROLL
    DefaultIcon ICON_UNIT_TROLL
-   DefaultSprite SPRITE_WAR_TROLL
+   DefaultSprite SPRITE_TROLL
    Category UNIT_CATEGORY_ATTACK
    Attack 30
    Defense 46
@@ -3800,7 +3800,7 @@ UNIT_TROLL {
 UNIT_DROW {
    Description DESCRIPTION_UNIT_DROW
    DefaultIcon ICON_UNIT_DROW
-   DefaultSprite SPRITE_DEMON
+   DefaultSprite SPRITE_DROW
    Category UNIT_CATEGORY_ATTACK
    Attack 23
    Defense 35

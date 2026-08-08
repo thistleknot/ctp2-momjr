@@ -1056,20 +1056,25 @@ def dismiss_message(game: uiwalk.Game, inp) -> int:
             if gone:
                 print("dismiss alertbox -> closed=True via inject", flush=True)
                 continue
-            # AIM AT THE LAST-DECLARED ARM, NOT INDEX 0. Index 0 is the FIRST
-            # declared arm, which in MagicMenu is Summon Creature -- dismissing a
-            # box by firing its side-effecting arm would silently place orders
-            # the run never asked for. Close is declared last in these boxes and
-            # the engine renders in REVERSE declaration order, so it is the
-            # LEFTMOST button and decl_index len-1. Both the count and the centre
-            # come from this frame, so a caption change cannot move the aim.
+            # AIM AT THE FIRST-DECLARED ARM (decl_index 0). In the current
+            # MagicMenu, Close (ID_BUTTON_CLOSE) is declared FIRST. The engine
+            # renders arms in REVERSE declaration order, so Close is the
+            # RIGHTMOST button on screen — buttons[-1] in the array returned
+            # by find_alert_buttons. Previous code assumed Close was last-declared
+            # (which was true in an older MagicMenu layout with Random/Research/
+            # Goal/Close); the restructured menu has Close first.
+            #
+            # CORRECTED 2026-08-08: clicking decl_index len(arms)-1 was hitting
+            # the Artifacts arm, which does Kill() + opens MomMsgNoArtifact, a
+            # single-button sub-alertbox the harness could never dismiss —
+            # causing the persistent `[arm] dismiss: closed=False` every turn.
             arms = find_alert_buttons(after)
             if not arms:
                 print("  [aim] alertbox: no arms found to click", flush=True)
                 break
             print(f"  [aim] alertbox: minimize did not clear it -- clicking the "
-                  f"last-declared (Close) arm of {len(arms)}", flush=True)
-            gone = click_alert_arm(game, inp, len(arms) - 1, "dismiss")
+                  f"first-declared (Close) arm of {len(arms)}", flush=True)
+            gone = click_alert_arm(game, inp, 0, "dismiss")
             total += frame_delta(before, game.screenshot())
             print(f"dismiss alertbox -> closed={gone}", flush=True)
             if not gone:
