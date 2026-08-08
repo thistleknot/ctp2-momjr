@@ -68,20 +68,20 @@ alertbox 'MomSpell_nature_COMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_nature_COMMON_2');
     }
-    // [1] Earth Lore (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Resist Elements (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_31');
+        Message(player[0], 'MomSpellConfirm_33');
     }
     // [2] Giant Strength (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_32');
     }
-    // [3] Resist Elements (10 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Earth Lore (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_33');
+        Message(player[0], 'MomSpellConfirm_31');
     }
 }
 
@@ -105,15 +105,15 @@ alertbox 'MomSpell_nature_COMMON_2' {
         Kill();
         Message(player[0], 'MomSpell_nature_COMMON_1');
     }
-    // [1] Sprites (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_34');
-    }
     // [2] Stone Skin (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_35');
+    }
+    // [1] Sprites (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_34');
     }
 }
 
@@ -132,20 +132,20 @@ alertbox 'MomSpell_nature_COMMON_3' {
         Kill();
         Message(player[0], 'MomSpell_nature_COMMON_2');
     }
-    // [1] Wall of Stone (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Water Walking (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_36');
+        Message(player[0], 'MomSpellConfirm_38');
     }
     // [2] War Bears (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_37');
     }
-    // [3] Water Walking (10 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Wall of Stone (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_38');
+        Message(player[0], 'MomSpellConfirm_36');
     }
 }
 
@@ -166,20 +166,20 @@ alertbox 'MomSpell_nature_UNCOMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_nature_UNCOMMON_2');
     }
-    // [1] Basilisk (32 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Cockatrices (27 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_39');
+        Message(player[0], 'MomSpellConfirm_41');
     }
     // [2] Change Terrain (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_40');
     }
-    // [3] Cockatrices (27 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Basilisk (32 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_41');
+        Message(player[0], 'MomSpellConfirm_39');
     }
 }
 
@@ -203,15 +203,15 @@ alertbox 'MomSpell_nature_UNCOMMON_2' {
         Kill();
         Message(player[0], 'MomSpell_nature_UNCOMMON_1');
     }
-    // [1] Giant Spiders (20 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_42');
-    }
     // [2] Nature's Cures (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_43');
+    }
+    // [1] Giant Spiders (20 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_42');
     }
 }
 
@@ -230,20 +230,20 @@ alertbox 'MomSpell_nature_UNCOMMON_3' {
         Kill();
         Message(player[0], 'MomSpell_nature_UNCOMMON_2');
     }
-    // [1] Nature's Eye (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Transmute (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_44');
+        Message(player[0], 'MomSpellConfirm_46');
     }
     // [2] Path Finding (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_45');
     }
-    // [3] Transmute (10 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Nature's Eye (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_46');
+        Message(player[0], 'MomSpellConfirm_44');
     }
 }
 
@@ -264,20 +264,20 @@ alertbox 'MomSpell_nature_RARE_1' {
         Kill();
         Message(player[0], 'MomSpell_nature_RARE_2');
     }
-    // [1] Earthquake (30 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Gaia's Blessing (45 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_47');
+        Message(player[0], 'MomSpellConfirm_49');
     }
     // [2] Elemental Armor (26 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_48');
     }
-    // [3] Gaia's Blessing (45 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Earthquake (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_49');
+        Message(player[0], 'MomSpellConfirm_47');
     }
 }
 
@@ -301,15 +301,15 @@ alertbox 'MomSpell_nature_RARE_2' {
         Kill();
         Message(player[0], 'MomSpell_nature_RARE_1');
     }
-    // [1] Gorgons (90 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_50');
-    }
     // [2] Ice Storm (30 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_51');
+    }
+    // [1] Gorgons (90 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_50');
     }
 }
 
@@ -328,20 +328,20 @@ alertbox 'MomSpell_nature_RARE_3' {
         Kill();
         Message(player[0], 'MomSpell_nature_RARE_2');
     }
-    // [1] Iron Skin (30 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Stone Giant (67 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_52');
+        Message(player[0], 'MomSpellConfirm_54');
     }
     // [2] Move Fortress (30 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_53');
     }
-    // [3] Stone Giant (67 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Iron Skin (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_54');
+        Message(player[0], 'MomSpellConfirm_52');
     }
 }
 
@@ -362,20 +362,20 @@ alertbox 'MomSpell_nature_VERY_RARE_1' {
         Kill();
         Message(player[0], 'MomSpell_nature_VERY_RARE_2');
     }
-    // [1] Behemoth (140 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Earth Gate (50 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_55');
+        Message(player[0], 'MomSpellConfirm_57');
     }
     // [2] Colossus (160 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_56');
     }
-    // [3] Earth Gate (50 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Behemoth (140 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_57');
+        Message(player[0], 'MomSpellConfirm_55');
     }
 }
 
@@ -399,15 +399,15 @@ alertbox 'MomSpell_nature_VERY_RARE_2' {
         Kill();
         Message(player[0], 'MomSpell_nature_VERY_RARE_1');
     }
-    // [1] Great Wyrm (180 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_58');
-    }
     // [2] Herb Mastery (180 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_59');
+    }
+    // [1] Great Wyrm (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_58');
     }
 }
 
@@ -426,20 +426,20 @@ alertbox 'MomSpell_nature_VERY_RARE_3' {
         Kill();
         Message(player[0], 'MomSpell_nature_VERY_RARE_2');
     }
-    // [1] Nature Awareness (160 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Regeneration (60 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_60');
+        Message(player[0], 'MomSpellConfirm_62');
     }
     // [2] Nature's Wrath (180 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_61');
     }
-    // [3] Regeneration (60 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Nature Awareness (160 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_62');
+        Message(player[0], 'MomSpellConfirm_60');
     }
 }
 

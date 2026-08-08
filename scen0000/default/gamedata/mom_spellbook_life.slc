@@ -68,20 +68,20 @@ alertbox 'MomSpell_life_COMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_life_COMMON_2');
     }
-    // [1] Bless (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Guardian Spirit (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_0');
+        Message(player[0], 'MomSpellConfirm_2');
     }
     // [2] Endurance (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_1');
     }
-    // [3] Guardian Spirit (10 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Bless (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_2');
+        Message(player[0], 'MomSpellConfirm_0');
     }
 }
 
@@ -105,15 +105,15 @@ alertbox 'MomSpell_life_COMMON_2' {
         Kill();
         Message(player[0], 'MomSpell_life_COMMON_1');
     }
-    // [1] Heroism (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_3');
-    }
     // [2] Holy Armor (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_4');
+    }
+    // [1] Heroism (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_3');
     }
 }
 
@@ -132,15 +132,15 @@ alertbox 'MomSpell_life_COMMON_3' {
         Kill();
         Message(player[0], 'MomSpell_life_COMMON_2');
     }
-    // [1] Holy Weapon (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_5');
-    }
     // [2] Just Cause (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_6');
+    }
+    // [1] Holy Weapon (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_5');
     }
 }
 
@@ -161,20 +161,20 @@ alertbox 'MomSpell_life_UNCOMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_life_UNCOMMON_2');
     }
-    // [1] Heavenly Light (15 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Planar Travel (15 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_7');
+        Message(player[0], 'MomSpellConfirm_9');
     }
     // [2] Planar Seal (50 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_8');
     }
-    // [3] Planar Travel (15 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Heavenly Light (15 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_9');
+        Message(player[0], 'MomSpellConfirm_7');
     }
 }
 
@@ -198,15 +198,15 @@ alertbox 'MomSpell_life_UNCOMMON_2' {
         Kill();
         Message(player[0], 'MomSpell_life_UNCOMMON_1');
     }
-    // [1] Plane Shift (12 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_10');
-    }
     // [2] Resurrection (25 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_11');
+    }
+    // [1] Plane Shift (12 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_10');
     }
 }
 
@@ -225,15 +225,15 @@ alertbox 'MomSpell_life_UNCOMMON_3' {
         Kill();
         Message(player[0], 'MomSpell_life_UNCOMMON_2');
     }
-    // [1] True Sight (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_12');
-    }
     // [2] Unicorns (25 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_13');
+    }
+    // [1] True Sight (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_12');
     }
 }
 
@@ -254,20 +254,20 @@ alertbox 'MomSpell_life_RARE_1' {
         Kill();
         Message(player[0], 'MomSpell_life_RARE_2');
     }
-    // [1] Altar of Battle (45 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Incarnation (75 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_14');
+        Message(player[0], 'MomSpellConfirm_16');
     }
     // [2] Angel (82 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_15');
     }
-    // [3] Incarnation (75 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Altar of Battle (45 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_16');
+        Message(player[0], 'MomSpellConfirm_14');
     }
 }
 
@@ -291,15 +291,15 @@ alertbox 'MomSpell_life_RARE_2' {
         Kill();
         Message(player[0], 'MomSpell_life_RARE_1');
     }
-    // [1] Invulnerability (30 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_17');
-    }
     // [2] Lionheart (30 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_18');
+    }
+    // [1] Invulnerability (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_17');
     }
 }
 
@@ -318,20 +318,20 @@ alertbox 'MomSpell_life_RARE_3' {
         Kill();
         Message(player[0], 'MomSpell_life_RARE_2');
     }
-    // [1] Prosperity (37 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Stream of Life (45 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_19');
+        Message(player[0], 'MomSpellConfirm_21');
     }
     // [2] Righteousness (30 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_20');
     }
-    // [3] Stream of Life (45 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Prosperity (37 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_21');
+        Message(player[0], 'MomSpellConfirm_19');
     }
 }
 
@@ -352,20 +352,20 @@ alertbox 'MomSpell_life_VERY_RARE_1' {
         Kill();
         Message(player[0], 'MomSpell_life_VERY_RARE_2');
     }
-    // [1] Arch Angel (180 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Charm of Life (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_22');
+        Message(player[0], 'MomSpellConfirm_24');
     }
     // [2] Astral Gate (70 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_23');
     }
-    // [3] Charm of Life (180 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Arch Angel (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_24');
+        Message(player[0], 'MomSpellConfirm_22');
     }
 }
 
@@ -389,15 +389,15 @@ alertbox 'MomSpell_life_VERY_RARE_2' {
         Kill();
         Message(player[0], 'MomSpell_life_VERY_RARE_1');
     }
-    // [1] Consecration (80 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_25');
-    }
     // [2] Crusade (180 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_26');
+    }
+    // [1] Consecration (80 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_25');
     }
 }
 
@@ -416,15 +416,15 @@ alertbox 'MomSpell_life_VERY_RARE_3' {
         Kill();
         Message(player[0], 'MomSpell_life_VERY_RARE_2');
     }
-    // [1] Holy Arms (180 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_27');
-    }
     // [2] Inspirations (70 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_28');
+    }
+    // [1] Holy Arms (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_27');
     }
 }
 

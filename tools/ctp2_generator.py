@@ -3685,11 +3685,13 @@ def _emit_spellbook_pages() -> tuple[int, int]:
                     slic_lines.append(f"    }}")
 
                 # Spell buttons (leftmost on screen → declared last)
-                # Emit in FORWARD order so [1] is declared last = renders leftmost.
+                # CTP2 renders buttons in REVERSE declaration order, so declare
+                # [3] first (rightmost) down to [1] last (leftmost). This matches
+                # the summon picker's proven pattern in mom_summon.slc.
                 # Each button navigates to a CONFIRMATION page (shows description,
                 # Cast/Back). No direct MomCastSpell from the list page.
-                for slot_idx, spell_row in enumerate(page_spells):
-                    display_num = slot_idx + 1
+                for slot_idx, spell_row in enumerate(reversed(page_spells)):
+                    display_num = len(page_spells) - slot_idx
                     spell_name = spell_row["name"].strip()
                     shipped_cost = spell_row["_shipped_cost"]
                     btn_key = f"MOM_SPELL_BTN_{display_num}"

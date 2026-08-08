@@ -68,20 +68,20 @@ alertbox 'MomSpell_chaos_COMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_chaos_COMMON_2');
     }
-    // [1] Corruption (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Hell Hounds (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_112');
+        Message(player[0], 'MomSpellConfirm_114');
     }
     // [2] Eldritch Weapon (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_113');
     }
-    // [3] Hell Hounds (10 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Corruption (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_114');
+        Message(player[0], 'MomSpellConfirm_112');
     }
 }
 
@@ -124,20 +124,20 @@ alertbox 'MomSpell_chaos_UNCOMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_chaos_UNCOMMON_2');
     }
-    // [1] Chaos Channels (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Doom Bat (30 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_116');
+        Message(player[0], 'MomSpellConfirm_118');
     }
     // [2] Chimeras (35 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_117');
     }
-    // [3] Doom Bat (30 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Chaos Channels (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_118');
+        Message(player[0], 'MomSpellConfirm_116');
     }
 }
 
@@ -161,15 +161,15 @@ alertbox 'MomSpell_chaos_UNCOMMON_2' {
         Kill();
         Message(player[0], 'MomSpell_chaos_UNCOMMON_1');
     }
-    // [1] Fire Giant (15 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_119');
-    }
     // [2] Flame Blade (12 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_120');
+    }
+    // [1] Fire Giant (15 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_119');
     }
 }
 
@@ -188,20 +188,20 @@ alertbox 'MomSpell_chaos_UNCOMMON_3' {
         Kill();
         Message(player[0], 'MomSpell_chaos_UNCOMMON_2');
     }
-    // [1] Gargoyles (20 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Raise Volcano (20 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_121');
+        Message(player[0], 'MomSpellConfirm_123');
     }
     // [2] Immolation (15 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_122');
     }
-    // [3] Raise Volcano (20 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Gargoyles (20 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_123');
+        Message(player[0], 'MomSpellConfirm_121');
     }
 }
 
@@ -217,20 +217,20 @@ alertbox 'MomSpell_chaos_RARE_1' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // [1] Chaos Spawn (75 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Fire Storm (37 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_124');
+        Message(player[0], 'MomSpellConfirm_126');
     }
     // [2] Efreet (82 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_125');
     }
-    // [3] Fire Storm (37 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Chaos Spawn (75 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_126');
+        Message(player[0], 'MomSpellConfirm_124');
     }
 }
 
@@ -251,20 +251,20 @@ alertbox 'MomSpell_chaos_VERY_RARE_1' {
         Kill();
         Message(player[0], 'MomSpell_chaos_VERY_RARE_2');
     }
-    // [1] Armageddon (180 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Chaos Surge (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_127');
+        Message(player[0], 'MomSpellConfirm_129');
     }
     // [2] Call the Void (100 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_128');
     }
-    // [3] Chaos Surge (180 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Armageddon (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_129');
+        Message(player[0], 'MomSpellConfirm_127');
     }
 }
 
@@ -288,15 +288,15 @@ alertbox 'MomSpell_chaos_VERY_RARE_2' {
         Kill();
         Message(player[0], 'MomSpell_chaos_VERY_RARE_1');
     }
-    // [1] Doom Mastery (180 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_130');
-    }
     // [2] Great Drake (180 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_131');
+    }
+    // [1] Doom Mastery (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_130');
     }
 }
 
@@ -315,20 +315,20 @@ alertbox 'MomSpell_chaos_VERY_RARE_3' {
         Kill();
         Message(player[0], 'MomSpell_chaos_VERY_RARE_2');
     }
-    // [1] Great Wasting (180 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Meteor Storm (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_132');
+        Message(player[0], 'MomSpellConfirm_134');
     }
     // [2] Hydra (130 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_133');
     }
-    // [3] Meteor Storm (180 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Great Wasting (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_134');
+        Message(player[0], 'MomSpellConfirm_132');
     }
 }
 

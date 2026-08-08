@@ -3869,3 +3869,26 @@ opposing sphere's creatures.
 ### Design reference
 See `Scenarios/mom/inspirations.md` for the full TRIZ + Six Hats + Enneagram
 analysis that produced this matrix.
+
+
+## Numbered buttons must be declared in DESCENDING order (2026-08-08)
+
+The spellbook's "Cast a Working" pages rendered numbered buttons as `[3] [2] [1]`
+left-to-right while the Summon picker correctly showed `[1] [2] [3]`. Root cause:
+CTP2 renders alertbox buttons in REVERSE declaration order (established 2026-07-24),
+and the spellbook generator emitted `BTN_1, BTN_2, BTN_3` (forward) while the
+summon picker emitted `BTN_3, BTN_2, BTN_1` (reverse).
+
+**Fix:** reversed the loop in `_emit_spellbook_pages()` — `enumerate(reversed(page_spells))`
+with `display_num = len(page_spells) - slot_idx`. The canonical declaration sequence
+for a paged alertbox with numbered content is:
+
+```
+Close → Next → Prev → BTN_N → ... → BTN_2 → BTN_1
+(first declared = rightmost rendered)   (last declared = leftmost rendered)
+```
+
+**Law:** any generator emitting numbered alertbox arms MUST declare them highest-first.
+The comment "emit forward so [1] is last" was self-contradictory and never tested
+visually — a forward loop makes [1] FIRST, not last. Trust the summon picker as the
+proven reference implementation.

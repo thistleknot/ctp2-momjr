@@ -74,6 +74,16 @@ FIRST.**
 > survives, and it lands rightmost on screen because of the reversal. The tree
 > below fits with one slot spare at every node.
 
+**Numbered buttons SHALL be declared in DESCENDING order** (`BTN_3`, `BTN_2`,
+`BTN_1`) so they render left-to-right as `[1] [2] [3]`.
+
+> MEASURED 2026-08-08: spellbook pages declared BTN_1 first → rendered as
+> `[3] [2] [1]` on screen, while the summon picker (which declared BTN_3 first)
+> rendered correctly as `[1] [2] [3]`. The generator now emits spell buttons in
+> reverse declaration order, matching the proven summon picker pattern. The
+> canonical declaration sequence for a 3-spell page is:
+> `Close → Next → Prev → BTN_3 → BTN_2 → BTN_1` (rightmost to leftmost).
+
 ***decisions***
 
 Three questions were left open when this tree was first drafted. Settled:

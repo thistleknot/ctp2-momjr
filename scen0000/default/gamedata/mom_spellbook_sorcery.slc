@@ -68,20 +68,20 @@ alertbox 'MomSpell_sorcery_COMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_COMMON_2');
     }
-    // [1] Floating Island (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Nagas (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_63');
+        Message(player[0], 'MomSpellConfirm_65');
     }
     // [2] Guardian Wind (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_64');
     }
-    // [3] Nagas (10 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Floating Island (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_65');
+        Message(player[0], 'MomSpellConfirm_63');
     }
 }
 
@@ -100,15 +100,15 @@ alertbox 'MomSpell_sorcery_COMMON_2' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_COMMON_1');
     }
-    // [1] Resist Magic (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_66');
-    }
     // [2] Word of Recall (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_67');
+    }
+    // [1] Resist Magic (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_66');
     }
 }
 
@@ -129,20 +129,20 @@ alertbox 'MomSpell_sorcery_UNCOMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_UNCOMMON_2');
     }
-    // [1] Aura of Majesty (40 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Enchant Road (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_68');
+        Message(player[0], 'MomSpellConfirm_70');
     }
     // [2] Disenchant True (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_69');
     }
-    // [3] Enchant Road (10 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Aura of Majesty (40 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_70');
+        Message(player[0], 'MomSpellConfirm_68');
     }
 }
 
@@ -166,15 +166,15 @@ alertbox 'MomSpell_sorcery_UNCOMMON_2' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_UNCOMMON_1');
     }
-    // [1] Flight (12 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_71');
-    }
     // [2] Spell Blast (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_72');
+    }
+    // [1] Flight (12 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_71');
     }
 }
 
@@ -193,15 +193,15 @@ alertbox 'MomSpell_sorcery_UNCOMMON_3' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_UNCOMMON_2');
     }
-    // [1] Spell Lock (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_73');
-    }
     // [2] Wind Mastery (40 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_74');
+    }
+    // [1] Spell Lock (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_73');
     }
 }
 
@@ -222,20 +222,20 @@ alertbox 'MomSpell_sorcery_RARE_1' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_RARE_2');
     }
-    // [1] Disjunction True (30 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Magic Immunity (37 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_75');
+        Message(player[0], 'MomSpellConfirm_77');
     }
     // [2] Invisibility (26 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_76');
     }
-    // [3] Magic Immunity (37 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Disjunction True (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_77');
+        Message(player[0], 'MomSpellConfirm_75');
     }
 }
 
@@ -254,20 +254,20 @@ alertbox 'MomSpell_sorcery_RARE_2' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_RARE_1');
     }
-    // [1] Stasis (37 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Wind Walking (37 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_78');
+        Message(player[0], 'MomSpellConfirm_80');
     }
     // [2] Storm Giant (75 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_79');
     }
-    // [3] Wind Walking (37 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Stasis (37 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_80');
+        Message(player[0], 'MomSpellConfirm_78');
     }
 }
 
@@ -288,20 +288,20 @@ alertbox 'MomSpell_sorcery_VERY_RARE_1' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_VERY_RARE_2');
     }
-    // [1] Djinn (130 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Great Unsummoning (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_81');
+        Message(player[0], 'MomSpellConfirm_83');
     }
     // [2] Flying Fortress (100 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_82');
     }
-    // [3] Great Unsummoning (180 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Djinn (130 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_83');
+        Message(player[0], 'MomSpellConfirm_81');
     }
 }
 
@@ -325,15 +325,15 @@ alertbox 'MomSpell_sorcery_VERY_RARE_2' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_VERY_RARE_1');
     }
-    // [1] Sky Drake (180 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_84');
-    }
     // [2] Spell Binding (180 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_85');
+    }
+    // [1] Sky Drake (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_84');
     }
 }
 
@@ -352,20 +352,20 @@ alertbox 'MomSpell_sorcery_VERY_RARE_3' {
         Kill();
         Message(player[0], 'MomSpell_sorcery_VERY_RARE_2');
     }
-    // [1] Spell Ward (70 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Time Stop (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_86');
+        Message(player[0], 'MomSpellConfirm_88');
     }
     // [2] Suppress Magic (180 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_87');
     }
-    // [3] Time Stop (180 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Spell Ward (70 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_88');
+        Message(player[0], 'MomSpellConfirm_86');
     }
 }
 

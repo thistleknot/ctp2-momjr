@@ -68,20 +68,20 @@ alertbox 'MomSpell_death_COMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_death_COMMON_2');
     }
-    // [1] Cloak of Fear (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Ghouls (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_89');
+        Message(player[0], 'MomSpellConfirm_91');
     }
     // [2] Dark Rituals (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_90');
     }
-    // [3] Ghouls (10 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Cloak of Fear (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_91');
+        Message(player[0], 'MomSpellConfirm_89');
     }
 }
 
@@ -124,20 +124,20 @@ alertbox 'MomSpell_death_UNCOMMON_1' {
         Kill();
         Message(player[0], 'MomSpell_death_UNCOMMON_2');
     }
-    // [1] Black Channels (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Lycanthropy (18 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_93');
+        Message(player[0], 'MomSpellConfirm_95');
     }
     // [2] Drain Power (10 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_94');
     }
-    // [3] Lycanthropy (18 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Black Channels (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_95');
+        Message(player[0], 'MomSpellConfirm_93');
     }
 }
 
@@ -161,15 +161,15 @@ alertbox 'MomSpell_death_UNCOMMON_2' {
         Kill();
         Message(player[0], 'MomSpell_death_UNCOMMON_1');
     }
-    // [1] Night Stalker (25 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_96');
-    }
     // [2] Shadow Demons (32 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_97');
+    }
+    // [1] Night Stalker (25 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_96');
     }
 }
 
@@ -188,15 +188,15 @@ alertbox 'MomSpell_death_UNCOMMON_3' {
         Kill();
         Message(player[0], 'MomSpell_death_UNCOMMON_2');
     }
-    // [1] Subversion (10 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
-        Kill();
-        Message(player[0], 'MomSpellConfirm_98');
-    }
     // [2] Wall of Darkness (20 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_99');
+    }
+    // [1] Subversion (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_98');
     }
 }
 
@@ -217,20 +217,20 @@ alertbox 'MomSpell_death_RARE_1' {
         Kill();
         Message(player[0], 'MomSpell_death_RARE_2');
     }
-    // [1] Black Wind (30 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Warp Node (11 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_100');
+        Message(player[0], 'MomSpellConfirm_102');
     }
     // [2] Cloud of Shadow (22 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_101');
     }
-    // [3] Warp Node (11 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Black Wind (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_102');
+        Message(player[0], 'MomSpellConfirm_100');
     }
 }
 
@@ -249,20 +249,20 @@ alertbox 'MomSpell_death_RARE_2' {
         Kill();
         Message(player[0], 'MomSpell_death_RARE_1');
     }
-    // [1] Wraith Form (22 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Zombie Mastery (120 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_103');
+        Message(player[0], 'MomSpellConfirm_105');
     }
     // [2] Wraiths (75 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_104');
     }
-    // [3] Zombie Mastery (120 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Wraith Form (22 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_105');
+        Message(player[0], 'MomSpellConfirm_103');
     }
 }
 
@@ -283,20 +283,20 @@ alertbox 'MomSpell_death_VERY_RARE_1' {
         Kill();
         Message(player[0], 'MomSpell_death_VERY_RARE_2');
     }
-    // [1] Cruel Unminding (50 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Death Wish (100 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_106');
+        Message(player[0], 'MomSpellConfirm_108');
     }
     // [2] Death Knights (120 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_107');
     }
-    // [3] Death Wish (100 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Cruel Unminding (50 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_108');
+        Message(player[0], 'MomSpellConfirm_106');
     }
 }
 
@@ -315,20 +315,20 @@ alertbox 'MomSpell_death_VERY_RARE_2' {
         Kill();
         Message(player[0], 'MomSpell_death_VERY_RARE_1');
     }
-    // [1] Demon Lord (180 mana)
-    Button(ID_MOM_SPELL_BTN_1) {
+    // [3] Evil Omens (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_109');
+        Message(player[0], 'MomSpellConfirm_111');
     }
     // [2] Eternal Night (180 mana)
     Button(ID_MOM_SPELL_BTN_2) {
         Kill();
         Message(player[0], 'MomSpellConfirm_110');
     }
-    // [3] Evil Omens (180 mana)
-    Button(ID_MOM_SPELL_BTN_3) {
+    // [1] Demon Lord (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
         Kill();
-        Message(player[0], 'MomSpellConfirm_111');
+        Message(player[0], 'MomSpellConfirm_109');
     }
 }
 
