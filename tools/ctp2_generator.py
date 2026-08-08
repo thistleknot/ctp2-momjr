@@ -4376,7 +4376,7 @@ def _emit_spell_effects() -> int:
                 "Change Terrain":  'Terraform(tmpCity.location, 4);',  # to grassland
                 "Raise Volcano":   'Terraform(tmpCity.location, 5);',  # to desert/volcanic
                 "Corruption":      'Terraform(tmpCity.location, 17);', # to dead terrain
-                "Earth Lore":      'CreateUnit(p, UnitDB(UNIT_AIRSHIP), tmpCity.location, 8, killUnit); KillUnit(killUnit);',  # spawn+kill: reveals vision at spawn point
+                "Earth Lore":      'CreateUnit(p, UnitDB(UNIT_AIR_ELEMENTAL), tmpCity.location, 8, killUnit); KillUnit(killUnit);',  # spawn+kill: reveals vision at spawn point
             }
             _UTILITY_STUBS = {
                 "Nature's Cures", "Move Fortress", "Plane Shift",

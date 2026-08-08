@@ -262,7 +262,7 @@ int_f MomCastSpell(int_t p, int_t spellId)
         // Earth Lore (instant_damage) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
         GetCityByIndex(p, 0, tmpCity);
-        CreateUnit(p, UnitDB(UNIT_AIRSHIP), tmpCity.location, 8, killUnit);
+        CreateUnit(p, UnitDB(UNIT_AIR_ELEMENTAL), tmpCity.location, 8, killUnit);
         KillUnit(killUnit);
         Message(p, 'MomSpellCast');
     } elseif (spellId == 32) {
