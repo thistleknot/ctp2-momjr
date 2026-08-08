@@ -749,9 +749,9 @@ def _detect_units_sheet_slots(sheet_arr: "np.ndarray", slot_count_hint: int) -> 
     x_centers = _cluster_positions([component["left"] + (component["right"] - component["left"]) / 2 for component in anchors], cluster_gap)
     y_centers = _cluster_positions([component["top"] + (component["bottom"] - component["top"]) / 2 for component in anchors], cluster_gap)
     if len(x_centers) * len(y_centers) < slot_count_hint:
-        raise RuntimeError(
-            f"Units.bmp slot detection inferred only {len(x_centers)}x{len(y_centers)} slots for {slot_count_hint} identifiers"
-        )
+        print(f"  [NOTE] Units.bmp slot detection: {len(x_centers)}x{len(y_centers)} = "
+              f"{len(x_centers)*len(y_centers)} slots for {slot_count_hint} identifiers "
+              f"(multiple units may share a cell)")
 
     slots = {(row, col): [] for row in range(len(y_centers)) for col in range(len(x_centers))}
     for component in components:
@@ -844,12 +844,19 @@ def extract_icon_units(identifiers: list, dry_run: bool, output_dir: Path) -> tu
 
     written = 0
     skipped = 0
+    n_cols = len(x_centers)
+    n_rows = len(y_centers)
+    # First pass: extract icons for units that fit within the detected grid.
+    # Track which cells have been written so shared-art units (beyond the grid)
+    # can copy from the same cell.
+    cell_to_icon: dict[tuple, "Image.Image"] = {}
+    deferred: list[tuple] = []  # (cell_index_of_source, ident, name)
+
     for idx, (row_i, ident, name) in enumerate(identifiers):
-        slot_row = row_i // len(x_centers)
-        slot_col = row_i % len(x_centers)
-        if slot_row >= len(y_centers):
-            print(f"  [WARN] No detected slot for {ident} (idx={idx})")
-            skipped += 1
+        slot_row = row_i // n_cols
+        slot_col = row_i % n_cols
+        if slot_row >= n_rows:
+            deferred.append((row_i, ident, name))
             continue
 
         sprite = _compose_units_slot_sprite(sheet_arr, slots.get((slot_row, slot_col), []))
@@ -857,6 +864,7 @@ def extract_icon_units(identifiers: list, dry_run: bool, output_dir: Path) -> tu
             sprite, 160, 120,
             max_frac=ICON_CONTENT_MAX_FRAC, floor_margin=ICON_FLOOR_MARGIN,
         )
+        cell_to_icon[(slot_row, slot_col)] = icon
         dest = output_dir / f"{ident}.tga"
         save_tga_rgb555(icon, dest, dry_run)
         if not dry_run:
@@ -864,6 +872,72 @@ def extract_icon_units(identifiers: list, dry_run: bool, output_dir: Path) -> tu
         else:
             print(f"  [DRY] would write {dest}")
         written += 1
+
+    # Second pass: units beyond the grid share art with another unit. Find
+    # that source unit's cell by matching the sprite column in the CSV, then
+    # copy/re-extract from the same cell.
+    if deferred:
+        # Build sprite→art_cell_index map from identifiers that ARE on the grid
+        import csv as _csv
+        _csv_path = BMP_DIR.parent.parent / "Program Files(x86)" / "Activision" / "Call To Power 2" / "Scenarios" / "mom" / "tools" / "momjr_csv" / "units.csv"
+        # Use the identifiers list itself: identifiers whose row_i < n_cols*n_rows
+        # are the ones that were extracted. Build ident->cell map.
+        ident_to_cell: dict[str, tuple] = {}
+        sprite_to_cell: dict[str, tuple] = {}
+        for row_i, ident_src, _ in identifiers:
+            sr = row_i // n_cols
+            sc = row_i % n_cols
+            if sr < n_rows:
+                ident_to_cell[ident_src] = (sr, sc)
+
+        # Read the CSV to get sprite column for all units
+        csv_path = Path(__file__).resolve().parent / "momjr_csv" / "units.csv"
+        if csv_path.exists():
+            with open(csv_path, newline="", encoding="utf-8-sig") as f:
+                for row in _csv.DictReader(f):
+                    icon_id = row.get("icon", "").strip()
+                    sprite_id = row.get("sprite", "").strip()
+                    if icon_id and sprite_id and icon_id in ident_to_cell:
+                        sprite_to_cell[sprite_id] = ident_to_cell[icon_id]
+
+        for row_i, ident, name in deferred:
+            # Find which sprite this unit uses from the CSV
+            source_cell = None
+            if csv_path.exists():
+                with open(csv_path, newline="", encoding="utf-8-sig") as f:
+                    for row in _csv.DictReader(f):
+                        if row.get("icon", "").strip() == ident:
+                            sprite_id = row.get("sprite", "").strip()
+                            source_cell = sprite_to_cell.get(sprite_id)
+                            break
+
+            if source_cell and source_cell in cell_to_icon:
+                icon = cell_to_icon[source_cell]
+                dest = output_dir / f"{ident}.tga"
+                save_tga_rgb555(icon, dest, dry_run)
+                if not dry_run:
+                    print(f"  Wrote {dest.name} ({name}, shared from cell {source_cell})")
+                else:
+                    print(f"  [DRY] would write {dest} (shared from cell {source_cell})")
+                written += 1
+            elif source_cell:
+                # Cell exists in grid but wasn't in cache — extract directly
+                sr, sc = source_cell
+                sprite = _compose_units_slot_sprite(sheet_arr, slots.get((sr, sc), []))
+                icon = _scale_rgba_to_canvas(
+                    sprite, 160, 120,
+                    max_frac=ICON_CONTENT_MAX_FRAC, floor_margin=ICON_FLOOR_MARGIN,
+                )
+                dest = output_dir / f"{ident}.tga"
+                save_tga_rgb555(icon, dest, dry_run)
+                if not dry_run:
+                    print(f"  Wrote {dest.name} ({name}, extracted from cell {source_cell})")
+                else:
+                    print(f"  [DRY] would write {dest} (extracted from cell {source_cell})")
+                written += 1
+            else:
+                print(f"  [WARN] No source cell found for {ident} ({name}) — skipped")
+                skipped += 1
 
     return written, skipped
 
