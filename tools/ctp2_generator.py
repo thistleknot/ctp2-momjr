@@ -4376,7 +4376,7 @@ def _emit_spell_effects() -> int:
                 "Change Terrain":  'Terraform(tmpCity.location, 4);',  # to grassland
                 "Raise Volcano":   'Terraform(tmpCity.location, 5);',  # to desert/volcanic
                 "Corruption":      'Terraform(tmpCity.location, 17);', # to dead terrain
-                "Earth Lore":      'CreateUnit(p, UnitDB(UNIT_AIRSHIP), tmpCity.location, 8);',  # scout spawns 8 tiles out, reveals area
+                "Earth Lore":      'CreateUnit(p, UnitDB(UNIT_AIRSHIP), tmpCity.location, 8, killUnit); KillUnit(killUnit);',  # spawn+kill: reveals vision at spawn point
             }
             _UTILITY_STUBS = {
                 "Nature's Cures", "Move Fortress", "Plane Shift",
@@ -4389,7 +4389,9 @@ def _emit_spell_effects() -> int:
             if spell_name in _UTILITY_REAL_EFFECTS:
                 lines.append(f"        MomMagicCur[p] = MomMagicCur[p] - {shipped_cost};")
                 lines.append(f"        GetCityByIndex(p, 0, tmpCity);")
-                lines.append(f"        {_UTILITY_REAL_EFFECTS[spell_name]}")
+                for stmt in _UTILITY_REAL_EFFECTS[spell_name].split('; '):
+                    stmt = stmt.rstrip(';').strip() + ';'
+                    lines.append(f"        {stmt}")
                 lines.append(f"        Message(p, 'MomSpellCast');")
             elif spell_name in _UTILITY_STUBS:
                 lines.append(f"        MomMagicCur[p] = MomMagicCur[p] - {shipped_cost};")
