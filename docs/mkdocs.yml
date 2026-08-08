@@ -1,0 +1,44 @@
+site_name: Masters of Magic — Player's Guide
+site_description: Total conversion mod for Call To Power 2
+theme:
+  name: material
+  palette:
+    primary: deep purple
+    accent: amber
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/install.md
+    - Your First Game: getting-started/first-game.md
+    - The Five Spheres: getting-started/spheres.md
+  - Magic System:
+    - Overview: magic/overview.md
+    - Spellbook & Casting: magic/spellbook.md
+    - Spell Hand (Draw Economy): magic/spell-hand.md
+    - Proximity & Targeting: magic/targeting.md
+    - Resistance & Affinities: magic/resistance.md
+    - Unit-Spell Bindings: magic/bindings.md
+    - Enchant Stacking: magic/stacking.md
+    - Cataclysm: magic/cataclysm.md
+  - Units & Factions:
+    - Faction Overview: factions/overview.md
+    - Life — Holy Order: factions/life.md
+    - Nature — Fey Court: factions/nature.md
+    - Sorcery — Arcane Enclave: factions/sorcery.md
+    - Death — Necropolis: factions/death.md
+    - Chaos — Underworld: factions/chaos.md
+    - Neutral — Dwarves & Mercenaries: factions/neutral.md
+    - Heroes: factions/heroes.md
+  - Systems:
+    - Hero Stats (Power/Fortitude): systems/hero-stats.md
+    - Fellowship & Morale: systems/fellowship.md
+    - Summoning: systems/summoning.md
+    - Mana Economy: systems/mana.md
+    - Artifacts: systems/artifacts.md
+  - Reference:
+    - Spell List: reference/spells.md
+    - Unit Stats: reference/units.md
+    - Advance Tree: reference/advances.md
+    - Building List: reference/buildings.md
+    - Terrain Effects: reference/terrain.md
