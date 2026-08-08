@@ -261,6 +261,8 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 31) {
         // Earth Lore (instant_damage) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
+        GetCityByIndex(p, 0, tmpCity);
+        CreateUnit(p, UnitDB(UNIT_AIRSHIP), tmpCity.location, 8);
         Message(p, 'MomSpellCast');
     } elseif (spellId == 32) {
         // Giant Strength (unit_enchant) - cost 10

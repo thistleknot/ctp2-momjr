@@ -4376,9 +4376,10 @@ def _emit_spell_effects() -> int:
                 "Change Terrain":  'Terraform(tmpCity.location, 4);',  # to grassland
                 "Raise Volcano":   'Terraform(tmpCity.location, 5);',  # to desert/volcanic
                 "Corruption":      'Terraform(tmpCity.location, 17);', # to dead terrain
+                "Earth Lore":      'CreateUnit(p, UnitDB(UNIT_AIRSHIP), tmpCity.location, 8);',  # scout spawns 8 tiles out, reveals area
             }
             _UTILITY_STUBS = {
-                "Earth Lore", "Nature's Cures", "Move Fortress", "Plane Shift",
+                "Nature's Cures", "Move Fortress", "Plane Shift",
                 "Resurrection", "Raise Dead", "Word of Recall", "Healing",
                 "Mass Healing", "Recall Hero", "Summoning Circle", "Spell of Return",
                 "Create Artifact", "Enchant Item", "Spell of Mastery",

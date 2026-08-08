@@ -31,19 +31,19 @@ alertbox 'MomSpellHub_life' {
             Message(player[0], 'MomSpellLocked');
         }
     }
-    // Rare (8 spells) -- requires rung >= 2
+    // Rare (8 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_RARE) {
         Kill();
-        if (MomSphereRung[player[0]] >= 2) {
+        if (MomSphereRung[player[0]] >= 1) {
             Message(player[0], 'MomSpell_life_RARE_1');
         } else {
             Message(player[0], 'MomSpellLocked');
         }
     }
-    // Very Rare (9 spells) -- requires rung >= 4
+    // Very Rare (9 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_VERY_RARE) {
         Kill();
-        if (MomSphereRung[player[0]] >= 4) {
+        if (MomSphereRung[player[0]] >= 1) {
             Message(player[0], 'MomSpell_life_VERY_RARE_1');
         } else {
             Message(player[0], 'MomSpellLocked');

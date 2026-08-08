@@ -286,7 +286,7 @@
   },
   "spellbook": {
     "_doc": "Paged spellbook configuration. 5 arms max per alertbox page (engine ceiling). Spells sourced from spells.csv, filtered by sphere and effect_kind != flavour.",
-    "spells_per_page": 5,
+    "spells_per_page": 3,
     "implementable_kinds": [
       "summon",
       "unit_enchant",
@@ -315,3 +315,4 @@
     "_status": "PENDING: needs in-game calibration after Phase 0 verify"
   }
 }
+
