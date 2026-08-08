@@ -327,7 +327,18 @@ int_f MomCountChaosFoci(int_t p_16)
 // DECLARED HERE, immediately above the only writer, for the same reason the
 // magic-power block sits above its readers: SLIC needs declaration-before-use
 // WITHIN a file, not just across the include order.
-unit_t MomSummonUnit[160];   // 5 players x 32 slots -- the creature handle
+//
+// SAVE/LOAD FIX (2026-08-07): unit_t MomSummonUnit[160] REMOVED. A 160-element
+// unit_t array causes a crash on Load (Ctrl+L) because the engine's SLIC
+// deserializer cannot reconstitute unit handles from a save file -- they are
+// runtime pointers that become dangling when game state is rebuilt from scratch.
+// AlexanderTheGreat uses unit_t[13] successfully, but 160 exceeds whatever
+// internal limit exists.
+//
+// The upkeep system now tracks rung slots WITHOUT unit handles. Insolvency
+// releases the highest-rung slot (mana refunded, creature lives but upkeep
+// stops). The creature is not killed -- it just becomes "free" as if its
+// magical bond snapped. This is a gameplay compromise for save/load stability.
 int_t  MomSummonRung[160];   // its rung 1..5; 0 == FREE SLOT
 int_t  MomUpkeepDisp;        // display scalars for the 'j' MAGIC STATUS panel
 int_t  MomNetDisp;           // net = generation - upkeep, may be negative
@@ -403,7 +414,6 @@ void_f MomSpawnSphereUnit(int_t p_13, int_t unitType, int_t rung)
                     // TRACKED creatures is better than overwriting a live entry,
                     // which would orphan that creature into permanent free upkeep.
                     if (slot >= 0) {
-                        MomSummonUnit[base + slot] = newUnit;
                         MomSummonRung[base + slot] = rung;
                     }
                 }

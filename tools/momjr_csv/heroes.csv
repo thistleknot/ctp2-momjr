@@ -1,0 +1,48 @@
+ident,name,type,melee_attack,ranged_attack,defense,resistance,hit_points,movement,hire_cost,description
+HERO_AERIE_THE_ILLUSIONIST,Aerie the Illusionist,Illusionist,1,5,4,6,5,0,500,Aerie The Illusionist Type Champion Hiring Cost 500 Upkeep Cost 10 Prereq.
+HERO_ALORRA_THE_ELVEN_ARCHER,Alorra the Elven Archer,Elven Archer,5,8,6,6,6,0,500,Alorra The Elven Archer Type Champion Hiring Cost 500 Upkeep Cost 10 Prereq.
+HERO_AUREUS_THE_GOLDEN_ONE,Aureus the Golden One,Golden One,6,6,6,6,6,0,200,Aureus The Golden One Type Non- Champion Hiring Cost 200 Upkeep Cost 4 Prereq.
+HERO_B_SHAN_THE_DERVISH,B'Shan the Dervish,Dervish,4,4,4,6,6,0,100,B'Shan The Dervish Type Non- Champion Hiring Cost 100 Upkeep Cost 0 * Prereq.
+HERO_BAHGTRU_THE_ORC_WARRIOR,Bahgtru the Orc Warrior,Orc Warrior,6,0,4,6,8,0,100,Bahgtru The Orc Warrior Type Non- Champion Hiring Cost 100 Upkeep Cost 2 Prereq.
+HERO_BASILISK,Basilisk,,0,0,0,7,0,0,0,Basilisk Realm Nature Spell Properties Spell Rarity Uncommon Casting Cost 325 Upkeep Cost 7 per turn Research Cost 800 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 15 Defense per fig
+HERO_BRAX_THE_DWARF,Brax the Dwarf,Dwarf,5,0,4,10,10,0,100,Brax The Dwarf Type Non- Champion Hiring Cost 100 Upkeep Cost 2 Prereq.
+HERO_CALL_THE_VOID,Call the Void,Void,0,0,0,0,0,0,0,"Call the Void Realm Chaos Spell Rarity Very Rare Spell Type Instant Casting Cost 500 Research Cost 5,000 Effects The target Town suffers the following effects, unless protected by Consecration or Chao"
+HERO_CATEGORY_HERO_ABILITIES,Category:Hero Abilities,,0,0,0,0,0,0,0,This category contains all articles about abilities that only Heroes can possess.
+HERO_CATEGORY_HEROES,Category:Heroes,,0,0,0,0,0,0,0,"This category includes all articles about Heroes and Champions in the game (see also Category:Champions ), and all articles directly pertaining to Heroes and their use."
+HERO_DETH_STRYKE_THE_SWORDSMAN,Deth Stryke the Swordsman,Swordsman,6,0,5,6,10,0,500,Deth Stryke The Swordsman Type Champion Hiring Cost 500 Upkeep Cost 10 Prereq.
+HERO_ELANA_THE_PRIESTESS,Elana the Priestess,Priestess,2,8,5,6,5,0,500,Elana The Priestess Type Champion Hiring Cost 500 Upkeep Cost 0 * Prereq.
+HERO_EXPERIENCE_LEVEL,Experience Level,,0,0,0,0,0,0,0,Experience Level denotes a milestone of Experience Point accumulation by Normal Units and Heroes .
+HERO_FANG_THE_DRACONIAN,Fang the Draconian,Draconian,7,0,5,6,8,0,200,Fang The Draconian Type Non- Champion Hiring Cost 200 Upkeep Cost 4 Prereq.
+HERO_GREYFAIRER_THE_DRUID,Greyfairer the Druid,Druid,1,8,5,6,5,0,150,Greyfairer The Druid Type Non- Champion Hiring Cost 150 Upkeep Cost 3 Prereq. 5 Moves 2 Melee Attack 1 Ranged Attack 8 Defense 5 Resistance 6 Hit Points 5 Equipment Slots Hero Abilities Caster ( 7.
+HERO_GUNTHER_THE_BARBARIAN,Gunther the Barbarian,Barbarian,5,0,3,6,9,0,100,Gunther The Barbarian Type Non- Champion Hiring Cost 100 Upkeep Cost 2 Prereq.
+HERO_HERO,Hero,,0,0,0,0,0,0,0,"There are 3 different types of units in Master of Magic: Heroes , Normal Units , and Fantastic Units . Heroes behave in many ways like Normal Units , but they have important differences as well."
+HERO_HERO_ABILITIES,Hero Abilities,,0,0,0,0,0,0,0,Hero Abilities is a subset of the wide variety of Unit Abilities available in Master of Magic .
+HERO_HERO_STRATEGY,Hero Strategy,,0,0,0,0,0,0,0,A Hero Strategy is a winning strategy that relies on Heroes instead of Normal Units or Fantastic Units . There's one strategy that is considered by far the best. It is explained further below.
+HERO_HEROISM,Heroism,,0,0,0,0,0,0,0,Heroism Realm Life Spell Rarity Common Spell Type Unit Enchantment Casting Cost 100 Combat Cost 20 Upkeep Cost 2 Research Cost 250 Effects Target Normal Unit 's or Hero 's Experience Level is raised t
+HERO_JAER_THE_WIND_MAGE,Jaer the Wind Mage,Wind Mage,1,6,5,6,5,0,200,Jaer The Wind Mage Type Non- Champion Hiring Cost 200 Upkeep Cost 4 Prereq. 10 Moves 2 * Melee Attack 1 Ranged Attack 6 Defense 5 Resistance 6 Hit Points 5 Equipment Slots Hero Abilities Caster ( 7.
+HERO_LIST_OF_HEROES,List of Heroes,,0,0,0,0,0,0,0,"The following is a list of all 35 Heroes in Master of Magic . Fame 0 Heroes Icon Name U Items Caster Brax the Dwarf 0 100 2 2 5 4 10 10 Mountaineer , Constitution Gunther the Barbarian 0 100 2 2 5 3 3"
+HERO_MALLEUS_THE_MAGICIAN,Malleus the Magician,Magician,1,8,5,10,5,0,150,Malleus The Magician Type Non- Champion Hiring Cost 150 Upkeep Cost 3 Prereq.
+HERO_MARCUS_THE_RANGER,Marcus the Ranger,Ranger,6,5,5,6,8,0,200,Marcus The Ranger Type Non- Champion Hiring Cost 200 Upkeep Cost 4 Prereq.
+HERO_MORGANA_THE_WITCH,Morgana the Witch,Witch,1,8,5,6,5,0,200,Morgana The Witch Type Non- Champion Hiring Cost 200 Upkeep Cost 4 Prereq.
+HERO_MORTU_THE_BLACK_KNIGHT,Mortu the Black Knight,Black Knight,9,0,5,6,10,0,500,Mortu The Black Knight Type Champion Hiring Cost 500 Upkeep Cost 10 Prereq.
+HERO_MYSTIC_X_THE_UNKNOWN,Mystic X the Unknown,Unknown,5,5,4,10,8,0,300,Mystic X The Unknown Type Champion Hiring Cost 300 Upkeep Cost 6 Prereq.
+HERO_RAKIR_THE_BEASTMASTER,Rakir the Beastmaster,Beastmaster,5,0,4,6,7,0,100,Rakir The Beastmaster Type Non- Champion Hiring Cost 100 Upkeep Cost 2 Prereq.
+HERO_RAVASHACK_THE_NECROMANCER,Ravashack the Necromancer,Necromancer,1,7,5,6,5,0,500,Ravashack The Necromancer Type Champion Hiring Cost 500 Upkeep Cost 10 Prereq.
+HERO_RECALL_HERO,Recall Hero,,0,0,0,0,0,0,0,Recall Hero Realm Arcane Spell Type Combat Instant Combat Cost 20 Research Cost 350 Effects Instantly returns a friendly Hero to the Town currently containing the wizard's Summoning Circle .
+HERO_REYWIND_THE_WARRIOR_MAGE,Reywind the Warrior Mage,Warrior Mage,4,4,4,6,7,0,150,Reywind The Warrior Mage Type Non- Champion Hiring Cost 150 Upkeep Cost 3 Prereq.
+HERO_ROLAND_THE_PALADIN,Roland the Paladin,Paladin,9,0,5,6,8,0,500,Roland The Paladin Type Champion Hiring Cost 500 Upkeep Cost 10 Prereq.
+HERO_SERENA_THE_HEALER,Serena the Healer,Healer,3,6,5,7,5,0,100,Serena The Healer Type Non- Champion Hiring Cost 100 Upkeep Cost 2 Prereq. None Moves 2 Melee Attack 3 Ranged Attack 6 Defense 5 Resistance 7 Hit Points 5 Equipment Slots Hero Abilities Caster ( 7.
+HERO_SHALLA_THE_AMAZON,Shalla the Amazon,Amazon,7,0,4,6,8,0,300,Shalla The Amazon Type Non- Champion Hiring Cost 300 Upkeep Cost 6 Prereq.
+HERO_SHIN_BO_THE_NINJA,Shin Bo the Ninja,Ninja,6,0,5,6,7,0,300,Shin Bo The Ninja Type Non- Champion Hiring Cost 300 Upkeep Cost 6 Prereq.
+HERO_SHURI_THE_HUNTRESS,Shuri the Huntress,Huntress,5,4,3,6,7,0,100,Shuri The Huntress Type Non- Champion Hiring Cost 100 Upkeep Cost 2 Prereq.
+HERO_SIR_HAROLD_THE_KNIGHT,Sir Harold the Knight,Knight,8,0,5,6,9,0,500,Sir Harold The Knight Type Champion Hiring Cost 500 Upkeep Cost 0 * Prereq.
+HERO_SPYDER_THE_ROGUE,Spyder the Rogue,Rogue,7,0,5,6,8,0,300,Spyder The Rogue Type Non- Champion Hiring Cost 300 Upkeep Cost 6 Prereq.
+HERO_SUMMON_HERO,Summon Hero,,0,0,0,0,0,0,0,Summon Hero Realm Arcane Spell Type Summoning Spell Casting Cost 300 Research Cost 500 Effects Summons one non- Champion Hero to your Summoning Circle .
+HERO_TAKI_THE_WAR_MONK,Taki the War Monk,War Monk,6,0,5,6,6,0,150,Taki The War Monk Type Non- Champion Hiring Cost 150 Upkeep Cost 3 Prereq.
+HERO_THERIA_THE_THIEF,Theria the Thief,Thief,5,0,5,6,7,0,100,Theria The Thief Type Non- Champion Hiring Cost 100 Upkeep Cost 2 Prereq.
+HERO_TORIN_THE_CHOSEN,Torin the Chosen,Chosen,12,0,8,12,12,0,0,Torin The Chosen Type Champion Hiring Cost n/a Upkeep Cost 12 Prereq.
+HERO_TUMU_THE_ASSASSIN,Tumu the Assassin,Assassin,3,0,5,6,6,0,150,Tumu The Assassin Type Non- Champion Hiring Cost 150 Upkeep Cost 3 Prereq.
+HERO_VALANA_THE_BARD,Valana the Bard,Bard,4,0,5,6,6,0,100,Valana The Bard Type Non- Champion Hiring Cost 100 Upkeep Cost 2 Prereq.
+HERO_WARRAX_THE_CHAOS_WARRIOR,Warrax the Chaos Warrior,Chaos Warrior,8,8,5,9,8,0,500,Warrax The Chaos Warrior Type Champion Hiring Cost 500 Upkeep Cost 10 Prereq.
+HERO_YRAMRAG_THE_WARLOCK,Yramrag the Warlock,Warlock,1,8,5,10,5,0,300,Yramrag The Warlock Type Non- Champion Hiring Cost 300 Upkeep Cost 6 Prereq.
+HERO_ZALDRON_THE_SAGE,Zaldron the Sage,Sage,1,6,4,6,5,0,100,Zaldron The Sage Type Non- Champion Hiring Cost 100 Upkeep Cost 2 Prereq.

@@ -127,11 +127,14 @@ HandleEvent(BeginTurn) 'MomSummonOrderTick' post {
         && player[0].cities > 0
         && MomMagicCur[p] >= ((45 + 30 * MomSphereRung[p]) * MomSummonCivPct[p]) / 100) {
         GetCityByIndex(player[0], 0, tmpCity);
-        // Roll BEFORE the debit, and gate the debit on it. MomSummonRoll returns
-        // 0 when the caster has not reached rung 1 of its own ladder, and
-        // charging mana for a creature that never appears would be a silent
-        // theft that looks exactly like a spawn that failed to render.
-        summonPick = MomSummonRoll(p);
+        // PLAYER CHOICE: if MomSummonChoice > 1, it IS the UnitDB index the
+        // player selected from the summon menu. If == 1, legacy random roll.
+        if (MomSummonChoice[p] > 1) {
+            summonPick = MomSummonChoice[p];
+        } else {
+            summonPick = MomSummonRoll(p);
+        }
+        MomSummonChoice[p] = 0;
         summonRung = MomSummonRungOf(summonPick);
         // Floor BEFORE the debit so price and countdown read the same rung. A
         // creature reporting rung 0 is charged and timed as rung 1 rather than
@@ -455,19 +458,53 @@ alertbox 'MagicMenu' {
 		// one outcome a button must never produce.
 		if (MomSphereRung[g.player] < 1) {
 			Message(g.player, 'MomSummonNoMagic');
+			Kill();
 		} elseif (MomSummonPrep[g.player] > 0) {
 			Message(g.player, 'MomSummonBusy');
+			Kill();
 		// SAME PRICE EXPRESSION AS THE COMMIT, deliberately. The click must
 		// demand exactly what the commit will demand -- 45 + 30*ladder rung --
 		// or the button accepts an order the commit then refuses, which reads
 		// to the player as the arm doing nothing. That divergence class already
 		// bit this mod once on the upkeep rate and is what gate 27 watches for.
 		} elseif (MomMagicCur[g.player] >= ((45 + 30 * MomSphereRung[g.player]) * MomSummonCivPct[g.player]) / 100) {
-			MomSummonChoice[g.player] = 1;
+			// Navigate to sphere-specific creature selection page (rung-gated)
+			Kill();
+			if (MomSphere[g.player] == 1) {
+				if (MomSphereRung[g.player] >= 5) { Message(g.player, 'MomSummonPick_life_5'); }
+				elseif (MomSphereRung[g.player] >= 4) { Message(g.player, 'MomSummonPick_life_4'); }
+				elseif (MomSphereRung[g.player] >= 3) { Message(g.player, 'MomSummonPick_life_3'); }
+				elseif (MomSphereRung[g.player] >= 2) { Message(g.player, 'MomSummonPick_life_2'); }
+				else { Message(g.player, 'MomSummonPick_life_1'); }
+			} elseif (MomSphere[g.player] == 2) {
+				if (MomSphereRung[g.player] >= 5) { Message(g.player, 'MomSummonPick_nature_5'); }
+				elseif (MomSphereRung[g.player] >= 4) { Message(g.player, 'MomSummonPick_nature_4'); }
+				elseif (MomSphereRung[g.player] >= 3) { Message(g.player, 'MomSummonPick_nature_3'); }
+				elseif (MomSphereRung[g.player] >= 2) { Message(g.player, 'MomSummonPick_nature_2'); }
+				else { Message(g.player, 'MomSummonPick_nature_1'); }
+			} elseif (MomSphere[g.player] == 3) {
+				if (MomSphereRung[g.player] >= 5) { Message(g.player, 'MomSummonPick_sorcery_5'); }
+				elseif (MomSphereRung[g.player] >= 4) { Message(g.player, 'MomSummonPick_sorcery_4'); }
+				elseif (MomSphereRung[g.player] >= 3) { Message(g.player, 'MomSummonPick_sorcery_3'); }
+				elseif (MomSphereRung[g.player] >= 2) { Message(g.player, 'MomSummonPick_sorcery_2'); }
+				else { Message(g.player, 'MomSummonPick_sorcery_1'); }
+			} elseif (MomSphere[g.player] == 4) {
+				if (MomSphereRung[g.player] >= 5) { Message(g.player, 'MomSummonPick_death_5'); }
+				elseif (MomSphereRung[g.player] >= 4) { Message(g.player, 'MomSummonPick_death_4'); }
+				elseif (MomSphereRung[g.player] >= 3) { Message(g.player, 'MomSummonPick_death_3'); }
+				elseif (MomSphereRung[g.player] >= 2) { Message(g.player, 'MomSummonPick_death_2'); }
+				else { Message(g.player, 'MomSummonPick_death_1'); }
+			} elseif (MomSphere[g.player] == 5) {
+				if (MomSphereRung[g.player] >= 5) { Message(g.player, 'MomSummonPick_chaos_5'); }
+				elseif (MomSphereRung[g.player] >= 4) { Message(g.player, 'MomSummonPick_chaos_4'); }
+				elseif (MomSphereRung[g.player] >= 3) { Message(g.player, 'MomSummonPick_chaos_3'); }
+				elseif (MomSphereRung[g.player] >= 2) { Message(g.player, 'MomSummonPick_chaos_2'); }
+				else { Message(g.player, 'MomSummonPick_chaos_1'); }
+			}
 		} else {
 			Message(g.player, 'MomSummonNoMana');
+			Kill();
 		}
-		Kill();
 	}
 
 	// The "Goal" arm (AddGold 500) was REMOVED 2026-07-26 with the same reasoning

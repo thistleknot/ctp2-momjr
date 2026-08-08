@@ -1,6 +1,6 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v4.1.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v4.0.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
 
 > **What 3.8 fixes — a dragon is finally tougher than a peasant.** Unit stats

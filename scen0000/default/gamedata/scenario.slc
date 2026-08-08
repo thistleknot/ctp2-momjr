@@ -62,12 +62,6 @@
 // (segment/segment duplication is the documented load-AV class). Every other
 // repeated identifier (p, i, j, summon, focusCount) is indented, i.e. declared
 // inside a handler body and therefore segment-local, not file scope.
-#include "mom_spellbook_cast.slc"
-#include "mom_spellbook_life.slc"
-#include "mom_spellbook_nature.slc"
-#include "mom_spellbook_sorcery.slc"
-#include "mom_spellbook_death.slc"
-#include "mom_spellbook_chaos.slc"
 #include "mom_spells.slc"
 // The AI's magic brain. After mom_summon.slc (MomSummonRoll, MomSphereRung) and
 // after mom_func.slc (MomSpawnSphereUnit). Before this file existed, AI tribes

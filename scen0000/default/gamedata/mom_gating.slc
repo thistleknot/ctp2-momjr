@@ -82,38 +82,59 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
     // VESSELS -- 1, never buildable by anyone
     if (theUnit == UnitDB(UNIT_LAMP)
     ) { return 0; }
+    // DWARVES -- terrain-gated: hill/mountain cities only
+    if (theUnit == UnitDB(UNIT_DWARF_WARRIOR)
+    || theUnit == UnitDB(UNIT_DWARF_CROSSBOW)
+    || theUnit == UnitDB(UNIT_DWARF_RUNESMITH)
+    ) {
+        if (TerrainType(theCity.location) != 8
+        && TerrainType(theCity.location) != 9
+        && TerrainType(theCity.location) != 18
+        && TerrainType(theCity.location) != 19
+        && TerrainType(theCity.location) != 20
+        && TerrainType(theCity.location) != 21
+        ) { return 0; }
+    }
     if (theCity.owner < 1 || theCity.owner > 5) { return 1; }
-    // LIFE -- 7 block(s)
+    // LIFE -- 10 block(s)
     if (MomSphere[theCity.owner] != 1) {
         if (theUnit == UnitDB(UNIT_ARCHANGEL)
         || theUnit == UnitDB(UNIT_ARIEL)
+        || theUnit == UnitDB(UNIT_CRUSADER)
         || theUnit == UnitDB(UNIT_GUARDIAN_SPIRIT)
         || theUnit == UnitDB(UNIT_PALADINS)
         || theUnit == UnitDB(UNIT_PEGASUS)
+        || theUnit == UnitDB(UNIT_PRIEST)
         || theUnit == UnitDB(UNIT_SERENA)
+        || theUnit == UnitDB(UNIT_TEMPLAR)
         || theUnit == UnitDB(UNIT_UNICORN)
         ) { return 0; }
     }
-    // NATURE -- 13 block(s)
+    // NATURE -- 15 block(s)
     if (MomSphere[theCity.owner] != 2) {
         if (theUnit == UnitDB(UNIT_ALORRA)
         || theUnit == UnitDB(UNIT_BEHEMOTH)
         || theUnit == UnitDB(UNIT_CENTAURS)
         || theUnit == UnitDB(UNIT_COCKATRICE)
+        || theUnit == UnitDB(UNIT_DRUID)
         || theUnit == UnitDB(UNIT_ELVEN_ARCHERS)
         || theUnit == UnitDB(UNIT_FREYA)
         || theUnit == UnitDB(UNIT_GREAT_WYRM)
         || theUnit == UnitDB(UNIT_GRIFFIN)
         || theUnit == UnitDB(UNIT_MERFOLK)
+        || theUnit == UnitDB(UNIT_TREANT)
         || theUnit == UnitDB(UNIT_WARBEARS)
         || theUnit == UnitDB(UNIT_WAR_MAMMOTH)
         || theUnit == UnitDB(UNIT_WAR_TROLL)
         || theUnit == UnitDB(UNIT_WYVERN)
         ) { return 0; }
     }
-    // SORCERY -- 7 block(s)
+    // SORCERY -- 10 block(s)
     if (MomSphere[theCity.owner] != 3) {
         if (theUnit == UnitDB(UNIT_AIR_ELEMENTAL)
+        || theUnit == UnitDB(UNIT_APPRENTICE)
+        || theUnit == UnitDB(UNIT_CRYSTAL_GOLEM)
+        || theUnit == UnitDB(UNIT_DJINN)
         || theUnit == UnitDB(UNIT_JAFAR)
         || theUnit == UnitDB(UNIT_MAGE)
         || theUnit == UnitDB(UNIT_PHANTOM_WARRIORS)
@@ -122,9 +143,10 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         || theUnit == UnitDB(UNIT_WARLOCK)
         ) { return 0; }
     }
-    // DEATH -- 11 block(s)
+    // DEATH -- 13 block(s)
     if (MomSphere[theCity.owner] != 4) {
-        if (theUnit == UnitDB(UNIT_DEATH_KNIGHT)
+        if (theUnit == UnitDB(UNIT_BONE_GOLEM)
+        || theUnit == UnitDB(UNIT_DEATH_KNIGHT)
         || theUnit == UnitDB(UNIT_DEMON)
         || theUnit == UnitDB(UNIT_DRACOLICH)
         || theUnit == UnitDB(UNIT_LICH)
@@ -133,20 +155,26 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         || theUnit == UnitDB(UNIT_RJAK)
         || theUnit == UnitDB(UNIT_SKELETONS)
         || theUnit == UnitDB(UNIT_UNDEAD_DRAGON)
+        || theUnit == UnitDB(UNIT_VAMPIRE)
         || theUnit == UnitDB(UNIT_WRAITH)
         || theUnit == UnitDB(UNIT_ZOMBIES)
         ) { return 0; }
     }
-    // CHAOS -- 9 block(s)
+    // CHAOS -- 14 block(s)
     if (MomSphere[theCity.owner] != 5) {
-        if (theUnit == UnitDB(UNIT_EFREET)
+        if (theUnit == UnitDB(UNIT_DROW)
+        || theUnit == UnitDB(UNIT_EFREET)
         || theUnit == UnitDB(UNIT_GARGOYLE)
+        || theUnit == UnitDB(UNIT_GOBLIN)
         || theUnit == UnitDB(UNIT_HELL_HOUNDS)
         || theUnit == UnitDB(UNIT_HYDRA)
         || theUnit == UnitDB(UNIT_INFERNAL_DEVICE)
         || theUnit == UnitDB(UNIT_MINOTAUR)
+        || theUnit == UnitDB(UNIT_OGRE)
+        || theUnit == UnitDB(UNIT_ORC)
         || theUnit == UnitDB(UNIT_SALAMANDER)
         || theUnit == UnitDB(UNIT_TAURON)
+        || theUnit == UnitDB(UNIT_TROLL)
         || theUnit == UnitDB(UNIT_WARRAX)
         ) { return 0; }
     }

@@ -2,7 +2,8 @@
 //
 // Two-tier spellbook for LIFE sphere.
 // Tier 1: Hub with rarity filter (Common/Uncommon/Rare/Very Rare/Close).
-// Tier 2: Paged spells per rarity, 3 per page + Prev/Next/Close.
+// Tier 2: Paged spells per rarity, 3 per page, single-char buttons + body legend.
+// Research-gated: each rarity requires a sphere ladder advance.
 
 // ===== LIFE SPELLBOOK HUB =====
 alertbox 'MomSpellHub_life' {
@@ -12,25 +13,41 @@ alertbox 'MomSpellHub_life' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
     }
-    // Common (7 spells)
+    // Common (7 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_COMMON) {
         Kill();
-        Message(player[0], 'MomSpell_life_COMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_life_COMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Uncommon (7 spells)
+    // Uncommon (7 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_UNCOMMON) {
         Kill();
-        Message(player[0], 'MomSpell_life_UNCOMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_life_UNCOMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Rare (8 spells)
+    // Rare (8 spells) -- requires rung >= 2
     Button(ID_MOM_SPELLHUB_BTN_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_life_RARE_1');
+        if (MomSphereRung[player[0]] >= 2) {
+            Message(player[0], 'MomSpell_life_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Very Rare (9 spells)
+    // Very Rare (9 spells) -- requires rung >= 4
     Button(ID_MOM_SPELLHUB_BTN_VERY_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_life_VERY_RARE_1');
+        if (MomSphereRung[player[0]] >= 4) {
+            Message(player[0], 'MomSpell_life_VERY_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
 }
 
@@ -39,15 +56,387 @@ alertbox 'MomSpellHub_life' {
 // Page 1 of 3
 alertbox 'MomSpell_life_COMMON_1' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_COMMON_1);
+    Text(ID_MOM_SPELL_PAGE_LIFE_COMMON_1);
 
-    // Close (back to hub)
+    // [X] Close
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Bless (10 mana)
-    Button(ID_MOM_SPELL_0) {
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_life_COMMON_2');
+    }
+    // [1] Bless (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_0');
+    }
+    // [2] Endurance (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_1');
+    }
+    // [3] Guardian Spirit (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_2');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_life_COMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_COMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_life_COMMON_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_life_COMMON_1');
+    }
+    // [1] Heroism (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_3');
+    }
+    // [2] Holy Armor (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_4');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_life_COMMON_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_COMMON_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_life_COMMON_2');
+    }
+    // [1] Holy Weapon (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_5');
+    }
+    // [2] Just Cause (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_6');
+    }
+}
+
+// ----- LIFE / Uncommon: 7 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_life_UNCOMMON_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_UNCOMMON_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_life_UNCOMMON_2');
+    }
+    // [1] Heavenly Light (15 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_7');
+    }
+    // [2] Planar Seal (50 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_8');
+    }
+    // [3] Planar Travel (15 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_9');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_life_UNCOMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_UNCOMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_life_UNCOMMON_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_life_UNCOMMON_1');
+    }
+    // [1] Plane Shift (12 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_10');
+    }
+    // [2] Resurrection (25 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_11');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_life_UNCOMMON_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_UNCOMMON_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_life_UNCOMMON_2');
+    }
+    // [1] True Sight (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_12');
+    }
+    // [2] Unicorns (25 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_13');
+    }
+}
+
+// ----- LIFE / Rare: 8 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_life_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_life_RARE_2');
+    }
+    // [1] Altar of Battle (45 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_14');
+    }
+    // [2] Angel (82 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_15');
+    }
+    // [3] Incarnation (75 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_16');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_life_RARE_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_RARE_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_life_RARE_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_life_RARE_1');
+    }
+    // [1] Invulnerability (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_17');
+    }
+    // [2] Lionheart (30 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_18');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_life_RARE_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_RARE_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_life_RARE_2');
+    }
+    // [1] Prosperity (37 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_19');
+    }
+    // [2] Righteousness (30 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_20');
+    }
+    // [3] Stream of Life (45 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_21');
+    }
+}
+
+// ----- LIFE / Very Rare: 9 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_life_VERY_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_VERY_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_life_VERY_RARE_2');
+    }
+    // [1] Arch Angel (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_22');
+    }
+    // [2] Astral Gate (70 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_23');
+    }
+    // [3] Charm of Life (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_24');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_life_VERY_RARE_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_VERY_RARE_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_life_VERY_RARE_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_life_VERY_RARE_1');
+    }
+    // [1] Consecration (80 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_25');
+    }
+    // [2] Crusade (180 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_26');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_life_VERY_RARE_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_LIFE_VERY_RARE_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_life_VERY_RARE_2');
+    }
+    // [1] Holy Arms (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_27');
+    }
+    // [2] Inspirations (70 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_28');
+    }
+}
+
+// Confirmation for Bless
+alertbox 'MomSpellConfirm_0' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_0);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 0);
         } else {
@@ -55,8 +444,17 @@ alertbox 'MomSpell_life_COMMON_1' {
         }
         Kill();
     }
-    // Endurance (10 mana)
-    Button(ID_MOM_SPELL_1) {
+}
+
+// Confirmation for Endurance
+alertbox 'MomSpellConfirm_1' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_1);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 1);
         } else {
@@ -64,8 +462,17 @@ alertbox 'MomSpell_life_COMMON_1' {
         }
         Kill();
     }
-    // Guardian Spirit (10 mana)
-    Button(ID_MOM_SPELL_2) {
+}
+
+// Confirmation for Guardian Spirit
+alertbox 'MomSpellConfirm_2' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_2);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 2);
         } else {
@@ -73,30 +480,17 @@ alertbox 'MomSpell_life_COMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_life_COMMON_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_life_COMMON_2' {
+// Confirmation for Heroism
+alertbox 'MomSpellConfirm_3' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_COMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_3);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_life_COMMON_1');
-    }
-    // Heroism (10 mana)
-    Button(ID_MOM_SPELL_3) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 3);
         } else {
@@ -104,8 +498,17 @@ alertbox 'MomSpell_life_COMMON_2' {
         }
         Kill();
     }
-    // Holy Armor (10 mana)
-    Button(ID_MOM_SPELL_4) {
+}
+
+// Confirmation for Holy Armor
+alertbox 'MomSpellConfirm_4' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_4);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 4);
         } else {
@@ -113,8 +516,17 @@ alertbox 'MomSpell_life_COMMON_2' {
         }
         Kill();
     }
-    // Holy Weapon (10 mana)
-    Button(ID_MOM_SPELL_5) {
+}
+
+// Confirmation for Holy Weapon
+alertbox 'MomSpellConfirm_5' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_5);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 5);
         } else {
@@ -122,30 +534,17 @@ alertbox 'MomSpell_life_COMMON_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_life_COMMON_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_life_COMMON_3' {
+// Confirmation for Just Cause
+alertbox 'MomSpellConfirm_6' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_COMMON_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_6);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_life_COMMON_2');
-    }
-    // Just Cause (10 mana)
-    Button(ID_MOM_SPELL_6) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 6);
         } else {
@@ -155,20 +554,15 @@ alertbox 'MomSpell_life_COMMON_3' {
     }
 }
 
-// ----- LIFE / Uncommon: 7 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_life_UNCOMMON_1' {
+// Confirmation for Heavenly Light
+alertbox 'MomSpellConfirm_7' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_UNCOMMON_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_7);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Heavenly Light (15 mana)
-    Button(ID_MOM_SPELL_7) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 15) {
             MomCastSpell(player[0], 7);
         } else {
@@ -176,8 +570,17 @@ alertbox 'MomSpell_life_UNCOMMON_1' {
         }
         Kill();
     }
-    // Planar Seal (50 mana)
-    Button(ID_MOM_SPELL_8) {
+}
+
+// Confirmation for Planar Seal
+alertbox 'MomSpellConfirm_8' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_8);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 50) {
             MomCastSpell(player[0], 8);
         } else {
@@ -185,8 +588,17 @@ alertbox 'MomSpell_life_UNCOMMON_1' {
         }
         Kill();
     }
-    // Planar Travel (15 mana)
-    Button(ID_MOM_SPELL_9) {
+}
+
+// Confirmation for Planar Travel
+alertbox 'MomSpellConfirm_9' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_9);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 15) {
             MomCastSpell(player[0], 9);
         } else {
@@ -194,30 +606,17 @@ alertbox 'MomSpell_life_UNCOMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_life_UNCOMMON_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_life_UNCOMMON_2' {
+// Confirmation for Plane Shift
+alertbox 'MomSpellConfirm_10' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_UNCOMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_10);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_life_UNCOMMON_1');
-    }
-    // Plane Shift (12 mana)
-    Button(ID_MOM_SPELL_10) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 12) {
             MomCastSpell(player[0], 10);
         } else {
@@ -225,8 +624,17 @@ alertbox 'MomSpell_life_UNCOMMON_2' {
         }
         Kill();
     }
-    // Resurrection (25 mana)
-    Button(ID_MOM_SPELL_11) {
+}
+
+// Confirmation for Resurrection
+alertbox 'MomSpellConfirm_11' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_11);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 25) {
             MomCastSpell(player[0], 11);
         } else {
@@ -234,8 +642,17 @@ alertbox 'MomSpell_life_UNCOMMON_2' {
         }
         Kill();
     }
-    // True Sight (10 mana)
-    Button(ID_MOM_SPELL_12) {
+}
+
+// Confirmation for True Sight
+alertbox 'MomSpellConfirm_12' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_12);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 12);
         } else {
@@ -243,30 +660,17 @@ alertbox 'MomSpell_life_UNCOMMON_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_life_UNCOMMON_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_life_UNCOMMON_3' {
+// Confirmation for Unicorns
+alertbox 'MomSpellConfirm_13' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_UNCOMMON_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_13);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_life_UNCOMMON_2');
-    }
-    // Unicorns (25 mana)
-    Button(ID_MOM_SPELL_13) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 25) {
             MomCastSpell(player[0], 13);
         } else {
@@ -276,20 +680,15 @@ alertbox 'MomSpell_life_UNCOMMON_3' {
     }
 }
 
-// ----- LIFE / Rare: 8 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_life_RARE_1' {
+// Confirmation for Altar of Battle
+alertbox 'MomSpellConfirm_14' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_14);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Altar of Battle (45 mana)
-    Button(ID_MOM_SPELL_14) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 45) {
             MomCastSpell(player[0], 14);
         } else {
@@ -297,8 +696,17 @@ alertbox 'MomSpell_life_RARE_1' {
         }
         Kill();
     }
-    // Angel (82 mana)
-    Button(ID_MOM_SPELL_15) {
+}
+
+// Confirmation for Angel
+alertbox 'MomSpellConfirm_15' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_15);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 82) {
             MomCastSpell(player[0], 15);
         } else {
@@ -306,8 +714,17 @@ alertbox 'MomSpell_life_RARE_1' {
         }
         Kill();
     }
-    // Incarnation (75 mana)
-    Button(ID_MOM_SPELL_16) {
+}
+
+// Confirmation for Incarnation
+alertbox 'MomSpellConfirm_16' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_16);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 75) {
             MomCastSpell(player[0], 16);
         } else {
@@ -315,30 +732,17 @@ alertbox 'MomSpell_life_RARE_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_life_RARE_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_life_RARE_2' {
+// Confirmation for Invulnerability
+alertbox 'MomSpellConfirm_17' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_RARE_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_17);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_life_RARE_1');
-    }
-    // Invulnerability (30 mana)
-    Button(ID_MOM_SPELL_17) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 17);
         } else {
@@ -346,8 +750,17 @@ alertbox 'MomSpell_life_RARE_2' {
         }
         Kill();
     }
-    // Lionheart (30 mana)
-    Button(ID_MOM_SPELL_18) {
+}
+
+// Confirmation for Lionheart
+alertbox 'MomSpellConfirm_18' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_18);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 18);
         } else {
@@ -355,8 +768,17 @@ alertbox 'MomSpell_life_RARE_2' {
         }
         Kill();
     }
-    // Prosperity (37 mana)
-    Button(ID_MOM_SPELL_19) {
+}
+
+// Confirmation for Prosperity
+alertbox 'MomSpellConfirm_19' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_19);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 37) {
             MomCastSpell(player[0], 19);
         } else {
@@ -364,30 +786,17 @@ alertbox 'MomSpell_life_RARE_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_life_RARE_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_life_RARE_3' {
+// Confirmation for Righteousness
+alertbox 'MomSpellConfirm_20' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_RARE_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_20);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_life_RARE_2');
-    }
-    // Righteousness (30 mana)
-    Button(ID_MOM_SPELL_20) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 20);
         } else {
@@ -395,8 +804,17 @@ alertbox 'MomSpell_life_RARE_3' {
         }
         Kill();
     }
-    // Stream of Life (45 mana)
-    Button(ID_MOM_SPELL_21) {
+}
+
+// Confirmation for Stream of Life
+alertbox 'MomSpellConfirm_21' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_21);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 45) {
             MomCastSpell(player[0], 21);
         } else {
@@ -406,20 +824,15 @@ alertbox 'MomSpell_life_RARE_3' {
     }
 }
 
-// ----- LIFE / Very Rare: 9 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_life_VERY_RARE_1' {
+// Confirmation for Arch Angel
+alertbox 'MomSpellConfirm_22' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_VERY_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_22);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Arch Angel (180 mana)
-    Button(ID_MOM_SPELL_22) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 22);
         } else {
@@ -427,8 +840,17 @@ alertbox 'MomSpell_life_VERY_RARE_1' {
         }
         Kill();
     }
-    // Astral Gate (70 mana)
-    Button(ID_MOM_SPELL_23) {
+}
+
+// Confirmation for Astral Gate
+alertbox 'MomSpellConfirm_23' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_23);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 70) {
             MomCastSpell(player[0], 23);
         } else {
@@ -436,8 +858,17 @@ alertbox 'MomSpell_life_VERY_RARE_1' {
         }
         Kill();
     }
-    // Charm of Life (180 mana)
-    Button(ID_MOM_SPELL_24) {
+}
+
+// Confirmation for Charm of Life
+alertbox 'MomSpellConfirm_24' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_24);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 24);
         } else {
@@ -445,30 +876,17 @@ alertbox 'MomSpell_life_VERY_RARE_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_life_VERY_RARE_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_life_VERY_RARE_2' {
+// Confirmation for Consecration
+alertbox 'MomSpellConfirm_25' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_VERY_RARE_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_25);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_life_VERY_RARE_1');
-    }
-    // Consecration (80 mana)
-    Button(ID_MOM_SPELL_25) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 80) {
             MomCastSpell(player[0], 25);
         } else {
@@ -476,8 +894,17 @@ alertbox 'MomSpell_life_VERY_RARE_2' {
         }
         Kill();
     }
-    // Crusade (180 mana)
-    Button(ID_MOM_SPELL_26) {
+}
+
+// Confirmation for Crusade
+alertbox 'MomSpellConfirm_26' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_26);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 26);
         } else {
@@ -485,8 +912,17 @@ alertbox 'MomSpell_life_VERY_RARE_2' {
         }
         Kill();
     }
-    // Holy Arms (180 mana)
-    Button(ID_MOM_SPELL_27) {
+}
+
+// Confirmation for Holy Arms
+alertbox 'MomSpellConfirm_27' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_27);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 27);
         } else {
@@ -494,30 +930,17 @@ alertbox 'MomSpell_life_VERY_RARE_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_life_VERY_RARE_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_life_VERY_RARE_3' {
+// Confirmation for Inspirations
+alertbox 'MomSpellConfirm_28' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_LIFE_VERY_RARE_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_28);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_life');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_life_VERY_RARE_2');
-    }
-    // Inspirations (70 mana)
-    Button(ID_MOM_SPELL_28) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 70) {
             MomCastSpell(player[0], 28);
         } else {
@@ -525,8 +948,17 @@ alertbox 'MomSpell_life_VERY_RARE_3' {
         }
         Kill();
     }
-    // Life Force (180 mana)
-    Button(ID_MOM_SPELL_29) {
+}
+
+// Confirmation for Life Force
+alertbox 'MomSpellConfirm_29' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_29);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 29);
         } else {
@@ -534,8 +966,17 @@ alertbox 'MomSpell_life_VERY_RARE_3' {
         }
         Kill();
     }
-    // Tranquility (180 mana)
-    Button(ID_MOM_SPELL_30) {
+}
+
+// Confirmation for Tranquility
+alertbox 'MomSpellConfirm_30' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_30);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_life');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 30);
         } else {

@@ -2,7 +2,8 @@
 //
 // Two-tier spellbook for DEATH sphere.
 // Tier 1: Hub with rarity filter (Common/Uncommon/Rare/Very Rare/Close).
-// Tier 2: Paged spells per rarity, 3 per page + Prev/Next/Close.
+// Tier 2: Paged spells per rarity, 3 per page, single-char buttons + body legend.
+// Research-gated: each rarity requires a sphere ladder advance.
 
 // ===== DEATH SPELLBOOK HUB =====
 alertbox 'MomSpellHub_death' {
@@ -12,25 +13,41 @@ alertbox 'MomSpellHub_death' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
     }
-    // Common (4 spells)
+    // Common (4 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_COMMON) {
         Kill();
-        Message(player[0], 'MomSpell_death_COMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_death_COMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Uncommon (7 spells)
+    // Uncommon (7 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_UNCOMMON) {
         Kill();
-        Message(player[0], 'MomSpell_death_UNCOMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_death_UNCOMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Rare (6 spells)
+    // Rare (6 spells) -- requires rung >= 2
     Button(ID_MOM_SPELLHUB_BTN_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_death_RARE_1');
+        if (MomSphereRung[player[0]] >= 2) {
+            Message(player[0], 'MomSpell_death_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Very Rare (6 spells)
+    // Very Rare (6 spells) -- requires rung >= 4
     Button(ID_MOM_SPELLHUB_BTN_VERY_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_death_VERY_RARE_1');
+        if (MomSphereRung[player[0]] >= 4) {
+            Message(player[0], 'MomSpell_death_VERY_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
 }
 
@@ -39,15 +56,291 @@ alertbox 'MomSpellHub_death' {
 // Page 1 of 2
 alertbox 'MomSpell_death_COMMON_1' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_DEATH_COMMON_1);
+    Text(ID_MOM_SPELL_PAGE_DEATH_COMMON_1);
 
-    // Close (back to hub)
+    // [X] Close
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_death');
     }
-    // Cloak of Fear (10 mana)
-    Button(ID_MOM_SPELL_89) {
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_death_COMMON_2');
+    }
+    // [1] Cloak of Fear (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_89');
+    }
+    // [2] Dark Rituals (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_90');
+    }
+    // [3] Ghouls (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_91');
+    }
+}
+
+// Page 2 of 2
+alertbox 'MomSpell_death_COMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_DEATH_COMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_death_COMMON_1');
+    }
+    // [1] Skeletons (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_92');
+    }
+}
+
+// ----- DEATH / Uncommon: 7 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_death_UNCOMMON_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_DEATH_UNCOMMON_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_death_UNCOMMON_2');
+    }
+    // [1] Black Channels (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_93');
+    }
+    // [2] Drain Power (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_94');
+    }
+    // [3] Lycanthropy (18 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_95');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_death_UNCOMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_DEATH_UNCOMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_death_UNCOMMON_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_death_UNCOMMON_1');
+    }
+    // [1] Night Stalker (25 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_96');
+    }
+    // [2] Shadow Demons (32 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_97');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_death_UNCOMMON_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_DEATH_UNCOMMON_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_death_UNCOMMON_2');
+    }
+    // [1] Subversion (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_98');
+    }
+    // [2] Wall of Darkness (20 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_99');
+    }
+}
+
+// ----- DEATH / Rare: 6 spells, 2 page(s) -----
+
+// Page 1 of 2
+alertbox 'MomSpell_death_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_DEATH_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_death_RARE_2');
+    }
+    // [1] Black Wind (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_100');
+    }
+    // [2] Cloud of Shadow (22 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_101');
+    }
+    // [3] Warp Node (11 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_102');
+    }
+}
+
+// Page 2 of 2
+alertbox 'MomSpell_death_RARE_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_DEATH_RARE_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_death_RARE_1');
+    }
+    // [1] Wraith Form (22 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_103');
+    }
+    // [2] Wraiths (75 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_104');
+    }
+    // [3] Zombie Mastery (120 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_105');
+    }
+}
+
+// ----- DEATH / Very Rare: 6 spells, 2 page(s) -----
+
+// Page 1 of 2
+alertbox 'MomSpell_death_VERY_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_DEATH_VERY_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_death_VERY_RARE_2');
+    }
+    // [1] Cruel Unminding (50 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_106');
+    }
+    // [2] Death Knights (120 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_107');
+    }
+    // [3] Death Wish (100 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_108');
+    }
+}
+
+// Page 2 of 2
+alertbox 'MomSpell_death_VERY_RARE_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_DEATH_VERY_RARE_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_death_VERY_RARE_1');
+    }
+    // [1] Demon Lord (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_109');
+    }
+    // [2] Eternal Night (180 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_110');
+    }
+    // [3] Evil Omens (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_111');
+    }
+}
+
+// Confirmation for Cloak of Fear
+alertbox 'MomSpellConfirm_89' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_89);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 89);
         } else {
@@ -55,8 +348,17 @@ alertbox 'MomSpell_death_COMMON_1' {
         }
         Kill();
     }
-    // Dark Rituals (10 mana)
-    Button(ID_MOM_SPELL_90) {
+}
+
+// Confirmation for Dark Rituals
+alertbox 'MomSpellConfirm_90' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_90);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 90);
         } else {
@@ -64,8 +366,17 @@ alertbox 'MomSpell_death_COMMON_1' {
         }
         Kill();
     }
-    // Ghouls (10 mana)
-    Button(ID_MOM_SPELL_91) {
+}
+
+// Confirmation for Ghouls
+alertbox 'MomSpellConfirm_91' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_91);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 91);
         } else {
@@ -73,30 +384,17 @@ alertbox 'MomSpell_death_COMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_death_COMMON_2');
-    }
 }
 
-// Page 2 of 2
-alertbox 'MomSpell_death_COMMON_2' {
+// Confirmation for Skeletons
+alertbox 'MomSpellConfirm_92' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_DEATH_COMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_92);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_death');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_death_COMMON_1');
-    }
-    // Skeletons (10 mana)
-    Button(ID_MOM_SPELL_92) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 92);
         } else {
@@ -106,20 +404,15 @@ alertbox 'MomSpell_death_COMMON_2' {
     }
 }
 
-// ----- DEATH / Uncommon: 7 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_death_UNCOMMON_1' {
+// Confirmation for Black Channels
+alertbox 'MomSpellConfirm_93' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_DEATH_UNCOMMON_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_93);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_death');
     }
-    // Black Channels (10 mana)
-    Button(ID_MOM_SPELL_93) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 93);
         } else {
@@ -127,8 +420,17 @@ alertbox 'MomSpell_death_UNCOMMON_1' {
         }
         Kill();
     }
-    // Drain Power (10 mana)
-    Button(ID_MOM_SPELL_94) {
+}
+
+// Confirmation for Drain Power
+alertbox 'MomSpellConfirm_94' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_94);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 94);
         } else {
@@ -136,8 +438,17 @@ alertbox 'MomSpell_death_UNCOMMON_1' {
         }
         Kill();
     }
-    // Lycanthropy (18 mana)
-    Button(ID_MOM_SPELL_95) {
+}
+
+// Confirmation for Lycanthropy
+alertbox 'MomSpellConfirm_95' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_95);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 18) {
             MomCastSpell(player[0], 95);
         } else {
@@ -145,30 +456,17 @@ alertbox 'MomSpell_death_UNCOMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_death_UNCOMMON_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_death_UNCOMMON_2' {
+// Confirmation for Night Stalker
+alertbox 'MomSpellConfirm_96' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_DEATH_UNCOMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_96);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_death');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_death_UNCOMMON_1');
-    }
-    // Night Stalker (25 mana)
-    Button(ID_MOM_SPELL_96) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 25) {
             MomCastSpell(player[0], 96);
         } else {
@@ -176,8 +474,17 @@ alertbox 'MomSpell_death_UNCOMMON_2' {
         }
         Kill();
     }
-    // Shadow Demons (32 mana)
-    Button(ID_MOM_SPELL_97) {
+}
+
+// Confirmation for Shadow Demons
+alertbox 'MomSpellConfirm_97' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_97);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 32) {
             MomCastSpell(player[0], 97);
         } else {
@@ -185,8 +492,17 @@ alertbox 'MomSpell_death_UNCOMMON_2' {
         }
         Kill();
     }
-    // Subversion (10 mana)
-    Button(ID_MOM_SPELL_98) {
+}
+
+// Confirmation for Subversion
+alertbox 'MomSpellConfirm_98' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_98);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 98);
         } else {
@@ -194,30 +510,17 @@ alertbox 'MomSpell_death_UNCOMMON_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_death_UNCOMMON_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_death_UNCOMMON_3' {
+// Confirmation for Wall of Darkness
+alertbox 'MomSpellConfirm_99' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_DEATH_UNCOMMON_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_99);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_death');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_death_UNCOMMON_2');
-    }
-    // Wall of Darkness (20 mana)
-    Button(ID_MOM_SPELL_99) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 20) {
             MomCastSpell(player[0], 99);
         } else {
@@ -227,20 +530,15 @@ alertbox 'MomSpell_death_UNCOMMON_3' {
     }
 }
 
-// ----- DEATH / Rare: 6 spells, 2 page(s) -----
-
-// Page 1 of 2
-alertbox 'MomSpell_death_RARE_1' {
+// Confirmation for Black Wind
+alertbox 'MomSpellConfirm_100' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_DEATH_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_100);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_death');
     }
-    // Black Wind (30 mana)
-    Button(ID_MOM_SPELL_100) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 100);
         } else {
@@ -248,8 +546,17 @@ alertbox 'MomSpell_death_RARE_1' {
         }
         Kill();
     }
-    // Cloud of Shadow (22 mana)
-    Button(ID_MOM_SPELL_101) {
+}
+
+// Confirmation for Cloud of Shadow
+alertbox 'MomSpellConfirm_101' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_101);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 22) {
             MomCastSpell(player[0], 101);
         } else {
@@ -257,8 +564,17 @@ alertbox 'MomSpell_death_RARE_1' {
         }
         Kill();
     }
-    // Warp Node (11 mana)
-    Button(ID_MOM_SPELL_102) {
+}
+
+// Confirmation for Warp Node
+alertbox 'MomSpellConfirm_102' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_102);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 11) {
             MomCastSpell(player[0], 102);
         } else {
@@ -266,30 +582,17 @@ alertbox 'MomSpell_death_RARE_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_death_RARE_2');
-    }
 }
 
-// Page 2 of 2
-alertbox 'MomSpell_death_RARE_2' {
+// Confirmation for Wraith Form
+alertbox 'MomSpellConfirm_103' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_DEATH_RARE_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_103);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_death');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_death_RARE_1');
-    }
-    // Wraith Form (22 mana)
-    Button(ID_MOM_SPELL_103) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 22) {
             MomCastSpell(player[0], 103);
         } else {
@@ -297,8 +600,17 @@ alertbox 'MomSpell_death_RARE_2' {
         }
         Kill();
     }
-    // Wraiths (75 mana)
-    Button(ID_MOM_SPELL_104) {
+}
+
+// Confirmation for Wraiths
+alertbox 'MomSpellConfirm_104' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_104);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 75) {
             MomCastSpell(player[0], 104);
         } else {
@@ -306,8 +618,17 @@ alertbox 'MomSpell_death_RARE_2' {
         }
         Kill();
     }
-    // Zombie Mastery (120 mana)
-    Button(ID_MOM_SPELL_105) {
+}
+
+// Confirmation for Zombie Mastery
+alertbox 'MomSpellConfirm_105' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_105);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 120) {
             MomCastSpell(player[0], 105);
         } else {
@@ -317,20 +638,15 @@ alertbox 'MomSpell_death_RARE_2' {
     }
 }
 
-// ----- DEATH / Very Rare: 6 spells, 2 page(s) -----
-
-// Page 1 of 2
-alertbox 'MomSpell_death_VERY_RARE_1' {
+// Confirmation for Cruel Unminding
+alertbox 'MomSpellConfirm_106' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_DEATH_VERY_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_106);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_death');
     }
-    // Cruel Unminding (50 mana)
-    Button(ID_MOM_SPELL_106) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 50) {
             MomCastSpell(player[0], 106);
         } else {
@@ -338,8 +654,17 @@ alertbox 'MomSpell_death_VERY_RARE_1' {
         }
         Kill();
     }
-    // Death Knights (120 mana)
-    Button(ID_MOM_SPELL_107) {
+}
+
+// Confirmation for Death Knights
+alertbox 'MomSpellConfirm_107' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_107);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 120) {
             MomCastSpell(player[0], 107);
         } else {
@@ -347,8 +672,17 @@ alertbox 'MomSpell_death_VERY_RARE_1' {
         }
         Kill();
     }
-    // Death Wish (100 mana)
-    Button(ID_MOM_SPELL_108) {
+}
+
+// Confirmation for Death Wish
+alertbox 'MomSpellConfirm_108' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_108);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 100) {
             MomCastSpell(player[0], 108);
         } else {
@@ -356,30 +690,17 @@ alertbox 'MomSpell_death_VERY_RARE_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_death_VERY_RARE_2');
-    }
 }
 
-// Page 2 of 2
-alertbox 'MomSpell_death_VERY_RARE_2' {
+// Confirmation for Demon Lord
+alertbox 'MomSpellConfirm_109' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_DEATH_VERY_RARE_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_109);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_death');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_death_VERY_RARE_1');
-    }
-    // Demon Lord (180 mana)
-    Button(ID_MOM_SPELL_109) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 109);
         } else {
@@ -387,8 +708,17 @@ alertbox 'MomSpell_death_VERY_RARE_2' {
         }
         Kill();
     }
-    // Eternal Night (180 mana)
-    Button(ID_MOM_SPELL_110) {
+}
+
+// Confirmation for Eternal Night
+alertbox 'MomSpellConfirm_110' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_110);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 110);
         } else {
@@ -396,8 +726,17 @@ alertbox 'MomSpell_death_VERY_RARE_2' {
         }
         Kill();
     }
-    // Evil Omens (180 mana)
-    Button(ID_MOM_SPELL_111) {
+}
+
+// Confirmation for Evil Omens
+alertbox 'MomSpellConfirm_111' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_111);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_death');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 111);
         } else {

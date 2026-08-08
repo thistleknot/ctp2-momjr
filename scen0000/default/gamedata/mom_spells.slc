@@ -236,15 +236,9 @@ void_f MomSpellShowBook(int_t p)
         // array subscript costs no call depth. Any other helper reached from a
         // trigger or Button body needs the same treatment.
         if (MomSphere[p] == 5) {
-            Message(g.player, 'MomSpellHub_chaos');
-        } elseif (MomSphere[p] == 4) {
-            Message(g.player, 'MomSpellHub_death');
-        } elseif (MomSphere[p] == 3) {
-            Message(g.player, 'MomSpellHub_sorcery');
-        } elseif (MomSphere[p] == 2) {
-            Message(g.player, 'MomSpellHub_nature');
+            Message(g.player, 'MomMsgSpellbookChaos');
         } else {
-            Message(g.player, 'MomSpellHub_life');
+            Message(g.player, 'MomMsgSpellbook');
         }
     }
 }
@@ -382,7 +376,37 @@ alertbox 'MomMsgSpellbook' {
     }
 }
 
-// Legacy MomMsgSpellbookChaos removed -- routing now goes through MomSpellHub_*
+alertbox 'MomMsgSpellbookChaos' {
+    Show();
+    Text(ID_MOM_MSG_SPELLBOOK);
+    Button(ID_BUTTON_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_MSG_BTN_BACK) {
+        Kill();
+        Message(g.player, 'MagicMenu');
+    }
+    // REPLACED by generated spellbook (mom_spellbook.slc)
+    // Old hand-wired Demon Strike arm:
+    // Button(ID_MOM_MSG_BTN_DEMON) {
+    //     MomCastSpell(g.player, 2);
+    //     Kill();
+    // }
+    // Old hand-wired Flame Strike arm:
+    // Button(ID_MOM_MSG_BTN_FLAME) {
+    //     MomCastSpell(g.player, 1);
+    //     Kill();
+    // }
+    // Old Store Power arm:
+    // Button(ID_MOM_MSG_BTN_STORE) {
+    //     Kill();
+    // }
+    // Navigate directly to Chaos page 1.
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(g.player, 'MomSpellPage_chaos_1');
+    }
+}
 
 alertbox 'MomMsgDemonCast' {
     Show();

@@ -9,12 +9,12 @@
 Nothing
 [END]
 [ADVANCE_USER_DEF_TECH_A_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 120
+<c:245,240,225><h:0,0,0>Cost: 600
 Age: 1
 Branch: 0
 [END]
 [ADVANCE_CHIVALRY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chivalry requires <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>. It costs 460 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_KNIGHTS>Knights<e>.
+<c:245,240,225><h:0,0,0>Researching Chivalry requires <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>. It costs 2300 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_KNIGHTS>Knights<e>.
 [END]
 [ADVANCE_CHIVALRY_HISTORICAL]
 <c:245,240,225><h:0,0,0>A code invented to make heavily armed men on expensive horses tolerable to the people who fed them. It worked well enough to outlive its own cavalry.
@@ -24,12 +24,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>
 [END]
 [ADVANCE_CHIVALRY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 460
+<c:245,240,225><h:0,0,0>Cost: 2300
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_TACTICS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Tactics requires <L:DATABASE_ADVANCES,ADVANCE_LEADERSHIP>Leadership<e> and <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 520 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WAR_MAMMOTH>War Mammoth<e>.
+<c:245,240,225><h:0,0,0>Researching Tactics requires <L:DATABASE_ADVANCES,ADVANCE_LEADERSHIP>Leadership<e> and <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 2600 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WAR_MAMMOTH>War Mammoth<e>.
 [END]
 [ADVANCE_TACTICS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The realisation that where soldiers stand matters more than how many of them there are.
@@ -40,12 +40,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>
 [END]
 [ADVANCE_TACTICS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 520
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_FEUDALISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Feudalism requires <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e> and <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. It costs 520 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GUILD_OF_LEGENDS>Guild of Legends<e>.
+<c:245,240,225><h:0,0,0>Researching Feudalism requires <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e> and <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. It costs 2600 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GUILD_OF_LEGENDS>Guild of Legends<e>.
 [END]
 [ADVANCE_FEUDALISM_HISTORICAL]
 <c:245,240,225><h:0,0,0>Feudalism is a social system based on land ownership, in which vassals held land in fief from lords to whom they were obliged, by personal relationship or service.  What also distinguished feudalism was that those who performed official duties, whether civil or military, did not do it for the state or for public service.  Rather, they fulfilled them in service of personal relationships with landowners in exchange for fiefs, hereditarily held estates from which they could make money.  This decentralized public authority, and the manorial system, in which peasants served landlords with few rights or freedoms, gave lords wide-ranging power over the fiscal, judicial and constabulary systems.
@@ -57,12 +57,12 @@ Feudalism flourished in societies with closed agricultural economies, particular
 <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
 [END]
 [ADVANCE_FEUDALISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 520
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_HOLY_WARRIORS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Holy Warriors requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e> and <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. It costs 4940 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_PALADINS>Paladins<e>.
+<c:245,240,225><h:0,0,0>Researching Holy Warriors requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e> and <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. It costs 14820 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_PALADINS>Paladins<e>.
 [END]
 [ADVANCE_HOLY_WARRIORS_HISTORICAL]
 <c:245,240,225><h:0,0,0>Soldiers who fight because they are certain rather than because they are paid. History records both how effective and how unmanageable this is.
@@ -73,12 +73,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>
 [END]
 [ADVANCE_HOLY_WARRIORS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 4940
+<c:245,240,225><h:0,0,0>Cost: 14820
 Age: 6
 Branch: 0
 [END]
 [ADVANCE_GRAND_MASTERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Grand Mastery requires <L:DATABASE_ADVANCES,ADVANCE_TACTICS>Tactics<e> and <L:DATABASE_ADVANCES,ADVANCE_WIZARDRY>Wizardry<e>. It costs 520 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_INFERNAL_DEVICE>Infernal Device<e>.
+<c:245,240,225><h:0,0,0>Researching Grand Mastery requires <L:DATABASE_ADVANCES,ADVANCE_TACTICS>Tactics<e> and <L:DATABASE_ADVANCES,ADVANCE_WIZARDRY>Wizardry<e>. It costs 2600 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_INFERNAL_DEVICE>Infernal Device<e>.
 [END]
 [ADVANCE_GRAND_MASTERY_HISTORICAL]
 <c:245,240,225><h:0,0,0>The final grade, at which a wizard's limitation is no longer knowledge or power but judgement.
@@ -89,12 +89,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_WIZARDRY>Wizardry<e>
 [END]
 [ADVANCE_GRAND_MASTERY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 520
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_LEADERSHIP_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Leadership requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e> and <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 520 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WAR_TROLL>War Troll<e>.
+<c:245,240,225><h:0,0,0>Researching Leadership requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e> and <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 2600 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WAR_TROLL>War Troll<e>.
 [END]
 [ADVANCE_LEADERSHIP_HISTORICAL]
 <c:245,240,225><h:0,0,0>The discovery that men will follow a person further than they will follow an order.
@@ -105,12 +105,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>
 [END]
 [ADVANCE_LEADERSHIP_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 520
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_WARRIOR_CODE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 120 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_LAMP>Lamp<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>.
+<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 600 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_LAMP>Lamp<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>.
 [END]
 [ADVANCE_WARRIOR_CODE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The rules fighting men impose on themselves, which are what distinguish an army from a mob with weapons.
@@ -120,12 +120,12 @@ Branch: 0
 Nothing
 [END]
 [ADVANCE_WARRIOR_CODE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 120
+<c:245,240,225><h:0,0,0>Cost: 600
 Age: 1
 Branch: 0
 [END]
 [ADVANCE_CEREMONIAL_BURIAL_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Ceremonial Burial needs no prior research and is available from the first turn. It costs 160 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_TEMPLE>Temple<e>.
+<c:245,240,225><h:0,0,0>Ceremonial Burial needs no prior research and is available from the first turn. It costs 800 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_TEMPLE>Temple<e>.
 [END]
 [ADVANCE_CEREMONIAL_BURIAL_HISTORICAL]
 <c:245,240,225><h:0,0,0>Laying out the dead with intent is the first evidence anywhere of a people who believe in something beyond the day. Every temple in history descends from a grave dug carefully.
@@ -135,12 +135,12 @@ Branch: 0
 Nothing
 [END]
 [ADVANCE_CEREMONIAL_BURIAL_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 160
+<c:245,240,225><h:0,0,0>Cost: 800
 Age: 1
 Branch: 2
 [END]
 [ADVANCE_CODE_OF_LAWS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Code of Laws requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 525 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_COURTHOUSE>Courthouse<e>.
+<c:245,240,225><h:0,0,0>Researching Code of Laws requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 2635 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_COURTHOUSE>Courthouse<e>.
 [END]
 [ADVANCE_CODE_OF_LAWS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The moment a ruling is written down, it stops belonging to the ruler. Written law is the first real limit any sovereign ever accepted.
@@ -150,12 +150,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>
 [END]
 [ADVANCE_CODE_OF_LAWS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 525
+<c:245,240,225><h:0,0,0>Cost: 2635
 Age: 2
 Branch: 2
 [END]
 [ADVANCE_MONARCHY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Monarchy requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>, <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 1280 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Monarchy requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>, <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 6405 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_MONARCHY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Monarchy was a government in which the supreme authority was vested in a single person, usually a hereditary sovereign, who was the permanent head of state.  It was the basis for most medieval empires.  Monarchs provided the centralized power needed by fledgling nations in the 16th and 17th centuries.  The monarch was usually the absolute ruler, the source of law and of administration.  Feudal societies often thrived within a monarchy.  Monarchy existed in various iterations in Asia, Africa, Latin America and Europe.  Some monarchies lasted until well into the 20th century, although these later monarchies abandoned absolutism in favor of a parliamentary system.
@@ -166,12 +166,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code Of Laws<e>
 [END]
 [ADVANCE_MONARCHY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1280
+<c:245,240,225><h:0,0,0>Cost: 6405
 Age: 3
 Branch: 0
 [END]
 [ADVANCE_THEOLOGY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Theology requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e> and <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>. It costs 1150 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_CATHEDRAL>Cathedral<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_THE_PARTHENON>The Parthenon<e>.
+<c:245,240,225><h:0,0,0>Researching Theology requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e> and <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>. It costs 5740 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_CATHEDRAL>Cathedral<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_THE_PARTHENON>The Parthenon<e>.
 [END]
 [ADVANCE_THEOLOGY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Theology was the study of God, man, the world, salvation and eschatology (or the study of "end" times).  It was a discipline almost exclusively limited to Christianity.  It's origins lie with the Greek philosopher Plato (c.428-c.348 BC), who was the first to put for theology as a field of study.  Although Plato's concept of theology dealt with Greek, not Christian, myths, the fundamental nature of the study came from him, namely: theology is the attempt of believers of a faith to represent their statements of belief consistently, to logically analyze them out of the fundamentals of their faith and to properly contextualize such statements within nature, history, reason and logic.
@@ -184,12 +184,12 @@ A scientific analysis of something as emotionally and ontologically complex as r
 <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>
 [END]
 [ADVANCE_THEOLOGY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1150
+<c:245,240,225><h:0,0,0>Cost: 5740
 Age: 3
 Branch: 0
 [END]
 [ADVANCE_MYSTICISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Mysticism requires <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>. It costs 525 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_ALORRA>Alorra<e>, <L:DATABASE_UNITS,UNIT_ARIEL>Ariel<e>, <L:DATABASE_UNITS,UNIT_DEATH_KNIGHT>Death Knight<e>, <L:DATABASE_UNITS,UNIT_FREYA>Freya<e>, <L:DATABASE_UNITS,UNIT_JAFAR>Jafar<e>, <L:DATABASE_UNITS,UNIT_MALLEUS>Malleus<e>, <L:DATABASE_UNITS,UNIT_RJAK>Rjak<e>, <L:DATABASE_UNITS,UNIT_SERENA>Serena<e>, <L:DATABASE_UNITS,UNIT_TAURON>Tauron<e> and <L:DATABASE_UNITS,UNIT_WARRAX>Warrax<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ORACLE>Oracle<e>.
+<c:245,240,225><h:0,0,0>Researching Mysticism requires <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>. It costs 2635 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_DEATH_KNIGHT>Death Knight<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ORACLE>Oracle<e>.
 [END]
 [ADVANCE_MYSTICISM_HISTORICAL]
 <c:245,240,225><h:0,0,0>The conviction that the world has an inside, and the various disciplines invented to get at it.
@@ -199,12 +199,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e>
 [END]
 [ADVANCE_MYSTICISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 525
+<c:245,240,225><h:0,0,0>Cost: 2635
 Age: 2
 Branch: 2
 [END]
 [ADVANCE_PHILOSOPHY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Philosophy requires <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>, <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e> and <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 665 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Philosophy requires <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>, <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e> and <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 3325 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_PHILOSOPHY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Throughout world history, the term "philosophy" (from the Greek word philosophia, "love of wisdom") has meant many different things.  It encompassed the pursuit of wisdom, the understanding of the universe as a whole, the examination of morals, values and ethics, and the attempt to promote rationality and clear thinking through the codification of rules governing human thought.  At its core, philosophy was an analysis of the basis for fundamental beliefs and an examination of the expression of such beliefs.  Its pursuit was the mark of an intellectually robust civilization.  It was a reflective pursuit, with no explicitly defined subject matter.  Much like science, it was a mental operation that could be exercised on any area or subject.  Because of this flexibility, philosophy, and its subcategories ethics, logic and metaphysics, formed the basis of rational thought processes that spawned many of the scientific and cultural advances in history.
@@ -215,12 +215,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>
 [END]
 [ADVANCE_PHILOSOPHY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 665
+<c:245,240,225><h:0,0,0>Cost: 3325
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_THE_REPUBLIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching The Republic requires <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 1015 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching The Republic requires <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 5080 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_THE_REPUBLIC_HISTORICAL]
 <c:245,240,225><h:0,0,0>The proposition that authority can be lent out and taken back. Radical, fragile, and repeatedly rediscovered.
@@ -230,12 +230,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>
 [END]
 [ADVANCE_THE_REPUBLIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1015
+<c:245,240,225><h:0,0,0>Cost: 5080
 Age: 3
 Branch: 2
 [END]
 [ADVANCE_BANKING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Banking requires <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e> and <L:DATABASE_ADVANCES,ADVANCE_THE_REPUBLIC>The Republic<e>. It costs 2065 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GNOME_TREASURY>Gnome Treasury<e>.
+<c:245,240,225><h:0,0,0>Researching Banking requires <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e> and <L:DATABASE_ADVANCES,ADVANCE_THE_REPUBLIC>The Republic<e>. It costs 4125 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GNOME_TREASURY>Gnome Treasury<e>.
 [END]
 [ADVANCE_BANKING_HISTORICAL]
 <c:245,240,225><h:0,0,0>The first banks developed in response to the great risk of early trading. Bandits, uncertain foreign markets, and a multitude of foreign currencies made caravans and trade ships very vulnerable. Without a way to mitigate the risk of piracy, a merchant could lose his or her livelihood with the destruction of his or her caravan.  Banking helped to change this by splitting risk between bank and merchant.  The Romans developed banking into a robust system of mortgages, loans, and credits. With banking, capital was available to expand trade and spread commerce widely.
@@ -246,12 +246,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>
 [END]
 [ADVANCE_BANKING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2065
+<c:245,240,225><h:0,0,0>Cost: 4125
 Age: 4
 Branch: 0
 [END]
 [ADVANCE_CURRENCY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Currency requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>. It costs 565 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Currency requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>. It costs 2835 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_CURRENCY_HISTORICAL]
 <c:245,240,225><h:0,0,0>A token everyone agrees is worth something becomes worth something. Currency lets a farmer trade with a shipwright who does not want grain.
@@ -261,12 +261,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>
 [END]
 [ADVANCE_CURRENCY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 565
+<c:245,240,225><h:0,0,0>Cost: 2835
 Age: 2
 Branch: 1
 [END]
 [ADVANCE_MAP_MAKING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Map Making requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 565 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GALLEY>Galley<e>.
+<c:245,240,225><h:0,0,0>Researching Map Making requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 2835 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GALLEY>Galley<e>.
 [END]
 [ADVANCE_MAP_MAKING_HISTORICAL]
 <c:245,240,225><h:0,0,0>A map is a claim about the world made portable. Empires have been won by the side with the better one.
@@ -276,12 +276,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>
 [END]
 [ADVANCE_MAP_MAKING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 565
+<c:245,240,225><h:0,0,0>Cost: 2835
 Age: 2
 Branch: 1
 [END]
 [ADVANCE_NAVIGATION_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Navigation requires <L:DATABASE_ADVANCES,ADVANCE_SEAFARING>Seafaring<e> and <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>. It costs 2065 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GUNTHARS_VOYAGE>Gunthar's Voyage<e>.
+<c:245,240,225><h:0,0,0>Researching Navigation requires <L:DATABASE_ADVANCES,ADVANCE_SEAFARING>Seafaring<e> and <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>. It costs 4125 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GUNTHARS_VOYAGE>Gunthar's Voyage<e>.
 [END]
 [ADVANCE_NAVIGATION_HISTORICAL]
 <c:245,240,225><h:0,0,0>Finding a destination out of sight of land. The technique is unremarkable; the nerve it required was not.
@@ -292,12 +292,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>
 [END]
 [ADVANCE_NAVIGATION_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2065
+<c:245,240,225><h:0,0,0>Cost: 4125
 Age: 4
 Branch: 1
 [END]
 [ADVANCE_POTTERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Pottery needs no prior research and is available from the first turn. It costs 185 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_GRANARY>Granary<e>.
+<c:245,240,225><h:0,0,0>Pottery needs no prior research and is available from the first turn. It costs 920 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_GRANARY>Granary<e>.
 [END]
 [ADVANCE_POTTERY_HISTORICAL]
 <c:245,240,225><h:0,0,0>A fired clay jar is a solved problem in storage, and storage is what lets a people survive a bad year.
@@ -307,12 +307,12 @@ Branch: 1
 Nothing
 [END]
 [ADVANCE_POTTERY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 185
+<c:245,240,225><h:0,0,0>Cost: 920
 Age: 1
 Branch: 1
 [END]
 [ADVANCE_SANITATION_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sanitation requires <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>. It costs 1825 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Sanitation requires <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>. It costs 3650 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_SANITATION_HISTORICAL]
 <c:245,240,225><h:0,0,0>Moving waste away from drinking water has saved more lives than every physician in history combined.
@@ -322,12 +322,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_HEALING>Healing<e>
 [END]
 [ADVANCE_SANITATION_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1825
+<c:245,240,225><h:0,0,0>Cost: 3650
 Age: 4
 Branch: 1
 [END]
 [ADVANCE_SEAFARING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Seafaring requires <L:DATABASE_ADVANCES,ADVANCE_MAP_MAKING>Map Making<e> and <L:DATABASE_ADVANCES,ADVANCE_POTTERY>Pottery<e>. It costs 1215 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_HARBOR>Harbor<e>.
+<c:245,240,225><h:0,0,0>Researching Seafaring requires <L:DATABASE_ADVANCES,ADVANCE_MAP_MAKING>Map Making<e> and <L:DATABASE_ADVANCES,ADVANCE_POTTERY>Pottery<e>. It costs 6065 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_HARBOR>Harbor<e>.
 [END]
 [ADVANCE_SEAFARING_HISTORICAL]
 <c:245,240,225><h:0,0,0>The decision to treat the sea as a road rather than as an edge.
@@ -338,12 +338,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_POTTERY>Pottery<e>
 [END]
 [ADVANCE_SEAFARING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1215
+<c:245,240,225><h:0,0,0>Cost: 6065
 Age: 3
 Branch: 1
 [END]
 [ADVANCE_TRADE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Trade requires <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e>, <L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 715 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CARAVAN>Caravans<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_BARDIC_COLLEGE>Bardic College<e>.
+<c:245,240,225><h:0,0,0>Researching Trade requires <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e>, <L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 3575 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CARAVAN>Caravans<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_BARDIC_COLLEGE>Bardic College<e>.
 [END]
 [ADVANCE_TRADE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The proliferation of trade, internal and abroad, was essential to the economic vitality of many of the ancient empires.  Commerce was no longer limited to the goods within a city or country's own capacity to harvest and manufacture.  Foreign caravans would deliver exotic new foods, fabrics, luxuries and precious items.  Unfortunately, trade was a dangerous endeavor.  Bandits and other hostile forces threatened the livelihood of many merchants.  Contracts, laws and other fruits of jurisprudence helped mitigate the risk.
@@ -356,12 +356,12 @@ Trade had political and social ramifications as well.  Nations generally had to 
 <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code Of Laws<e>
 [END]
 [ADVANCE_TRADE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 715
+<c:245,240,225><h:0,0,0>Cost: 3575
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_ECOGNOMICS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Ecognomics requires <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e> and <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>. It costs 2425 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MERCHANTS_GUILD>Merchant's Guild<e>.
+<c:245,240,225><h:0,0,0>Researching Ecognomics requires <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e> and <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>. It costs 4855 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MERCHANTS_GUILD>Merchant's Guild<e>.
 [END]
 [ADVANCE_ECOGNOMICS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The gnomes' contribution to statecraft: the discovery that a coin lent is worth more than a coin held, and that a ledger, honestly kept, is a kind of fortification. Merchants' guilds date their charters from here.
@@ -372,12 +372,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_BANKING>Banking<e>
 [END]
 [ADVANCE_ECOGNOMICS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2425
+<c:245,240,225><h:0,0,0>Cost: 4855
 Age: 4
 Branch: 1
 [END]
 [ADVANCE_BRIDGE_BUILDING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Bridge Building requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. It costs 2670 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Bridge Building requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. It costs 5340 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_BRIDGE_BUILDING_HISTORICAL]
 <c:245,240,225><h:0,0,0>A river is a wall until someone learns to span it. Bridge building turns a frontier into a road and a besieged province into a supplied one.
@@ -388,12 +388,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>
 [END]
 [ADVANCE_BRIDGE_BUILDING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2670
+<c:245,240,225><h:0,0,0>Cost: 5340
 Age: 4
 Branch: 4
 [END]
 [ADVANCE_BRONZE_WORKING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Bronze Working needs no prior research and is available from the first turn. It costs 345 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_SWORDSMEN>Swordsmen<e>.
+<c:245,240,225><h:0,0,0>Bronze Working needs no prior research and is available from the first turn. It costs 1720 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_SWORDSMEN>Swordsmen<e>.
 [END]
 [ADVANCE_BRONZE_WORKING_HISTORICAL]
 <c:245,240,225><h:0,0,0>Around 3500 BC, Western Europeans discovered that beaten copper repeatedly heated in a fire became less brittle.  Perhaps because tin and copper deposits often occurred together in nature, early metal workers combined the two to form bronze.  This new alloy was strong, light and its raw materials were plentiful.  The Greeks and Spartans found many uses for bronze, most notably for armor and weaponry.  Phalanxes of hoplites, clad in bronze armor and wielding bronze swords and shields, menaced the armies of the Mediterranean and contributed to the dominance of the Spartan state in the 8th century BC.
@@ -403,12 +403,12 @@ Branch: 4
 Nothing
 [END]
 [ADVANCE_BRONZE_WORKING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 345
+<c:245,240,225><h:0,0,0>Cost: 1720
 Age: 1
 Branch: 0
 [END]
 [ADVANCE_CONSTRUCTION_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Construction requires <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e> and <L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e>. It costs 945 science to complete. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_AQUEDUCT>Aqueduct<e> and <L:DATABASE_BUILDINGS,IMPROVE_COLOSSEUM>Colosseum<e>.
+<c:245,240,225><h:0,0,0>Researching Construction requires <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e> and <L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e>. It costs 4725 science to complete. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_AQUEDUCT>Aqueduct<e> and <L:DATABASE_BUILDINGS,IMPROVE_COLOSSEUM>Colosseum<e>.
 [END]
 [ADVANCE_CONSTRUCTION_HISTORICAL]
 <c:245,240,225><h:0,0,0>Stone laid to a plan rather than to a habit. Construction is what separates a settlement that endures a siege from one that endures a season.
@@ -419,12 +419,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_CURRENCY>Currency<e>
 [END]
 [ADVANCE_CONSTRUCTION_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 945
+<c:245,240,225><h:0,0,0>Cost: 4725
 Age: 2
 Branch: 4
 [END]
 [ADVANCE_IRON_WORKING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Iron Working requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>, <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e> and <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. It costs 1835 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Iron Working requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>, <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e> and <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. It costs 9185 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_DWARF_WARRIOR>Dwarf Warrior<e>.
 [END]
 [ADVANCE_IRON_WORKING_HISTORICAL]
 <c:245,240,225><h:0,0,0>In Asia Minor during the 2nd millennium BC, wrought iron began to replace bronze in tools and weaponry.  By the 3rd century BC, it was a well-established material in China, India and much of the Mediterranean.  Iron's dominance was due in large part to its availability.  Whereas bronze required both copper and tin, both of which were scarce, iron was an abundant natural resource.  Wrought iron and, later cast iron, was a principle material for both peace and war for many centuries.
@@ -435,12 +435,12 @@ Branch: 4
 <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
 [END]
 [ADVANCE_IRON_WORKING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1835
+<c:245,240,225><h:0,0,0>Cost: 9185
 Age: 3
 Branch: 0
 [END]
 [ADVANCE_MASONRY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Masonry needs no prior research and is available from the first turn. It costs 345 science to complete. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_CITY_WALLS>City Walls<e> and <L:DATABASE_BUILDINGS,IMPROVE_WIZARDS_FORTRESS>Wizard's Fortress<e>.
+<c:245,240,225><h:0,0,0>Masonry needs no prior research and is available from the first turn. It costs 1720 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_DWARF_CROSSBOW>Dwarf Crossbow<e>. It enables the city improvements <L:DATABASE_BUILDINGS,IMPROVE_CITY_WALLS>City Walls<e> and <L:DATABASE_BUILDINGS,IMPROVE_WIZARDS_FORTRESS>Wizard's Fortress<e>.
 [END]
 [ADVANCE_MASONRY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Some societies, such as the Egyptians, standardized masonry techniques as early as 4000 BC.  Masonry is divided into two broad categories called rubble and ashlar.  Rubble involves irregular and coarsely jointed quarried and field stones.  Ashlar, by contrast, is made up of cut stones set with fine, close joints.  Some cultures opted to use mortar and other adhesives, but others used "dry masonry."
@@ -456,12 +456,12 @@ Built in the 3rd century BC, the Great Wall of China is one of the wonders of th
 Nothing
 [END]
 [ADVANCE_MASONRY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 345
+<c:245,240,225><h:0,0,0>Cost: 1720
 Age: 1
 Branch: 0
 [END]
 [ADVANCE_NATURE_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Lore requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1865 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Nature Lore requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2600 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_NATURE_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The collected knowledge of growing things, weather and beasts, held mostly by people who distrust cities.
@@ -472,12 +472,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
 [END]
 [ADVANCE_NATURE_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1865
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 3
 Branch: 1
 [END]
 [ADVANCE_NATURE_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Adept requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>. It costs 2630 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_COCKATRICE>Cockatrice<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_GAIAS_SHRINE>Gaia's Shrine<e>.
+<c:245,240,225><h:0,0,0>Researching Nature Adept requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>. It costs 1680 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_COCKATRICE>Cockatrice<e> and <L:DATABASE_UNITS,UNIT_DRUID>Druid<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_GAIAS_SHRINE>Gaia's Shrine<e>.
 [END]
 [ADVANCE_NATURE_ADEPT_HISTORICAL]
 <c:245,240,225><h:0,0,0>An apprenticeship spent outdoors, learning that the natural world cooperates only with those who have been asking politely for years.
@@ -487,12 +487,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>
 [END]
 [ADVANCE_NATURE_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2630
+<c:245,240,225><h:0,0,0>Cost: 1680
 Age: 4
 Branch: 1
 [END]
 [ADVANCE_NATURE_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Mage requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>. It costs 4070 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_BEHEMOTH>Behemoth<e>.
+<c:245,240,225><h:0,0,0>Researching Nature Mage requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>. It costs 2640 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_BEHEMOTH>Behemoth<e>.
 [END]
 [ADVANCE_NATURE_MAGE_HISTORICAL]
 <c:245,240,225><h:0,0,0>A nature mage does not defeat the land; they recruit it. Every tradition that worked this way treated weather, beasts and growing things as allies to be bargained with rather than obstacles to be overcome.
@@ -502,12 +502,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>
 [END]
 [ADVANCE_NATURE_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 4070
+<c:245,240,225><h:0,0,0>Cost: 2640
 Age: 5
 Branch: 1
 [END]
 [ADVANCE_NATURE_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Wizard requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. It costs 5680 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Nature Wizard requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. It costs 5700 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ALORRA>Alorra<e>.
 [END]
 [ADVANCE_NATURE_WIZARD_HISTORICAL]
 <c:245,240,225><h:0,0,0>The nature wizard is answerable to the land, and the arrangement is genuinely mutual.
@@ -517,12 +517,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>
 [END]
 [ADVANCE_NATURE_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 5680
+<c:245,240,225><h:0,0,0>Cost: 5700
 Age: 6
 Branch: 1
 [END]
 [ADVANCE_NATURE_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Master requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>. It costs 7435 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GREAT_WYRM>Great Wyrm<e>.
+<c:245,240,225><h:0,0,0>Researching Nature Master requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>. It costs 7800 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GREAT_WYRM>Great Wyrm<e>.
 [END]
 [ADVANCE_NATURE_MASTER_HISTORICAL]
 <c:245,240,225><h:0,0,0>Mastery here looks like nothing happening: the storm that did not come, the famine that did not arrive.
@@ -532,12 +532,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>
 [END]
 [ADVANCE_NATURE_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 7435
+<c:245,240,225><h:0,0,0>Cost: 7800
 Age: 7
 Branch: 1
 [END]
 [ADVANCE_NATURE_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Nature Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 970 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARBEARS>Warbears<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_FONT_OF_BOUNTY>Font of Bounty<e>.
+<c:245,240,225><h:0,0,0>Researching Nature Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1500 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_FREYA>Freya<e>, <L:DATABASE_UNITS,UNIT_TREANT>Treant<e> and <L:DATABASE_UNITS,UNIT_WARBEARS>Warbears<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_FONT_OF_BOUNTY>Font of Bounty<e>.
 [END]
 [ADVANCE_NATURE_MAGIC_HISTORICAL]
 <c:245,240,225><h:0,0,0>Power borrowed from living systems, on the strict understanding that it is a loan.
@@ -547,12 +547,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
 [END]
 [ADVANCE_NATURE_MAGIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 970
+<c:245,240,225><h:0,0,0>Cost: 1500
 Age: 2
 Branch: 1
 [END]
 [ADVANCE_ALCHEMY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Alchemy requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e> and <L:DATABASE_ADVANCES,ADVANCE_METAMORPHOSIS>Metamorphosis<e>. It costs 1155 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARLOCK>Warlock<e>.
+<c:245,240,225><h:0,0,0>Researching Alchemy requires <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e> and <L:DATABASE_ADVANCES,ADVANCE_METAMORPHOSIS>Metamorphosis<e>. It costs 5785 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARLOCK>Warlock<e>.
 [END]
 [ADVANCE_ALCHEMY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Alchemy was a science fused of many disparate sources, including Chinese, Egyptian and Islamic concepts that flowed into Western Europe via the Silk Road during the Middle Ages.  The primary objective of alchemy was the discovery of a method to turn base metals into precious ones.  Though this quest proved futile, its pursuit contributed to a deeper understanding of the nature and composition of many elements.  Early metallurgy benefited from the results of alchemic experiments.
@@ -562,12 +562,12 @@ Branch: 1
 <L:DATABASE_ADVANCES,ADVANCE_METAMORPHOSIS>Metamorphosis<e>
 [END]
 [ADVANCE_ALCHEMY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1155
+<c:245,240,225><h:0,0,0>Cost: 5785
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_ALPHABET_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Alphabet needs no prior research and is available from the first turn. It costs 455 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Alphabet needs no prior research and is available from the first turn. It costs 2280 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_ALPHABET_HISTORICAL]
 <c:245,240,225><h:0,0,0>Before a people can keep accounts, treaties or spellbooks, they must first agree that a mark on clay can stand for a sound. The alphabet is the quiet invention on which every later one rests.
@@ -577,12 +577,12 @@ Branch: 0
 Nothing
 [END]
 [ADVANCE_ALPHABET_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 455
+<c:245,240,225><h:0,0,0>Cost: 2280
 Age: 1
 Branch: 3
 [END]
 [ADVANCE_ANIMISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Animism requires <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 1725 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Animism requires <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>. It costs 8625 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_ANIMISM_HISTORICAL]
 <c:245,240,225><h:0,0,0>The oldest reading of the world: that the river, the stone and the storm each carry a will of their own. Animist shamans do not command nature so much as negotiate with it.
@@ -592,12 +592,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_UNIVERSITY>University<e>
 [END]
 [ADVANCE_ANIMISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1725
+<c:245,240,225><h:0,0,0>Cost: 8625
 Age: 3
 Branch: 3
 [END]
 [ADVANCE_ASTROLOGY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Astrology requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e> and <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e>. It costs 1950 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_MYSTIC_XS_TOWER>Mystic X's Tower<e>.
+<c:245,240,225><h:0,0,0>Researching Astrology requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e> and <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e>. It costs 9750 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_MYSTIC_XS_TOWER>Mystic X's Tower<e>.
 [END]
 [ADVANCE_ASTROLOGY_HISTORICAL]
 <c:245,240,225><h:0,0,0>The first systematic attempt to read the future in the fixed order of the sky. Its charts were wrong about destiny and right about the calendar, which proved the more useful gift.
@@ -608,12 +608,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e>
 [END]
 [ADVANCE_ASTROLOGY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1950
+<c:245,240,225><h:0,0,0>Cost: 9750
 Age: 3
 Branch: 3
 [END]
 [ADVANCE_ELDRITCH_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Eldritch Lore requires <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>. It costs 1725 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_ELDRITCH_COLLEGE>Eldritch College<e>.
+<c:245,240,225><h:0,0,0>Researching Eldritch Lore requires <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>. It costs 8625 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_ELDRITCH_COLLEGE>Eldritch College<e>.
 [END]
 [ADVANCE_ELDRITCH_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>Knowledge that predates the peoples who study it, recovered in fragments from places better left unexcavated.
@@ -623,12 +623,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e>
 [END]
 [ADVANCE_ELDRITCH_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1725
+<c:245,240,225><h:0,0,0>Cost: 8625
 Age: 3
 Branch: 3
 [END]
 [ADVANCE_GREATER_FAUNA_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Greater Fauna Lore requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>. It costs 2735 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WYVERN>Wyvern<e>.
+<c:245,240,225><h:0,0,0>Researching Greater Fauna Lore requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>. It costs 5475 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WYVERN>Wyvern<e>.
 [END]
 [ADVANCE_GREATER_FAUNA_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The study of the beasts that were never meant to be catalogued: the ones with opinions, wings, or both.
@@ -638,12 +638,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>
 [END]
 [ADVANCE_GREATER_FAUNA_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2735
+<c:245,240,225><h:0,0,0>Cost: 5475
 Age: 4
 Branch: 3
 [END]
 [ADVANCE_HEALING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Healing requires <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e> and <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 3095 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_PROSPEROS_CONSERVATORY>Prospero's Conservatory<e>.
+<c:245,240,225><h:0,0,0>Researching Healing requires <L:DATABASE_ADVANCES,ADVANCE_ASTROLOGY>Astrology<e> and <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 6190 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_PROSPEROS_CONSERVATORY>Prospero's Conservatory<e>.
 [END]
 [ADVANCE_HEALING_HISTORICAL]
 <c:245,240,225><h:0,0,0>The oldest use anyone ever found for power, and still the one that buys the most loyalty.
@@ -654,12 +654,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>
 [END]
 [ADVANCE_HEALING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 3095
+<c:245,240,225><h:0,0,0>Cost: 6190
 Age: 4
 Branch: 3
 [END]
 [ADVANCE_LESSER_ENCHANMENTS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Lesser Enchanments requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. It costs 1725 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_MESMERS_TOWER>Mesmer's Tower<e>.
+<c:245,240,225><h:0,0,0>Researching Lesser Enchanments requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. It costs 8625 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_MESMERS_TOWER>Mesmer's Tower<e>.
 [END]
 [ADVANCE_LESSER_ENCHANMENTS_HISTORICAL]
 <c:245,240,225><h:0,0,0>Small, durable workings: a blade that will not dull, a granary that will not spoil. Unglamorous magic that quietly wins wars.
@@ -669,12 +669,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
 [END]
 [ADVANCE_LESSER_ENCHANMENTS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1725
+<c:245,240,225><h:0,0,0>Cost: 8625
 Age: 3
 Branch: 3
 [END]
 [ADVANCE_METAMORPHOSIS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Metamorphosis requires <L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune Lore<e> and <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. It costs 1155 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_ELIXIR_OF_METAMORPHOSIS>Elixir of Metamorphosis<e>.
+<c:245,240,225><h:0,0,0>Researching Metamorphosis requires <L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune Lore<e> and <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>. It costs 5785 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_ELIXIR_OF_METAMORPHOSIS>Elixir of Metamorphosis<e>.
 [END]
 [ADVANCE_METAMORPHOSIS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The art of changing what a thing fundamentally is, rather than merely how it behaves. Reversal is not guaranteed.
@@ -685,12 +685,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_CONSTRUCTION>Construction<e>
 [END]
 [ADVANCE_METAMORPHOSIS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1155
+<c:245,240,225><h:0,0,0>Cost: 5785
 Age: 2
 Branch: 3
 [END]
 [ADVANCE_PANTHEISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Pantheism requires <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e> and <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. It costs 1155 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ELVEN_ARCHERS>Elven Archers<e>.
+<c:245,240,225><h:0,0,0>Researching Pantheism requires <L:DATABASE_ADVANCES,ADVANCE_CEREMONIAL_BURIAL>Ceremonial Burial<e> and <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. It costs 5785 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ELVEN_ARCHERS>Elven Archers<e>.
 [END]
 [ADVANCE_PANTHEISM_HISTORICAL]
 <c:245,240,225><h:0,0,0>The doctrine that divinity is distributed rather than located. Convenient for empires with many conquered gods to absorb.
@@ -701,12 +701,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>
 [END]
 [ADVANCE_PANTHEISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1155
+<c:245,240,225><h:0,0,0>Cost: 5785
 Age: 2
 Branch: 3
 [END]
 [ADVANCE_RUNE_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Rune Lore requires <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e> and <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 1155 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_RUNE_OF_RULERSHIP>Rune of Rulership<e>.
+<c:245,240,225><h:0,0,0>Researching Rune Lore requires <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e> and <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>. It costs 5785 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WAR_MAGE>War Mage<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_RUNE_OF_RULERSHIP>Rune of Rulership<e>.
 [END]
 [ADVANCE_RUNE_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>Runes bind meaning into shape. Carved into a weapon or a wall, they hold their instruction indefinitely and without supervision.
@@ -717,12 +717,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_LITERACY>Literacy<e>
 [END]
 [ADVANCE_RUNE_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1155
+<c:245,240,225><h:0,0,0>Cost: 5785
 Age: 2
 Branch: 3
 [END]
 [ADVANCE_SEA_MASTERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sea Mastery requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. It costs 3095 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARSHIP>Warship<e>.
+<c:245,240,225><h:0,0,0>Researching Sea Mastery requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e> and <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. It costs 6190 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WARSHIP>Warship<e>.
 [END]
 [ADVANCE_SEA_MASTERY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Command of the deep water, which historically has meant command of everything the deep water touches.
@@ -733,12 +733,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>
 [END]
 [ADVANCE_SEA_MASTERY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 3095
+<c:245,240,225><h:0,0,0>Cost: 6190
 Age: 4
 Branch: 3
 [END]
 [ADVANCE_SHAMANISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Shamanism needs no prior research and is available from the first turn. It costs 455 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CENTAURS>Centaurs<e>.
+<c:245,240,225><h:0,0,0>Shamanism needs no prior research and is available from the first turn. It costs 2280 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CENTAURS>Centaurs<e>.
 [END]
 [ADVANCE_SHAMANISM_HISTORICAL]
 <c:245,240,225><h:0,0,0>The first professional intermediaries between a people and whatever they believed was listening.
@@ -748,12 +748,12 @@ Branch: 3
 Nothing
 [END]
 [ADVANCE_SHAMANISM_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 455
+<c:245,240,225><h:0,0,0>Cost: 2280
 Age: 1
 Branch: 3
 [END]
 [ADVANCE_THAUMATURGY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Thaumaturgy requires <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e> and <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e>. It costs 6580 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_IRON_GOLEM>Iron Golem<e>.
+<c:245,240,225><h:0,0,0>Researching Thaumaturgy requires <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e> and <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e>. It costs 19735 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_DWARF_RUNESMITH>Dwarf Runesmith<e> and <L:DATABASE_UNITS,UNIT_IRON_GOLEM>Iron Golem<e>.
 [END]
 [ADVANCE_THAUMATURGY_HISTORICAL]
 <c:245,240,225><h:0,0,0>The formal study of wonder-working: taking the miracle apart to see whether it can be repeated on demand.
@@ -764,12 +764,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e>
 [END]
 [ADVANCE_THAUMATURGY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 6580
+<c:245,240,225><h:0,0,0>Cost: 19735
 Age: 6
 Branch: 3
 [END]
 [ADVANCE_WIZARDRY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Wizardry requires <L:DATABASE_ADVANCES,ADVANCE_ALCHEMY>Alchemy<e>. It costs 1025 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BEACON_OF_WISDOM>Beacon of Wisdom<e>.
+<c:245,240,225><h:0,0,0>Researching Wizardry requires <L:DATABASE_ADVANCES,ADVANCE_ALCHEMY>Alchemy<e>. It costs 5120 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ARCH_MAGE>Arch Mage<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BEACON_OF_WISDOM>Beacon of Wisdom<e>.
 [END]
 [ADVANCE_WIZARDRY_HISTORICAL]
 <c:245,240,225><h:0,0,0>The systematisation of magic into something that can be taught, examined and graded: the moment power became a profession.
@@ -779,7 +779,7 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_ALCHEMY>Alchemy<e>
 [END]
 [ADVANCE_WIZARDRY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1025
+<c:245,240,225><h:0,0,0>Cost: 5120
 Age: 2
 Branch: 3
 [END]
@@ -794,12 +794,12 @@ Branch: 3
 Nothing
 [END]
 [ADVANCE_GLYPHS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 455
+<c:245,240,225><h:0,0,0>Cost: 2280
 Age: 1
 Branch: 3
 [END]
 [ADVANCE_LITERACY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Literacy requires <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 1155 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GREAT_LIBRARY>Great Library<e>.
+<c:245,240,225><h:0,0,0>Researching Literacy requires <L:DATABASE_ADVANCES,ADVANCE_WRITING>Writing<e> and <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code of Laws<e>. It costs 5785 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_GREAT_LIBRARY>Great Library<e>.
 [END]
 [ADVANCE_LITERACY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Writing lets one generation argue with the next. Every institution that outlasts its founder depends on it.
@@ -810,12 +810,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_CODE_OF_LAWS>Code Of Laws<e>
 [END]
 [ADVANCE_LITERACY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1155
+<c:245,240,225><h:0,0,0>Cost: 5785
 Age: 2
 Branch: 3
 [END]
 [ADVANCE_MATHEMATICS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Mathematics requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e> and <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>. It costs 1155 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CATAPULT>Catapult<e>.
+<c:245,240,225><h:0,0,0>Researching Mathematics requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e> and <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>. It costs 5785 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CATAPULT>Catapult<e>.
 [END]
 [ADVANCE_MATHEMATICS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The discipline of being certain about something you cannot see. Everything from taxation to ballistics follows from it.
@@ -826,12 +826,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>
 [END]
 [ADVANCE_MATHEMATICS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1155
+<c:245,240,225><h:0,0,0>Cost: 5785
 Age: 2
 Branch: 3
 [END]
 [ADVANCE_GREATER_ENCHANTMENTS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Greater Enchantments requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_ENCHANMENTS>Lesser Enchanments<e>. It costs 2735 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_REYWINDS_DISCOVERY>Reywind's Discovery<e>.
+<c:245,240,225><h:0,0,0>Researching Greater Enchantments requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_ENCHANMENTS>Lesser Enchanments<e>. It costs 5475 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_REYWINDS_DISCOVERY>Reywind's Discovery<e>.
 [END]
 [ADVANCE_GREATER_ENCHANTMENTS_HISTORICAL]
 <c:245,240,225><h:0,0,0>Workings laid not on an object or a person but on a place, a season, or an army. Their scale is what makes them greater and what makes them dangerous.
@@ -841,12 +841,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_LESSER_ENCHANMENTS>Lesser Enchanments<e>
 [END]
 [ADVANCE_GREATER_ENCHANTMENTS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2735
+<c:245,240,225><h:0,0,0>Cost: 5475
 Age: 4
 Branch: 3
 [END]
 [ADVANCE_UNIVERSITY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching University requires <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e> and <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 1155 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_UNIVERSITY>University<e>.
+<c:245,240,225><h:0,0,0>Researching University requires <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e> and <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>. It costs 5785 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_UNIVERSITY>University<e>.
 [END]
 [ADVANCE_UNIVERSITY_HISTORICAL]
 <c:245,240,225><h:0,0,0>An institution built on the assumption that knowledge should outlive the knowledgeable.
@@ -857,12 +857,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_PHILOSOPHY>Philosophy<e>
 [END]
 [ADVANCE_UNIVERSITY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1155
+<c:245,240,225><h:0,0,0>Cost: 5785
 Age: 2
 Branch: 3
 [END]
 [ADVANCE_WRITING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Writing requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 1025 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_MINION>Minion<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_LIBRARY>Library<e>.
+<c:245,240,225><h:0,0,0>Researching Writing requires <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>. It costs 5120 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_MINION>Minion<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_LIBRARY>Library<e>.
 [END]
 [ADVANCE_WRITING_HISTORICAL]
 <c:245,240,225><h:0,0,0>As ancient societies developed, early humans found a need to visibly represent the language they spoke.  Whether it was to document their history, keep records or facilitate communication, writing's origins were almost certainly borne out of need.  Although the world is full of examples of prehistoric communication, most notably in the form of cave paintings, writing systems did not begin to appear until ancient times.  Writing systems developed in many ways.  Some cultures developed a meaning-based system, with characters and symbols that represented words, acts, and concepts, while others developed sound-based systems, with characters representing syllables or phonemes.  Whether pictographic, ideographic, alphabetic or phonetic, the writing system needed to match the demands of the societies' expressions and communications.  Nevertheless, writing was a giant leap forward in the establishment of history and culture for early societies, leading to a strengthening of social order, jurisprudence and historical preservation.
@@ -872,12 +872,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_ALPHABET>Alphabet<e>
 [END]
 [ADVANCE_WRITING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1025
+<c:245,240,225><h:0,0,0>Cost: 5120
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_FORCES_OF_NATURE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Forces of Nature requires <L:DATABASE_ADVANCES,ADVANCE_ANIMISM>Animism<e>. It costs 2735 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_PRIMAL_SOURCE>Primal Source<e>.
+<c:245,240,225><h:0,0,0>Researching Forces of Nature requires <L:DATABASE_ADVANCES,ADVANCE_ANIMISM>Animism<e>. It costs 5475 science to complete. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_PRIMAL_SOURCE>Primal Source<e>.
 [END]
 [ADVANCE_FORCES_OF_NATURE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The recognition that wind, tide and season are not moods but mechanisms, and that a mechanism can be driven.
@@ -887,12 +887,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_ANIMISM>Animism<e>
 [END]
 [ADVANCE_FORCES_OF_NATURE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2735
+<c:245,240,225><h:0,0,0>Cost: 5475
 Age: 4
 Branch: 3
 [END]
 [ADVANCE_SEA_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sea Lore requires <L:DATABASE_ADVANCES,ADVANCE_NAVIGATION>Navigation<e>. It costs 2735 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_MERFOLK>Merfolk<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_PORT>Port<e>.
+<c:245,240,225><h:0,0,0>Researching Sea Lore requires <L:DATABASE_ADVANCES,ADVANCE_NAVIGATION>Navigation<e>. It costs 5475 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_MERFOLK>Merfolk<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_PORT>Port<e>.
 [END]
 [ADVANCE_SEA_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>What sailors know that charts do not record: currents, tempers, and which waters have something living under them.
@@ -902,12 +902,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_NAVIGATION>Navigation<e>
 [END]
 [ADVANCE_SEA_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2735
+<c:245,240,225><h:0,0,0>Cost: 5475
 Age: 4
 Branch: 3
 [END]
 [ADVANCE_ARTIFICING_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Artificing requires <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>. It costs 7590 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_AIRSHIP>Airship<e> and <L:DATABASE_UNITS,UNIT_STEAM_CANNON>Steam Cannon<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MECHANICIANS_GUILD>Mechanician's Guild<e>.
+<c:245,240,225><h:0,0,0>Researching Artificing requires <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>. It costs 22770 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_AIRSHIP>Airship<e> and <L:DATABASE_UNITS,UNIT_STEAM_CANNON>Steam Cannon<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_MECHANICIANS_GUILD>Mechanician's Guild<e>.
 [END]
 [ADVANCE_ARTIFICING_HISTORICAL]
 <c:245,240,225><h:0,0,0>The craft of binding a spell into a made thing, so that the enchantment outlives the enchanter. An artificer's blade remembers its instructions long after the hand that forged it is dust.
@@ -917,12 +917,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>
 [END]
 [ADVANCE_ARTIFICING_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 7590
+<c:245,240,225><h:0,0,0>Cost: 22770
 Age: 7
 Branch: 3
 [END]
 [ADVANCE_LESSER_FAUNA_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Lesser Fauna Lore requires <L:DATABASE_ADVANCES,ADVANCE_ANIMISM>Animism<e>. It costs 2735 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GRIFFIN>Griffin<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_FANTASTIC_STABLE>Fantastic Stable<e>.
+<c:245,240,225><h:0,0,0>Researching Lesser Fauna Lore requires <L:DATABASE_ADVANCES,ADVANCE_ANIMISM>Animism<e>. It costs 5475 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GRIFFIN>Griffin<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_FANTASTIC_STABLE>Fantastic Stable<e>.
 [END]
 [ADVANCE_LESSER_FAUNA_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>Careful observation of ordinary animals, which turns out to be the necessary apprenticeship for handling the extraordinary ones.
@@ -932,12 +932,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_ANIMISM>Animism<e>
 [END]
 [ADVANCE_LESSER_FAUNA_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2735
+<c:245,240,225><h:0,0,0>Cost: 5475
 Age: 4
 Branch: 3
 [END]
 [ADVANCE_PYROTECHNICS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Pyrotechnics requires <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2735 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_SALAMANDER>Salamander<e>.
+<c:245,240,225><h:0,0,0>Researching Pyrotechnics requires <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 5475 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_SALAMANDER>Salamander<e>.
 [END]
 [ADVANCE_PYROTECHNICS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The applied science of controlled fire, developed by people who mostly wanted a better festival and accidentally armed everyone.
@@ -947,12 +947,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
 [END]
 [ADVANCE_PYROTECHNICS_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2735
+<c:245,240,225><h:0,0,0>Cost: 5475
 Age: 4
 Branch: 3
 [END]
 [ADVANCE_OCCULT_STUDIES_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Occult Studies requires <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. It costs 1025 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_MAGE>Mage<e>.
+<c:245,240,225><h:0,0,0>Researching Occult Studies requires <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. It costs 5120 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_MAGE>Mage<e>.
 [END]
 [ADVANCE_OCCULT_STUDIES_HISTORICAL]
 <c:245,240,225><h:0,0,0>Formal, sceptical investigation of the hidden, undertaken by scholars who mostly wished the results had come back negative.
@@ -962,12 +962,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>
 [END]
 [ADVANCE_OCCULT_STUDIES_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1025
+<c:245,240,225><h:0,0,0>Cost: 5120
 Age: 2
 Branch: 3
 [END]
 [ADVANCE_LIFE_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1035 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GUARDIAN_SPIRIT>Guardian Spirit<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENCHANTED_GROTTO>Enchanted Grotto<e>.
+<c:245,240,225><h:0,0,0>Researching Life Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1500 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_CRUSADER>Crusader<e>, <L:DATABASE_UNITS,UNIT_GUARDIAN_SPIRIT>Guardian Spirit<e>, <L:DATABASE_UNITS,UNIT_PRIEST>Priest<e> and <L:DATABASE_UNITS,UNIT_SERENA>Serena<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENCHANTED_GROTTO>Enchanted Grotto<e>.
 [END]
 [ADVANCE_LIFE_MAGIC_HISTORICAL]
 <c:245,240,225><h:0,0,0>Power drawn from growth and continuation rather than from force. The slowest school to show results and the hardest to break.
@@ -977,12 +977,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
 [END]
 [ADVANCE_LIFE_MAGIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1035
+<c:245,240,225><h:0,0,0>Cost: 1500
 Age: 2
 Branch: 2
 [END]
 [ADVANCE_LIFE_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Lore requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1970 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Life Lore requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2600 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_LIFE_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The gathered record of what can be mended, what can be strengthened, and what should be left exactly as it is.
@@ -993,12 +993,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
 [END]
 [ADVANCE_LIFE_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1970
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 3
 Branch: 2
 [END]
 [ADVANCE_LIFE_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Adept requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>. It costs 2765 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_UNICORN>Unicorn<e>.
+<c:245,240,225><h:0,0,0>Researching Life Adept requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>. It costs 1680 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_TEMPLAR>Templar<e> and <L:DATABASE_UNITS,UNIT_UNICORN>Unicorn<e>.
 [END]
 [ADVANCE_LIFE_ADEPT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The first lessons in the magic of vitality, taught almost everywhere and mastered almost nowhere.
@@ -1008,12 +1008,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>
 [END]
 [ADVANCE_LIFE_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2765
+<c:245,240,225><h:0,0,0>Cost: 1680
 Age: 4
 Branch: 2
 [END]
 [ADVANCE_LIFE_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Mage requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. It costs 4245 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_PEGASUS>Pegasus<e>.
+<c:245,240,225><h:0,0,0>Researching Life Mage requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. It costs 2640 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_PEGASUS>Pegasus<e>.
 [END]
 [ADVANCE_LIFE_MAGE_HISTORICAL]
 <c:245,240,225><h:0,0,0>A life mage can return a dying soldier to the line. Armies grasped the strategic implications of this faster than priests grasped the moral ones.
@@ -1023,12 +1023,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>
 [END]
 [ADVANCE_LIFE_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 4245
+<c:245,240,225><h:0,0,0>Cost: 2640
 Age: 5
 Branch: 2
 [END]
 [ADVANCE_LIFE_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Wizard requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>. It costs 5855 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_CELESTIAL_BEACON>Celestial Beacon<e>.
+<c:245,240,225><h:0,0,0>Researching Life Wizard requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>. It costs 5700 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ARIEL>Ariel<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_CELESTIAL_BEACON>Celestial Beacon<e>.
 [END]
 [ADVANCE_LIFE_WIZARD_HISTORICAL]
 <c:245,240,225><h:0,0,0>The life wizard treats mortality as a condition rather than as a verdict.
@@ -1038,12 +1038,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>
 [END]
 [ADVANCE_LIFE_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 5855
+<c:245,240,225><h:0,0,0>Cost: 5700
 Age: 6
 Branch: 2
 [END]
 [ADVANCE_LIFE_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Life Master requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>. It costs 7630 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ARCHANGEL>Archangel<e>.
+<c:245,240,225><h:0,0,0>Researching Life Master requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>. It costs 7800 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_ARCHANGEL>Archangel<e>.
 [END]
 [ADVANCE_LIFE_MASTER_HISTORICAL]
 <c:245,240,225><h:0,0,0>At mastery, the life mage's difficulty is no longer healing the wounded but deciding whom not to heal.
@@ -1053,12 +1053,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>
 [END]
 [ADVANCE_LIFE_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 7630
+<c:245,240,225><h:0,0,0>Cost: 7800
 Age: 7
 Branch: 2
 [END]
 [ADVANCE_DEATH_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Lore requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 1995 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Death Lore requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2600 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_DEATH_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>Accumulated study of the boundary between living and not, compiled by scholars whom no city willingly houses.
@@ -1069,12 +1069,12 @@ Branch: 2
 <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
 [END]
 [ADVANCE_DEATH_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1995
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 3
 Branch: 3
 [END]
 [ADVANCE_DEATH_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Adept requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>. It costs 2790 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_WRAITH>Wraith<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_WALL_OF_BONE>Wall of Bone<e>.
+<c:245,240,225><h:0,0,0>Researching Death Adept requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>. It costs 1680 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_VAMPIRE>Vampire<e> and <L:DATABASE_UNITS,UNIT_WRAITH>Wraith<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_WALL_OF_BONE>Wall of Bone<e>.
 [END]
 [ADVANCE_DEATH_ADEPT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The novice necromancer learns the least popular truth in magic: that the dead are a resource, and an obedient one.
@@ -1084,12 +1084,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>
 [END]
 [ADVANCE_DEATH_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2790
+<c:245,240,225><h:0,0,0>Cost: 1680
 Age: 4
 Branch: 3
 [END]
 [ADVANCE_DEATH_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Mage requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. It costs 4280 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_DEMON>Demon<e>.
+<c:245,240,225><h:0,0,0>Researching Death Mage requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. It costs 2640 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_BONE_GOLEM>Bone Golem<e> and <L:DATABASE_UNITS,UNIT_DEMON>Demon<e>.
 [END]
 [ADVANCE_DEATH_MAGE_HISTORICAL]
 <c:245,240,225><h:0,0,0>A death mage commands what was once a person. The price of that power is that no one will ever again sit comfortably beside them.
@@ -1099,12 +1099,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>
 [END]
 [ADVANCE_DEATH_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 4280
+<c:245,240,225><h:0,0,0>Cost: 2640
 Age: 5
 Branch: 3
 [END]
 [ADVANCE_DEATH_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Wizard requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>. It costs 5890 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_DRACOLICH>Dracolich<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENTROPY_ENGINE>Entropy Engine<e>.
+<c:245,240,225><h:0,0,0>Researching Death Wizard requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>. It costs 5700 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_DRACOLICH>Dracolich<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_ENTROPY_ENGINE>Entropy Engine<e>.
 [END]
 [ADVANCE_DEATH_WIZARD_HISTORICAL]
 <c:245,240,225><h:0,0,0>The death wizard has stopped negotiating with mortality and started administering it.
@@ -1114,12 +1114,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>
 [END]
 [ADVANCE_DEATH_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 5890
+<c:245,240,225><h:0,0,0>Cost: 5700
 Age: 6
 Branch: 3
 [END]
 [ADVANCE_DEATH_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Master requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>. It costs 7665 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_LICH>Lich<e> and <L:DATABASE_UNITS,UNIT_UNDEAD_DRAGON>Undead Dragon<e>.
+<c:245,240,225><h:0,0,0>Researching Death Master requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>. It costs 7800 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_LICH>Lich<e>, <L:DATABASE_UNITS,UNIT_MALLEUS>Malleus<e> and <L:DATABASE_UNITS,UNIT_UNDEAD_DRAGON>Undead Dragon<e>.
 [END]
 [ADVANCE_DEATH_MASTER_HISTORICAL]
 <c:245,240,225><h:0,0,0>To master death magic is to stand, for practical purposes, outside the ordinary account of who owes what to whom.
@@ -1129,12 +1129,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>
 [END]
 [ADVANCE_DEATH_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 7665
+<c:245,240,225><h:0,0,0>Cost: 7800
 Age: 7
 Branch: 3
 [END]
 [ADVANCE_DEATH_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Death Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1050 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_SKELETONS>Skeletons<e> and <L:DATABASE_UNITS,UNIT_ZOMBIES>Zombies<e>.
+<c:245,240,225><h:0,0,0>Researching Death Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1500 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_RJAK>Rjak<e>, <L:DATABASE_UNITS,UNIT_SKELETONS>Skeletons<e> and <L:DATABASE_UNITS,UNIT_ZOMBIES>Zombies<e>.
 [END]
 [ADVANCE_DEATH_MAGIC_HISTORICAL]
 <c:245,240,225><h:0,0,0>The art of reaching past the end of a life and finding that something still answers. Universally condemned, and widely practised in wartime.
@@ -1144,12 +1144,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
 [END]
 [ADVANCE_DEATH_MAGIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1050
+<c:245,240,225><h:0,0,0>Cost: 1500
 Age: 2
 Branch: 3
 [END]
 [ADVANCE_SORCERY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1185 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_PHANTOM_WARRIORS>Phantom Warriors<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_PLEASURE_DOME>Pleasure Dome<e>.
+<c:245,240,225><h:0,0,0>Researching Sorcery requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1500 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_APPRENTICE>Apprentice<e>, <L:DATABASE_UNITS,UNIT_JAFAR>Jafar<e> and <L:DATABASE_UNITS,UNIT_PHANTOM_WARRIORS>Phantom Warriors<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_PLEASURE_DOME>Pleasure Dome<e>.
 [END]
 [ADVANCE_SORCERY_HISTORICAL]
 <c:245,240,225><h:0,0,0>The disciplined manipulation of force at a distance. Less spectacular than chaos, and considerably more reliable.
@@ -1159,12 +1159,12 @@ Branch: 3
 <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
 [END]
 [ADVANCE_SORCERY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1185
+<c:245,240,225><h:0,0,0>Cost: 1500
 Age: 2
 Branch: 4
 [END]
 [ADVANCE_SORCERY_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery Mage requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>. It costs 4625 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_STORM_GIANT>Storm Giant<e>.
+<c:245,240,225><h:0,0,0>Researching Sorcery Mage requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>. It costs 2640 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_STORM_GIANT>Storm Giant<e>.
 [END]
 [ADVANCE_SORCERY_MAGE_HISTORICAL]
 <c:245,240,225><h:0,0,0>A sorcery mage does openly and instantly what an engineer would need a season and a workforce to accomplish.
@@ -1174,12 +1174,12 @@ Branch: 4
 <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>
 [END]
 [ADVANCE_SORCERY_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 4625
+<c:245,240,225><h:0,0,0>Cost: 2640
 Age: 5
 Branch: 4
 [END]
 [ADVANCE_SORCERY_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery Wizard requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. It costs 6235 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_LEAGUE_OF_WIZARDS>League of Wizards<e>.
+<c:245,240,225><h:0,0,0>Researching Sorcery Wizard requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. It costs 5700 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_DJINN>Djinn<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_LEAGUE_OF_WIZARDS>League of Wizards<e>.
 [END]
 [ADVANCE_SORCERY_WIZARD_HISTORICAL]
 <c:245,240,225><h:0,0,0>The sorcery wizard treats the laws of the world as defaults rather than as limits.
@@ -1189,12 +1189,12 @@ Branch: 4
 <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>
 [END]
 [ADVANCE_SORCERY_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 6235
+<c:245,240,225><h:0,0,0>Cost: 5700
 Age: 6
 Branch: 4
 [END]
 [ADVANCE_SORCERY_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery Master requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>. It costs 8050 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_STORM_DRAKE>Storm Drake<e>.
+<c:245,240,225><h:0,0,0>Researching Sorcery Master requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>. It costs 7800 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_STORM_DRAKE>Storm Drake<e>.
 [END]
 [ADVANCE_SORCERY_MASTER_HISTORICAL]
 <c:245,240,225><h:0,0,0>Mastery of sorcery is measured in restraint, since by this grade the capability is no longer in question.
@@ -1204,12 +1204,12 @@ Branch: 4
 <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>
 [END]
 [ADVANCE_SORCERY_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 8050
+<c:245,240,225><h:0,0,0>Cost: 7800
 Age: 7
 Branch: 4
 [END]
 [ADVANCE_SORCEROUS_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcerous Lore requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2210 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Sorcerous Lore requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2600 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_SORCEROUS_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The theoretical backbone of sorcery, written down by practitioners who wanted successors rather than rivals.
@@ -1220,12 +1220,12 @@ Branch: 4
 <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
 [END]
 [ADVANCE_SORCEROUS_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2210
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 3
 Branch: 4
 [END]
 [ADVANCE_SORCERY_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Sorcery Adept requires <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. It costs 3060 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_AIR_ELEMENTAL>Air Elemental<e>.
+<c:245,240,225><h:0,0,0>Researching Sorcery Adept requires <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>. It costs 1680 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_AIR_ELEMENTAL>Air Elemental<e> and <L:DATABASE_UNITS,UNIT_CRYSTAL_GOLEM>Crystal Golem<e>.
 [END]
 [ADVANCE_SORCERY_ADEPT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The adept's year is spent on precision, because sorcery punishes approximation immediately.
@@ -1235,12 +1235,12 @@ Branch: 4
 <L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>
 [END]
 [ADVANCE_SORCERY_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 3060
+<c:245,240,225><h:0,0,0>Cost: 1680
 Age: 4
 Branch: 4
 [END]
 [ADVANCE_CHAOS_MAGIC_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1265 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_HELL_HOUNDS>Hell Hounds<e>.
+<c:245,240,225><h:0,0,0>Researching Chaos Magic requires <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>. It costs 1500 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_GOBLIN>Goblin<e>, <L:DATABASE_UNITS,UNIT_HELL_HOUNDS>Hell Hounds<e>, <L:DATABASE_UNITS,UNIT_ORC>Orc<e> and <L:DATABASE_UNITS,UNIT_TAURON>Tauron<e>.
 [END]
 [ADVANCE_CHAOS_MAGIC_HISTORICAL]
 <c:245,240,225><h:0,0,0>The discipline of drawing power from the raw unmade, where nothing is stable and therefore nothing is forbidden. Its practitioners trade safety for reach.
@@ -1250,12 +1250,12 @@ Branch: 4
 <L:DATABASE_ADVANCES,ADVANCE_GRAND_MASTERY>Grand Mastery<e>
 [END]
 [ADVANCE_CHAOS_MAGIC_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 1265
+<c:245,240,225><h:0,0,0>Cost: 1500
 Age: 2
 Branch: 0
 [END]
 [ADVANCE_CHAOS_LORE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Lore requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2340 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Chaos Lore requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e> and <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>. It costs 2600 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_CHAOS_LORE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The collected findings of wizards who studied disorder itself, and the smaller collection of those who survived doing so.
@@ -1266,12 +1266,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_ELDRITCH_LORE>Eldritch Lore<e>
 [END]
 [ADVANCE_CHAOS_LORE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2340
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 3
 Branch: 0
 [END]
 [ADVANCE_CHAOS_ADEPT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Adept requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>. It costs 3220 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_GARGOYLE>Gargoyle<e>.
+<c:245,240,225><h:0,0,0>Researching Chaos Adept requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>. It costs 1680 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_GARGOYLE>Gargoyle<e> and <L:DATABASE_UNITS,UNIT_OGRE>Ogre<e>.
 [END]
 [ADVANCE_CHAOS_ADEPT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The first initiation into chaos: the student learns that fire answers willingly and obeys badly. Adepts are recognised less by their skill than by their scars.
@@ -1281,12 +1281,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>
 [END]
 [ADVANCE_CHAOS_ADEPT_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 3220
+<c:245,240,225><h:0,0,0>Cost: 1680
 Age: 4
 Branch: 0
 [END]
 [ADVANCE_CHAOS_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Mage requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>. It costs 4830 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_EFREET>Efreet<e>.
+<c:245,240,225><h:0,0,0>Researching Chaos Mage requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>. It costs 2640 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_EFREET>Efreet<e> and <L:DATABASE_UNITS,UNIT_TROLL>Troll<e>.
 [END]
 [ADVANCE_CHAOS_MAGE_HISTORICAL]
 <c:245,240,225><h:0,0,0>A chaos mage no longer coaxes the flame but argues with it, and usually wins. The distinction matters to everyone standing nearby.
@@ -1296,12 +1296,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>
 [END]
 [ADVANCE_CHAOS_MAGE_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 4830
+<c:245,240,225><h:0,0,0>Cost: 2640
 Age: 5
 Branch: 0
 [END]
 [ADVANCE_CHAOS_WIZARD_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Wizard requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. It costs 6440 science to complete. It enables the wonder <L:DATABASE_WONDERS,WONDER_FORGE_OF_CHAOS>Forge of Chaos<e>.
+<c:245,240,225><h:0,0,0>Researching Chaos Wizard requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. It costs 5700 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_DROW>Drow<e> and <L:DATABASE_UNITS,UNIT_WARRAX>Warrax<e>. It enables the wonder <L:DATABASE_WONDERS,WONDER_FORGE_OF_CHAOS>Forge of Chaos<e>.
 [END]
 [ADVANCE_CHAOS_WIZARD_HISTORICAL]
 <c:245,240,225><h:0,0,0>At the wizard's grade, chaos is no longer a force to be handled but a country to be travelled. Few return unchanged, and fewer return unwilling to go back.
@@ -1311,12 +1311,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>
 [END]
 [ADVANCE_CHAOS_WIZARD_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 6440
+<c:245,240,225><h:0,0,0>Cost: 5700
 Age: 6
 Branch: 0
 [END]
 [ADVANCE_CHAOS_MASTER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chaos Master requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>. It costs 8280 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_HYDRA>Hydra<e>.
+<c:245,240,225><h:0,0,0>Researching Chaos Master requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>. It costs 7800 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_HYDRA>Hydra<e>.
 [END]
 [ADVANCE_CHAOS_MASTER_HISTORICAL]
 <c:245,240,225><h:0,0,0>Mastery of chaos is not control; it is the ability to stand at the centre of something uncontrolled and remain intact.
@@ -1326,12 +1326,12 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>
 [END]
 [ADVANCE_CHAOS_MASTER_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 8280
+<c:245,240,225><h:0,0,0>Cost: 7800
 Age: 7
 Branch: 0
 [END]
 [ADVANCE_FUTURE_TECHNOLOGY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Future Technology requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e> and <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>. It costs 9360 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
+<c:245,240,225><h:0,0,0>Researching Future Technology requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e> and <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>. It costs 28080 science to complete. It unlocks no units or buildings directly, and serves as a step toward later research.
 [END]
 [ADVANCE_FUTURE_TECHNOLOGY_HISTORICAL]
 <c:245,240,225><h:0,0,0>Whatever comes after the last thing anyone thought to name. Every age has believed it had reached this point.
@@ -1342,7 +1342,7 @@ Branch: 0
 <L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>
 [END]
 [ADVANCE_FUTURE_TECHNOLOGY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 9360
+<c:245,240,225><h:0,0,0>Cost: 28080
 Age: 7
 Branch: 3
 [END]
@@ -2213,7 +2213,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_ZOMBIES_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Zombies: attack 11, defense 21, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Zombies: attack 12, defense 21, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_ZOMBIES_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Zombies is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2259,7 +2259,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_SWORDSMEN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Swordsmen: attack 12, defense 12, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 320 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Swordsmen: attack 13, defense 12, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 320 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_BRONZE_WORKING>Bronze Working<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_SWORDSMEN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Swordsmen is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2282,7 +2282,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_PHANTOM_WARRIORS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Phantom Warriors: attack 14, defense 15, 20 hit points, firepower 4. Moves 2 tiles per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Phantom Warriors: attack 16, defense 15, 20 hit points, firepower 4. Moves 2 tiles per turn and sees 2 tiles. Costs 250 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_PHANTOM_WARRIORS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Phantom Warriors is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2305,7 +2305,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_HELL_HOUNDS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Hell Hounds: attack 19, defense 21, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 740 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Hell Hounds: attack 23, defense 21, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_HELL_HOUNDS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Hell Hounds is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2328,7 +2328,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WARBEARS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warbears: attack 14, defense 35, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Warbears: attack 16, defense 35, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_WARBEARS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Warbears is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2351,14 +2351,16 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WARLOCK_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warlock: attack 91, defense 12, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ALCHEMY>Alchemy<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Warlock: attack 93, defense 12, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ALCHEMY>Alchemy<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Signature Spell: Spell Binding (drains 50 mana from an enemy wizard within 2 tiles).
 [END]
 [UNIT_WARLOCK_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Warlock is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_ARIEL_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>
 [END]
 [UNIT_ARIEL_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
@@ -2374,14 +2376,14 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_ARIEL_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Ariel: attack 16, defense 79, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Ariel: attack 19, defense 79, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 1125 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_WIZARD>Life Wizard<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_ARIEL_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Ariel is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_JAFAR_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_SORCEROUS_LORE>Sorcerous Lore<e>
 [END]
 [UNIT_JAFAR_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
@@ -2397,14 +2399,14 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_JAFAR_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Jafar: attack 40, defense 29, 20 hit points, firepower 5. Moves 4 tiles per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Jafar: attack 49, defense 29, 20 hit points, firepower 5. Moves 4 tiles per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_JAFAR_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Jafar is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_RJAK_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_LORE>Death Lore<e>
 [END]
 [UNIT_RJAK_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
@@ -2420,14 +2422,14 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_RJAK_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Rjak: attack 40, defense 56, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Rjak: attack 49, defense 56, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 740 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_RJAK_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Rjak is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_TAURON_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>
 [END]
 [UNIT_TAURON_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
@@ -2443,14 +2445,14 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_TAURON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Tauron: attack 60, defense 15, 20 hit points, firepower 6. Moves 2 tiles per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Tauron: attack 66, defense 15, 20 hit points, firepower 6. Moves 2 tiles per turn and sees 2 tiles. Costs 440 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_TAURON_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Tauron is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_SERENA_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>
 [END]
 [UNIT_SERENA_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
@@ -2466,14 +2468,14 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_SERENA_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Serena: attack 16, defense 29, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Serena: attack 19, defense 29, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_SERENA_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Serena is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_FREYA_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>
 [END]
 [UNIT_FREYA_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
@@ -2489,14 +2491,14 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_FREYA_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Freya: attack 23, defense 43, 20 hit points, firepower 5. Moves 3 tiles per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Freya: attack 29, defense 43, 20 hit points, firepower 5. Moves 3 tiles per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_FREYA_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Freya is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_ALORRA_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>
 [END]
 [UNIT_ALORRA_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
@@ -2512,7 +2514,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_ALORRA_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Alorra: attack 40, defense 12, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Alorra: attack 49, defense 12, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 2910 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_WIZARD>Nature Wizard<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_ALORRA_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Alorra is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2535,7 +2537,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_CENTAURS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Centaurs: attack 12, defense 10, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 320 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Centaurs: attack 13, defense 10, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 320 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_CENTAURS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Centaurs is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2558,7 +2560,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_ELVEN_ARCHERS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Elven Archers: attack 16, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_PANTHEISM>Pantheism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Elven Archers: attack 19, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_PANTHEISM>Pantheism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_ELVEN_ARCHERS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Elven Archers is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2581,7 +2583,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_MAGE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Mage: attack 16, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Mage: attack 19, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_OCCULT_STUDIES>Occult Studies<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_MAGE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Mage is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2604,7 +2606,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WYVERN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Wyvern: attack 60, defense 29, 20 hit points, firepower 5. Moves 3 tiles per turn and sees 2 tiles. Costs 1200 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_GREATER_FAUNA_LORE>Greater Fauna Lore<e>.
+<c:245,240,225><h:0,0,0>Wyvern: attack 66, defense 29, 20 hit points, firepower 5. Moves 3 tiles per turn and sees 2 tiles. Costs 1200 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_GREATER_FAUNA_LORE>Greater Fauna Lore<e>.
 [END]
 [UNIT_WYVERN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Wyvern is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2627,7 +2629,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_KNIGHTS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Knights: attack 23, defense 12, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Knights: attack 29, defense 12, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHIVALRY>Chivalry<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_KNIGHTS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Knights is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2650,7 +2652,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_PALADINS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Paladins: attack 40, defense 12, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1125 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_HOLY_WARRIORS>Holy Warriors<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Paladins: attack 49, defense 12, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1420 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_HOLY_WARRIORS>Holy Warriors<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_PALADINS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Paladins is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2673,7 +2675,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_UNICORN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Unicorn: attack 14, defense 66, 35 hit points, firepower 1. Moves 3 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Unicorn: attack 16, defense 66, 35 hit points, firepower 1. Moves 3 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_UNICORN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Unicorn is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2696,7 +2698,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_IRON_GOLEM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Iron Golem: attack 60, defense 43, 48 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 3500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Iron Golem: attack 66, defense 43, 48 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 2610 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_IRON_GOLEM_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Iron Golem is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2719,7 +2721,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_CATAPULT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Catapult: attack 40, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Catapult: attack 49, defense 10, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MATHEMATICS>Mathematics<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_CATAPULT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Catapult is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2742,7 +2744,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_STEAM_CANNON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Steam Cannon: attack 77, defense 12, 20 hit points, firepower 5. Moves 1 tile per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Steam Cannon: attack 81, defense 12, 20 hit points, firepower 5. Moves 1 tile per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_STEAM_CANNON_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Steam Cannon is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2765,7 +2767,9 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_EFREET_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Efreet: attack 37, defense 35, 35 hit points, firepower 4. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Efreet: attack 42, defense 35, 35 hit points, firepower 4. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Signature Spell: Fire Storm (deploys Hell Hounds at an enemy city within 2 tiles).
 [END]
 [UNIT_EFREET_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Efreet is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2788,7 +2792,9 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WRAITH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Wraith: attack 19, defense 35, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Wraith: attack 23, defense 35, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Signature Spell: Black Wind (kills an enemy unit at an adjacent city).
 [END]
 [UNIT_WRAITH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Wraith is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2811,7 +2817,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_GRIFFIN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Griffin: attack 23, defense 29, 20 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>.
+<c:245,240,225><h:0,0,0>Griffin: attack 29, defense 29, 20 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LESSER_FAUNA_LORE>Lesser Fauna Lore<e>.
 [END]
 [UNIT_GRIFFIN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Griffin is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2834,7 +2840,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_PEGASUS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Pegasus: attack 24, defense 21, 35 hit points, firepower 4. Moves 5 tiles per turn and sees 2 tiles. Costs 1180 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>.
+<c:245,240,225><h:0,0,0>Pegasus: attack 30, defense 21, 35 hit points, firepower 4. Moves 5 tiles per turn and sees 2 tiles. Costs 1290 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGE>Life Mage<e>.
 [END]
 [UNIT_PEGASUS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Pegasus is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2880,7 +2886,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WARSHIP_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warship: attack 50, defense 15, 20 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 820 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SEA_MASTERY>Sea Mastery<e>. This unit can raid trade routes.
+<c:245,240,225><h:0,0,0>Warship: attack 58, defense 15, 20 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 820 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SEA_MASTERY>Sea Mastery<e>. This unit can raid trade routes.
 [END]
 [UNIT_WARSHIP_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Warship is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2903,7 +2909,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_HYDRA_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Hydra: attack 64, defense 35, 50 hit points, firepower 4. Moves 1 tile per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MASTER>Chaos Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Hydra: attack 65, defense 35, 50 hit points, firepower 4. Moves 1 tile per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MASTER>Chaos Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_HYDRA_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Hydra is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2926,7 +2932,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_AIRSHIP_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Airship: attack 31, defense 10, 10 hit points, firepower 1. Moves 6 tiles per turn and sees 2 tiles. Costs 1450 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>.
+<c:245,240,225><h:0,0,0>Airship: attack 40, defense 10, 10 hit points, firepower 1. Moves 6 tiles per turn and sees 2 tiles. Costs 1450 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_ARTIFICING>Artificing<e>.
 [END]
 [UNIT_AIRSHIP_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Airship is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2972,7 +2978,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WAR_TROLL_GAMEPLAY]
-<c:245,240,225><h:0,0,0>War Troll: attack 50, defense 43, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LEADERSHIP>Leadership<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>War Troll: attack 58, defense 43, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LEADERSHIP>Leadership<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_WAR_TROLL_HISTORICAL]
 <c:245,240,225><h:0,0,0>The War Troll is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -2995,7 +3001,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_GARGOYLE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Gargoyle: attack 11, defense 46, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>.
+<c:245,240,225><h:0,0,0>Gargoyle: attack 12, defense 46, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>.
 [END]
 [UNIT_GARGOYLE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Gargoyle is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3041,7 +3047,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_COCKATRICE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Cockatrice: attack 30, defense 15, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>.
+<c:245,240,225><h:0,0,0>Cockatrice: attack 36, defense 15, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 630 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>.
 [END]
 [UNIT_COCKATRICE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Cockatrice is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3064,7 +3070,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_SALAMANDER_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Salamander: attack 77, defense 15, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1010 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_PYROTECHNICS>Pyrotechnics<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Salamander: attack 81, defense 15, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1010 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_PYROTECHNICS>Pyrotechnics<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_SALAMANDER_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Salamander is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3133,7 +3139,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_DEMON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Demon: attack 19, defense 56, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 860 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>.
+<c:245,240,225><h:0,0,0>Demon: attack 23, defense 56, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1070 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>.
 [END]
 [UNIT_DEMON_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Demon is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3179,7 +3185,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WAR_MAMMOTH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>War Mammoth: attack 77, defense 43, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_TACTICS>Tactics<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>War Mammoth: attack 81, defense 43, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_TACTICS>Tactics<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_WAR_MAMMOTH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The War Mammoth is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3202,7 +3208,9 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_STORM_GIANT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Storm Giant: attack 43, defense 46, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Storm Giant: attack 47, defense 46, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MAGE>Sorcery Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Signature Spell: Ice Storm (deploys War Bears at an enemy city within 2 tiles).
 [END]
 [UNIT_STORM_GIANT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Storm Giant is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3225,7 +3233,9 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_AIR_ELEMENTAL_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Air Elemental: attack 30, defense 35, 20 hit points, firepower 1. Moves 8 tiles per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>.
+<c:245,240,225><h:0,0,0>Air Elemental: attack 36, defense 35, 20 hit points, firepower 1. Moves 8 tiles per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>.
+
+Signature Spell: Great Unsummoning (kills an enemy unit at a city within 2 tiles).
 [END]
 [UNIT_AIR_ELEMENTAL_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Air Elemental is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3248,14 +3258,16 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_STORM_DRAKE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Storm Drake: attack 64, defense 66, 50 hit points, firepower 4. Moves 5 tiles per turn and sees 2 tiles. Costs 4000 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MASTER>Sorcery Master<e>.
+<c:245,240,225><h:0,0,0>Storm Drake: attack 65, defense 66, 50 hit points, firepower 4. Moves 5 tiles per turn and sees 2 tiles. Costs 4000 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_MASTER>Sorcery Master<e>.
+
+Signature Spell: Stasis (deploys Phantom Warriors at a city within 2 tiles).
 [END]
 [UNIT_STORM_DRAKE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Storm Drake is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_WARRAX_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>
 [END]
 [UNIT_WARRAX_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
@@ -3271,7 +3283,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_WARRAX_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warrax: attack 60, defense 15, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Warrax: attack 66, defense 15, 20 hit points, firepower 5. Moves 2 tiles per turn and sees 2 tiles. Costs 3500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_WARRAX_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Warrax is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3294,7 +3306,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_UNDEAD_DRAGON_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Undead Dragon: attack 64, defense 66, 62 hit points, firepower 4. Moves 3 tiles per turn and sees 2 tiles. Costs 1200 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MASTER>Death Master<e>.
+<c:245,240,225><h:0,0,0>Undead Dragon: attack 65, defense 66, 62 hit points, firepower 4. Moves 3 tiles per turn and sees 2 tiles. Costs 1200 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MASTER>Death Master<e>.
 [END]
 [UNIT_UNDEAD_DRAGON_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Undead Dragon is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3318,6 +3330,8 @@ Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_GREAT_WYRM_GAMEPLAY]
 <c:245,240,225><h:0,0,0>Great Wyrm: attack 70, defense 90, 75 hit points, firepower 4. Moves 2 tiles per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MASTER>Nature Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Signature Spell: Call the Void (kills 2 enemy units at a city within 2 tiles).
 [END]
 [UNIT_GREAT_WYRM_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Great Wyrm is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3340,14 +3354,16 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_BEHEMOTH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Behemoth: attack 24, defense 46, 62 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Behemoth: attack 30, defense 46, 62 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 1500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGE>Nature Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Signature Spell: Earthquake (deploys a War Troll at an adjacent enemy city).
 [END]
 [UNIT_BEHEMOTH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Behemoth is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_MALLEUS_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
-<L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_MASTER>Death Master<e>
 [END]
 [UNIT_MALLEUS_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
@@ -3363,7 +3379,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_MALLEUS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Malleus: attack 60, defense 12, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Malleus: attack 66, defense 12, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 2980 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MASTER>Death Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_MALLEUS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Malleus is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3386,7 +3402,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_MERFOLK_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Merfolk: attack 23, defense 15, 20 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. This unit can raid trade routes.
+<c:245,240,225><h:0,0,0>Merfolk: attack 29, defense 15, 20 hit points, firepower 1. Moves 4 tiles per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SEA_LORE>Sea Lore<e>. This unit can raid trade routes.
 [END]
 [UNIT_MERFOLK_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Merfolk is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3409,7 +3425,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_ARCHANGEL_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Archangel: attack 64, defense 100, 35 hit points, firepower 4. Moves 4 tiles per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MASTER>Life Master<e>.
+<c:245,240,225><h:0,0,0>Archangel: attack 65, defense 100, 35 hit points, firepower 4. Moves 4 tiles per turn and sees 2 tiles. Costs 3490 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MASTER>Life Master<e>.
 [END]
 [UNIT_ARCHANGEL_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Archangel is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3455,7 +3471,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_SKELETONS_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Skeletons: attack 10, defense 21, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Skeletons: attack 10, defense 21, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 250 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGIC>Death Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
 [UNIT_SKELETONS_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Skeletons is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3478,7 +3494,7 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_DRACOLICH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Dracolich: attack 69, defense 75, 62 hit points, firepower 4. Moves 3 tiles per turn and sees 2 tiles. Costs 3500 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>.
+<c:245,240,225><h:0,0,0>Dracolich: attack 69, defense 75, 62 hit points, firepower 4. Moves 3 tiles per turn and sees 2 tiles. Costs 2610 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_WIZARD>Death Wizard<e>.
 [END]
 [UNIT_DRACOLICH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Dracolich is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3501,7 +3517,9 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_DEATH_KNIGHT_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Death Knight: attack 60, defense 56, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Death Knight: attack 66, defense 56, 35 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MYSTICISM>Mysticism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Signature Spell: Death Wish (kills an enemy unit at an adjacent city).
 [END]
 [UNIT_DEATH_KNIGHT_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Death Knight is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3524,7 +3542,9 @@ Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_LICH_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Lich: attack 40, defense 79, 35 hit points, firepower 5. Moves 1 tile per turn and sees 2 tiles. Costs 2980 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MASTER>Death Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+<c:245,240,225><h:0,0,0>Lich: attack 49, defense 79, 35 hit points, firepower 5. Moves 1 tile per turn and sees 2 tiles. Costs 2980 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MASTER>Death Master<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Signature Spell: Cruel Unminding (drains 30 mana from an adjacent enemy wizard).
 [END]
 [UNIT_LICH_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Lich is represented here as a proxy unit while the final MoM art swap is in progress.
@@ -3551,6 +3571,470 @@ Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
 [UNIT_LAMP_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Lamp is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_WAR_MAGE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune Lore<e>
+[END]
+[UNIT_WAR_MAGE_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_WAR_MAGE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>War Mage: attack 29, defense 12, 10 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_RUNE_LORE>Rune Lore<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Tactical Caster: enables city-targeted spells at range 1 (adjacent tile).
+[END]
+[UNIT_WAR_MAGE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The War Mage is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_ARCH_MAGE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_WIZARDRY>Wizardry<e>
+[END]
+[UNIT_ARCH_MAGE_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_ARCH_MAGE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Arch Mage: attack 49, defense 15, 20 hit points, firepower 5. Moves 1 tile per turn and sees 2 tiles. Costs 470 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WIZARDRY>Wizardry<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+
+Strategic Caster: enables city-targeted spells at range 2 (artillery reach).
+[END]
+[UNIT_ARCH_MAGE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Arch Mage is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_DWARF_WARRIOR_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e>
+[END]
+[UNIT_DWARF_WARRIOR_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_DWARF_WARRIOR_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Dwarf Warrior: attack 29, defense 43, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_IRON_WORKING>Iron Working<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_DWARF_WARRIOR_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Dwarf Warrior is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_DWARF_CROSSBOW_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>
+[END]
+[UNIT_DWARF_CROSSBOW_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_DWARF_CROSSBOW_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Dwarf Crossbow: attack 19, defense 15, 20 hit points, firepower 5. Moves 1 tile per turn and sees 2 tiles. Costs 570 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_MASONRY>Masonry<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_DWARF_CROSSBOW_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Dwarf Crossbow is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_DWARF_RUNESMITH_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>
+[END]
+[UNIT_DWARF_RUNESMITH_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_DWARF_RUNESMITH_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Dwarf Runesmith: attack 40, defense 56, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 2610 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_THAUMATURGY>Thaumaturgy<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_DWARF_RUNESMITH_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Dwarf Runesmith is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_PRIEST_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e>
+[END]
+[UNIT_PRIEST_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_PRIEST_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Priest: attack 12, defense 35, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_PRIEST_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Priest is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_CRUSADER_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_LORE>Life Lore<e>
+[END]
+[UNIT_CRUSADER_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_CRUSADER_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Crusader: attack 23, defense 46, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 440 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_MAGIC>Life Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_CRUSADER_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Crusader is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_TEMPLAR_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>
+[END]
+[UNIT_TEMPLAR_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_TEMPLAR_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Templar: attack 36, defense 56, 50 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 820 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_LIFE_ADEPT>Life Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_TEMPLAR_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Templar is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_TREANT_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_NATURE_LORE>Nature Lore<e>
+[END]
+[UNIT_TREANT_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_TREANT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Treant: attack 16, defense 84, 62 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_MAGIC>Nature Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_TREANT_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Treant is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_DRUID_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>
+[END]
+[UNIT_DRUID_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_DRUID_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Druid: attack 16, defense 35, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 540 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_NATURE_ADEPT>Nature Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_DRUID_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Druid is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_APPRENTICE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>
+[END]
+[UNIT_APPRENTICE_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_APPRENTICE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Apprentice: attack 12, defense 15, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 460 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY>Sorcery<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_APPRENTICE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Apprentice is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_CRYSTAL_GOLEM_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>
+[END]
+[UNIT_CRYSTAL_GOLEM_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_CRYSTAL_GOLEM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Crystal Golem: attack 23, defense 66, 50 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 730 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_ADEPT>Sorcery Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_CRYSTAL_GOLEM_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Crystal Golem is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_DJINN_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>
+[END]
+[UNIT_DJINN_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_DJINN_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Djinn: attack 47, defense 56, 35 hit points, firepower 4. Moves 3 tiles per turn and sees 2 tiles. Costs 2910 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SORCERY_WIZARD>Sorcery Wizard<e>.
+[END]
+[UNIT_DJINN_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Djinn is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_VAMPIRE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>
+[END]
+[UNIT_VAMPIRE_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_VAMPIRE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Vampire: attack 30, defense 46, 35 hit points, firepower 4. Moves 2 tiles per turn and sees 2 tiles. Costs 730 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_ADEPT>Death Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_VAMPIRE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Vampire is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_BONE_GOLEM_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>
+[END]
+[UNIT_BONE_GOLEM_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_BONE_GOLEM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Bone Golem: attack 23, defense 75, 62 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 1290 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_DEATH_MAGE>Death Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_BONE_GOLEM_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Bone Golem is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_GOBLIN_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>
+[END]
+[UNIT_GOBLIN_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_GOBLIN_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Goblin: attack 10, defense 15, 20 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 150 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_GOBLIN_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Goblin is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_ORC_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_LORE>Chaos Lore<e>
+[END]
+[UNIT_ORC_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_ORC_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Orc: attack 16, defense 21, 35 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 350 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGIC>Chaos Magic<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_ORC_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Orc is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_OGRE_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>
+[END]
+[UNIT_OGRE_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_OGRE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Ogre: attack 36, defense 35, 50 hit points, firepower 4. Moves 1 tile per turn and sees 2 tiles. Costs 730 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_ADEPT>Chaos Adept<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_OGRE_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Ogre is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_TROLL_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>
+[END]
+[UNIT_TROLL_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_TROLL_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Troll: attack 30, defense 46, 50 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 860 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_MAGE>Chaos Mage<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_TROLL_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Troll is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_DROW_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>
+[END]
+[UNIT_DROW_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_DROW_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Drow: attack 23, defense 35, 35 hit points, firepower 4. Moves 2 tiles per turn and sees 2 tiles. Costs 2310 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_CHAOS_WIZARD>Chaos Wizard<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_DROW_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Drow is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [ADVANCE_AGE_OF_REASON_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
@@ -6010,14 +6494,23 @@ Conservation
 [UNIT_ALORRA_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Alorra.
 [END]
+[UNIT_APPRENTICE_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Apprentice.
+[END]
 [UNIT_ARCHANGEL_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Archangel.
+[END]
+[UNIT_ARCH_MAGE_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Arch Mage.
 [END]
 [UNIT_ARIEL_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Ariel.
 [END]
 [UNIT_BEHEMOTH_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Behemoth.
+[END]
+[UNIT_BONE_GOLEM_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Bone Golem.
 [END]
 [UNIT_CARAVAN_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Caravan.
@@ -6031,14 +6524,38 @@ Conservation
 [UNIT_COCKATRICE_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Cockatrice.
 [END]
+[UNIT_CRUSADER_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Crusader.
+[END]
+[UNIT_CRYSTAL_GOLEM_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Crystal Golem.
+[END]
 [UNIT_DEATH_KNIGHT_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Death Knight.
 [END]
 [UNIT_DEMON_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Demon.
 [END]
+[UNIT_DJINN_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Djinn.
+[END]
 [UNIT_DRACOLICH_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Dracolich.
+[END]
+[UNIT_DROW_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Drow.
+[END]
+[UNIT_DRUID_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Druid.
+[END]
+[UNIT_DWARF_CROSSBOW_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Dwarf Crossbow.
+[END]
+[UNIT_DWARF_RUNESMITH_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Dwarf Runesmith.
+[END]
+[UNIT_DWARF_WARRIOR_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Dwarf Warrior.
 [END]
 [UNIT_EFREET_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Efreet.
@@ -6054,6 +6571,9 @@ Conservation
 [END]
 [UNIT_GARGOYLE_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Gargoyle.
+[END]
+[UNIT_GOBLIN_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Goblin.
 [END]
 [UNIT_GREAT_WYRM_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Great Wyrm.
@@ -6103,6 +6623,12 @@ Conservation
 [UNIT_MINOTAUR_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Minotaur.
 [END]
+[UNIT_OGRE_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Ogre.
+[END]
+[UNIT_ORC_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Orc.
+[END]
 [UNIT_PALADINS_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Paladins.
 [END]
@@ -6114,6 +6640,9 @@ Conservation
 [END]
 [UNIT_PHANTOM_WARRIORS_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Phantom Warriors.
+[END]
+[UNIT_PRIEST_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Priest.
 [END]
 [UNIT_RJAK_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Rjak.
@@ -6145,11 +6674,23 @@ Conservation
 [UNIT_TAURON_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Tauron.
 [END]
+[UNIT_TEMPLAR_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Templar.
+[END]
+[UNIT_TREANT_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Treant.
+[END]
+[UNIT_TROLL_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Troll.
+[END]
 [UNIT_UNDEAD_DRAGON_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Undead Dragon.
 [END]
 [UNIT_UNICORN_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Unicorn.
+[END]
+[UNIT_VAMPIRE_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Vampire.
 [END]
 [UNIT_WARBEARS_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Warbears.
@@ -6162,6 +6703,9 @@ Conservation
 [END]
 [UNIT_WARSHIP_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Warship.
+[END]
+[UNIT_WAR_MAGE_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of War Mage.
 [END]
 [UNIT_WAR_MAMMOTH_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of War Mammoth.

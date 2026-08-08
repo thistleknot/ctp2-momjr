@@ -124,11 +124,7 @@ int_f MomRecalcMagicPerTurn(int_t mp_1)
         for (i = 0; i < 32; i = i + 1) {
             idx = base + i;
             if (MomSummonRung[idx] > 0) {
-                if (MomSummonUnit[idx].valid) {
-                    upkeep = upkeep + MomSummonRung[idx] * MomUpkeepRate;
-                } else {
-                    MomSummonRung[idx] = 0;   // creature died -- free the slot
-                }
+                upkeep = upkeep + MomSummonRung[idx] * MomUpkeepRate;
             }
         }
     }
@@ -180,7 +176,14 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
     // whole body with an if (this handler running for player 0 was the turn-10 crash).
     if (p >= 1 && p <= 5) {
         if (MomMagicMax[p] == 0) {
-            MomMagicMax[p] = 100;
+            MomMagicMax[p] = 200;
+        }
+        // Seed rung 1: Common spells available from turn 1 for your own sphere.
+        // Without this, a tribe must research its *_MAGIC root advance before any
+        // spells work -- which contradicts the MoM design where you START with
+        // your school's basics. Fires every turn but only writes once (< 1 guard).
+        if (MomSphereRung[p] < 1) {
+            MomSphereRung[p] = 1;
         }
 
         MomMagicPerTurn[p] = MomRecalcMagicPerTurn(p);
@@ -250,12 +253,9 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
             }
             if (insSlot >= 0) {
                 insIdx = insBase + insSlot;
-                if (MomSummonUnit[insIdx].valid) {
-                    KillUnit(MomSummonUnit[insIdx]);
-                }
-                // Refund this turn's charge for the creature just released, so
-                // the pool reflects the lighter army immediately instead of
-                // disbanding a second one next turn for a debt already paid.
+                // SAVE/LOAD FIX: no unit_t handle to kill. Just free the slot
+                // and refund the upkeep. The creature lives but its magical
+                // bond snaps — it no longer costs upkeep.
                 MomMagicCur[p] = MomMagicCur[p] + MomSummonRung[insIdx] * MomUpkeepRate;
                 MomSummonRung[insIdx] = 0;
                 if (IsHumanPlayer(p)) {
@@ -439,4 +439,103 @@ HandleEvent(BeginTurn) 'MomSphereRootGrant' post {
             GrantAdvance(rp, AdvanceDB(ADVANCE_CHAOS_MAGIC));
         }
     }
+}
+
+// ---------------------------------------------------------------------------
+// CATACLYSM (2026-08-07) -- terrain transformation on sphere Master research.
+//
+// When a player researches their sphere's MASTER advance (the final rung),
+// land tiles within radius 2 of each city they own are permanently transformed
+// to sphere-themed terrain. The world reshapes around the wizard's power.
+//
+// Fires ONCE per player. MomCataclysmDone[] prevents re-triggering on
+// subsequent GrantAdvance events.
+//
+// Builtins (all base-verified in MagnificentSamurai):
+//   Terraform(location, terrain_index)
+//   TerrainType(location) -> int
+//   GetNeighbor(location, direction, out_location) -> bool
+//   GetCityByIndex(player, index, out_city)
+// ---------------------------------------------------------------------------
+int_t MomCataclysmDone[31];
+
+HandleEvent(GrantAdvance) 'MomCataclysm' post {
+    int_t cp;
+    int_t cTerrain;
+    int_t ci;
+    int_t d1;
+    int_t d2;
+    int_t tt;
+    city_t cCity;
+    location_t cLoc;
+    location_t r1Loc;
+    location_t r2Loc;
+
+    cp = player[0];
+    cTerrain = -1;
+
+    if (cp >= 1 && cp <= 5 && MomCataclysmDone[cp] == 0) {
+
+    // Determine target terrain by sphere
+    if (MomSphere[cp] == 1 && value[0] == AdvanceDB(ADVANCE_LIFE_MASTER)) {
+        cTerrain = 24;  // TERRAIN_SPECIAL1 (Elysian Fields)
+    } elseif (MomSphere[cp] == 2 && value[0] == AdvanceDB(ADVANCE_NATURE_MASTER)) {
+        cTerrain = 7;   // TERRAIN_JUNGLE (Primal Overgrowth)
+    } elseif (MomSphere[cp] == 3 && value[0] == AdvanceDB(ADVANCE_SORCERY_MASTER)) {
+        cTerrain = 3;   // TERRAIN_GLACIER (Crystal Wastes)
+    } elseif (MomSphere[cp] == 4 && value[0] == AdvanceDB(ADVANCE_DEATH_MASTER)) {
+        cTerrain = 17;  // TERRAIN_DEAD (Ravenloft)
+    } elseif (MomSphere[cp] == 5 && value[0] == AdvanceDB(ADVANCE_CHAOS_MASTER)) {
+        cTerrain = 5;   // TERRAIN_DESERT (Scorched Wastes)
+    }
+
+    if (cTerrain >= 0) {
+        // Mark as done
+        MomCataclysmDone[cp] = 1;
+
+        // Transform tiles within radius 2 of each city
+        for (ci = 0; ci < player[0].cities; ci = ci + 1) {
+            GetCityByIndex(player[0], ci, cCity);
+            if (CityIsValid(cCity)) {
+                cLoc = cCity.location;
+
+                // Ring 0: city tile itself
+                tt = TerrainType(cLoc);
+                if (tt < 10 && tt != 8 && tt != 9) {
+                    Terraform(cLoc, cTerrain);
+                }
+
+                // Ring 1: 8 neighbors
+                for (d1 = 0; d1 < 8; d1 = d1 + 1) {
+                    if (GetNeighbor(cLoc, d1, r1Loc)) {
+                        tt = TerrainType(r1Loc);
+                        if (tt < 10 && tt != 8 && tt != 9) {
+                            Terraform(r1Loc, cTerrain);
+                        }
+
+                        // Ring 2: neighbors of ring-1 tiles
+                        for (d2 = 0; d2 < 8; d2 = d2 + 1) {
+                            if (GetNeighbor(r1Loc, d2, r2Loc)) {
+                                tt = TerrainType(r2Loc);
+                                if (tt < 10 && tt != 8 && tt != 9) {
+                                    Terraform(r2Loc, cTerrain);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (IsHumanPlayer(cp)) {
+            Message(cp, 'MomCataclysmMsg');
+        }
+    }
+
+    }   // cp >= 1 && cp <= 5 && !done
+}
+
+messagebox 'MomCataclysmMsg' {
+    Show();
+    Text(ID_MOM_MSG_CATACLYSM);
 }

@@ -104,26 +104,35 @@ int_f MomSummonRoll(int_t p)
     // LIFE (player 1)
     if (MomSphere[p] == 1) {
         if (r == 5) {
+            if (roll < 8) { return UnitDB(UNIT_CRUSADER); }
             if (roll < 16) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+            if (roll < 24) { return UnitDB(UNIT_TEMPLAR); }
             if (roll < 32) { return UnitDB(UNIT_UNICORN); }
             if (roll < 48) { return UnitDB(UNIT_PEGASUS); }
             if (roll < 100) { return UnitDB(UNIT_ARCHANGEL); }
         }
         if (r == 4) {
+            if (roll < 12) { return UnitDB(UNIT_CRUSADER); }
             if (roll < 25) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+            if (roll < 37) { return UnitDB(UNIT_TEMPLAR); }
             if (roll < 50) { return UnitDB(UNIT_UNICORN); }
             if (roll < 100) { return UnitDB(UNIT_PEGASUS); }
         }
         if (r == 3) {
+            if (roll < 12) { return UnitDB(UNIT_CRUSADER); }
             if (roll < 25) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+            if (roll < 37) { return UnitDB(UNIT_TEMPLAR); }
             if (roll < 50) { return UnitDB(UNIT_UNICORN); }
             if (roll < 100) { return UnitDB(UNIT_PEGASUS); }
         }
         if (r == 2) {
+            if (roll < 25) { return UnitDB(UNIT_CRUSADER); }
             if (roll < 50) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+            if (roll < 75) { return UnitDB(UNIT_TEMPLAR); }
             if (roll < 100) { return UnitDB(UNIT_UNICORN); }
         }
         if (r == 1) {
+            if (roll < 50) { return UnitDB(UNIT_CRUSADER); }
             if (roll < 100) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
         }
     }
@@ -131,26 +140,35 @@ int_f MomSummonRoll(int_t p)
     // NATURE (player 2)
     if (MomSphere[p] == 2) {
         if (r == 5) {
+            if (roll < 8) { return UnitDB(UNIT_TREANT); }
             if (roll < 16) { return UnitDB(UNIT_WARBEARS); }
-            if (roll < 32) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 24) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 32) { return UnitDB(UNIT_DRUID); }
             if (roll < 48) { return UnitDB(UNIT_BEHEMOTH); }
             if (roll < 100) { return UnitDB(UNIT_GREAT_WYRM); }
         }
         if (r == 4) {
+            if (roll < 12) { return UnitDB(UNIT_TREANT); }
             if (roll < 25) { return UnitDB(UNIT_WARBEARS); }
-            if (roll < 50) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 37) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 50) { return UnitDB(UNIT_DRUID); }
             if (roll < 100) { return UnitDB(UNIT_BEHEMOTH); }
         }
         if (r == 3) {
+            if (roll < 12) { return UnitDB(UNIT_TREANT); }
             if (roll < 25) { return UnitDB(UNIT_WARBEARS); }
-            if (roll < 50) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 37) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 50) { return UnitDB(UNIT_DRUID); }
             if (roll < 100) { return UnitDB(UNIT_BEHEMOTH); }
         }
         if (r == 2) {
+            if (roll < 25) { return UnitDB(UNIT_TREANT); }
             if (roll < 50) { return UnitDB(UNIT_WARBEARS); }
-            if (roll < 100) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 75) { return UnitDB(UNIT_COCKATRICE); }
+            if (roll < 100) { return UnitDB(UNIT_DRUID); }
         }
         if (r == 1) {
+            if (roll < 50) { return UnitDB(UNIT_TREANT); }
             if (roll < 100) { return UnitDB(UNIT_WARBEARS); }
         }
     }
@@ -158,24 +176,30 @@ int_f MomSummonRoll(int_t p)
     // SORCERY (player 3)
     if (MomSphere[p] == 3) {
         if (r == 5) {
-            if (roll < 16) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-            if (roll < 32) { return UnitDB(UNIT_AIR_ELEMENTAL); }
-            if (roll < 48) { return UnitDB(UNIT_STORM_GIANT); }
+            if (roll < 12) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+            if (roll < 18) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+            if (roll < 24) { return UnitDB(UNIT_CRYSTAL_GOLEM); }
+            if (roll < 36) { return UnitDB(UNIT_STORM_GIANT); }
+            if (roll < 48) { return UnitDB(UNIT_DJINN); }
             if (roll < 100) { return UnitDB(UNIT_STORM_DRAKE); }
         }
         if (r == 4) {
-            if (roll < 25) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-            if (roll < 50) { return UnitDB(UNIT_AIR_ELEMENTAL); }
-            if (roll < 100) { return UnitDB(UNIT_STORM_GIANT); }
+            if (roll < 16) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+            if (roll < 24) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+            if (roll < 32) { return UnitDB(UNIT_CRYSTAL_GOLEM); }
+            if (roll < 48) { return UnitDB(UNIT_STORM_GIANT); }
+            if (roll < 100) { return UnitDB(UNIT_DJINN); }
         }
         if (r == 3) {
             if (roll < 25) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-            if (roll < 50) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+            if (roll < 37) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+            if (roll < 50) { return UnitDB(UNIT_CRYSTAL_GOLEM); }
             if (roll < 100) { return UnitDB(UNIT_STORM_GIANT); }
         }
         if (r == 2) {
             if (roll < 50) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-            if (roll < 100) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+            if (roll < 75) { return UnitDB(UNIT_AIR_ELEMENTAL); }
+            if (roll < 100) { return UnitDB(UNIT_CRYSTAL_GOLEM); }
         }
         if (r == 1) {
             if (roll < 100) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
@@ -187,7 +211,9 @@ int_f MomSummonRoll(int_t p)
         if (r == 5) {
             if (roll < 6) { return UnitDB(UNIT_SKELETONS); }
             if (roll < 12) { return UnitDB(UNIT_ZOMBIES); }
+            if (roll < 18) { return UnitDB(UNIT_VAMPIRE); }
             if (roll < 24) { return UnitDB(UNIT_WRAITH); }
+            if (roll < 30) { return UnitDB(UNIT_BONE_GOLEM); }
             if (roll < 36) { return UnitDB(UNIT_DEMON); }
             if (roll < 48) { return UnitDB(UNIT_DRACOLICH); }
             if (roll < 100) { return UnitDB(UNIT_UNDEAD_DRAGON); }
@@ -195,19 +221,24 @@ int_f MomSummonRoll(int_t p)
         if (r == 4) {
             if (roll < 8) { return UnitDB(UNIT_SKELETONS); }
             if (roll < 16) { return UnitDB(UNIT_ZOMBIES); }
+            if (roll < 24) { return UnitDB(UNIT_VAMPIRE); }
             if (roll < 32) { return UnitDB(UNIT_WRAITH); }
+            if (roll < 40) { return UnitDB(UNIT_BONE_GOLEM); }
             if (roll < 48) { return UnitDB(UNIT_DEMON); }
             if (roll < 100) { return UnitDB(UNIT_DRACOLICH); }
         }
         if (r == 3) {
             if (roll < 12) { return UnitDB(UNIT_SKELETONS); }
             if (roll < 25) { return UnitDB(UNIT_ZOMBIES); }
+            if (roll < 37) { return UnitDB(UNIT_VAMPIRE); }
             if (roll < 50) { return UnitDB(UNIT_WRAITH); }
+            if (roll < 75) { return UnitDB(UNIT_BONE_GOLEM); }
             if (roll < 100) { return UnitDB(UNIT_DEMON); }
         }
         if (r == 2) {
             if (roll < 25) { return UnitDB(UNIT_SKELETONS); }
             if (roll < 50) { return UnitDB(UNIT_ZOMBIES); }
+            if (roll < 75) { return UnitDB(UNIT_VAMPIRE); }
             if (roll < 100) { return UnitDB(UNIT_WRAITH); }
         }
         if (r == 1) {
@@ -221,102 +252,152 @@ int_f MomSummonRoll(int_t p)
         wild = Random(100);
         if (wild < 15) {
             if (r == 5) {
-                wild = Random(18);
+                wild = Random(26);
                 if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
                 if (wild < 2) { return UnitDB(UNIT_ARCHANGEL); }
                 if (wild < 3) { return UnitDB(UNIT_BEHEMOTH); }
-                if (wild < 4) { return UnitDB(UNIT_COCKATRICE); }
-                if (wild < 5) { return UnitDB(UNIT_DEMON); }
-                if (wild < 6) { return UnitDB(UNIT_DRACOLICH); }
-                if (wild < 7) { return UnitDB(UNIT_GREAT_WYRM); }
-                if (wild < 8) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-                if (wild < 9) { return UnitDB(UNIT_PEGASUS); }
-                if (wild < 10) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 11) { return UnitDB(UNIT_SKELETONS); }
-                if (wild < 12) { return UnitDB(UNIT_STORM_DRAKE); }
-                if (wild < 13) { return UnitDB(UNIT_STORM_GIANT); }
-                if (wild < 14) { return UnitDB(UNIT_UNDEAD_DRAGON); }
-                if (wild < 15) { return UnitDB(UNIT_UNICORN); }
-                if (wild < 16) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 17) { return UnitDB(UNIT_WRAITH); }
-                if (wild < 18) { return UnitDB(UNIT_ZOMBIES); }
+                if (wild < 4) { return UnitDB(UNIT_BONE_GOLEM); }
+                if (wild < 5) { return UnitDB(UNIT_COCKATRICE); }
+                if (wild < 6) { return UnitDB(UNIT_CRUSADER); }
+                if (wild < 7) { return UnitDB(UNIT_CRYSTAL_GOLEM); }
+                if (wild < 8) { return UnitDB(UNIT_DEMON); }
+                if (wild < 9) { return UnitDB(UNIT_DJINN); }
+                if (wild < 10) { return UnitDB(UNIT_DRACOLICH); }
+                if (wild < 11) { return UnitDB(UNIT_DRUID); }
+                if (wild < 12) { return UnitDB(UNIT_GREAT_WYRM); }
+                if (wild < 13) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 14) { return UnitDB(UNIT_PEGASUS); }
+                if (wild < 15) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 16) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 17) { return UnitDB(UNIT_STORM_DRAKE); }
+                if (wild < 18) { return UnitDB(UNIT_STORM_GIANT); }
+                if (wild < 19) { return UnitDB(UNIT_TEMPLAR); }
+                if (wild < 20) { return UnitDB(UNIT_TREANT); }
+                if (wild < 21) { return UnitDB(UNIT_UNDEAD_DRAGON); }
+                if (wild < 22) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 23) { return UnitDB(UNIT_VAMPIRE); }
+                if (wild < 24) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 25) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 26) { return UnitDB(UNIT_ZOMBIES); }
             }
             if (r == 4) {
-                wild = Random(14);
+                wild = Random(22);
                 if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
                 if (wild < 2) { return UnitDB(UNIT_BEHEMOTH); }
-                if (wild < 3) { return UnitDB(UNIT_COCKATRICE); }
-                if (wild < 4) { return UnitDB(UNIT_DEMON); }
-                if (wild < 5) { return UnitDB(UNIT_DRACOLICH); }
-                if (wild < 6) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-                if (wild < 7) { return UnitDB(UNIT_PEGASUS); }
-                if (wild < 8) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 9) { return UnitDB(UNIT_SKELETONS); }
-                if (wild < 10) { return UnitDB(UNIT_STORM_GIANT); }
-                if (wild < 11) { return UnitDB(UNIT_UNICORN); }
-                if (wild < 12) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 13) { return UnitDB(UNIT_WRAITH); }
-                if (wild < 14) { return UnitDB(UNIT_ZOMBIES); }
+                if (wild < 3) { return UnitDB(UNIT_BONE_GOLEM); }
+                if (wild < 4) { return UnitDB(UNIT_COCKATRICE); }
+                if (wild < 5) { return UnitDB(UNIT_CRUSADER); }
+                if (wild < 6) { return UnitDB(UNIT_CRYSTAL_GOLEM); }
+                if (wild < 7) { return UnitDB(UNIT_DEMON); }
+                if (wild < 8) { return UnitDB(UNIT_DJINN); }
+                if (wild < 9) { return UnitDB(UNIT_DRACOLICH); }
+                if (wild < 10) { return UnitDB(UNIT_DRUID); }
+                if (wild < 11) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 12) { return UnitDB(UNIT_PEGASUS); }
+                if (wild < 13) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 14) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 15) { return UnitDB(UNIT_STORM_GIANT); }
+                if (wild < 16) { return UnitDB(UNIT_TEMPLAR); }
+                if (wild < 17) { return UnitDB(UNIT_TREANT); }
+                if (wild < 18) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 19) { return UnitDB(UNIT_VAMPIRE); }
+                if (wild < 20) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 21) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 22) { return UnitDB(UNIT_ZOMBIES); }
             }
             if (r == 3) {
-                wild = Random(13);
+                wild = Random(20);
                 if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
                 if (wild < 2) { return UnitDB(UNIT_BEHEMOTH); }
-                if (wild < 3) { return UnitDB(UNIT_COCKATRICE); }
-                if (wild < 4) { return UnitDB(UNIT_DEMON); }
-                if (wild < 5) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-                if (wild < 6) { return UnitDB(UNIT_PEGASUS); }
-                if (wild < 7) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 8) { return UnitDB(UNIT_SKELETONS); }
-                if (wild < 9) { return UnitDB(UNIT_STORM_GIANT); }
-                if (wild < 10) { return UnitDB(UNIT_UNICORN); }
-                if (wild < 11) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 12) { return UnitDB(UNIT_WRAITH); }
-                if (wild < 13) { return UnitDB(UNIT_ZOMBIES); }
+                if (wild < 3) { return UnitDB(UNIT_BONE_GOLEM); }
+                if (wild < 4) { return UnitDB(UNIT_COCKATRICE); }
+                if (wild < 5) { return UnitDB(UNIT_CRUSADER); }
+                if (wild < 6) { return UnitDB(UNIT_CRYSTAL_GOLEM); }
+                if (wild < 7) { return UnitDB(UNIT_DEMON); }
+                if (wild < 8) { return UnitDB(UNIT_DRUID); }
+                if (wild < 9) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 10) { return UnitDB(UNIT_PEGASUS); }
+                if (wild < 11) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 12) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 13) { return UnitDB(UNIT_STORM_GIANT); }
+                if (wild < 14) { return UnitDB(UNIT_TEMPLAR); }
+                if (wild < 15) { return UnitDB(UNIT_TREANT); }
+                if (wild < 16) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 17) { return UnitDB(UNIT_VAMPIRE); }
+                if (wild < 18) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 19) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 20) { return UnitDB(UNIT_ZOMBIES); }
             }
             if (r == 2) {
-                wild = Random(9);
+                wild = Random(15);
                 if (wild < 1) { return UnitDB(UNIT_AIR_ELEMENTAL); }
                 if (wild < 2) { return UnitDB(UNIT_COCKATRICE); }
-                if (wild < 3) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-                if (wild < 4) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 5) { return UnitDB(UNIT_SKELETONS); }
-                if (wild < 6) { return UnitDB(UNIT_UNICORN); }
-                if (wild < 7) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 8) { return UnitDB(UNIT_WRAITH); }
-                if (wild < 9) { return UnitDB(UNIT_ZOMBIES); }
+                if (wild < 3) { return UnitDB(UNIT_CRUSADER); }
+                if (wild < 4) { return UnitDB(UNIT_CRYSTAL_GOLEM); }
+                if (wild < 5) { return UnitDB(UNIT_DRUID); }
+                if (wild < 6) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 7) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 8) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 9) { return UnitDB(UNIT_TEMPLAR); }
+                if (wild < 10) { return UnitDB(UNIT_TREANT); }
+                if (wild < 11) { return UnitDB(UNIT_UNICORN); }
+                if (wild < 12) { return UnitDB(UNIT_VAMPIRE); }
+                if (wild < 13) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 14) { return UnitDB(UNIT_WRAITH); }
+                if (wild < 15) { return UnitDB(UNIT_ZOMBIES); }
             }
             if (r == 1) {
-                wild = Random(5);
-                if (wild < 1) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
-                if (wild < 2) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
-                if (wild < 3) { return UnitDB(UNIT_SKELETONS); }
-                if (wild < 4) { return UnitDB(UNIT_WARBEARS); }
-                if (wild < 5) { return UnitDB(UNIT_ZOMBIES); }
+                wild = Random(7);
+                if (wild < 1) { return UnitDB(UNIT_CRUSADER); }
+                if (wild < 2) { return UnitDB(UNIT_GUARDIAN_SPIRIT); }
+                if (wild < 3) { return UnitDB(UNIT_PHANTOM_WARRIORS); }
+                if (wild < 4) { return UnitDB(UNIT_SKELETONS); }
+                if (wild < 5) { return UnitDB(UNIT_TREANT); }
+                if (wild < 6) { return UnitDB(UNIT_WARBEARS); }
+                if (wild < 7) { return UnitDB(UNIT_ZOMBIES); }
             }
         }
         if (r == 5) {
-            if (roll < 16) { return UnitDB(UNIT_HELL_HOUNDS); }
-            if (roll < 32) { return UnitDB(UNIT_GARGOYLE); }
-            if (roll < 48) { return UnitDB(UNIT_EFREET); }
+            if (roll < 4) { return UnitDB(UNIT_GOBLIN); }
+            if (roll < 8) { return UnitDB(UNIT_HELL_HOUNDS); }
+            if (roll < 12) { return UnitDB(UNIT_ORC); }
+            if (roll < 18) { return UnitDB(UNIT_GARGOYLE); }
+            if (roll < 24) { return UnitDB(UNIT_OGRE); }
+            if (roll < 30) { return UnitDB(UNIT_EFREET); }
+            if (roll < 36) { return UnitDB(UNIT_TROLL); }
+            if (roll < 48) { return UnitDB(UNIT_DROW); }
             if (roll < 100) { return UnitDB(UNIT_HYDRA); }
         }
         if (r == 4) {
-            if (roll < 25) { return UnitDB(UNIT_HELL_HOUNDS); }
-            if (roll < 50) { return UnitDB(UNIT_GARGOYLE); }
-            if (roll < 100) { return UnitDB(UNIT_EFREET); }
+            if (roll < 5) { return UnitDB(UNIT_GOBLIN); }
+            if (roll < 10) { return UnitDB(UNIT_HELL_HOUNDS); }
+            if (roll < 16) { return UnitDB(UNIT_ORC); }
+            if (roll < 24) { return UnitDB(UNIT_GARGOYLE); }
+            if (roll < 32) { return UnitDB(UNIT_OGRE); }
+            if (roll < 40) { return UnitDB(UNIT_EFREET); }
+            if (roll < 48) { return UnitDB(UNIT_TROLL); }
+            if (roll < 100) { return UnitDB(UNIT_DROW); }
         }
         if (r == 3) {
-            if (roll < 25) { return UnitDB(UNIT_HELL_HOUNDS); }
-            if (roll < 50) { return UnitDB(UNIT_GARGOYLE); }
-            if (roll < 100) { return UnitDB(UNIT_EFREET); }
+            if (roll < 8) { return UnitDB(UNIT_GOBLIN); }
+            if (roll < 16) { return UnitDB(UNIT_HELL_HOUNDS); }
+            if (roll < 25) { return UnitDB(UNIT_ORC); }
+            if (roll < 37) { return UnitDB(UNIT_GARGOYLE); }
+            if (roll < 50) { return UnitDB(UNIT_OGRE); }
+            if (roll < 75) { return UnitDB(UNIT_EFREET); }
+            if (roll < 100) { return UnitDB(UNIT_TROLL); }
         }
         if (r == 2) {
-            if (roll < 50) { return UnitDB(UNIT_HELL_HOUNDS); }
-            if (roll < 100) { return UnitDB(UNIT_GARGOYLE); }
+            if (roll < 16) { return UnitDB(UNIT_GOBLIN); }
+            if (roll < 32) { return UnitDB(UNIT_HELL_HOUNDS); }
+            if (roll < 50) { return UnitDB(UNIT_ORC); }
+            if (roll < 75) { return UnitDB(UNIT_GARGOYLE); }
+            if (roll < 100) { return UnitDB(UNIT_OGRE); }
         }
         if (r == 1) {
-            if (roll < 100) { return UnitDB(UNIT_HELL_HOUNDS); }
+            if (roll < 33) { return UnitDB(UNIT_GOBLIN); }
+            if (roll < 66) { return UnitDB(UNIT_HELL_HOUNDS); }
+            if (roll < 100) { return UnitDB(UNIT_ORC); }
         }
     }
 
@@ -331,24 +412,1185 @@ int_f MomSummonRungOf(int_t unitType)
     if (unitType == UnitDB(UNIT_AIR_ELEMENTAL)) { return 2; }
     if (unitType == UnitDB(UNIT_ARCHANGEL)) { return 5; }
     if (unitType == UnitDB(UNIT_BEHEMOTH)) { return 3; }
+    if (unitType == UnitDB(UNIT_BONE_GOLEM)) { return 3; }
     if (unitType == UnitDB(UNIT_COCKATRICE)) { return 2; }
+    if (unitType == UnitDB(UNIT_CRUSADER)) { return 1; }
+    if (unitType == UnitDB(UNIT_CRYSTAL_GOLEM)) { return 2; }
     if (unitType == UnitDB(UNIT_DEMON)) { return 3; }
+    if (unitType == UnitDB(UNIT_DJINN)) { return 4; }
     if (unitType == UnitDB(UNIT_DRACOLICH)) { return 4; }
+    if (unitType == UnitDB(UNIT_DROW)) { return 4; }
+    if (unitType == UnitDB(UNIT_DRUID)) { return 2; }
     if (unitType == UnitDB(UNIT_EFREET)) { return 3; }
     if (unitType == UnitDB(UNIT_GARGOYLE)) { return 2; }
+    if (unitType == UnitDB(UNIT_GOBLIN)) { return 1; }
     if (unitType == UnitDB(UNIT_GREAT_WYRM)) { return 5; }
     if (unitType == UnitDB(UNIT_GUARDIAN_SPIRIT)) { return 1; }
     if (unitType == UnitDB(UNIT_HELL_HOUNDS)) { return 1; }
     if (unitType == UnitDB(UNIT_HYDRA)) { return 5; }
+    if (unitType == UnitDB(UNIT_OGRE)) { return 2; }
+    if (unitType == UnitDB(UNIT_ORC)) { return 1; }
     if (unitType == UnitDB(UNIT_PEGASUS)) { return 3; }
     if (unitType == UnitDB(UNIT_PHANTOM_WARRIORS)) { return 1; }
     if (unitType == UnitDB(UNIT_SKELETONS)) { return 1; }
     if (unitType == UnitDB(UNIT_STORM_DRAKE)) { return 5; }
     if (unitType == UnitDB(UNIT_STORM_GIANT)) { return 3; }
+    if (unitType == UnitDB(UNIT_TEMPLAR)) { return 2; }
+    if (unitType == UnitDB(UNIT_TREANT)) { return 1; }
+    if (unitType == UnitDB(UNIT_TROLL)) { return 3; }
     if (unitType == UnitDB(UNIT_UNDEAD_DRAGON)) { return 5; }
     if (unitType == UnitDB(UNIT_UNICORN)) { return 2; }
+    if (unitType == UnitDB(UNIT_VAMPIRE)) { return 2; }
     if (unitType == UnitDB(UNIT_WARBEARS)) { return 1; }
     if (unitType == UnitDB(UNIT_WRAITH)) { return 2; }
     if (unitType == UnitDB(UNIT_ZOMBIES)) { return 1; }
     return 0;
 }
+
+
+// --- SUMMON SELECTION PAGES (player picks creature) ---
+alertbox 'MomSummonPick_life_1' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_LIFE_1);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GUARDIAN_SPIRIT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_CRUSADER);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PRIEST);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_life_2' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_LIFE_2);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_TEMPLAR);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GUARDIAN_SPIRIT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_CRUSADER);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PRIEST);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_life_3' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_LIFE_3);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_TEMPLAR);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GUARDIAN_SPIRIT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_CRUSADER);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PRIEST);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_life_4' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_LIFE_4);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_TEMPLAR);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GUARDIAN_SPIRIT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_CRUSADER);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PRIEST);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_life_5' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_LIFE_5);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_TEMPLAR);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GUARDIAN_SPIRIT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_CRUSADER);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PRIEST);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_nature_1' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_NATURE_1);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_WARBEARS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_TREANT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_nature_2' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_NATURE_2);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_DRUID);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_COCKATRICE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_WARBEARS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_TREANT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_nature_3' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_NATURE_3);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_DRUID);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_COCKATRICE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_WARBEARS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_TREANT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_nature_4' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_NATURE_4);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_DRUID);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_COCKATRICE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_WARBEARS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_TREANT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_nature_5' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_NATURE_5);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_DRUID);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_COCKATRICE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_WARBEARS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_TREANT);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_sorcery_1' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_SORCERY_1);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PHANTOM_WARRIORS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_APPRENTICE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_sorcery_2' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_SORCERY_2);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_CRYSTAL_GOLEM);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_AIR_ELEMENTAL);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PHANTOM_WARRIORS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_APPRENTICE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_sorcery_3' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_SORCERY_3);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_CRYSTAL_GOLEM);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_AIR_ELEMENTAL);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PHANTOM_WARRIORS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_APPRENTICE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_sorcery_4' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_SORCERY_4);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_CRYSTAL_GOLEM);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_AIR_ELEMENTAL);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PHANTOM_WARRIORS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_APPRENTICE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_sorcery_5' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_SORCERY_5);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_CRYSTAL_GOLEM);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_AIR_ELEMENTAL);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_PHANTOM_WARRIORS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_APPRENTICE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_death_1' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_DEATH_1);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ZOMBIES);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_SKELETONS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_death_2' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_DEATH_2);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_WRAITH);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_VAMPIRE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ZOMBIES);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_SKELETONS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_death_3' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_DEATH_3);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_WRAITH);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_VAMPIRE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ZOMBIES);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_SKELETONS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_death_4' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_DEATH_4);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_WRAITH);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_VAMPIRE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ZOMBIES);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_SKELETONS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_death_5' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_DEATH_5);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_WRAITH);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_VAMPIRE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ZOMBIES);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_SKELETONS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_chaos_1' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_CHAOS_1);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ORC);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_HELL_HOUNDS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GOBLIN);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_chaos_2' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_CHAOS_2);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GARGOYLE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ORC);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_HELL_HOUNDS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GOBLIN);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_chaos_3' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_CHAOS_3);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GARGOYLE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ORC);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_HELL_HOUNDS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GOBLIN);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_chaos_4' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_CHAOS_4);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GARGOYLE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ORC);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_HELL_HOUNDS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GOBLIN);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+
+alertbox 'MomSummonPick_chaos_5' {
+    Show();
+    Text(ID_MOM_SUMMON_PAGE_CHAOS_5);
+
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_4) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 2) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GARGOYLE);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_3) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_ORC);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_2) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_HELL_HOUNDS);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
+        if (MomSummonPrep[player[0]] > 0) {
+            Message(player[0], 'MomSummonBusy');
+        } elseif (MomMagicCur[player[0]] >= ((45 + 30 * 1) * MomSummonCivPct[player[0]]) / 100) {
+            MomSummonChoice[player[0]] = UnitDB(UNIT_GOBLIN);
+        } else {
+            Message(player[0], 'MomSummonNoMana');
+        }
+        Kill();
+    }
+}
+

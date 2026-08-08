@@ -2,7 +2,8 @@
 //
 // Two-tier spellbook for CHAOS sphere.
 // Tier 1: Hub with rarity filter (Common/Uncommon/Rare/Very Rare/Close).
-// Tier 2: Paged spells per rarity, 3 per page + Prev/Next/Close.
+// Tier 2: Paged spells per rarity, 3 per page, single-char buttons + body legend.
+// Research-gated: each rarity requires a sphere ladder advance.
 
 // ===== CHAOS SPELLBOOK HUB =====
 alertbox 'MomSpellHub_chaos' {
@@ -12,25 +13,41 @@ alertbox 'MomSpellHub_chaos' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
     }
-    // Common (4 spells)
+    // Common (4 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_COMMON) {
         Kill();
-        Message(player[0], 'MomSpell_chaos_COMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_chaos_COMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Uncommon (8 spells)
+    // Uncommon (8 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_UNCOMMON) {
         Kill();
-        Message(player[0], 'MomSpell_chaos_UNCOMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_chaos_UNCOMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Rare (3 spells)
+    // Rare (3 spells) -- requires rung >= 2
     Button(ID_MOM_SPELLHUB_BTN_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_chaos_RARE_1');
+        if (MomSphereRung[player[0]] >= 2) {
+            Message(player[0], 'MomSpell_chaos_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Very Rare (8 spells)
+    // Very Rare (8 spells) -- requires rung >= 4
     Button(ID_MOM_SPELLHUB_BTN_VERY_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_chaos_VERY_RARE_1');
+        if (MomSphereRung[player[0]] >= 4) {
+            Message(player[0], 'MomSpell_chaos_VERY_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
 }
 
@@ -39,15 +56,291 @@ alertbox 'MomSpellHub_chaos' {
 // Page 1 of 2
 alertbox 'MomSpell_chaos_COMMON_1' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_CHAOS_COMMON_1);
+    Text(ID_MOM_SPELL_PAGE_CHAOS_COMMON_1);
 
-    // Close (back to hub)
+    // [X] Close
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // Corruption (10 mana)
-    Button(ID_MOM_SPELL_112) {
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_COMMON_2');
+    }
+    // [1] Corruption (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_112');
+    }
+    // [2] Eldritch Weapon (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_113');
+    }
+    // [3] Hell Hounds (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_114');
+    }
+}
+
+// Page 2 of 2
+alertbox 'MomSpell_chaos_COMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_CHAOS_COMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_COMMON_1');
+    }
+    // [1] Wall of Fire (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_115');
+    }
+}
+
+// ----- CHAOS / Uncommon: 8 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_chaos_UNCOMMON_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_CHAOS_UNCOMMON_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_UNCOMMON_2');
+    }
+    // [1] Chaos Channels (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_116');
+    }
+    // [2] Chimeras (35 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_117');
+    }
+    // [3] Doom Bat (30 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_118');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_chaos_UNCOMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_CHAOS_UNCOMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_UNCOMMON_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_UNCOMMON_1');
+    }
+    // [1] Fire Giant (15 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_119');
+    }
+    // [2] Flame Blade (12 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_120');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_chaos_UNCOMMON_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_CHAOS_UNCOMMON_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_UNCOMMON_2');
+    }
+    // [1] Gargoyles (20 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_121');
+    }
+    // [2] Immolation (15 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_122');
+    }
+    // [3] Raise Volcano (20 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_123');
+    }
+}
+
+// ----- CHAOS / Rare: 3 spells, 1 page(s) -----
+
+// Page 1 of 1
+alertbox 'MomSpell_chaos_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_CHAOS_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    // [1] Chaos Spawn (75 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_124');
+    }
+    // [2] Efreet (82 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_125');
+    }
+    // [3] Fire Storm (37 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_126');
+    }
+}
+
+// ----- CHAOS / Very Rare: 8 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_chaos_VERY_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_CHAOS_VERY_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_VERY_RARE_2');
+    }
+    // [1] Armageddon (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_127');
+    }
+    // [2] Call the Void (100 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_128');
+    }
+    // [3] Chaos Surge (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_129');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_chaos_VERY_RARE_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_CHAOS_VERY_RARE_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_VERY_RARE_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_VERY_RARE_1');
+    }
+    // [1] Doom Mastery (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_130');
+    }
+    // [2] Great Drake (180 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_131');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_chaos_VERY_RARE_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_CHAOS_VERY_RARE_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_chaos_VERY_RARE_2');
+    }
+    // [1] Great Wasting (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_132');
+    }
+    // [2] Hydra (130 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_133');
+    }
+    // [3] Meteor Storm (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_134');
+    }
+}
+
+// Confirmation for Corruption
+alertbox 'MomSpellConfirm_112' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_112);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 112);
         } else {
@@ -55,8 +348,17 @@ alertbox 'MomSpell_chaos_COMMON_1' {
         }
         Kill();
     }
-    // Eldritch Weapon (10 mana)
-    Button(ID_MOM_SPELL_113) {
+}
+
+// Confirmation for Eldritch Weapon
+alertbox 'MomSpellConfirm_113' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_113);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 113);
         } else {
@@ -64,8 +366,17 @@ alertbox 'MomSpell_chaos_COMMON_1' {
         }
         Kill();
     }
-    // Hell Hounds (10 mana)
-    Button(ID_MOM_SPELL_114) {
+}
+
+// Confirmation for Hell Hounds
+alertbox 'MomSpellConfirm_114' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_114);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 114);
         } else {
@@ -73,30 +384,17 @@ alertbox 'MomSpell_chaos_COMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_COMMON_2');
-    }
 }
 
-// Page 2 of 2
-alertbox 'MomSpell_chaos_COMMON_2' {
+// Confirmation for Wall of Fire
+alertbox 'MomSpellConfirm_115' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_CHAOS_COMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_115);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_COMMON_1');
-    }
-    // Wall of Fire (10 mana)
-    Button(ID_MOM_SPELL_115) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 115);
         } else {
@@ -106,20 +404,15 @@ alertbox 'MomSpell_chaos_COMMON_2' {
     }
 }
 
-// ----- CHAOS / Uncommon: 8 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_chaos_UNCOMMON_1' {
+// Confirmation for Chaos Channels
+alertbox 'MomSpellConfirm_116' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_CHAOS_UNCOMMON_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_116);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // Chaos Channels (10 mana)
-    Button(ID_MOM_SPELL_116) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 116);
         } else {
@@ -127,8 +420,17 @@ alertbox 'MomSpell_chaos_UNCOMMON_1' {
         }
         Kill();
     }
-    // Chimeras (35 mana)
-    Button(ID_MOM_SPELL_117) {
+}
+
+// Confirmation for Chimeras
+alertbox 'MomSpellConfirm_117' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_117);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 35) {
             MomCastSpell(player[0], 117);
         } else {
@@ -136,8 +438,17 @@ alertbox 'MomSpell_chaos_UNCOMMON_1' {
         }
         Kill();
     }
-    // Doom Bat (30 mana)
-    Button(ID_MOM_SPELL_118) {
+}
+
+// Confirmation for Doom Bat
+alertbox 'MomSpellConfirm_118' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_118);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 118);
         } else {
@@ -145,30 +456,17 @@ alertbox 'MomSpell_chaos_UNCOMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_UNCOMMON_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_chaos_UNCOMMON_2' {
+// Confirmation for Fire Giant
+alertbox 'MomSpellConfirm_119' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_CHAOS_UNCOMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_119);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_UNCOMMON_1');
-    }
-    // Fire Giant (15 mana)
-    Button(ID_MOM_SPELL_119) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 15) {
             MomCastSpell(player[0], 119);
         } else {
@@ -176,8 +474,17 @@ alertbox 'MomSpell_chaos_UNCOMMON_2' {
         }
         Kill();
     }
-    // Flame Blade (12 mana)
-    Button(ID_MOM_SPELL_120) {
+}
+
+// Confirmation for Flame Blade
+alertbox 'MomSpellConfirm_120' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_120);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 12) {
             MomCastSpell(player[0], 120);
         } else {
@@ -185,8 +492,17 @@ alertbox 'MomSpell_chaos_UNCOMMON_2' {
         }
         Kill();
     }
-    // Gargoyles (20 mana)
-    Button(ID_MOM_SPELL_121) {
+}
+
+// Confirmation for Gargoyles
+alertbox 'MomSpellConfirm_121' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_121);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 20) {
             MomCastSpell(player[0], 121);
         } else {
@@ -194,30 +510,17 @@ alertbox 'MomSpell_chaos_UNCOMMON_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_UNCOMMON_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_chaos_UNCOMMON_3' {
+// Confirmation for Immolation
+alertbox 'MomSpellConfirm_122' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_CHAOS_UNCOMMON_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_122);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_UNCOMMON_2');
-    }
-    // Immolation (15 mana)
-    Button(ID_MOM_SPELL_122) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 15) {
             MomCastSpell(player[0], 122);
         } else {
@@ -225,8 +528,17 @@ alertbox 'MomSpell_chaos_UNCOMMON_3' {
         }
         Kill();
     }
-    // Raise Volcano (20 mana)
-    Button(ID_MOM_SPELL_123) {
+}
+
+// Confirmation for Raise Volcano
+alertbox 'MomSpellConfirm_123' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_123);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 20) {
             MomCastSpell(player[0], 123);
         } else {
@@ -236,20 +548,15 @@ alertbox 'MomSpell_chaos_UNCOMMON_3' {
     }
 }
 
-// ----- CHAOS / Rare: 3 spells, 1 page(s) -----
-
-// Page 1 of 1
-alertbox 'MomSpell_chaos_RARE_1' {
+// Confirmation for Chaos Spawn
+alertbox 'MomSpellConfirm_124' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_CHAOS_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_124);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // Chaos Spawn (75 mana)
-    Button(ID_MOM_SPELL_124) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 75) {
             MomCastSpell(player[0], 124);
         } else {
@@ -257,8 +564,17 @@ alertbox 'MomSpell_chaos_RARE_1' {
         }
         Kill();
     }
-    // Efreet (82 mana)
-    Button(ID_MOM_SPELL_125) {
+}
+
+// Confirmation for Efreet
+alertbox 'MomSpellConfirm_125' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_125);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 82) {
             MomCastSpell(player[0], 125);
         } else {
@@ -266,8 +582,17 @@ alertbox 'MomSpell_chaos_RARE_1' {
         }
         Kill();
     }
-    // Fire Storm (37 mana)
-    Button(ID_MOM_SPELL_126) {
+}
+
+// Confirmation for Fire Storm
+alertbox 'MomSpellConfirm_126' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_126);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 37) {
             MomCastSpell(player[0], 126);
         } else {
@@ -277,20 +602,15 @@ alertbox 'MomSpell_chaos_RARE_1' {
     }
 }
 
-// ----- CHAOS / Very Rare: 8 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_chaos_VERY_RARE_1' {
+// Confirmation for Armageddon
+alertbox 'MomSpellConfirm_127' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_CHAOS_VERY_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_127);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // Armageddon (180 mana)
-    Button(ID_MOM_SPELL_127) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 127);
         } else {
@@ -298,8 +618,17 @@ alertbox 'MomSpell_chaos_VERY_RARE_1' {
         }
         Kill();
     }
-    // Call the Void (100 mana)
-    Button(ID_MOM_SPELL_128) {
+}
+
+// Confirmation for Call the Void
+alertbox 'MomSpellConfirm_128' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_128);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 100) {
             MomCastSpell(player[0], 128);
         } else {
@@ -307,8 +636,17 @@ alertbox 'MomSpell_chaos_VERY_RARE_1' {
         }
         Kill();
     }
-    // Chaos Surge (180 mana)
-    Button(ID_MOM_SPELL_129) {
+}
+
+// Confirmation for Chaos Surge
+alertbox 'MomSpellConfirm_129' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_129);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 129);
         } else {
@@ -316,30 +654,17 @@ alertbox 'MomSpell_chaos_VERY_RARE_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_VERY_RARE_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_chaos_VERY_RARE_2' {
+// Confirmation for Doom Mastery
+alertbox 'MomSpellConfirm_130' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_CHAOS_VERY_RARE_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_130);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_VERY_RARE_1');
-    }
-    // Doom Mastery (180 mana)
-    Button(ID_MOM_SPELL_130) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 130);
         } else {
@@ -347,8 +672,17 @@ alertbox 'MomSpell_chaos_VERY_RARE_2' {
         }
         Kill();
     }
-    // Great Drake (180 mana)
-    Button(ID_MOM_SPELL_131) {
+}
+
+// Confirmation for Great Drake
+alertbox 'MomSpellConfirm_131' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_131);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 131);
         } else {
@@ -356,8 +690,17 @@ alertbox 'MomSpell_chaos_VERY_RARE_2' {
         }
         Kill();
     }
-    // Great Wasting (180 mana)
-    Button(ID_MOM_SPELL_132) {
+}
+
+// Confirmation for Great Wasting
+alertbox 'MomSpellConfirm_132' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_132);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 132);
         } else {
@@ -365,30 +708,17 @@ alertbox 'MomSpell_chaos_VERY_RARE_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_VERY_RARE_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_chaos_VERY_RARE_3' {
+// Confirmation for Hydra
+alertbox 'MomSpellConfirm_133' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_CHAOS_VERY_RARE_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_133);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_chaos_VERY_RARE_2');
-    }
-    // Hydra (130 mana)
-    Button(ID_MOM_SPELL_133) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 130) {
             MomCastSpell(player[0], 133);
         } else {
@@ -396,8 +726,17 @@ alertbox 'MomSpell_chaos_VERY_RARE_3' {
         }
         Kill();
     }
-    // Meteor Storm (180 mana)
-    Button(ID_MOM_SPELL_134) {
+}
+
+// Confirmation for Meteor Storm
+alertbox 'MomSpellConfirm_134' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_134);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 134);
         } else {

@@ -2,7 +2,8 @@
 //
 // Two-tier spellbook for NATURE sphere.
 // Tier 1: Hub with rarity filter (Common/Uncommon/Rare/Very Rare/Close).
-// Tier 2: Paged spells per rarity, 3 per page + Prev/Next/Close.
+// Tier 2: Paged spells per rarity, 3 per page, single-char buttons + body legend.
+// Research-gated: each rarity requires a sphere ladder advance.
 
 // ===== NATURE SPELLBOOK HUB =====
 alertbox 'MomSpellHub_nature' {
@@ -12,25 +13,41 @@ alertbox 'MomSpellHub_nature' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
     }
-    // Common (8 spells)
+    // Common (8 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_COMMON) {
         Kill();
-        Message(player[0], 'MomSpell_nature_COMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_nature_COMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Uncommon (8 spells)
+    // Uncommon (8 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_UNCOMMON) {
         Kill();
-        Message(player[0], 'MomSpell_nature_UNCOMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_nature_UNCOMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Rare (8 spells)
+    // Rare (8 spells) -- requires rung >= 2
     Button(ID_MOM_SPELLHUB_BTN_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_nature_RARE_1');
+        if (MomSphereRung[player[0]] >= 2) {
+            Message(player[0], 'MomSpell_nature_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Very Rare (8 spells)
+    // Very Rare (8 spells) -- requires rung >= 4
     Button(ID_MOM_SPELLHUB_BTN_VERY_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_nature_VERY_RARE_1');
+        if (MomSphereRung[player[0]] >= 4) {
+            Message(player[0], 'MomSpell_nature_VERY_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
 }
 
@@ -39,15 +56,402 @@ alertbox 'MomSpellHub_nature' {
 // Page 1 of 3
 alertbox 'MomSpell_nature_COMMON_1' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_COMMON_1);
+    Text(ID_MOM_SPELL_PAGE_NATURE_COMMON_1);
 
-    // Close (back to hub)
+    // [X] Close
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Earth Lore (10 mana)
-    Button(ID_MOM_SPELL_31) {
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_COMMON_2');
+    }
+    // [1] Earth Lore (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_31');
+    }
+    // [2] Giant Strength (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_32');
+    }
+    // [3] Resist Elements (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_33');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_nature_COMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_COMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_COMMON_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_COMMON_1');
+    }
+    // [1] Sprites (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_34');
+    }
+    // [2] Stone Skin (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_35');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_nature_COMMON_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_COMMON_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_COMMON_2');
+    }
+    // [1] Wall of Stone (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_36');
+    }
+    // [2] War Bears (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_37');
+    }
+    // [3] Water Walking (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_38');
+    }
+}
+
+// ----- NATURE / Uncommon: 8 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_nature_UNCOMMON_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_UNCOMMON_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_UNCOMMON_2');
+    }
+    // [1] Basilisk (32 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_39');
+    }
+    // [2] Change Terrain (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_40');
+    }
+    // [3] Cockatrices (27 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_41');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_nature_UNCOMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_UNCOMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_UNCOMMON_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_UNCOMMON_1');
+    }
+    // [1] Giant Spiders (20 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_42');
+    }
+    // [2] Nature's Cures (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_43');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_nature_UNCOMMON_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_UNCOMMON_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_UNCOMMON_2');
+    }
+    // [1] Nature's Eye (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_44');
+    }
+    // [2] Path Finding (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_45');
+    }
+    // [3] Transmute (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_46');
+    }
+}
+
+// ----- NATURE / Rare: 8 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_nature_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_RARE_2');
+    }
+    // [1] Earthquake (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_47');
+    }
+    // [2] Elemental Armor (26 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_48');
+    }
+    // [3] Gaia's Blessing (45 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_49');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_nature_RARE_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_RARE_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_RARE_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_RARE_1');
+    }
+    // [1] Gorgons (90 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_50');
+    }
+    // [2] Ice Storm (30 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_51');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_nature_RARE_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_RARE_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_RARE_2');
+    }
+    // [1] Iron Skin (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_52');
+    }
+    // [2] Move Fortress (30 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_53');
+    }
+    // [3] Stone Giant (67 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_54');
+    }
+}
+
+// ----- NATURE / Very Rare: 8 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_nature_VERY_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_VERY_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_VERY_RARE_2');
+    }
+    // [1] Behemoth (140 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_55');
+    }
+    // [2] Colossus (160 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_56');
+    }
+    // [3] Earth Gate (50 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_57');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_nature_VERY_RARE_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_VERY_RARE_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_VERY_RARE_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_VERY_RARE_1');
+    }
+    // [1] Great Wyrm (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_58');
+    }
+    // [2] Herb Mastery (180 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_59');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_nature_VERY_RARE_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_NATURE_VERY_RARE_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_nature_VERY_RARE_2');
+    }
+    // [1] Nature Awareness (160 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_60');
+    }
+    // [2] Nature's Wrath (180 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_61');
+    }
+    // [3] Regeneration (60 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_62');
+    }
+}
+
+// Confirmation for Earth Lore
+alertbox 'MomSpellConfirm_31' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_31);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 31);
         } else {
@@ -55,8 +459,17 @@ alertbox 'MomSpell_nature_COMMON_1' {
         }
         Kill();
     }
-    // Giant Strength (10 mana)
-    Button(ID_MOM_SPELL_32) {
+}
+
+// Confirmation for Giant Strength
+alertbox 'MomSpellConfirm_32' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_32);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 32);
         } else {
@@ -64,8 +477,17 @@ alertbox 'MomSpell_nature_COMMON_1' {
         }
         Kill();
     }
-    // Resist Elements (10 mana)
-    Button(ID_MOM_SPELL_33) {
+}
+
+// Confirmation for Resist Elements
+alertbox 'MomSpellConfirm_33' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_33);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 33);
         } else {
@@ -73,30 +495,17 @@ alertbox 'MomSpell_nature_COMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_COMMON_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_nature_COMMON_2' {
+// Confirmation for Sprites
+alertbox 'MomSpellConfirm_34' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_COMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_34);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_COMMON_1');
-    }
-    // Sprites (10 mana)
-    Button(ID_MOM_SPELL_34) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 34);
         } else {
@@ -104,8 +513,17 @@ alertbox 'MomSpell_nature_COMMON_2' {
         }
         Kill();
     }
-    // Stone Skin (10 mana)
-    Button(ID_MOM_SPELL_35) {
+}
+
+// Confirmation for Stone Skin
+alertbox 'MomSpellConfirm_35' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_35);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 35);
         } else {
@@ -113,8 +531,17 @@ alertbox 'MomSpell_nature_COMMON_2' {
         }
         Kill();
     }
-    // Wall of Stone (10 mana)
-    Button(ID_MOM_SPELL_36) {
+}
+
+// Confirmation for Wall of Stone
+alertbox 'MomSpellConfirm_36' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_36);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 36);
         } else {
@@ -122,30 +549,17 @@ alertbox 'MomSpell_nature_COMMON_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_COMMON_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_nature_COMMON_3' {
+// Confirmation for War Bears
+alertbox 'MomSpellConfirm_37' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_COMMON_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_37);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_COMMON_2');
-    }
-    // War Bears (10 mana)
-    Button(ID_MOM_SPELL_37) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 37);
         } else {
@@ -153,8 +567,17 @@ alertbox 'MomSpell_nature_COMMON_3' {
         }
         Kill();
     }
-    // Water Walking (10 mana)
-    Button(ID_MOM_SPELL_38) {
+}
+
+// Confirmation for Water Walking
+alertbox 'MomSpellConfirm_38' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_38);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 38);
         } else {
@@ -164,20 +587,15 @@ alertbox 'MomSpell_nature_COMMON_3' {
     }
 }
 
-// ----- NATURE / Uncommon: 8 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_nature_UNCOMMON_1' {
+// Confirmation for Basilisk
+alertbox 'MomSpellConfirm_39' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_UNCOMMON_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_39);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Basilisk (32 mana)
-    Button(ID_MOM_SPELL_39) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 32) {
             MomCastSpell(player[0], 39);
         } else {
@@ -185,8 +603,17 @@ alertbox 'MomSpell_nature_UNCOMMON_1' {
         }
         Kill();
     }
-    // Change Terrain (10 mana)
-    Button(ID_MOM_SPELL_40) {
+}
+
+// Confirmation for Change Terrain
+alertbox 'MomSpellConfirm_40' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_40);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 40);
         } else {
@@ -194,8 +621,17 @@ alertbox 'MomSpell_nature_UNCOMMON_1' {
         }
         Kill();
     }
-    // Cockatrices (27 mana)
-    Button(ID_MOM_SPELL_41) {
+}
+
+// Confirmation for Cockatrices
+alertbox 'MomSpellConfirm_41' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_41);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 27) {
             MomCastSpell(player[0], 41);
         } else {
@@ -203,30 +639,17 @@ alertbox 'MomSpell_nature_UNCOMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_UNCOMMON_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_nature_UNCOMMON_2' {
+// Confirmation for Giant Spiders
+alertbox 'MomSpellConfirm_42' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_UNCOMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_42);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_UNCOMMON_1');
-    }
-    // Giant Spiders (20 mana)
-    Button(ID_MOM_SPELL_42) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 20) {
             MomCastSpell(player[0], 42);
         } else {
@@ -234,8 +657,17 @@ alertbox 'MomSpell_nature_UNCOMMON_2' {
         }
         Kill();
     }
-    // Nature's Cures (10 mana)
-    Button(ID_MOM_SPELL_43) {
+}
+
+// Confirmation for Nature's Cures
+alertbox 'MomSpellConfirm_43' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_43);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 43);
         } else {
@@ -243,8 +675,17 @@ alertbox 'MomSpell_nature_UNCOMMON_2' {
         }
         Kill();
     }
-    // Nature's Eye (10 mana)
-    Button(ID_MOM_SPELL_44) {
+}
+
+// Confirmation for Nature's Eye
+alertbox 'MomSpellConfirm_44' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_44);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 44);
         } else {
@@ -252,30 +693,17 @@ alertbox 'MomSpell_nature_UNCOMMON_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_UNCOMMON_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_nature_UNCOMMON_3' {
+// Confirmation for Path Finding
+alertbox 'MomSpellConfirm_45' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_UNCOMMON_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_45);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_UNCOMMON_2');
-    }
-    // Path Finding (10 mana)
-    Button(ID_MOM_SPELL_45) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 45);
         } else {
@@ -283,8 +711,17 @@ alertbox 'MomSpell_nature_UNCOMMON_3' {
         }
         Kill();
     }
-    // Transmute (10 mana)
-    Button(ID_MOM_SPELL_46) {
+}
+
+// Confirmation for Transmute
+alertbox 'MomSpellConfirm_46' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_46);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 46);
         } else {
@@ -294,20 +731,15 @@ alertbox 'MomSpell_nature_UNCOMMON_3' {
     }
 }
 
-// ----- NATURE / Rare: 8 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_nature_RARE_1' {
+// Confirmation for Earthquake
+alertbox 'MomSpellConfirm_47' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_47);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Earthquake (30 mana)
-    Button(ID_MOM_SPELL_47) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 47);
         } else {
@@ -315,8 +747,17 @@ alertbox 'MomSpell_nature_RARE_1' {
         }
         Kill();
     }
-    // Elemental Armor (26 mana)
-    Button(ID_MOM_SPELL_48) {
+}
+
+// Confirmation for Elemental Armor
+alertbox 'MomSpellConfirm_48' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_48);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 26) {
             MomCastSpell(player[0], 48);
         } else {
@@ -324,8 +765,17 @@ alertbox 'MomSpell_nature_RARE_1' {
         }
         Kill();
     }
-    // Gaia's Blessing (45 mana)
-    Button(ID_MOM_SPELL_49) {
+}
+
+// Confirmation for Gaia's Blessing
+alertbox 'MomSpellConfirm_49' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_49);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 45) {
             MomCastSpell(player[0], 49);
         } else {
@@ -333,30 +783,17 @@ alertbox 'MomSpell_nature_RARE_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_RARE_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_nature_RARE_2' {
+// Confirmation for Gorgons
+alertbox 'MomSpellConfirm_50' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_RARE_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_50);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_RARE_1');
-    }
-    // Gorgons (90 mana)
-    Button(ID_MOM_SPELL_50) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 90) {
             MomCastSpell(player[0], 50);
         } else {
@@ -364,8 +801,17 @@ alertbox 'MomSpell_nature_RARE_2' {
         }
         Kill();
     }
-    // Ice Storm (30 mana)
-    Button(ID_MOM_SPELL_51) {
+}
+
+// Confirmation for Ice Storm
+alertbox 'MomSpellConfirm_51' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_51);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 51);
         } else {
@@ -373,8 +819,17 @@ alertbox 'MomSpell_nature_RARE_2' {
         }
         Kill();
     }
-    // Iron Skin (30 mana)
-    Button(ID_MOM_SPELL_52) {
+}
+
+// Confirmation for Iron Skin
+alertbox 'MomSpellConfirm_52' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_52);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 52);
         } else {
@@ -382,30 +837,17 @@ alertbox 'MomSpell_nature_RARE_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_RARE_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_nature_RARE_3' {
+// Confirmation for Move Fortress
+alertbox 'MomSpellConfirm_53' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_RARE_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_53);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_RARE_2');
-    }
-    // Move Fortress (30 mana)
-    Button(ID_MOM_SPELL_53) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 53);
         } else {
@@ -413,8 +855,17 @@ alertbox 'MomSpell_nature_RARE_3' {
         }
         Kill();
     }
-    // Stone Giant (67 mana)
-    Button(ID_MOM_SPELL_54) {
+}
+
+// Confirmation for Stone Giant
+alertbox 'MomSpellConfirm_54' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_54);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 67) {
             MomCastSpell(player[0], 54);
         } else {
@@ -424,20 +875,15 @@ alertbox 'MomSpell_nature_RARE_3' {
     }
 }
 
-// ----- NATURE / Very Rare: 8 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_nature_VERY_RARE_1' {
+// Confirmation for Behemoth
+alertbox 'MomSpellConfirm_55' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_VERY_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_55);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Behemoth (140 mana)
-    Button(ID_MOM_SPELL_55) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 140) {
             MomCastSpell(player[0], 55);
         } else {
@@ -445,8 +891,17 @@ alertbox 'MomSpell_nature_VERY_RARE_1' {
         }
         Kill();
     }
-    // Colossus (160 mana)
-    Button(ID_MOM_SPELL_56) {
+}
+
+// Confirmation for Colossus
+alertbox 'MomSpellConfirm_56' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_56);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 160) {
             MomCastSpell(player[0], 56);
         } else {
@@ -454,8 +909,17 @@ alertbox 'MomSpell_nature_VERY_RARE_1' {
         }
         Kill();
     }
-    // Earth Gate (50 mana)
-    Button(ID_MOM_SPELL_57) {
+}
+
+// Confirmation for Earth Gate
+alertbox 'MomSpellConfirm_57' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_57);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 50) {
             MomCastSpell(player[0], 57);
         } else {
@@ -463,30 +927,17 @@ alertbox 'MomSpell_nature_VERY_RARE_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_VERY_RARE_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_nature_VERY_RARE_2' {
+// Confirmation for Great Wyrm
+alertbox 'MomSpellConfirm_58' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_VERY_RARE_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_58);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_VERY_RARE_1');
-    }
-    // Great Wyrm (180 mana)
-    Button(ID_MOM_SPELL_58) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 58);
         } else {
@@ -494,8 +945,17 @@ alertbox 'MomSpell_nature_VERY_RARE_2' {
         }
         Kill();
     }
-    // Herb Mastery (180 mana)
-    Button(ID_MOM_SPELL_59) {
+}
+
+// Confirmation for Herb Mastery
+alertbox 'MomSpellConfirm_59' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_59);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 59);
         } else {
@@ -503,8 +963,17 @@ alertbox 'MomSpell_nature_VERY_RARE_2' {
         }
         Kill();
     }
-    // Nature Awareness (160 mana)
-    Button(ID_MOM_SPELL_60) {
+}
+
+// Confirmation for Nature Awareness
+alertbox 'MomSpellConfirm_60' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_60);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 160) {
             MomCastSpell(player[0], 60);
         } else {
@@ -512,30 +981,17 @@ alertbox 'MomSpell_nature_VERY_RARE_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_VERY_RARE_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_nature_VERY_RARE_3' {
+// Confirmation for Nature's Wrath
+alertbox 'MomSpellConfirm_61' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_NATURE_VERY_RARE_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_61);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_nature_VERY_RARE_2');
-    }
-    // Nature's Wrath (180 mana)
-    Button(ID_MOM_SPELL_61) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 61);
         } else {
@@ -543,8 +999,17 @@ alertbox 'MomSpell_nature_VERY_RARE_3' {
         }
         Kill();
     }
-    // Regeneration (60 mana)
-    Button(ID_MOM_SPELL_62) {
+}
+
+// Confirmation for Regeneration
+alertbox 'MomSpellConfirm_62' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_62);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 60) {
             MomCastSpell(player[0], 62);
         } else {

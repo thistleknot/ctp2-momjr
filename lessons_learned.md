@@ -3696,3 +3696,176 @@ an unchanged desktop read the landscape display primary with 1280x1024 legal --
 it had sampled a value in flux and I relayed it as fact. It now corroborates the
 PRIMARY flag against the display at the desktop origin and re-reads when they
 disagree. **A gate that BLOCKS work must re-read before it blocks.**
+
+## 2026-08-07 — Spell effect targeting design (PENDING implementation)
+
+**Context:** Spellbook UI v5 shipped with paged pages, single-char buttons,
+research gating via MomSphereRung, and magic-share cost pacing (40% of era
+midpoint). All spell effect bodies are currently stubs (`Message(p, 'MomSpellCast')`).
+This entry documents the targeting architecture for when effects are implemented.
+
+**Design: proximity-gated casting with range tiers.**
+
+| Caster type | Range | Role |
+|-------------|-------|------|
+| Any unit (proxy) | 0 (on tile) | Self-buffs, terrain under foot |
+| War Mage (UNIT_WAR_MAGE) | 1 tile | Adjacent city assault, tactical |
+| Arch Mage (UNIT_ARCH_MAGE) | 2 tiles | Long-range artillery, strategic |
+
+**Targeting strategies by effect_kind:**
+
+- `summon`: No range check needed — spawns at caster's city (existing implementation).
+- `unit_enchant`: Range 0 — caster must be on the same tile as the target unit.
+  Or self-cast: enchants the mage unit itself.
+- `city_enchant` (beneficial): Range 0-1 — mage must be IN or adjacent to own city.
+  Fallback: nearest own city if no adjacent found.
+- `city_enchant` (harmful) / `instant_damage`: Range 1-2 based on caster tier.
+  Scan for enemy city within range. If none found, "No valid target" + no mana spent.
+- `global_enchant`: No range — affects whole map. Fire-and-forget from spellbook.
+- `dispel`: Range 1-2 — targets enemy enchantment on nearest enemy city within range.
+- `terrain_transform` (new kind, future): Range 0 — transforms the tile the mage stands on.
+  Common = random outcome. Rare = player-chosen by positioning the mage.
+
+**SLIC pattern (all builtins, no user-function depth):**
+
+```
+// In the spell's if-branch inside MomCastSpell:
+// 1. Identify caster unit type for range tier
+// 2. Scan GetNeighbor loop out to range N
+// 3. Filter: city.owner != p (harmful) or city.owner == p (beneficial)
+// 4. Distance(unit.location, city.location) <= range
+// 5. Apply effect or "No valid target" message (mana NOT deducted on miss)
+```
+
+Key builtin set: `Distance(loc, loc)`, `GetNeighbor(loc, dir, out)`,
+`TerrainType(loc)`, `CityIsValid(city)`, `city.owner`, `unit[0].location`,
+`unit[0].type`, `UnitDB()`. All base-verified.
+
+**Rarity→utility dichotomy:**
+
+- Common: general, low control, fire-and-forget. Small random effects.
+  "Nature's Touch" = random tile near city improves. Low mana, no targeting.
+- Uncommon: smarter algorithmic targeting. Guaranteed positive outcome.
+- Rare: unit-proxy targeting. Player positions War Mage, casts with intent.
+- Very Rare: powerful area effects OR long-range (Arch Mage at 2 tiles).
+  "Gaia's Blessing" = all city tiles improve. "Call the Void" = devastate
+  enemy city from 2 tiles away.
+
+**What this changes in spells.csv (future):**
+
+Add columns: `targeting` (self/adjacent/range2/global), `polarity` (beneficial/harmful),
+`caster_type` (any/war_mage/arch_mage). The generator reads these and emits the
+appropriate SLIC body instead of a stub. One effect_kind at a time, unit-tested.
+
+**Not yet implemented.** This is a design doc, not a commit. The architecture
+(spell IDs, pages, cast chain hook points) supports this without structural change.
+
+## Unit-Spell Binding System (2026-08-07)
+
+### What was built
+Two-axis magic targeting system:
+1. **Proximity gating** (range tiers): Any unit=0, War Mage=1, Arch Mage=2
+2. **Unit-spell binding** (10 signatures): specific elite units required for full spell effects
+
+### Key SLIC findings
+- `unit_t.attack` does NOT exist as a member — SLIC unit objects only expose `.type`, `.owner`, `.location`, `.valid`
+- Cannot do strength-weighted kill targeting. Kill effects use positional selection (first/last enemy found at location)
+- `KillUnit(unit)` 1-arg form is base-verified (MagnificentSamurai SS_func.slc)
+- `GetUnitFromCell(location, index, out_unit)` + `GetUnitsAtLocation(location)` for cell iteration
+- `Event: KillUnit(unit, cause, killer)` 3-arg form also works (AlexanderTheGreat)
+- All targeting logic MUST be inlined in MomCastSpell — call-depth budget consumed by Button→function path
+
+### Architecture
+- Generator emits SPELL_BINDINGS config → per-spell bound-unit scan + effect body
+- Preamble scans player's units once (GetUnitByIndex loop)
+- For bound spells: re-scan for the specific unit within binding range of the pre-resolved target
+- Three-tier fallback: bound unit found → full effect | target found but no unit → mana spent, diminished | no target → no mana spent
+
+### Binding table
+| Spell | Unit | Range | Effect |
+|---|---|---|---|
+| Death Wish | DEATH_KNIGHT | 1 | kill first enemy unit |
+| Black Wind | WRAITH | 1 | kill last enemy unit |
+| Cruel Unminding | LICH | 1 | drain 30 mana |
+| Fire Storm | EFREET | 2 | spawn HELL_HOUNDS |
+| Call the Void | GREAT_WYRM | 2 | kill 2 enemy units |
+| Earthquake | BEHEMOTH | 1 | spawn WAR_TROLL |
+| Ice Storm | STORM_GIANT | 2 | spawn WARBEARS |
+| Stasis | STORM_DRAKE | 2 | spawn PHANTOM_WARRIORS |
+| Spell Binding | WARLOCK | 2 | drain 50 mana |
+| Great Unsummoning | AIR_ELEMENTAL | 2 | kill first enemy unit |
+
+### Dead ends
+- `.attack` member access on unit_t → SLIC error "attack is not a member of killUnit"
+- Cannot differentiate units by combat stats from SLIC — only by type
+
+## Magic Resistance System (2026-08-07)
+
+### What was built
+Inline resistance/immunity checks before every KillUnit call in bound spells.
+
+### Classification
+- **Undead immune to death** (8 units): Zombies, Skeletons, Wraith, Minion, Death Knight, Lich, Undead Dragon, Dracolich
+- **Holy immune to death** (3 units): Paladins, Archangel, Arch Mage
+- **Heroes resist all kills** (9 units, 50% base): Ariel, Serena, Freya, Alorra, Jafar, Rjak, Malleus, Tauron, Warrax
+- **Lamp protection** (+25%): stacks with hero (75% total), non-hero with lamp gets 25%
+
+### SLIC implementation
+- `Random(100)` for percentage rolls — base-verified in AlexanderTheGreat
+- Immunity is a flat if-chain of `killUnit.type == UnitDB(UNIT_X)` checks (no SLIC set data structure)
+- `_emit_resistance_check()` in the generator emits the full inline block per kill-point
+- Death-school spells (Death Wish, Black Wind) get the undead+holy immunity block; general kills skip it
+- Mana is spent regardless of resist outcome — commitment model, not refund model
+
+## Holy Aura Protection (2026-08-07)
+
+### What was built
+Co-located protector units grant resistance or immunity to allies on the same tile.
+
+### Aura tiers
+- **Death immunity aura** (Paladins, Archangel): any friendly unit on the same tile
+  is immune to death-school kill spells (Death Wish, Black Wind). Stack a Paladin
+  with your army and the Death Knight's spell bounces off the whole group.
+- **Resistance aura** (Guardian Spirit, Unicorn, Ariel, Serena): +30% resistance
+  to all kill spells for friendly units on the same tile. Stacks checked once
+  (first protector found triggers the roll, then breaks).
+
+### Resolution order
+1. Self-immunity (undead/holy type)
+2. Holy aura immunity (co-located Paladin/Archangel, death spells only)
+3. Aura resistance (co-located Guardian/Unicorn/life hero, 30% all spells)
+4. Hero self-resistance (50% base, +25% with lamp)
+5. Artifact protection (25% non-hero with lamp)
+
+Each layer checked only if resisted == 0 from previous layers. First success = target survives.
+
+### Gameplay implication
+Paladins are now mandatory escorts for non-undead armies in death-sphere territory.
+A Death Knight adjacent to an unprotected city is deadly; add one Paladin to the
+garrison and the Death Wish is neutralized entirely. Counter-counter: use a
+non-death spell (Great Unsummoning via Air Elemental) which bypasses death immunity.
+
+## 5-Sphere Resistance Matrix (2026-08-07)
+
+### What was built
+Extended the Death-only resistance system to cover all 5 spheres using the MtG
+color wheel opposition model. Each sphere's kill spells are now countered by the
+opposing sphere's creatures.
+
+### Opposition pairs
+- Life ↔ Death: Life creatures immune to death magic; Death creatures immune to life
+- Nature ↔ Sorcery: Nature creatures immune to sorcery; Sorcery creatures immune to nature
+- Chaos: 20% blanket resistance to ALL targeted spells (entropy disrupts everything)
+
+### Full resistance table
+| Attacker | Immune To It | Aura Immunity | Aura Resist (+30%) |
+|---|---|---|---|
+| Death | Undead+Paladin+Archangel+Arch Mage | Paladins, Archangel | Guardian Spirit, Unicorn, Ariel, Serena |
+| Chaos | Storm Drake, Air Elemental, Warlock | Storm Drake, Warlock | Mage, Jafar, Storm Giant |
+| Nature | Efreet, Hydra, Infernal Device | Efreet, Hydra | Hell Hounds, Tauron, Warrax |
+| Sorcery | Behemoth, Great Wyrm, War Mammoth | Behemoth, Great Wyrm | Warbears, Freya, Alorra |
+| Life | Lich, Death Knight, Dracolich | Lich, Dracolich | Wraith, Rjak, Malleus |
+
+### Design reference
+See `Scenarios/mom/inspirations.md` for the full TRIZ + Six Hats + Enneagram
+analysis that produced this matrix.

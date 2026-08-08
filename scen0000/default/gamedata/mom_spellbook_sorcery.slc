@@ -2,7 +2,8 @@
 //
 // Two-tier spellbook for SORCERY sphere.
 // Tier 1: Hub with rarity filter (Common/Uncommon/Rare/Very Rare/Close).
-// Tier 2: Paged spells per rarity, 3 per page + Prev/Next/Close.
+// Tier 2: Paged spells per rarity, 3 per page, single-char buttons + body legend.
+// Research-gated: each rarity requires a sphere ladder advance.
 
 // ===== SORCERY SPELLBOOK HUB =====
 alertbox 'MomSpellHub_sorcery' {
@@ -12,25 +13,41 @@ alertbox 'MomSpellHub_sorcery' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
     }
-    // Common (5 spells)
+    // Common (5 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_COMMON) {
         Kill();
-        Message(player[0], 'MomSpell_sorcery_COMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_sorcery_COMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Uncommon (7 spells)
+    // Uncommon (7 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_UNCOMMON) {
         Kill();
-        Message(player[0], 'MomSpell_sorcery_UNCOMMON_1');
+        if (MomSphereRung[player[0]] >= 1) {
+            Message(player[0], 'MomSpell_sorcery_UNCOMMON_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Rare (6 spells)
+    // Rare (6 spells) -- requires rung >= 2
     Button(ID_MOM_SPELLHUB_BTN_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_sorcery_RARE_1');
+        if (MomSphereRung[player[0]] >= 2) {
+            Message(player[0], 'MomSpell_sorcery_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
-    // Very Rare (8 spells)
+    // Very Rare (8 spells) -- requires rung >= 4
     Button(ID_MOM_SPELLHUB_BTN_VERY_RARE) {
         Kill();
-        Message(player[0], 'MomSpell_sorcery_VERY_RARE_1');
+        if (MomSphereRung[player[0]] >= 4) {
+            Message(player[0], 'MomSpell_sorcery_VERY_RARE_1');
+        } else {
+            Message(player[0], 'MomSpellLocked');
+        }
     }
 }
 
@@ -39,15 +56,328 @@ alertbox 'MomSpellHub_sorcery' {
 // Page 1 of 2
 alertbox 'MomSpell_sorcery_COMMON_1' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_COMMON_1);
+    Text(ID_MOM_SPELL_PAGE_SORCERY_COMMON_1);
 
-    // Close (back to hub)
+    // [X] Close
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Floating Island (10 mana)
-    Button(ID_MOM_SPELL_63) {
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_COMMON_2');
+    }
+    // [1] Floating Island (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_63');
+    }
+    // [2] Guardian Wind (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_64');
+    }
+    // [3] Nagas (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_65');
+    }
+}
+
+// Page 2 of 2
+alertbox 'MomSpell_sorcery_COMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_SORCERY_COMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_COMMON_1');
+    }
+    // [1] Resist Magic (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_66');
+    }
+    // [2] Word of Recall (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_67');
+    }
+}
+
+// ----- SORCERY / Uncommon: 7 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_sorcery_UNCOMMON_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_SORCERY_UNCOMMON_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_UNCOMMON_2');
+    }
+    // [1] Aura of Majesty (40 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_68');
+    }
+    // [2] Disenchant True (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_69');
+    }
+    // [3] Enchant Road (10 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_70');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_sorcery_UNCOMMON_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_SORCERY_UNCOMMON_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_UNCOMMON_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_UNCOMMON_1');
+    }
+    // [1] Flight (12 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_71');
+    }
+    // [2] Spell Blast (10 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_72');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_sorcery_UNCOMMON_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_SORCERY_UNCOMMON_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_UNCOMMON_2');
+    }
+    // [1] Spell Lock (10 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_73');
+    }
+    // [2] Wind Mastery (40 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_74');
+    }
+}
+
+// ----- SORCERY / Rare: 6 spells, 2 page(s) -----
+
+// Page 1 of 2
+alertbox 'MomSpell_sorcery_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_SORCERY_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_RARE_2');
+    }
+    // [1] Disjunction True (30 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_75');
+    }
+    // [2] Invisibility (26 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_76');
+    }
+    // [3] Magic Immunity (37 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_77');
+    }
+}
+
+// Page 2 of 2
+alertbox 'MomSpell_sorcery_RARE_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_SORCERY_RARE_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_RARE_1');
+    }
+    // [1] Stasis (37 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_78');
+    }
+    // [2] Storm Giant (75 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_79');
+    }
+    // [3] Wind Walking (37 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_80');
+    }
+}
+
+// ----- SORCERY / Very Rare: 8 spells, 3 page(s) -----
+
+// Page 1 of 3
+alertbox 'MomSpell_sorcery_VERY_RARE_1' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_SORCERY_VERY_RARE_1);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_VERY_RARE_2');
+    }
+    // [1] Djinn (130 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_81');
+    }
+    // [2] Flying Fortress (100 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_82');
+    }
+    // [3] Great Unsummoning (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_83');
+    }
+}
+
+// Page 2 of 3
+alertbox 'MomSpell_sorcery_VERY_RARE_2' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_SORCERY_VERY_RARE_2);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    // [>] Next
+    Button(ID_MOM_SPELL_NEXT) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_VERY_RARE_3');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_VERY_RARE_1');
+    }
+    // [1] Sky Drake (180 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_84');
+    }
+    // [2] Spell Binding (180 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_85');
+    }
+}
+
+// Page 3 of 3
+alertbox 'MomSpell_sorcery_VERY_RARE_3' {
+    Show();
+    Text(ID_MOM_SPELL_PAGE_SORCERY_VERY_RARE_3);
+
+    // [X] Close
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    // [<] Prev
+    Button(ID_MOM_SPELL_PREV) {
+        Kill();
+        Message(player[0], 'MomSpell_sorcery_VERY_RARE_2');
+    }
+    // [1] Spell Ward (70 mana)
+    Button(ID_MOM_SPELL_BTN_1) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_86');
+    }
+    // [2] Suppress Magic (180 mana)
+    Button(ID_MOM_SPELL_BTN_2) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_87');
+    }
+    // [3] Time Stop (180 mana)
+    Button(ID_MOM_SPELL_BTN_3) {
+        Kill();
+        Message(player[0], 'MomSpellConfirm_88');
+    }
+}
+
+// Confirmation for Floating Island
+alertbox 'MomSpellConfirm_63' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_63);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 63);
         } else {
@@ -55,8 +385,17 @@ alertbox 'MomSpell_sorcery_COMMON_1' {
         }
         Kill();
     }
-    // Guardian Wind (10 mana)
-    Button(ID_MOM_SPELL_64) {
+}
+
+// Confirmation for Guardian Wind
+alertbox 'MomSpellConfirm_64' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_64);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 64);
         } else {
@@ -64,8 +403,17 @@ alertbox 'MomSpell_sorcery_COMMON_1' {
         }
         Kill();
     }
-    // Nagas (10 mana)
-    Button(ID_MOM_SPELL_65) {
+}
+
+// Confirmation for Nagas
+alertbox 'MomSpellConfirm_65' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_65);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 65);
         } else {
@@ -73,30 +421,17 @@ alertbox 'MomSpell_sorcery_COMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_COMMON_2');
-    }
 }
 
-// Page 2 of 2
-alertbox 'MomSpell_sorcery_COMMON_2' {
+// Confirmation for Resist Magic
+alertbox 'MomSpellConfirm_66' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_COMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_66);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_COMMON_1');
-    }
-    // Resist Magic (10 mana)
-    Button(ID_MOM_SPELL_66) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 66);
         } else {
@@ -104,8 +439,17 @@ alertbox 'MomSpell_sorcery_COMMON_2' {
         }
         Kill();
     }
-    // Word of Recall (10 mana)
-    Button(ID_MOM_SPELL_67) {
+}
+
+// Confirmation for Word of Recall
+alertbox 'MomSpellConfirm_67' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_67);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 67);
         } else {
@@ -115,20 +459,15 @@ alertbox 'MomSpell_sorcery_COMMON_2' {
     }
 }
 
-// ----- SORCERY / Uncommon: 7 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_sorcery_UNCOMMON_1' {
+// Confirmation for Aura of Majesty
+alertbox 'MomSpellConfirm_68' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_UNCOMMON_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_68);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Aura of Majesty (40 mana)
-    Button(ID_MOM_SPELL_68) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 40) {
             MomCastSpell(player[0], 68);
         } else {
@@ -136,8 +475,17 @@ alertbox 'MomSpell_sorcery_UNCOMMON_1' {
         }
         Kill();
     }
-    // Disenchant True (10 mana)
-    Button(ID_MOM_SPELL_69) {
+}
+
+// Confirmation for Disenchant True
+alertbox 'MomSpellConfirm_69' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_69);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 69);
         } else {
@@ -145,8 +493,17 @@ alertbox 'MomSpell_sorcery_UNCOMMON_1' {
         }
         Kill();
     }
-    // Enchant Road (10 mana)
-    Button(ID_MOM_SPELL_70) {
+}
+
+// Confirmation for Enchant Road
+alertbox 'MomSpellConfirm_70' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_70);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 70);
         } else {
@@ -154,30 +511,17 @@ alertbox 'MomSpell_sorcery_UNCOMMON_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_UNCOMMON_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_sorcery_UNCOMMON_2' {
+// Confirmation for Flight
+alertbox 'MomSpellConfirm_71' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_UNCOMMON_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_71);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_UNCOMMON_1');
-    }
-    // Flight (12 mana)
-    Button(ID_MOM_SPELL_71) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 12) {
             MomCastSpell(player[0], 71);
         } else {
@@ -185,8 +529,17 @@ alertbox 'MomSpell_sorcery_UNCOMMON_2' {
         }
         Kill();
     }
-    // Spell Blast (10 mana)
-    Button(ID_MOM_SPELL_72) {
+}
+
+// Confirmation for Spell Blast
+alertbox 'MomSpellConfirm_72' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_72);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 72);
         } else {
@@ -194,8 +547,17 @@ alertbox 'MomSpell_sorcery_UNCOMMON_2' {
         }
         Kill();
     }
-    // Spell Lock (10 mana)
-    Button(ID_MOM_SPELL_73) {
+}
+
+// Confirmation for Spell Lock
+alertbox 'MomSpellConfirm_73' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_73);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 73);
         } else {
@@ -203,30 +565,17 @@ alertbox 'MomSpell_sorcery_UNCOMMON_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_UNCOMMON_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_sorcery_UNCOMMON_3' {
+// Confirmation for Wind Mastery
+alertbox 'MomSpellConfirm_74' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_UNCOMMON_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_74);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_UNCOMMON_2');
-    }
-    // Wind Mastery (40 mana)
-    Button(ID_MOM_SPELL_74) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 40) {
             MomCastSpell(player[0], 74);
         } else {
@@ -236,20 +585,15 @@ alertbox 'MomSpell_sorcery_UNCOMMON_3' {
     }
 }
 
-// ----- SORCERY / Rare: 6 spells, 2 page(s) -----
-
-// Page 1 of 2
-alertbox 'MomSpell_sorcery_RARE_1' {
+// Confirmation for Disjunction True
+alertbox 'MomSpellConfirm_75' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_75);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Disjunction True (30 mana)
-    Button(ID_MOM_SPELL_75) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 75);
         } else {
@@ -257,8 +601,17 @@ alertbox 'MomSpell_sorcery_RARE_1' {
         }
         Kill();
     }
-    // Invisibility (26 mana)
-    Button(ID_MOM_SPELL_76) {
+}
+
+// Confirmation for Invisibility
+alertbox 'MomSpellConfirm_76' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_76);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 26) {
             MomCastSpell(player[0], 76);
         } else {
@@ -266,8 +619,17 @@ alertbox 'MomSpell_sorcery_RARE_1' {
         }
         Kill();
     }
-    // Magic Immunity (37 mana)
-    Button(ID_MOM_SPELL_77) {
+}
+
+// Confirmation for Magic Immunity
+alertbox 'MomSpellConfirm_77' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_77);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 37) {
             MomCastSpell(player[0], 77);
         } else {
@@ -275,30 +637,17 @@ alertbox 'MomSpell_sorcery_RARE_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_RARE_2');
-    }
 }
 
-// Page 2 of 2
-alertbox 'MomSpell_sorcery_RARE_2' {
+// Confirmation for Stasis
+alertbox 'MomSpellConfirm_78' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_RARE_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_78);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_RARE_1');
-    }
-    // Stasis (37 mana)
-    Button(ID_MOM_SPELL_78) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 37) {
             MomCastSpell(player[0], 78);
         } else {
@@ -306,8 +655,17 @@ alertbox 'MomSpell_sorcery_RARE_2' {
         }
         Kill();
     }
-    // Storm Giant (75 mana)
-    Button(ID_MOM_SPELL_79) {
+}
+
+// Confirmation for Storm Giant
+alertbox 'MomSpellConfirm_79' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_79);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 75) {
             MomCastSpell(player[0], 79);
         } else {
@@ -315,8 +673,17 @@ alertbox 'MomSpell_sorcery_RARE_2' {
         }
         Kill();
     }
-    // Wind Walking (37 mana)
-    Button(ID_MOM_SPELL_80) {
+}
+
+// Confirmation for Wind Walking
+alertbox 'MomSpellConfirm_80' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_80);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 37) {
             MomCastSpell(player[0], 80);
         } else {
@@ -326,20 +693,15 @@ alertbox 'MomSpell_sorcery_RARE_2' {
     }
 }
 
-// ----- SORCERY / Very Rare: 8 spells, 3 page(s) -----
-
-// Page 1 of 3
-alertbox 'MomSpell_sorcery_VERY_RARE_1' {
+// Confirmation for Djinn
+alertbox 'MomSpellConfirm_81' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_VERY_RARE_1);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_81);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Djinn (130 mana)
-    Button(ID_MOM_SPELL_81) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 130) {
             MomCastSpell(player[0], 81);
         } else {
@@ -347,8 +709,17 @@ alertbox 'MomSpell_sorcery_VERY_RARE_1' {
         }
         Kill();
     }
-    // Flying Fortress (100 mana)
-    Button(ID_MOM_SPELL_82) {
+}
+
+// Confirmation for Flying Fortress
+alertbox 'MomSpellConfirm_82' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_82);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 100) {
             MomCastSpell(player[0], 82);
         } else {
@@ -356,8 +727,17 @@ alertbox 'MomSpell_sorcery_VERY_RARE_1' {
         }
         Kill();
     }
-    // Great Unsummoning (180 mana)
-    Button(ID_MOM_SPELL_83) {
+}
+
+// Confirmation for Great Unsummoning
+alertbox 'MomSpellConfirm_83' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_83);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 83);
         } else {
@@ -365,30 +745,17 @@ alertbox 'MomSpell_sorcery_VERY_RARE_1' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_VERY_RARE_2');
-    }
 }
 
-// Page 2 of 3
-alertbox 'MomSpell_sorcery_VERY_RARE_2' {
+// Confirmation for Sky Drake
+alertbox 'MomSpellConfirm_84' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_VERY_RARE_2);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_84);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_VERY_RARE_1');
-    }
-    // Sky Drake (180 mana)
-    Button(ID_MOM_SPELL_84) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 84);
         } else {
@@ -396,8 +763,17 @@ alertbox 'MomSpell_sorcery_VERY_RARE_2' {
         }
         Kill();
     }
-    // Spell Binding (180 mana)
-    Button(ID_MOM_SPELL_85) {
+}
+
+// Confirmation for Spell Binding
+alertbox 'MomSpellConfirm_85' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_85);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 85);
         } else {
@@ -405,8 +781,17 @@ alertbox 'MomSpell_sorcery_VERY_RARE_2' {
         }
         Kill();
     }
-    // Spell Ward (70 mana)
-    Button(ID_MOM_SPELL_86) {
+}
+
+// Confirmation for Spell Ward
+alertbox 'MomSpellConfirm_86' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_86);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 70) {
             MomCastSpell(player[0], 86);
         } else {
@@ -414,30 +799,17 @@ alertbox 'MomSpell_sorcery_VERY_RARE_2' {
         }
         Kill();
     }
-    // Next
-    Button(ID_MOM_SPELL_NEXT) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_VERY_RARE_3');
-    }
 }
 
-// Page 3 of 3
-alertbox 'MomSpell_sorcery_VERY_RARE_3' {
+// Confirmation for Suppress Magic
+alertbox 'MomSpellConfirm_87' {
     Show();
-    Text(ID_MOM_SPELL_TITLE_SORCERY_VERY_RARE_3);
-
-    // Close (back to hub)
+    Text(ID_MOM_SPELL_DESC_87);
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_sorcery');
     }
-    // Prev
-    Button(ID_MOM_SPELL_PREV) {
-        Kill();
-        Message(player[0], 'MomSpell_sorcery_VERY_RARE_2');
-    }
-    // Suppress Magic (180 mana)
-    Button(ID_MOM_SPELL_87) {
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 87);
         } else {
@@ -445,8 +817,17 @@ alertbox 'MomSpell_sorcery_VERY_RARE_3' {
         }
         Kill();
     }
-    // Time Stop (180 mana)
-    Button(ID_MOM_SPELL_88) {
+}
+
+// Confirmation for Time Stop
+alertbox 'MomSpellConfirm_88' {
+    Show();
+    Text(ID_MOM_SPELL_DESC_88);
+    Button(ID_MOM_SPELL_CLOSE) {
+        Kill();
+        Message(player[0], 'MomSpellHub_sorcery');
+    }
+    Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 88);
         } else {

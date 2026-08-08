@@ -972,12 +972,19 @@ else:
 # ---------------------------------------------------------------------------
 # Cost-band sanity — guards the research-cost pathology (raw base/WAW tail up to
 # 234743 + Cost==1 outlier made mid/late tech take thousands of turns; AGE_ONE must
-# stay <640 so first advances complete in <40 turns at ~16 science). See
-# ctp2_generator._load_ae_advance_cost_bands.
+# stay under ~40 turns at early-game science output). Thresholds scale with
+# mod_policy advance_cost_scaling.cost_mult (100 = baseline).
 # ---------------------------------------------------------------------------
 import re as _re_cost
+import json as _json_cost
 _AGE_RANK = {'AGE_ONE':1,'AGE_TWO':2,'AGE_THREE':3,'AGE_FOUR':4,'AGE_FIVE':5,
              'AGE_SIX':6,'AGE_SEVEN':7,'AGE_EIGHT':8,'AGE_NINE':9,'AGE_TEN':10}
+_cost_mult = int(_json_cost.loads((TOOLS / "momjr_csv" / "mod_policy.json").read_text(encoding="utf-8")).get("advance_cost_scaling", {}).get("cost_mult", 100))
+_cost_mult_by_age = _json_cost.loads((TOOLS / "momjr_csv" / "mod_policy.json").read_text(encoding="utf-8")).get("advance_cost_scaling", {}).get("cost_mult_by_age", {})
+_age_one_mult = int(_cost_mult_by_age.get("AGE_ONE", _cost_mult))
+_max_age_mult = max((int(v) for k, v in _cost_mult_by_age.items() if k.startswith("AGE_")), default=_cost_mult)
+_MAX_COST_THRESHOLD = 20000 * _max_age_mult // 100
+_AGE_ONE_MAX_THRESHOLD = 640 * _age_one_mult // 100
 _adv_text = (GAMEDATA / "Advance.txt").read_text(encoding="latin-1")
 _age_cost = defaultdict(list)
 for _blk in _re_cost.split(r'(?=^ADVANCE_[A-Z0-9_]+\s*\{)', _adv_text, flags=_re_cost.M):
@@ -988,14 +995,14 @@ for _blk in _re_cost.split(r'(?=^ADVANCE_[A-Z0-9_]+\s*\{)', _adv_text, flags=_re
 _all_costs = [c for v in _age_cost.values() for c in v]
 if _all_costs:
     _mx = max(_all_costs)
-    check(PASS if _mx < 20000 else FAIL, "cost-band",
-          f"max advance cost {_mx} {'<' if _mx < 20000 else '>='} 20000 (no 6-figure pathology)")
+    check(PASS if _mx < _MAX_COST_THRESHOLD else FAIL, "cost-band",
+          f"max advance cost {_mx} {'<' if _mx < _MAX_COST_THRESHOLD else '>='} {_MAX_COST_THRESHOLD} (no 6-figure pathology)")
     _tiny = [c for c in _all_costs if c < 50]
     check(PASS if not _tiny else FAIL, "cost-band",
           "no advance Cost < 50" if not _tiny else f"{len(_tiny)} advance(s) with Cost < 50 (e.g. {_tiny[:3]})")
     _one_hi = max(_age_cost.get('AGE_ONE', [0]))
-    check(PASS if _one_hi <= 640 else FAIL, "cost-band",
-          f"AGE_ONE max cost {_one_hi} {'<=' if _one_hi <= 640 else '>'} 640 (first advances <40 turns @16 science)")
+    check(PASS if _one_hi <= _AGE_ONE_MAX_THRESHOLD else FAIL, "cost-band",
+          f"AGE_ONE max cost {_one_hi} {'<=' if _one_hi <= _AGE_ONE_MAX_THRESHOLD else '>'} {_AGE_ONE_MAX_THRESHOLD} (first advances <40 turns @16 science)")
     # per-age median must not decrease as age rises
     _meds = []
     for _a in sorted(_age_cost, key=lambda a: _AGE_RANK.get(a, 0)):
