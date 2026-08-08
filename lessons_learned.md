@@ -3892,3 +3892,21 @@ Close → Next → Prev → BTN_N → ... → BTN_2 → BTN_1
 The comment "emit forward so [1] is last" was self-contradictory and never tested
 visually — a forward loop makes [1] FIRST, not last. Trust the summon picker as the
 proven reference implementation.
+
+
+## Generator must use CSV sprite column, not derive from unit name (2026-08-08)
+
+`_pick_sprite(name, domain, attack)` derived `SPRITE_<UNIT_NAME>` from the unit's name,
+then checked if that TGA existed. If not, it fell through to a proxy heuristic
+(`sprite_pick_rules.csv`), which for land melee defaulted to `SPRITE_HOPLITE` (base
+game sprite #8). 20 units in `units.csv` have an explicit `sprite` column specifying a
+DIFFERENT sprite than their unit name (e.g. Crusader → `SPRITE_KNIGHTS`, Treant →
+`SPRITE_WAR_MAMMOTH`). All 20 were getting wrong art.
+
+**Fix:** `sprite = row.get('sprite', '').strip() or _pick_sprite(name, domain, attack)`.
+The CSV's `sprite` column is the source of truth. `_pick_sprite()` is now only the
+fallback for rows that leave the sprite column empty.
+
+**Law:** The CSV is the authoritative source for ALL per-unit properties. The generator
+must not re-derive what the CSV already specifies. This is the same principle as the
+Prime Directive: source data lives in the CSV, generator applies it, never invents it.

@@ -6825,7 +6825,7 @@ def main():
                 else:
                     category = 'UNIT_CATEGORY_ATTACK'
 
-            sprite    = _pick_sprite(name, domain, attack)
+            sprite    = row.get('sprite', '').strip() or _pick_sprite(name, domain, attack)
             size      = _pick_size(name, hp_raw)
             sound_set = _scal["air_sound_set"] if domain == 1 else _scal["land_sound_set"]
 
