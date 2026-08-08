@@ -3585,10 +3585,16 @@ def _emit_spellbook_pages() -> tuple[int, int]:
             if by_rarity[rarity]:
                 first_page_name = f"MomSpell_{sphere}_{rarity_key}_1"
                 min_rung = _rarity_min_rung(rarity)
+                # Spell Hand: higher rarities require BOTH the rung AND a draw
+                # Common (rarity 0) = always. Uncommon = hand >= 1. Rare = hand >= 2. Very Rare = hand >= 3.
+                hand_req = {"common": 0, "uncommon": 1, "rare": 2, "very rare": 3}.get(rarity, 0)
                 slic_lines.append(f"    // {RARITY_LABELS[rarity]} ({len(by_rarity[rarity])} spells) -- requires rung >= {min_rung}")
                 slic_lines.append(f"    Button(ID_MOM_SPELLHUB_BTN_{rarity_key}) {{")
                 slic_lines.append(f"        Kill();")
-                slic_lines.append(f"        if (MomSphereRung[player[0]] >= {min_rung}) {{")
+                if hand_req > 0:
+                    slic_lines.append(f"        if (MomSphereRung[player[0]] >= {min_rung} && MomSpellHandRarity[player[0]] >= {hand_req}) {{")
+                else:
+                    slic_lines.append(f"        if (MomSphereRung[player[0]] >= {min_rung}) {{")
                 slic_lines.append(f"            Message(player[0], '{first_page_name}');")
                 slic_lines.append(f"        }} else {{")
                 slic_lines.append(f"            Message(player[0], 'MomSpellLocked');")
@@ -4141,6 +4147,40 @@ def _emit_spell_effects() -> int:
         ll.append(f"{indent}if (bestAtk > 0 && MomHasLamp[killUnit.owner] == 1) {{")
         ll.append(f"{indent}    bestAtk = bestAtk + 15;")
         ll.append(f"{indent}}}")
+        # Fellowship bonus: heroes co-located boost each other
+        ll.append(f"{indent}// Fellowship: 2+ heroes on tile = +15, 3+ = +25")
+        ll.append(f"{indent}if (bestAtk > 0) {{")
+        ll.append(f"{indent}    killCount = 0;")
+        ll.append(f"{indent}    auraCount = GetUnitsAtLocation(tgtLoc);")
+        ll.append(f"{indent}    for (ai = 0; ai < auraCount; ai = ai + 1) {{")
+        ll.append(f"{indent}        GetUnitFromCell(tgtLoc, ai, auraUnit);")
+        ll.append(f"{indent}        if (auraUnit.owner == killUnit.owner) {{")
+        for u in HERO_UNITS:
+            ll.append(f"{indent}            if (auraUnit.type == UnitDB({u})) {{ killCount = killCount + 1; }}")
+        ll.append(f"{indent}        }}")
+        ll.append(f"{indent}    }}")
+        ll.append(f"{indent}    if (killCount >= 3) {{ bestAtk = bestAtk + 25; }}")
+        ll.append(f"{indent}    elseif (killCount >= 2) {{ bestAtk = bestAtk + 15; }}")
+        ll.append(f"{indent}}}")
+        # Army morale: diverse army (3+ distinct types, same owner) = +10
+        ll.append(f"{indent}// Army morale: 3+ distinct unit types on tile = +10")
+        ll.append(f"{indent}if (bestAtk > 0 && bestAtk < 90) {{")
+        ll.append(f"{indent}    killCount = 0;")
+        ll.append(f"{indent}    bestDist = 0;")  # reuse as "types seen" bitmask (up to 30)
+        ll.append(f"{indent}    auraCount = GetUnitsAtLocation(tgtLoc);")
+        ll.append(f"{indent}    for (ai = 0; ai < auraCount; ai = ai + 1) {{")
+        ll.append(f"{indent}        GetUnitFromCell(tgtLoc, ai, auraUnit);")
+        ll.append(f"{indent}        if (auraUnit.owner == killUnit.owner) {{")
+        ll.append(f"{indent}            killCount = killCount + 1;")
+        ll.append(f"{indent}        }}")
+        ll.append(f"{indent}    }}")
+        ll.append(f"{indent}    if (killCount >= 3) {{ bestAtk = bestAtk + 10; }}")
+        ll.append(f"{indent}}}")
+        # Hero Fortitude: adds directly to resistance threshold
+        ll.append(f"{indent}// Hero Fortitude: sphere rung * 5 added to threshold")
+        ll.append(f"{indent}if (bestAtk > 0) {{")
+        ll.append(f"{indent}    bestAtk = bestAtk + MomHeroFortitude[killUnit.owner];")
+        ll.append(f"{indent}}}")
         ll.append(f"{indent}if (bestAtk > 95) {{ bestAtk = 95; }}")
         # Single roll against the resolved threshold
         ll.append(f"{indent}// Roll against threshold (0 = no protection, spell always lands)")
@@ -4491,17 +4531,25 @@ def _emit_spell_effects() -> int:
                 "Nature's Wrath": 20, "Tranquility": 15, "Life Force": 20,
             }
             lines.append(f"        MomMagicCur[p] = MomMagicCur[p] - {shipped_cost};")
+            # Enchant stacking: increment count (cap at 3), effects scale
+            lines.append(f"        if (MomEnchantStack[{idx}] < 3) {{")
+            lines.append(f"            MomEnchantStack[{idx}] = MomEnchantStack[{idx}] + 1;")
+            lines.append(f"        }}")
             if spell_name in _GLOBAL_SPAWN:
                 u = _GLOBAL_SPAWN[spell_name]
                 lines.append(f"        GetCityByIndex(p, 0, tmpCity);")
-                lines.append(f"        CreateUnit(p, UnitDB({u}), tmpCity.location, 0);")
+                # Stack: spawn 1 creature per stack level
+                lines.append(f"        for (ki = 0; ki < MomEnchantStack[{idx}]; ki = ki + 1) {{")
+                lines.append(f"            CreateUnit(p, UnitDB({u}), tmpCity.location, 0);")
+                lines.append(f"        }}")
             elif spell_name in _GLOBAL_GOLD:
-                lines.append(f"        AddGold(p, {_GLOBAL_GOLD[spell_name]});")
+                base_gold = _GLOBAL_GOLD[spell_name]
+                lines.append(f"        AddGold(p, {base_gold} * MomEnchantStack[{idx}]);")
             elif spell_name in _GLOBAL_DRAIN:
                 drain = _GLOBAL_DRAIN[spell_name]
                 lines.append(f"        for (pi = 1; pi < 6; pi = pi + 1) {{")
                 lines.append(f"            if (pi != p) {{")
-                lines.append(f"                MomMagicCur[pi] = MomMagicCur[pi] - {drain};")
+                lines.append(f"                MomMagicCur[pi] = MomMagicCur[pi] - {drain} * MomEnchantStack[{idx}];")
                 lines.append(f"                if (MomMagicCur[pi] < 0) {{ MomMagicCur[pi] = 0; }}")
                 lines.append(f"            }}")
                 lines.append(f"        }}")

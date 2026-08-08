@@ -427,6 +427,19 @@ void_f MomSpawnSphereUnit(int_t p_13, int_t unitType, int_t rung)
 int_t MomMagicCur[31];       // current magic power per player
 int_t MomMagicMax[31];       // max storage per player (a school sets this in M2)
 int_t MomMagicPerTurn[31];   // last computed per-turn generation
+// Hero Stats (v7: D&D/HoMM cross-paradigm). Increase with sphere rung.
+// Power: +N to mana generation per turn
+// Fortitude: +N to resistance threshold in spell targeting
+int_t MomHeroPower[31];      // increases mana gen
+int_t MomHeroFortitude[31];  // increases magic resistance
+// Enchant Stacking (v7: MtG cumulative). Tracks how many times each global
+// enchant has been cast. Effects multiply by stack count, cap at 3.
+// Index = spellId for global enchants (reuses the spell numbering).
+int_t MomEnchantStack[135];  // stack count per spell, 0 = not yet cast
+// Spell Hand (v7: MtG draw economy). Each turn the player draws a rarity
+// tier they can access THAT TURN ONLY. Common is always available.
+// 0 = no draw yet, 1 = uncommon, 2 = rare, 3 = very rare
+int_t MomSpellHandRarity[31];
 int_t MomMagicCurDisp;       // plain display scalars for the popup: {scalar} is base-verified
 int_t MomMagicMaxDisp;       // (AlexanderTheGreat {cityScore}); array-indexed {Arr[Idx]} is
 int_t MomMagicGenDisp;       // unsupported and silently drops the whole message

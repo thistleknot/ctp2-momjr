@@ -185,8 +185,26 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
         if (MomSphereRung[p] < 1) {
             MomSphereRung[p] = 1;
         }
+        // Hero Stats: derived from sphere rung. Each rung = +2 Power, +5 Fortitude.
+        MomHeroPower[p] = MomSphereRung[p] * 2;
+        MomHeroFortitude[p] = MomSphereRung[p] * 5;
+
+        // Spell Hand: draw a rarity tier for this turn.
+        // Higher rung = better draw chance. Rung 1-2: mostly uncommon.
+        // Rung 3-4: chance at rare. Rung 5: chance at very rare.
+        MomSpellHandRarity[p] = 0;
+        insRoll = Random(100);
+        if (MomSphereRung[p] >= 5 && insRoll < 30) {
+            MomSpellHandRarity[p] = 3;
+        } elseif (MomSphereRung[p] >= 3 && insRoll < 50) {
+            MomSpellHandRarity[p] = 2;
+        } elseif (MomSphereRung[p] >= 1 && insRoll < 70) {
+            MomSpellHandRarity[p] = 1;
+        }
 
         MomMagicPerTurn[p] = MomRecalcMagicPerTurn(p);
+        // Hero Power bonus: adds directly to mana income
+        MomMagicPerTurn[p] = MomMagicPerTurn[p] + MomHeroPower[p];
         MomMagicCur[p] = MomMagicCur[p] + MomMagicPerTurn[p];
         if (MomMagicCur[p] > MomMagicMax[p]) {
             MomMagicCur[p] = MomMagicMax[p];

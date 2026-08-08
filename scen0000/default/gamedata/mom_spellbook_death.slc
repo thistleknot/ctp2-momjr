@@ -25,7 +25,7 @@ alertbox 'MomSpellHub_death' {
     // Uncommon (7 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_UNCOMMON) {
         Kill();
-        if (MomSphereRung[player[0]] >= 1) {
+        if (MomSphereRung[player[0]] >= 1 && MomSpellHandRarity[player[0]] >= 1) {
             Message(player[0], 'MomSpell_death_UNCOMMON_1');
         } else {
             Message(player[0], 'MomSpellLocked');
@@ -34,7 +34,7 @@ alertbox 'MomSpellHub_death' {
     // Rare (6 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_RARE) {
         Kill();
-        if (MomSphereRung[player[0]] >= 1) {
+        if (MomSphereRung[player[0]] >= 1 && MomSpellHandRarity[player[0]] >= 2) {
             Message(player[0], 'MomSpell_death_RARE_1');
         } else {
             Message(player[0], 'MomSpellLocked');
@@ -43,7 +43,7 @@ alertbox 'MomSpellHub_death' {
     // Very Rare (6 spells) -- requires rung >= 1
     Button(ID_MOM_SPELLHUB_BTN_VERY_RARE) {
         Kill();
-        if (MomSphereRung[player[0]] >= 1) {
+        if (MomSphereRung[player[0]] >= 1 && MomSpellHandRarity[player[0]] >= 3) {
             Message(player[0], 'MomSpell_death_VERY_RARE_1');
         } else {
             Message(player[0], 'MomSpellLocked');

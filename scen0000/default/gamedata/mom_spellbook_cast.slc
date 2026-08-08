@@ -116,7 +116,10 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 6) {
         // Just Cause (global_enchant) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
-        AddGold(p, 100);
+        if (MomEnchantStack[6] < 3) {
+            MomEnchantStack[6] = MomEnchantStack[6] + 1;
+        }
+        AddGold(p, 100 * MomEnchantStack[6]);
         Message(p, 'MomSpellCast');
     } elseif (spellId == 7) {
         // Heavenly Light (city_enchant) - cost 15
@@ -129,6 +132,9 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 8) {
         // Planar Seal (global_enchant) - cost 50
         MomMagicCur[p] = MomMagicCur[p] - 50;
+        if (MomEnchantStack[8] < 3) {
+            MomEnchantStack[8] = MomEnchantStack[8] + 1;
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 9) {
         // Planar Travel (unit_enchant) - cost 15
@@ -217,6 +223,9 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 24) {
         // Charm of Life (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[24] < 3) {
+            MomEnchantStack[24] = MomEnchantStack[24] + 1;
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 25) {
         // Consecration (city_enchant) - cost 80
@@ -227,12 +236,20 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 26) {
         // Crusade (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[26] < 3) {
+            MomEnchantStack[26] = MomEnchantStack[26] + 1;
+        }
         GetCityByIndex(p, 0, tmpCity);
-        CreateUnit(p, UnitDB(UNIT_PALADINS), tmpCity.location, 0);
+        for (ki = 0; ki < MomEnchantStack[26]; ki = ki + 1) {
+            CreateUnit(p, UnitDB(UNIT_PALADINS), tmpCity.location, 0);
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 27) {
         // Holy Arms (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[27] < 3) {
+            MomEnchantStack[27] = MomEnchantStack[27] + 1;
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 28) {
         // Inspirations (city_enchant) - cost 70
@@ -243,9 +260,12 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 29) {
         // Life Force (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[29] < 3) {
+            MomEnchantStack[29] = MomEnchantStack[29] + 1;
+        }
         for (pi = 1; pi < 6; pi = pi + 1) {
             if (pi != p) {
-                MomMagicCur[pi] = MomMagicCur[pi] - 20;
+                MomMagicCur[pi] = MomMagicCur[pi] - 20 * MomEnchantStack[29];
                 if (MomMagicCur[pi] < 0) { MomMagicCur[pi] = 0; }
             }
         }
@@ -253,9 +273,12 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 30) {
         // Tranquility (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[30] < 3) {
+            MomEnchantStack[30] = MomEnchantStack[30] + 1;
+        }
         for (pi = 1; pi < 6; pi = pi + 1) {
             if (pi != p) {
-                MomMagicCur[pi] = MomMagicCur[pi] - 15;
+                MomMagicCur[pi] = MomMagicCur[pi] - 15 * MomEnchantStack[30];
                 if (MomMagicCur[pi] < 0) { MomMagicCur[pi] = 0; }
             }
         }
@@ -456,18 +479,27 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 59) {
         // Herb Mastery (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
-        AddGold(p, 100);
+        if (MomEnchantStack[59] < 3) {
+            MomEnchantStack[59] = MomEnchantStack[59] + 1;
+        }
+        AddGold(p, 100 * MomEnchantStack[59]);
         Message(p, 'MomSpellCast');
     } elseif (spellId == 60) {
         // Nature Awareness (global_enchant) - cost 160
         MomMagicCur[p] = MomMagicCur[p] - 160;
+        if (MomEnchantStack[60] < 3) {
+            MomEnchantStack[60] = MomEnchantStack[60] + 1;
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 61) {
         // Nature's Wrath (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[61] < 3) {
+            MomEnchantStack[61] = MomEnchantStack[61] + 1;
+        }
         for (pi = 1; pi < 6; pi = pi + 1) {
             if (pi != p) {
-                MomMagicCur[pi] = MomMagicCur[pi] - 20;
+                MomMagicCur[pi] = MomMagicCur[pi] - 20 * MomEnchantStack[61];
                 if (MomMagicCur[pi] < 0) { MomMagicCur[pi] = 0; }
             }
         }
@@ -503,6 +535,9 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 68) {
         // Aura of Majesty (global_enchant) - cost 40
         MomMagicCur[p] = MomMagicCur[p] - 40;
+        if (MomEnchantStack[68] < 3) {
+            MomEnchantStack[68] = MomEnchantStack[68] + 1;
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 69) {
         // Disenchant True (instant_damage) - cost 10
@@ -534,6 +569,9 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 74) {
         // Wind Mastery (global_enchant) - cost 40
         MomMagicCur[p] = MomMagicCur[p] - 40;
+        if (MomEnchantStack[74] < 3) {
+            MomEnchantStack[74] = MomEnchantStack[74] + 1;
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 75) {
         // Disjunction True (dispel) - cost 30
@@ -685,6 +723,44 @@ int_f MomCastSpell(int_t p, int_t spellId)
                     if (bestAtk > 0 && MomHasLamp[killUnit.owner] == 1) {
                         bestAtk = bestAtk + 15;
                     }
+                    // Fellowship: 2+ heroes on tile = +15, 3+ = +25
+                    if (bestAtk > 0) {
+                        killCount = 0;
+                        auraCount = GetUnitsAtLocation(tgtLoc);
+                        for (ai = 0; ai < auraCount; ai = ai + 1) {
+                            GetUnitFromCell(tgtLoc, ai, auraUnit);
+                            if (auraUnit.owner == killUnit.owner) {
+                                if (auraUnit.type == UnitDB(UNIT_ARIEL)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_SERENA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_FREYA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_ALORRA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_JAFAR)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_RJAK)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_MALLEUS)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_TAURON)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_WARRAX)) { killCount = killCount + 1; }
+                            }
+                        }
+                        if (killCount >= 3) { bestAtk = bestAtk + 25; }
+                        elseif (killCount >= 2) { bestAtk = bestAtk + 15; }
+                    }
+                    // Army morale: 3+ distinct unit types on tile = +10
+                    if (bestAtk > 0 && bestAtk < 90) {
+                        killCount = 0;
+                        bestDist = 0;
+                        auraCount = GetUnitsAtLocation(tgtLoc);
+                        for (ai = 0; ai < auraCount; ai = ai + 1) {
+                            GetUnitFromCell(tgtLoc, ai, auraUnit);
+                            if (auraUnit.owner == killUnit.owner) {
+                                killCount = killCount + 1;
+                            }
+                        }
+                        if (killCount >= 3) { bestAtk = bestAtk + 10; }
+                    }
+                    // Hero Fortitude: sphere rung * 5 added to threshold
+                    if (bestAtk > 0) {
+                        bestAtk = bestAtk + MomHeroFortitude[killUnit.owner];
+                    }
                     if (bestAtk > 95) { bestAtk = 95; }
                     // Roll against threshold (0 = no protection, spell always lands)
                     if (bestAtk > 0) {
@@ -752,9 +828,12 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 87) {
         // Suppress Magic (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[87] < 3) {
+            MomEnchantStack[87] = MomEnchantStack[87] + 1;
+        }
         for (pi = 1; pi < 6; pi = pi + 1) {
             if (pi != p) {
-                MomMagicCur[pi] = MomMagicCur[pi] - 25;
+                MomMagicCur[pi] = MomMagicCur[pi] - 25 * MomEnchantStack[87];
                 if (MomMagicCur[pi] < 0) { MomMagicCur[pi] = 0; }
             }
         }
@@ -762,6 +841,9 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 88) {
         // Time Stop (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[88] < 3) {
+            MomEnchantStack[88] = MomEnchantStack[88] + 1;
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 89) {
         // Cloak of Fear (unit_enchant) - cost 10
@@ -941,6 +1023,44 @@ int_f MomCastSpell(int_t p, int_t spellId)
                 if (bestAtk > 0 && MomHasLamp[killUnit.owner] == 1) {
                     bestAtk = bestAtk + 15;
                 }
+                // Fellowship: 2+ heroes on tile = +15, 3+ = +25
+                if (bestAtk > 0) {
+                    killCount = 0;
+                    auraCount = GetUnitsAtLocation(tgtLoc);
+                    for (ai = 0; ai < auraCount; ai = ai + 1) {
+                        GetUnitFromCell(tgtLoc, ai, auraUnit);
+                        if (auraUnit.owner == killUnit.owner) {
+                            if (auraUnit.type == UnitDB(UNIT_ARIEL)) { killCount = killCount + 1; }
+                            if (auraUnit.type == UnitDB(UNIT_SERENA)) { killCount = killCount + 1; }
+                            if (auraUnit.type == UnitDB(UNIT_FREYA)) { killCount = killCount + 1; }
+                            if (auraUnit.type == UnitDB(UNIT_ALORRA)) { killCount = killCount + 1; }
+                            if (auraUnit.type == UnitDB(UNIT_JAFAR)) { killCount = killCount + 1; }
+                            if (auraUnit.type == UnitDB(UNIT_RJAK)) { killCount = killCount + 1; }
+                            if (auraUnit.type == UnitDB(UNIT_MALLEUS)) { killCount = killCount + 1; }
+                            if (auraUnit.type == UnitDB(UNIT_TAURON)) { killCount = killCount + 1; }
+                            if (auraUnit.type == UnitDB(UNIT_WARRAX)) { killCount = killCount + 1; }
+                        }
+                    }
+                    if (killCount >= 3) { bestAtk = bestAtk + 25; }
+                    elseif (killCount >= 2) { bestAtk = bestAtk + 15; }
+                }
+                // Army morale: 3+ distinct unit types on tile = +10
+                if (bestAtk > 0 && bestAtk < 90) {
+                    killCount = 0;
+                    bestDist = 0;
+                    auraCount = GetUnitsAtLocation(tgtLoc);
+                    for (ai = 0; ai < auraCount; ai = ai + 1) {
+                        GetUnitFromCell(tgtLoc, ai, auraUnit);
+                        if (auraUnit.owner == killUnit.owner) {
+                            killCount = killCount + 1;
+                        }
+                    }
+                    if (killCount >= 3) { bestAtk = bestAtk + 10; }
+                }
+                // Hero Fortitude: sphere rung * 5 added to threshold
+                if (bestAtk > 0) {
+                    bestAtk = bestAtk + MomHeroFortitude[killUnit.owner];
+                }
                 if (bestAtk > 95) { bestAtk = 95; }
                 // Roll against threshold (0 = no protection, spell always lands)
                 if (bestAtk > 0) {
@@ -990,8 +1110,13 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 105) {
         // Zombie Mastery (global_enchant) - cost 120
         MomMagicCur[p] = MomMagicCur[p] - 120;
+        if (MomEnchantStack[105] < 3) {
+            MomEnchantStack[105] = MomEnchantStack[105] + 1;
+        }
         GetCityByIndex(p, 0, tmpCity);
-        CreateUnit(p, UnitDB(UNIT_ZOMBIES), tmpCity.location, 0);
+        for (ki = 0; ki < MomEnchantStack[105]; ki = ki + 1) {
+            CreateUnit(p, UnitDB(UNIT_ZOMBIES), tmpCity.location, 0);
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 106) {
         // Cruel Unminding (instant_damage) - cost 50
@@ -1119,6 +1244,44 @@ int_f MomCastSpell(int_t p, int_t spellId)
                     if (bestAtk > 0 && MomHasLamp[killUnit.owner] == 1) {
                         bestAtk = bestAtk + 15;
                     }
+                    // Fellowship: 2+ heroes on tile = +15, 3+ = +25
+                    if (bestAtk > 0) {
+                        killCount = 0;
+                        auraCount = GetUnitsAtLocation(tgtLoc);
+                        for (ai = 0; ai < auraCount; ai = ai + 1) {
+                            GetUnitFromCell(tgtLoc, ai, auraUnit);
+                            if (auraUnit.owner == killUnit.owner) {
+                                if (auraUnit.type == UnitDB(UNIT_ARIEL)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_SERENA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_FREYA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_ALORRA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_JAFAR)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_RJAK)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_MALLEUS)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_TAURON)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_WARRAX)) { killCount = killCount + 1; }
+                            }
+                        }
+                        if (killCount >= 3) { bestAtk = bestAtk + 25; }
+                        elseif (killCount >= 2) { bestAtk = bestAtk + 15; }
+                    }
+                    // Army morale: 3+ distinct unit types on tile = +10
+                    if (bestAtk > 0 && bestAtk < 90) {
+                        killCount = 0;
+                        bestDist = 0;
+                        auraCount = GetUnitsAtLocation(tgtLoc);
+                        for (ai = 0; ai < auraCount; ai = ai + 1) {
+                            GetUnitFromCell(tgtLoc, ai, auraUnit);
+                            if (auraUnit.owner == killUnit.owner) {
+                                killCount = killCount + 1;
+                            }
+                        }
+                        if (killCount >= 3) { bestAtk = bestAtk + 10; }
+                    }
+                    // Hero Fortitude: sphere rung * 5 added to threshold
+                    if (bestAtk > 0) {
+                        bestAtk = bestAtk + MomHeroFortitude[killUnit.owner];
+                    }
                     if (bestAtk > 95) { bestAtk = 95; }
                     // Roll against threshold (0 = no protection, spell always lands)
                     if (bestAtk > 0) {
@@ -1149,9 +1312,12 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 110) {
         // Eternal Night (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[110] < 3) {
+            MomEnchantStack[110] = MomEnchantStack[110] + 1;
+        }
         for (pi = 1; pi < 6; pi = pi + 1) {
             if (pi != p) {
-                MomMagicCur[pi] = MomMagicCur[pi] - 20;
+                MomMagicCur[pi] = MomMagicCur[pi] - 20 * MomEnchantStack[110];
                 if (MomMagicCur[pi] < 0) { MomMagicCur[pi] = 0; }
             }
         }
@@ -1159,9 +1325,12 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 111) {
         // Evil Omens (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[111] < 3) {
+            MomEnchantStack[111] = MomEnchantStack[111] + 1;
+        }
         for (pi = 1; pi < 6; pi = pi + 1) {
             if (pi != p) {
-                MomMagicCur[pi] = MomMagicCur[pi] - 15;
+                MomMagicCur[pi] = MomMagicCur[pi] - 15 * MomEnchantStack[111];
                 if (MomMagicCur[pi] < 0) { MomMagicCur[pi] = 0; }
             }
         }
@@ -1274,9 +1443,12 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 127) {
         // Armageddon (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[127] < 3) {
+            MomEnchantStack[127] = MomEnchantStack[127] + 1;
+        }
         for (pi = 1; pi < 6; pi = pi + 1) {
             if (pi != p) {
-                MomMagicCur[pi] = MomMagicCur[pi] - 30;
+                MomMagicCur[pi] = MomMagicCur[pi] - 30 * MomEnchantStack[127];
                 if (MomMagicCur[pi] < 0) { MomMagicCur[pi] = 0; }
             }
         }
@@ -1364,6 +1536,44 @@ int_f MomCastSpell(int_t p, int_t spellId)
                     if (bestAtk > 0 && MomHasLamp[killUnit.owner] == 1) {
                         bestAtk = bestAtk + 15;
                     }
+                    // Fellowship: 2+ heroes on tile = +15, 3+ = +25
+                    if (bestAtk > 0) {
+                        killCount = 0;
+                        auraCount = GetUnitsAtLocation(tgtLoc);
+                        for (ai = 0; ai < auraCount; ai = ai + 1) {
+                            GetUnitFromCell(tgtLoc, ai, auraUnit);
+                            if (auraUnit.owner == killUnit.owner) {
+                                if (auraUnit.type == UnitDB(UNIT_ARIEL)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_SERENA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_FREYA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_ALORRA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_JAFAR)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_RJAK)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_MALLEUS)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_TAURON)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_WARRAX)) { killCount = killCount + 1; }
+                            }
+                        }
+                        if (killCount >= 3) { bestAtk = bestAtk + 25; }
+                        elseif (killCount >= 2) { bestAtk = bestAtk + 15; }
+                    }
+                    // Army morale: 3+ distinct unit types on tile = +10
+                    if (bestAtk > 0 && bestAtk < 90) {
+                        killCount = 0;
+                        bestDist = 0;
+                        auraCount = GetUnitsAtLocation(tgtLoc);
+                        for (ai = 0; ai < auraCount; ai = ai + 1) {
+                            GetUnitFromCell(tgtLoc, ai, auraUnit);
+                            if (auraUnit.owner == killUnit.owner) {
+                                killCount = killCount + 1;
+                            }
+                        }
+                        if (killCount >= 3) { bestAtk = bestAtk + 10; }
+                    }
+                    // Hero Fortitude: sphere rung * 5 added to threshold
+                    if (bestAtk > 0) {
+                        bestAtk = bestAtk + MomHeroFortitude[killUnit.owner];
+                    }
                     if (bestAtk > 95) { bestAtk = 95; }
                     // Roll against threshold (0 = no protection, spell always lands)
                     if (bestAtk > 0) {
@@ -1443,6 +1653,44 @@ int_f MomCastSpell(int_t p, int_t spellId)
                     if (bestAtk > 0 && MomHasLamp[killUnit.owner] == 1) {
                         bestAtk = bestAtk + 15;
                     }
+                    // Fellowship: 2+ heroes on tile = +15, 3+ = +25
+                    if (bestAtk > 0) {
+                        killCount = 0;
+                        auraCount = GetUnitsAtLocation(tgtLoc);
+                        for (ai = 0; ai < auraCount; ai = ai + 1) {
+                            GetUnitFromCell(tgtLoc, ai, auraUnit);
+                            if (auraUnit.owner == killUnit.owner) {
+                                if (auraUnit.type == UnitDB(UNIT_ARIEL)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_SERENA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_FREYA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_ALORRA)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_JAFAR)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_RJAK)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_MALLEUS)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_TAURON)) { killCount = killCount + 1; }
+                                if (auraUnit.type == UnitDB(UNIT_WARRAX)) { killCount = killCount + 1; }
+                            }
+                        }
+                        if (killCount >= 3) { bestAtk = bestAtk + 25; }
+                        elseif (killCount >= 2) { bestAtk = bestAtk + 15; }
+                    }
+                    // Army morale: 3+ distinct unit types on tile = +10
+                    if (bestAtk > 0 && bestAtk < 90) {
+                        killCount = 0;
+                        bestDist = 0;
+                        auraCount = GetUnitsAtLocation(tgtLoc);
+                        for (ai = 0; ai < auraCount; ai = ai + 1) {
+                            GetUnitFromCell(tgtLoc, ai, auraUnit);
+                            if (auraUnit.owner == killUnit.owner) {
+                                killCount = killCount + 1;
+                            }
+                        }
+                        if (killCount >= 3) { bestAtk = bestAtk + 10; }
+                    }
+                    // Hero Fortitude: sphere rung * 5 added to threshold
+                    if (bestAtk > 0) {
+                        bestAtk = bestAtk + MomHeroFortitude[killUnit.owner];
+                    }
                     if (bestAtk > 95) { bestAtk = 95; }
                     // Roll against threshold (0 = no protection, spell always lands)
                     if (bestAtk > 0) {
@@ -1466,14 +1714,24 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 129) {
         // Chaos Surge (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[129] < 3) {
+            MomEnchantStack[129] = MomEnchantStack[129] + 1;
+        }
         GetCityByIndex(p, 0, tmpCity);
-        CreateUnit(p, UnitDB(UNIT_HELL_HOUNDS), tmpCity.location, 0);
+        for (ki = 0; ki < MomEnchantStack[129]; ki = ki + 1) {
+            CreateUnit(p, UnitDB(UNIT_HELL_HOUNDS), tmpCity.location, 0);
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 130) {
         // Doom Mastery (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[130] < 3) {
+            MomEnchantStack[130] = MomEnchantStack[130] + 1;
+        }
         GetCityByIndex(p, 0, tmpCity);
-        CreateUnit(p, UnitDB(UNIT_GARGOYLE), tmpCity.location, 0);
+        for (ki = 0; ki < MomEnchantStack[130]; ki = ki + 1) {
+            CreateUnit(p, UnitDB(UNIT_GARGOYLE), tmpCity.location, 0);
+        }
         Message(p, 'MomSpellCast');
     } elseif (spellId == 131) {
         // Great Drake (summon) - cost 180
@@ -1484,9 +1742,12 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 132) {
         // Great Wasting (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[132] < 3) {
+            MomEnchantStack[132] = MomEnchantStack[132] + 1;
+        }
         for (pi = 1; pi < 6; pi = pi + 1) {
             if (pi != p) {
-                MomMagicCur[pi] = MomMagicCur[pi] - 30;
+                MomMagicCur[pi] = MomMagicCur[pi] - 30 * MomEnchantStack[132];
                 if (MomMagicCur[pi] < 0) { MomMagicCur[pi] = 0; }
             }
         }
@@ -1500,9 +1761,12 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 134) {
         // Meteor Storm (global_enchant) - cost 180
         MomMagicCur[p] = MomMagicCur[p] - 180;
+        if (MomEnchantStack[134] < 3) {
+            MomEnchantStack[134] = MomEnchantStack[134] + 1;
+        }
         for (pi = 1; pi < 6; pi = pi + 1) {
             if (pi != p) {
-                MomMagicCur[pi] = MomMagicCur[pi] - 20;
+                MomMagicCur[pi] = MomMagicCur[pi] - 20 * MomEnchantStack[134];
                 if (MomMagicCur[pi] < 0) { MomMagicCur[pi] = 0; }
             }
         }
