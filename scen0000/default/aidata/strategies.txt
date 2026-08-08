@@ -44,15 +44,15 @@
 //   and offense build lists and seperates the special untit build lists. So
 //   that there are now civs building Abolitionists.
 // - Increased priority for the refuel goal as it is now available for 
-//   units only that needs refueling. - April 30th 2005 Martin Gühmann
+//   units only that needs refueling. - April 30th 2005 Martin Gï¿½hmann
 // - Used the values of ApolytonPack-GoodMod for RoadUtilityBonus,
-//   ImproveProductionBonus and ImproveGrowthBonus. (Aug 26th 2005 Martin Gühmann)
+//   ImproveProductionBonus and ImproveGrowthBonus. (Aug 26th 2005 Martin Gï¿½hmann)
 // - Inreased SEIGE values for militarist and barbarian
 // - Diplomatic more emphasis on embassies
 // - Economic moe emphasis on piracy
 // - Ecotopian more defense oriented (temporary)
 // - Added build list sequence elements for small cities and for cities at their
-//   maximum size. (20-Aug-2009 Martin Gühmann)
+//   maximum size. (20-Aug-2009 Martin Gï¿½hmann)
 //
 //----------------------------------------------------------------------------
 
@@ -339,8 +339,8 @@ STRATEGY_DEFAULT {
     FreightUnitList      UNIT_BUILD_LIST_FREIGHT
 
     // minimum number of units to keep in cities as a garrison
-    OffensiveGarrisonCount  0
-    DefensiveGarrisonCount  0
+    OffensiveGarrisonCount  2
+    DefensiveGarrisonCount  3
     RangedGarrisonCount     0
 
     // For each city with an empty build queue, build from
@@ -678,8 +678,8 @@ STRATEGY_BARBARIAN {
 	BuildSettlerProductionLevel 0.0
 
 	// minimum number of units to keep in cities as a garrison
-	OffensiveGarrisonCount 0
-	DefensiveGarrisonCount 0
+	OffensiveGarrisonCount  2
+	DefensiveGarrisonCount  3
 	RangedGarrisonCount 0
 
 	// For each city with an empty build queue, build from first sequence that applies
@@ -3672,7 +3672,7 @@ STRATEGY_DIPLOMATIC_DEFAULT {
 STRATEGY_DEFENSE_NONE {
 
     // minimum number of units to keep in cities as a garrison
-    OffensiveGarrisonCount  0
+    OffensiveGarrisonCount  2
     DefensiveGarrisonCount  1
     RangedGarrisonCount     0
 }
@@ -3680,7 +3680,7 @@ STRATEGY_DEFENSE_NONE {
 STRATEGY_DEFENSE_VERY_LOW {
 
     // minimum number of units to keep in cities as a garrison
-    OffensiveGarrisonCount  0
+    OffensiveGarrisonCount  2
     DefensiveGarrisonCount  2
     RangedGarrisonCount     1
 }
@@ -3777,3 +3777,4 @@ STRATEGY_TOO_MANY_CITIES {
 STRATEGY_NO_REVOLUTON {
     GoalElement { Goal GOAL_INCITE_REVOLUTION   Priority        0  MaxEval   0  MaxExec   0 }
 }
+
