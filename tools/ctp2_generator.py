@@ -4374,17 +4374,18 @@ def _emit_spell_effects() -> int:
                 "Transmute":       'AddGold(p, 150);',
                 "Enchant Road":    'AddGold(p, 100);',
                 "Change Terrain":  'Terraform(tmpCity.location, 4);',  # to grassland
-                "Raise Volcano":   'Terraform(tmpCity.location, 5);',  # to desert/volcanic
-                "Corruption":      'Terraform(tmpCity.location, 17);', # to dead terrain
-                "Earth Lore":      'CreateUnit(p, UnitDB(UNIT_AIR_ELEMENTAL), tmpCity.location, 8, killUnit); KillUnit(killUnit);',  # spawn+kill: reveals vision at spawn point
+                "Earth Lore":      'CreateUnit(p, UnitDB(UNIT_AIR_ELEMENTAL), tmpCity.location, 8, killUnit); KillUnit(killUnit);',  # divination spirit reveals vision
+                "Raise Dead":      'CreateUnit(p, UnitDB(UNIT_SKELETONS), tmpCity.location, 0);',  # raise undead at capital
+                "Animate Dead":    'CreateUnit(p, UnitDB(UNIT_ZOMBIES), tmpCity.location, 0);',  # animate corpse at capital
+                "Resurrection":    'CreateUnit(p, UnitDB(UNIT_ARCHANGEL), tmpCity.location, 0);',  # resurrect hero proxy
             }
             _UTILITY_STUBS = {
                 "Nature's Cures", "Move Fortress", "Plane Shift",
-                "Resurrection", "Raise Dead", "Word of Recall", "Healing",
+                "Word of Recall", "Healing",
                 "Mass Healing", "Recall Hero", "Summoning Circle", "Spell of Return",
                 "Create Artifact", "Enchant Item", "Spell of Mastery",
                 "Disenchant Area", "Disenchant True", "Chaos Channels",
-                "Animate Dead", "Holy Word", "Stasis",
+                "Holy Word", "Stasis",
             }
             if spell_name in _UTILITY_REAL_EFFECTS:
                 lines.append(f"        MomMagicCur[p] = MomMagicCur[p] - {shipped_cost};")
@@ -4397,13 +4398,49 @@ def _emit_spell_effects() -> int:
                 lines.append(f"        MomMagicCur[p] = MomMagicCur[p] - {shipped_cost};")
                 lines.append(f"        Message(p, 'MomSpellCast');")
             else:
-                lines.append(f"        if (tgtFound == 1) {{")
-                lines.append(f"            MomMagicCur[p] = MomMagicCur[p] - {shipped_cost};")
-                lines.append(f"            CreateUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT), tgtLoc, 0);")
-                lines.append(f"            Message(p, 'MomSpellCast');")
-                lines.append(f"        }} else {{")
-                lines.append(f"            Message(p, 'MomNoTargetInRange');")
-                lines.append(f"        }}")
+                # OFFENSIVE instant_damage with special patterns
+                _CURSE_TERRAFORM = {
+                    "Corruption": 17,     # TERRAIN_DEAD (blight)
+                    "Raise Volcano": 5,   # TERRAIN_DESERT (volcanic)
+                }
+                _DOMINATION_SPELLS = {"Subversion"}
+
+                if spell_name in _CURSE_TERRAFORM:
+                    # Curse: Terraform enemy city's tile
+                    t_idx = _CURSE_TERRAFORM[spell_name]
+                    lines.append(f"        if (tgtFound == 1) {{")
+                    lines.append(f"            MomMagicCur[p] = MomMagicCur[p] - {shipped_cost};")
+                    lines.append(f"            Terraform(tgtLoc, {t_idx});")
+                    lines.append(f"            Message(p, 'MomSpellCast');")
+                    lines.append(f"        }} else {{")
+                    lines.append(f"            Message(p, 'MomNoTargetInRange');")
+                    lines.append(f"        }}")
+                elif spell_name in _DOMINATION_SPELLS:
+                    # Domination: kill enemy unit, create same type for caster
+                    lines.append(f"        if (tgtFound == 1) {{")
+                    lines.append(f"            MomMagicCur[p] = MomMagicCur[p] - {shipped_cost};")
+                    lines.append(f"            cellCount = GetUnitsAtLocation(tgtLoc);")
+                    lines.append(f"            if (cellCount > 0) {{")
+                    lines.append(f"                GetUnitFromCell(tgtLoc, 0, killUnit);")
+                    lines.append(f"                if (killUnit.owner != p) {{")
+                    lines.append(f"                    uType = killUnit.type;")
+                    lines.append(f"                    KillUnit(killUnit);")
+                    lines.append(f"                    CreateUnit(p, uType, tgtLoc, 0);")
+                    lines.append(f"                }}")
+                    lines.append(f"            }}")
+                    lines.append(f"            Message(p, 'MomSpellCast');")
+                    lines.append(f"        }} else {{")
+                    lines.append(f"            Message(p, 'MomNoTargetInRange');")
+                    lines.append(f"        }}")
+                else:
+                    # Generic offensive: spawn unit at enemy city
+                    lines.append(f"        if (tgtFound == 1) {{")
+                    lines.append(f"            MomMagicCur[p] = MomMagicCur[p] - {shipped_cost};")
+                    lines.append(f"            CreateUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT), tgtLoc, 0);")
+                    lines.append(f"            Message(p, 'MomSpellCast');")
+                    lines.append(f"        }} else {{")
+                    lines.append(f"            Message(p, 'MomNoTargetInRange');")
+                    lines.append(f"        }}")
 
         elif effect_kind == "city_enchant":
             # City enchants: build a thematic building in the player's capital.

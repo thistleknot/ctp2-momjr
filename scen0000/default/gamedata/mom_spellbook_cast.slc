@@ -141,6 +141,8 @@ int_f MomCastSpell(int_t p, int_t spellId)
     } elseif (spellId == 11) {
         // Resurrection (instant_damage) - cost 25
         MomMagicCur[p] = MomMagicCur[p] - 25;
+        GetCityByIndex(p, 0, tmpCity);
+        CreateUnit(p, UnitDB(UNIT_ARCHANGEL), tmpCity.location, 0);
         Message(p, 'MomSpellCast');
     } elseif (spellId == 12) {
         // True Sight (unit_enchant) - cost 10
@@ -820,7 +822,15 @@ int_f MomCastSpell(int_t p, int_t spellId)
         // Subversion (instant_damage) - cost 10
         if (tgtFound == 1) {
             MomMagicCur[p] = MomMagicCur[p] - 10;
-            CreateUnit(p, UnitDB(UNIT_GUARDIAN_SPIRIT), tgtLoc, 0);
+            cellCount = GetUnitsAtLocation(tgtLoc);
+            if (cellCount > 0) {
+                GetUnitFromCell(tgtLoc, 0, killUnit);
+                if (killUnit.owner != p) {
+                    uType = killUnit.type;
+                    KillUnit(killUnit);
+                    CreateUnit(p, uType, tgtLoc, 0);
+                }
+            }
             Message(p, 'MomSpellCast');
         } else {
             Message(p, 'MomNoTargetInRange');
@@ -1158,10 +1168,13 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 112) {
         // Corruption (instant_damage) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        GetCityByIndex(p, 0, tmpCity);
-        Terraform(tmpCity.location, 17);
-        Message(p, 'MomSpellCast');
+        if (tgtFound == 1) {
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            Terraform(tgtLoc, 17);
+            Message(p, 'MomSpellCast');
+        } else {
+            Message(p, 'MomNoTargetInRange');
+        }
     } elseif (spellId == 113) {
         // Eldritch Weapon (unit_enchant) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
@@ -1215,10 +1228,13 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 123) {
         // Raise Volcano (instant_damage) - cost 20
-        MomMagicCur[p] = MomMagicCur[p] - 20;
-        GetCityByIndex(p, 0, tmpCity);
-        Terraform(tmpCity.location, 5);
-        Message(p, 'MomSpellCast');
+        if (tgtFound == 1) {
+            MomMagicCur[p] = MomMagicCur[p] - 20;
+            Terraform(tgtLoc, 5);
+            Message(p, 'MomSpellCast');
+        } else {
+            Message(p, 'MomNoTargetInRange');
+        }
     } elseif (spellId == 124) {
         // Chaos Spawn (summon) - cost 75
         MomMagicCur[p] = MomMagicCur[p] - 75;
