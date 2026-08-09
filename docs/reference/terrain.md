@@ -2,16 +2,6 @@
 
 All terrain types and their properties, generated from `terrain.csv`.
 
-## Terrain Art (Observer Sheet)
-
-![Terrain Contact Sheet](../img/observer_sheets/terrain2_source_contact_sheet.png)
-
-## Tile Improvements Art
-
-![Tile Improvements Contact Sheet](../img/observer_sheets/tileimps_source_contact_sheet.png)
-
-## Data Table
-
 ## Terrain Types
 
 | ID | Type | Movement | Resources |

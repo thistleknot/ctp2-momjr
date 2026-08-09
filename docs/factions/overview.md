@@ -50,18 +50,27 @@ See [Heroes](heroes.md) for the complete hero roster and rules.
 
 ## Unit Art
 
-### Observer Sheet (All Units)
+<details>
+<summary>Observer Sheet (All Units) — click to expand</summary>
 
 ![Units Contact Sheet](../img/observer_sheets/units_contact_sheet.png)
 
-### HoMM2 Source Material
+</details>
+
+<details>
+<summary>HoMM2 Source Material — click to expand</summary>
 
 ![HoMM2 Units](../img/HoMM2_Units_sheet.png)
 
-### Sprite Sheets (In-Game TGAs)
+</details>
+
+<details>
+<summary>Sprite Sheets (In-Game TGAs) — click to expand</summary>
 
 ![Land units](../sprite_sheets/sprite_sheet_land.png)
 
 ![Air units](../sprite_sheets/sprite_sheet_air.png)
 
 ![Sea units](../sprite_sheets/sprite_sheet_sea.png)
+
+</details>
