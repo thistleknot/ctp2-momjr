@@ -24,9 +24,11 @@ Generated from `units.csv`. Icon extracted from `CM2_UPAP{art_idx}L.TGA`.
 </details>
 
 <details markdown="1">
-<summary>SMM Art Library (182 fantasy units incl. LotR) — click to expand</summary>
+<summary>LotR Source Art — pending RAR extraction</summary>
 
-![SMM Units](../img/smm_units_sheet.png)
+Art locked in `H:\Games\ctp2\Lord of the Rings-20260424T030215Z-3-001\Lord of the Rings\CTP2_LOTR_100.rar`.
+
+Extract with 7z/unrar and regenerate this sheet.
 
 </details>
 
