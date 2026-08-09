@@ -3,9 +3,27 @@
 Generated from `units.csv`. Icon extracted from `CM2_UPAP{art_idx}L.TGA`.
 
 <details markdown="1">
-<summary>Full Observer Sheet — click to expand</summary>
+<summary>Observer Sheet (current in-game icons) — click to expand</summary>
 
 ![Units Contact Sheet](../img/observer_sheets/units_contact_sheet.png)
+
+</details>
+
+<details markdown="1">
+<summary>HoMM2 Source Art (alternate candidates) — click to expand</summary>
+
+![HoMM2 Unit Sheet](../img/HoMM2_Units_sheet.png)
+
+</details>
+
+<details markdown="1">
+<summary>In-Game Sprite Sheets (what renders on map) — click to expand</summary>
+
+![Land Sprites](../sprite_sheets/sprite_sheet_land.png)
+
+![Air Sprites](../sprite_sheets/sprite_sheet_air.png)
+
+![Sea Sprites](../sprite_sheets/sprite_sheet_sea.png)
 
 </details>
 
