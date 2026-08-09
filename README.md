@@ -1,7 +1,33 @@
 # ctp2-momjr — Master of Magic total conversion for Call to Power 2
 
-**v4.0.0** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
+**v7.0.1** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
+
+> **What 7.0.1 fixes — sprite wiring and spellbook usability.**
+> 20 faction units now have their own art (extracted from HoMM2 + custom
+> Treant/Drow). Icon TGAs no longer show magenta Civ2 backgrounds. Spellbook
+> pages render button numbers 1-2-3 left-to-right (was reversed). Generator
+> reads the CSV `sprite` column directly instead of re-deriving from the unit
+> name.
+
+> **What 7.0.0 adds — cross-paradigm features.** MtG-style spell hand (draw
+> from deck, rarity-gated), D&D-style hero stats (STR/DEX/CON/INT/WIS/CHA on
+> named heroes), HoMM-style morale (army composition bonus/penalty), LotR-style
+> fellowship (heroes adjacent to each other gain stacking buffs), and enchantment
+> stacking (multiple enchants on one unit, diminishing returns).
+
+> **What 6.0.0 adds — new spell proxy patterns.** Subversion (flip enemy city
+> building), City Curse (reduce production), Raise Dead (resurrect killed unit
+> as undead). Three new effect_kind implementations that expand what the
+> spellbook can express without engine patches.
+
+> **What 5.0.0 adds — magic combat system + 80 units.** 135 spells with wiki
+> descriptions and confirmation pages. Selectable summon menu (per-rung creature
+> picker, player chooses). 15 new faction units (Priest, Crusader, Templar,
+> Treant, Druid, Apprentice, Crystal Golem, Djinn, Vampire, Bone Golem, Goblin,
+> Orc, Ogre, Troll, Drow). 3 neutral dwarves. War Mage + Arch Mage casters.
+> Heroes CantBuild (summon-only). Proximity-gated casting. 5-sphere resistance
+> matrix.
 
 > **What 3.8 fixes — a dragon is finally tougher than a peasant.** Unit stats
 > were rescaled from civ2 with flat multipliers, which let the top run away, and
