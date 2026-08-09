@@ -21,7 +21,13 @@ nav:
     - Unit-Spell Bindings: magic/bindings.md
     - Enchant Stacking: magic/stacking.md
     - Cataclysm: magic/cataclysm.md
-  - Units & Factions:
+  - Dimensions:
+    - Units: reference/units.md
+    - Advances (Technologies): reference/advances.md
+    - Buildings: reference/buildings.md
+    - Spells: reference/spells.md
+    - Terrain: reference/terrain.md
+  - Factions:
     - Faction Overview: factions/overview.md
     - Life — Holy Order: factions/life.md
     - Nature — Fey Court: factions/nature.md
@@ -36,9 +42,3 @@ nav:
     - Summoning: systems/summoning.md
     - Mana Economy: systems/mana.md
     - Artifacts: systems/artifacts.md
-  - Reference:
-    - Spell List: reference/spells.md
-    - Unit Stats: reference/units.md
-    - Advance Tree: reference/advances.md
-    - Building List: reference/buildings.md
-    - Terrain Effects: reference/terrain.md
