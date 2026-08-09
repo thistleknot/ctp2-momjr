@@ -1,7 +1,5 @@
 site_name: Masters of Magic — Player's Guide
 site_description: Total conversion mod for Call To Power 2
-docs_dir: .
-site_dir: ../site
 theme:
   name: material
   palette:
