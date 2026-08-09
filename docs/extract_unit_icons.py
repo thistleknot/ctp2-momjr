@@ -1,83 +1,56 @@
-"""Extract per-unit icon PNGs from CTP2 TGA files for mkdocs embedding."""
+"""Crop individual unit icons from the observer contact sheet for mkdocs table embedding."""
 import csv
-import struct
 from pathlib import Path
 from PIL import Image
 
 CSV_PATH = Path(__file__).parent.parent / "tools" / "momjr_csv" / "units.csv"
-TGA_DIR = Path(__file__).parent.parent / "scen0000" / "default" / "graphics" / "pictures"
+SHEET_PATH = Path(__file__).parent.parent / "tools" / "observer_sheets" / "units_contact_sheet.png"
 OUT_DIR = Path(__file__).parent / "img" / "units"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-
-def read_tga_argb1555(path):
-    """Read a 16-bit ARGB1555 TGA and return a PIL Image."""
-    with open(path, "rb") as f:
-        data = f.read()
-
-    # TGA header (18 bytes)
-    id_len = data[0]
-    width = struct.unpack_from("<H", data, 12)[0]
-    height = struct.unpack_from("<H", data, 14)[0]
-    bpp = data[16]
-
-    if bpp != 16:
-        return None
-
-    pixel_start = 18 + id_len
-    img = Image.new("RGBA", (width, height))
-    pixels = img.load()
-
-    for y in range(height):
-        for x in range(width):
-            offset = pixel_start + ((height - 1 - y) * width + x) * 2
-            if offset + 2 > len(data):
-                break
-            val = struct.unpack_from("<H", data, offset)[0]
-            r = ((val >> 10) & 0x1F) * 255 // 31
-            g = ((val >> 5) & 0x1F) * 255 // 31
-            b = (val & 0x1F) * 255 // 31
-            a = 255 if (val >> 15) & 1 else 0
-            pixels[x, y] = (r, g, b, a)
-
-    return img
+# Grid layout: 704x3200 sheet, 4 columns x 20 rows, units sorted alphabetically
+COLS = 4
+ROWS = 20
+CELL_W = 176  # 704 / 4
+CELL_H = 160  # 3200 / 20
 
 
 def main():
-    # Read units CSV to get art_cell_index -> unit name mapping
-    units = {}
+    # Read all unit names from CSV
+    units = []
     with open(CSV_PATH, newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            art_idx = int(r["art_cell_index"].strip())
-            name = r["name"].strip().lower().replace(" ", "_").replace("'", "")
-            units[art_idx] = name
+            units.append(r["name"].strip())
 
-    # The TGA naming pattern: CM2_UPAP{NNN}L.TGA where NNN is zero-padded art_cell_index
-    converted = 0
-    for art_idx, unit_name in sorted(units.items()):
-        tga_name = f"CM2_UPAP{art_idx:03d}L.TGA"
-        tga_path = TGA_DIR / tga_name
-        if not tga_path.exists():
-            # Try without L suffix
-            tga_name2 = f"CM2_UPAP{art_idx:03d}.TGA"
-            tga_path = TGA_DIR / tga_name2
-            if not tga_path.exists():
-                continue
+    # Sort alphabetically (matching observer sheet order)
+    units_sorted = sorted(units, key=lambda x: x.upper())
 
-        try:
-            img = read_tga_argb1555(tga_path)
-            if img:
-                out_path = OUT_DIR / f"{unit_name}.png"
-                # Resize to thumbnail for table embedding (48px height)
-                ratio = 48 / img.height
-                new_w = max(1, int(img.width * ratio))
-                img_thumb = img.resize((new_w, 48), Image.NEAREST)
-                img_thumb.save(out_path)
-                converted += 1
-        except Exception as e:
-            print(f"  WARN: {tga_name} -> {e}")
+    if len(units_sorted) != COLS * ROWS:
+        print(f"WARNING: {len(units_sorted)} units but grid expects {COLS * ROWS}")
 
-    print(f"Extracted {converted} unit icons to {OUT_DIR}")
+    # Open contact sheet
+    sheet = Image.open(SHEET_PATH)
+
+    # Crop each cell and save as unit slug
+    count = 0
+    for idx, name in enumerate(units_sorted):
+        col = idx % COLS
+        row = idx // COLS
+
+        x0 = col * CELL_W
+        y0 = row * CELL_H
+        x1 = x0 + CELL_W
+        y1 = y0 + CELL_H
+
+        cell = sheet.crop((x0, y0, x1, y1))
+
+        # Save with slug name
+        slug = name.lower().replace(" ", "_").replace("'", "")
+        out_path = OUT_DIR / f"{slug}.png"
+        cell.save(out_path)
+        count += 1
+
+    print(f"Cropped {count} unit icons from observer sheet to {OUT_DIR}")
 
 
 if __name__ == "__main__":
