@@ -6,6 +6,10 @@ theme:
     primary: deep purple
     accent: amber
 
+markdown_extensions:
+  - attr_list
+  - md_in_html
+
 nav:
   - Home: index.md
   - Getting Started:

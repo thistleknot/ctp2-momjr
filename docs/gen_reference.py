@@ -43,7 +43,7 @@ def gen_units():
 
     lines = ["# Unit Stats\n"]
     lines.append("Generated from `units.csv`. Icon extracted from `CM2_UPAP{art_idx}L.TGA`.\n")
-    lines.append("<details>")
+    lines.append("<details markdown=\"1\">")
     lines.append("<summary>Full Observer Sheet — click to expand</summary>\n")
     lines.append("![Units Contact Sheet](../img/observer_sheets/units_contact_sheet.png)\n")
     lines.append("</details>\n")

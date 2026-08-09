@@ -2,7 +2,7 @@
 
 Generated from `units.csv`. Icon extracted from `CM2_UPAP{art_idx}L.TGA`.
 
-<details>
+<details markdown="1">
 <summary>Full Observer Sheet — click to expand</summary>
 
 ![Units Contact Sheet](../img/observer_sheets/units_contact_sheet.png)
