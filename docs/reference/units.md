@@ -24,6 +24,13 @@ Generated from `units.csv`. Icon extracted from `CM2_UPAP{art_idx}L.TGA`.
 </details>
 
 <details markdown="1">
+<summary>SMM Art Library (182 fantasy units incl. LotR) — click to expand</summary>
+
+![SMM Units](../img/smm_units_sheet.png)
+
+</details>
+
+<details markdown="1">
 <summary>In-Game Sprite Sheets (what renders on map) — click to expand</summary>
 
 ![Land Sprites](../sprite_sheets/sprite_sheet_land.png)
