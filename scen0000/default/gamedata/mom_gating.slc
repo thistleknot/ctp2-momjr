@@ -79,6 +79,8 @@ int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)
 
 int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
 {
+    // Guard: if the city is invalid, allow everything (engine handles the rest)
+    if (!CityIsValid(theCity)) { return 1; }
     // VESSELS -- 1, never buildable by anyone
     if (theUnit == UnitDB(UNIT_LAMP)
     ) { return 0; }
