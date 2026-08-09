@@ -10,6 +10,13 @@ OUT_DIR.mkdir(exist_ok=True)
 # ─── UNITS ────────────────────────────────────────────────────────────────────
 
 def gen_units():
+    # Discover which unit icon PNGs exist
+    img_dir = Path(__file__).parent / "img" / "units"
+    available_icons = set()
+    if img_dir.exists():
+        for p in img_dir.glob("*.png"):
+            available_icons.add(p.stem)
+
     rows = []
     with open(CSV_DIR / "units.csv", newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
@@ -28,37 +35,32 @@ def gen_units():
             cell_idx = r["cell_index"].strip()
             art_idx = r["art_cell_index"].strip()
             sprite = r["sprite"].strip()
-            rows.append((sphere, name, atk, dfn, hp, fp, move, domain, cost, prereq, cell_idx, art_idx, sprite))
+            slug = name.lower().replace(" ", "_").replace("'", "")
+            rows.append((sphere, name, atk, dfn, hp, fp, move, domain, cost, prereq, cell_idx, art_idx, sprite, slug))
 
     sphere_order = {"life": 0, "nature": 1, "sorcery": 2, "death": 3, "chaos": 4, "neutral": 5}
     rows.sort(key=lambda x: (sphere_order.get(x[0], 9), x[1]))
 
     lines = ["# Unit Stats\n"]
-    lines.append("Generated from `units.csv`. Sorted by sphere.\n")
+    lines.append("Generated from `units.csv`. Icon extracted from `CM2_UPAP{art_idx}L.TGA`.\n")
     lines.append("<details>")
-    lines.append("<summary>Unit Art (Observer Sheet) — click to expand</summary>\n")
+    lines.append("<summary>Full Observer Sheet — click to expand</summary>\n")
     lines.append("![Units Contact Sheet](../img/observer_sheets/units_contact_sheet.png)\n")
     lines.append("</details>\n")
-    lines.append("<details>")
-    lines.append("<summary>HoMM2 Source Art — click to expand</summary>\n")
-    lines.append("![HoMM2 Unit Sheet](../img/HoMM2_Units_sheet.png)\n")
-    lines.append("</details>\n")
-    lines.append("<details>")
-    lines.append("<summary>In-Game Sprite Sheets — click to expand</summary>\n")
-    lines.append("![Land Sprites](../sprite_sheets/sprite_sheet_land.png)\n")
-    lines.append("![Air Sprites](../sprite_sheets/sprite_sheet_air.png)\n")
-    lines.append("![Sea Sprites](../sprite_sheets/sprite_sheet_sea.png)\n")
-    lines.append("</details>\n")
     lines.append("## Stat Table\n")
-    lines.append("| Unit | Sphere | Atk | Def | HP | FP | Move | Domain | Cost | Prereq | Source (cell/art/sprite) |")
-    lines.append("|------|--------|-----|-----|----|----|------|--------|------|--------|--------------------------|")
-    for sphere, name, atk, dfn, hp, fp, move, domain, cost, prereq, cell_idx, art_idx, sprite in rows:
-        source = f"{cell_idx}/{art_idx}/{sprite}"
-        lines.append(f"| {name} | {sphere.capitalize()} | {atk} | {dfn} | {hp} | {fp} | {move} | {domain} | {cost} | {prereq} | {source} |")
+    lines.append("| Icon | Unit | Sphere | Atk | Def | HP | FP | Move | Domain | Cost | Prereq | Source |")
+    lines.append("|------|------|--------|-----|-----|----|----|------|--------|------|--------|--------|")
+    for sphere, name, atk, dfn, hp, fp, move, domain, cost, prereq, cell_idx, art_idx, sprite, slug in rows:
+        if slug in available_icons:
+            img = f"![{name}](../img/units/{slug}.png)"
+        else:
+            img = ""
+        source = f"art {art_idx} / {sprite}"
+        lines.append(f"| {img} | {name} | {sphere.capitalize()} | {atk} | {dfn} | {hp} | {fp} | {move} | {domain} | {cost} | {prereq} | {source} |")
 
-    lines.append(f"\n**Total: {len(rows)} units**\n")
+    lines.append(f"\n**Total: {len(rows)} units** ({len(available_icons)} with icons)\n")
     (OUT_DIR / "units.md").write_text("\n".join(lines), encoding="utf-8")
-    print(f"  units.md: {len(rows)} rows")
+    print(f"  units.md: {len(rows)} rows, {len(available_icons)} icons")
 
 
 # ─── SPELLS ───────────────────────────────────────────────────────────────────
