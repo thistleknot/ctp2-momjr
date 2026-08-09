@@ -3,9 +3,16 @@
 Generated from `units.csv`. Icon extracted from `CM2_UPAP{art_idx}L.TGA`.
 
 <details markdown="1">
-<summary>Observer Sheet (current in-game icons) — click to expand</summary>
+<summary>Current In-Game Icons (GL TGAs) — click to expand</summary>
 
-![Units Contact Sheet](../img/observer_sheets/units_contact_sheet.png)
+![Current Icons](../img/observer_sheets/units_contact_sheet.png)
+
+</details>
+
+<details markdown="1">
+<summary>MoMJR Source Art (original Civ2 mod units) — click to expand</summary>
+
+![MoMJR Units](../img/momjr_units_sheet.png)
 
 </details>
 
