@@ -1,0 +1,562 @@
+[
+  {
+    "name": "Elven Archers",
+    "sphere": "nature",
+    "slug": "elven_archers",
+    "status": "KNOWN_GOOD",
+    "description": "Confirmed correct by human"
+  },
+  {
+    "name": "Paladins",
+    "sphere": "life",
+    "slug": "paladins",
+    "status": "KNOWN_GOOD",
+    "description": "Confirmed correct by human"
+  },
+  {
+    "name": "Catapult",
+    "sphere": "neutral",
+    "slug": "catapult",
+    "status": "KNOWN_GOOD",
+    "description": "Confirmed correct by human"
+  },
+  {
+    "name": "Pegasus",
+    "sphere": "life",
+    "slug": "pegasus",
+    "status": "KNOWN_GOOD",
+    "description": "Confirmed correct by human"
+  },
+  {
+    "name": "Goblin",
+    "sphere": "chaos",
+    "slug": "goblin",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Apprentice",
+    "sphere": "sorcery",
+    "slug": "apprentice",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Druid",
+    "sphere": "nature",
+    "slug": "druid",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Priest",
+    "sphere": "life",
+    "slug": "priest",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "War Mage",
+    "sphere": "neutral",
+    "slug": "war_mage",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Air Elemental",
+    "sphere": "sorcery",
+    "slug": "air_elemental",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "War Mammoth",
+    "sphere": "nature",
+    "slug": "war_mammoth",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "War Troll",
+    "sphere": "nature",
+    "slug": "war_troll",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Warship",
+    "sphere": "neutral",
+    "slug": "warship",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Warbears",
+    "sphere": "nature",
+    "slug": "warbears",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Peasants",
+    "sphere": "neutral",
+    "slug": "peasants",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Zombies",
+    "sphere": "death",
+    "slug": "zombies",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Spearmen",
+    "sphere": "neutral",
+    "slug": "spearmen",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Swordsmen",
+    "sphere": "neutral",
+    "slug": "swordsmen",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Phantom Warriors",
+    "sphere": "sorcery",
+    "slug": "phantom_warriors",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Hell Hounds",
+    "sphere": "chaos",
+    "slug": "hell_hounds",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Warlock",
+    "sphere": "sorcery",
+    "slug": "warlock",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Ariel",
+    "sphere": "life",
+    "slug": "ariel",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Jafar",
+    "sphere": "sorcery",
+    "slug": "jafar",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Rjak",
+    "sphere": "death",
+    "slug": "rjak",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Tauron",
+    "sphere": "chaos",
+    "slug": "tauron",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Serena",
+    "sphere": "life",
+    "slug": "serena",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Freya",
+    "sphere": "nature",
+    "slug": "freya",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Alorra",
+    "sphere": "nature",
+    "slug": "alorra",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Centaurs",
+    "sphere": "nature",
+    "slug": "centaurs",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Mage",
+    "sphere": "sorcery",
+    "slug": "mage",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Wyvern",
+    "sphere": "nature",
+    "slug": "wyvern",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Knights",
+    "sphere": "neutral",
+    "slug": "knights",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Unicorn",
+    "sphere": "life",
+    "slug": "unicorn",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Iron Golem",
+    "sphere": "neutral",
+    "slug": "iron_golem",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Steam Cannon",
+    "sphere": "neutral",
+    "slug": "steam_cannon",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Efreet",
+    "sphere": "chaos",
+    "slug": "efreet",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Wraith",
+    "sphere": "death",
+    "slug": "wraith",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Griffin",
+    "sphere": "nature",
+    "slug": "griffin",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Galley",
+    "sphere": "neutral",
+    "slug": "galley",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Hydra",
+    "sphere": "chaos",
+    "slug": "hydra",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Airship",
+    "sphere": "neutral",
+    "slug": "airship",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Minotaur",
+    "sphere": "chaos",
+    "slug": "minotaur",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Gargoyle",
+    "sphere": "chaos",
+    "slug": "gargoyle",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Guardian Spirit",
+    "sphere": "life",
+    "slug": "guardian_spirit",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Cockatrice",
+    "sphere": "nature",
+    "slug": "cockatrice",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Salamander",
+    "sphere": "chaos",
+    "slug": "salamander",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Infernal Device",
+    "sphere": "chaos",
+    "slug": "infernal_device",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Minion",
+    "sphere": "death",
+    "slug": "minion",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Demon",
+    "sphere": "death",
+    "slug": "demon",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Caravan",
+    "sphere": "neutral",
+    "slug": "caravan",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Storm Giant",
+    "sphere": "sorcery",
+    "slug": "storm_giant",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Storm Drake",
+    "sphere": "sorcery",
+    "slug": "storm_drake",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Warrax",
+    "sphere": "chaos",
+    "slug": "warrax",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Undead Dragon",
+    "sphere": "death",
+    "slug": "undead_dragon",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Great Wyrm",
+    "sphere": "nature",
+    "slug": "great_wyrm",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Behemoth",
+    "sphere": "nature",
+    "slug": "behemoth",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Malleus",
+    "sphere": "death",
+    "slug": "malleus",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Merfolk",
+    "sphere": "nature",
+    "slug": "merfolk",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Archangel",
+    "sphere": "life",
+    "slug": "archangel",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Settler",
+    "sphere": "neutral",
+    "slug": "settler",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Skeletons",
+    "sphere": "death",
+    "slug": "skeletons",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Dracolich",
+    "sphere": "death",
+    "slug": "dracolich",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Death Knight",
+    "sphere": "death",
+    "slug": "death_knight",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Lich",
+    "sphere": "death",
+    "slug": "lich",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Lamp",
+    "sphere": "neutral",
+    "slug": "lamp",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Arch Mage",
+    "sphere": "neutral",
+    "slug": "arch_mage",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Dwarf Warrior",
+    "sphere": "neutral",
+    "slug": "dwarf_warrior",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Dwarf Crossbow",
+    "sphere": "neutral",
+    "slug": "dwarf_crossbow",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Dwarf Runesmith",
+    "sphere": "neutral",
+    "slug": "dwarf_runesmith",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Crusader",
+    "sphere": "life",
+    "slug": "crusader",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Templar",
+    "sphere": "life",
+    "slug": "templar",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Treant",
+    "sphere": "nature",
+    "slug": "treant",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Crystal Golem",
+    "sphere": "sorcery",
+    "slug": "crystal_golem",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Djinn",
+    "sphere": "sorcery",
+    "slug": "djinn",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Vampire",
+    "sphere": "death",
+    "slug": "vampire",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Bone Golem",
+    "sphere": "death",
+    "slug": "bone_golem",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Orc",
+    "sphere": "chaos",
+    "slug": "orc",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Ogre",
+    "sphere": "chaos",
+    "slug": "ogre",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Troll",
+    "sphere": "chaos",
+    "slug": "troll",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  {
+    "name": "Drow",
+    "sphere": "chaos",
+    "slug": "drow",
+    "status": "ERROR",
+    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
+  }
+]
