@@ -2,6 +2,24 @@
 
 Complete unit roster generated from `units.csv`. Sorted by sphere.
 
+## Unit Art (Observer Sheet)
+
+![Units Contact Sheet](../img/observer_sheets/units_contact_sheet.png)
+
+## HoMM2 Source Art
+
+![HoMM2 Unit Sheet](../img/HoMM2_Units_sheet.png)
+
+## Unit Sprites (In-Game)
+
+![Land Sprites](../sprite_sheets/sprite_sheet_land.png)
+
+![Air Sprites](../sprite_sheets/sprite_sheet_air.png)
+
+![Sea Sprites](../sprite_sheets/sprite_sheet_sea.png)
+
+## Stat Table
+
 | Sphere | Unit | Atk | Def | HP | FP | Move | Domain | Cost | Prereq |
 |--------|------|-----|-----|----|----|------|--------|------|--------|
 | Life | Archangel | 12 | 12 | 2 | 2 | 4 | Air | 12 | Mag |

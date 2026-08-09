@@ -2,6 +2,16 @@
 
 City improvements and wonders generated from `improvements.csv`.
 
+## Building Icons (Observer Sheet)
+
+![Improvements Contact Sheet](../img/observer_sheets/improvements_source_contact_sheet.png)
+
+## City Art
+
+![Cities Contact Sheet](../img/observer_sheets/cities_source_contact_sheet.png)
+
+## Data Table
+
 | Building | Sphere | Cost | Upkeep | Prereq | Effects |
 |----------|--------|------|--------|--------|---------|
 | Aqueduct | Neutral | 8 | 2 | Cst | RaiseOvercrowdingLevel 6; RaiseMaxPopulation 14 |

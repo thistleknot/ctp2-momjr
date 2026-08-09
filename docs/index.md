@@ -20,6 +20,14 @@ cross-paradigm mechanics inspired by MtG, D&D, HoMM, and LotR.
 - [Unit Roster](factions/overview.md) — what you command
 - [Mana Economy](systems/mana.md) — how power flows
 
+## In-Game
+
+![MoM In-Game](img/mom_ingame_3775bc.png)
+
+## Icon Art
+
+![Tier A Icons](img/tier_a_icons_scan.png)
+
 ## Version
 
 Current: **v7.0.0** (August 2026)

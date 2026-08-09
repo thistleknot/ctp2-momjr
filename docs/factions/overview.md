@@ -48,9 +48,17 @@ Each sphere has 1-2 named heroes. Heroes are:
 
 See [Heroes](heroes.md) for the complete hero roster and rules.
 
-## Sprite Sheets
+## Unit Art
 
-All unit sprites are extracted from HoMM2 art and converted to CTP2's TGA format:
+### Observer Sheet (All Units)
+
+![Units Contact Sheet](../img/observer_sheets/units_contact_sheet.png)
+
+### HoMM2 Source Material
+
+![HoMM2 Units](../img/HoMM2_Units_sheet.png)
+
+### Sprite Sheets (In-Game TGAs)
 
 ![Land units](../sprite_sheets/sprite_sheet_land.png)
 

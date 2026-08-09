@@ -42,6 +42,23 @@ When the scenario loads correctly you'll see:
 If you see stock CTP2 content (tanks, submarines, corporations), the scenario
 path is wrong. Check that `scen0000/` is directly under `Scenarios/mom/`.
 
+## Screenshots
+
+### Main Menu
+![Main Menu](../img/screenshots/main_menu.png)
+
+### Scenario Select
+![Scenario Select](../img/screenshots/scenario_select.png)
+
+### MoM Selected
+![MoM Selected](../img/screenshots/scrolled_to_mom.png)
+
+### New Game Screen
+![New Game](../img/screenshots/new_game_screen.png)
+
+### In-Game (First City Settled)
+![First City](../img/screenshots/post_j_settled.png)
+
 ## Troubleshooting
 
 | Symptom | Fix |
