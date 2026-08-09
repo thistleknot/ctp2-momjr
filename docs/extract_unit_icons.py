@@ -16,14 +16,17 @@ CELL_H = 160  # 3200 / 20
 
 
 def main():
-    # Read all unit names from CSV
-    units = []
+    # Sort by UNIT_X label (matching observer sheet order - sorted by ICON identifier)
+    units_with_label = []
     with open(CSV_PATH, newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            units.append(r["name"].strip())
+            name = r["name"].strip()
+            icon = r["icon"].strip()
+            sheet_label = icon.replace("ICON_", "")  # ICON_UNIT_X -> UNIT_X
+            units_with_label.append((sheet_label, name))
 
-    # Sort alphabetically (matching observer sheet order)
-    units_sorted = sorted(units, key=lambda x: x.upper())
+    # Sort alphabetically by the UNIT_X label (this matches the observer sheet)
+    units_sorted = sorted(units_with_label, key=lambda x: x[0].upper())
 
     if len(units_sorted) != COLS * ROWS:
         print(f"WARNING: {len(units_sorted)} units but grid expects {COLS * ROWS}")
@@ -33,7 +36,7 @@ def main():
 
     # Crop each cell and save as unit slug
     count = 0
-    for idx, name in enumerate(units_sorted):
+    for idx, (label, name) in enumerate(units_sorted):
         col = idx % COLS
         row = idx // COLS
 
