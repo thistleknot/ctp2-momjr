@@ -10,16 +10,16 @@ Generated from `units.csv`. Icon extracted from `CM2_UPAP{art_idx}L.TGA`.
 </details>
 
 <details markdown="1">
-<summary>MoMJR Source Art (original Civ2 mod units) — click to expand</summary>
+<summary>MoMJR Source Art (with unit name overlay) — click to expand</summary>
 
-![MoMJR Units](../img/momjr_units_sheet.png)
+![MoMJR Labeled](../img/momjr_units_sheet_labeled.png)
 
 </details>
 
 <details markdown="1">
-<summary>HoMM2 Source Art (alternate candidates) — click to expand</summary>
+<summary>HoMM2 Source Art (with unit name overlay) — click to expand</summary>
 
-![HoMM2 Unit Sheet](../img/HoMM2_Units_sheet.png)
+![HoMM2 Labeled](../img/homm2_units_sheet_labeled.png)
 
 </details>
 
