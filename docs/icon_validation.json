@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "centaurs",
+    "name": "Centaurs",
+    "score": 10,
+    "reason": "Shows knight, snake, dwarf, minotaur"
+  },
+  {
+    "slug": "infernal_device",
+    "name": "Infernal Device",
+    "score": 50,
+    "reason": "multiple fantasy creatures including infernal one"
+  },
+  {
+    "slug": "great_wyrm",
+    "name": "Great Wyrm",
+    "score": 100,
+    "reason": "Two pixel art dragon creatures"
+  },
+  {
+    "slug": "behemoth",
+    "name": "Behemoth",
+    "score": 50,
+    "reason": "vaguely related but wrong creature type"
+  }
+]
