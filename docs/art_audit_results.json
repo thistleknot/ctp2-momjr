@@ -1,562 +1,3556 @@
-[
-  {
-    "name": "Elven Archers",
-    "sphere": "nature",
-    "slug": "elven_archers",
-    "status": "KNOWN_GOOD",
-    "description": "Confirmed correct by human"
-  },
-  {
-    "name": "Paladins",
-    "sphere": "life",
-    "slug": "paladins",
-    "status": "KNOWN_GOOD",
-    "description": "Confirmed correct by human"
-  },
-  {
-    "name": "Catapult",
-    "sphere": "neutral",
-    "slug": "catapult",
-    "status": "KNOWN_GOOD",
-    "description": "Confirmed correct by human"
-  },
-  {
-    "name": "Pegasus",
-    "sphere": "life",
-    "slug": "pegasus",
-    "status": "KNOWN_GOOD",
-    "description": "Confirmed correct by human"
-  },
-  {
-    "name": "Goblin",
-    "sphere": "chaos",
-    "slug": "goblin",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Apprentice",
-    "sphere": "sorcery",
-    "slug": "apprentice",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Druid",
-    "sphere": "nature",
-    "slug": "druid",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Priest",
-    "sphere": "life",
-    "slug": "priest",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "War Mage",
-    "sphere": "neutral",
-    "slug": "war_mage",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Air Elemental",
-    "sphere": "sorcery",
-    "slug": "air_elemental",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "War Mammoth",
-    "sphere": "nature",
-    "slug": "war_mammoth",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "War Troll",
-    "sphere": "nature",
-    "slug": "war_troll",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Warship",
-    "sphere": "neutral",
-    "slug": "warship",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Warbears",
-    "sphere": "nature",
-    "slug": "warbears",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Peasants",
-    "sphere": "neutral",
-    "slug": "peasants",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Zombies",
-    "sphere": "death",
-    "slug": "zombies",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Spearmen",
-    "sphere": "neutral",
-    "slug": "spearmen",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Swordsmen",
-    "sphere": "neutral",
-    "slug": "swordsmen",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Phantom Warriors",
-    "sphere": "sorcery",
-    "slug": "phantom_warriors",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Hell Hounds",
-    "sphere": "chaos",
-    "slug": "hell_hounds",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Warlock",
-    "sphere": "sorcery",
-    "slug": "warlock",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Ariel",
-    "sphere": "life",
-    "slug": "ariel",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Jafar",
-    "sphere": "sorcery",
-    "slug": "jafar",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Rjak",
-    "sphere": "death",
-    "slug": "rjak",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Tauron",
-    "sphere": "chaos",
-    "slug": "tauron",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Serena",
-    "sphere": "life",
-    "slug": "serena",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Freya",
-    "sphere": "nature",
-    "slug": "freya",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Alorra",
-    "sphere": "nature",
-    "slug": "alorra",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Centaurs",
-    "sphere": "nature",
-    "slug": "centaurs",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Mage",
-    "sphere": "sorcery",
-    "slug": "mage",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Wyvern",
-    "sphere": "nature",
-    "slug": "wyvern",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Knights",
-    "sphere": "neutral",
-    "slug": "knights",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Unicorn",
-    "sphere": "life",
-    "slug": "unicorn",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Iron Golem",
-    "sphere": "neutral",
-    "slug": "iron_golem",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Steam Cannon",
-    "sphere": "neutral",
-    "slug": "steam_cannon",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Efreet",
-    "sphere": "chaos",
-    "slug": "efreet",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Wraith",
-    "sphere": "death",
-    "slug": "wraith",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Griffin",
-    "sphere": "nature",
-    "slug": "griffin",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Galley",
-    "sphere": "neutral",
-    "slug": "galley",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Hydra",
-    "sphere": "chaos",
-    "slug": "hydra",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Airship",
-    "sphere": "neutral",
-    "slug": "airship",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Minotaur",
-    "sphere": "chaos",
-    "slug": "minotaur",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Gargoyle",
-    "sphere": "chaos",
-    "slug": "gargoyle",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Guardian Spirit",
-    "sphere": "life",
-    "slug": "guardian_spirit",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Cockatrice",
-    "sphere": "nature",
-    "slug": "cockatrice",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Salamander",
-    "sphere": "chaos",
-    "slug": "salamander",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Infernal Device",
-    "sphere": "chaos",
-    "slug": "infernal_device",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Minion",
-    "sphere": "death",
-    "slug": "minion",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Demon",
-    "sphere": "death",
-    "slug": "demon",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Caravan",
-    "sphere": "neutral",
-    "slug": "caravan",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Storm Giant",
-    "sphere": "sorcery",
-    "slug": "storm_giant",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Storm Drake",
-    "sphere": "sorcery",
-    "slug": "storm_drake",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Warrax",
-    "sphere": "chaos",
-    "slug": "warrax",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Undead Dragon",
-    "sphere": "death",
-    "slug": "undead_dragon",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Great Wyrm",
-    "sphere": "nature",
-    "slug": "great_wyrm",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Behemoth",
-    "sphere": "nature",
-    "slug": "behemoth",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Malleus",
-    "sphere": "death",
-    "slug": "malleus",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Merfolk",
-    "sphere": "nature",
-    "slug": "merfolk",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Archangel",
-    "sphere": "life",
-    "slug": "archangel",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Settler",
-    "sphere": "neutral",
-    "slug": "settler",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Skeletons",
-    "sphere": "death",
-    "slug": "skeletons",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Dracolich",
-    "sphere": "death",
-    "slug": "dracolich",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Death Knight",
-    "sphere": "death",
-    "slug": "death_knight",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Lich",
-    "sphere": "death",
-    "slug": "lich",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Lamp",
-    "sphere": "neutral",
-    "slug": "lamp",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Arch Mage",
-    "sphere": "neutral",
-    "slug": "arch_mage",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Dwarf Warrior",
-    "sphere": "neutral",
-    "slug": "dwarf_warrior",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Dwarf Crossbow",
-    "sphere": "neutral",
-    "slug": "dwarf_crossbow",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Dwarf Runesmith",
-    "sphere": "neutral",
-    "slug": "dwarf_runesmith",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Crusader",
-    "sphere": "life",
-    "slug": "crusader",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Templar",
-    "sphere": "life",
-    "slug": "templar",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Treant",
-    "sphere": "nature",
-    "slug": "treant",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Crystal Golem",
-    "sphere": "sorcery",
-    "slug": "crystal_golem",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Djinn",
-    "sphere": "sorcery",
-    "slug": "djinn",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Vampire",
-    "sphere": "death",
-    "slug": "vampire",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Bone Golem",
-    "sphere": "death",
-    "slug": "bone_golem",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Orc",
-    "sphere": "chaos",
-    "slug": "orc",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Ogre",
-    "sphere": "chaos",
-    "slug": "ogre",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Troll",
-    "sphere": "chaos",
-    "slug": "troll",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  },
-  {
-    "name": "Drow",
-    "sphere": "chaos",
-    "slug": "drow",
-    "status": "ERROR",
-    "description": "404 Client Error: Not Found for url: https://integrate.api.nvidia.com/v1/chat/completions"
-  }
-]
+{
+  "mom": [
+    {
+      "name": "Elven Archers",
+      "sphere": "nature",
+      "slug": "elven_archers",
+      "source": "mom",
+      "description": "KNOWN_GOOD"
+    },
+    {
+      "name": "Paladins",
+      "sphere": "life",
+      "slug": "paladins",
+      "source": "mom",
+      "description": "KNOWN_GOOD"
+    },
+    {
+      "name": "Catapult",
+      "sphere": "neutral",
+      "slug": "catapult",
+      "source": "mom",
+      "description": "KNOWN_GOOD"
+    },
+    {
+      "name": "Pegasus",
+      "sphere": "life",
+      "slug": "pegasus",
+      "source": "mom",
+      "description": "KNOWN_GOOD"
+    },
+    {
+      "name": "Peasants",
+      "sphere": "neutral",
+      "slug": "peasants",
+      "source": "mom",
+      "description": "A pixelated peasant holding a pickaxe over his shoulder"
+    },
+    {
+      "name": "Zombies",
+      "sphere": "death",
+      "slug": "zombies",
+      "source": "mom",
+      "description": "A green-skinned zombie standing with arms raised"
+    },
+    {
+      "name": "Spearmen",
+      "sphere": "neutral",
+      "slug": "spearmen",
+      "source": "mom",
+      "description": "An armored spearman holding a spear and shield"
+    },
+    {
+      "name": "Swordsmen",
+      "sphere": "neutral",
+      "slug": "swordsmen",
+      "source": "mom",
+      "description": "A swordsman in armor with a red cape holding a sword and shield"
+    },
+    {
+      "name": "Phantom Warriors",
+      "sphere": "sorcery",
+      "slug": "phantom_warriors",
+      "source": "mom",
+      "description": "A skeletal warrior holding a sword and shield"
+    },
+    {
+      "name": "Hell Hounds",
+      "sphere": "chaos",
+      "slug": "hell_hounds",
+      "source": "mom",
+      "description": "A fiery red hound-like creature"
+    },
+    {
+      "name": "Warbears",
+      "sphere": "nature",
+      "slug": "warbears",
+      "source": "mom",
+      "description": "An anthropomorphic brown bear wearing armor"
+    },
+    {
+      "name": "Warlock",
+      "sphere": "sorcery",
+      "slug": "warlock",
+      "source": "mom",
+      "description": "A green-robed mage holding a glowing green orb"
+    },
+    {
+      "name": "Ariel",
+      "sphere": "life",
+      "slug": "ariel",
+      "source": "mom",
+      "description": "female warrior with sword and shield"
+    },
+    {
+      "name": "Jafar",
+      "sphere": "sorcery",
+      "slug": "jafar",
+      "source": "mom",
+      "description": "male mage in blue robes with staff"
+    },
+    {
+      "name": "Rjak",
+      "sphere": "death",
+      "slug": "rjak",
+      "source": "mom",
+      "description": "dark sorcerer in purple robes wielding staff"
+    },
+    {
+      "name": "Tauron",
+      "sphere": "chaos",
+      "slug": "tauron",
+      "source": "mom",
+      "description": "wizard in red cape holding glowing orb and staff"
+    },
+    {
+      "name": "Serena",
+      "sphere": "life",
+      "slug": "serena",
+      "source": "mom",
+      "description": "PARSE_FAIL"
+    },
+    {
+      "name": "Freya",
+      "sphere": "nature",
+      "slug": "freya",
+      "source": "mom",
+      "description": "PARSE_FAIL"
+    },
+    {
+      "name": "Alorra",
+      "sphere": "nature",
+      "slug": "alorra",
+      "source": "mom",
+      "description": "PARSE_FAIL"
+    },
+    {
+      "name": "Centaurs",
+      "sphere": "nature",
+      "slug": "centaurs",
+      "source": "mom",
+      "description": "PARSE_FAIL"
+    },
+    {
+      "name": "Mage",
+      "sphere": "sorcery",
+      "slug": "mage",
+      "source": "mom",
+      "description": "A pixelated mage in blue robes casting a spell."
+    },
+    {
+      "name": "Wyvern",
+      "sphere": "nature",
+      "slug": "wyvern",
+      "source": "mom",
+      "description": "A flying wyvern with large wings and tail."
+    },
+    {
+      "name": "Knights",
+      "sphere": "neutral",
+      "slug": "knights",
+      "source": "mom",
+      "description": "A knight in blue armor riding a horse."
+    },
+    {
+      "name": "Unicorn",
+      "sphere": "life",
+      "slug": "unicorn",
+      "source": "mom",
+      "description": "A white unicorn with a horn and mane."
+    },
+    {
+      "name": "Iron Golem",
+      "sphere": "neutral",
+      "slug": "iron_golem",
+      "source": "mom",
+      "description": "A pixelated iron golem holding a large hammer weapon."
+    },
+    {
+      "name": "Steam Cannon",
+      "sphere": "neutral",
+      "slug": "steam_cannon",
+      "source": "mom",
+      "description": "A mechanical steam cannon mounted on a wooden carriage."
+    },
+    {
+      "name": "Efreet",
+      "sphere": "chaos",
+      "slug": "efreet",
+      "source": "mom",
+      "description": "A humanoid figure made of fire holding a glowing orb."
+    },
+    {
+      "name": "Wraith",
+      "sphere": "death",
+      "slug": "wraith",
+      "source": "mom",
+      "description": "A blue, hooded spectral figure holding a sword."
+    },
+    {
+      "name": "Griffin",
+      "sphere": "nature",
+      "slug": "griffin",
+      "source": "mom",
+      "description": "A flying creature with a lion's body and eagle's head"
+    },
+    {
+      "name": "Galley",
+      "sphere": "neutral",
+      "slug": "galley",
+      "source": "mom",
+      "description": "A wooden boat with a single white sail on water"
+    },
+    {
+      "name": "Warship",
+      "sphere": "neutral",
+      "slug": "warship",
+      "source": "mom",
+      "description": "A large warship with multiple masts and red flags"
+    },
+    {
+      "name": "Hydra",
+      "sphere": "chaos",
+      "slug": "hydra",
+      "source": "mom",
+      "description": "A multi-headed blue and green serpent dragon"
+    },
+    {
+      "name": "Airship",
+      "sphere": "neutral",
+      "slug": "airship",
+      "source": "mom",
+      "description": "A wooden airship vessel with two hot air balloons."
+    },
+    {
+      "name": "Minotaur",
+      "sphere": "chaos",
+      "slug": "minotaur",
+      "source": "mom",
+      "description": "A minotaur figure wielding a weapon."
+    },
+    {
+      "name": "War Troll",
+      "sphere": "nature",
+      "slug": "war_troll",
+      "source": "mom",
+      "description": "A green armored troll warrior standing."
+    },
+    {
+      "name": "Gargoyle",
+      "sphere": "chaos",
+      "slug": "gargoyle",
+      "source": "mom",
+      "description": "A winged gargoyle creature standing."
+    },
+    {
+      "name": "Guardian Spirit",
+      "sphere": "life",
+      "slug": "guardian_spirit",
+      "source": "mom",
+      "description": "A blue pixelated spirit holding a staff"
+    },
+    {
+      "name": "Cockatrice",
+      "sphere": "nature",
+      "slug": "cockatrice",
+      "source": "mom",
+      "description": "A colorful pixelated rooster creature"
+    },
+    {
+      "name": "Salamander",
+      "sphere": "chaos",
+      "slug": "salamander",
+      "source": "mom",
+      "description": "A yellow pixelated salamander creature"
+    },
+    {
+      "name": "Infernal Device",
+      "sphere": "chaos",
+      "slug": "infernal_device",
+      "source": "mom",
+      "description": "A golden pixelated infernal device"
+    },
+    {
+      "name": "Minion",
+      "sphere": "death",
+      "slug": "minion",
+      "source": "mom",
+      "description": "A blue-robed mage standing with hands clasped"
+    },
+    {
+      "name": "Demon",
+      "sphere": "death",
+      "slug": "demon",
+      "source": "mom",
+      "description": "A fiery winged demon creature flying"
+    },
+    {
+      "name": "Caravan",
+      "sphere": "neutral",
+      "slug": "caravan",
+      "source": "mom",
+      "description": "A large bird carrying a colorful pack"
+    },
+    {
+      "name": "War Mammoth",
+      "sphere": "nature",
+      "slug": "war_mammoth",
+      "source": "mom",
+      "description": "An armored mammoth with a rider on its back"
+    },
+    {
+      "name": "Storm Giant",
+      "sphere": "sorcery",
+      "slug": "storm_giant",
+      "source": "mom",
+      "description": "A large, muscular giant holding a lightning bolt and staff."
+    },
+    {
+      "name": "Air Elemental",
+      "sphere": "sorcery",
+      "slug": "air_elemental",
+      "source": "mom",
+      "description": "A swirling blue air elemental shape."
+    },
+    {
+      "name": "Storm Drake",
+      "sphere": "sorcery",
+      "slug": "storm_drake",
+      "source": "mom",
+      "description": "A blue dragon with wings spread and red accents."
+    },
+    {
+      "name": "Warrax",
+      "sphere": "chaos",
+      "slug": "warrax",
+      "source": "mom",
+      "description": "A warrior riding a horse holding a spear with lightning nearby."
+    },
+    {
+      "name": "Undead Dragon",
+      "sphere": "death",
+      "slug": "undead_dragon",
+      "source": "mom",
+      "description": "Undead dragon with skeletal wings and glowing eyes"
+    },
+    {
+      "name": "Great Wyrm",
+      "sphere": "nature",
+      "slug": "great_wyrm",
+      "source": "mom",
+      "description": "Large serpentine wyrm emerging from earth"
+    },
+    {
+      "name": "Behemoth",
+      "sphere": "nature",
+      "slug": "behemoth",
+      "source": "mom",
+      "description": "Massive quadrupedal beast with tusks and horns"
+    },
+    {
+      "name": "Malleus",
+      "sphere": "death",
+      "slug": "malleus",
+      "source": "mom",
+      "description": "Knight on horseback wielding a large mace"
+    },
+    {
+      "name": "Merfolk",
+      "sphere": "nature",
+      "slug": "merfolk",
+      "source": "mom",
+      "description": "A merfolk character with a fish tail and human upper body"
+    },
+    {
+      "name": "Archangel",
+      "sphere": "life",
+      "slug": "archangel",
+      "source": "mom",
+      "description": "A winged angel holding a flaming sword"
+    },
+    {
+      "name": "Settler",
+      "sphere": "neutral",
+      "slug": "settler",
+      "source": "mom",
+      "description": "A robed figure wearing a red hooded cloak"
+    },
+    {
+      "name": "Skeletons",
+      "sphere": "death",
+      "slug": "skeletons",
+      "source": "mom",
+      "description": "A green skeleton or undead figure standing with arms raised"
+    },
+    {
+      "name": "Dracolich",
+      "sphere": "death",
+      "slug": "dracolich",
+      "source": "mom",
+      "description": "A green dragon holding a sword"
+    },
+    {
+      "name": "Death Knight",
+      "sphere": "death",
+      "slug": "death_knight",
+      "source": "mom",
+      "description": "A blue spectral unicorn with a golden horn"
+    },
+    {
+      "name": "Lich",
+      "sphere": "death",
+      "slug": "lich",
+      "source": "mom",
+      "description": "A lich riding a large colorful lizard"
+    },
+    {
+      "name": "Lamp",
+      "sphere": "neutral",
+      "slug": "lamp",
+      "source": "mom",
+      "description": "A golden oil lamp sitting on the ground"
+    },
+    {
+      "name": "War Mage",
+      "sphere": "neutral",
+      "slug": "war_mage",
+      "source": "mom",
+      "description": "A blue-robed mage casting a spell"
+    },
+    {
+      "name": "Arch Mage",
+      "sphere": "neutral",
+      "slug": "arch_mage",
+      "source": "mom",
+      "description": "A blue-robed mage holding a bow"
+    },
+    {
+      "name": "Dwarf Warrior",
+      "sphere": "neutral",
+      "slug": "dwarf_warrior",
+      "source": "mom",
+      "description": "A grey winged skeleton warrior"
+    },
+    {
+      "name": "Dwarf Crossbow",
+      "sphere": "neutral",
+      "slug": "dwarf_crossbow",
+      "source": "mom",
+      "description": "A silver armored dwarf standing"
+    },
+    {
+      "name": "Dwarf Runesmith",
+      "sphere": "neutral",
+      "slug": "dwarf_runesmith",
+      "source": "mom",
+      "description": "A pixelated glowing hammer with a red trail"
+    },
+    {
+      "name": "Priest",
+      "sphere": "life",
+      "slug": "priest",
+      "source": "mom",
+      "description": "A pixelated priest character in blue and gold armor"
+    },
+    {
+      "name": "Crusader",
+      "sphere": "life",
+      "slug": "crusader",
+      "source": "mom",
+      "description": "A pixelated crusader riding a grey horse"
+    },
+    {
+      "name": "Templar",
+      "sphere": "life",
+      "slug": "templar",
+      "source": "mom",
+      "description": "A pixelated templar riding a white horse"
+    },
+    {
+      "name": "Treant",
+      "sphere": "nature",
+      "slug": "treant",
+      "source": "mom",
+      "description": "A tree-like humanoid creature made of wood and leaves"
+    },
+    {
+      "name": "Druid",
+      "sphere": "nature",
+      "slug": "druid",
+      "source": "mom",
+      "description": "A small figure in blue and yellow robes holding a staff"
+    },
+    {
+      "name": "Apprentice",
+      "sphere": "sorcery",
+      "slug": "apprentice",
+      "source": "mom",
+      "description": "A yellow star-shaped projectile with a grey tail"
+    },
+    {
+      "name": "Crystal Golem",
+      "sphere": "sorcery",
+      "slug": "crystal_golem",
+      "source": "mom",
+      "description": "A yellow, translucent, oval-shaped crystal object with red trails"
+    },
+    {
+      "name": "Djinn",
+      "sphere": "sorcery",
+      "slug": "djinn",
+      "source": "mom",
+      "description": "A rider on a horse holding a bow"
+    },
+    {
+      "name": "Vampire",
+      "sphere": "death",
+      "slug": "vampire",
+      "source": "mom",
+      "description": "A cloaked vampire figure standing"
+    },
+    {
+      "name": "Bone Golem",
+      "sphere": "death",
+      "slug": "bone_golem",
+      "source": "mom",
+      "description": "A skeletal warrior holding a sword and shield"
+    },
+    {
+      "name": "Goblin",
+      "sphere": "chaos",
+      "slug": "goblin",
+      "source": "mom",
+      "description": "A brown boar with a grey mane"
+    },
+    {
+      "name": "Orc",
+      "sphere": "chaos",
+      "slug": "orc",
+      "source": "mom",
+      "description": "PARSE_FAIL"
+    },
+    {
+      "name": "Ogre",
+      "sphere": "chaos",
+      "slug": "ogre",
+      "source": "mom",
+      "description": "PARSE_FAIL"
+    },
+    {
+      "name": "Troll",
+      "sphere": "chaos",
+      "slug": "troll",
+      "source": "mom",
+      "description": "PARSE_FAIL"
+    },
+    {
+      "name": "Drow",
+      "sphere": "chaos",
+      "slug": "drow",
+      "source": "mom",
+      "description": "PARSE_FAIL"
+    }
+  ],
+  "lotr": [
+    {
+      "name": "100C",
+      "source": "lotr",
+      "file": "100CL.tga",
+      "description": "A bald man in a red shirt holding fish."
+    },
+    {
+      "name": "100",
+      "source": "lotr",
+      "file": "100L.tga",
+      "description": "A bald man in a red shirt holding fish."
+    },
+    {
+      "name": "101",
+      "source": "lotr",
+      "file": "101L.tga",
+      "description": "A soldier in blue tunic holding a yellow shield."
+    },
+    {
+      "name": "102C",
+      "source": "lotr",
+      "file": "102CL.tga",
+      "description": "A soldier in armor holding a polearm."
+    },
+    {
+      "name": "102",
+      "source": "lotr",
+      "file": "102L.tga",
+      "description": "A medieval soldier in chainmail armor holding a polearm weapon."
+    },
+    {
+      "name": "103C",
+      "source": "lotr",
+      "file": "103CL.tga",
+      "description": "A soldier in red and blue armor holding a spear."
+    },
+    {
+      "name": "103",
+      "source": "lotr",
+      "file": "103L.tga",
+      "description": "A soldier in red and blue armor holding a spear."
+    },
+    {
+      "name": "104C",
+      "source": "lotr",
+      "file": "104CL.tga",
+      "description": "An armored warrior holding a shield and sword."
+    },
+    {
+      "name": "104",
+      "source": "lotr",
+      "file": "104L.tga",
+      "description": "Roman soldier wearing helmet holding shield and sword"
+    },
+    {
+      "name": "105C",
+      "source": "lotr",
+      "file": "105CL.tga",
+      "description": "Warrior with red feathered helmet holding a spear"
+    },
+    {
+      "name": "105g",
+      "source": "lotr",
+      "file": "105gL.tga",
+      "description": "Warrior with red feathered helmet holding a spear"
+    },
+    {
+      "name": "105",
+      "source": "lotr",
+      "file": "105L.tga",
+      "description": "Warrior with red feathered helmet holding a spear"
+    },
+    {
+      "name": "106C",
+      "source": "lotr",
+      "file": "106CL.tga",
+      "description": "A large, bald warrior with a beard wearing a harness holding a chain."
+    },
+    {
+      "name": "106g",
+      "source": "lotr",
+      "file": "106gL.tga",
+      "description": "A large, bald warrior with a beard wearing a harness holding a chain."
+    },
+    {
+      "name": "106",
+      "source": "lotr",
+      "file": "106L.tga",
+      "description": "A large, bald warrior with a beard wearing a harness holding a chain."
+    },
+    {
+      "name": "107g",
+      "source": "lotr",
+      "file": "107gL.tga",
+      "description": "An archer in green and yellow holding a bow with a quiver on his back."
+    },
+    {
+      "name": "108_1C",
+      "source": "lotr",
+      "file": "108_1CL.tga",
+      "description": "A warrior character in armor and a crown stands beside a shield icon."
+    },
+    {
+      "name": "108C",
+      "source": "lotr",
+      "file": "108CL.tga",
+      "description": "A warrior character in armor and a crown stands beside a target icon."
+    },
+    {
+      "name": "108",
+      "source": "lotr",
+      "file": "108L.tga",
+      "description": "A warrior character in armor and a crown poses with a raised fist."
+    },
+    {
+      "name": "109C",
+      "source": "lotr",
+      "file": "109CL.tga",
+      "description": "A warrior character in armor and a crown holds multiple spears."
+    },
+    {
+      "name": "109",
+      "source": "lotr",
+      "file": "109L.tga",
+      "description": "Crowned armored warrior holding multiple spears"
+    },
+    {
+      "name": "110C",
+      "source": "lotr",
+      "file": "110CL.tga",
+      "description": "Warrior with shield and spear standing"
+    },
+    {
+      "name": "110",
+      "source": "lotr",
+      "file": "110L.tga",
+      "description": "Warrior with shield and spear standing"
+    },
+    {
+      "name": "111C",
+      "source": "lotr",
+      "file": "111CL.tga",
+      "description": "Archer with bow and quiver"
+    },
+    {
+      "name": "111",
+      "source": "lotr",
+      "file": "111L.tga",
+      "description": "A pixelated archer character holding a bow"
+    },
+    {
+      "name": "112C",
+      "source": "lotr",
+      "file": "112CL.tga",
+      "description": "An archer in armor aiming a bow"
+    },
+    {
+      "name": "112",
+      "source": "lotr",
+      "file": "112L.tga",
+      "description": "An archer character in medieval clothing holding a bow"
+    },
+    {
+      "name": "113",
+      "source": "lotr",
+      "file": "113L.tga",
+      "description": "A mechanical crossbow device with blue components"
+    },
+    {
+      "name": "114",
+      "source": "lotr",
+      "file": "114L.tga",
+      "description": "A wooden cart with blue barrels and wheels"
+    },
+    {
+      "name": "115C",
+      "source": "lotr",
+      "file": "115CL.tga",
+      "description": "A knight in blue armor riding a yellow horse"
+    },
+    {
+      "name": "115",
+      "source": "lotr",
+      "file": "115L.tga",
+      "description": "A knight in blue armor riding a yellow horse"
+    },
+    {
+      "name": "116C",
+      "source": "lotr",
+      "file": "116CL.tga",
+      "description": "A brown wolf standing on green grass"
+    },
+    {
+      "name": "116",
+      "source": "lotr",
+      "file": "116L.tga",
+      "description": "A brown dog standing on green background"
+    },
+    {
+      "name": "117C",
+      "source": "lotr",
+      "file": "117CL.tga",
+      "description": "A knight riding a black horse with a spear"
+    },
+    {
+      "name": "117",
+      "source": "lotr",
+      "file": "117L.tga",
+      "description": "A knight riding a black horse facing forward"
+    },
+    {
+      "name": "118C",
+      "source": "lotr",
+      "file": "118CL.tga",
+      "description": "A person riding a grey elephant with a saddle"
+    },
+    {
+      "name": "118",
+      "source": "lotr",
+      "file": "118L.tga",
+      "description": "Elephant carrying a rider in red clothing"
+    },
+    {
+      "name": "119",
+      "source": "lotr",
+      "file": "119L.tga",
+      "description": "Wooden siege tower structure on wheels"
+    },
+    {
+      "name": "120",
+      "source": "lotr",
+      "file": "120L.tga",
+      "description": "Wooden cart with a ballista weapon"
+    },
+    {
+      "name": "121C",
+      "source": "lotr",
+      "file": "121CL.tga",
+      "description": "Ship with red and white striped sail"
+    },
+    {
+      "name": "121",
+      "source": "lotr",
+      "file": "121L.tga",
+      "description": "A wooden ship with red and white striped sails."
+    },
+    {
+      "name": "122",
+      "source": "lotr",
+      "file": "122L.tga",
+      "description": "A wooden ship with a sail featuring a golden bird."
+    },
+    {
+      "name": "123C",
+      "source": "lotr",
+      "file": "123CL.tga",
+      "description": "A wooden ship with a sail and a black symbol."
+    },
+    {
+      "name": "123",
+      "source": "lotr",
+      "file": "123L.tga",
+      "description": "A wooden ship with blue and white striped sails."
+    },
+    {
+      "name": "125C",
+      "source": "lotr",
+      "file": "125CL.tga",
+      "description": "A pixelated soldier holding a spear and shield."
+    },
+    {
+      "name": "125E",
+      "source": "lotr",
+      "file": "125EL.tga",
+      "description": "A pixelated soldier holding a spear and shield."
+    },
+    {
+      "name": "125g",
+      "source": "lotr",
+      "file": "125gL.tga",
+      "description": "A pixelated soldier holding a spear and shield."
+    },
+    {
+      "name": "125",
+      "source": "lotr",
+      "file": "125L.tga",
+      "description": "A pixelated soldier holding a spear and shield."
+    },
+    {
+      "name": "126C",
+      "source": "lotr",
+      "file": "126CL.tga",
+      "description": "Armored soldier holding a polearm weapon on tan background"
+    },
+    {
+      "name": "126E",
+      "source": "lotr",
+      "file": "126EL.tga",
+      "description": "Armored soldier holding a polearm weapon on tan background"
+    },
+    {
+      "name": "126g",
+      "source": "lotr",
+      "file": "126gL.tga",
+      "description": "Armored soldier holding a polearm weapon on dark background"
+    },
+    {
+      "name": "126gl",
+      "source": "lotr",
+      "file": "126glL.tga",
+      "description": "Armored soldier holding a polearm weapon on dark background"
+    },
+    {
+      "name": "126H",
+      "source": "lotr",
+      "file": "126HL.tga",
+      "description": "Pixelated medieval soldier holding a polearm weapon"
+    },
+    {
+      "name": "126",
+      "source": "lotr",
+      "file": "126L.tga",
+      "description": "Armored warrior holding a polearm weapon"
+    },
+    {
+      "name": "126l",
+      "source": "lotr",
+      "file": "126lL.tga",
+      "description": "Chainmail-clad soldier holding a polearm weapon"
+    },
+    {
+      "name": "126U",
+      "source": "lotr",
+      "file": "126UL.tga",
+      "description": "Armored figure holding a polearm weapon"
+    },
+    {
+      "name": "127C",
+      "source": "lotr",
+      "file": "127CL.tga",
+      "description": "A soldier holding a spear and wearing armor."
+    },
+    {
+      "name": "127E",
+      "source": "lotr",
+      "file": "127EL.tga",
+      "description": "A warrior holding a spear and wearing armor."
+    },
+    {
+      "name": "127",
+      "source": "lotr",
+      "file": "127L.tga",
+      "description": "A warrior standing with a spear and armor."
+    },
+    {
+      "name": "128C",
+      "source": "lotr",
+      "file": "128CL.tga",
+      "description": "A soldier holding a sword and shield."
+    },
+    {
+      "name": "128E",
+      "source": "lotr",
+      "file": "128EL.tga",
+      "description": "A Roman soldier holding a sword and shield next to a star"
+    },
+    {
+      "name": "128g",
+      "source": "lotr",
+      "file": "128gL.tga",
+      "description": "A Roman soldier standing in a dark environment"
+    },
+    {
+      "name": "128",
+      "source": "lotr",
+      "file": "128L.tga",
+      "description": "A Roman soldier holding a sword and shield next to a star"
+    },
+    {
+      "name": "128l",
+      "source": "lotr",
+      "file": "128lL.tga",
+      "description": "A Roman soldier standing against a purple background"
+    },
+    {
+      "name": "129",
+      "source": "lotr",
+      "file": "129L.tga",
+      "description": "Roman soldier, blonde hair, yellow tunic, holding shield and sword."
+    },
+    {
+      "name": "130C",
+      "source": "lotr",
+      "file": "130CL.tga",
+      "description": "Roman soldier, red plumed helmet, holding spear and shield."
+    },
+    {
+      "name": "130",
+      "source": "lotr",
+      "file": "130L.tga",
+      "description": "Roman soldier, red plumed helmet, holding spear and shield."
+    },
+    {
+      "name": "131C",
+      "source": "lotr",
+      "file": "131CL.tga",
+      "description": "Roman soldier, silver armor, striped skirt, holding sword and blue shield."
+    },
+    {
+      "name": "131E",
+      "source": "lotr",
+      "file": "131EL.tga",
+      "description": "A Roman soldier standing with a sword and blue shield."
+    },
+    {
+      "name": "131",
+      "source": "lotr",
+      "file": "131L.tga",
+      "description": "A Roman soldier walking forward holding a sword and shield."
+    },
+    {
+      "name": "132C",
+      "source": "lotr",
+      "file": "132CL.tga",
+      "description": "A Roman soldier wearing red armor and holding a red shield."
+    },
+    {
+      "name": "132E",
+      "source": "lotr",
+      "file": "132EL.tga",
+      "description": "A Roman soldier in red armor standing next to a star."
+    },
+    {
+      "name": "132",
+      "source": "lotr",
+      "file": "132L.tga",
+      "description": "A Roman soldier standing with sword and shield"
+    },
+    {
+      "name": "133C",
+      "source": "lotr",
+      "file": "133CL.tga",
+      "description": "A knight riding a horse holding a bow"
+    },
+    {
+      "name": "133",
+      "source": "lotr",
+      "file": "133L.tga",
+      "description": "A knight riding a horse holding a bow"
+    },
+    {
+      "name": "134C",
+      "source": "lotr",
+      "file": "134CL.tga",
+      "description": "A knight in gold armor riding a horse"
+    },
+    {
+      "name": "134",
+      "source": "lotr",
+      "file": "134L.tga",
+      "description": "Soldier riding a horse with a spear."
+    },
+    {
+      "name": "134l",
+      "source": "lotr",
+      "file": "134lL.tga",
+      "description": "Soldier riding a horse with a spear."
+    },
+    {
+      "name": "135C",
+      "source": "lotr",
+      "file": "135CL.tga",
+      "description": "Knight riding a horse with a sword."
+    },
+    {
+      "name": "135",
+      "source": "lotr",
+      "file": "135L.tga",
+      "description": "Knight riding a horse with a sword."
+    },
+    {
+      "name": "136C",
+      "source": "lotr",
+      "file": "136CL.tga",
+      "description": "Knight on horseback holding a sword and shield"
+    },
+    {
+      "name": "136",
+      "source": "lotr",
+      "file": "136L.tga",
+      "description": "Knight riding a horse with a blue shield"
+    },
+    {
+      "name": "136l",
+      "source": "lotr",
+      "file": "136lL.tga",
+      "description": "Knight on horse with blue and yellow shield"
+    },
+    {
+      "name": "137C",
+      "source": "lotr",
+      "file": "137CL.tga",
+      "description": "Archer standing with bow and arrows"
+    },
+    {
+      "name": "137g",
+      "source": "lotr",
+      "file": "137gL.tga",
+      "description": "A fantasy archer character with red pants and a bow."
+    },
+    {
+      "name": "137",
+      "source": "lotr",
+      "file": "137L.tga",
+      "description": "A fantasy archer character with red pants and a bow."
+    },
+    {
+      "name": "138C",
+      "source": "lotr",
+      "file": "138CL.tga",
+      "description": "A fantasy archer character with yellow pants and green tunic."
+    },
+    {
+      "name": "138",
+      "source": "lotr",
+      "file": "138L.tga",
+      "description": "A fantasy archer character with yellow pants and green tunic."
+    },
+    {
+      "name": "139C",
+      "source": "lotr",
+      "file": "139CL.tga",
+      "description": "A standing archer in armor holding a bow."
+    },
+    {
+      "name": "139",
+      "source": "lotr",
+      "file": "139L.tga",
+      "description": "An archer standing against a blue background."
+    },
+    {
+      "name": "139l",
+      "source": "lotr",
+      "file": "139lL.tga",
+      "description": "An archer standing against a purple background."
+    },
+    {
+      "name": "140H",
+      "source": "lotr",
+      "file": "140HL.tga",
+      "description": "A knight riding a horse with a spear."
+    },
+    {
+      "name": "140",
+      "source": "lotr",
+      "file": "140L.tga",
+      "description": "A person riding a horse with a bow"
+    },
+    {
+      "name": "140U",
+      "source": "lotr",
+      "file": "140UL.tga",
+      "description": "A mounted warrior holding a spear"
+    },
+    {
+      "name": "141",
+      "source": "lotr",
+      "file": "141L.tga",
+      "description": "A sailing ship with a cross flag"
+    },
+    {
+      "name": "142C",
+      "source": "lotr",
+      "file": "142CL.tga",
+      "description": "A ship with two sails and a symbol"
+    },
+    {
+      "name": "142",
+      "source": "lotr",
+      "file": "142L.tga",
+      "description": "A wooden ship with two sails and oars"
+    },
+    {
+      "name": "143",
+      "source": "lotr",
+      "file": "143L.tga",
+      "description": "A wooden ship with a dragon head prow and sail"
+    },
+    {
+      "name": "144",
+      "source": "lotr",
+      "file": "144L.tga",
+      "description": "A golden armored figure with large orange wings"
+    },
+    {
+      "name": "144U",
+      "source": "lotr",
+      "file": "144UL.tga",
+      "description": "A golden armored figure with large orange wings"
+    },
+    {
+      "name": "145H",
+      "source": "lotr",
+      "file": "145HL.tga",
+      "description": "Hooded figure riding a black horse"
+    },
+    {
+      "name": "145",
+      "source": "lotr",
+      "file": "145L.tga",
+      "description": "Archer riding a black horse holding a bow"
+    },
+    {
+      "name": "145U",
+      "source": "lotr",
+      "file": "145UL.tga",
+      "description": "Warrior on horseback holding a spear"
+    },
+    {
+      "name": "146",
+      "source": "lotr",
+      "file": "146L.tga",
+      "description": "Horse-headed humanoid holding a staff"
+    },
+    {
+      "name": "147",
+      "source": "lotr",
+      "file": "147L.tga",
+      "description": "A wooden cart with a thatched roof pulled by a horse"
+    },
+    {
+      "name": "147U",
+      "source": "lotr",
+      "file": "147UL.tga",
+      "description": "A wooden cart with a thatched roof pulled by a horse"
+    },
+    {
+      "name": "148",
+      "source": "lotr",
+      "file": "148L.tga",
+      "description": "A green ninja character in a full-body suit"
+    },
+    {
+      "name": "149",
+      "source": "lotr",
+      "file": "149L.tga",
+      "description": "An armored warrior holding a curved sword"
+    },
+    {
+      "name": "149U",
+      "source": "lotr",
+      "file": "149UL.tga",
+      "description": "Samurai warrior in armor holding a curved sword"
+    },
+    {
+      "name": "150",
+      "source": "lotr",
+      "file": "150L.tga",
+      "description": "Skeletal dragon with wings spread out"
+    },
+    {
+      "name": "150U",
+      "source": "lotr",
+      "file": "150UL.tga",
+      "description": "Skeletal dragon with wings spread out"
+    },
+    {
+      "name": "151H",
+      "source": "lotr",
+      "file": "151HL.tga",
+      "description": "Warrior in black armor holding a mace"
+    },
+    {
+      "name": "151",
+      "source": "lotr",
+      "file": "151L.tga",
+      "description": "Samurai warrior in armor holding a curved polearm"
+    },
+    {
+      "name": "151U",
+      "source": "lotr",
+      "file": "151UL.tga",
+      "description": "Samurai warrior in armor holding a curved polearm"
+    },
+    {
+      "name": "152C",
+      "source": "lotr",
+      "file": "152CL.tga",
+      "description": "Hooded robed figure holding a golden staff"
+    },
+    {
+      "name": "152H",
+      "source": "lotr",
+      "file": "152HL.tga",
+      "description": "Hooded robed figure holding a golden staff"
+    },
+    {
+      "name": "152",
+      "source": "lotr",
+      "file": "152L.tga",
+      "description": "A hooded mage in robes holding a staff"
+    },
+    {
+      "name": "152U",
+      "source": "lotr",
+      "file": "152UL.tga",
+      "description": "A hooded mage holding a staff on purple background"
+    },
+    {
+      "name": "153",
+      "source": "lotr",
+      "file": "153L.tga",
+      "description": "A golden spider-like creature"
+    },
+    {
+      "name": "153U",
+      "source": "lotr",
+      "file": "153UL.tga",
+      "description": "A golden spider on a purple background"
+    },
+    {
+      "name": "154",
+      "source": "lotr",
+      "file": "154L.tga",
+      "description": "Biomechanical scythe weapon with tentacles"
+    },
+    {
+      "name": "154U",
+      "source": "lotr",
+      "file": "154UL.tga",
+      "description": "Biomechanical scythe weapon with tentacles"
+    },
+    {
+      "name": "155C",
+      "source": "lotr",
+      "file": "155CL.tga",
+      "description": "Roman soldier holding sword and shield"
+    },
+    {
+      "name": "155GG",
+      "source": "lotr",
+      "file": "155GGL.tga",
+      "description": "Roman soldier holding sword and shield"
+    },
+    {
+      "name": "155H",
+      "source": "lotr",
+      "file": "155HL.tga",
+      "description": "Roman soldier holding sword and shield"
+    },
+    {
+      "name": "155",
+      "source": "lotr",
+      "file": "155L.tga",
+      "description": "Roman soldier standing with sword and shield"
+    },
+    {
+      "name": "155l",
+      "source": "lotr",
+      "file": "155lL.tga",
+      "description": "Roman soldier standing with sword and shield"
+    },
+    {
+      "name": "156",
+      "source": "lotr",
+      "file": "156L.tga",
+      "description": "Man in white tunic with red sash holding scroll"
+    },
+    {
+      "name": "157",
+      "source": "lotr",
+      "file": "157L.tga",
+      "description": "Armored knight holding shield and spear"
+    },
+    {
+      "name": "158C",
+      "source": "lotr",
+      "file": "158CL.tga",
+      "description": "Mage in orange robes holding a staff"
+    },
+    {
+      "name": "158",
+      "source": "lotr",
+      "file": "158L.tga",
+      "description": "Mage in orange robes holding a staff"
+    },
+    {
+      "name": "159",
+      "source": "lotr",
+      "file": "159L.tga",
+      "description": "Female warrior holding sword and shield"
+    },
+    {
+      "name": "160E",
+      "source": "lotr",
+      "file": "160EL.tga",
+      "description": "Roman soldier holding a sword and shield with a star nearby."
+    },
+    {
+      "name": "160H",
+      "source": "lotr",
+      "file": "160HL.tga",
+      "description": "Roman soldier holding a sword and shield against a dark background."
+    },
+    {
+      "name": "160",
+      "source": "lotr",
+      "file": "160L.tga",
+      "description": "Roman soldier holding a sword and shield on a yellow background."
+    },
+    {
+      "name": "160U",
+      "source": "lotr",
+      "file": "160UL.tga",
+      "description": "Roman soldier holding a sword and shield on a purple background."
+    },
+    {
+      "name": "161H",
+      "source": "lotr",
+      "file": "161HL.tga",
+      "description": "Blonde female character holding a staff"
+    },
+    {
+      "name": "161",
+      "source": "lotr",
+      "file": "161L.tga",
+      "description": "Blonde female character holding a staff"
+    },
+    {
+      "name": "161U",
+      "source": "lotr",
+      "file": "161UL.tga",
+      "description": "Blonde female character holding a staff"
+    },
+    {
+      "name": "162",
+      "source": "lotr",
+      "file": "162L.tga",
+      "description": "Three skeletal warriors in blue and gold armor"
+    },
+    {
+      "name": "163",
+      "source": "lotr",
+      "file": "163L.tga",
+      "description": "Blurry white horse head with grey swirl"
+    },
+    {
+      "name": "163U",
+      "source": "lotr",
+      "file": "163UL.tga",
+      "description": "Blurry white horse head on purple background"
+    },
+    {
+      "name": "164C",
+      "source": "lotr",
+      "file": "164CL.tga",
+      "description": "White horse head icon next to a chariot with horses"
+    },
+    {
+      "name": "164",
+      "source": "lotr",
+      "file": "164L.tga",
+      "description": "Man driving a chariot pulled by two horses"
+    },
+    {
+      "name": "165C",
+      "source": "lotr",
+      "file": "165CL.tga",
+      "description": "Elephant with rider and horse icon"
+    },
+    {
+      "name": "165",
+      "source": "lotr",
+      "file": "165L.tga",
+      "description": "Elephant carrying a rider"
+    },
+    {
+      "name": "166",
+      "source": "lotr",
+      "file": "166L.tga",
+      "description": "Man in white tunic and purple cape"
+    },
+    {
+      "name": "167",
+      "source": "lotr",
+      "file": "167L.tga",
+      "description": "Man in orange tunic holding a weapon"
+    },
+    {
+      "name": "169C",
+      "source": "lotr",
+      "file": "169CL.tga",
+      "description": "A warrior in brown armor and a conical hat holding a curved sword"
+    },
+    {
+      "name": "169",
+      "source": "lotr",
+      "file": "169L.tga",
+      "description": "A warrior in brown armor and a conical hat holding a curved sword"
+    },
+    {
+      "name": "170C",
+      "source": "lotr",
+      "file": "170CL.tga",
+      "description": "A warrior in blue armor with a horned helmet holding a curved sword"
+    },
+    {
+      "name": "170",
+      "source": "lotr",
+      "file": "170L.tga",
+      "description": "A warrior in blue armor with a horned helmet holding a curved sword"
+    },
+    {
+      "name": "171",
+      "source": "lotr",
+      "file": "171L.tga",
+      "description": "A pixelated pedestal with a glowing green orb on top."
+    },
+    {
+      "name": "control_panel_stencil",
+      "source": "lotr",
+      "file": "control_panel_stencil.tga",
+      "description": "A white snake-like shape on a black background."
+    },
+    {
+      "name": "council",
+      "source": "lotr",
+      "file": "council.tga",
+      "description": "Text 'CIV SPECIFIC COUNCIL' with decorative flourishes."
+    },
+    {
+      "name": "househeal",
+      "source": "lotr",
+      "file": "househeal.tga",
+      "description": "Two figures standing in a courtyard near a fountain."
+    },
+    {
+      "name": "MGGP025",
+      "source": "lotr",
+      "file": "MGGP025L.tga",
+      "description": "A yellow banana character with a smiling face"
+    },
+    {
+      "name": "MGGP026",
+      "source": "lotr",
+      "file": "MGGP026L.tga",
+      "description": "A brown rocky mineral chunk inside a blue circle"
+    },
+    {
+      "name": "MGGP027",
+      "source": "lotr",
+      "file": "MGGP027L.tga",
+      "description": "A brown rectangular tag with blue spots"
+    },
+    {
+      "name": "MGGP028",
+      "source": "lotr",
+      "file": "MGGP028L.tga",
+      "description": "A large dark blue faceted gemstone"
+    },
+    {
+      "name": "MGGP029",
+      "source": "lotr",
+      "file": "MGGP029L.tga",
+      "description": "Green triangular gemstone glowing in a blue circle"
+    },
+    {
+      "name": "MGGP030",
+      "source": "lotr",
+      "file": "MGGP030L.tga",
+      "description": "Dark rough rock with gold flecks in a blue circle"
+    },
+    {
+      "name": "MGGP031",
+      "source": "lotr",
+      "file": "MGGP031L.tga",
+      "description": "Large lumpy gold nugget inside a blue magical circle"
+    },
+    {
+      "name": "MGGP032",
+      "source": "lotr",
+      "file": "MGGP032L.tga",
+      "description": "Brown textured lump resembling cooked meat in a circle"
+    },
+    {
+      "name": "MGGP033",
+      "source": "lotr",
+      "file": "MGGP033L.tga",
+      "description": "ERROR: "
+    },
+    {
+      "name": "MGGP034",
+      "source": "lotr",
+      "file": "MGGP034L.tga",
+      "description": "ERROR: "
+    },
+    {
+      "name": "MGGP035",
+      "source": "lotr",
+      "file": "MGGP035L.tga",
+      "description": "ERROR: "
+    },
+    {
+      "name": "MGGP036",
+      "source": "lotr",
+      "file": "MGGP036L.tga",
+      "description": "ERROR: "
+    },
+    {
+      "name": "MGGP037",
+      "source": "lotr",
+      "file": "MGGP037L.tga",
+      "description": "Red fish inside blue circle"
+    },
+    {
+      "name": "MGGP038",
+      "source": "lotr",
+      "file": "MGGP038L.tga",
+      "description": "Red crab inside blue circle"
+    },
+    {
+      "name": "MGGP039",
+      "source": "lotr",
+      "file": "MGGP039L.tga",
+      "description": "Yellow camel inside blue circle"
+    },
+    {
+      "name": "MGGP040",
+      "source": "lotr",
+      "file": "MGGP040L.tga",
+      "description": "Green leaves inside blue circle"
+    },
+    {
+      "name": "MGGP041",
+      "source": "lotr",
+      "file": "MGGP041L.tga",
+      "description": "Yellowish-green rock or mineral chunk"
+    },
+    {
+      "name": "MGGP042",
+      "source": "lotr",
+      "file": "MGGP042L.tga",
+      "description": "Brown walrus with long white tusks"
+    },
+    {
+      "name": "MGGP043",
+      "source": "lotr",
+      "file": "MGGP043L.tga",
+      "description": "Red chili pepper with green stem"
+    },
+    {
+      "name": "MGGP044",
+      "source": "lotr",
+      "file": "MGGP044L.tga",
+      "description": "Brown spotted cookie or biscuit"
+    },
+    {
+      "name": "MGGP045",
+      "source": "lotr",
+      "file": "MGGP045L.tga",
+      "description": "A red tomato is centered in a blue magical circle."
+    },
+    {
+      "name": "MGGP046",
+      "source": "lotr",
+      "file": "MGGP046L.tga",
+      "description": "A strawberry is centered in a blue magical circle."
+    },
+    {
+      "name": "MGGP047",
+      "source": "lotr",
+      "file": "MGGP047L.tga",
+      "description": "A block of grass is centered in a blue magical circle."
+    },
+    {
+      "name": "MGGP048",
+      "source": "lotr",
+      "file": "MGGP048L.tga",
+      "description": "A yellow gem is centered in a blue magical circle."
+    },
+    {
+      "name": "MGGP049",
+      "source": "lotr",
+      "file": "MGGP049L.tga",
+      "description": "Six spools of colorful thread arranged in rows"
+    },
+    {
+      "name": "MGGP050",
+      "source": "lotr",
+      "file": "MGGP050L.tga",
+      "description": "A green palm tree with a brown trunk standing tall"
+    },
+    {
+      "name": "MGGP051",
+      "source": "lotr",
+      "file": "MGGP051L.tga",
+      "description": "A blue fish swimming horizontally in a circle"
+    },
+    {
+      "name": "MGGP052",
+      "source": "lotr",
+      "file": "MGGP052L.tga",
+      "description": "A bundle of green asparagus stalks tied together"
+    },
+    {
+      "name": "MGGP053",
+      "source": "lotr",
+      "file": "MGGP053L.tga",
+      "description": "Brown bison standing on a blue symbol"
+    },
+    {
+      "name": "MGGP054",
+      "source": "lotr",
+      "file": "MGGP054L.tga",
+      "description": "Three golden stalks of wheat"
+    },
+    {
+      "name": "MGGP055",
+      "source": "lotr",
+      "file": "MGGP055L.tga",
+      "description": "A spool of white thread"
+    },
+    {
+      "name": "MGGP056",
+      "source": "lotr",
+      "file": "MGGP056L.tga",
+      "description": "A red apple"
+    },
+    {
+      "name": "MGGP057",
+      "source": "lotr",
+      "file": "MGGP057L.tga",
+      "description": "Person riding a yellow board with a propeller"
+    },
+    {
+      "name": "MGGP058",
+      "source": "lotr",
+      "file": "MGGP058L.tga",
+      "description": "Beaver standing in a blue circle"
+    },
+    {
+      "name": "MGGP059",
+      "source": "lotr",
+      "file": "MGGP059L.tga",
+      "description": "Yellow flower with green stem"
+    },
+    {
+      "name": "MGGP060",
+      "source": "lotr",
+      "file": "MGGP060L.tga",
+      "description": "White cube with patterned faces"
+    },
+    {
+      "name": "MGGP061",
+      "source": "lotr",
+      "file": "MGGP061L.tga",
+      "description": "Glowing pink orb inside blue geometric circle"
+    },
+    {
+      "name": "minasithyl",
+      "source": "lotr",
+      "file": "minasithyl.tga",
+      "description": "Dark armored figure holding red orb"
+    },
+    {
+      "name": "narsil",
+      "source": "lotr",
+      "file": "narsil.tga",
+      "description": "Silver sword with intricate hilt design"
+    },
+    {
+      "name": "prophet",
+      "source": "lotr",
+      "file": "prophetL.tga",
+      "description": "Man in orange robes holding staff"
+    },
+    {
+      "name": "Rbuddhism",
+      "source": "lotr",
+      "file": "RbuddhismL.tga",
+      "description": "seated Buddha figure in orange robes"
+    },
+    {
+      "name": "Rconfucius",
+      "source": "lotr",
+      "file": "RconfuciusL.tga",
+      "description": "bearded man with traditional Chinese attire"
+    },
+    {
+      "name": "Rjudaism",
+      "source": "lotr",
+      "file": "RjudaismL.tga",
+      "description": "ancient stone star of David carving"
+    },
+    {
+      "name": "Rpolytheism",
+      "source": "lotr",
+      "file": "RpolytheismL.tga",
+      "description": "dancing Shiva statue with multiple arms"
+    },
+    {
+      "name": "Rscroll",
+      "source": "lotr",
+      "file": "RscrollL.tga",
+      "description": "An unrolled parchment scroll with text visible."
+    },
+    {
+      "name": "thranduil",
+      "source": "lotr",
+      "file": "thranduil.tga",
+      "description": "A man wearing an ornate metal elf helmet."
+    },
+    {
+      "name": "tradestall",
+      "source": "lotr",
+      "file": "tradestall.tga",
+      "description": "A man shaping clay pottery on a spinning wheel."
+    },
+    {
+      "name": "UPAP016",
+      "source": "lotr",
+      "file": "UPAP016L.TGA",
+      "description": "A golden cannon on a wooden carriage with wheels."
+    },
+    {
+      "name": "upap057l",
+      "source": "lotr",
+      "file": "upap057l.tga",
+      "description": "A metal helmet and sword on parchment"
+    },
+    {
+      "name": "upap062l",
+      "source": "lotr",
+      "file": "upap062l.tga",
+      "description": "Two stone blocks with red banners and flags"
+    },
+    {
+      "name": "upap084l",
+      "source": "lotr",
+      "file": "upap084l.tga",
+      "description": "A grey spaceship labeled 701"
+    },
+    {
+      "name": "upap100l",
+      "source": "lotr",
+      "file": "upap100l.tga",
+      "description": "A golden helmet and gold coins"
+    },
+    {
+      "name": "UPAP151",
+      "source": "lotr",
+      "file": "UPAP151L.tga",
+      "description": "A warrior riding a horse"
+    },
+    {
+      "name": "UPAP200",
+      "source": "lotr",
+      "file": "UPAP200L.tga",
+      "description": "A pickaxe and two seeds on papyrus"
+    },
+    {
+      "name": "UPAP201",
+      "source": "lotr",
+      "file": "UPAP201L.tga",
+      "description": "Three red bricks on an ancient scroll"
+    },
+    {
+      "name": "UPAP202",
+      "source": "lotr",
+      "file": "UPAP202L.tga",
+      "description": "An eye, snake, shell, and eggs"
+    },
+    {
+      "name": "UPAP203",
+      "source": "lotr",
+      "file": "UPAP203L.tga",
+      "description": "A white pig standing on a wooden platform"
+    },
+    {
+      "name": "UPAP204",
+      "source": "lotr",
+      "file": "UPAP204L.tga",
+      "description": "An ornate vase with painted figures"
+    },
+    {
+      "name": "UPAP205",
+      "source": "lotr",
+      "file": "UPAP205L.tga",
+      "description": "A model of Stonehenge on a green surface"
+    },
+    {
+      "name": "UPAP206",
+      "source": "lotr",
+      "file": "UPAP206L.tga",
+      "description": "A red wooden wheel with spokes"
+    },
+    {
+      "name": "UPAP207",
+      "source": "lotr",
+      "file": "UPAP207L.tga",
+      "description": "ancient Egyptian papyrus boat model"
+    },
+    {
+      "name": "UPAP208",
+      "source": "lotr",
+      "file": "UPAP208L.tga",
+      "description": "ancient coins on parchment background"
+    },
+    {
+      "name": "UPAP209",
+      "source": "lotr",
+      "file": "UPAP209L.tga",
+      "description": "wooden abacus with black beads"
+    },
+    {
+      "name": "UPAP210",
+      "source": "lotr",
+      "file": "UPAP210L.tga",
+      "description": "two black stone tablets with writing"
+    },
+    {
+      "name": "UPAP212",
+      "source": "lotr",
+      "file": "UPAP212L.tga",
+      "description": "A soldier figure holding a bow and arrows"
+    },
+    {
+      "name": "UPAP213",
+      "source": "lotr",
+      "file": "UPAP213L.tga",
+      "description": "A stone bridge structure with arches"
+    },
+    {
+      "name": "UPAP214",
+      "source": "lotr",
+      "file": "UPAP214L.tga",
+      "description": "A sword with a golden hilt and blade"
+    },
+    {
+      "name": "UPAP215",
+      "source": "lotr",
+      "file": "UPAP215L.tga",
+      "description": "An elephant with riders in Egyptian style"
+    },
+    {
+      "name": "UPAP216",
+      "source": "lotr",
+      "file": "UPAP216L.tga",
+      "description": "Statue of a bearded man with outstretched arms"
+    },
+    {
+      "name": "UPAP219",
+      "source": "lotr",
+      "file": "UPAP219L.tga",
+      "description": "Tall wooden tower with thatched roof"
+    },
+    {
+      "name": "UPAP220",
+      "source": "lotr",
+      "file": "UPAP220L.tga",
+      "description": "Two large dome-shaped kilns"
+    },
+    {
+      "name": "UPAP223",
+      "source": "lotr",
+      "file": "UPAP223L.tga",
+      "description": "Hanging Ankh symbol on Egyptian scroll"
+    },
+    {
+      "name": "UPAP224",
+      "source": "lotr",
+      "file": "UPAP224L.tga",
+      "description": "Classical building with columns and statues"
+    },
+    {
+      "name": "UPAP225",
+      "source": "lotr",
+      "file": "UPAP225L.tga",
+      "description": "Two metal ring handles on parchment"
+    },
+    {
+      "name": "UPAP226",
+      "source": "lotr",
+      "file": "UPAP226L.tga",
+      "description": "Pot pouring liquid with a sword"
+    },
+    {
+      "name": "UPAP227",
+      "source": "lotr",
+      "file": "UPAP227L.tga",
+      "description": "Men operating a wooden siege engine"
+    },
+    {
+      "name": "UPAP228",
+      "source": "lotr",
+      "file": "UPAP228L.tga",
+      "description": "Two stone lion statues sitting on pedestals"
+    },
+    {
+      "name": "UPAP229",
+      "source": "lotr",
+      "file": "UPAP229L.tga",
+      "description": "Egyptian chariot pulled by horses and a driver"
+    },
+    {
+      "name": "UPAP230",
+      "source": "lotr",
+      "file": "UPAP230L.tga",
+      "description": "Two unrolled scrolls lying on parchment"
+    },
+    {
+      "name": "UPAP231",
+      "source": "lotr",
+      "file": "UPAP231L.tga",
+      "description": "Person in robes standing beside scales"
+    },
+    {
+      "name": "UPAP232",
+      "source": "lotr",
+      "file": "UPAP232L.tga",
+      "description": "Small Egyptian village with huts and fields"
+    },
+    {
+      "name": "UPAP233",
+      "source": "lotr",
+      "file": "UPAP233L.tga",
+      "description": "Large temple building with columns and trees"
+    },
+    {
+      "name": "UPAP234",
+      "source": "lotr",
+      "file": "UPAP234L.tga",
+      "description": "Mummy sarcophagus and red chest"
+    },
+    {
+      "name": "UPAP235",
+      "source": "lotr",
+      "file": "UPAP235L.tga",
+      "description": "Three crosses on a dark hill"
+    },
+    {
+      "name": "UPAP236",
+      "source": "lotr",
+      "file": "UPAP236L.tga",
+      "description": "Stone mortar and pestle on an ancient scroll background"
+    },
+    {
+      "name": "UPAP237",
+      "source": "lotr",
+      "file": "UPAP237L.tga",
+      "description": "Copper pipes connected against a textured wall"
+    },
+    {
+      "name": "UPAP238",
+      "source": "lotr",
+      "file": "UPAP238L.tga",
+      "description": "An ornate sword standing upright on parchment"
+    },
+    {
+      "name": "UPAP239",
+      "source": "lotr",
+      "file": "UPAP239L.tga",
+      "description": "A warrior on a rearing horse holding a sword and shield"
+    },
+    {
+      "name": "UPAP240",
+      "source": "lotr",
+      "file": "UPAP240L.tga",
+      "description": "a map"
+    },
+    {
+      "name": "UPAP241",
+      "source": "lotr",
+      "file": "UPAP241L.tga",
+      "description": "a person riding a horse"
+    },
+    {
+      "name": "UPAP242",
+      "source": "lotr",
+      "file": "UPAP242L.tga",
+      "description": "a catapult"
+    },
+    {
+      "name": "UPAP243",
+      "source": "lotr",
+      "file": "UPAP243L.tga",
+      "description": "gears"
+    },
+    {
+      "name": "UPAP244",
+      "source": "lotr",
+      "file": "UPAP244L.tga",
+      "description": "Golden triangular clock on a stand"
+    },
+    {
+      "name": "UPAP245",
+      "source": "lotr",
+      "file": "UPAP245L.tga",
+      "description": "Wooden and metal crossbow weapon"
+    },
+    {
+      "name": "UPAP246",
+      "source": "lotr",
+      "file": "UPAP246L.tga",
+      "description": "Antique flintlock pistol on parchment"
+    },
+    {
+      "name": "UPAP247",
+      "source": "lotr",
+      "file": "UPAP247L.tga",
+      "description": "Square compass with black dial"
+    },
+    {
+      "name": "UPAP248",
+      "source": "lotr",
+      "file": "UPAP248L.tga",
+      "description": "Open antique pocket watch on parchment background"
+    },
+    {
+      "name": "UPAP249",
+      "source": "lotr",
+      "file": "UPAP249L.tga",
+      "description": "Wooden crossbow with string drawn back ready"
+    },
+    {
+      "name": "UPAP250",
+      "source": "lotr",
+      "file": "UPAP250L.tga",
+      "description": "Glowing yellow fireball explosion rising up"
+    },
+    {
+      "name": "UPAP251",
+      "source": "lotr",
+      "file": "UPAP251L.tga",
+      "description": "Stone cathedral building with tall towers"
+    },
+    {
+      "name": "UPAP252",
+      "source": "lotr",
+      "file": "UPAP252L.tga",
+      "description": "artist painting a portrait of a woman"
+    },
+    {
+      "name": "UPAP253",
+      "source": "lotr",
+      "file": "UPAP253L.tga",
+      "description": "no creature visible in image"
+    },
+    {
+      "name": "UPAP254",
+      "source": "lotr",
+      "file": "UPAP254L.tga",
+      "description": "knight riding a horse with flags"
+    },
+    {
+      "name": "UPAP255",
+      "source": "lotr",
+      "file": "UPAP255L.tga",
+      "description": "no creature visible in image"
+    },
+    {
+      "name": "UPAP257",
+      "source": "lotr",
+      "file": "UPAP257L.tga",
+      "description": "Golden Arabic calligraphy forming a symmetrical design"
+    },
+    {
+      "name": "UPAP258",
+      "source": "lotr",
+      "file": "UPAP258L.tga",
+      "description": "White bust of a man with a ruffled collar"
+    },
+    {
+      "name": "UPAP259",
+      "source": "lotr",
+      "file": "UPAP259L.tga",
+      "description": "Sketch of a bearded man with long hair"
+    },
+    {
+      "name": "UPIP004",
+      "source": "lotr",
+      "file": "UPIP004L.tga",
+      "description": "3D model of a star fort on a rocky base"
+    },
+    {
+      "name": "UPIP006",
+      "source": "lotr",
+      "file": "UPIP006L.tga",
+      "description": "A yellow model of the Colosseum with arches"
+    },
+    {
+      "name": "UPIP008",
+      "source": "lotr",
+      "file": "UPIP008L.tga",
+      "description": "A golden model of the Colosseum amphitheater"
+    },
+    {
+      "name": "upip009l",
+      "source": "lotr",
+      "file": "upip009l.tga",
+      "description": "A tall wooden tower with a thatched roof"
+    },
+    {
+      "name": "UPIP010",
+      "source": "lotr",
+      "file": "UPIP010L.tga",
+      "description": "A beige building model with a red roof"
+    },
+    {
+      "name": "UPIP011",
+      "source": "lotr",
+      "file": "UPIP011L.tga",
+      "description": "A market building with red and white awnings"
+    },
+    {
+      "name": "UPIP016",
+      "source": "lotr",
+      "file": "UPIP016L.tga",
+      "description": "A multi-tiered wooden temple with blue roofs"
+    },
+    {
+      "name": "UPIP018",
+      "source": "lotr",
+      "file": "UPIP018L.tga",
+      "description": "A stone gatehouse with two towers"
+    },
+    {
+      "name": "UPIP022",
+      "source": "lotr",
+      "file": "UPIP022L.tga",
+      "description": "Statues surrounding a central column"
+    },
+    {
+      "name": "UPIP031",
+      "source": "lotr",
+      "file": "UPIP031L.tga",
+      "description": "A building with columns and a person standing inside."
+    },
+    {
+      "name": "UPIP034",
+      "source": "lotr",
+      "file": "UPIP034L.tga",
+      "description": "A shovel stuck in a pile of sand."
+    },
+    {
+      "name": "UPIP049",
+      "source": "lotr",
+      "file": "UPIP049L.tga",
+      "description": "A skeleton sitting at a counter in a stall."
+    },
+    {
+      "name": "UPIP051",
+      "source": "lotr",
+      "file": "UPIP051L.tga",
+      "description": "A large grey building with domes."
+    },
+    {
+      "name": "UPIP052",
+      "source": "lotr",
+      "file": "UPIP052L.tga",
+      "description": "Golden amphitheater featuring tiered seating and a central arena."
+    },
+    {
+      "name": "UPIP200",
+      "source": "lotr",
+      "file": "UPIP200L.tga",
+      "description": "Beige ziggurat structure topped with a blue dome."
+    },
+    {
+      "name": "UPIP201",
+      "source": "lotr",
+      "file": "UPIP201L.tga",
+      "description": "Market stalls covered by brown and blue awnings."
+    },
+    {
+      "name": "UPIP202",
+      "source": "lotr",
+      "file": "UPIP202L.tga",
+      "description": "Brick walls displaying red banners and small flags."
+    },
+    {
+      "name": "UPIP204",
+      "source": "lotr",
+      "file": "UPIP204L.tga",
+      "description": "A mine cart and gold bars"
+    },
+    {
+      "name": "UPIP205",
+      "source": "lotr",
+      "file": "UPIP205L.tga",
+      "description": "A temple building with red roof"
+    },
+    {
+      "name": "UPIP206",
+      "source": "lotr",
+      "file": "UPIP206L.tga",
+      "description": "A large building complex with red roofs"
+    },
+    {
+      "name": "UPIP207",
+      "source": "lotr",
+      "file": "UPIP207L.tga",
+      "description": "A long building with blue roof"
+    },
+    {
+      "name": "UPIP209",
+      "source": "lotr",
+      "file": "UPIP209L.tga",
+      "description": "Stone mortar and pestle with red berries"
+    },
+    {
+      "name": "UPIP210",
+      "source": "lotr",
+      "file": "UPIP210L.tga",
+      "description": "Wooden market stall with blue awnings"
+    },
+    {
+      "name": "UPIP211",
+      "source": "lotr",
+      "file": "UPIP211L.tga",
+      "description": "Pickaxe with blue head and wooden handle"
+    },
+    {
+      "name": "UPIP212",
+      "source": "lotr",
+      "file": "UPIP212L.tga",
+      "description": "Mining camp with tents and workers"
+    },
+    {
+      "name": "UPIP213",
+      "source": "lotr",
+      "file": "UPIP213L.tga",
+      "description": "A clock tower model on a blueprint background"
+    },
+    {
+      "name": "UPIP214",
+      "source": "lotr",
+      "file": "UPIP214L.tga",
+      "description": "A cathedral model on a blueprint background"
+    },
+    {
+      "name": "UPIP215",
+      "source": "lotr",
+      "file": "UPIP215L.tga",
+      "description": "A castle with red domes on a blueprint background"
+    },
+    {
+      "name": "UPIP216",
+      "source": "lotr",
+      "file": "UPIP216L.tga",
+      "description": "A pyramid of gold bars with a triangle and tile"
+    },
+    {
+      "name": "UPIP217",
+      "source": "lotr",
+      "file": "UPIP217L.tga",
+      "description": "Winged staff with snakes over map background"
+    },
+    {
+      "name": "UPMP181",
+      "source": "lotr",
+      "file": "UPMP181L.tga",
+      "description": "Bald muscular man with mustache"
+    },
+    {
+      "name": "UPMP1822",
+      "source": "lotr",
+      "file": "UPMP1822L.tga",
+      "description": "Two stars beside shield bearing letter M"
+    },
+    {
+      "name": "UPMP1823",
+      "source": "lotr",
+      "file": "UPMP1823L.tga",
+      "description": "Three stars beside shield bearing letter M"
+    },
+    {
+      "name": "UPMP1824",
+      "source": "lotr",
+      "file": "UPMP1824L.tga",
+      "description": "Four gold stars beside a shield with M"
+    },
+    {
+      "name": "UPMP1825",
+      "source": "lotr",
+      "file": "UPMP1825L.tga",
+      "description": "Five gold stars beside a shield with M"
+    },
+    {
+      "name": "UPMP1826",
+      "source": "lotr",
+      "file": "UPMP1826L.tga",
+      "description": "Six gold stars beside a shield with M"
+    },
+    {
+      "name": "UPMP1827",
+      "source": "lotr",
+      "file": "UPMP1827L.tga",
+      "description": "Seven gold stars beside a shield with M"
+    },
+    {
+      "name": "UPMP182",
+      "source": "lotr",
+      "file": "UPMP182L.tga",
+      "description": "gold star and shield with letter M"
+    },
+    {
+      "name": "UPMP190",
+      "source": "lotr",
+      "file": "UPMP190L.tga",
+      "description": "bald man with mustache in red shirt"
+    },
+    {
+      "name": "upss018l",
+      "source": "lotr",
+      "file": "upss018l.tga",
+      "description": "sword with skull and crossbones"
+    },
+    {
+      "name": "upss019l",
+      "source": "lotr",
+      "file": "upss019l.tga",
+      "description": "stack of gold bars glowing"
+    },
+    {
+      "name": "uptp010l",
+      "source": "lotr",
+      "file": "uptp010l.tga",
+      "description": "A yellow cart with orange roof"
+    },
+    {
+      "name": "uptp011l",
+      "source": "lotr",
+      "file": "uptp011l.tga",
+      "description": "A village with houses and trees"
+    },
+    {
+      "name": "uptp028l",
+      "source": "lotr",
+      "file": "uptp028l.tga",
+      "description": "A tower structure with surrounding trees"
+    },
+    {
+      "name": "UPTP200",
+      "source": "lotr",
+      "file": "UPTP200L.TGA",
+      "description": "A tall tower with blue roof and walls"
+    },
+    {
+      "name": "UPTP201",
+      "source": "lotr",
+      "file": "UPTP201L.TGA",
+      "description": "Two white sheep grazing on a patch of land."
+    },
+    {
+      "name": "UPTP202",
+      "source": "lotr",
+      "file": "UPTP202L.TGA",
+      "description": "A settlement featuring houses, trees, and paths."
+    },
+    {
+      "name": "UPTP203",
+      "source": "lotr",
+      "file": "UPTP203L.TGA",
+      "description": "A brown rock with a pickaxe standing nearby."
+    },
+    {
+      "name": "UPUP002",
+      "source": "lotr",
+      "file": "UPUP002L.tga",
+      "description": "A man in green standing beside a loaded donkey."
+    },
+    {
+      "name": "UPUP004",
+      "source": "lotr",
+      "file": "UPUP004L.tga",
+      "description": "A large, bald, shirtless man with chains and a weapon."
+    },
+    {
+      "name": "UPUP005",
+      "source": "lotr",
+      "file": "UPUP005L.tga",
+      "description": "A soldier riding a horse while holding a bow."
+    },
+    {
+      "name": "upup006l",
+      "source": "lotr",
+      "file": "upup006l.tga",
+      "description": "A samurai warrior in black armor holding a sword."
+    },
+    {
+      "name": "upup007l",
+      "source": "lotr",
+      "file": "upup007l.tga",
+      "description": "A wooden boat with a sail floating on water."
+    },
+    {
+      "name": "UPUP008",
+      "source": "lotr",
+      "file": "UPUP008L.tga",
+      "description": "Ancient Greek warrior soldier holding spear and shield"
+    },
+    {
+      "name": "UPUP010",
+      "source": "lotr",
+      "file": "UPUP010L.tga",
+      "description": "Roman man in toga holding scroll"
+    },
+    {
+      "name": "upup011l",
+      "source": "lotr",
+      "file": "upup011l.tga",
+      "description": "Wooden cart with blue wheels"
+    },
+    {
+      "name": "UPUP012",
+      "source": "lotr",
+      "file": "UPUP012L.tga",
+      "description": "Hooded monk holding golden staff"
+    },
+    {
+      "name": "upup013l",
+      "source": "lotr",
+      "file": "upup013l.tga",
+      "description": "Human archer holding a bow and arrows"
+    },
+    {
+      "name": "upup015l",
+      "source": "lotr",
+      "file": "upup015l.tga",
+      "description": "Knight in silver armor riding a horse"
+    },
+    {
+      "name": "UPUP019",
+      "source": "lotr",
+      "file": "UPUP019L.tga",
+      "description": "Cannon on a wheeled carriage"
+    },
+    {
+      "name": "UPUP020",
+      "source": "lotr",
+      "file": "UPUP020L.tga",
+      "description": "Soldier in red uniform riding a horse"
+    },
+    {
+      "name": "UPUP023",
+      "source": "lotr",
+      "file": "UPUP023L.tga",
+      "description": "A man in a business suit holding a briefcase."
+    },
+    {
+      "name": "UPUP025",
+      "source": "lotr",
+      "file": "UPUP025L.tga",
+      "description": "A woman in a hat and skirt holding a book."
+    },
+    {
+      "name": "upup027El",
+      "source": "lotr",
+      "file": "upup027El.tga",
+      "description": "A soldier in tan uniform holding a large weapon."
+    },
+    {
+      "name": "upup027l",
+      "source": "lotr",
+      "file": "upup027l.tga",
+      "description": "A soldier in tan uniform holding a large weapon."
+    },
+    {
+      "name": "upup033l",
+      "source": "lotr",
+      "file": "upup033l.tga",
+      "description": "A grey battleship with a red hull sailing on water."
+    },
+    {
+      "name": "UPUP034",
+      "source": "lotr",
+      "file": "UPUP034L.tga",
+      "description": "A bald man standing in a long grey trench coat."
+    },
+    {
+      "name": "upup035l",
+      "source": "lotr",
+      "file": "upup035l.tga",
+      "description": "A grey twin-engine propeller airplane flying in the sky."
+    },
+    {
+      "name": "upup036l",
+      "source": "lotr",
+      "file": "upup036l.tga",
+      "description": "An aircraft carrier with a red hull on blue water."
+    },
+    {
+      "name": "UPUP037",
+      "source": "lotr",
+      "file": "UPUP037L.tga",
+      "description": "Surveyor in orange vest using equipment on a tripod."
+    },
+    {
+      "name": "UPUP038",
+      "source": "lotr",
+      "file": "UPUP038L.tga",
+      "description": "A military tank on a green grassy surface."
+    },
+    {
+      "name": "upup039El",
+      "source": "lotr",
+      "file": "upup039El.tga",
+      "description": "Soldier in camouflage holding a rifle with rank insignia."
+    },
+    {
+      "name": "upup039l",
+      "source": "lotr",
+      "file": "upup039l.tga",
+      "description": "A soldier in camouflage holding a rifle."
+    },
+    {
+      "name": "UPUP042",
+      "source": "lotr",
+      "file": "UPUP042L.tga",
+      "description": "A robed figure with a halo holding a book and orb."
+    },
+    {
+      "name": "UPUP045",
+      "source": "lotr",
+      "file": "UPUP045L.tga",
+      "description": "A woman in a green and purple suit with a glowing ring."
+    },
+    {
+      "name": "upup046l",
+      "source": "lotr",
+      "file": "upup046l.tga",
+      "description": "A grey fighter jet with red tail markings."
+    },
+    {
+      "name": "upup047l",
+      "source": "lotr",
+      "file": "upup047l.tga",
+      "description": "A large grey four-engine bomber aircraft."
+    },
+    {
+      "name": "UPUP048",
+      "source": "lotr",
+      "file": "UPUP048L.tga",
+      "description": "A soldier in gold armor holding a glowing sword."
+    },
+    {
+      "name": "UPUP049",
+      "source": "lotr",
+      "file": "UPUP049L.tga",
+      "description": "A military vehicle carrying two missiles."
+    },
+    {
+      "name": "UPUP050",
+      "source": "lotr",
+      "file": "UPUP050L.tga",
+      "description": "Three business people standing together."
+    },
+    {
+      "name": "UPUP053El",
+      "source": "lotr",
+      "file": "UPUP053El.tga",
+      "description": "A soldier in blue gear holding a rifle."
+    },
+    {
+      "name": "UPUP053l",
+      "source": "lotr",
+      "file": "UPUP053l.tga",
+      "description": "Soldier in blue camouflage holding a rifle"
+    },
+    {
+      "name": "UPUP058",
+      "source": "lotr",
+      "file": "UPUP058L.tga",
+      "description": "Mechanical spider robot with metallic legs"
+    },
+    {
+      "name": "UPUP064",
+      "source": "lotr",
+      "file": "UPUP064L.tga",
+      "description": "Green-suited soldier holding two pistols"
+    },
+    {
+      "name": "UPUP067",
+      "source": "lotr",
+      "file": "UPUP067L.tga",
+      "description": "Armored warrior holding multiple spears"
+    },
+    {
+      "name": "UPUP068",
+      "source": "lotr",
+      "file": "UPUP068L.tga",
+      "description": "Person in yellow hazmat suit holding green flask"
+    },
+    {
+      "name": "UPUP075",
+      "source": "lotr",
+      "file": "UPUP075L.tga",
+      "description": "Blue futuristic vehicle with a pilot inside"
+    },
+    {
+      "name": "UPUP077",
+      "source": "lotr",
+      "file": "UPUP077L.tga",
+      "description": "Grey spaceship resembling the Millennium Falcon"
+    },
+    {
+      "name": "UPUP078",
+      "source": "lotr",
+      "file": "UPUP078L.tga",
+      "description": "Orange vehicle with antennas and flat base"
+    },
+    {
+      "name": "upup081l",
+      "source": "lotr",
+      "file": "upup081l.tga",
+      "description": "An elephant carrying a rider on its back"
+    },
+    {
+      "name": "UPUP082",
+      "source": "lotr",
+      "file": "UPUP082L.tga",
+      "description": "A silver cannon device on a red background"
+    },
+    {
+      "name": "UPUP083",
+      "source": "lotr",
+      "file": "UPUP083L.tga",
+      "description": "A Roman soldier holding a sword and shield"
+    },
+    {
+      "name": "upup084l",
+      "source": "lotr",
+      "file": "upup084l.tga",
+      "description": "A Roman soldier holding a sword and shield"
+    },
+    {
+      "name": "upup085l",
+      "source": "lotr",
+      "file": "upup085l.tga",
+      "description": "Roman soldier holding a sword and shield"
+    },
+    {
+      "name": "UPUP086",
+      "source": "lotr",
+      "file": "UPUP086L.tga",
+      "description": "Ninja riding a horse with a bow"
+    },
+    {
+      "name": "UPUP087",
+      "source": "lotr",
+      "file": "UPUP087L.tga",
+      "description": "Wooden sailboat floating on blue water"
+    },
+    {
+      "name": "upup089l",
+      "source": "lotr",
+      "file": "upup089l.tga",
+      "description": "Archer standing with bow and quiver"
+    },
+    {
+      "name": "UPUP094",
+      "source": "lotr",
+      "file": "UPUP094L.tga",
+      "description": "A rider on a horse wielding a sword."
+    },
+    {
+      "name": "UPUP105",
+      "source": "lotr",
+      "file": "UPUP105L.TGA",
+      "description": "A grey tank on a green background."
+    },
+    {
+      "name": "UPUP107",
+      "source": "lotr",
+      "file": "UPUP107L.tga",
+      "description": "A warrior with a green helmet and shield."
+    },
+    {
+      "name": "UPUP111",
+      "source": "lotr",
+      "file": "UPUP111L.tga",
+      "description": "A primitive man holding a club."
+    },
+    {
+      "name": "UPUP113",
+      "source": "lotr",
+      "file": "UPUP113L.tga",
+      "description": "A Roman soldier standing in white and red attire."
+    },
+    {
+      "name": "UPUP114",
+      "source": "lotr",
+      "file": "UPUP114L.tga",
+      "description": "An armored knight riding a brown horse."
+    },
+    {
+      "name": "UPUP119",
+      "source": "lotr",
+      "file": "UPUP119L.tga",
+      "description": "A soldier in green and yellow holding a spear."
+    },
+    {
+      "name": "UPUP123",
+      "source": "lotr",
+      "file": "UPUP123L.tga",
+      "description": "A Roman soldier with a shield and helmet."
+    },
+    {
+      "name": "UPUP124",
+      "source": "lotr",
+      "file": "UPUP124L.tga",
+      "description": "A shirtless soldier with a red and white plumed helmet."
+    },
+    {
+      "name": "UPUP125",
+      "source": "lotr",
+      "file": "UPUP125L.tga",
+      "description": "A wooden ship featuring red and white striped sails."
+    },
+    {
+      "name": "UPUP127",
+      "source": "lotr",
+      "file": "UPUP127L.tga",
+      "description": "Three men operating a large wooden siege engine."
+    },
+    {
+      "name": "UPUP146",
+      "source": "lotr",
+      "file": "UPUP146L.tga",
+      "description": "A chariot pulled by two horses with a driver."
+    },
+    {
+      "name": "UPUP148",
+      "source": "lotr",
+      "file": "UPUP148L.tga",
+      "description": "a pixelated wooden ship model"
+    },
+    {
+      "name": "UPUP151",
+      "source": "lotr",
+      "file": "UPUP151L.tga",
+      "description": "a mage in orange robes holding a staff"
+    },
+    {
+      "name": "UPUP152",
+      "source": "lotr",
+      "file": "UPUP152L.tga",
+      "description": "a soldier in white tunic with purple cape"
+    },
+    {
+      "name": "UPUP153",
+      "source": "lotr",
+      "file": "UPUP153L.tga",
+      "description": "a soldier with sword and shield"
+    },
+    {
+      "name": "UPUP154",
+      "source": "lotr",
+      "file": "UPUP154L.tga",
+      "description": "A soldier riding a yellow horse with a spear."
+    },
+    {
+      "name": "UPUP155",
+      "source": "lotr",
+      "file": "UPUP155L.tga",
+      "description": "An armored warrior riding a brown horse."
+    },
+    {
+      "name": "UPUP156",
+      "source": "lotr",
+      "file": "UPUP156L.tga",
+      "description": "A charioteer driving a two-horse chariot."
+    },
+    {
+      "name": "UPUP158",
+      "source": "lotr",
+      "file": "UPUP158L.tga",
+      "description": "A standing warrior holding a spear and shield."
+    },
+    {
+      "name": "UPUP159",
+      "source": "lotr",
+      "file": "UPUP159L.tga",
+      "description": "Soldier in yellow armor holding a polearm with shield on back"
+    },
+    {
+      "name": "UPUP160",
+      "source": "lotr",
+      "file": "UPUP160L.tga",
+      "description": "Soldier in chainmail armor holding a poleaxe"
+    },
+    {
+      "name": "UPUP161",
+      "source": "lotr",
+      "file": "UPUP161L.tga",
+      "description": "Soldier in green and yellow holding a long polearm"
+    },
+    {
+      "name": "UPUP162",
+      "source": "lotr",
+      "file": "UPUP162L.tga",
+      "description": "Cannon on a wooden carriage"
+    },
+    {
+      "name": "UPUP163",
+      "source": "lotr",
+      "file": "UPUP163L.tga",
+      "description": "A small sailing ship on blue water"
+    },
+    {
+      "name": "UPUP166l",
+      "source": "lotr",
+      "file": "UPUP166l.tga",
+      "description": "A person in red riding a brown horse"
+    },
+    {
+      "name": "UPUP180",
+      "source": "lotr",
+      "file": "UPUP180L.tga",
+      "description": "A wooden catapult with blue accents on red"
+    },
+    {
+      "name": "UPUP181",
+      "source": "lotr",
+      "file": "UPUP181L.tga",
+      "description": "A knight in blue armor riding a horse"
+    },
+    {
+      "name": "UPUP187",
+      "source": "lotr",
+      "file": "UPUP187L.tga",
+      "description": "A wooden ship with a sail sailing on water"
+    },
+    {
+      "name": "UPUP188",
+      "source": "lotr",
+      "file": "UPUP188L.tga",
+      "description": "A warrior archer in armor holding a bow"
+    },
+    {
+      "name": "UPUP189",
+      "source": "lotr",
+      "file": "UPUP189L.tga",
+      "description": "A wooden ship with oars and a sail on water"
+    },
+    {
+      "name": "UPUP191",
+      "source": "lotr",
+      "file": "UPUP191L.tga",
+      "description": "An archer in red pants and grey vest holding a bow"
+    },
+    {
+      "name": "UPUP192",
+      "source": "lotr",
+      "file": "UPUP192L.tga",
+      "description": "A man in orange robes holding a staff"
+    },
+    {
+      "name": "UPUP193",
+      "source": "lotr",
+      "file": "UPUP193L.tga",
+      "description": "A green soldier in tactical gear holding items"
+    },
+    {
+      "name": "UPUP194",
+      "source": "lotr",
+      "file": "UPUP194L.tga",
+      "description": "A warrior with a crown holding multiple spears"
+    },
+    {
+      "name": "UPUP195",
+      "source": "lotr",
+      "file": "UPUP195L.tga",
+      "description": "A Roman soldier holding a shield and sword"
+    },
+    {
+      "name": "UPUP196",
+      "source": "lotr",
+      "file": "UPUP196L.tga",
+      "description": "A standing Roman soldier figurine with shield and sword"
+    },
+    {
+      "name": "UPUP197",
+      "source": "lotr",
+      "file": "UPUP197L.tga",
+      "description": "A wooden catapult siege engine model"
+    },
+    {
+      "name": "UPUP72",
+      "source": "lotr",
+      "file": "UPUP72L.tga",
+      "description": "A multi\u2011armed warrior holding several spears"
+    },
+    {
+      "name": "upupE003l",
+      "source": "lotr",
+      "file": "upupE003l.tga",
+      "description": "A medieval soldier with shield and sword"
+    },
+    {
+      "name": "UPUPE008",
+      "source": "lotr",
+      "file": "UPUPE008L.tga",
+      "description": "Ancient soldier holding spear and shield"
+    },
+    {
+      "name": "upupE017l",
+      "source": "lotr",
+      "file": "upupE017l.tga",
+      "description": "Soldier in armor wielding a polearm"
+    },
+    {
+      "name": "upupE022",
+      "source": "lotr",
+      "file": "upupE022L.tga",
+      "description": "Soldier in red uniform holding a rifle"
+    },
+    {
+      "name": "UPUPE027",
+      "source": "lotr",
+      "file": "UPUPE027L.tga",
+      "description": "Soldier with a mounted machine gun"
+    },
+    {
+      "name": "UPUPE039",
+      "source": "lotr",
+      "file": "UPUPE039L.tga",
+      "description": "Soldier in green camouflage holding a rifle"
+    },
+    {
+      "name": "UPUPE065",
+      "source": "lotr",
+      "file": "UPUPE065L.tga",
+      "description": "Soldier in tan tactical gear holding a large weapon"
+    },
+    {
+      "name": "upupE085l",
+      "source": "lotr",
+      "file": "upupE085l.tga",
+      "description": "Roman soldier in armor holding a sword and shield"
+    },
+    {
+      "name": "upupE088l",
+      "source": "lotr",
+      "file": "upupE088l.tga",
+      "description": "Roman soldier in red armor holding a sword and shield"
+    },
+    {
+      "name": "UPUPE107",
+      "source": "lotr",
+      "file": "UPUPE107L.tga",
+      "description": "A soldier wearing a green plumed helmet and holding a spear and shield."
+    },
+    {
+      "name": "UPUPE119",
+      "source": "lotr",
+      "file": "UPUPE119L.tga",
+      "description": "A soldier in green and yellow holding a long orange weapon."
+    },
+    {
+      "name": "upupE123l",
+      "source": "lotr",
+      "file": "upupE123l.tga",
+      "description": "A soldier in red and white armor holding a large shield."
+    },
+    {
+      "name": "UPUPE124",
+      "source": "lotr",
+      "file": "UPUPE124L.tga",
+      "description": "A shirtless soldier with a red and white plumed helmet."
+    },
+    {
+      "name": "UPUPE158",
+      "source": "lotr",
+      "file": "UPUPE158L.tga",
+      "description": "A shirtless warrior holding a spear and blue shield."
+    },
+    {
+      "name": "UPUPE159",
+      "source": "lotr",
+      "file": "UPUPE159L.tga",
+      "description": "A soldier in yellow armor holding a spear and shield."
+    },
+    {
+      "name": "UPUPE160",
+      "source": "lotr",
+      "file": "UPUPE160L.tga",
+      "description": "A knight in chainmail holding a polearm weapon."
+    },
+    {
+      "name": "UPUPE194",
+      "source": "lotr",
+      "file": "UPUPE194L.tga",
+      "description": "A Roman soldier holding a sword and rectangular shield."
+    },
+    {
+      "name": "UPUPE195",
+      "source": "lotr",
+      "file": "UPUPE195L.tga",
+      "description": "Roman soldier in armor holding sword and shield"
+    },
+    {
+      "name": "UPUPJan",
+      "source": "lotr",
+      "file": "UPUPJanL.tga",
+      "description": "Bearded Viking warrior holding shield and helmet"
+    },
+    {
+      "name": "UPUPegion",
+      "source": "lotr",
+      "file": "UPUPLegionL.tga",
+      "description": "Greek soldier in armor holding sword and shield"
+    },
+    {
+      "name": "upvp001l",
+      "source": "lotr",
+      "file": "upvp001l.tga",
+      "description": "Burning building with golden dome and blue background"
+    },
+    {
+      "name": "upvp002l",
+      "source": "lotr",
+      "file": "upvp002l.tga",
+      "description": "red hammer and sickle symbol on gear"
+    },
+    {
+      "name": "upvp003l",
+      "source": "lotr",
+      "file": "upvp003l.tga",
+      "description": "blue orbital lines around Earth globe"
+    },
+    {
+      "name": "upvp004l",
+      "source": "lotr",
+      "file": "upvp004l.tga",
+      "description": "Statue of Liberty holding torch"
+    },
+    {
+      "name": "upvp005l",
+      "source": "lotr",
+      "file": "upvp005l.tga",
+      "description": "Adam and Eve standing on island"
+    },
+    {
+      "name": "upvp006l",
+      "source": "lotr",
+      "file": "upvp006l.tga",
+      "description": "Golden torch with white flag on top"
+    },
+    {
+      "name": "upvp007l",
+      "source": "lotr",
+      "file": "upvp007l.tga",
+      "description": "Golden throne with red cushion and steps"
+    },
+    {
+      "name": "upvp008l",
+      "source": "lotr",
+      "file": "upvp008l.tga",
+      "description": "Curved amphitheater with red seating"
+    },
+    {
+      "name": "upvp009l",
+      "source": "lotr",
+      "file": "upvp009l.tga",
+      "description": "Golden pyramid with tiny figures at base"
+    },
+    {
+      "name": "upvp010l",
+      "source": "lotr",
+      "file": "upvp010l.tga",
+      "description": "Bishop with mitre and crozier"
+    },
+    {
+      "name": "upvp011l",
+      "source": "lotr",
+      "file": "upvp011l.tga",
+      "description": "Sword with a snake coiled around it"
+    },
+    {
+      "name": "upvp012l",
+      "source": "lotr",
+      "file": "upvp012l.tga",
+      "description": "Dark land with a glowing tower"
+    },
+    {
+      "name": "UPVP013",
+      "source": "lotr",
+      "file": "UPVP013L.tga",
+      "description": "Yellow crescent moon in a blue circle"
+    },
+    {
+      "name": "UPVP014",
+      "source": "lotr",
+      "file": "UPVP014L.tga",
+      "description": "A pixelated building structure with a tower and scroll."
+    },
+    {
+      "name": "UPVP015",
+      "source": "lotr",
+      "file": "UPVP015L.tga",
+      "description": "A sword with a golden hilt and detailed blade."
+    },
+    {
+      "name": "UPVP016",
+      "source": "lotr",
+      "file": "UPVP016L.tga",
+      "description": "Two ornate golden thrones with green seats."
+    },
+    {
+      "name": "UPVP017",
+      "source": "lotr",
+      "file": "UPVP017L.tga",
+      "description": "A stack of gold bars topped with a scroll."
+    },
+    {
+      "name": "UPVP018",
+      "source": "lotr",
+      "file": "UPVP018L.tga",
+      "description": "Pixelated stone totem with glowing sun eye"
+    },
+    {
+      "name": "UPWbudd",
+      "source": "lotr",
+      "file": "UPWbuddL.TGA",
+      "description": "Golden Dharma wheel on aged parchment"
+    },
+    {
+      "name": "UPWchri",
+      "source": "lotr",
+      "file": "UPWchriL.TGA",
+      "description": "Manuscript page featuring Celtic knot design"
+    },
+    {
+      "name": "UPWcon",
+      "source": "lotr",
+      "file": "UPWconL.TGA",
+      "description": "Yellow symbol inside brown circular border"
+    },
+    {
+      "name": "UPWisla",
+      "source": "lotr",
+      "file": "UPWislaL.TGA",
+      "description": "Circular gold calligraphy design on black background"
+    },
+    {
+      "name": "UPWjud",
+      "source": "lotr",
+      "file": "UPWjudL.TGA",
+      "description": "Ancient scroll with handwritten text visible"
+    },
+    {
+      "name": "UPWP101",
+      "source": "lotr",
+      "file": "UPWP101L.tga",
+      "description": "Stone relief sculpture of a bearded man in helmet"
+    },
+    {
+      "name": "UPWP102",
+      "source": "lotr",
+      "file": "UPWP102L.tga",
+      "description": "Golden throne room with winged sphinx statues"
+    },
+    {
+      "name": "UPWP104",
+      "source": "lotr",
+      "file": "UPWP104L.tga",
+      "description": "Large stepped pyramid temple structure"
+    },
+    {
+      "name": "UPWP105",
+      "source": "lotr",
+      "file": "UPWP105L.tga",
+      "description": "Ancient Roman amphitheater structure"
+    },
+    {
+      "name": "UPWP106",
+      "source": "lotr",
+      "file": "UPWP106L.tga",
+      "description": "Prehistoric stone circle monument"
+    },
+    {
+      "name": "UPWP107",
+      "source": "lotr",
+      "file": "UPWP107L.tga",
+      "description": "Ancient warriors in armor holding spears"
+    },
+    {
+      "name": "UPWP108",
+      "source": "lotr",
+      "file": "UPWP108L.tga",
+      "description": "A golden statue of a seated king on a throne"
+    },
+    {
+      "name": "UPWP109",
+      "source": "lotr",
+      "file": "UPWP109L.tga",
+      "description": "A bust of William Shakespeare in a theater"
+    },
+    {
+      "name": "UPWP110",
+      "source": "lotr",
+      "file": "UPWP110L.tga",
+      "description": "Portrait of Isaac Newton with his book"
+    },
+    {
+      "name": "UPWP111",
+      "source": "lotr",
+      "file": "UPWP111L.tga",
+      "description": "The Arc de Triomphe monument"
+    },
+    {
+      "name": "UPWP112",
+      "source": "lotr",
+      "file": "UPWP112L.tga",
+      "description": "Terraced gardens structure of the Hanging Gardens"
+    },
+    {
+      "name": "UPWP113",
+      "source": "lotr",
+      "file": "UPWP113L.tga",
+      "description": "Mosque complex with tall minarets"
+    },
+    {
+      "name": "UPWP114",
+      "source": "lotr",
+      "file": "UPWP114L.tga",
+      "description": "Golden pharaoh mask lying down"
+    },
+    {
+      "name": "UPWP115",
+      "source": "lotr",
+      "file": "UPWP115L.tga",
+      "description": "Glowing cross in a domed ceiling"
+    },
+    {
+      "name": "UPWP116",
+      "source": "lotr",
+      "file": "UPWP116L.tga",
+      "description": "person standing on tower"
+    },
+    {
+      "name": "whitecouncil",
+      "source": "lotr",
+      "file": "whitecouncil.tga",
+      "description": "dark gothic tower structure"
+    }
+  ],
+  "homm2": [
+    {
+      "name": "HoMM2_r0_c0",
+      "source": "homm2",
+      "description": "A knight in blue robes riding a white horse"
+    },
+    {
+      "name": "HoMM2_r0_c1",
+      "source": "homm2",
+      "description": "A character standing in brown clothing"
+    },
+    {
+      "name": "HoMM2_r0_c2",
+      "source": "homm2",
+      "description": "Knights on horses and a skeleton warrior"
+    },
+    {
+      "name": "HoMM2_r0_c3",
+      "source": "homm2",
+      "description": "A character with a staff and a knight on a horse"
+    },
+    {
+      "name": "HoMM2_r0_c4",
+      "source": "homm2",
+      "description": "Two blue knights and a mage"
+    },
+    {
+      "name": "HoMM2_r0_c5",
+      "source": "homm2",
+      "description": "Knight on horse, horse head, green dryad"
+    },
+    {
+      "name": "HoMM2_r0_c6",
+      "source": "homm2",
+      "description": "Knight on horse, giant, goblin, green creature"
+    },
+    {
+      "name": "HoMM2_r0_c7",
+      "source": "homm2",
+      "description": "Knight in armor, red shields, striped shield"
+    },
+    {
+      "name": "HoMM2_r1_c0",
+      "source": "homm2",
+      "description": "A warrior hero wearing a horned helmet and holding a scroll"
+    },
+    {
+      "name": "HoMM2_r1_c1",
+      "source": "homm2",
+      "description": "A grey winged humanoid creature crouching"
+    },
+    {
+      "name": "HoMM2_r1_c2",
+      "source": "homm2",
+      "description": "A red dragon and a green dragon standing side by side"
+    },
+    {
+      "name": "HoMM2_r1_c3",
+      "source": "homm2",
+      "description": "An archer character holding a bow and pointing"
+    },
+    {
+      "name": "HoMM2_r1_c4",
+      "source": "homm2",
+      "description": "Dark grey horse in purple grid cell"
+    },
+    {
+      "name": "HoMM2_r1_c5",
+      "source": "homm2",
+      "description": "Blue genie character in purple grid cell"
+    },
+    {
+      "name": "HoMM2_r1_c6",
+      "source": "homm2",
+      "description": "Green warrior and archer in purple grid cells"
+    },
+    {
+      "name": "HoMM2_r1_c7",
+      "source": "homm2",
+      "description": "Text reading Heroes of Might and Magic"
+    },
+    {
+      "name": "HoMM2_r2_c0",
+      "source": "homm2",
+      "description": "A brown boar with spiky back"
+    },
+    {
+      "name": "HoMM2_r2_c1",
+      "source": "homm2",
+      "description": "A grey wolf standing on ground"
+    },
+    {
+      "name": "HoMM2_r2_c2",
+      "source": "homm2",
+      "description": "A knight in silver armor"
+    },
+    {
+      "name": "HoMM2_r2_c3",
+      "source": "homm2",
+      "description": "A knight holding a spear"
+    },
+    {
+      "name": "HoMM2_r2_c4",
+      "source": "homm2",
+      "description": "Wooden ship sailing on blue water"
+    },
+    {
+      "name": "HoMM2_r2_c5",
+      "source": "homm2",
+      "description": "Blonde miner holding a pickaxe"
+    },
+    {
+      "name": "HoMM2_r2_c6",
+      "source": "homm2",
+      "description": "Cart, mage, eagle, and knight"
+    },
+    {
+      "name": "HoMM2_r2_c7",
+      "source": "homm2",
+      "description": "Text and partial character sprites"
+    },
+    {
+      "name": "HoMM2_r3_c0",
+      "source": "homm2",
+      "description": "Knight in silver armor holding sword and shield"
+    },
+    {
+      "name": "HoMM2_r3_c1",
+      "source": "homm2",
+      "description": "Zombie figure and white unicorn"
+    },
+    {
+      "name": "HoMM2_r3_c2",
+      "source": "homm2",
+      "description": "Mummy, vampire, dragon, and winged creature"
+    },
+    {
+      "name": "HoMM2_r3_c3",
+      "source": "homm2",
+      "description": "Purple wizard and yellow-armored knight"
+    },
+    {
+      "name": "HoMM2_r3_c4",
+      "source": "homm2",
+      "description": "Green goblin character holding a glowing orb."
+    },
+    {
+      "name": "HoMM2_r3_c5",
+      "source": "homm2",
+      "description": "Red mage holding a staff."
+    },
+    {
+      "name": "HoMM2_r3_c6",
+      "source": "homm2",
+      "description": "King, golden serpent, knight, and centaur."
+    },
+    {
+      "name": "HoMM2_r3_c7",
+      "source": "homm2",
+      "description": "Text and partial animal sprites on purple background."
+    },
+    {
+      "name": "HoMM2_r4_c0",
+      "source": "homm2",
+      "description": "A knight riding a horse with a sword"
+    },
+    {
+      "name": "HoMM2_r4_c1",
+      "source": "homm2",
+      "description": "The rear end of a white horse"
+    },
+    {
+      "name": "HoMM2_r4_c2",
+      "source": "homm2",
+      "description": "A white horse and a black dragon"
+    },
+    {
+      "name": "HoMM2_r4_c3",
+      "source": "homm2",
+      "description": "A mage in blue robes and gold armor"
+    },
+    {
+      "name": "HoMM2_r4_c4",
+      "source": "homm2",
+      "description": "A pixelated orange and yellow phoenix bird"
+    },
+    {
+      "name": "HoMM2_r4_c5",
+      "source": "homm2",
+      "description": "Lower body of a character wearing brown boots"
+    },
+    {
+      "name": "HoMM2_r4_c6",
+      "source": "homm2",
+      "description": "A horse and the legs of an armored character"
+    },
+    {
+      "name": "HoMM2_r4_c7",
+      "source": "homm2",
+      "description": "A character's leg in white armor"
+    },
+    {
+      "name": "HoMM2_r5_c0",
+      "source": "homm2",
+      "description": "A pixelated wooden sailing ship with a large beige sail."
+    },
+    {
+      "name": "HoMM2_r5_c1",
+      "source": "homm2",
+      "description": "A wooden boat with a mast and flag visible."
+    },
+    {
+      "name": "HoMM2_r5_c2",
+      "source": "homm2",
+      "description": "A sailing ship and a mage riding a horse."
+    },
+    {
+      "name": "HoMM2_r5_c3",
+      "source": "homm2",
+      "description": "A knight in armor riding a horse."
+    },
+    {
+      "name": "HoMM2_r5_c4",
+      "source": "homm2",
+      "description": "Blonde knight riding a brown horse"
+    },
+    {
+      "name": "HoMM2_r5_c5",
+      "source": "homm2",
+      "description": "Crowned king in red riding a grey horse"
+    },
+    {
+      "name": "HoMM2_r5_c6",
+      "source": "homm2",
+      "description": "Armored knight riding a grey horse"
+    },
+    {
+      "name": "HoMM2_r5_c7",
+      "source": "homm2",
+      "description": "Pink square shape with green border"
+    }
+  ]
+}
