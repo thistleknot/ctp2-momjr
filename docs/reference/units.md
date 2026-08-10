@@ -126,4 +126,4 @@ Generated from `units.csv`. Icon extracted from `CM2_UPAP{art_idx}L.TGA`.
 | ![War Mage](../img/units/war_mage.png) | War Mage | Neutral | 4 | 2 | 1 | 1 | 1 | Land | 6 | E1 | art 64 / SPRITE_WAR_MAGE |
 | ![Warship](../img/units/warship.png) | Warship | Neutral | 7 | 3 | 2 | 1 | 4 | Sea | 8 | Eng | art 33 / SPRITE_WARSHIP |
 
-**Total: 80 units** (80 with icons)
+**Total: 80 units** (81 with icons)
