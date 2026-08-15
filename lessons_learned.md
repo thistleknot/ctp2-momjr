@@ -1,3 +1,81 @@
+## 2026-08-15 — CURRENT: isolate frame-5→6 black client capture before right-click retest
+
+**Problem:** `runs/20260815-094130-builtins` uses the rebuilt ADB7 binary but becomes black at the exact capture boundary after `05_scenario_select.png`: frames 1–5 are valid, while `06_scenario_select_check.png` and every later frame are all-zero client crops. No input occurs between frames 5 and 6, and the process exits cleanly.
+
+**Hypothesis:** the probe-local `SetProcessDPIAware()` violates the DPI-unaware contract in `uiwalk.py`. At 125% scaling, `PrintWindow` may still return a nonzero full-window bitmap while `client_origin()` / `client_size()` compute a crop outside the rendered client. **Test:** boot only to scenario selection, take two consecutive raw captures, and record cached plus freshly resolved HWND, owner PID/title/class, window/client rects, `PrintWindow` return, full-bitmap nonzero count, crop bounds, and client-crop nonzero count. Disable MSS so failure is explicit. **Prediction:** TRUE yields nonzero full bitmap with a zero/invalid crop; FALSE yields a black raw bitmap or a changed HWND and falsifies DPI crop geometry as the immediate cause. **Confirmation bar:** one discriminator against matched control `20260815-093446-builtins`, then remove `SetProcessDPIAware()` only if the recorded geometry supports it and require two valid consecutive captures before one full battery rerun.
+
+**Dead ends:** Do not revert the right-click source change: that branch is unreachable during boot and between screenshots. Do not add capture retries, MSS fallback, picker changes, or another full builtin run before the boundary is classified.
+
+**First discriminator result:** `runs/20260815-094845-capture` retained the ADB7 overlay hash and exited 0, but all five prefix frames were the same 5,237-byte all-zero image. The diagnostic initially aborted on visual assertions; after removing only that control defect, `runs/20260815-094956-capture` recorded the requested evidence twice: cached HWND = fresh HWND `101323068`; owner PID `38356`; class `SDL_app`; `PrintWindow=1`; full bitmap shape `1019x1303` with `118700` nonzero values; crop bounds `(11,48)-(1291,1008)` valid; client shape `960x1280` with `0` nonzero values. The same nonzero window border plus black SDL client reproduced on consecutive captures.
+
+**Second discriminator result:** After removing only `SetProcessDPIAware()`, `runs/20260815-095058-capture` changed the window/client geometry to logical `1024x768` but reproduced the same boundary twice: cached HWND = fresh HWND `43127610`; owner PID `36152`; class `SDL_app`; `PrintWindow=1`; full bitmap `815x1042` with `118700` nonzero values; valid crop `(9,38)-(1033,806)`; client nonzero count `0`. **Conclusion:** DPI awareness changed scaling but did not cause the black SDL client. Stale HWND, process replacement, failed `PrintWindow`, out-of-bounds crop, and DPI crop mismatch are falsified.
+
+**Archaeology and confirmed root cause:** The last-good navigation is mod commit `acdfb2af2fb492a937746f4f278e4680866da03c`; the nearest rendered capture control is `runs/20260815-093446-builtins/05_scenario_select.png`; and `runs/20260815-092814-turnloop` completed `5/5` with zero SLIC errors. Both repositories' committed `_child_env()` use `SDL_RENDER_DRIVER=software`, whose inline measured contract identifies software rendering as necessary for GDI-readable SDL pixels. The working tree had substituted `SDL_HINT_RENDER_DRIVER=software`, which did not preserve that renderer-selection contract. Restoring only `SDL_RENDER_DRIVER=software` produced `runs/20260815-095545-capture`: both raw captures used HWND `6099758` and one owner PID, returned `PrintWindow=1`, yielded valid `1024x768` crops with `1433030` nonzero client values, and visibly matched the prior scenario-selection control. **Conclusion:** the environment-key substitution selected a GDI-unreadable SDL renderer. The offscreen stash is not defective. **Dead ends:** do not replace the proven stash, HWND selection, picker logic, retries, or MSS behavior.
+
+## 2026-08-15 — target callback passed; repair the false-negative HUD oracle
+
+**Problem:** `runs/20260815-092941-builtins` first reported `BeginTargetMode` callback failure with `gold_delta=0`, even though target mode was active before `target:0,0` and inactive afterward. The `0.56..0.64` normalized correction passed at `1280x960`, but `runs/20260815-095636-builtins` exposed the same false negative after the capture contract returned to logical `1024x768`.
+
+**Root cause:** Both persisted pairs prove the callback ran. `092941` changes gold `100 -> 1100` across 85 pixels at x `751..776`, y `0..5`; `095636` changes `106 -> 1106` across 136 pixels at x `753..778`, y `7..15`. The HUD counter stays at fixed client coordinates while the proportional crop moves left from x `716..818` to `573..654`. The native hook, point validity, one-shot cancellation, callback resolution, and SLIC execution are not the failed link.
+
+**Hypothesis and result:** A fixed client crop x `730..810`, y `0..40` covers the measured gold counter at both supported geometries while excluding unrelated counters. Replaying unchanged `frame_delta()` passed all four persisted pairs: callback runs `095636=136`, `093446=85`, `092941=85`; no-callback control `084905=0`. **Live confirmation bar:** seven builtin callbacks PASS; active before/inactive after each; ESC and right-click cancel without callback or unrelated UI; process remains alive; zero SLIC errors.
+
+**Dead ends:** Do not change target coordinates, callback ordering, native dispatch, SLIC fixtures, or add retries. `(0,0)` is valid and the +1000 gold artifact is direct callback evidence. `active_after=False` alone is not callback evidence because `HandleClick()` cancels before executing the callback.
+
+**Right-click result:** `runs/20260815-100118-builtins` proved the production state transition: active before, inactive after ordinary move/down/up, zero callback gold delta, process alive, and zero SLIC errors. Its only failed conjunct was whole-frame `action_delta=51101`. Persisted images show no context menu or modal; the delta is the map changing from a recurring stale black `PrintWindow` surface to the normally rendered island after `_spoof_focus()` and `WM_MOUSEMOVE`.
+
+**Root cause:** `PostInput.right_click()` changes render freshness before the right-button event. A global 2,000-pixel threshold therefore measures the focus/hover repaint, not whether cancellation opened unrelated UI. **Matched-control test:** arm target mode, capture, call `hover()` with the same focus/move/drop preamble and no button, then require target mode remains active. From that refreshed baseline, send right-click and require inactive afterward, zero callback, process alive, and zero SLIC errors. Keep full-frame deltas as diagnostics only and visually inspect the treatment frame for a context menu/modal. **Dead end:** do not weaken production behavior or suppress focus; the source guard already returns before `GetClickedThing()`, and the functional witnesses prove it ran.
+
+## 2026-08-15 — restore the 200-turn-proven picker before target validation
+
+**Problem:** Target-mode validation was blocked before the feature ran because the headless scenario picker stopped selecting MoM. Runs `20260815-085830-builtins` and `20260815-090004-builtins` each exhausted ten selection retries.
+
+**Root cause:** The proven fire-and-forget protocol was changed on both sides. Python began waiting for `select:ok`; the native `select:` branch began writing acknowledgments and validating through `GetItemByIndex()`. The last-good implementation posts once and returns; native code checks `index < NumItems()` and calls `SelectItem(index)` without rewriting the command file.
+
+**Last-good reference:** Commit `acdfb2af2fb492a937746f4f278e4680866da03c`; consecutive artifacts `runs/20260802-205652-longgame` and `runs/20260802-210818-longgame`, both `turns_reached: 200`. The exact route is outer list index 3, Load, inner list index 0, Start. `ui_map.json` records seven items, three visible rows, and no scrolling.
+
+**Hypothesis:** Restoring only those selection semantics, while preserving the validated runtime overlay and target commands, restores navigation. **Test:** rebuild Final-SDL and run `turnloop.py --turns 1`. **Prediction:** TRUE reaches `1/1` with `slic_errors=0`; FALSE fails before in-game state and moves the diagnosis outside selection semantics. **Confirmation bar:** one matched-control pass before any builtin retry.
+
+**Dead ends:** Do not add selection retries, acknowledgments, scrolling, page-down logic, visible-row lookup, or a wholesale harness revert. Those replace or discard a mechanism already demonstrated twice at 200 turns.
+
+## 2026-08-15 — script targeting was cleared by its own idle switch
+
+**Problem:** The exact rebuilt binary reached turn 5 with zero SLIC errors, but the temporary builtin fixture's `BeginTargetMode("MomTestTargetHit")` never produced the target callback. A later ESC opened Options, proving script targeting was already inactive.
+
+**Root cause hypothesis:** `ScriptTargetMode::Begin()` correctly sets `CP_TARGETING_MODE_SCRIPT_PENDING`. The next control-panel idle update calls `TargetingMode()`, whose switch has no script-pending case. Its default calls `ClearTargetingMode()`, which deactivates `ScriptTargetMode` and erases the callback before the headless target command is posted.
+
+**Single-variable test and prediction:** Add only `case CP_TARGETING_MODE_SCRIPT_PENDING: break;`, rebuild Final-SDL, and run the unchanged builtin battery. TRUE predicts the callback gold witness fires after idle delay; FALSE predicts another zero delta and requires tracing callback resolution or injection. The existing failed artifact is `runs/20260815-083942-builtins`.
+
+**Observed first result:** Final-SDL compiled with only the new switch case. `runs/20260815-084732-builtins` still reported zero gold after the probe advanced one turn before checking `BeginTargetMode`. The initial human `BeginTurn` occurs during boot, so fixture phase 1 had already run; the probe then entered phase 2 while labeling it phase 1. This result exposes a phase-attribution defect, not evidence that idle persistence failed.
+
+**Observed second result:** `runs/20260815-084905-builtins` targeted immediately after boot and still produced zero. The before/after frames are pixel-identical at 4000 BC and 100 gold. Include presence and exact-binary hashes cannot reveal whether `ScriptTargetMode` was ever active.
+
+**Next single-variable test:** extend the already opt-in, mod-agnostic command protocol with `query:target-active`, returning only `ScriptTargetMode::IsActive()` through the same file. Assert activity before each input and inactivity after each one-shot execution/cancellation. A 0 before input sends diagnosis upstream to event activation; a 1 plus failed target sends it downstream to click dispatch/callback resolution.
+
+**Confirmation bar:** all seven builtin arms, callback, ESC cancellation, posted right-click cancellation, process-alive, and zero-SLIC-error checks pass against a hash-matched staged executable. A cancellation result is invalid unless the query proves target mode active immediately before input. Afterward, remove the fixture/include and rerun five clean turns.
+
+**Dead ends:** `(0,0)` is valid on the loaded map. The command file closes before `WM_APP+100`. Include order is no longer the earliest broken link. Do not add fallback behavior that masks the idle-state defect.
+
+## 2026-08-10 — exact binary requires a temporary installed-root overlay
+
+**Problem:** Final-SDL rebuilt successfully. Run 1 preflighted source but launched stale installed code and stayed on the menu. Run 2 launched source directly and raised 22 TGA load dialogs before exiting.
+
+**Observed root cause chain:** `preflight_exe()` and default `Game.launch()` originally named different executables. Changing launch to the source path proved the new binary was reached, but CTP2 resolves its data root from the executable/module location rather than only the process working directory. The source checkout lacks the installed `ctp2_data` closure, so `uptg20e.tga`, `uptg03*.tga`, `ug026.tga`, and `ug027.tga` failed even though this is not yet evidence that the installed tree lost them.
+
+**Observed result:** Screenshot evidence falsified the entire latest builtin probe: `01_before_turn1`, `03_before_target_click`, `04_after_target_click`, and `05_after_turn2` are all the main menu. The obsolete frozen 53-step prologue never entered MoM, and the probe had no boot assertion. “No SLIC errors” was therefore a false PASS while neither fixture nor target mode ran.
+
+The subsequent exact five-turn baseline (`runs/20260815-025633-turnloop`) failed even earlier: every boot assertion failed and every capture was a completely black `1080x1920` frame. The installed profile had regressed to `1024x768`, an illegal mode on portrait `DISPLAY4`, despite the previously measured `1024x1280` legal-mode fix documented below.
+
+**Current test:** Restore the fixed `ScreenResWidth=1024` / `ScreenResHeight=768` window requested by the user. Correct `preflight_display()` so windowed geometry is accepted when it physically fits the primary display instead of requiring a fullscreen mode-table match. Repeat the five-turn gate without `UIWALK_ALLOW_ILLEGAL_RES`; the captured client must itself be `1024x768`. Only after that baseline passes should the builtin probe switch to `turnloop.boot(game, run_dir)`.
+
+**Prediction:** The probe will visibly enter the game before the builtin arm; only then can target callback/cancellation results carry evidence.
+
+**Confirmation bar:** If executable location is the remaining prerequisite, TGA lookup will use the installed tree, the hook will receive `WM_APP+100`, and the existing LDL menu walk will reach the MoM game. If the overlay hashes match but a TGA is genuinely absent from the installed tree, the launcher's asset guard should block before process start and the protected-file restore path can repair it from the adjacent Copy tree.
+
+**Confirmation bar:** exact staged binary; installed runtime restored after termination; `turns_reached=5/5`; `slic_errors=0`; then builtin/callback/cancellation probe; fixture removal; second clean five-turn baseline.
+
+**Dead ends not to retry:** Direct source execution with only `cwd` changed does not preserve CTP2's data root. A source-binary preflight does not prove binary identity at the installed launch path. Coordinate clicks do not drive these menus.
+
 ## 2026-08-02 — A portrait primary is a one-line config fix. I said "your desktop" twice.
 
 **Operator:** *"wtf, you have solved this issue more than once before. Portrait,
@@ -3910,3 +3988,87 @@ fallback for rows that leave the sprite column empty.
 **Law:** The CSV is the authoritative source for ALL per-unit properties. The generator
 must not re-derive what the CSV already specifies. This is the same principle as the
 Prime Directive: source data lives in the CSV, generator applies it, never invents it.
+
+
+## 2026-08-15 — Phase 1 terrain gating: infrastructure was already built, only data was missing
+
+**Problem:** Planned to "implement terrain gating" as if it were new code. Spent time assessing how to build it before discovering the generator already had `_terrain_gate_block()` fully implemented and wired into the gating output.
+
+**Root cause:** Didn't check the generator for existing functions before planning new work. The `read_code` signatures list showed it plainly at line 2878.
+
+**What worked:** Added `terrain_prereq` column to `improvements.csv` with pipe-separated terrain names (e.g. `TERRAIN_FOREST|TERRAIN_JUNGLE|TERRAIN_SWAMP`). Ran generator. Gate appeared in `mom_gating.slc`. Same for `_apply_mana_policy_constants()` — already called in `main()`, already patching from `mod_policy.json`.
+
+**Key insight:** Before planning to "build" something in this repo, search the generator's function list. The infrastructure is typically already there — the gap is usually DATA, not CODE.
+
+**Testing gap:** Terrain gating cannot be verified at turn 1 because buildings need advance prereqs. Only Barracks (prereq=nil) appears in the build menu. Structural proof: the gate uses the same `TerrainType()` + `GetNeighbor()` scan as the proven dwarf mountain gate in `mod_CanCityBuildUnit`. To directly observe the gate blocking a building, either grant the advance via a SLIC fixture or run 50+ turns of research.
+
+**Verification achieved:** Generator exit 0, audit PASS:64/FAIL:0, turnloop 5/5 + 20/20 with 0 SLIC errors, build editor screenshot shows correctly filtered list.
+
+**Dead ends:** Don't hand-test terrain gating by looking at the build menu at turn 1 — nothing gated is available yet due to advance prereqs.
+
+## 2026-08-15 — probe_builtins right-click arm dies after hover
+
+**Problem:** probe_builtins right-click cancel arm throws `(1400, 'PostMessage', 'Invalid window handle.')` — the game process exits between the hover (which proves target mode is active) and the right-click button injection.
+
+**Last-good:** `runs/20260815-100118-builtins` (all four `09_right_cancel_*` files present, full PASS).
+**First broken:** `runs/20260815-100656-builtins` (missing `09_right_cancel_after.png`).
+
+**Not caused by:** terrain gating change (only touches `mod_CanCityBuildBuilding`). All 7 callbacks + ESC cancel pass in every run.
+
+**Root cause:** Unknown — likely a protocol change between those two runs in the hover/right-click injection sequence. Not investigated further.
+
+**Dead ends:** Don't block feature work on this. Don't rewrite the right-click protocol without first diffing the probe script between those two runs.
+
+
+## 2026-08-15 — turnloop crashes past turn 5: the harness opens a SLIC alertbox it cannot close
+
+**Problem:** `turnloop.py --turns 50` dies at turn 6-8 with `PostMessage: Invalid window handle`. The game is healthy — 0 SLIC errors, turns advance. The crash is the harness repeatedly clicking a SLIC alertbox it opened and can't dismiss.
+
+**Root cause:** `--probe-every 5` (the default) presses 'j' every 5 turns. That fires `MomOpenSpellbook` which opens the `MagicMenu` alertbox (4 arms: Artifacts, Cast a Working, Summon Creature, Close). The harness has NO working path to click a SLIC alertbox arm:
+- `StandardMessageWindow.StandardResponseButton` → returns null object for SLIC arms
+- `StandardMinimizeButton` → hides visually but does NOT call `Kill()` — the `alert_box_open()` detector still sees the parchment
+- Coordinate PostMessage clicks → fall through to the MAP behind the alertbox (proven by calib frames showing map terrain shifting while alertbox stays open)
+- All three scale candidates (0.8, 1.0, 1.25) miss
+
+**Why it seemed to work before:** The 200-turn runs from August 2 (`20260802-205652-longgame`, `20260802-210818-longgame`) predated the SLIC spellbook wiring. The 'j' key had no handler, so pressing it was a no-op. Once `MomOpenSpellbook` was included in `scenario.slc`, the trigger fires and the alertbox opens.
+
+**Fix:** `--probe-every 0` disables the 'j' probe. 50/50 turns, 0 SLIC errors confirmed with this flag. The game itself is stable; only the harness's self-inflicted alertbox blocks it.
+
+**Permanent fix needed:** Either:
+1. Make the alertbox dismiss work (find how PostMessage coordinates map to aui alertbox surfaces — they currently don't)
+2. Or add a SLIC-level auto-dismiss for headless mode (env var check that suppresses the Message() call)
+3. Or use the native command protocol to send a `dismiss:alertbox` command that calls `Kill()` on the active alertbox
+
+**Dead ends:**
+- Don't try more scale factors — the clicks go through to the map at ALL scales
+- Don't use `StandardMinimizeButton` as a dismiss — it hides without Kill() so `alert_box_open()` remains True on the next frame
+- Don't assume the 200-turn longgame runs prove alertbox dismiss works — they never encountered a SLIC alertbox
+- The `--dismiss` flag does NOT help — it's for the BeginTurn message box, not for SLIC alertboxes
+
+## 2026-08-15 — Session summary: Phase 1 terrain gating DONE
+
+**What was implemented:**
+- `improvements.csv`: added `terrain_prereq` column (pipe-separated terrain names)
+- Primal Source → `TERRAIN_FOREST|TERRAIN_JUNGLE|TERRAIN_SWAMP`
+- Fantastic Stable → `TERRAIN_GRASSLAND|TERRAIN_PLAINS|TERRAIN_FOREST`
+- Generator emits terrain checks in `mod_CanCityBuildBuilding` (center + 8 neighbor scan)
+- `mod_policy.json` mana_economy block already existed with all constants
+- `_apply_mana_policy_constants()` already patched mom_magic.slc from policy
+
+**What was verified:**
+- Generator exit 0
+- Audit PASS:64 FAIL:0
+- Turnloop 5/5 PASS, 0 SLIC errors
+- Turnloop 50/50 PASS, 0 SLIC errors (with `--probe-every 0`)
+- Mayor probe 20/20 PASS, builds functional
+- Build editor screenshot captured at turn 1 (only Barracks visible — correct, advance prereqs gate others)
+
+**What was NOT verified:**
+- Direct observation of terrain gate blocking a building in the build menu (requires advancing research to unlock the gated advance, ~50+ turns). Structural proof: same mechanism as the proven dwarf mountain gate.
+
+**Key learnings for next session:**
+1. The generator infrastructure is typically already built — check before planning new code
+2. `prompt.md` was stale — always verify against actual artifacts
+3. `done` = in-game tested, not generator-ran-clean
+4. Use `--probe-every 0` for any turnloop run until the SLIC alertbox dismiss is fixed
+5. SLIC alertbox arms are unreachable via PostMessage or LDL inject — this is the #1 harness limitation

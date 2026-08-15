@@ -79,8 +79,6 @@ int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)
 
 int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
 {
-    // Guard: if the city is invalid, allow everything (engine handles the rest)
-    if (!CityIsValid(theCity)) { return 1; }
     // VESSELS -- 1, never buildable by anyone
     if (theUnit == UnitDB(UNIT_LAMP)
     ) { return 0; }
@@ -196,6 +194,44 @@ int_f mod_CanCityBuildBuilding(city_t theCity, int_t theBuilding)
     if (MomSphere[theCity.owner] != 3) {
         if (theBuilding == BuildingDB(IMPROVE_BEACON_OF_WISDOM)
         ) { return 0; }
+    }
+    // TERRAIN GATING -- 2 building(s) require specific terrain
+    // Generated from improvements.csv terrain_prereq column.
+    // Scans city center + 8 neighbors for any matching terrain type.
+    location_t tgLoc;
+    location_t tgNbr;
+    int_t tgDir;
+    int_t tgFound;
+    int_t tgT;
+    if (theBuilding == BuildingDB(IMPROVE_PRIMAL_SOURCE)) {
+        tgLoc = theCity.location;
+        tgFound = 0;
+        tgT = TerrainType(tgLoc);
+        if (tgT == 0 || tgT == 7 || tgT == 6) { tgFound = 1; }
+        if (tgFound == 0) {
+            for (tgDir = 0; tgDir < 8; tgDir = tgDir + 1) {
+                if (GetNeighbor(tgLoc, tgDir, tgNbr)) {
+                    tgT = TerrainType(tgNbr);
+                    if (tgT == 0 || tgT == 7 || tgT == 6) { tgFound = 1; }
+                }
+            }
+        }
+        if (tgFound == 0) { return 0; }
+    }
+    if (theBuilding == BuildingDB(IMPROVE_FANTASTIC_STABLE)) {
+        tgLoc = theCity.location;
+        tgFound = 0;
+        tgT = TerrainType(tgLoc);
+        if (tgT == 4 || tgT == 1 || tgT == 0) { tgFound = 1; }
+        if (tgFound == 0) {
+            for (tgDir = 0; tgDir < 8; tgDir = tgDir + 1) {
+                if (GetNeighbor(tgLoc, tgDir, tgNbr)) {
+                    tgT = TerrainType(tgNbr);
+                    if (tgT == 4 || tgT == 1 || tgT == 0) { tgFound = 1; }
+                }
+            }
+        }
+        if (tgFound == 0) { return 0; }
     }
     return 1;
 }
