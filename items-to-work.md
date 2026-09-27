@@ -1,12 +1,12 @@
 # Unit art — items to work
 
-Source: operator review of `tools/momjr_csv/unit_art_review_0926-1520.html`
+Source: operator review of `tools/momjr_csv/unit_art_review_0926-2145.html`
 and `.tmp/matrix/sheet_0926_labelled.png`, 2026-09-26.
 On the review page **left = CURRENT** (installed), **right = PROPOSED** (generated).
 
 **Status 2026-09-26 18:45: every item resolved.** All 82 units carry a final
 verdict in `unit_art_truth.json` (61 correct, 21 crafted). Review page:
-`tools/momjr_csv/unit_art_review_0926-2039.html`. Ship-size sheet of every unit:
+`tools/momjr_csv/unit_art_review_0926-2145.html`. Ship-size sheet of every unit:
 `.tmp/matrix/sheet_0926_final_ship.png`. Built + audited, NOT verified in game.
 
 ## Keep the current art — DONE
@@ -14,6 +14,25 @@ verdict in `unit_art_truth.json` (61 correct, 21 crafted). Review page:
 CRYSTAL_GOLEM, DJINN, DROW, TREANT, ARCH_MAGE ("former unit" = the left,
 installed `arch_mage.png`), CENTAUR_BOWMAN. All `no_regenerate`; the review page
 now shows "final — no candidate" for every decided unit.
+
+## One-colour transparency, right-hand art, new ogre and orc — DONE (2026-09-26 evening)
+
+Operator: "pick just one color for alpha masking and no magic wand, it's just
+that pixel color only".
+
+- Transparency is now ONE exact colour everywhere: the installer keys exactly
+  the source's background colour, the sprite builder keys exactly black, and the
+  review page shows the same. No flood fill, no tolerance, no per-unit list.
+- 22 generated renders did not have a one-colour background (white noise like
+  254,253,253), so the exact rule could not key them. Each got real transparency
+  from the BiRefNet background-removal model instead, and the installer uses that
+  alpha as-is.
+- IRON_GOLEM, LICH, MAGE, PEASANTS, SKELETONS now use the right-hand image from
+  the 15:20 page. The retired art-folder mappings are removed so a rescan cannot
+  put them back.
+- OGRE is now a bald, fur-wrapped tan ogre with a spiked club; ORC a lean green
+  orc with a scimitar and shield. With the grey-blue troll and the armoured war
+  troll, the four read as four different units.
 
 ## Dwarves — DONE
 

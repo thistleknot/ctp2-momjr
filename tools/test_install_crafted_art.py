@@ -75,6 +75,35 @@ def _blocky(native=(15, 22), k=3) -> Image.Image:
     return im.resize((native[0] * k, native[1] * k), Image.NEAREST)
 
 
+def test_one_colour_key_takes_exactly_that_colour_and_nothing_near_it(tmp_path):
+    """Operator 2026-09-26: "pick just one color for alpha masking and no magic
+    wand, it's just that pixel color only". Background (0,0,0); interior pocket
+    of (0,0,0) is keyed too; (1,1,1) and (0,0,2) next to it are NOT."""
+    im = Image.new("RGB", (40, 30), (0, 0, 0))
+    for y in range(5, 25):
+        for x in range(5, 35):
+            im.putpixel((x, y), (200, 150, 90))
+    for y in range(12, 18):
+        for x in range(15, 25):
+            im.putpixel((x, y), (0, 0, 0))            # enclosed background pocket
+    im.putpixel((6, 6), (1, 1, 1))
+    im.putpixel((7, 6), (0, 0, 2))
+    p = tmp_path / "gen.png"
+    im.save(p)
+    k = I._keyed(p)
+    assert k.getpixel((0, 0))[3] == 0
+    assert k.getpixel((20, 15))[3] == 0              # pocket: exact key colour
+    assert k.getpixel((6, 6))[3] == 255              # near-black is NOT the key
+    assert k.getpixel((7, 6))[3] == 255
+    assert k.getpixel((10, 10))[3] == 255
+
+
+def test_key_colour_is_the_most_common_border_colour(tmp_path):
+    im = Image.new("RGB", (20, 20), (255, 255, 255))
+    im.putpixel((0, 0), (250, 250, 250))
+    assert I.key_colour(im) == (255, 255, 255)
+
+
 def test_block_size_finds_the_whole_number_enlargement():
     assert I._block_size(_blocky(k=3)) == 3
     assert I._block_size(_blocky(k=2)) == 2
@@ -331,9 +360,11 @@ def test_tiny_pixel_sprite_is_upscaled_crisp_not_blurred(tmp_path):
     two-colour checker stays exactly two colours under NEAREST, and grows
     intermediate values under any interpolating filter."""
     p = tmp_path / "tiny.png"
-    im = Image.new("RGBA", (16, 31), (0, 0, 0, 0))
-    for y in range(31):
-        for x in range(16):
+    # transparent margin like a real sprite; a frame-filling opaque image has
+    # no background, and the one-colour key would take its border colour
+    im = Image.new("RGBA", (18, 33), (0, 0, 0, 0))
+    for y in range(1, 32):
+        for x in range(1, 17):
             im.putpixel((x, y), (255, 0, 0, 255) if (x + y) % 2 else (0, 0, 255, 255))
     im.save(p)
     m = I.to_master(p, normalize=True)
@@ -351,13 +382,15 @@ def test_dracolich_maps_to_the_bone_white_file_only():
         assert stem not in I.NAMESAKE
 
 
-def test_the_two_centaur_files_go_to_the_two_centaur_units():
-    """'centaur' is the spear centaur; the archer belongs to the bowman unit.
-    The small 'centaur archer' sprite is deliberately unmapped -- the operator
-    kept the installed reimagined bowman."""
-    assert I.NAMESAKE["centaur"] == "CENTAURS"
+def test_retired_art_folder_files_are_not_mapped():
+    """Units the operator moved to generated art must not be overwritten by the
+    next art-folder scan (2026-09-26: "use the image on the right")."""
+    for stem in ("centaur", "centaur archer", "dwarf warrior", "dwarf crossbow",
+                 "lich", "iron golem", "peasant", "skeleton warrior reimagined",
+                 "wizard", "ogre", "orc", "orc_"):
+        assert stem not in I.NAMESAKE, stem
     assert I.NAMESAKE["centaur archer reimagined"] == "CENTAUR_BOWMAN"
-    assert "centaur archer" not in I.NAMESAKE
+    assert I.NAMESAKE["minotaur_reimagined"] == "MINOTAUR_WARRIOR"
 
 
 def test_descriptive_suffixes_still_resolve_to_their_unit():
@@ -371,9 +404,4 @@ def test_namesake_map_covers_the_non_obvious_names():
     """'runesmith' -> DWARF_RUNESMITH cannot be derived by string munging."""
     assert I.NAMESAKE["runesmith"] == "DWARF_RUNESMITH"
     assert I.NAMESAKE["arch mage"] == "ARCH_MAGE"
-    assert I.NAMESAKE["dwarf crossbow"] == "DWARF_CROSSBOW"
-    # The two dwarves are DIFFERENT units with different crafted files. Mapping
-    # either onto the other would install hand-made art on the wrong unit, which
-    # no later check would catch -- both would simply look plausible.
-    assert I.NAMESAKE["dwarf warrior"] == "DWARF_WARRIOR"
-    assert I.NAMESAKE["dwarf warrior"] != I.NAMESAKE["dwarf crossbow"]
+    assert I.NAMESAKE["genie_reimagined"] == "DJINN"

@@ -40,7 +40,8 @@ guarded by tests:
 SOURCES ARRIVE IN THREE SHAPES and only one is safe to trust as-is: RGBA with
 real transparency. RGB on black is harmless. RGB on WHITE (any .jfif/.jpg
 export) has no alpha at all and would import as an opaque box, so `_keyed`
-derives a mask by flooding from the border colour when a source carries none.
+keys ONE exact colour -- the most common border colour -- when a source carries
+none. No flood, no tolerance (operator 2026-09-26).
 
 Every overwrite is backed up next to the original as `<name>.tga.bak-<stamp>`.
 """
@@ -70,8 +71,12 @@ NAMESAKE = {
     "arch mage": "ARCH_MAGE",
     "crystal golem": "CRYSTAL_GOLEM",
     "drow": "DROW",
-    "dwarf crossbow": "DWARF_CROSSBOW",
-    "dwarf warrior": "DWARF_WARRIOR",
+    # NOT MAPPED ANY MORE (operator 2026-09-26, "use the image on the right"):
+    # dwarf warrior, dwarf crossbow, lich, iron golem, peasant, skeleton warrior
+    # reimagined, wizard -> those units use their generated upgrade; ogre / orc
+    # are being regenerated; centaur -> CENTAURS uses the klein centaur. A
+    # mapping left here would silently put the retired file back on the next
+    # art-folder scan.
     # Later revisions the operator saved alongside the originals. Several map to
     # an ident that an earlier file already claims, which is why NEWEST WINS
     # below -- "priest (2).png" is a redraw of "priest.png", not a second unit.
@@ -85,16 +90,6 @@ NAMESAKE = {
     # DJINN is the genie again now that its centaur-archer tile moved
     # to CENTAUR_BOWMAN.
     "genie_reimagined": "DJINN",
-    # 2026-09-26 batch. Several are native pixel sprites (16-40 px) that the
-    # framing pass upscales with NEAREST so they stay crisp.
-    "lich": "LICH",
-    "ogre": "OGRE",
-    "orc": "ORC",
-    "orc_": "ORC",                    # newest wins -> orc_.png
-    "iron golem": "IRON_GOLEM",
-    "peasant": "PEASANTS",
-    "skeleton warrior reimagined": "SKELETONS",
-    "wizard": "MAGE",                 # operator: "I have a good mage image"
     # DRACOLICH: mapped to ONE file on purpose. Four variants exist and
     # newest-wins would pick "green dracolich.png" -- the desaturated grey-green
     # the operator rejected ("the dracolich is now fucking green"). dracolich_.png
@@ -106,74 +101,30 @@ NAMESAKE = {
     "centaur archer reimagined": "CENTAUR_BOWMAN",
     "priest": "PRIEST",
     "runesmith": "DWARF_RUNESMITH",
-    # operator 2026-09-26: "centaurs is missing the new version". Same pose as
-    # the old tile, but a clean 38x41 sprite instead of a blurred blow-up.
-    "centaur": "CENTAURS",
 }
 
 
-def _key_pockets(rgba: Image.Image, bg: tuple[int, int, int], tol: int,
-                 min_frac: float) -> int:
-    """Key ENCLOSED background: near-bg regions the edge flood could not reach.
+def _keyed(src: Path) -> Image.Image:
+    """Open `src` with a usable alpha channel.
 
-    The border flood-fill stops at the silhouette, so background trapped
-    between legs or inside a drawn bowstring survives as a black hole that
-    shows on the map as a box. Any connected region of background-coloured
-    pixels at least `min_frac` of the frame is keyed too.
+    ONE COLOUR, EXACT, NOTHING ELSE (operator 2026-09-26: "pick just one color
+    for alpha masking and no magic wand, it's just that pixel color only").
 
-    OPT-IN, for GENERATED art only: on a flat noisy background a large pure
-    near-black region is background. On hand-made art the same test would eat
-    a black cloak, which is why crafted files never get this pass. Returns the
-    number of pixels keyed.
-    """
-    w, h = rgba.size
-    px = rgba.load()
-    near =[[px[x, y][3] and sum(abs(px[x, y][i] - bg[i]) for i in range(3)) <= tol
-             for x in range(w)] for y in range(h)]
-    seen = [[False] * w for _ in range(h)]
-    min_px, keyed = int(w * h * min_frac), 0
-    for sy in range(h):
-        for sx in range(w):
-            if not near[sy][sx] or seen[sy][sx]:
-                continue
-            comp, stack = [], [(sx, sy)]
-            seen[sy][sx] = True
-            while stack:
-                x, y = stack.pop()
-                comp.append((x, y))
-                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                    if 0 <= nx < w and 0 <= ny < h and near[ny][nx] and not seen[ny][nx]:
-                        seen[ny][nx] = True
-                        stack.append((nx, ny))
-            if len(comp) >= min_px:
-                for x, y in comp:
-                    px[x, y] = (0, 0, 0, 0)
-                keyed += len(comp)
-    return keyed
+        RGBA with real transparency -> its alpha is used as-is
+        no transparency             -> the ONE key colour is the most common
+                                       border colour, and exactly the pixels of
+                                       that colour become transparent -- all of
+                                       them, wherever they are, and no others
 
+    What this replaced: a flood fill from the border with a colour tolerance, plus
+    an enclosed-pocket pass. At the tolerances generated art seemed to need, it
+    removed up to 46% of real pixels on dark units (Vampire, Gargoyle), and the
+    flood could never reach background enclosed between legs. An exact single
+    colour has neither failure: it never touches a pixel that is not the key.
 
-def _keyed(src: Path, tol: int | None = None, pockets: float = 0.0) -> Image.Image:
-    """Open `src` with a usable alpha channel, deriving one if it has none.
-
-    Crafted files arrive three ways and only one is safe to trust:
-
-        RGBA with real transparency   -> use it
-        RGB on a BLACK background     -> harmless; black is already the key
-        RGB on a WHITE background     -> DANGEROUS. Composited onto the key it
-                                         becomes an opaque white box with the
-                                         figure buried in it, and every later
-                                         check (size, format, opacity, render)
-                                         still passes.
-
-    A .jfif/.jpg export has no alpha at all, so the background must be derived.
-    build_sprites._key_background samples the CORNER colour and floods inward,
-    which is right for either polarity -- a global "black is transparent" test
-    would punch holes through legitimately black art instead.
-
-    `tol` defaults to build_sprites' BG_KEY_TOLERANCE (24), right for flat
-    backgrounds. GENERATED art sits on a NOISY near-black background, and at 24
-    the noise survives as dark streaks around the figure -- the 2026-09-06 z-image
-    workflow keyed at 96 for exactly this reason.
+    Its cost, stated plainly: a source whose background is NOT one exact colour
+    (noisy renders, soft shadows, .jfif compression) keeps that noise as opaque
+    pixels. The fix for that is a clean source, not a wider key.
     """
     im = Image.open(src)
     if im.mode == "RGBA":
@@ -181,19 +132,23 @@ def _keyed(src: Path, tol: int | None = None, pockets: float = 0.0) -> Image.Ima
         if a.getextrema()[0] < 255:          # genuine transparency present
             return im
     rgba = im.convert("RGBA")
-    from build_sprites import _key_background, BG_KEY_TOLERANCE
-    t = BG_KEY_TOLERANCE if tol is None else tol
-    bg = _corner_colour(rgba)        # sample BEFORE the flood keys the corners
-    _key_background(rgba, t)
-    if pockets:
-        _key_pockets(rgba, bg, t, pockets)
+    key = key_colour(rgba)
+    px = rgba.load()
+    for y in range(rgba.height):
+        for x in range(rgba.width):
+            if px[x, y][:3] == key:
+                px[x, y] = (0, 0, 0, 0)
     return rgba
 
 
-def _corner_colour(im: Image.Image) -> tuple[int, int, int]:
-    px, (w, h) = im.load(), im.size
-    cs = (px[0, 0], px[w - 1, 0], px[0, h - 1], px[w - 1, h - 1])
-    return tuple(sum(c[i] for c in cs) // 4 for i in range(3))
+def key_colour(im: Image.Image) -> tuple[int, int, int]:
+    """The most common EXACT colour on the image border -- the one key colour."""
+    from collections import Counter
+    rgb = im.convert("RGB")
+    px, (w, h) = rgb.load(), rgb.size
+    border = ([px[x, 0] for x in range(w)] + [px[x, h - 1] for x in range(w)]
+              + [px[0, y] for y in range(h)] + [px[w - 1, y] for y in range(h)])
+    return Counter(border).most_common(1)[0][0]
 
 
 def _block_size(im: Image.Image) -> int:
@@ -269,8 +224,7 @@ def _normalize_alpha(im: Image.Image) -> Image.Image:
     return out
 
 
-def to_master(src: Path, normalize: bool = False,
-              key_tol: int | None = None, pockets: float = 0.0) -> Image.Image:
+def to_master(src: Path, normalize: bool = False) -> Image.Image:
     """Crafted image -> 160x120 RGB on the black key, art floored off pure black.
 
     `normalize` runs the same geometry pass the shipped roster went through:
@@ -283,9 +237,9 @@ def to_master(src: Path, normalize: bool = False,
     already deliberate; normalize is for making a set agree.
     """
     if normalize:
-        im = _normalize_alpha(_keyed(src, key_tol, pockets))
+        im = _normalize_alpha(_keyed(src))
     else:
-        im = _keyed(src, key_tol, pockets)
+        im = _keyed(src)
         im = im.convert("RGBA") if im.mode != "RGBA" else im
         if im.size != (W, H):
             c = im.copy()
@@ -359,12 +313,6 @@ def main() -> int:
     ap.add_argument("--file", nargs="*", default=[], metavar="IDENT=PATH",
                     help="install an explicit image onto a unit (accepted "
                          "generated art); skips the art-folder scan")
-    ap.add_argument("--key-tol", type=int, default=None,
-                    help="background key tolerance for sources with no alpha "
-                         "(default 24; noisy generated backgrounds need more)")
-    ap.add_argument("--key-pockets", type=float, default=0.0, metavar="FRAC",
-                    help="GENERATED art only: also key enclosed background "
-                         "regions at least FRAC of the frame (e.g. 0.004)")
     args = ap.parse_args()
 
     stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -398,8 +346,7 @@ def main() -> int:
     for ident, src in sorted(found.items()):
         dst = args.pics / f"SPRITE_{ident}.tga"
         exists = dst.exists()
-        im = to_master(src, normalize=args.normalize, key_tol=args.key_tol,
-                       pockets=args.key_pockets)
+        im = to_master(src, normalize=args.normalize)
         note = ""
         if args.apply:
             # THE ICON IS THE SAME ART. uniticon.txt points the build manager

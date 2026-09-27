@@ -14,7 +14,7 @@
   "APPRENTICE": {
     "depicts": "apprentice",
     "verdict": "correct",
-    "note": "operator: \"apprentice is wrong\". No figure in the tile at all; same class as CRYSTAL_GOLEM and DWARF_RUNESMITH, both fiery balls. art_cell_index 74 is past the 62-cell sheet, so there is no civ2 source for it. | operator 2026-09-26 \"variation on wizard and priest\": img2img from the installed PRIEST art at denoise 0.55, young hooded caster with a glowing staff (source file: .tmp/matrix/items1/APPRENTICE_s202.png); previous verdict wrong | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\").",
+    "note": "operator: \"apprentice is wrong\". No figure in the tile at all; same class as CRYSTAL_GOLEM and DWARF_RUNESMITH, both fiery balls. art_cell_index 74 is past the 62-cell sheet, so there is no civ2 source for it. | operator 2026-09-26 \"variation on wizard and priest\": img2img from the installed PRIEST art at denoise 0.55, young hooded caster with a glowing staff (source file: .tmp/matrix/items1/APPRENTICE_s202.png); previous verdict wrong | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "ARCH_MAGE": {
@@ -26,19 +26,19 @@
   "BONE_GOLEM": {
     "depicts": "bone golem",
     "verdict": "correct",
-    "note": "certainly not a bone golem, but I think I picked it because it was a proxy | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/BONE_GOLEM.png); previous verdict proxy",
+    "note": "certainly not a bone golem, but I think I picked it because it was a proxy | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/BONE_GOLEM.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "COCKATRICE": {
     "depicts": "cockatrice",
     "verdict": "correct",
-    "note": "same for cockatrice ... I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/COCKATRICE.png); previous verdict proxy",
+    "note": "same for cockatrice ... I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/COCKATRICE.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "CRUSADER": {
     "depicts": "crusader",
     "verdict": "correct",
-    "note": "crusader, idk. I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/CRUSADER.png); previous verdict proxy",
+    "note": "crusader, idk. I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/CRUSADER.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "CRYSTAL_GOLEM": {
@@ -50,7 +50,7 @@
   "DEATH_KNIGHT": {
     "depicts": "death knight",
     "verdict": "correct",
-    "note": "death knight just looks like a crusader | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DEATH_KNIGHT.png); previous verdict wrong",
+    "note": "death knight just looks like a crusader | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DEATH_KNIGHT.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "DJINN": {
@@ -62,7 +62,7 @@
   "DRUID": {
     "depicts": "druid",
     "verdict": "correct",
-    "note": "druid is a pikeman | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DRUID.png); previous verdict wrong",
+    "note": "druid is a pikeman | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DRUID.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "DWARF_CROSSBOW": {
@@ -85,23 +85,26 @@
   "GOBLIN": {
     "depicts": "goblin",
     "verdict": "correct",
-    "note": "goblin is a boar | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/GOBLIN.png); previous verdict wrong",
+    "note": "goblin is a boar | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/GOBLIN.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "LICH": {
     "depicts": "lich",
-    "verdict": "crafted",
-    "note": "operator's hand-made art lich.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation"
+    "verdict": "correct",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: LICH.png)",
+    "no_regenerate": true
   },
   "OGRE": {
     "depicts": "ogre",
-    "verdict": "crafted",
-    "note": "operator's hand-made art ogre.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation"
+    "verdict": "correct",
+    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a bald, fur-wrapped ogre with pale tan skin and a spiked club, distinct from the grey-blue troll and the armoured war troll (source file: OGRE.png)",
+    "no_regenerate": true
   },
   "ORC": {
     "depicts": "orc",
-    "verdict": "crafted",
-    "note": "operator's hand-made art orc_.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation"
+    "verdict": "correct",
+    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a lean green orc warrior with a scimitar and a round shield, distinct from the grey-blue troll and the armoured war troll (source file: ORC.png)",
+    "no_regenerate": true
   },
   "PRIEST": {
     "depicts": "priest",
@@ -121,31 +124,32 @@
   },
   "SKELETONS": {
     "depicts": "skeletons",
-    "verdict": "crafted",
-    "note": "operator's hand-made art skeleton warrior reimagined.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation"
+    "verdict": "correct",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: SKELETONS.png)",
+    "no_regenerate": true
   },
   "TEMPLAR": {
     "depicts": "templar",
     "verdict": "correct",
-    "note": "templar is a mounted wizard | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/TEMPLAR.png); previous verdict wrong",
+    "note": "templar is a mounted wizard | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/TEMPLAR.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "TROLL": {
     "depicts": "troll",
     "verdict": "correct",
-    "note": "troll is red dragon | operator 2026-09-26 \"ogre, orc, troll all look the same\" -> redrawn as a gaunt grey-blue cave troll with a tree-trunk club, distinct from the green ogre and orc (source file: .tmp/matrix/items1/TROLL_s2718.png); previous verdict wrong | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\").",
+    "note": "troll is red dragon | operator 2026-09-26 \"ogre, orc, troll all look the same\" -> redrawn as a gaunt grey-blue cave troll with a tree-trunk club, distinct from the green ogre and orc (source file: .tmp/matrix/items1/TROLL_s2718.png); previous verdict wrong | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "UNDEAD_DRAGON": {
     "depicts": "undead dragon",
     "verdict": "correct",
-    "note": "likely selected as closest to it (but is a green dragon) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/UNDEAD_DRAGON.png); previous verdict proxy",
+    "note": "likely selected as closest to it (but is a green dragon) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/UNDEAD_DRAGON.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "WARLOCK": {
     "depicts": "warlock",
     "verdict": "correct",
-    "note": "same for warlock (green wizard?) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/WARLOCK.png); previous verdict proxy Key tolerance 40: the white background left a halo at the default.",
+    "note": "same for warlock (green wizard?) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/WARLOCK.png); previous verdict proxy Key tolerance 40: the white background left a halo at the default. | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "DROW": {
@@ -186,22 +190,25 @@
     "depicts": "centaur warrior",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"centaurs is missing the new version\": centaur.png proved to be the old tile at native size, so a new version was generated on FLUX.2 klein (z-image cannot draw centaurs). 5 of 6 klein outputs were a man RIDING a horse; the one kept is a true centaur, a human torso rising from the horse body (source file: .tmp/matrix/klein_centaurs/CENTAURS_s2718_d45.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
+    "note": "operator 2026-09-26 \"centaurs is missing the new version\": centaur.png proved to be the old tile at native size, so a new version was generated on FLUX.2 klein (z-image cannot draw centaurs). 5 of 6 klein outputs were a man RIDING a horse; the one kept is a true centaur, a human torso rising from the horse body (source file: .tmp/matrix/klein_centaurs/CENTAURS_s2718_d45.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
   },
   "IRON_GOLEM": {
     "depicts": "iron golem",
-    "verdict": "crafted",
-    "note": "operator's hand-made art iron golem.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation"
+    "verdict": "correct",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: IRON_GOLEM.png)",
+    "no_regenerate": true
   },
   "PEASANTS": {
     "depicts": "peasants",
-    "verdict": "crafted",
-    "note": "operator's hand-made art peasant.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation"
+    "verdict": "correct",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: PEASANTS.png)",
+    "no_regenerate": true
   },
   "MAGE": {
     "depicts": "mage",
-    "verdict": "crafted",
-    "note": "operator's hand-made art wizard.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation"
+    "verdict": "correct",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: MAGE.png)",
+    "no_regenerate": true
   },
   "AIRSHIP": {
     "depicts": "airship",
@@ -435,48 +442,48 @@
     "depicts": "catapult",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"wrong unit altogether, looks like a cartoon\" -> txt2img, a real four-wheeled torsion catapult (source file: .tmp/matrix/items1/CATAPULT_s2718.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
+    "note": "operator 2026-09-26 \"wrong unit altogether, looks like a cartoon\" -> txt2img, a real four-wheeled torsion catapult (source file: .tmp/matrix/items1/CATAPULT_s2718.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
   },
   "INFERNAL_DEVICE": {
     "depicts": "infernal device",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face) (source file: .tmp/matrix/items1/INFERNAL_DEVICE_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
+    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face) (source file: .tmp/matrix/items1/INFERNAL_DEVICE_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
   },
   "MALLEUS": {
     "depicts": "malleus",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other three candidates had dark gradient backgrounds that do not key (source file: .tmp/matrix/items1/MALLEUS_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
+    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other three candidates had dark gradient backgrounds that do not key (source file: .tmp/matrix/items1/MALLEUS_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
   },
   "MINION": {
     "depicts": "minion",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word (source file: .tmp/matrix/items1/MINION_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
+    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word (source file: .tmp/matrix/items1/MINION_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
   },
   "STEAM_CANNON": {
     "depicts": "steam cannon",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"facing up / backwards\" -> barrel level, muzzle to the right, boiler on the carriage (source file: .tmp/matrix/items1/STEAM_CANNON_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
+    "note": "operator 2026-09-26 \"facing up / backwards\" -> barrel level, muzzle to the right, boiler on the carriage (source file: .tmp/matrix/items1/STEAM_CANNON_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
   },
   "UNICORN": {
     "depicts": "unicorn",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"looks like a cartoon\" -> realistic white unicorn; keyed at tol 24 with NO pocket pass (the pass punched holes in the white body) (source file: .tmp/matrix/items1/UNICORN_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
+    "note": "operator 2026-09-26 \"looks like a cartoon\" -> realistic white unicorn; keyed at tol 24 with NO pocket pass (the pass punched holes in the white body) (source file: .tmp/matrix/items1/UNICORN_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
   },
   "WYVERN": {
     "depicts": "wyvern",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\" (source file: .tmp/matrix/items1/WYVERN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
+    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\" (source file: .tmp/matrix/items1/WYVERN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
   },
   "GRIFFIN": {
     "depicts": "griffin",
     "verdict": "correct",
-    "note": "operator 2026-09-26 \"griffin face looks messed up\": first z-image batch drew 4/4 WINGED LIONS (no eagle head); klein img2img drew lion-beak mashups. Fixed by a prompt that leads with the anatomy (\"eagle-headed griffin ... the HEAD of a golden eagle ... hindquarters of a lion\") (source file: .tmp/matrix/items_griffin/GRIFFIN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\").",
+    "note": "operator 2026-09-26 \"griffin face looks messed up\": first z-image batch drew 4/4 WINGED LIONS (no eagle head); klein img2img drew lion-beak mashups. Fixed by a prompt that leads with the anatomy (\"eagle-headed griffin ... the HEAD of a golden eagle ... hindquarters of a lion\") (source file: .tmp/matrix/items_griffin/GRIFFIN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
     "no_regenerate": true
   },
   "MINOTAUR_WARRIOR": {

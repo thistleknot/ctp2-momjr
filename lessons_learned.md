@@ -1,3 +1,20 @@
+## 2026-09-26 (evening) — One exact key colour replaced every flood and tolerance
+
+Operator: "pick just one color for alpha masking and no magic wand, it's just that
+pixel color only". Every keying defect of the day came from deciding background by
+NEARNESS: the border flood left enclosed pockets black, tolerance 64 ate up to 46% of
+real pixels on dark units, and a per-unit pocket list was needed to patch the flood.
+Masters already have ONE background colour (0,0,0) and art floored off it, so an
+exact key separates them completely -- pockets included, art never touched.
+
+The rule cannot key a source whose background is not one colour: 22 generated
+renders had near-white noise (254,253,253 ...) and keyed 1,368 of 42,240 px. The fix
+was a clean source (BiRefNet background removal -> real alpha), never a wider key.
+
+**The law:** transparency is decided ONCE, from real alpha or one exact colour; every
+later stage keys that exact colour. Measure a source's one-colour border share before
+trusting it.
+
 ## 2026-09-26 — Four art defects that every format/size check passed
 
 Working items-to-work.md. Each of these shipped, looked plausible in a flat

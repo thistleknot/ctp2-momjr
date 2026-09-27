@@ -277,61 +277,42 @@ def _key_background(img: "Image.Image", tol: int = BG_KEY_TOLERANCE) -> int:
     return opaque
 
 
-# At the 96x72 facing size. 8 punched small holes in dark shading (Orc, War
-# Troll); real pockets measured 60-180 px here, so 20 separates them.
-POCKET_MIN_PX = 20
+KEY_RGB = (0, 0, 0)       # the ONE key colour of every master
 
 
-def _pocket_units() -> set[str]:
-    """SPRITE_<ident> names whose ENCLOSED near-black is background, from
-    mod_policy.json `sprite_key_pockets`. Empty if the policy has none."""
-    import json
-    p = Path(__file__).resolve().parent / "momjr_csv" / "mod_policy.json"
-    try:
-        units = json.loads(p.read_text(encoding="utf-8")).get("sprite_key_pockets", [])
-    except (OSError, ValueError):
-        return set()
-    return {f"SPRITE_{u}" for u in units}
+def _key_exact(master: "Image.Image", size: tuple[int, int] = (96, 72)) -> "Image.Image":
+    """Master -> keyed RGBA facing: exactly KEY_RGB is transparent, nothing else.
 
+    Operator 2026-09-26: "pick just one color for alpha masking and no magic wand,
+    it's just that pixel color only." Masters are written by install_crafted_art
+    with the background at exactly (0,0,0) and every art pixel floored off it, so
+    one exact colour separates them completely -- including background ENCLOSED
+    between legs or inside a bow, which the old border flood could never reach.
 
-def _key_pockets(img: "Image.Image", min_px: int = POCKET_MIN_PX,
-                 tol: int = BG_KEY_TOLERANCE) -> int:
-    """Key ENCLOSED background that the border flood cannot reach.
-
-    The master has no alpha channel, so transparency is rebuilt by flooding
-    from the frame edge -- and background trapped between legs, under a horse
-    or inside a bowstring is read as interior art and drawn as a black box on
-    the map. 54 of 88 masters had such regions (measured 2026-09-26).
-
-    PER UNIT, never global: pure black is ALSO real art (the Spearmen's cloak,
-    the Warship's sail shadow, the Storm Giant's cape). A size rule cannot tell
-    them apart, so the operator-reviewed list in mod_policy.json decides, and
-    only listed units get this pass. Returns the number of pixels keyed.
+    Keying happens at MASTER size, before the shrink to the facing size: shrinking
+    first blends background into the edge pixels, and those near-black blends would
+    no longer equal the key. The shrink runs premultiplied so the key colour does
+    not darken the rim, and the result is cut at half alpha -- the SPR key is
+    binary. Surviving pure black is nudged to DARK_FLOOR so makespr keeps it.
     """
-    w, h = img.size
-    px = img.load()
-    near = lambda p: p[3] and p[0] + p[1] + p[2] <= tol
-    seen = bytearray(w * h)
-    keyed = 0
-    for sy in range(h):
-        for sx in range(w):
-            if seen[sy * w + sx] or not near(px[sx, sy]):
-                continue
-            comp, stack = [], [(sx, sy)]
-            seen[sy * w + sx] = 1
-            while stack:
-                x, y = stack.pop()
-                comp.append((x, y))
-                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                    if 0 <= nx < w and 0 <= ny < h and not seen[ny * w + nx] \
-                            and near(px[nx, ny]):
-                        seen[ny * w + nx] = 1
-                        stack.append((nx, ny))
-            if len(comp) >= min_px:
-                for x, y in comp:
-                    px[x, y] = (0, 0, 0, 0)
-                keyed += len(comp)
-    return keyed
+    im = master.convert("RGBA")
+    px = im.load()
+    for y in range(im.height):
+        for x in range(im.width):
+            r, g, b, _ = px[x, y]
+            px[x, y] = (0, 0, 0, 0) if (r, g, b) == KEY_RGB else (r, g, b, 255)
+    im = im.convert("RGBa").resize(size, Image.LANCZOS).convert("RGBA")
+    px = im.load()
+    for y in range(im.height):
+        for x in range(im.width):
+            r, g, b, a = px[x, y]
+            if a < 128:
+                px[x, y] = (0, 0, 0, 0)
+            elif r == 0 and g == 0 and b == 0:
+                px[x, y] = (DARK_FLOOR, DARK_FLOOR, DARK_FLOOR, 255)
+            else:
+                px[x, y] = (r, g, b, 255)
+    return im
 
 
 def _fit_content(img: "Image.Image") -> "Image.Image":
@@ -481,12 +462,9 @@ def _facing_images(tga: Path, flip: bool) -> list["Image.Image"]:
     same day because it shrank the art without correcting the anchor. Extent and
     anchor are coupled; _content_anchor moves with this.
     """
-    img = Image.open(str(tga)).convert("RGBA").resize((96, 72), Image.LANCZOS)
+    img = _key_exact(Image.open(str(tga)))
     if flip:
         img = img.transpose(Image.FLIP_LEFT_RIGHT)   # left-facing source -> right-facing
-    _key_background(img)
-    if tga.stem.upper() in _pocket_units():
-        _key_pockets(img)
     img = _fit_content(img)
     img = _normalize_to_stock_extent(img)
     return [img] * N_FACINGS   # 1:n cast; replace with n distinct images for true facings

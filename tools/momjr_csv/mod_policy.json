@@ -320,8 +320,6 @@
     "SPRITE_SETTLER",
     "SPRITE_CATAPULT",
     "SPRITE_GALLEY"
-  ],
-  "_sprite_key_pockets": "Units whose ENCLOSED near-black (between legs, under a horse, inside a bowstring) is background, keyed by build_sprites. Per unit because pure black is also real art (Spearmen cloak, Warship sail, Storm Giant cape). Reviewed by eye 2026-09-26; PHANTOM_WARRIORS and AIR_ELEMENTAL left out as ambiguous; MAGE, WAR_MAGE and MALLEUS left out because the pass ate real black art (robe folds, torso, the black horse).",
-  "sprite_key_pockets": ["CENTAURS", "CENTAUR_BOWMAN", "ELVEN_ARCHERS", "ORC", "MINOTAUR_WARRIOR", "MINOTAUR_CROSSBOW", "UNICORN", "WAR_TROLL", "HELL_HOUNDS", "TAURON", "WARRAX", "GUARDIAN_SPIRIT", "DROW", "CARAVAN", "WAR_MAMMOTH", "TREANT"]
+  ]
 }
 
