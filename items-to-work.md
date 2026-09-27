@@ -1,19 +1,29 @@
 # Unit art — items to work
 
-Source: operator review of `tools/momjr_csv/unit_art_review_0927-0815.html`
+Source: operator review of `tools/momjr_csv/unit_art_review_0927-0918.html`
 and `.tmp/matrix/sheet_0926_labelled.png`, 2026-09-26.
 On the review page **left = CURRENT** (installed), **right = PROPOSED** (generated).
 
-**Status 2026-09-26 18:45: every item resolved.** All 82 units carry a final
-verdict in `unit_art_truth.json` (61 correct, 21 crafted). Review page:
-`tools/momjr_csv/unit_art_review_0927-0815.html`. Ship-size sheet of every unit:
-`.tmp/matrix/sheet_0926_final_ship.png`. Built + audited, NOT verified in game.
+**Status 2026-09-27 09:20: every item resolved.** All 82 units carry a final
+verdict in `unit_art_truth.json` (70 correct, 12 crafted). Review page:
+`tools/momjr_csv/unit_art_review_0927-0918.html`. Built + audited, NOT verified in game.
 
 ## Keep the current art — DONE
 
 CRYSTAL_GOLEM, DJINN, DROW, TREANT, ARCH_MAGE ("former unit" = the left,
 installed `arch_mage.png`), CENTAUR_BOWMAN. All `no_regenerate`; the review page
 now shows "final — no candidate" for every decided unit.
+
+## Wing clipped, apprentice, bone golem feet — DONE (2026-09-27 morning)
+
+- The background-removal model alone dropped real art (Gargoyle wing, Galley
+  sea, up to 17% of Air Elemental). For sources whose background is one exact
+  colour, a pixel is now transparent only where the model AND the key agree.
+- APPRENTICE: realistic young adult apprentice ("still too cartoonish").
+- BONE_GOLEM: its render stopped at the thighs; regenerated whole body.
+- OPEN, operator's call: 11 more renders are cropped at the bottom (CRUSADER,
+  DRUID, GOBLIN, LICH, TEMPLAR, MINION, OGRE, ORC at knees/waist; COCKATRICE
+  feet, DEATH_KNIGHT horse legs, UNDEAD_DRAGON tail). Kept as approved.
 
 ## Holes in dark art, green troll, plain bear — DONE (2026-09-27)
 

@@ -19,9 +19,9 @@ class of bug, so it is written explicitly rather than left to a library.
 THE BLACK FLOOR IS PICKED IN QUANTISED SPACE
 The engine keys black to transparency. Interior art that is legitimately black
 must therefore be nudged off pure black, but RGB555 keeps only the top 5 bits:
-a floor of 9 becomes 8 on write, which lands ON the flood-fill tolerance and
-erodes the silhouette. So the floor is 16 -- the first value that survives
-quantisation clear of the key -- and it is applied BEFORE the write, not after.
+a floor of 9 becomes 8 on write. The floor is 16 -- the first value that
+survives quantisation clear of the key -- applied BEFORE the write, so no art
+pixel is ever exactly the one key colour that build_sprites removes.
 
 ALPHA DECIDES WHAT IS ART -- NEVER COLOUR, NEVER BRIGHTNESS
 The engine has no alpha channel here; it keys the background colour. So
