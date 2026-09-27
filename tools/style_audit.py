@@ -97,7 +97,26 @@ def comparison_sheet(refs: list[Image.Image], candidates: list[tuple[str, Image.
 
 
 def ask_vlm(image: Path, prompt: str, seed: int = 1, max_tokens: int = 256) -> str:
-    """Ask the server's vision model one question about one image; return its text."""
+    """Ask the vision model one question about one image; return its text.
+
+    Judge = local Qwen3-VL on .17 by default; STYLE_JUDGE=gemini switches to
+    Gemini 2.5 Flash on OpenRouter (the caption tool's key and request shape)."""
+    import os
+    if os.environ.get("STYLE_JUDGE") == "gemini":
+        import requests
+        import caption_unit_art as C
+        body = {"model": "google/gemini-2.5-flash", "temperature": 0.7, "seed": seed,
+                "max_tokens": max_tokens,
+                "messages": [{"role": "user", "content": [
+                    {"type": "text", "text": prompt},
+                    {"type": "image_url", "image_url": {"url": C.encode(image)}}]}]}
+        r = requests.post(C.API, json=body, timeout=180, headers={
+            "Authorization": f"Bearer {os.environ['OPENROUTER_API_KEY']}"})
+        r.raise_for_status()
+        text = r.json()["choices"][0]["message"].get("content") or ""
+        if not text.strip():
+            raise RuntimeError("gemini returned no text")
+        return text.strip()
     up = Z.upload(image.resolve())
     g = {"1": {"class_type": "LoadImage", "inputs": {"image": up}},
          "2": {"class_type": "AILab_QwenVL",
@@ -231,6 +250,121 @@ def cmd_judge(unit: str, candidates: dict[str, Image.Image], runs: int = 3) -> d
     return {"votes": votes, "reasons": reasons}
 
 
+def master_view(unit: str, pics: Path = Path(DEFAULT_PICS)) -> Image.Image:
+    """The unit at MASTER size (160x120), keyed exactly as the game keys it, on
+    ground. Style is judged here, not at 96x72, where every unit read as 'pixel art'."""
+    f = B._key_exact(Image.open(pics / f"SPRITE_{unit}.tga"), size=(160, 120))
+    plate = Image.new("RGB", f.size, GROUND)
+    plate.paste(f, (0, 0), f)
+    return plate
+
+
+def view(spec: str) -> Image.Image:
+    """A unit ident, a master .tga, or any image file -> a 160x120 judged cell."""
+    p = Path(spec)
+    if p.suffix.lower() == ".tga":
+        return master_view(p.stem[len("SPRITE_"):], p.parent)
+    if p.exists():
+        # keyed like an install (real alpha, else the one exact border colour) so
+        # no example carries a background box -- that biased the judge once already
+        import install_crafted_art as I
+        return thumb(I._keyed(p), (160, 120))
+    return master_view(spec)
+
+
+def contrastive_sheet(preferred: list[Image.Image], dispreferred: list[Image.Image],
+                      targets: list[tuple[str, Image.Image]]) -> Image.Image:
+    """PREFERRED block, DISPREFERRED block, then the labelled targets."""
+    blocks = [("PREFERRED STYLE", grid([("", i) for i in preferred], cols=5)),
+              ("DISPREFERRED STYLE", grid([("", i) for i in dispreferred], cols=5)),
+              ("JUDGE THESE", grid(targets, cols=max(1, len(targets))))]
+    w = max(b.width for _, b in blocks)
+    sheet = Image.new("RGB", (w, sum(b.height + 20 for _, b in blocks)), (30, 30, 34))
+    d = ImageDraw.Draw(sheet)
+    y = 0
+    for title, b in blocks:
+        d.text((6, y + 4), title, fill=(200, 200, 200))
+        sheet.paste(b, (0, y + 18))
+        y += b.height + 20
+    return sheet
+
+
+CLASSIFY_PROMPT = (
+    "Unit art for one fantasy strategy game. The top block shows the PREFERRED art "
+    "style, the middle block the DISPREFERRED art style. Judge only the image under "
+    "JUDGE THESE (labelled X): is its art style closer to PREFERRED or DISPREFERRED? "
+    "Ignore what creature it is; compare rendering, lighting, palette, detail and "
+    "outline. Answer PREFERRED or DISPREFERRED first, then the elements that decided it.")
+
+
+def exemplars() -> tuple[list[Image.Image], list[Image.Image]]:
+    d = json.loads(ANCHORS.read_text(encoding="utf-8"))
+    pref = [view(u) for u in d["preferred"]]
+    pref += [view(str(HERE / "momjr_csv" / i["file"])) for i in d.get("inspirations", [])]
+    return pref, [view(u) for u in d["dispreferred"]]
+
+
+def classify(target: Image.Image, runs: int = 3, exclude: str = "") -> tuple[str, list[str]]:
+    """PREFERRED/DISPREFERRED by majority of RUNS, exemplar order shuffled per run."""
+    import random
+    d = json.loads(ANCHORS.read_text(encoding="utf-8"))
+    pref_u = [u for u in d["preferred"] if u != exclude]
+    disp_u = [u for u in d["dispreferred"] if u != exclude]
+    insp = [str(HERE / "momjr_csv" / i["file"]) for i in d.get("inspirations", [])]
+    SCRATCH.mkdir(parents=True, exist_ok=True)
+    answers = []
+    for r in range(runs):
+        rnd = random.Random(r + 7)
+        p, q = pref_u + insp, disp_u[:]
+        rnd.shuffle(p)
+        rnd.shuffle(q)
+        img = SCRATCH / "classify.png"
+        contrastive_sheet([view(x) for x in p], [view(x) for x in q],
+                          [("X", target)]).save(img)
+        # short answers: generation runs ~2-3 tokens/s on the P5200, so a long
+        # reason cost ~100 s per question (measured 2026-09-27)
+        answers.append(ask_vlm(img, CLASSIFY_PROMPT, seed=r + 1, max_tokens=64))   # node minimum
+    votes = sum(1 for a in answers if a.upper().lstrip(" *#").startswith("DISPREF"))
+    return ("DISPREFERRED" if votes * 2 > runs else "PREFERRED"), answers
+
+
+BATCH_PROMPT = (
+    "Unit art for one fantasy strategy game. The top block shows the PREFERRED art "
+    "style, the middle block the DISPREFERRED art style. For EACH image under JUDGE "
+    "THESE (labelled {labels}), say whether its art style is closer to PREFERRED or "
+    "DISPREFERRED. Ignore what creature it is. Reply one line per label, exactly like "
+    "'T1: PREFERRED'.")
+
+
+def parse_batch(answer: str, labels: list[str]) -> dict[str, str]:
+    """{label: PREFERRED|DISPREFERRED} for every label the answer names."""
+    import re
+    out = {}
+    for lab in labels:
+        m = re.search(rf"{lab}\s*[:\-]\s*\**\s*(DISPREFERRED|PREFERRED)", answer.upper())
+        if m:
+            out[lab] = m.group(1)
+    return out
+
+
+def screen(units: list[str], batch: int = 6) -> dict[str, str]:
+    """One-run screening, BATCH units per question. Returns unit -> verdict."""
+    p, q = exemplars()
+    res: dict[str, str] = {}
+    for i in range(0, len(units), batch):
+        chunk = units[i:i + batch]
+        labels = [f"T{j + 1}" for j in range(len(chunk))]
+        img = SCRATCH / "screen.png"
+        contrastive_sheet(p, q, [(lab, view(u)) for lab, u in zip(labels, chunk)]).save(img)
+        ans = ask_vlm(img, BATCH_PROMPT.format(labels=", ".join(labels)),
+                      seed=i + 1, max_tokens=64 + 12 * len(chunk))
+        got = parse_batch(ans, labels)
+        for lab, u in zip(labels, chunk):
+            res[u] = got.get(lab, "UNPARSED")
+            print(f"  {u:18} {res[u]}", flush=True)
+    return res
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -246,7 +380,43 @@ def main() -> int:
     j.add_argument("unit")
     j.add_argument("files", nargs="+", type=Path, help="NAME=PATH candidates")
     j.add_argument("--runs", type=int, default=3)
+    sub.add_parser("exemplars", help="draw the preferred / dispreferred sheet")
+    sub.add_parser("calibrate", help="held-out exemplars must classify correctly 3/3")
+    cl = sub.add_parser("classify", help="PREFERRED or DISPREFERRED, 3-run majority")
+    cl.add_argument("targets", nargs="+")
+    sub.add_parser("screen", help="one-run batched screening of every other unit")
     a = ap.parse_args()
+    if a.cmd == "screen":
+        d = json.loads(ANCHORS.read_text(encoding="utf-8"))
+        skip = set(d["preferred"]) | set(d["dispreferred"])
+        res = screen([u for u in roster() if u not in skip])
+        (SCRATCH / "screen.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
+        flagged = sorted(u for u, v in res.items() if v != "PREFERRED")
+        print(f"\n{len(flagged)} flagged of {len(res)}: " + " ".join(flagged))
+        return 0
+    if a.cmd == "exemplars":
+        p, q = exemplars()
+        contrastive_sheet(p, q, [("-", Image.new("RGB", (160, 120), GROUND))]
+                          ).save(SCRATCH / "exemplars.png")
+        print(SCRATCH / "exemplars.png")
+        return 0
+    if a.cmd == "calibrate":
+        d = json.loads(ANCHORS.read_text(encoding="utf-8"))
+        ok = True
+        # held-out cases: one approved unit, one REJECTED proposal (clear-cut), and
+        # the operator-named crossbow
+        cases = [(d["preferred"][0], "PREFERRED")] + [(u, "DISPREFERRED") for u in d["dispreferred"][2:4]]
+        for u, want in cases:
+            got, ans = classify(view(u), exclude=u)
+            ok &= got == want
+            print(f"{u:16} want {want:12} got {got:12} | " + " / ".join(x[:60] for x in ans))
+        print("CALIBRATION", "PASS" if ok else "FAIL")
+        return 0 if ok else 1
+    if a.cmd == "classify":
+        for t in a.targets:
+            got, ans = classify(view(t), exclude=t)
+            print(f"{t:18} {got:12} | " + " / ".join(x[:70].replace(chr(10), ' ') for x in ans))
+        return 0
     if a.cmd == "judge":
         cands = {}
         for spec in map(str, a.files):

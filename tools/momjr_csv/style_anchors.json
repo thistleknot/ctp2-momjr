@@ -1,6 +1,21 @@
 {
- "status": "PROPOSED -- operator to confirm",
- "anchors": [
+ "status": "PROPOSED 2026-09-27. preferred: approved painted look + DWARF_RUNESMITH (operator: crossbow 'doesn't belong next to' runesmith). dispreferred: DWARF_CROSSBOW, current DWARF_WARRIOR (operator: old one 'much better'), and REJECTED proposals: unicorn/malleus/crystal golem ('cartoonish'), bear (harness). | 2026-09-27 rebalanced: the first screen sorted by SUBJECT (25/27 passes humanoid) because preferred was all humanoids and dispreferred mostly creatures. Approved TROLL and WARBEARS now give preferred creatures too.",
+ "inspirations": [
+  {
+   "file": "style_inspirations/dwarf_warrior_before_cut.png",
+   "unit": "DWARF_WARRIOR",
+   "operator": "this was the dwarf warrior I had before which was much better tbqh",
+   "date": "2026-09-27"
+  },
+  {
+   "file": "style_inspirations/orc_or_troll_cut.png",
+   "unit": "ORC or TROLL",
+   "operator": "this was either an orc or a troll, idk",
+   "date": "2026-09-27"
+  }
+ ],
+ "_about": "anchors: the frozen reference set the style judge compares against. inspirations: art the operator says WORKS -- the judge describes what makes them work relative to a unit that does not, and that difference drives the next generation.",
+ "proposed_anchors_13": [
   "WAR_MAMMOTH",
   "TEMPLAR",
   "MINOTAUR_CROSSBOW",
@@ -15,19 +30,21 @@
   "DRUID",
   "STORM_GIANT"
  ],
- "inspirations": [
-  {
-   "file": "style_inspirations/dwarf_warrior_before.png",
-   "unit": "DWARF_WARRIOR",
-   "operator": "this was the dwarf warrior I had before which was much better tbqh",
-   "date": "2026-09-27"
-  },
-  {
-   "file": "style_inspirations/orc_or_troll.png",
-   "unit": "ORC or TROLL",
-   "operator": "this was either an orc or a troll, idk",
-   "date": "2026-09-27"
-  }
+ "preferred": [
+  "TEMPLAR",
+  "FREYA",
+  "DWARF_RUNESMITH",
+  "TROLL",
+  "WARBEARS",
+  "WAR_MAMMOTH",
+  "STORM_GIANT"
  ],
- "_about": "anchors: the frozen reference set the style judge compares against. inspirations: art the operator says WORKS -- the judge describes what makes them work relative to a unit that does not, and that difference drives the next generation."
+ "dispreferred": [
+  "DWARF_CROSSBOW",
+  "DWARF_WARRIOR",
+  "H:/Program Files(x86)/Activision/Call To Power 2/.tmp/matrix/upgrade/normalized/UNICORN.png",
+  "H:/Program Files(x86)/Activision/Call To Power 2/.tmp/matrix/upgrade/normalized/MALLEUS.png",
+  "H:/Program Files(x86)/Activision/Call To Power 2/.tmp/matrix/upgrade/normalized/CRYSTAL_GOLEM.png",
+  "H:/Program Files(x86)/Activision/Call To Power 2/.tmp/matrix/upgrade/normalized/WARBEARS.png"
+ ]
 }

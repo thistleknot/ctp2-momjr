@@ -47,6 +47,23 @@ def test_parse_letter_takes_the_first_standalone_candidate_letter():
     assert S.parse_letter("F is outside the set", "ABCDE") is None
 
 
+def test_parse_batch_reads_one_verdict_per_label():
+    ans = "T1: PREFERRED\nT2: **DISPREFERRED**\nT3 - preferred\nT10: DISPREFERRED"
+    got = S.parse_batch(ans, ["T1", "T2", "T3", "T4"])
+    assert got == {"T1": "PREFERRED", "T2": "DISPREFERRED", "T3": "PREFERRED"}
+
+
+def test_view_keys_an_example_file_so_it_carries_no_background_box(tmp_path):
+    im = Image.new("RGB", (160, 120), (0, 0, 0))
+    ImageDraw.Draw(im).rectangle((60, 30, 99, 89), fill=(200, 40, 40))
+    p = tmp_path / "ex.png"
+    im.save(p)
+    v = S.view(str(p))
+    assert v.size == (160, 120)
+    assert v.getpixel((2, 2)) == S.GROUND               # black key -> ground, not a box
+    assert v.getpixel((80, 60)) == (200, 40, 40)
+
+
 def test_thumb_fits_any_image_into_a_ship_size_cell():
     t = S.thumb(Image.new("RGBA", (384, 576), (200, 0, 0, 255)))
     assert t.size == (96, 72)
