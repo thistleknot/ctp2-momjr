@@ -1,12 +1,12 @@
 # Unit art — items to work
 
-Source: operator review of `tools/momjr_csv/unit_art_review_0926-2145.html`
+Source: operator review of `tools/momjr_csv/unit_art_review_0927-0815.html`
 and `.tmp/matrix/sheet_0926_labelled.png`, 2026-09-26.
 On the review page **left = CURRENT** (installed), **right = PROPOSED** (generated).
 
 **Status 2026-09-26 18:45: every item resolved.** All 82 units carry a final
 verdict in `unit_art_truth.json` (61 correct, 21 crafted). Review page:
-`tools/momjr_csv/unit_art_review_0926-2145.html`. Ship-size sheet of every unit:
+`tools/momjr_csv/unit_art_review_0927-0815.html`. Ship-size sheet of every unit:
 `.tmp/matrix/sheet_0926_final_ship.png`. Built + audited, NOT verified in game.
 
 ## Keep the current art — DONE
@@ -14,6 +14,22 @@ verdict in `unit_art_truth.json` (61 correct, 21 crafted). Review page:
 CRYSTAL_GOLEM, DJINN, DROW, TREANT, ARCH_MAGE ("former unit" = the left,
 installed `arch_mage.png`), CENTAUR_BOWMAN. All `no_regenerate`; the review page
 now shows "final — no candidate" for every decided unit.
+
+## Holes in dark art, green troll, plain bear — DONE (2026-09-27)
+
+- The exact black key punched holes where dark art was also pure black (the
+  Vampire's cape). Every generated source now gets real transparency from the
+  BiRefNet background-removal model first, so the key only ever acts on real
+  background. 70 units re-installed; dark capes, wings and armour are solid.
+- TROLL: "shouldn't be blue, but green", then "looks too much like a hairy ogre".
+  Now a gaunt, sinewy green troll with long arms, a hooked nose, big ears and
+  fangs, crouched. The four brutes read apart: lanky troll, fat ogre, orc with
+  sword and shield, armoured war troll.
+- WARBEARS: the harness is gone; a plain brown grizzly.
+- TGA files still show black in an image viewer: that black IS the one key colour.
+  The engine format (570/572 shipped files, alpha bit 0, descriptor 0) is not
+  changed; the "fugly" corruption came from leaving it.
+- GALLEY lost its sea: the model treated the water as background.
 
 ## One-colour transparency, right-hand art, new ogre and orc — DONE (2026-09-26 evening)
 

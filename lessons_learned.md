@@ -11,6 +11,12 @@ The rule cannot key a source whose background is not one colour: 22 generated
 renders had near-white noise (254,253,253 ...) and keyed 1,368 of 42,240 px. The fix
 was a clean source (BiRefNet background removal -> real alpha), never a wider key.
 
+The same held for DARK sources whose background WAS one colour: the Vampire's cape was
+also exactly (0,0,0), so the exact key punched it full of holes. One colour is only
+safe when the art is known never to use it -- which a render cannot promise. Every
+generated source now gets real alpha first; the exact key acts only at the master,
+where art is floored off black by construction.
+
 **The law:** transparency is decided ONCE, from real alpha or one exact colour; every
 later stage keys that exact colour. Measure a source's one-colour border share before
 trusting it.
