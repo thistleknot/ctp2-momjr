@@ -68,7 +68,7 @@
   "DWARF_CROSSBOW": {
     "depicts": "dwarf crossbow",
     "verdict": "correct",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_CROSSBOW.png, key tolerance 14 so the dark boots survive)",
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_CROSSBOW.png, key tolerance 14 so the dark boots survive) | operator 2026-09-27: gave back the crossbow \"I initially complained about\" -- now the FLUX.2 klein render in the same look as the new DWARF_WARRIOR (shown the operator's preferred older dwarf): gold armour, horned helmet, red plume, heavy crossbow (source file: style_dxb/DWARF_CROSSBOW_klein_s11.png)",
     "no_regenerate": true
   },
   "DWARF_RUNESMITH": {
@@ -79,7 +79,7 @@
   "DWARF_WARRIOR": {
     "depicts": "dwarf warrior",
     "verdict": "correct",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art/dwarf warrior.png; supersedes generation | 2026-09-26 operator: \"dwarf_warrior is incorrect\". The file is a 45x65 sprite saved at 3x; shrinking the 3x file with smoothing blurred its blocks. Re-installed via lossless reduction to native pixels, then hard-pixel enlargement. | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_WARRIOR.png, key tolerance 14 so the dark boots survive)",
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art/dwarf warrior.png; supersedes generation | 2026-09-26 operator: \"dwarf_warrior is incorrect\". The file is a 45x65 sprite saved at 3x; shrinking the 3x file with smoothing blurred its blocks. Re-installed via lossless reduction to native pixels, then hard-pixel enlargement. | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_WARRIOR.png, key tolerance 14 so the dark boots survive) | operator 2026-09-27: \"you just gave me back the dwarf_crossbow and dwarf_warrior I initially complained about\" -- now the FLUX.2 klein render shown the operator's preferred older dwarf (style_inspirations/dwarf_warrior_before.png): gold armour, horned helmet, red plume, whole body (source file: style_dw/rmbg/klein_s11.png)",
     "no_regenerate": true
   },
   "GOBLIN": {
@@ -97,13 +97,13 @@
   "OGRE": {
     "depicts": "ogre",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a bald, fur-wrapped ogre with pale tan skin and a spiked club, distinct from the grey-blue troll and the armoured war troll (source file: OGRE.png)",
+    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a bald, fur-wrapped ogre with pale tan skin and a spiked club, distinct from the grey-blue troll and the armoured war troll (source file: OGRE.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved.",
     "no_regenerate": true
   },
   "ORC": {
     "depicts": "orc",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a lean green orc warrior with a scimitar and a round shield, distinct from the grey-blue troll and the armoured war troll (source file: ORC.png)",
+    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a lean green orc warrior with a scimitar and a round shield, distinct from the grey-blue troll and the armoured war troll (source file: ORC.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved.",
     "no_regenerate": true
   },
   "PRIEST": {
@@ -137,7 +137,7 @@
   "TROLL": {
     "depicts": "troll",
     "verdict": "correct",
-    "note": "operator 2026-09-27: \"the troll shouldn't be blue, but green\", then \"looks too much like a hairy ogre\", with reference art (lanky green trolls, hooked noses, big ears, fangs). Now a gaunt, sinewy green troll with long arms, crouched and snarling -- distinct from the fat ogre, the orc and the armoured war troll (source file: rmbg_dark/TROLL.png) | operator 2026-09-27: \"Go w your war troll\" -- the gaunt green troll is approved.",
+    "note": "operator 2026-09-27: \"the troll shouldn't be blue, but green\", then \"looks too much like a hairy ogre\", with reference art (lanky green trolls, hooked noses, big ears, fangs). Now a gaunt, sinewy green troll with long arms, crouched and snarling -- distinct from the fat ogre, the orc and the armoured war troll (source file: rmbg_dark/TROLL.png) | operator 2026-09-27: \"Go w your war troll\" -- the gaunt green troll is approved. | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved.",
     "no_regenerate": true
   },
   "UNDEAD_DRAGON": {
@@ -448,7 +448,7 @@
     "depicts": "infernal device",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face) (source file: .tmp/matrix/items1/INFERNAL_DEVICE_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
+    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face) (source file: .tmp/matrix/items1/INFERNAL_DEVICE_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"looks a little too steam punk with rubber wheels\" -- regenerated as a medieval hell-engine: black iron plates, wooden iron-spoked wagon wheels, horned skull ram, blazing furnace (source file: items_infernal3/INFERNAL_DEVICE_s31337.png)"
   },
   "MALLEUS": {
     "depicts": "malleus",
