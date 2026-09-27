@@ -6,7 +6,7 @@ On the review page **left = CURRENT** (installed), **right = PROPOSED** (generat
 
 **Status 2026-09-26 18:45: every item resolved.** All 82 units carry a final
 verdict in `unit_art_truth.json` (61 correct, 21 crafted). Review page:
-`tools/momjr_csv/unit_art_review_0926-1840b.html`. Ship-size sheet of every unit:
+`tools/momjr_csv/unit_art_review_0926-1921.html`. Ship-size sheet of every unit:
 `.tmp/matrix/sheet_0926_final_ship.png`. Built + audited, NOT verified in game.
 
 ## Keep the current art — DONE
@@ -23,19 +23,21 @@ now shows "final — no candidate" for every decided unit.
 
 ## New art — DONE
 
-| Unit | Pick | Note |
+| Unit | What the new art shows | Why this one |
 |---|---|---|
-| APPRENTICE | s202 | img2img variation of the PRIEST art, young hooded caster |
-| CATAPULT | s2718 | real four-wheeled torsion catapult |
-| CENTAURS | klein s2718 d0.45 | `centaur.png` was the old tile at native size, not new art; z-image cannot draw centaurs; 5 of 6 klein outputs were a man riding a horse |
-| GRIFFIN | s31337 | first batch drew 4/4 winged lions; fixed by leading the prompt with "the HEAD of a golden eagle" |
-| INFERNAL_DEVICE | s11 | infernal war engine, no longer a fish |
-| MALLEUS | s31337 | hooded witch-hunter knight on a black horse; other seeds had unkeyable dark backgrounds |
-| MINION | s11 | hooded servant of a death wizard |
-| STEAM_CANNON | s31337 | barrel level, muzzle right |
-| UNICORN | s11 | realistic; keyed at tol 24 with no pocket pass |
-| WYVERN | s31337 | prompt was literally "small dragon" |
-| TROLL | s2718 | gaunt grey-blue cave troll — distinct from the green OGRE/ORC |
+| APPRENTICE | a young hooded caster in a plain grey robe with a glowing staff | a variation grown from the installed Priest art, as asked; the Mage-based ones still looked cartoonish |
+| CATAPULT | a four-wheeled wooden torsion catapult, arm raised | the old proposal was a cart with a spear |
+| CENTAURS | a long-haired centaur rearing with a spear, human torso on a chestnut horse body | `centaur.png` was the old tile at native size, not new art; z-image cannot draw centaurs, and 5 of 6 FLUX.2 klein tries drew a man riding a horse |
+| GRIFFIN | eagle head, wings and talons on a lion body, wings spread | the first batch drew winged lions every time; leading the prompt with "the head of a golden eagle" fixed it |
+| INFERNAL_DEVICE | a black iron siege engine on spiked wheels with a hellfire furnace and horned face | no longer a fish |
+| MALLEUS | a hooded witch-hunter knight on a black horse raising a flaming hammer | the only candidate on a clean background; the rest had dark gradients that do not key |
+| MINION | a gaunt hooded servant in black and purple robes with a lantern and dagger | prompted as a death wizard's servant, never the bare word "minion" |
+| STEAM_CANNON | a bronze cannon on a wheeled carriage with a boiler, barrel level, muzzle right | fixes "facing up and backwards" |
+| UNICORN | a realistic white unicorn in mid-gallop with a gold horn | no longer cartoonish; keyed gently so the white body keeps no holes |
+| WYVERN | a small green dragon with spread wings | prompt was literally "small dragon" |
+| TROLL | a gaunt grey-blue cave troll dragging a tree-trunk club | now distinct from the green ogre and orc |
+
+Source files for each pick are recorded in `tools/momjr_csv/unit_art_truth.json`.
 
 ## New unit MINOTAUR_BOWMAN — DONE
 

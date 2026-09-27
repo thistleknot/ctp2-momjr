@@ -14,7 +14,7 @@
   "APPRENTICE": {
     "depicts": "apprentice",
     "verdict": "correct",
-    "note": "operator: \"apprentice is wrong\". No figure in the tile at all; same class as CRYSTAL_GOLEM and DWARF_RUNESMITH, both fiery balls. art_cell_index 74 is past the 62-cell sheet, so there is no civ2 source for it. | operator 2026-09-26 \"variation on wizard and priest\": img2img from the installed PRIEST art at denoise 0.55, young hooded caster with a glowing staff. Installed .tmp/matrix/items1/APPRENTICE_s202.png; previous verdict wrong",
+    "note": "operator: \"apprentice is wrong\". No figure in the tile at all; same class as CRYSTAL_GOLEM and DWARF_RUNESMITH, both fiery balls. art_cell_index 74 is past the 62-cell sheet, so there is no civ2 source for it. | operator 2026-09-26 \"variation on wizard and priest\": img2img from the installed PRIEST art at denoise 0.55, young hooded caster with a glowing staff (source file: .tmp/matrix/items1/APPRENTICE_s202.png); previous verdict wrong",
     "no_regenerate": true
   },
   "ARCH_MAGE": {
@@ -131,7 +131,7 @@
   "TROLL": {
     "depicts": "troll",
     "verdict": "correct",
-    "note": "troll is red dragon | operator 2026-09-26 \"ogre, orc, troll all look the same\" -> redrawn as a gaunt grey-blue cave troll with a tree-trunk club, distinct from the green ogre and orc. Installed .tmp/matrix/items1/TROLL_s2718.png; previous verdict wrong",
+    "note": "troll is red dragon | operator 2026-09-26 \"ogre, orc, troll all look the same\" -> redrawn as a gaunt grey-blue cave troll with a tree-trunk club, distinct from the green ogre and orc (source file: .tmp/matrix/items1/TROLL_s2718.png); previous verdict wrong",
     "no_regenerate": true
   },
   "UNDEAD_DRAGON": {
@@ -189,7 +189,7 @@
     "depicts": "centaur warrior",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"centaurs is missing the new version\": centaur.png proved to be the old tile at native size, so a new version was generated on FLUX.2 klein (z-image cannot draw centaurs). 5 of 6 klein outputs were a man RIDING a horse; s2718 d0.45 is a true centaur. Installed .tmp/matrix/klein_centaurs/CENTAURS_s2718_d45.png"
+    "note": "operator 2026-09-26 \"centaurs is missing the new version\": centaur.png proved to be the old tile at native size, so a new version was generated on FLUX.2 klein (z-image cannot draw centaurs). 5 of 6 klein outputs were a man RIDING a horse; the one kept is a true centaur, a human torso rising from the horse body (source file: .tmp/matrix/klein_centaurs/CENTAURS_s2718_d45.png)"
   },
   "IRON_GOLEM": {
     "depicts": "iron golem",
@@ -444,48 +444,48 @@
     "depicts": "catapult",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"wrong unit altogether, looks like a cartoon\" -> txt2img, a real four-wheeled torsion catapult. Installed .tmp/matrix/items1/CATAPULT_s2718.png"
+    "note": "operator 2026-09-26 \"wrong unit altogether, looks like a cartoon\" -> txt2img, a real four-wheeled torsion catapult (source file: .tmp/matrix/items1/CATAPULT_s2718.png)"
   },
   "INFERNAL_DEVICE": {
     "depicts": "infernal device",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face). Installed .tmp/matrix/items1/INFERNAL_DEVICE_s11.png"
+    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face) (source file: .tmp/matrix/items1/INFERNAL_DEVICE_s11.png)"
   },
   "MALLEUS": {
     "depicts": "malleus",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other seeds had dark gradient backgrounds that do not key. Installed .tmp/matrix/items1/MALLEUS_s31337.png"
+    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other three candidates had dark gradient backgrounds that do not key (source file: .tmp/matrix/items1/MALLEUS_s31337.png)"
   },
   "MINION": {
     "depicts": "minion",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word. Installed .tmp/matrix/items1/MINION_s11.png"
+    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word (source file: .tmp/matrix/items1/MINION_s11.png)"
   },
   "STEAM_CANNON": {
     "depicts": "steam cannon",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"facing up / backwards\" -> barrel level, muzzle to the right, boiler on the carriage. Installed .tmp/matrix/items1/STEAM_CANNON_s31337.png"
+    "note": "operator 2026-09-26 \"facing up / backwards\" -> barrel level, muzzle to the right, boiler on the carriage (source file: .tmp/matrix/items1/STEAM_CANNON_s31337.png)"
   },
   "UNICORN": {
     "depicts": "unicorn",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"looks like a cartoon\" -> realistic white unicorn; keyed at tol 24 with NO pocket pass (the pass punched holes in the white body). Installed .tmp/matrix/items1/UNICORN_s11.png"
+    "note": "operator 2026-09-26 \"looks like a cartoon\" -> realistic white unicorn; keyed at tol 24 with NO pocket pass (the pass punched holes in the white body) (source file: .tmp/matrix/items1/UNICORN_s11.png)"
   },
   "WYVERN": {
     "depicts": "wyvern",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\". Installed .tmp/matrix/items1/WYVERN_s31337.png"
+    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\" (source file: .tmp/matrix/items1/WYVERN_s31337.png)"
   },
   "GRIFFIN": {
     "depicts": "griffin",
     "verdict": "correct",
-    "note": "operator 2026-09-26 \"griffin face looks messed up\": first z-image batch drew 4/4 WINGED LIONS (no eagle head); klein img2img drew lion-beak mashups. Fixed by a prompt that leads with the anatomy (\"eagle-headed griffin ... the HEAD of a golden eagle ... hindquarters of a lion\"). Installed .tmp/matrix/items_griffin/GRIFFIN_s31337.png",
+    "note": "operator 2026-09-26 \"griffin face looks messed up\": first z-image batch drew 4/4 WINGED LIONS (no eagle head); klein img2img drew lion-beak mashups. Fixed by a prompt that leads with the anatomy (\"eagle-headed griffin ... the HEAD of a golden eagle ... hindquarters of a lion\") (source file: .tmp/matrix/items_griffin/GRIFFIN_s31337.png)",
     "no_regenerate": true
   }
 }
