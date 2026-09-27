@@ -137,7 +137,7 @@
   "TROLL": {
     "depicts": "troll",
     "verdict": "correct",
-    "note": "operator 2026-09-27: \"the troll shouldn't be blue, but green\", then \"looks too much like a hairy ogre\", with reference art (lanky green trolls, hooked noses, big ears, fangs). Now a gaunt, sinewy green troll with long arms, crouched and snarling -- distinct from the fat ogre, the orc and the armoured war troll (source file: rmbg_dark/TROLL.png)",
+    "note": "operator 2026-09-27: \"the troll shouldn't be blue, but green\", then \"looks too much like a hairy ogre\", with reference art (lanky green trolls, hooked noses, big ears, fangs). Now a gaunt, sinewy green troll with long arms, crouched and snarling -- distinct from the fat ogre, the orc and the armoured war troll (source file: rmbg_dark/TROLL.png) | operator 2026-09-27: \"Go w your war troll\" -- the gaunt green troll is approved.",
     "no_regenerate": true
   },
   "UNDEAD_DRAGON": {
@@ -394,7 +394,7 @@
     "depicts": "warbears",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-27: \"why is the bear dressed up like he has bdsm gear on?\" -- regenerated as a plain brown grizzly, natural fur, no harness or straps (source file: rmbg_dark/WARBEARS.png)"
+    "note": "operator 2026-09-27: \"why is the bear dressed up like he has bdsm gear on?\" -- regenerated as a plain brown grizzly, natural fur, no harness or straps (source file: rmbg_dark/WARBEARS.png) | operator 2026-09-27: \"I like your bear\" -- approved."
   },
   "WARRAX": {
     "depicts": "warrax",
