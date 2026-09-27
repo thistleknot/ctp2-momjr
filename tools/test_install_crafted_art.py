@@ -59,6 +59,31 @@ def test_explicit_file_that_does_not_exist_is_refused(tmp_path, monkeypatch):
     assert not list(tmp_path.glob("*.tga"))
 
 
+def test_as_is_writes_the_source_pixels_unchanged(tmp_path, monkeypatch):
+    src = Image.new("RGB", (160, 120), (0, 0, 0))
+    src.putpixel((10, 10), (0, 0, 0))
+    src.putpixel((50, 50), (8, 16, 200))
+    src.putpixel((51, 50), (248, 248, 248))
+    p = tmp_path / "raw.png"
+    src.save(p)
+    assert _run(monkeypatch, "--pics", str(tmp_path), "--as-is", "--file",
+                f"RAW={p}", "--apply") == 0
+    body = (tmp_path / "SPRITE_RAW.tga").read_bytes()[18:]
+    def px(x, y):   # bottom-origin RGB555
+        v = int.from_bytes(body[((119 - y) * 160 + x) * 2:][:2], "little")
+        return ((v >> 10) & 31) << 3, ((v >> 5) & 31) << 3, (v & 31) << 3
+    assert px(10, 10) == (0, 0, 0)            # no floor: black stays the key
+    assert px(50, 50) == (8, 16, 200)
+    assert px(51, 50) == (248, 248, 248)
+
+
+def test_as_is_refuses_a_source_not_at_frame_size(tmp_path, monkeypatch):
+    p = tmp_path / "big.png"
+    Image.new("RGB", (240, 176)).save(p)
+    assert _run(monkeypatch, "--pics", str(tmp_path), "--as-is", "--file",
+                f"BIG={p}", "--apply") == 2
+
+
 def test_dry_run_writes_nothing(tmp_path, monkeypatch):
     src = _rgba(tmp_path, name="gen.png")
     assert _run(monkeypatch, "--pics", str(tmp_path), "--file", f"NEWT={src}") == 0

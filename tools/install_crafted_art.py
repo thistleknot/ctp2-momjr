@@ -310,6 +310,10 @@ def main() -> int:
     ap.add_argument("--normalize", action="store_true",
                     help="scale content to the roster's standard frame fraction "
                          "so units agree in size (DWARF_CROSSBOW vs DWARF_WARRIOR)")
+    ap.add_argument("--as-is", action="store_true",
+                    help="write the source's pixels unchanged: no masking, no "
+                         "floor, no resize (source must already be 160x120 on "
+                         "the black key). Operator 2026-09-27: 'no alpha masking'")
     ap.add_argument("--file", nargs="*", default=[], metavar="IDENT=PATH",
                     help="install an explicit image onto a unit (accepted "
                          "generated art); skips the art-folder scan")
@@ -346,7 +350,13 @@ def main() -> int:
     for ident, src in sorted(found.items()):
         dst = args.pics / f"SPRITE_{ident}.tga"
         exists = dst.exists()
-        im = to_master(src, normalize=args.normalize)
+        if args.as_is:
+            im = Image.open(src).convert("RGB")
+            if im.size != (W, H):
+                print(f"--as-is needs {W}x{H}: {src} is {im.size}", file=sys.stderr)
+                return 2
+        else:
+            im = to_master(src, normalize=args.normalize)
         note = ""
         if args.apply:
             # THE ICON IS THE SAME ART. uniticon.txt points the build manager

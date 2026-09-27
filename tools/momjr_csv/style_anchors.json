@@ -1,0 +1,33 @@
+{
+ "status": "PROPOSED -- operator to confirm",
+ "anchors": [
+  "WAR_MAMMOTH",
+  "TEMPLAR",
+  "MINOTAUR_CROSSBOW",
+  "ORC",
+  "SETTLER",
+  "GOBLIN",
+  "DWARF_WARRIOR",
+  "TAURON",
+  "WAR_TROLL",
+  "CRUSADER",
+  "FREYA",
+  "DRUID",
+  "STORM_GIANT"
+ ],
+ "inspirations": [
+  {
+   "file": "style_inspirations/dwarf_warrior_before.png",
+   "unit": "DWARF_WARRIOR",
+   "operator": "this was the dwarf warrior I had before which was much better tbqh",
+   "date": "2026-09-27"
+  },
+  {
+   "file": "style_inspirations/orc_or_troll.png",
+   "unit": "ORC or TROLL",
+   "operator": "this was either an orc or a troll, idk",
+   "date": "2026-09-27"
+  }
+ ],
+ "_about": "anchors: the frozen reference set the style judge compares against. inspirations: art the operator says WORKS -- the judge describes what makes them work relative to a unit that does not, and that difference drives the next generation."
+}
