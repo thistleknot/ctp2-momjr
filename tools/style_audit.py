@@ -10,7 +10,21 @@ from a vision model is noise, so every question is asked RUNS times with the
 image order shuffled, and the majority decides.
 
 Commands:
-  probe UNIT            one question about one unit -- proves the judge answers
+  probe UNIT                 one question about one unit -- proves the judge answers
+  anchors [--k 13]           propose the k most central units + set/anchor sheets
+  exemplars                  draw the preferred / dispreferred example sheet
+  calibrate                  held-out examples must classify correctly (3 runs)
+  classify UNIT...           PREFERRED / DISPREFERRED, 3-run majority
+  screen                     one-run batched screening of every other unit
+  contrast UNIT IMAGE        what makes an inspiration work vs a unit -> redraw prompt
+  judge UNIT NAME=PATH...    pick the candidate that best fits the reference set
+
+Judge switch: STYLE_JUDGE=gemini uses Gemini 2.5 Flash on OpenRouter.
+
+MEASURED LIMIT (2026-09-27): neither judge separates SUBTLE style on this roster.
+Both catch clear cases (cartoon vs painted) at best; screening the set agreed
+with itself on 69% of units (chance ~54%) and sorted by subject. Use contrast
+for prompts and the operator for verdicts; see review-vlm-playbook.md.
 """
 from __future__ import annotations
 
