@@ -6,7 +6,7 @@ On the review page **left = CURRENT** (installed), **right = PROPOSED** (generat
 
 **Status 2026-09-26 18:45: every item resolved.** All 82 units carry a final
 verdict in `unit_art_truth.json` (61 correct, 21 crafted). Review page:
-`tools/momjr_csv/unit_art_review_0926-1921.html`. Ship-size sheet of every unit:
+`tools/momjr_csv/unit_art_review_0926-1937.html`. Ship-size sheet of every unit:
 `.tmp/matrix/sheet_0926_final_ship.png`. Built + audited, NOT verified in game.
 
 ## Keep the current art — DONE

@@ -65,6 +65,34 @@ def test_dry_run_writes_nothing(tmp_path, monkeypatch):
     assert not list(tmp_path.glob("*.tga"))
 
 
+def _blocky(native=(15, 22), k=3) -> Image.Image:
+    """A native sprite with varied pixels, saved enlarged k times."""
+    im = Image.new("RGBA", native, (0, 0, 0, 0))
+    px = im.load()
+    for y in range(2, native[1] - 2):
+        for x in range(3, native[0] - 3):
+            px[x, y] = ((x * 37) % 256, (y * 53) % 256, 90, 255)
+    return im.resize((native[0] * k, native[1] * k), Image.NEAREST)
+
+
+def test_block_size_finds_the_whole_number_enlargement():
+    assert I._block_size(_blocky(k=3)) == 3
+    assert I._block_size(_blocky(k=2)) == 2
+    assert I._block_size(_blocky(k=1)) == 1
+
+
+def test_native_grid_undo_is_lossless():
+    native = _blocky(k=1)
+    back = I._to_native_grid(_blocky(k=3))
+    assert back.size == native.size
+    assert list(back.getdata()) == list(native.getdata())
+
+
+def test_non_blocky_art_is_left_alone():
+    im = Image.effect_noise((60, 40), 60).convert("RGBA")
+    assert I._to_native_grid(im) is im
+
+
 def test_master_is_always_the_engine_frame_size(tmp_path):
     assert I.to_master(_rgba(tmp_path)).size == (160, 120)
     assert I.to_master(_rgba(tmp_path, (300, 90), "b.png")).size == (160, 120)

@@ -14,7 +14,7 @@
   "APPRENTICE": {
     "depicts": "apprentice",
     "verdict": "correct",
-    "note": "operator: \"apprentice is wrong\". No figure in the tile at all; same class as CRYSTAL_GOLEM and DWARF_RUNESMITH, both fiery balls. art_cell_index 74 is past the 62-cell sheet, so there is no civ2 source for it. | operator 2026-09-26 \"variation on wizard and priest\": img2img from the installed PRIEST art at denoise 0.55, young hooded caster with a glowing staff (source file: .tmp/matrix/items1/APPRENTICE_s202.png); previous verdict wrong",
+    "note": "operator: \"apprentice is wrong\". No figure in the tile at all; same class as CRYSTAL_GOLEM and DWARF_RUNESMITH, both fiery balls. art_cell_index 74 is past the 62-cell sheet, so there is no civ2 source for it. | operator 2026-09-26 \"variation on wizard and priest\": img2img from the installed PRIEST art at denoise 0.55, young hooded caster with a glowing staff (source file: .tmp/matrix/items1/APPRENTICE_s202.png); previous verdict wrong | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\").",
     "no_regenerate": true
   },
   "ARCH_MAGE": {
@@ -26,19 +26,19 @@
   "BONE_GOLEM": {
     "depicts": "bone golem",
     "verdict": "correct",
-    "note": "certainly not a bone golem, but I think I picked it because it was a proxy | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/BONE_GOLEM.png, --key-tol 64 --key-pockets 0.004); previous verdict proxy",
+    "note": "certainly not a bone golem, but I think I picked it because it was a proxy | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/BONE_GOLEM.png); previous verdict proxy",
     "no_regenerate": true
   },
   "COCKATRICE": {
     "depicts": "cockatrice",
     "verdict": "correct",
-    "note": "same for cockatrice ... I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/COCKATRICE.png, --key-tol 64 --key-pockets 0.004); previous verdict proxy",
+    "note": "same for cockatrice ... I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/COCKATRICE.png); previous verdict proxy",
     "no_regenerate": true
   },
   "CRUSADER": {
     "depicts": "crusader",
     "verdict": "correct",
-    "note": "crusader, idk. I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/CRUSADER.png, --key-tol 64 --key-pockets 0.004); previous verdict proxy",
+    "note": "crusader, idk. I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/CRUSADER.png); previous verdict proxy",
     "no_regenerate": true
   },
   "CRYSTAL_GOLEM": {
@@ -50,7 +50,7 @@
   "DEATH_KNIGHT": {
     "depicts": "death knight",
     "verdict": "correct",
-    "note": "death knight just looks like a crusader | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DEATH_KNIGHT.png, --key-tol 64 --key-pockets 0.004); previous verdict wrong",
+    "note": "death knight just looks like a crusader | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DEATH_KNIGHT.png); previous verdict wrong",
     "no_regenerate": true
   },
   "DJINN": {
@@ -62,7 +62,7 @@
   "DRUID": {
     "depicts": "druid",
     "verdict": "correct",
-    "note": "druid is a pikeman | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DRUID.png, --key-tol 64 --key-pockets 0.004); previous verdict wrong",
+    "note": "druid is a pikeman | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DRUID.png); previous verdict wrong",
     "no_regenerate": true
   },
   "DWARF_CROSSBOW": {
@@ -78,12 +78,12 @@
   "DWARF_WARRIOR": {
     "depicts": "dwarf warrior",
     "verdict": "crafted",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art/dwarf warrior.png; supersedes generation"
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art/dwarf warrior.png; supersedes generation | 2026-09-26 operator: \"dwarf_warrior is incorrect\". The file is a 45x65 sprite saved at 3x; shrinking the 3x file with smoothing blurred its blocks. Re-installed via lossless reduction to native pixels, then hard-pixel enlargement."
   },
   "GOBLIN": {
     "depicts": "goblin",
     "verdict": "correct",
-    "note": "goblin is a boar | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/GOBLIN.png, --key-tol 64 --key-pockets 0.004); previous verdict wrong",
+    "note": "goblin is a boar | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/GOBLIN.png); previous verdict wrong",
     "no_regenerate": true
   },
   "LICH": {
@@ -109,7 +109,7 @@
   "SALAMANDER": {
     "depicts": "salamander",
     "verdict": "correct",
-    "note": "salamandar is a fire salamander | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SALAMANDER.png, --key-tol 64 --key-pockets 0.004); previous verdict correct",
+    "note": "salamandar is a fire salamander | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SALAMANDER.png); previous verdict correct",
     "no_regenerate": true
   },
   "SETTLER": {
@@ -125,25 +125,25 @@
   "TEMPLAR": {
     "depicts": "templar",
     "verdict": "correct",
-    "note": "templar is a mounted wizard | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/TEMPLAR.png, --key-tol 64 --key-pockets 0.004); previous verdict wrong",
+    "note": "templar is a mounted wizard | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/TEMPLAR.png); previous verdict wrong",
     "no_regenerate": true
   },
   "TROLL": {
     "depicts": "troll",
     "verdict": "correct",
-    "note": "troll is red dragon | operator 2026-09-26 \"ogre, orc, troll all look the same\" -> redrawn as a gaunt grey-blue cave troll with a tree-trunk club, distinct from the green ogre and orc (source file: .tmp/matrix/items1/TROLL_s2718.png); previous verdict wrong",
+    "note": "troll is red dragon | operator 2026-09-26 \"ogre, orc, troll all look the same\" -> redrawn as a gaunt grey-blue cave troll with a tree-trunk club, distinct from the green ogre and orc (source file: .tmp/matrix/items1/TROLL_s2718.png); previous verdict wrong | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\").",
     "no_regenerate": true
   },
   "UNDEAD_DRAGON": {
     "depicts": "undead dragon",
     "verdict": "correct",
-    "note": "likely selected as closest to it (but is a green dragon) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/UNDEAD_DRAGON.png, --key-tol 64 --key-pockets 0.004); previous verdict proxy",
+    "note": "likely selected as closest to it (but is a green dragon) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/UNDEAD_DRAGON.png); previous verdict proxy",
     "no_regenerate": true
   },
   "WARLOCK": {
     "depicts": "warlock",
     "verdict": "correct",
-    "note": "same for warlock (green wizard?) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/WARLOCK.png, --key-tol 64 --key-pockets 0.004); previous verdict proxy",
+    "note": "same for warlock (green wizard?) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/WARLOCK.png); previous verdict proxy Key tolerance 40: the white background left a halo at the default.",
     "no_regenerate": true
   },
   "DROW": {
@@ -161,7 +161,7 @@
   "DEMON": {
     "depicts": "demon",
     "verdict": "correct",
-    "note": "operator: \"need to rederive demon description ... it is a demon, not a dragon\". The blind caption called it a dragon because it never saw the name. CAPTION error, not an art error -- art stays, description re-derived against the declared subject. | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/DEMON.png, --key-tol 64 --key-pockets 0.004); previous verdict correct",
+    "note": "operator: \"need to rederive demon description ... it is a demon, not a dragon\". The blind caption called it a dragon because it never saw the name. CAPTION error, not an art error -- art stays, description re-derived against the declared subject. | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/DEMON.png); previous verdict correct",
     "no_regenerate": true
   },
   "DRACOLICH": {
@@ -189,7 +189,7 @@
     "depicts": "centaur warrior",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"centaurs is missing the new version\": centaur.png proved to be the old tile at native size, so a new version was generated on FLUX.2 klein (z-image cannot draw centaurs). 5 of 6 klein outputs were a man RIDING a horse; the one kept is a true centaur, a human torso rising from the horse body (source file: .tmp/matrix/klein_centaurs/CENTAURS_s2718_d45.png)"
+    "note": "operator 2026-09-26 \"centaurs is missing the new version\": centaur.png proved to be the old tile at native size, so a new version was generated on FLUX.2 klein (z-image cannot draw centaurs). 5 of 6 klein outputs were a man RIDING a horse; the one kept is a true centaur, a human torso rising from the horse body (source file: .tmp/matrix/klein_centaurs/CENTAURS_s2718_d45.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
   },
   "IRON_GOLEM": {
     "depicts": "iron golem",
@@ -209,283 +209,283 @@
   "MINOTAUR_BOWMAN": {
     "depicts": "minotaur bowman",
     "verdict": "correct",
-    "note": "NEW UNIT 2026-09-26. Operator: \"minotaur looks great, but it looks like a minotaur bowman ... the one on the right (for minotaur bowman, so make a new unit)\". Art = the generated img2img proposal .tmp/matrix/upgrade/MINOTAUR.png (240x176), installed --key-tol 64 --key-pockets 0.004. Unit = verbatim clone of Minotaur stats via units.csv row (generator-owned).",
+    "note": "NEW UNIT 2026-09-26. Operator: \"minotaur looks great, but it looks like a minotaur bowman ... the one on the right (for minotaur bowman, so make a new unit)\". Art = the generated img2img proposal .tmp/matrix/upgrade/MINOTAUR.png (240x176), installed. Unit = verbatim clone of Minotaur stats via units.csv row (generator-owned). | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\").",
     "no_regenerate": true
   },
   "AIRSHIP": {
     "depicts": "airship",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/AIRSHIP.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/AIRSHIP.png)"
   },
   "AIR_ELEMENTAL": {
     "depicts": "air elemental",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/AIR_ELEMENTAL.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/AIR_ELEMENTAL.png)"
   },
   "ALORRA": {
     "depicts": "alorra",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ALORRA.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ALORRA.png)"
   },
   "ARCHANGEL": {
     "depicts": "archangel",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ARCHANGEL.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ARCHANGEL.png)"
   },
   "ARIEL": {
     "depicts": "ariel",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (preview_pics/ARIEL_nohud.png, --key-tol 64 --key-pockets 0.004); a shield + health-bar HUD icon baked into the source was cropped out"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (preview_pics/ARIEL_nohud.png); a shield + health-bar HUD icon baked into the source was cropped out"
   },
   "BEHEMOTH": {
     "depicts": "behemoth",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/BEHEMOTH.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/BEHEMOTH.png)"
   },
   "CARAVAN": {
     "depicts": "caravan",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/CARAVAN.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/CARAVAN.png)"
   },
   "EFREET": {
     "depicts": "efreet",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/EFREET.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/EFREET.png)"
   },
   "ELVEN_ARCHERS": {
     "depicts": "elven archers",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ELVEN_ARCHERS.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ELVEN_ARCHERS.png)"
   },
   "FREYA": {
     "depicts": "freya",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/FREYA.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/FREYA.png)"
   },
   "GALLEY": {
     "depicts": "galley",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GALLEY.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GALLEY.png)"
   },
   "GARGOYLE": {
     "depicts": "gargoyle",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GARGOYLE.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GARGOYLE.png)"
   },
   "GREAT_WYRM": {
     "depicts": "great wyrm",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GREAT_WYRM.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GREAT_WYRM.png)"
   },
   "GUARDIAN_SPIRIT": {
     "depicts": "guardian spirit",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GUARDIAN_SPIRIT.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GUARDIAN_SPIRIT.png)"
   },
   "HELL_HOUNDS": {
     "depicts": "hell hounds",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/HELL_HOUNDS.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/HELL_HOUNDS.png)"
   },
   "HYDRA": {
     "depicts": "hydra",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/HYDRA.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/HYDRA.png)"
   },
   "JAFAR": {
     "depicts": "jafar",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/JAFAR.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/JAFAR.png)"
   },
   "KNIGHTS": {
     "depicts": "knights",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/KNIGHTS.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/KNIGHTS.png)"
   },
   "LAMP": {
     "depicts": "lamp",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/LAMP.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/LAMP.png)"
   },
   "MERFOLK": {
     "depicts": "merfolk",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/MERFOLK.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/MERFOLK.png)"
   },
   "PALADINS": {
     "depicts": "paladins",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PALADINS.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PALADINS.png)"
   },
   "PEGASUS": {
     "depicts": "pegasus",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PEGASUS.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PEGASUS.png)"
   },
   "PHANTOM_WARRIORS": {
     "depicts": "phantom warriors",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PHANTOM_WARRIORS.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PHANTOM_WARRIORS.png)"
   },
   "RJAK": {
     "depicts": "rjak",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/RJAK.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/RJAK.png)"
   },
   "SERENA": {
     "depicts": "serena",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SERENA.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SERENA.png)"
   },
   "SPEARMEN": {
     "depicts": "spearmen",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SPEARMEN.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SPEARMEN.png)"
   },
   "STORM_GIANT": {
     "depicts": "storm giant",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/STORM_GIANT.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/STORM_GIANT.png)"
   },
   "SWORDSMEN": {
     "depicts": "swordsmen",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SWORDSMEN.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SWORDSMEN.png)"
   },
   "TAURON": {
     "depicts": "tauron",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/TAURON.png, --key-tol 64 --key-pockets 0.004); the proposal draws a gold portrait frame around the figure -- kept as approved"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/TAURON.png); the proposal draws a gold portrait frame around the figure -- kept as approved"
   },
   "VAMPIRE": {
     "depicts": "vampire",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/VAMPIRE.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/VAMPIRE.png)"
   },
   "WARBEARS": {
     "depicts": "warbears",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARBEARS.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARBEARS.png)"
   },
   "WARRAX": {
     "depicts": "warrax",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARRAX.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARRAX.png)"
   },
   "WARSHIP": {
     "depicts": "warship",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARSHIP.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARSHIP.png)"
   },
   "WAR_MAGE": {
     "depicts": "war mage",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_MAGE.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_MAGE.png)"
   },
   "WAR_MAMMOTH": {
     "depicts": "war mammoth",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_MAMMOTH.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_MAMMOTH.png)"
   },
   "WAR_TROLL": {
     "depicts": "war troll",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_TROLL.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_TROLL.png)"
   },
   "WRAITH": {
     "depicts": "wraith",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WRAITH.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WRAITH.png)"
   },
   "ZOMBIES": {
     "depicts": "zombies",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ZOMBIES.png, --key-tol 64 --key-pockets 0.004)"
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ZOMBIES.png)"
   },
   "CATAPULT": {
     "depicts": "catapult",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"wrong unit altogether, looks like a cartoon\" -> txt2img, a real four-wheeled torsion catapult (source file: .tmp/matrix/items1/CATAPULT_s2718.png)"
+    "note": "operator 2026-09-26 \"wrong unit altogether, looks like a cartoon\" -> txt2img, a real four-wheeled torsion catapult (source file: .tmp/matrix/items1/CATAPULT_s2718.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
   },
   "INFERNAL_DEVICE": {
     "depicts": "infernal device",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face) (source file: .tmp/matrix/items1/INFERNAL_DEVICE_s11.png)"
+    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face) (source file: .tmp/matrix/items1/INFERNAL_DEVICE_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
   },
   "MALLEUS": {
     "depicts": "malleus",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other three candidates had dark gradient backgrounds that do not key (source file: .tmp/matrix/items1/MALLEUS_s31337.png)"
+    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other three candidates had dark gradient backgrounds that do not key (source file: .tmp/matrix/items1/MALLEUS_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
   },
   "MINION": {
     "depicts": "minion",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word (source file: .tmp/matrix/items1/MINION_s11.png)"
+    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word (source file: .tmp/matrix/items1/MINION_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
   },
   "STEAM_CANNON": {
     "depicts": "steam cannon",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"facing up / backwards\" -> barrel level, muzzle to the right, boiler on the carriage (source file: .tmp/matrix/items1/STEAM_CANNON_s31337.png)"
+    "note": "operator 2026-09-26 \"facing up / backwards\" -> barrel level, muzzle to the right, boiler on the carriage (source file: .tmp/matrix/items1/STEAM_CANNON_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
   },
   "UNICORN": {
     "depicts": "unicorn",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"looks like a cartoon\" -> realistic white unicorn; keyed at tol 24 with NO pocket pass (the pass punched holes in the white body) (source file: .tmp/matrix/items1/UNICORN_s11.png)"
+    "note": "operator 2026-09-26 \"looks like a cartoon\" -> realistic white unicorn; keyed at tol 24 with NO pocket pass (the pass punched holes in the white body) (source file: .tmp/matrix/items1/UNICORN_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
   },
   "WYVERN": {
     "depicts": "wyvern",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\" (source file: .tmp/matrix/items1/WYVERN_s31337.png)"
+    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\" (source file: .tmp/matrix/items1/WYVERN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\")."
   },
   "GRIFFIN": {
     "depicts": "griffin",
     "verdict": "correct",
-    "note": "operator 2026-09-26 \"griffin face looks messed up\": first z-image batch drew 4/4 WINGED LIONS (no eagle head); klein img2img drew lion-beak mashups. Fixed by a prompt that leads with the anatomy (\"eagle-headed griffin ... the HEAD of a golden eagle ... hindquarters of a lion\") (source file: .tmp/matrix/items_griffin/GRIFFIN_s31337.png)",
+    "note": "operator 2026-09-26 \"griffin face looks messed up\": first z-image batch drew 4/4 WINGED LIONS (no eagle head); klein img2img drew lion-beak mashups. Fixed by a prompt that leads with the anatomy (\"eagle-headed griffin ... the HEAD of a golden eagle ... hindquarters of a lion\") (source file: .tmp/matrix/items_griffin/GRIFFIN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\").",
     "no_regenerate": true
   }
 }

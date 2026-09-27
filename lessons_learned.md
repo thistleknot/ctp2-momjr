@@ -20,7 +20,12 @@ preview, and was only caught by rendering what the ENGINE draws.
    a white background punched holes in its body (Unicorn): never on light art.
 4. **Noisy backgrounds block the edge flood.** SETTLER's near-black background had
    edge pixels up to sum 62; at tolerance 24 only 420/30400 px keyed and the whole
-   frame shipped as a box. Generated art needs 48–64; white .jfif needed 120.
+   frame shipped as a box; SETTLER needed 48, a white .jfif 120.
+   Raising it for GENERATED art was WRONG: at 64 plus the pocket pass, dark
+   units lost up to 46% of real pixels (Vampire cape, Gargoyle wings) and the
+   operator saw it at once. Generated art ships at the default 24; raise it per
+   unit only when a halo is visible (Warlock, 40). Measure opaque-pixel loss
+   against the default before accepting any stronger cut.
    Separately, treating any alpha>0 as opaque turned the LANCZOS rim into dark
    streaks — the cut is half alpha.
 

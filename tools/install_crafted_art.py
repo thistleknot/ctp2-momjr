@@ -195,6 +195,42 @@ def _corner_colour(im: Image.Image) -> tuple[int, int, int]:
     return tuple(sum(c[i] for c in cs) // 4 for i in range(3))
 
 
+def _block_size(im: Image.Image) -> int:
+    """Pixel-block size of a sprite that was ENLARGED by a whole number before
+    it was saved (every run of identical pixels is a multiple of it), else 1."""
+    from functools import reduce
+    from math import gcd
+    w, h = im.size
+    px = im.load()
+    runs: list[int] = []
+    for line in ([[px[x, y] for x in range(w)] for y in range(h)]
+                 + [[px[x, y] for y in range(h)] for x in range(w)]):
+        n = 1
+        for a, b in zip(line, line[1:]):
+            if a == b:
+                n += 1
+            else:
+                runs.append(n)
+                n = 1
+        runs.append(n)
+    k = reduce(gcd, runs) if runs else 1
+    return k if k > 1 and w % k == 0 and h % k == 0 else 1
+
+
+def _to_native_grid(im: Image.Image) -> Image.Image:
+    """Undo a whole-number enlargement exactly, so the resize that follows works
+    from the real pixels.
+
+    "dwarf warrior.png" is a 45x65 sprite saved at 3x (135x195). Shrinking the
+    3x file to frame height with LANCZOS averaged across block edges, so blocks
+    came out uneven and blurred and the operator called the unit "incorrect".
+    Reducing by the block size with NEAREST is lossless; the frame resize then
+    enlarges with NEAREST like every other native sprite.
+    """
+    k = _block_size(im)
+    return im.resize((im.width // k, im.height // k), Image.NEAREST) if k > 1 else im
+
+
 def _normalize_alpha(im: Image.Image) -> Image.Image:
     """Scale content to the roster's frame fraction USING THE ALPHA CHANNEL.
 
@@ -213,6 +249,7 @@ def _normalize_alpha(im: Image.Image) -> Image.Image:
     size (TARGET_H_FRAC 0.88, MAX_W_FRAC["icon"]).
     """
     from harmonize_unit_art import TARGET_H_FRAC, MAX_W_FRAC
+    im = _to_native_grid(im)
     box = im.getchannel("A").getbbox()
     if box is None:
         raise ValueError("no content found to normalize (fully transparent)")
