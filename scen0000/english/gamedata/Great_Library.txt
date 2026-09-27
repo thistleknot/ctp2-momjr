@@ -110,7 +110,7 @@ Age: 2
 Branch: 0
 [END]
 [ADVANCE_WARRIOR_CODE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 600 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_LAMP>Lamp<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR_BOWMAN>Minotaur Bowman<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>.
+<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 600 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_LAMP>Lamp<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR_CROSSBOW>Minotaur Crossbow<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR_WARRIOR>Minotaur Warrior<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>.
 [END]
 [ADVANCE_WARRIOR_CODE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The rules fighting men impose on themselves, which are what distinguish an army from a mob with weapons.
@@ -2937,11 +2937,11 @@ Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [UNIT_AIRSHIP_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Airship is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
-[UNIT_MINOTAUR_PREREQ]
+[UNIT_MINOTAUR_WARRIOR_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
 <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
 [END]
-[UNIT_MINOTAUR_STATISTICS]
+[UNIT_MINOTAUR_WARRIOR_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
 Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
 Defense: {UnitDB(UnitRecord[0]).Defense / 100}
@@ -2954,11 +2954,11 @@ Costs: {UnitDB(UnitRecord[0]).ShieldCost}
 Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
-[UNIT_MINOTAUR_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Minotaur: attack 10, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 400 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[UNIT_MINOTAUR_WARRIOR_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Minotaur Warrior: attack 10, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 400 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
-[UNIT_MINOTAUR_HISTORICAL]
-<c:245,240,225><h:0,0,0>The Minotaur is represented here as a proxy unit while the final MoM art swap is in progress.
+[UNIT_MINOTAUR_WARRIOR_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Minotaur Warrior is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [UNIT_WAR_TROLL_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
@@ -4059,11 +4059,11 @@ Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [UNIT_CENTAUR_BOWMAN_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Centaur Bowman is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
-[UNIT_MINOTAUR_BOWMAN_PREREQ]
+[UNIT_MINOTAUR_CROSSBOW_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
 <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
 [END]
-[UNIT_MINOTAUR_BOWMAN_STATISTICS]
+[UNIT_MINOTAUR_CROSSBOW_STATISTICS]
 <c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
 Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
 Defense: {UnitDB(UnitRecord[0]).Defense / 100}
@@ -4076,11 +4076,11 @@ Costs: {UnitDB(UnitRecord[0]).ShieldCost}
 Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
 Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [END]
-[UNIT_MINOTAUR_BOWMAN_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Minotaur Bowman: attack 10, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 400 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[UNIT_MINOTAUR_CROSSBOW_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Minotaur Crossbow: attack 10, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 400 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
 [END]
-[UNIT_MINOTAUR_BOWMAN_HISTORICAL]
-<c:245,240,225><h:0,0,0>The Minotaur Bowman is represented here as a proxy unit while the final MoM art swap is in progress.
+[UNIT_MINOTAUR_CROSSBOW_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Minotaur Crossbow is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
 [ADVANCE_AGE_OF_REASON_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
@@ -6669,11 +6669,11 @@ Conservation
 [UNIT_MINION_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Minion.
 [END]
-[UNIT_MINOTAUR_SUMMARY]
-<c:245,240,225><h:0,0,0>Summary of Minotaur.
+[UNIT_MINOTAUR_CROSSBOW_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Minotaur Crossbow.
 [END]
-[UNIT_MINOTAUR_BOWMAN_SUMMARY]
-<c:245,240,225><h:0,0,0>Summary of Minotaur Bowman.
+[UNIT_MINOTAUR_WARRIOR_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Minotaur Warrior.
 [END]
 [UNIT_OGRE_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Ogre.

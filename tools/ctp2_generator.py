@@ -4103,7 +4103,8 @@ def _emit_spell_effects() -> int:
         "UNIT_JAFAR", "UNIT_RJAK", "UNIT_MALLEUS", "UNIT_TAURON", "UNIT_WARRAX",
     ]
     CHAOS_UNITS = [
-        "UNIT_HELL_HOUNDS", "UNIT_MINOTAUR", "UNIT_GARGOYLE", "UNIT_SALAMANDER",
+        "UNIT_HELL_HOUNDS", "UNIT_MINOTAUR_WARRIOR", "UNIT_MINOTAUR_CROSSBOW",
+        "UNIT_GARGOYLE", "UNIT_SALAMANDER",
         "UNIT_INFERNAL_DEVICE", "UNIT_HYDRA", "UNIT_EFREET", "UNIT_TAURON", "UNIT_WARRAX",
     ]
     # Innately magic-resistant units: 50% base resist to ALL spells (dwarven anti-magic)

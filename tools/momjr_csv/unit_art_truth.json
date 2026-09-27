@@ -67,8 +67,9 @@
   },
   "DWARF_CROSSBOW": {
     "depicts": "dwarf crossbow",
-    "verdict": "crafted",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation"
+    "verdict": "correct",
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_CROSSBOW.png, key tolerance 14 so the dark boots survive)",
+    "no_regenerate": true
   },
   "DWARF_RUNESMITH": {
     "depicts": "dwarf runesmith",
@@ -77,8 +78,9 @@
   },
   "DWARF_WARRIOR": {
     "depicts": "dwarf warrior",
-    "verdict": "crafted",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art/dwarf warrior.png; supersedes generation | 2026-09-26 operator: \"dwarf_warrior is incorrect\". The file is a 45x65 sprite saved at 3x; shrinking the 3x file with smoothing blurred its blocks. Re-installed via lossless reduction to native pixels, then hard-pixel enlargement."
+    "verdict": "correct",
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art/dwarf warrior.png; supersedes generation | 2026-09-26 operator: \"dwarf_warrior is incorrect\". The file is a 45x65 sprite saved at 3x; shrinking the 3x file with smoothing blurred its blocks. Re-installed via lossless reduction to native pixels, then hard-pixel enlargement. | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_WARRIOR.png, key tolerance 14 so the dark boots survive)",
+    "no_regenerate": true
   },
   "GOBLIN": {
     "depicts": "goblin",
@@ -174,11 +176,6 @@
     "verdict": "crafted",
     "note": "operator's hand-made art, revision installed 2026-09-06 20:29 from Documents/wiki/games/ctp2/art; newest file wins over any earlier namesake"
   },
-  "MINOTAUR": {
-    "depicts": "minotaur",
-    "verdict": "crafted",
-    "note": "operator 2026-09-07: decided image, minotaur_reimagined.png, installed from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: the LEFT (installed minotaur_reimagined.png) stays the Minotaur warrior; the generated archer became the new MINOTAUR_BOWMAN."
-  },
   "CENTAUR_BOWMAN": {
     "depicts": "centaur bowman",
     "verdict": "crafted",
@@ -205,12 +202,6 @@
     "depicts": "mage",
     "verdict": "crafted",
     "note": "operator's hand-made art wizard.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation"
-  },
-  "MINOTAUR_BOWMAN": {
-    "depicts": "minotaur bowman",
-    "verdict": "correct",
-    "note": "NEW UNIT 2026-09-26. Operator: \"minotaur looks great, but it looks like a minotaur bowman ... the one on the right (for minotaur bowman, so make a new unit)\". Art = the generated img2img proposal .tmp/matrix/upgrade/MINOTAUR.png (240x176), installed. Unit = verbatim clone of Minotaur stats via units.csv row (generator-owned). | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\").",
-    "no_regenerate": true
   },
   "AIRSHIP": {
     "depicts": "airship",
@@ -486,6 +477,17 @@
     "depicts": "griffin",
     "verdict": "correct",
     "note": "operator 2026-09-26 \"griffin face looks messed up\": first z-image batch drew 4/4 WINGED LIONS (no eagle head); klein img2img drew lion-beak mashups. Fixed by a prompt that leads with the anatomy (\"eagle-headed griffin ... the HEAD of a golden eagle ... hindquarters of a lion\") (source file: .tmp/matrix/items_griffin/GRIFFIN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\").",
+    "no_regenerate": true
+  },
+  "MINOTAUR_WARRIOR": {
+    "depicts": "minotaur warrior",
+    "verdict": "crafted",
+    "note": "operator 2026-09-07: decided image, minotaur_reimagined.png, installed from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: the LEFT (installed minotaur_reimagined.png) stays the Minotaur warrior; the generated archer became the new MINOTAUR_BOWMAN. | operator 2026-09-26: \"minotaur becomes minotaur_warrior\" -- unit renamed."
+  },
+  "MINOTAUR_CROSSBOW": {
+    "depicts": "minotaur crossbow",
+    "verdict": "correct",
+    "note": "NEW UNIT 2026-09-26. Operator: \"minotaur looks great, but it looks like a minotaur bowman ... the one on the right (for minotaur bowman, so make a new unit)\". Art = the generated img2img proposal .tmp/matrix/upgrade/MINOTAUR.png (240x176), installed. Unit = verbatim clone of Minotaur stats via units.csv row (generator-owned). | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | operator 2026-09-26: \"where is my minotaur_crossbow\" -- unit renamed from Minotaur Bowman. The art still shows a BOW, not a crossbow.",
     "no_regenerate": true
   }
 }

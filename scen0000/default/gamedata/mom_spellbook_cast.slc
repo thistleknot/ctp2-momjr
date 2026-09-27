@@ -710,7 +710,8 @@ int_f MomCastSpell(int_t p, int_t spellId)
                     // Chaos entropy (25%)
                     if (bestAtk < 25) {
                         if (killUnit.type == UnitDB(UNIT_HELL_HOUNDS)) { bestAtk = 25; }
-                        if (killUnit.type == UnitDB(UNIT_MINOTAUR)) { bestAtk = 25; }
+                        if (killUnit.type == UnitDB(UNIT_MINOTAUR_WARRIOR)) { bestAtk = 25; }
+                        if (killUnit.type == UnitDB(UNIT_MINOTAUR_CROSSBOW)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_GARGOYLE)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_SALAMANDER)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_INFERNAL_DEVICE)) { bestAtk = 25; }
@@ -1010,7 +1011,8 @@ int_f MomCastSpell(int_t p, int_t spellId)
                 // Chaos entropy (25%)
                 if (bestAtk < 25) {
                     if (killUnit.type == UnitDB(UNIT_HELL_HOUNDS)) { bestAtk = 25; }
-                    if (killUnit.type == UnitDB(UNIT_MINOTAUR)) { bestAtk = 25; }
+                    if (killUnit.type == UnitDB(UNIT_MINOTAUR_WARRIOR)) { bestAtk = 25; }
+                    if (killUnit.type == UnitDB(UNIT_MINOTAUR_CROSSBOW)) { bestAtk = 25; }
                     if (killUnit.type == UnitDB(UNIT_GARGOYLE)) { bestAtk = 25; }
                     if (killUnit.type == UnitDB(UNIT_SALAMANDER)) { bestAtk = 25; }
                     if (killUnit.type == UnitDB(UNIT_INFERNAL_DEVICE)) { bestAtk = 25; }
@@ -1231,7 +1233,8 @@ int_f MomCastSpell(int_t p, int_t spellId)
                     // Chaos entropy (25%)
                     if (bestAtk < 25) {
                         if (killUnit.type == UnitDB(UNIT_HELL_HOUNDS)) { bestAtk = 25; }
-                        if (killUnit.type == UnitDB(UNIT_MINOTAUR)) { bestAtk = 25; }
+                        if (killUnit.type == UnitDB(UNIT_MINOTAUR_WARRIOR)) { bestAtk = 25; }
+                        if (killUnit.type == UnitDB(UNIT_MINOTAUR_CROSSBOW)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_GARGOYLE)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_SALAMANDER)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_INFERNAL_DEVICE)) { bestAtk = 25; }
@@ -1523,7 +1526,8 @@ int_f MomCastSpell(int_t p, int_t spellId)
                     // Chaos entropy (25%)
                     if (bestAtk < 25) {
                         if (killUnit.type == UnitDB(UNIT_HELL_HOUNDS)) { bestAtk = 25; }
-                        if (killUnit.type == UnitDB(UNIT_MINOTAUR)) { bestAtk = 25; }
+                        if (killUnit.type == UnitDB(UNIT_MINOTAUR_WARRIOR)) { bestAtk = 25; }
+                        if (killUnit.type == UnitDB(UNIT_MINOTAUR_CROSSBOW)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_GARGOYLE)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_SALAMANDER)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_INFERNAL_DEVICE)) { bestAtk = 25; }
@@ -1640,7 +1644,8 @@ int_f MomCastSpell(int_t p, int_t spellId)
                     // Chaos entropy (25%)
                     if (bestAtk < 25) {
                         if (killUnit.type == UnitDB(UNIT_HELL_HOUNDS)) { bestAtk = 25; }
-                        if (killUnit.type == UnitDB(UNIT_MINOTAUR)) { bestAtk = 25; }
+                        if (killUnit.type == UnitDB(UNIT_MINOTAUR_WARRIOR)) { bestAtk = 25; }
+                        if (killUnit.type == UnitDB(UNIT_MINOTAUR_CROSSBOW)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_GARGOYLE)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_SALAMANDER)) { bestAtk = 25; }
                         if (killUnit.type == UnitDB(UNIT_INFERNAL_DEVICE)) { bestAtk = 25; }

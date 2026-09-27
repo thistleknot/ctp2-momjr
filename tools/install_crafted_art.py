@@ -80,7 +80,8 @@ NAMESAKE = {
     "arch_mage": "ARCH_MAGE",
     "storm_drake": "STORM_DRAKE",
     "settler reimagined": "SETTLER",
-    "minotaur_reimagined": "MINOTAUR",
+    # operator 2026-09-26: "minotaur becomes minotaur_warrior"
+    "minotaur_reimagined": "MINOTAUR_WARRIOR",
     # DJINN is the genie again now that its centaur-archer tile moved
     # to CENTAUR_BOWMAN.
     "genie_reimagined": "DJINN",

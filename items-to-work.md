@@ -6,7 +6,7 @@ On the review page **left = CURRENT** (installed), **right = PROPOSED** (generat
 
 **Status 2026-09-26 18:45: every item resolved.** All 82 units carry a final
 verdict in `unit_art_truth.json` (61 correct, 21 crafted). Review page:
-`tools/momjr_csv/unit_art_review_0926-1937.html`. Ship-size sheet of every unit:
+`tools/momjr_csv/unit_art_review_0926-2039.html`. Ship-size sheet of every unit:
 `.tmp/matrix/sheet_0926_final_ship.png`. Built + audited, NOT verified in game.
 
 ## Keep the current art — DONE
@@ -14,6 +14,11 @@ verdict in `unit_art_truth.json` (61 correct, 21 crafted). Review page:
 CRYSTAL_GOLEM, DJINN, DROW, TREANT, ARCH_MAGE ("former unit" = the left,
 installed `arch_mage.png`), CENTAUR_BOWMAN. All `no_regenerate`; the review page
 now shows "final — no candidate" for every decided unit.
+
+## Dwarves — DONE
+
+DWARF_WARRIOR and DWARF_CROSSBOW now use the right-hand (generated) images from
+the 15:20 review page, as the operator intended, replacing the hand-made files.
 
 ## Accepted proposals ("these are all fantastic") — DONE
 
@@ -39,10 +44,13 @@ now shows "final — no candidate" for every decided unit.
 
 Source files for each pick are recorded in `tools/momjr_csv/unit_art_truth.json`.
 
-## New unit MINOTAUR_BOWMAN — DONE
+## Minotaur Warrior and Minotaur Crossbow — DONE
 
-Generator-owned (`units.csv` row, clone of Minotaur stats), sprite GU181, art =
-the archer proposal. CENTAUR_BOWMAN also got its `units.csv` row — it had been
+Operator: "minotaur becomes minotaur_warrior" and "where is my minotaur_crossbow".
+The old Minotaur is now MINOTAUR_WARRIOR (`minotaur_reimagined.png`); the new
+unit is MINOTAUR_CROSSBOW, a clone of its stats with the archer proposal as art.
+The art shows a BOW, not a crossbow. Both are generator-owned `units.csv` rows
+and both count as Chaos units for spell resistance. CENTAUR_BOWMAN also got its `units.csv` row — it had been
 hand-added to generated files and the next regen would have deleted it.
 
 ## Harness fixes found along the way — DONE

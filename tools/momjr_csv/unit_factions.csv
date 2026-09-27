@@ -4,7 +4,7 @@ UNIT_GARGOYLE,Gargoyle,6,chaos,adept,Med,,,ladder prereq Med (chaos adept)
 UNIT_HELL_HOUNDS,Hell Hounds,6,chaos,lore,MP,,,ladder prereq MP (chaos lore)
 UNIT_HYDRA,Hydra,12,chaos,master,Mob,,,ladder prereq Mob (chaos master)
 UNIT_INFERNAL_DEVICE,Infernal Device,16,chaos,wizard,Min,,,infernal war engine
-UNIT_MINOTAUR,Minotaur,3,chaos,lore,MP,,,DEFECT FIX: prereq War made it universal; beastmen are chaos
+UNIT_MINOTAUR_WARRIOR,Minotaur Warrior,3,chaos,lore,MP,,,DEFECT FIX: prereq War made it universal; beastmen are chaos
 UNIT_SALAMANDER,Salamander,10,chaos,mage,Met,,,fire drake
 UNIT_TAURON,Tauron,5,chaos,adept,Med,,,"tribe leader, players.csv TRIBES_CHAOS"
 UNIT_WARRAX,Warrax,12,chaos,mage,Met,,,reviewers agree; 8a/3d is an exact stat twin of Tauron
