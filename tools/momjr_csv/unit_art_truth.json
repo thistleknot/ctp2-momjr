@@ -38,7 +38,7 @@
   "CRUSADER": {
     "depicts": "crusader",
     "verdict": "correct",
-    "note": "crusader, idk. I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/CRUSADER.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
+    "note": "crusader, idk. I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/CRUSADER.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/CRUSADER.png)",
     "no_regenerate": true
   },
   "CRYSTAL_GOLEM": {
@@ -50,7 +50,7 @@
   "DEATH_KNIGHT": {
     "depicts": "death knight",
     "verdict": "correct",
-    "note": "death knight just looks like a crusader | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DEATH_KNIGHT.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
+    "note": "death knight just looks like a crusader | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DEATH_KNIGHT.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/DEATH_KNIGHT.png)",
     "no_regenerate": true
   },
   "DJINN": {
@@ -62,7 +62,7 @@
   "DRUID": {
     "depicts": "druid",
     "verdict": "correct",
-    "note": "druid is a pikeman | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DRUID.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
+    "note": "druid is a pikeman | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DRUID.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/DRUID.png)",
     "no_regenerate": true
   },
   "DWARF_CROSSBOW": {
@@ -85,25 +85,25 @@
   "GOBLIN": {
     "depicts": "goblin",
     "verdict": "correct",
-    "note": "goblin is a boar | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/GOBLIN.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
+    "note": "goblin is a boar | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/GOBLIN.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/GOBLIN.png)",
     "no_regenerate": true
   },
   "LICH": {
     "depicts": "lich",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: LICH.png)",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: LICH.png) | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/LICH.png)",
     "no_regenerate": true
   },
   "OGRE": {
     "depicts": "ogre",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a bald, fur-wrapped ogre with pale tan skin and a spiked club, distinct from the grey-blue troll and the armoured war troll (source file: OGRE.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved.",
+    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a bald, fur-wrapped ogre with pale tan skin and a spiked club, distinct from the grey-blue troll and the armoured war troll (source file: OGRE.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/OGRE.png)",
     "no_regenerate": true
   },
   "ORC": {
     "depicts": "orc",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a lean green orc warrior with a scimitar and a round shield, distinct from the grey-blue troll and the armoured war troll (source file: ORC.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved.",
+    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a lean green orc warrior with a scimitar and a round shield, distinct from the grey-blue troll and the armoured war troll (source file: ORC.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/ORC.png)",
     "no_regenerate": true
   },
   "PRIEST": {
@@ -131,7 +131,7 @@
   "TEMPLAR": {
     "depicts": "templar",
     "verdict": "correct",
-    "note": "templar is a mounted wizard | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/TEMPLAR.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
+    "note": "templar is a mounted wizard | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/TEMPLAR.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/TEMPLAR.png)",
     "no_regenerate": true
   },
   "TROLL": {
@@ -143,13 +143,13 @@
   "UNDEAD_DRAGON": {
     "depicts": "undead dragon",
     "verdict": "correct",
-    "note": "likely selected as closest to it (but is a green dragon) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/UNDEAD_DRAGON.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
+    "note": "likely selected as closest to it (but is a green dragon) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/UNDEAD_DRAGON.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/UNDEAD_DRAGON.png)",
     "no_regenerate": true
   },
   "WARLOCK": {
     "depicts": "warlock",
     "verdict": "correct",
-    "note": "same for warlock (green wizard?) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/WARLOCK.png); previous verdict proxy Key tolerance 40: the white background left a halo at the default. | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour.",
+    "note": "same for warlock (green wizard?) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/WARLOCK.png); previous verdict proxy Key tolerance 40: the white background left a halo at the default. | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/WARLOCK.png)",
     "no_regenerate": true
   },
   "DROW": {
@@ -394,7 +394,7 @@
     "depicts": "warbears",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-27: \"why is the bear dressed up like he has bdsm gear on?\" -- regenerated as a plain brown grizzly, natural fur, no harness or straps (source file: rmbg_dark/WARBEARS.png) | operator 2026-09-27: \"I like your bear\" -- approved."
+    "note": "operator 2026-09-27: \"why is the bear dressed up like he has bdsm gear on?\" -- regenerated as a plain brown grizzly, natural fur, no harness or straps (source file: rmbg_dark/WARBEARS.png) | operator 2026-09-27: \"I like your bear\" -- approved. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/WARBEARS.png)"
   },
   "WARRAX": {
     "depicts": "warrax",
@@ -454,13 +454,13 @@
     "depicts": "malleus",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other three candidates had dark gradient backgrounds that do not key (source file: .tmp/matrix/items1/MALLEUS_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
+    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other three candidates had dark gradient backgrounds that do not key (source file: .tmp/matrix/items1/MALLEUS_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/MALLEUS.png)"
   },
   "MINION": {
     "depicts": "minion",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word (source file: .tmp/matrix/items1/MINION_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
+    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word (source file: .tmp/matrix/items1/MINION_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/MINION.png)"
   },
   "STEAM_CANNON": {
     "depicts": "steam cannon",
@@ -478,7 +478,7 @@
     "depicts": "wyvern",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\" (source file: .tmp/matrix/items1/WYVERN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour."
+    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\" (source file: .tmp/matrix/items1/WYVERN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"less like a baby dragon ... an adolescent dragon, full size scale dragon at 1/4 the size\" -- lean young wyvern with grown-dragon proportions (source file: items_wyvern2/WYVERN_s31337.png)"
   },
   "GRIFFIN": {
     "depicts": "griffin",

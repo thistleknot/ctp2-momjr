@@ -43,6 +43,18 @@ def test_unchanged_sheet_imports_as_no_change(tmp_path):
     assert S.import_sheet(out, pics, apply=True) == []
 
 
+def test_an_old_sheet_cannot_revert_a_unit_changed_after_export(tmp_path):
+    pics = _pics(tmp_path, ["A", "B"])
+    out = tmp_path / "sheet.png"
+    S.export(["A", "B"], pics, out)
+    newer = Image.new("RGB", (160, 120), (0, 0, 0))
+    ImageDraw.Draw(newer).rectangle((10, 10, 150, 110), fill=(20, 200, 20))
+    I.write_tga(pics / "SPRITE_A.tga", newer)       # A updated after the export
+    before = (pics / "SPRITE_A.tga").read_bytes()
+    assert S.import_sheet(out, pics, apply=True) == []   # untouched cells ignored
+    assert (pics / "SPRITE_A.tga").read_bytes() == before
+
+
 def test_a_hand_edit_is_imported_into_that_unit_only(tmp_path):
     pics = _pics(tmp_path, ["A", "B"])
     out = tmp_path / "sheet.png"

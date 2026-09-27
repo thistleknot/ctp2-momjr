@@ -74,16 +74,28 @@ def export(units: list[str], pics: Path, out: Path) -> Image.Image:
         sheet.paste(master_rgba(pics / f"SPRITE_{u}.tga"), (x0, y0))
     out.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(out)
+    # The untouched export is kept as the BASELINE: import takes only cells the
+    # operator changed relative to it, so an older sheet cannot revert units that
+    # were updated after it was exported (14 units, 2026-09-27).
+    sheet.save(baseline_of(out))
     out.with_suffix(".json").write_text(json.dumps(
         {"cell": [W, H], "cols": COLS, "grid_px": 1, "units": units}, indent=1),
         encoding="utf-8")
     return sheet
 
 
+def baseline_of(png: Path) -> Path:
+    return png.with_name(png.stem + ".baseline.png")
+
+
 def import_sheet(png: Path, pics: Path, apply: bool, only: set[str] | None = None) -> list[str]:
+    """Write back ONLY the cells the operator edited (differ from the export baseline)."""
     meta = json.loads(png.with_suffix(".json").read_text(encoding="utf-8"))
     assert meta["cell"] == [W, H] and meta["cols"] == COLS, "sheet layout changed"
     sheet = Image.open(png).convert("RGBA")
+    base_path = baseline_of(png)
+    assert base_path.exists(), f"no export baseline {base_path.name}; re-export first"
+    base = Image.open(base_path).convert("RGBA")
     stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     changed = []
     with tempfile.TemporaryDirectory() as td:
@@ -91,6 +103,8 @@ def import_sheet(png: Path, pics: Path, apply: bool, only: set[str] | None = Non
             if only and u not in only:
                 continue
             cell = sheet.crop(cell_box(i))
+            if cell.tobytes() == base.crop(cell_box(i)).tobytes():
+                continue                      # operator did not touch this cell
             tmp = Path(td) / f"{u}.png"
             cell.save(tmp)
             new = I.to_master(tmp, normalize=False)
