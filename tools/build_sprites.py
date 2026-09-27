@@ -277,6 +277,63 @@ def _key_background(img: "Image.Image", tol: int = BG_KEY_TOLERANCE) -> int:
     return opaque
 
 
+# At the 96x72 facing size. 8 punched small holes in dark shading (Orc, War
+# Troll); real pockets measured 60-180 px here, so 20 separates them.
+POCKET_MIN_PX = 20
+
+
+def _pocket_units() -> set[str]:
+    """SPRITE_<ident> names whose ENCLOSED near-black is background, from
+    mod_policy.json `sprite_key_pockets`. Empty if the policy has none."""
+    import json
+    p = Path(__file__).resolve().parent / "momjr_csv" / "mod_policy.json"
+    try:
+        units = json.loads(p.read_text(encoding="utf-8")).get("sprite_key_pockets", [])
+    except (OSError, ValueError):
+        return set()
+    return {f"SPRITE_{u}" for u in units}
+
+
+def _key_pockets(img: "Image.Image", min_px: int = POCKET_MIN_PX,
+                 tol: int = BG_KEY_TOLERANCE) -> int:
+    """Key ENCLOSED background that the border flood cannot reach.
+
+    The master has no alpha channel, so transparency is rebuilt by flooding
+    from the frame edge -- and background trapped between legs, under a horse
+    or inside a bowstring is read as interior art and drawn as a black box on
+    the map. 54 of 88 masters had such regions (measured 2026-09-26).
+
+    PER UNIT, never global: pure black is ALSO real art (the Spearmen's cloak,
+    the Warship's sail shadow, the Storm Giant's cape). A size rule cannot tell
+    them apart, so the operator-reviewed list in mod_policy.json decides, and
+    only listed units get this pass. Returns the number of pixels keyed.
+    """
+    w, h = img.size
+    px = img.load()
+    near = lambda p: p[3] and p[0] + p[1] + p[2] <= tol
+    seen = bytearray(w * h)
+    keyed = 0
+    for sy in range(h):
+        for sx in range(w):
+            if seen[sy * w + sx] or not near(px[sx, sy]):
+                continue
+            comp, stack = [], [(sx, sy)]
+            seen[sy * w + sx] = 1
+            while stack:
+                x, y = stack.pop()
+                comp.append((x, y))
+                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                    if 0 <= nx < w and 0 <= ny < h and not seen[ny * w + nx] \
+                            and near(px[nx, ny]):
+                        seen[ny * w + nx] = 1
+                        stack.append((nx, ny))
+            if len(comp) >= min_px:
+                for x, y in comp:
+                    px[x, y] = (0, 0, 0, 0)
+                keyed += len(comp)
+    return keyed
+
+
 def _fit_content(img: "Image.Image") -> "Image.Image":
     """
     Bound a keyed sprite's opaque content to CONTENT_MAX_*_FRAC of its canvas.
@@ -428,6 +485,8 @@ def _facing_images(tga: Path, flip: bool) -> list["Image.Image"]:
     if flip:
         img = img.transpose(Image.FLIP_LEFT_RIGHT)   # left-facing source -> right-facing
     _key_background(img)
+    if tga.stem.upper() in _pocket_units():
+        _key_pockets(img)
     img = _fit_content(img)
     img = _normalize_to_stock_extent(img)
     return [img] * N_FACINGS   # 1:n cast; replace with n distinct images for true facings

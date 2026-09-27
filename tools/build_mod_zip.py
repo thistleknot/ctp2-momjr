@@ -15,6 +15,7 @@ Regenerate the scenario first (ctp2_generator.py + mom_audit.py); this script
 only packages what is already on disk.
 """
 import argparse
+import re
 import zipfile
 from pathlib import Path
 
@@ -28,8 +29,12 @@ PREFIX = "mom"
 # Build residue that has no business in a distributed mod. `_icon_backup` is a
 # pre-regeneration snapshot of the unit icons that lives beside the real ones in
 # scen0000; the engine never loads it, so shipping it was 55 dead TGAs of weight.
-SKIP_DIRS = {"__pycache__", ".pytest_cache", "_icon_backup"}
+SKIP_DIRS = {"__pycache__", ".pytest_cache", "_icon_backup", "_art_backup"}
 SKIP_SUFFIXES = {".pyc", ".bak", ".bak_recursion", ".tmp", ".orig", ".rej"}
+# Timestamped backups (SPRITE_X.tga.bak-20260926-175952, written by the art
+# installers) have a suffix of ".bak-<stamp>", which the set above never matched:
+# 232 of them shipped in mom.zip (measured 2026-09-26).
+SKIP_NAME = re.compile(r"\.bak[-_][^.]*$", re.IGNORECASE)
 
 
 def members(repo: Path):
@@ -49,7 +54,7 @@ def members(repo: Path):
             rel = path.relative_to(repo)
             if any(part in SKIP_DIRS for part in rel.parts):
                 continue
-            if path.suffix.lower() in SKIP_SUFFIXES:
+            if path.suffix.lower() in SKIP_SUFFIXES or SKIP_NAME.search(path.name):
                 continue
             yield path, f"{PREFIX}/" + str(rel).replace("\\", "/")
 

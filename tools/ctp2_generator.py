@@ -410,11 +410,15 @@ def _stat_source_dist(axis: str) -> tuple[float, float, float]:
     if axis in _STAT_SOURCE_CACHE:
         return _STAT_SOURCE_CACHE[axis]
     import statistics as _st
-    cut = int(MOD_POLICY["unit_stat_scaling"]["stat_curve"]["source_outlier_cutoff"])
+    curve = MOD_POLICY["unit_stat_scaling"]["stat_curve"]
+    cut = int(curve["source_outlier_cutoff"])
+    # Units MoM adds (clones) have no civ2 original: they are cast on this
+    # scale but must not move it, or adding one unit re-scales every other.
+    exclude = set(curve.get("source_exclude", []))
     vals = []
     for row in _policy_csv_rows("units.csv"):
         name = (row.get("name") or "").strip()
-        if not name or name.lower() == "blah":
+        if not name or name.lower() == "blah" or name in exclude:
             continue
         if len(name) == 2 and name[0].upper() == "B" and name[1].isdigit():
             continue
@@ -1959,6 +1963,60 @@ def _write_wonder_build_lists() -> int:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(out) + "\n", encoding='latin-1')
     return sum(len(v) for v in lists.values())
+
+
+def merge_newsprite(base_lines: list[str], scen_lines: list[str],
+                    unit_sprites: list[str],
+                    overrides: set[str]) -> tuple[list[str], list[tuple[str, int]]]:
+    """Merge the base newsprite registry with MoM's custom sprite ids.
+
+    Returns (base lines to write verbatim, [(sprite name, id)] custom entries).
+
+    SPRITE NUMBERS ARE PINNED: each custom number is baked into the GU<id>.SPR
+    filename built by build_sprites.py. Renumbering breaks every custom unit's
+    art (peasant regression, 2026-07-14). The scenario file's existing custom
+    assignments are preserved verbatim; only genuinely new names get fresh ids.
+
+    OVERRIDES are base sprite names MoM supplies its OWN art for (mod_policy
+    sprite_overrides). Left as base names, the base line always won and wrote
+    the stock id back -- SETTLER's move to its own id was silently reverted on
+    every regen, and build_sprites refuses base ids, so the new art never
+    shipped. An override is dropped from the base lines and treated exactly
+    like a custom sprite: keeps its pinned id unless that id IS the stock one,
+    in which case it gets a fresh id.
+    """
+    base_ids: dict[str, int] = {}
+    kept: list[str] = []
+    max_id = 0
+    for line in base_lines:
+        parts = line.strip().split()
+        if len(parts) == 2 and parts[1].isdigit():
+            base_ids[parts[0]] = int(parts[1])
+            max_id = max(max_id, int(parts[1]))
+            if parts[0] in overrides:
+                continue
+        kept.append(line)
+    stock = {n for n in base_ids if n not in overrides}
+
+    customs: list[tuple[str, int]] = []
+    for line in scen_lines:
+        parts = line.strip().split()
+        if len(parts) != 2 or not parts[1].isdigit() or parts[0] in stock:
+            continue
+        sid = int(parts[1])
+        if parts[0] in overrides and sid == base_ids.get(parts[0]):
+            continue                      # still on the stock id: re-assign below
+        if parts[0] not in {n for n, _ in customs}:
+            customs.append((parts[0], sid))
+    max_id = max([max_id] + [sid for _, sid in customs])
+
+    named = {n for n, _ in customs}
+    for s in unit_sprites + sorted(overrides):
+        if s not in stock and s not in named:
+            max_id += 1
+            customs.append((s, max_id))
+            named.add(s)
+    return kept, customs
 
 
 def _scan_unit_blocks(text: str) -> dict[str, str]:
@@ -8147,48 +8205,18 @@ def main():
     scenario_units = str(SCENARIO / "default" / "gamedata" / "Units.txt")
     try:
         with open(base_newsprite, 'r', encoding='utf-8') as f:
-            newsprite_lines = f.readlines()
-        
-        # Build a set of existing sprite names and find the max ID to avoid collisions
-        existing_sprites = set()
-        max_id = 0
-        for line in newsprite_lines:
-            parts = line.strip().split()
-            if len(parts) == 2:
-                existing_sprites.add(parts[0])
-                try:
-                    max_id = max(max_id, int(parts[1]))
-                except ValueError:
-                    pass
-
-        # SPRITE NUMBERS ARE PINNED: each custom number is baked into the GU<id>.SPR
-        # filename built by build_sprites.py. Renumbering breaks every custom unit's
-        # art (peasant regression, 2026-07-14). Preserve the scenario file's existing
-        # custom assignments verbatim; only genuinely new names get fresh ids.
-        pinned_customs: list[tuple[str, int]] = []
+            base_lines = f.readlines()
         try:
             with open(scenario_newsprite, 'r', encoding='utf-8') as f:
-                for line in f:
-                    parts = line.strip().split()
-                    if len(parts) == 2 and parts[0] not in existing_sprites:
-                        try:
-                            pinned_customs.append((parts[0], int(parts[1])))
-                        except ValueError:
-                            continue
+                scen_lines = f.readlines()
         except FileNotFoundError:
-            pass
-        pinned_names = {name for name, _ in pinned_customs}
-        max_id = max([max_id] + [sid for _, sid in pinned_customs])
-
-        # Read Units.txt to find any custom DefaultSprite references not yet registered
-        custom_sprites_to_add = list(pinned_customs)
-        for line in open(scenario_units, 'r', encoding='utf-8'):
-            if 'DefaultSprite' in line:
-                sprite_name = line.split('DefaultSprite')[1].strip()
-                if sprite_name not in existing_sprites and sprite_name not in pinned_names \
-                        and sprite_name not in [s[0] for s in custom_sprites_to_add]:
-                    max_id += 1
-                    custom_sprites_to_add.append((sprite_name, max_id))
+            scen_lines = []
+        unit_sprites = [line.split('DefaultSprite')[1].strip()
+                        for line in open(scenario_units, 'r', encoding='utf-8')
+                        if 'DefaultSprite' in line]
+        newsprite_lines, custom_sprites_to_add = merge_newsprite(
+            base_lines, scen_lines, unit_sprites,
+            set(MOD_POLICY.get("sprite_overrides", [])))
 
         # Write the complete merged registry (overwrite to prevent duplicate appends)
         with open(scenario_newsprite, 'w', encoding='utf-8') as f:

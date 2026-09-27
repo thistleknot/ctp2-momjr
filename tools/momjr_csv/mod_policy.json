@@ -54,6 +54,8 @@
       "_doc": "Rank-cast, not a linear multiply. Each unit's civ2 value is placed by its RANK POSITION within the civ2 distribution, then re-cast onto the CTP2 target range anchored on min/median/max. The warp is smoothstep w=p^2(3-2p): its gradient rises to a peak at the midpoint then decays, so power climbs steeply at the bottom and saturates at the top instead of running away. target = [min, median, max].",
       "_source_outlier_cutoff": "civ2 values >= this are excluded when measuring the SOURCE distribution, so one broken row cannot stretch the scale for everyone. Infernal Device is 99a at cost 480 -- 6.6x the next attack for a seventh of the price. It is still cast, it just no longer defines the maximum.",
       "source_outlier_cutoff": 90,
+      "_source_exclude": "Units MoM ADDS that have no civ2 original (clones like Centaur Bowman). They are still cast, but must not define the source distribution: two clone rows moved the attack median and silently re-scaled ~30 other units (measured 2026-09-26).",
+      "source_exclude": ["Centaur Bowman", "Minotaur Bowman"],
       "attack": [
         10,
         40,
@@ -313,6 +315,13 @@
     "target_mid_magic_turn": 60,
     "target_late_magic_turn": 120,
     "_status": "PENDING: needs in-game calibration after Phase 0 verify"
-  }
+  },
+  "sprite_overrides": [
+    "SPRITE_SETTLER",
+    "SPRITE_CATAPULT",
+    "SPRITE_GALLEY"
+  ],
+  "_sprite_key_pockets": "Units whose ENCLOSED near-black (between legs, under a horse, inside a bowstring) is background, keyed by build_sprites. Per unit because pure black is also real art (Spearmen cloak, Warship sail, Storm Giant cape). Reviewed by eye 2026-09-26; PHANTOM_WARRIORS and AIR_ELEMENTAL left out as ambiguous; MAGE, WAR_MAGE and MALLEUS left out because the pass ate real black art (robe folds, torso, the black horse).",
+  "sprite_key_pockets": ["CENTAURS", "CENTAUR_BOWMAN", "ELVEN_ARCHERS", "ORC", "MINOTAUR", "MINOTAUR_BOWMAN", "UNICORN", "WAR_TROLL", "HELL_HOUNDS", "TAURON", "WARRAX", "GUARDIAN_SPIRIT", "DROW", "CARAVAN", "WAR_MAMMOTH", "TREANT"]
 }
 

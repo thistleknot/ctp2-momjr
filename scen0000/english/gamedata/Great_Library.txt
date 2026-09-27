@@ -110,7 +110,7 @@ Age: 2
 Branch: 0
 [END]
 [ADVANCE_WARRIOR_CODE_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 600 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_LAMP>Lamp<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>.
+<c:245,240,225><h:0,0,0>Warrior Code needs no prior research and is available from the first turn. It costs 600 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_LAMP>Lamp<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR>Minotaur<e>, <L:DATABASE_UNITS,UNIT_MINOTAUR_BOWMAN>Minotaur Bowman<e>, <L:DATABASE_UNITS,UNIT_PEASANTS>Peasants<e> and <L:DATABASE_UNITS,UNIT_SPEARMEN>Spearmen<e>. It enables the city improvement <L:DATABASE_BUILDINGS,IMPROVE_BARRACKS>Barracks<e>.
 [END]
 [ADVANCE_WARRIOR_CODE_HISTORICAL]
 <c:245,240,225><h:0,0,0>The rules fighting men impose on themselves, which are what distinguish an army from a mob with weapons.
@@ -738,7 +738,7 @@ Age: 4
 Branch: 3
 [END]
 [ADVANCE_SHAMANISM_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Shamanism needs no prior research and is available from the first turn. It costs 2280 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_CENTAURS>Centaurs<e>.
+<c:245,240,225><h:0,0,0>Shamanism needs no prior research and is available from the first turn. It costs 2280 science to complete. It enables the units <L:DATABASE_UNITS,UNIT_CENTAURS>Centaurs<e> and <L:DATABASE_UNITS,UNIT_CENTAUR_BOWMAN>Centaur Bowman<e>.
 [END]
 [ADVANCE_SHAMANISM_HISTORICAL]
 <c:245,240,225><h:0,0,0>The first professional intermediaries between a people and whatever they believed was listening.
@@ -4036,6 +4036,52 @@ Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
 [UNIT_DROW_HISTORICAL]
 <c:245,240,225><h:0,0,0>The Drow is represented here as a proxy unit while the final MoM art swap is in progress.
 [END]
+[UNIT_CENTAUR_BOWMAN_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>
+[END]
+[UNIT_CENTAUR_BOWMAN_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_CENTAUR_BOWMAN_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Centaur Bowman: attack 13, defense 10, 10 hit points, firepower 1. Moves 2 tiles per turn and sees 2 tiles. Costs 320 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_SHAMANISM>Shamanism<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_CENTAUR_BOWMAN_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Centaur Bowman is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
+[UNIT_MINOTAUR_BOWMAN_PREREQ]
+<c:245,240,225><h:0,0,0>Requires:
+<L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>
+[END]
+[UNIT_MINOTAUR_BOWMAN_STATISTICS]
+<c:245,240,225><h:0,0,0>Attack: {UnitDB(UnitRecord[0]).Attack / 100}
+Ranged: {UnitDB(UnitRecord[0]).ZBRangeAttack}
+Defense: {UnitDB(UnitRecord[0]).Defense / 100}
+Armor: {UnitDB(UnitRecord[0]).Armor / 100}
+Damage: {UnitDB(UnitRecord[0]).Firepower}
+Vision: {UnitDB(UnitRecord[0]).VisionRange}
+Movement: {UnitDB(UnitRecord[0]).MaxMovePoints / 10000}
+Max HP: {UnitDB(UnitRecord[0]).MaxHP}
+Costs: {UnitDB(UnitRecord[0]).ShieldCost}
+Upkeep: {UnitDB(UnitRecord[0]).ShieldHunger} Shields
+Food Hunger: {UnitDB(UnitRecord[0]).FoodHunger}
+[END]
+[UNIT_MINOTAUR_BOWMAN_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Minotaur Bowman: attack 10, defense 12, 20 hit points, firepower 1. Moves 1 tile per turn and sees 2 tiles. Costs 400 production to build. Requires <L:DATABASE_ADVANCES,ADVANCE_WARRIOR_CODE>Warrior Code<e>. This unit can entrench for a defensive bonus, can expel enemy units without killing them, can pillage tile improvements, can raid trade routes and exerts martial law in a city.
+[END]
+[UNIT_MINOTAUR_BOWMAN_HISTORICAL]
+<c:245,240,225><h:0,0,0>The Minotaur Bowman is represented here as a proxy unit while the final MoM art swap is in progress.
+[END]
 [ADVANCE_AGE_OF_REASON_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
 <L:DATABASE_ADVANCES,ADVANCE_CHEMISTRY>Chemistry<e>
@@ -6521,6 +6567,9 @@ Conservation
 [UNIT_CENTAURS_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Centaurs.
 [END]
+[UNIT_CENTAUR_BOWMAN_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Centaur Bowman.
+[END]
 [UNIT_COCKATRICE_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Cockatrice.
 [END]
@@ -6622,6 +6671,9 @@ Conservation
 [END]
 [UNIT_MINOTAUR_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Minotaur.
+[END]
+[UNIT_MINOTAUR_BOWMAN_SUMMARY]
+<c:245,240,225><h:0,0,0>Summary of Minotaur Bowman.
 [END]
 [UNIT_OGRE_SUMMARY]
 <c:245,240,225><h:0,0,0>Summary of Ogre.

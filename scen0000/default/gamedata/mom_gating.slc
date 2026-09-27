@@ -110,11 +110,12 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         || theUnit == UnitDB(UNIT_UNICORN)
         ) { return 0; }
     }
-    // NATURE -- 15 block(s)
+    // NATURE -- 16 block(s)
     if (MomSphere[theCity.owner] != 2) {
         if (theUnit == UnitDB(UNIT_ALORRA)
         || theUnit == UnitDB(UNIT_BEHEMOTH)
         || theUnit == UnitDB(UNIT_CENTAURS)
+        || theUnit == UnitDB(UNIT_CENTAUR_BOWMAN)
         || theUnit == UnitDB(UNIT_COCKATRICE)
         || theUnit == UnitDB(UNIT_DRUID)
         || theUnit == UnitDB(UNIT_ELVEN_ARCHERS)
@@ -160,7 +161,7 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         || theUnit == UnitDB(UNIT_ZOMBIES)
         ) { return 0; }
     }
-    // CHAOS -- 14 block(s)
+    // CHAOS -- 15 block(s)
     if (MomSphere[theCity.owner] != 5) {
         if (theUnit == UnitDB(UNIT_DROW)
         || theUnit == UnitDB(UNIT_EFREET)
@@ -170,6 +171,7 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
         || theUnit == UnitDB(UNIT_HYDRA)
         || theUnit == UnitDB(UNIT_INFERNAL_DEVICE)
         || theUnit == UnitDB(UNIT_MINOTAUR)
+        || theUnit == UnitDB(UNIT_MINOTAUR_BOWMAN)
         || theUnit == UnitDB(UNIT_OGRE)
         || theUnit == UnitDB(UNIT_ORC)
         || theUnit == UnitDB(UNIT_SALAMANDER)

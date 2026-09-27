@@ -16,3 +16,7 @@ scen0000/default/graphics/pictures/_icon_backup/
 # and a leaked debug build committed into the mod would replace the real MAGIC
 # STATUS panel for players. Ignored so that can never happen via `git add -A`.
 scen0000/default/gamedata/mom_probe.slc
+# Timestamped art-installer backups and pre-install snapshots: local safety net
+# only, never source, never shipped (build_mod_zip skips them too).
+scen0000/**/*.bak-*
+scen0000/default/graphics/pictures/_art_backup/

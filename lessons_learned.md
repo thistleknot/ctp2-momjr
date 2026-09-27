@@ -1,3 +1,98 @@
+## 2026-09-26 — Four art defects that every format/size check passed
+
+Working items-to-work.md. Each of these shipped, looked plausible in a flat
+preview, and was only caught by rendering what the ENGINE draws.
+
+1. **Base sprite names ignore the scenario's id.** The generator writes the stock
+   `newsprite.txt` line for any base name, so SETTLER's own id (178) reverted on
+   every regen, and CATAPULT/GALLEY could never leave GU11/GU26 — build_sprites
+   refuses base ids, so the new art never reached the map. Fix: `sprite_overrides`
+   in mod_policy.json, `merge_newsprite()` in the generator (tested).
+2. **Adding a unit re-scaled the roster.** Stats are rank-cast over every csv row;
+   two clone rows moved the attack median and shifted ~30 units (Phantom Warriors
+   16→18). Discriminator: regen WITHOUT the rows → 0 attack diffs. Fix:
+   `stat_curve.source_exclude`. Verified: other 82 unit blocks byte-identical.
+3. **Enclosed background cannot be transparent.** Masters have no alpha;
+   build_sprites floods from the frame edge, so a gap between legs or inside a bow
+   draws as a black box. 54/88 masters had one. Pure black is ALSO real art
+   (Spearmen cloak, Warship sail), so a size rule cannot decide — a reviewed
+   per-unit list (`sprite_key_pockets`) does. A pocket pass on a WHITE animal on
+   a white background punched holes in its body (Unicorn): never on light art.
+4. **Noisy backgrounds block the edge flood.** SETTLER's near-black background had
+   edge pixels up to sum 62; at tolerance 24 only 420/30400 px keyed and the whole
+   frame shipped as a box. Generated art needs 48–64; white .jfif needed 120.
+   Separately, treating any alpha>0 as opaque turned the LANCZOS rim into dark
+   streaks — the cut is half alpha.
+
+Also: unit portraits (`ICON_UNIT_*.tga`) had never been updated with any art
+install; the installer now writes both. And z-image cannot draw hybrids from a
+bare name — "griffin" gave 4/4 winged lions until the prompt led with the
+anatomy ("the HEAD of a golden eagle ..."); klein gave a centaur 1 time in 6.
+
+**The law:** judge unit art through the engine's own keying at 96x72, not a
+preview that trusts alpha.
+
+## 2026-09-05 — Denoise has thresholds at BOTH ends; a hot tail pass discards its input
+
+A two-sampler ComfyUI graph was swept over `denoise0` x `blend` for 12 cells and
+returned **twelve pixel-identical images** — 0 of 13824 pixels differing. Bisection,
+holding everything fixed and varying only the FIRST sampler's seed:
+
+    ks1 denoise 0.78, euler_ancestral  -> ks0 changes   0.0% of pixels   DEAD
+    ks1 denoise 0.34, euler_ancestral  -> ks0 changes  94.3% of pixels   alive
+    ks1 denoise 0.78, euler            -> ks0 changes   0.0% of pixels   DEAD
+
+**The sampler is irrelevant; the denoise is the whole story.** Above ~0.5 the tail
+pass discards its input latent, so the first sampler, both VAE encodes and the
+Blend Latents node are dead weight — img2img in shape, txt2img in behaviour. It
+still renders something plausible, so nothing looks wrong.
+
+Three symptoms previously diagnosed as separate problems collapse into this one
+cause: white backgrounds (no caption says "black background", and the engine's
+transparency key needs it), invented subjects that match the prompt rather than
+the art, and ControlNet strength appearing to be the only effective knob.
+
+**The law:** before sweeping any parameter in a multi-pass graph, prove it reaches
+the output — change the upstream stage's SEED and pixel-diff. Zero differing
+pixels means the stage is disconnected and the sweep is void. A grid whose cells
+agree to three significant figures is a broken instrument, not a tie.
+
+Corollary from the same session: `AIO_Preprocessor.resolution` has a hard minimum
+of 64, enforced at submit time. Read declared bounds from `/object_info` instead
+of deriving a value arithmetically.
+
+## 2026-09-04 — "Too blurry" was a resample chain, and the comparison that decided it was judged at the wrong size
+
+**Problem:** the 166-unit harmonized batch shipped soft. The operator's read was "most of these are too blurry... I suppose the workflow didn't allow for modifying the denoise?" Denoise was always a flag; it was also never the cause. Testing 0.35 against 0.50 changed nothing that mattered.
+
+**Root cause, three parts in order of size.** (1) TWO stacked magnifications: the geometry step framed the unit at 160x120 and that canvas was then enlarged again to the model's 512x384, so the first interpolation happened at the LOWEST resolution in the chain and small units' detail was destroyed before the denoiser ran — it painted over mush. Fixed by rendering the framing straight to work size in ONE resample, NEAREST when magnifying so pixel art carries up intact. (2) A SMOOTHING DOWNSAMPLE on the last step: output was LANCZOS'd from 768 back to 160, averaging away every hard edge the pipeline had just produced. `Image.BOX` instead. This one silently undid the sharpening on all 166 units. (3) The base model's painterly prior, fixed with `elusarca-pixel-art-zimage.safetensors` @0.8 on BOTH samplers (no trigger token — the phrase "pixel art" in the prompt is the trigger) plus `4x-PixelPerfectV4.pth` via `ImageUpscaleWithModel` on the DECODED PIXELS. Latent upscale cannot harden edges because it feeds the VAE, which is where the softness originates. Final step `quantize(colors=32, dither=NONE)`; outputs land at 23-30 colours.
+
+**Counter-intuitive and measured:** raising the working resolution makes it WORSE — at 1024 Z-Image returns near-identity, at 640 it fully repaints. More steps do nothing (8 vs 20 indistinguishable at 2.5x the cost). Spend the budget on the resample chain and the prior.
+
+**The methodological failure that let it ship:** every comparison had been judged at 3-4x nearest zoom, and the ranking INVERTS at true size. At 4x the no-LoRA render looked richer and more detailed; at 96x72 that same image was the mushy one, and the LoRA render that looked flat magnified was the one holding hard edges. Magnification rewards smooth gradients and punishes flat regions — exactly backwards from what survives reduction to 96x72. Compounding it, the batch was approved off FIVE zoomed samples. Render every comparison at the size it ships at, then nearest-zoom that; never resize the source up.
+
+**A second instrument error in the same session:** I reported "no upscale models installed" from `/object_info` and had the operator relay it as a gap to another team. ComfyUI serves two combo shapes — v1 `[[opts], {...}]` and v3 `["COMBO", {"options": [...]}]` — and my reader took `spec[0]` if it was a list, else empty. Four upscalers had been installed the whole time. An empty inventory result is a claim about the READER until the reader is proven non-empty on a known-populated node.
+
+**SPRITE_LAMP was replaced, not repaired.** It shipped upside down (lid finial underneath, shading dark-on-top) AND was stylistically an odd duck — flat vector gold against a roster of pixel art. A vertical-flip correction was built first and was the wrong fix; the operator wanted new art. Regenerated txt2img with the pixel-art LoRA at seed 4404 and installed as the source for both `SPRITE_LAMP.tga` and `ICON_UNIT_LAMP.tga`, with the flip correction then RETIRED so it could not re-invert the good asset. A `flip` column remains in `unit_art_prompts.csv` for any genuinely inverted asset found later.
+
+**Dead ends:** do not tune denoise to fix softness; do not raise working resolution; do not add steps; do not judge art zoomed; do not report a remote inventory as empty without proving the parser.
+
+## 2026-09-03 — The images were never mis-sized; a floor of 9 became 8 and ate the silhouette
+
+**Problem:** The unit art was reported as "different dimensions" needing a resize. Measured, all 167 unit TGAs (`SPRITE_*` 87, `ICON_UNIT_*` 80) are already 160x120 opaque RGB on a pure-black key. The real defect is content SCALE inside that fixed frame: width-fraction spans 0.21 to 0.94, so DWARF_CROSSBOW renders as a speck beside a frame-filling STORM_DRAKE.
+
+**Why it survived the pipeline:** `build_sprites._normalize_to_stock_extent` DOES normalize extent at build time, but hard-clamps `scale = min(1.0, ...)` -- it never scales content UP. A master at 0.21 arrives in the 96x72 canvas ~30px tall, already under `STOCK_CONTENT_H`, so it passes through untouched and stays tiny forever. The fix has to land on the 160x120 master. The target must also clear `STOCK_CONTENT_H / 72 = 0.861` or that downstream pass silently declines to rescale and the whole exercise is undone; 0.88 was chosen for exactly that reason, and the width cap had to become per-family (sprite 0.95, icon 0.80) because a single 0.78 cap made wide units width-bound and dropped them back under the threshold -- undoing the fix for precisely the units being fixed.
+
+**Root cause of the erosion (the real find):** `harmonize_unit_art.py` reapplies the geometric mask after the img2img round trip, which pins the silhouette and forces the background back to exact `(0,0,0)`. But the denoiser also paints near-black pixels at the figure's own EDGE, and `_key_background` keys anything within `BG_KEY_TOLERANCE = 24` Manhattan distance of the corner colour, INCLUSIVE -- so those edge pixels are contiguous with the background and get eaten. Lifting them to 9 per channel (3x9 = 27 > 24) did not work: CTP2 icons are **16bpp RGB555**, so on write every channel snaps to a multiple of 8, and 9 quantised straight back to **8** -> distance 24 -> keyed after all. `SPRITE_MINOTAUR` lost 575 pixels, 17% of its mask, every one of them exactly `(8,8,8)`. The floor must be chosen in the QUANTISED space: the smallest multiple of 8 that clears the tolerance, i.e. **16**. `build_sprites`' own `DARK_FLOOR = 8` cannot serve, because it is applied AFTER keying where alpha is already decided. Silhouette retention went 0.83-0.98 -> 0.976-0.995.
+
+**The test that lied:** the first version of this assertion built the image in memory and never wrote a file, so it passed while the shipped TGAs were still eroding. Any test on CTP2 art must round-trip through `write_icon_tga`. Same shape as the 2026-08 "verified the instrument, not the behaviour" failure.
+
+**Proxy art is ~15% of the roster:** reviewing all 87 sprites by eye found 13 units wearing another unit's art -- ORC is a wolf, GOBLIN a boar, DWARF_WARRIOR a gargoyle, DJINN a centaur, LICH and SKELETONS the same green sorcerer, TROLL a red winged demon, PRIEST a norse warrior, CRYSTAL_GOLEM and DWARF_RUNESMITH the same fireball, BONE_GOLEM/DRUID/OGRE all armoured knights, and SETTLER byte-identical to the WRAITH art. The SETTLER case was already recorded as a one-off; it is not. Also found: `SPRITE_ARIEL.tga` has UI chrome (a shield outline and green bar) baked into the image, and `SPRITE_B9` is only that chrome with no unit at all. Consequence: a generative pass prompted from the FILENAME would repaint the wolf into an orc -- silently replacing art rather than restyling it. Prompts therefore describe what the art SHOWS, captured in `tools/momjr_csv/unit_art_prompts.csv` with an `art_matches_name` column.
+
+**Denoise:** a single 0.55 pass restyles well but invents semantics in ambiguous regions -- an ice-lightning streak became a lance, a bull's face became a skull, the efreet's head a featureless balloon. Two hypotheses were tested and one was wrong: more steps did nothing (8 vs 20 indistinguishable, 2.5x the cost), and higher resolution made it WORSE (at 1024 the model returns near-identity; at 640 it fully repaints). The fix is a two-stage ladder -- `VAEEncode@512 -> KSampler(0.50, 9) -> LatentUpscale 1.5x bislerp -> KSampler(0.28, 6)` -- where the early low-res pass restyles and the late high-res low-denoise pass refines without re-deciding what anything is. Upscaling in LATENT space keeps the second pass anchored on the first pass's composition. All three artifacts resolved.
+
+**Dead ends:** do not raise the working resolution to fix detail (it suppresses the restyle entirely); do not spend budget on steps; do not size content from a plain `getbbox()` (the masters carry blue flecks that inflate it -- use a mass-robust extent plus despeckle); and do not clamp the scale so the full bbox must fit, which lets one far-flung speck drag every unit back under the threshold.
+
 ## 2026-08-15 — CURRENT: isolate frame-5→6 black client capture before right-click retest
 
 **Problem:** `runs/20260815-094130-builtins` uses the rebuilt ADB7 binary but becomes black at the exact capture boundary after `05_scenario_select.png`: frames 1–5 are valid, while `06_scenario_select_check.png` and every later frame are all-zero client crops. No input occurs between frames 5 and 6, and the process exits cleanly.
