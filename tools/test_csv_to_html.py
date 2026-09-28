@@ -237,3 +237,21 @@ def test_empty_fields_are_omitted_from_the_detail_grid():
     out = H.render([_row(gear="")], {})
     assert ">gear<" not in out
     assert ">weapon<" in out
+
+
+def test_sprite_sheets_render_above_the_cards_in_order():
+    """Operator 2026-09-28: the sheet ships with the page on every pass."""
+    out = H.render([_row("ORC")], {}, sheets=[("In-game size", "game.png"),
+                                             ("Masters", "masters.png")])
+    assert (out.index('src="game.png"') < out.index('src="masters.png"')
+            < out.index('<main id="list">'))
+    assert ">In-game size</figcaption>" in out
+
+
+def test_no_sheets_means_no_sheet_section():
+    assert 'id="sheets"' not in H.render([_row("ORC")], {})
+
+
+def test_sheet_caption_is_escaped():
+    out = H.render([_row("ORC")], {}, sheets=[("<b>x</b>", "s.png")])
+    assert "<b>x</b>" not in out and "&lt;b&gt;x&lt;/b&gt;" in out

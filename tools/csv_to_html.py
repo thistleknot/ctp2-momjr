@@ -122,9 +122,18 @@ def generated_art(dirs: list[Path]) -> dict[str, tuple[str, str]]:
 
 def render(rows: list[dict], flags: dict[str, dict],
            bind: dict[str, dict] | None = None,
-           gen: dict[str, tuple[str, str]] | None = None) -> str:
+           gen: dict[str, tuple[str, str]] | None = None,
+           sheets: list[tuple[str, str]] | None = None) -> str:
+    """`sheets`: (caption, src) sprite sheets shown above the cards. Operator
+    2026-09-28: "always provide the sprite sheet w the html each pass"."""
     bind = bind or {}
     gen = gen or {}
+    sheet_html = "".join(
+        f'<figure class="sheet"><figcaption>{html.escape(c)}</figcaption>'
+        f'<div class="scroll"><img src="{html.escape(s)}" alt="{html.escape(c)}"></div></figure>'
+        for c, s in (sheets or []))
+    if sheet_html:
+        sheet_html = f'<section id="sheets"><h2>Sprite sheets</h2>{sheet_html}</section>'
     cards = []
     for r in rows:
         ident = r.get("ident", "")
@@ -253,6 +262,11 @@ def render(rows: list[dict], flags: dict[str, dict],
  .grid {{ display:grid; grid-template-columns:max-content 1fr;
           gap:2px 12px; font-size:13px; }}
  .k {{ color:var(--dim); }}
+ #sheets {{ padding:16px 16px 0; display:flex; flex-direction:column; gap:14px; }}
+ .sheet {{ margin:0; }}
+ .sheet figcaption {{ color:var(--dim); font-size:12px; margin-bottom:6px; }}
+ .sheet .scroll {{ overflow-x:auto; }}
+ .sheet img {{ display:block; max-width:none; image-rendering:pixelated; }}
  @media (max-width:640px) {{ .row {{ grid-template-columns:1fr; }} }}
 </style>
 <header>
@@ -269,6 +283,7 @@ def render(rows: list[dict], flags: dict[str, dict],
   </select>
   <span class="count" id="count"></span>
 </header>
+{sheet_html}
 <main id="list">{''.join(cards)}</main>
 <script>
 const rows=[...document.querySelectorAll('.row')],
@@ -299,7 +314,10 @@ def main() -> int:
     ap.add_argument("--gen", nargs="*", type=Path, default=DEFAULT_GEN,
                     help="dirs of proposed replacement art, later wins")
     ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument("--sheet", action="append", default=[], metavar="CAPTION=SRC",
+                    help="sprite sheet shown above the cards; SRC is relative to the page")
     args = ap.parse_args()
+    sheets = [tuple(s.split("=", 1)) for s in args.sheet]
 
     rows = list(csv.DictReader(open(args.csv, encoding="utf-8")))
     if not rows:
@@ -314,7 +332,7 @@ def main() -> int:
     bind = game_binding(args.xref)
     unbound = [r["ident"] for r in rows if r["ident"] not in bind]
     gen = generated_art(list(args.gen))
-    args.out.write_text(render(rows, flags, bind, gen), encoding="utf-8")
+    args.out.write_text(render(rows, flags, bind, gen, sheets), encoding="utf-8")
     n_art = sum(1 for r in rows if r.get("art_b64"))
     import collections
     verdicts = collections.Counter(
