@@ -14,487 +14,487 @@
   "APPRENTICE": {
     "depicts": "apprentice",
     "verdict": "correct",
-    "note": "operator 2026-09-27: \"your apprentice sucks still, still looks a little too cartoonish\" -- regenerated with \"dark fantasy, realistic proportions\": a young adult apprentice, hood down, worn grey robe, satchel, staff with a glowing blue crystal (source file: rmbg/APPRENTICE.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator 2026-09-27: \"your apprentice sucks still, still looks a little too cartoonish\" -- regenerated with \"dark fantasy, realistic proportions\": a young adult apprentice, hood down, worn grey robe, satchel, staff with a glowing blue crystal (source file: rmbg/APPRENTICE.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "ARCH_MAGE": {
     "depicts": "arch mage",
     "verdict": "crafted",
-    "note": "operator 2026-09-07: decided image, arch_mage.png, installed from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"arch_mage is better with former unit\" -- the installed arch_mage.png (left) beats the generated proposal | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept.",
+    "note": "operator 2026-09-07: decided image, arch_mage.png, installed from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"arch_mage is better with former unit\" -- the installed arch_mage.png (left) beats the generated proposal | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "BONE_GOLEM": {
     "depicts": "bone golem",
     "verdict": "correct",
-    "note": "certainly not a bone golem, but I think I picked it because it was a proxy | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/BONE_GOLEM.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"where are the feet on the bone_golem!?\" -- the source render stopped at the thighs; regenerated on a tall canvas, whole body skull to feet. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "certainly not a bone golem, but I think I picked it because it was a proxy | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/BONE_GOLEM.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"where are the feet on the bone_golem!?\" -- the source render stopped at the thighs; regenerated on a tall canvas, whole body skull to feet. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "COCKATRICE": {
     "depicts": "cockatrice",
     "verdict": "correct",
-    "note": "same for cockatrice ... I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/COCKATRICE.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "same for cockatrice ... I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/COCKATRICE.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "CRUSADER": {
     "depicts": "crusader",
     "verdict": "correct",
-    "note": "crusader, idk. I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/CRUSADER.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/CRUSADER.png)",
+    "note": "crusader, idk. I don't think I had a good name for that one | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/CRUSADER.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/CRUSADER.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "CRYSTAL_GOLEM": {
     "depicts": "crystal golem",
     "verdict": "crafted",
-    "note": "operator's hand-made art, revision installed 2026-09-06 20:29 from Documents/wiki/games/ctp2/art; newest file wins over any earlier namesake | operator 2026-09-26: \"crystal golem left side is fine (right side looks cartoonish)\" -- installed art final | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator's hand-made art, revision installed 2026-09-06 20:29 from Documents/wiki/games/ctp2/art; newest file wins over any earlier namesake | operator 2026-09-26: \"crystal golem left side is fine (right side looks cartoonish)\" -- installed art final | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "DEATH_KNIGHT": {
     "depicts": "death knight",
     "verdict": "correct",
-    "note": "death knight just looks like a crusader | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DEATH_KNIGHT.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/DEATH_KNIGHT.png)",
+    "note": "death knight just looks like a crusader | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DEATH_KNIGHT.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/DEATH_KNIGHT.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "DJINN": {
     "depicts": "genie",
     "verdict": "crafted",
-    "note": "operator 2026-09-07: hand-made genie_reimagined.png installed. DJINN's old tile was a centaur archer, which now belongs to UNIT_CENTAUR_BOWMAN; this closes that reassignment. | operator 2026-09-26: \"the djinn left side is better\" -- installed genie final | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator 2026-09-07: hand-made genie_reimagined.png installed. DJINN's old tile was a centaur archer, which now belongs to UNIT_CENTAUR_BOWMAN; this closes that reassignment. | operator 2026-09-26: \"the djinn left side is better\" -- installed genie final | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "DRUID": {
     "depicts": "druid",
     "verdict": "correct",
-    "note": "druid is a pikeman | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DRUID.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/DRUID.png)",
+    "note": "druid is a pikeman | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/DRUID.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/DRUID.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "DWARF_CROSSBOW": {
     "depicts": "dwarf crossbow",
     "verdict": "correct",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_CROSSBOW.png, key tolerance 14 so the dark boots survive) | operator 2026-09-27: gave back the crossbow \"I initially complained about\" -- now the FLUX.2 klein render in the same look as the new DWARF_WARRIOR (shown the operator's preferred older dwarf): gold armour, horned helmet, red plume, heavy crossbow (source file: style_dxb/DWARF_CROSSBOW_klein_s11.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_CROSSBOW.png, key tolerance 14 so the dark boots survive) | operator 2026-09-27: gave back the crossbow \"I initially complained about\" -- now the FLUX.2 klein render in the same look as the new DWARF_WARRIOR (shown the operator's preferred older dwarf): gold armour, horned helmet, red plume, heavy crossbow (source file: style_dxb/DWARF_CROSSBOW_klein_s11.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "DWARF_RUNESMITH": {
     "depicts": "dwarf runesmith",
     "verdict": "crafted",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "DWARF_WARRIOR": {
     "depicts": "dwarf warrior",
     "verdict": "correct",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art/dwarf warrior.png; supersedes generation | 2026-09-26 operator: \"dwarf_warrior is incorrect\". The file is a 45x65 sprite saved at 3x; shrinking the 3x file with smoothing blurred its blocks. Re-installed via lossless reduction to native pixels, then hard-pixel enlargement. | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_WARRIOR.png, key tolerance 14 so the dark boots survive) | operator 2026-09-27: \"you just gave me back the dwarf_crossbow and dwarf_warrior I initially complained about\" -- now the FLUX.2 klein render shown the operator's preferred older dwarf (style_inspirations/dwarf_warrior_before.png): gold armour, horned helmet, red plume, whole body (source file: style_dw/rmbg/klein_s11.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art/dwarf warrior.png; supersedes generation | 2026-09-26 operator: \"dwarf_warrior is incorrect\". The file is a 45x65 sprite saved at 3x; shrinking the 3x file with smoothing blurred its blocks. Re-installed via lossless reduction to native pixels, then hard-pixel enlargement. | operator 2026-09-26: \"for dwarf_warrior and dwarf_crossbow, you were supposed to use the image on the right\" in the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: .tmp/matrix/upgrade/DWARF_WARRIOR.png, key tolerance 14 so the dark boots survive) | operator 2026-09-27: \"you just gave me back the dwarf_crossbow and dwarf_warrior I initially complained about\" -- now the FLUX.2 klein render shown the operator's preferred older dwarf (style_inspirations/dwarf_warrior_before.png): gold armour, horned helmet, red plume, whole body (source file: style_dw/rmbg/klein_s11.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "GOBLIN": {
     "depicts": "goblin",
     "verdict": "correct",
-    "note": "goblin is a boar | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/GOBLIN.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/GOBLIN.png)",
+    "note": "goblin is a boar | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/GOBLIN.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/GOBLIN.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "LICH": {
     "depicts": "lich",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: LICH.png) | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/LICH.png)",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: LICH.png) | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/LICH.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "OGRE": {
     "depicts": "ogre",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a bald, fur-wrapped ogre with pale tan skin and a spiked club, distinct from the grey-blue troll and the armoured war troll (source file: OGRE.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/OGRE.png)",
+    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a bald, fur-wrapped ogre with pale tan skin and a spiked club, distinct from the grey-blue troll and the armoured war troll (source file: OGRE.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/OGRE.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "ORC": {
     "depicts": "orc",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a lean green orc warrior with a scimitar and a round shield, distinct from the grey-blue troll and the armoured war troll (source file: ORC.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/ORC.png)",
+    "note": "operator 2026-09-26: \"ogre, orc need to be regenerated\" -- now a lean green orc warrior with a scimitar and a round shield, distinct from the grey-blue troll and the armoured war troll (source file: ORC.png) | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/ORC.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "PRIEST": {
     "depicts": "priest",
     "verdict": "crafted",
-    "note": "operator's hand-made art, revision installed 2026-09-06 20:29 from Documents/wiki/games/ctp2/art; newest file wins over any earlier namesake | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator's hand-made art, revision installed 2026-09-06 20:29 from Documents/wiki/games/ctp2/art; newest file wins over any earlier namesake | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "SALAMANDER": {
     "depicts": "salamander",
     "verdict": "correct",
-    "note": "salamandar is a fire salamander | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SALAMANDER.png); previous verdict correct | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "salamandar is a fire salamander | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SALAMANDER.png); previous verdict correct | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "SETTLER": {
     "depicts": "settler",
     "verdict": "crafted",
-    "note": "operator: \"settler is still kind of wonky\" -- hand-made 'settler reimagined.png' installed 2026-09-07, supersedes the generated version | operator 2026-09-26 items-to-work \"background boxes\": the source is RGB on a NOISY near-black background (edge pixels up to sum 62), so the default key tolerance 24 keyed only 420/30400 px and the whole frame shipped as a dark box. Re-installed at --key-tol 48 (64 eroded the donkey muzzle). | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator: \"settler is still kind of wonky\" -- hand-made 'settler reimagined.png' installed 2026-09-07, supersedes the generated version | operator 2026-09-26 items-to-work \"background boxes\": the source is RGB on a NOISY near-black background (edge pixels up to sum 62), so the default key tolerance 24 keyed only 420/30400 px and the whole frame shipped as a dark box. Re-installed at --key-tol 48 (64 eroded the donkey muzzle). | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "SKELETONS": {
     "depicts": "skeletons",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: SKELETONS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: SKELETONS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "TEMPLAR": {
     "depicts": "templar",
     "verdict": "correct",
-    "note": "templar is a mounted wizard | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/TEMPLAR.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/TEMPLAR.png)",
+    "note": "templar is a mounted wizard | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/TEMPLAR.png); previous verdict wrong | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/TEMPLAR.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "TROLL": {
     "depicts": "troll",
     "verdict": "correct",
-    "note": "operator 2026-09-27: \"the troll shouldn't be blue, but green\", then \"looks too much like a hairy ogre\", with reference art (lanky green trolls, hooked noses, big ears, fangs). Now a gaunt, sinewy green troll with long arms, crouched and snarling -- distinct from the fat ogre, the orc and the armoured war troll (source file: rmbg_dark/TROLL.png) | operator 2026-09-27: \"Go w your war troll\" -- the gaunt green troll is approved. | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator 2026-09-27: \"the troll shouldn't be blue, but green\", then \"looks too much like a hairy ogre\", with reference art (lanky green trolls, hooked noses, big ears, fangs). Now a gaunt, sinewy green troll with long arms, crouched and snarling -- distinct from the fat ogre, the orc and the armoured war troll (source file: rmbg_dark/TROLL.png) | operator 2026-09-27: \"Go w your war troll\" -- the gaunt green troll is approved. | operator 2026-09-27: \"I love the new orc, troll, ogre and such\" -- approved. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "UNDEAD_DRAGON": {
     "depicts": "undead dragon",
     "verdict": "correct",
-    "note": "likely selected as closest to it (but is a green dragon) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/UNDEAD_DRAGON.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/UNDEAD_DRAGON.png)",
+    "note": "likely selected as closest to it (but is a green dragon) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/UNDEAD_DRAGON.png); previous verdict proxy | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/UNDEAD_DRAGON.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "WARLOCK": {
     "depicts": "warlock",
     "verdict": "correct",
-    "note": "same for warlock (green wizard?) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/WARLOCK.png); previous verdict proxy Key tolerance 40: the white background left a halo at the default. | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/WARLOCK.png)",
+    "note": "same for warlock (green wizard?) | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (intent/WARLOCK.png); previous verdict proxy Key tolerance 40: the white background left a halo at the default. | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/WARLOCK.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "DROW": {
     "depicts": "drow",
     "verdict": "crafted",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"drow left side is better\" -- installed art final | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"drow left side is better\" -- installed art final | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "TREANT": {
     "depicts": "treant",
     "verdict": "crafted",
-    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation; operator 2026-09-06: \"treant doesnt need to be regenerated\" -- crafted art is final, no candidate offered | operator 2026-09-26: \"treant left unit looks fine\" | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator's hand-made art installed 2026-09-06 from Documents/wiki/games/ctp2/art; supersedes generation; operator 2026-09-06: \"treant doesnt need to be regenerated\" -- crafted art is final, no candidate offered | operator 2026-09-26: \"treant left unit looks fine\" | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "DEMON": {
     "depicts": "demon",
     "verdict": "correct",
-    "note": "operator: \"need to rederive demon description ... it is a demon, not a dragon\". The blind caption called it a dragon because it never saw the name. CAPTION error, not an art error -- art stays, description re-derived against the declared subject. | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/DEMON.png); previous verdict correct | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator: \"need to rederive demon description ... it is a demon, not a dragon\". The blind caption called it a dragon because it never saw the name. CAPTION error, not an art error -- art stays, description re-derived against the declared subject. | operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/DEMON.png); previous verdict correct | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "DRACOLICH": {
     "depicts": "dracolich",
     "verdict": "crafted",
-    "note": "operator's hand-made art dracolich_.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation. Chosen over green dracolich.png (rejected: 'fucking green') and two smaller variants; bone-white matches the authored description | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator's hand-made art dracolich_.png, installed 2026-09-26 from Documents/wiki/games/ctp2/art; supersedes generation. Chosen over green dracolich.png (rejected: 'fucking green') and two smaller variants; bone-white matches the authored description | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "STORM_DRAKE": {
     "depicts": "storm drake",
     "verdict": "crafted",
-    "note": "operator's hand-made art, revision installed 2026-09-06 20:29 from Documents/wiki/games/ctp2/art; newest file wins over any earlier namesake | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator's hand-made art, revision installed 2026-09-06 20:29 from Documents/wiki/games/ctp2/art; newest file wins over any earlier namesake | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "CENTAUR_BOWMAN": {
     "depicts": "centaur bowman",
     "verdict": "crafted",
-    "note": "operator 2026-09-07: decided image, centaur archer reimagined.jfif, installed from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"old centaur_bowman is fine\" -- installed art final | 2026-09-26 re-keyed (same art): at the default tol 24 the white .jfif background left an opaque white ground blob and white inside the bow. Re-installed --key-tol 120 --key-pockets 0.002. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator 2026-09-07: decided image, centaur archer reimagined.jfif, installed from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: \"old centaur_bowman is fine\" -- installed art final | 2026-09-26 re-keyed (same art): at the default tol 24 the white .jfif background left an opaque white ground blob and white inside the bow. Re-installed --key-tol 120 --key-pockets 0.002. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "CENTAURS": {
     "depicts": "centaur warrior",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"centaurs is missing the new version\": centaur.png proved to be the old tile at native size, so a new version was generated on FLUX.2 klein (z-image cannot draw centaurs). 5 of 6 klein outputs were a man RIDING a horse; the one kept is a true centaur, a human torso rising from the horse body (source file: .tmp/matrix/klein_centaurs/CENTAURS_s2718_d45.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 \"centaurs is missing the new version\": centaur.png proved to be the old tile at native size, so a new version was generated on FLUX.2 klein (z-image cannot draw centaurs). 5 of 6 klein outputs were a man RIDING a horse; the one kept is a true centaur, a human torso rising from the horse body (source file: .tmp/matrix/klein_centaurs/CENTAURS_s2718_d45.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "IRON_GOLEM": {
     "depicts": "iron golem",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: IRON_GOLEM.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: IRON_GOLEM.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "PEASANTS": {
     "depicts": "peasants",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: PEASANTS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: PEASANTS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "MAGE": {
     "depicts": "mage",
     "verdict": "correct",
-    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: MAGE.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator 2026-09-26: \"should be the one on the right\" on the 15:20 review page -- the generated upgrade replaces the hand-made file (source file: MAGE.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "AIRSHIP": {
     "depicts": "airship",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/AIRSHIP.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/AIRSHIP.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "AIR_ELEMENTAL": {
     "depicts": "air elemental",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/AIR_ELEMENTAL.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/AIR_ELEMENTAL.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "ALORRA": {
     "depicts": "alorra",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ALORRA.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ALORRA.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "ARCHANGEL": {
     "depicts": "archangel",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ARCHANGEL.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ARCHANGEL.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "ARIEL": {
     "depicts": "ariel",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (preview_pics/ARIEL_nohud.png); a shield + health-bar HUD icon baked into the source was cropped out | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (preview_pics/ARIEL_nohud.png); a shield + health-bar HUD icon baked into the source was cropped out | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "BEHEMOTH": {
     "depicts": "behemoth",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/BEHEMOTH.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/BEHEMOTH.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "CARAVAN": {
     "depicts": "caravan",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/CARAVAN.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/CARAVAN.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "EFREET": {
     "depicts": "efreet",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/EFREET.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/EFREET.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "ELVEN_ARCHERS": {
     "depicts": "elven archers",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ELVEN_ARCHERS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ELVEN_ARCHERS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "FREYA": {
     "depicts": "freya",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/FREYA.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/FREYA.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "GALLEY": {
     "depicts": "galley",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GALLEY.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GALLEY.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "GARGOYLE": {
     "depicts": "gargoyle",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GARGOYLE.png) | operator 2026-09-27: \"his wing is clipped from masking\" -- background is now transparent only where the model AND the exact key colour agree, which restored the wing. | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GARGOYLE.png) | operator 2026-09-27: \"his wing is clipped from masking\" -- background is now transparent only where the model AND the exact key colour agree, which restored the wing. | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "GREAT_WYRM": {
     "depicts": "great wyrm",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GREAT_WYRM.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GREAT_WYRM.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "GUARDIAN_SPIRIT": {
     "depicts": "guardian spirit",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GUARDIAN_SPIRIT.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/GUARDIAN_SPIRIT.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "HELL_HOUNDS": {
     "depicts": "hell hounds",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/HELL_HOUNDS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/HELL_HOUNDS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "HYDRA": {
     "depicts": "hydra",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/HYDRA.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/HYDRA.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "JAFAR": {
     "depicts": "jafar",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/JAFAR.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/JAFAR.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "KNIGHTS": {
     "depicts": "knights",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/KNIGHTS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/KNIGHTS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "LAMP": {
     "depicts": "lamp",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/LAMP.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/LAMP.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "MERFOLK": {
     "depicts": "merfolk",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/MERFOLK.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/MERFOLK.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "PALADINS": {
     "depicts": "paladins",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PALADINS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PALADINS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "PEGASUS": {
     "depicts": "pegasus",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PEGASUS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PEGASUS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "PHANTOM_WARRIORS": {
     "depicts": "phantom warriors",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PHANTOM_WARRIORS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/PHANTOM_WARRIORS.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "RJAK": {
     "depicts": "rjak",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/RJAK.png) | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/RJAK.png) | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "SERENA": {
     "depicts": "serena",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SERENA.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SERENA.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "SPEARMEN": {
     "depicts": "spearmen",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SPEARMEN.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SPEARMEN.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "STORM_GIANT": {
     "depicts": "storm giant",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/STORM_GIANT.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/STORM_GIANT.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "SWORDSMEN": {
     "depicts": "swordsmen",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SWORDSMEN.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/SWORDSMEN.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "TAURON": {
     "depicts": "tauron",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/TAURON.png); the proposal draws a gold portrait frame around the figure -- kept as approved | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/TAURON.png); the proposal draws a gold portrait frame around the figure -- kept as approved | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "VAMPIRE": {
     "depicts": "vampire",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/VAMPIRE.png) | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/VAMPIRE.png) | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "WARBEARS": {
     "depicts": "warbears",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-27: \"why is the bear dressed up like he has bdsm gear on?\" -- regenerated as a plain brown grizzly, natural fur, no harness or straps (source file: rmbg_dark/WARBEARS.png) | operator 2026-09-27: \"I like your bear\" -- approved. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/WARBEARS.png)"
+    "note": "operator 2026-09-27: \"why is the bear dressed up like he has bdsm gear on?\" -- regenerated as a plain brown grizzly, natural fur, no harness or straps (source file: rmbg_dark/WARBEARS.png) | operator 2026-09-27: \"I like your bear\" -- approved. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/WARBEARS.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "WARRAX": {
     "depicts": "warrax",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARRAX.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARRAX.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "WARSHIP": {
     "depicts": "warship",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARSHIP.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WARSHIP.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "WAR_MAGE": {
     "depicts": "war mage",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_MAGE.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_MAGE.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "WAR_MAMMOTH": {
     "depicts": "war mammoth",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_MAMMOTH.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_MAMMOTH.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "WAR_TROLL": {
     "depicts": "war troll",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_TROLL.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WAR_TROLL.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "WRAITH": {
     "depicts": "wraith",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WRAITH.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/WRAITH.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "ZOMBIES": {
     "depicts": "zombies",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ZOMBIES.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 review: \"these are all fantastic except ...\" -- generated proposal ACCEPTED and installed (upgrade/ZOMBIES.png) | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "CATAPULT": {
     "depicts": "catapult",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"wrong unit altogether, looks like a cartoon\" -> txt2img, a real four-wheeled torsion catapult (source file: .tmp/matrix/items1/CATAPULT_s2718.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 \"wrong unit altogether, looks like a cartoon\" -> txt2img, a real four-wheeled torsion catapult (source file: .tmp/matrix/items1/CATAPULT_s2718.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "INFERNAL_DEVICE": {
     "depicts": "infernal device",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face) (source file: .tmp/matrix/items1/INFERNAL_DEVICE_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"looks a little too steam punk with rubber wheels\" -- regenerated as a medieval hell-engine: black iron plates, wooden iron-spoked wagon wheels, horned skull ram, blazing furnace (source file: items_infernal3/INFERNAL_DEVICE_s31337.png) | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept."
+    "note": "operator 2026-09-26 \"too much like a fish\" -> described as an infernal war engine (black iron, hellfire furnace, horned face) (source file: .tmp/matrix/items1/INFERNAL_DEVICE_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"looks a little too steam punk with rubber wheels\" -- regenerated as a medieval hell-engine: black iron plates, wooden iron-spoked wagon wheels, horned skull ram, blazing furnace (source file: items_infernal3/INFERNAL_DEVICE_s31337.png) | 2026-09-27 the operator cleanup removed real black art here (cape/robe/iron/wings), so the pre-cleanup master was kept. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "MALLEUS": {
     "depicts": "malleus",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other three candidates had dark gradient backgrounds that do not key (source file: .tmp/matrix/items1/MALLEUS_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/MALLEUS.png)"
+    "note": "operator 2026-09-26 \"too cartoonish\" -> hooded witch-hunter knight on a black horse with a flaming hammer; the other three candidates had dark gradient backgrounds that do not key (source file: .tmp/matrix/items1/MALLEUS_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/MALLEUS.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "MINION": {
     "depicts": "minion",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word (source file: .tmp/matrix/items1/MINION_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/MINION.png)"
+    "note": "operator 2026-09-26 \"minion from the movies\" -> prompted as a hooded servant of a death wizard, never the bare word (source file: .tmp/matrix/items1/MINION_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"every unit we should see the full unit frame, head to toe\" -- redrawn full length by FLUX.2 klein shown the previous art, same design (source file: fullbody/rmbg/MINION.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "STEAM_CANNON": {
     "depicts": "steam cannon",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"facing up / backwards\" -> barrel level, muzzle to the right, boiler on the carriage (source file: .tmp/matrix/items1/STEAM_CANNON_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 \"facing up / backwards\" -> barrel level, muzzle to the right, boiler on the carriage (source file: .tmp/matrix/items1/STEAM_CANNON_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "UNICORN": {
     "depicts": "unicorn",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"looks like a cartoon\" -> realistic white unicorn; keyed at tol 24 with NO pocket pass (the pass punched holes in the white body) (source file: .tmp/matrix/items1/UNICORN_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-26 \"looks like a cartoon\" -> realistic white unicorn; keyed at tol 24 with NO pocket pass (the pass punched holes in the white body) (source file: .tmp/matrix/items1/UNICORN_s11.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "WYVERN": {
     "depicts": "wyvern",
     "verdict": "correct",
     "no_regenerate": true,
-    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\" (source file: .tmp/matrix/items1/WYVERN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"less like a baby dragon ... an adolescent dragon, full size scale dragon at 1/4 the size\" -- lean young wyvern with grown-dragon proportions (source file: items_wyvern2/WYVERN_s31337.png)"
+    "note": "operator 2026-09-26 \"just ask for a small dragon\" -> prompt was literally \"small dragon\" (source file: .tmp/matrix/items1/WYVERN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | operator 2026-09-27: \"less like a baby dragon ... an adolescent dragon, full size scale dragon at 1/4 the size\" -- lean young wyvern with grown-dragon proportions (source file: items_wyvern2/WYVERN_s31337.png) | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "GRIFFIN": {
     "depicts": "griffin",
     "verdict": "correct",
-    "note": "operator 2026-09-26 \"griffin face looks messed up\": first z-image batch drew 4/4 WINGED LIONS (no eagle head); klein img2img drew lion-beak mashups. Fixed by a prompt that leads with the anatomy (\"eagle-headed griffin ... the HEAD of a golden eagle ... hindquarters of a lion\") (source file: .tmp/matrix/items_griffin/GRIFFIN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "operator 2026-09-26 \"griffin face looks messed up\": first z-image batch drew 4/4 WINGED LIONS (no eagle head); klein img2img drew lion-beak mashups. Fixed by a prompt that leads with the anatomy (\"eagle-headed griffin ... the HEAD of a golden eagle ... hindquarters of a lion\") (source file: .tmp/matrix/items_griffin/GRIFFIN_s31337.png) | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | 2026-09-26 background removed with the BiRefNet model so the one-colour key applies: its white render background was not one exact colour. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   },
   "MINOTAUR_WARRIOR": {
     "depicts": "minotaur warrior",
     "verdict": "crafted",
-    "note": "operator 2026-09-07: decided image, minotaur_reimagined.png, installed from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: the LEFT (installed minotaur_reimagined.png) stays the Minotaur warrior; the generated archer became the new MINOTAUR_BOWMAN. | operator 2026-09-26: \"minotaur becomes minotaur_warrior\" -- unit renamed. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed."
+    "note": "operator 2026-09-07: decided image, minotaur_reimagined.png, installed from Documents/wiki/games/ctp2/art; supersedes generation | operator 2026-09-26: the LEFT (installed minotaur_reimagined.png) stays the Minotaur warrior; the generated archer became the new MINOTAUR_BOWMAN. | operator 2026-09-26: \"minotaur becomes minotaur_warrior\" -- unit renamed. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\")."
   },
   "MINOTAUR_CROSSBOW": {
     "depicts": "minotaur crossbow",
     "verdict": "correct",
-    "note": "NEW UNIT 2026-09-26. Operator: \"minotaur looks great, but it looks like a minotaur bowman ... the one on the right (for minotaur bowman, so make a new unit)\". Art = the generated img2img proposal .tmp/matrix/upgrade/MINOTAUR.png (240x176), installed. Unit = verbatim clone of Minotaur stats via units.csv row (generator-owned). | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | operator 2026-09-26: \"where is my minotaur_crossbow\" -- unit renamed from Minotaur Bowman. The art still shows a BOW, not a crossbow. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed.",
+    "note": "NEW UNIT 2026-09-26. Operator: \"minotaur looks great, but it looks like a minotaur bowman ... the one on the right (for minotaur bowman, so make a new unit)\". Art = the generated img2img proposal .tmp/matrix/upgrade/MINOTAUR.png (240x176), installed. Unit = verbatim clone of Minotaur stats via units.csv row (generator-owned). | 2026-09-26 re-installed at the default key tolerance: the stronger background cut had removed up to 46% of real pixels on dark art (operator: \"you seem to be masking more pixels as alpha\"). | operator 2026-09-26: \"where is my minotaur_crossbow\" -- unit renamed from Minotaur Bowman. The art still shows a BOW, not a crossbow. | 2026-09-27 operator hand-cleaned background speckles on the master sheet (sheet2 zip); installed. | 2026-09-27 polished: z-image soft denoise (0.5, 4 steps) inside a feathered 13-px edge band plus a light whole-unit pass, blank background, using the corrected description (operator: \"polish each image ... fill in the blanks\").",
     "no_regenerate": true
   }
 }
