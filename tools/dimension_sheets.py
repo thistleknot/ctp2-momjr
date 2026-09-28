@@ -6,8 +6,8 @@ level so users can see what images the game mod uses)". Promote to a REQ before 
 is depended on.
 
 Resolution follows the engine, not filenames:
-  record (Units.txt UNIT_X) --DefaultIcon/Icon--> ICON_X block (uniticon.txt, or
-  governicon.txt for governments) --Icon "file.tga"--> the image, looked up as a
+  record (Units.txt UNIT_X) --DefaultIcon/Icon--> ICON_X block (uniticon.txt,
+  the Icon DB for every dimension, governments included) --Icon "file.tga"--> the image, looked up as a
   loose .tga in the scenario, then in the base game tree, then as a packed .rim in
   the base game's pic555.zfs archives (decoded here; see zfs_entries/decode_rim).
 A name found nowhere is drawn as a labelled empty cell and counted. Placeholder art
@@ -40,7 +40,10 @@ DIMENSIONS = {
     "advances": ("Advance.txt", "Icon", "uniticon.txt"),
     "buildings": ("buildings.txt", "DefaultIcon", "uniticon.txt"),
     "wonders": ("Wonder.txt", "DefaultIcon", "uniticon.txt"),
-    "governments": ("govern.txt", "Icon", "governicon.txt"),
+    # Government.cdb `Record Icon Icon` -> the Icon DB, parsed from uniticon.txt.
+    # governicon.txt is loaded by NOTHING (civapp.cpp:322 "Empty slot"); reading
+    # it reported all four government icons missing when they are UPVP*L pictures.
+    "governments": ("govern.txt", "Icon", "uniticon.txt"),
     "terrain": ("terrain.txt", "Icon", "uniticon.txt"),
     "tile_improvements": ("tileimp.txt", "Icon", "uniticon.txt"),
 }
@@ -88,9 +91,14 @@ def icon_files(db: str) -> dict[str, str]:
         f = P.CTP2BlockFile()
         f.parse(path.read_text(encoding="latin-1"))
         for key, fields in f.blocks.items():
-            name = fields.get("Icon", "").strip('"')
-            if name and name.upper() != "NULL":
-                got[key] = name
+            # Icon first; else FirstFrame, the picture the Great Library shows
+            # (greatlibrarywindow.cpp:341 GetFirstFrame). GOVERNMENT_REPUBLIC's Icon
+            # is NULL in stock and mod alike; its FirstFrame UPVP008L is its picture.
+            for field in ("Icon", "FirstFrame"):
+                name = fields.get(field, "").strip('"')
+                if name and name.upper() != "NULL":
+                    got[key] = name
+                    break
     return got
 
 

@@ -91,6 +91,19 @@ def test_backup_subfolders_never_shadow_the_live_art(tmp_path, monkeypatch):
     assert D.loose_index()["icon_unit_orc.tga"].read_bytes() == b"live"
 
 
+def test_icon_falls_back_to_the_great_library_picture(tmp_path, monkeypatch):
+    """GOVERNMENT_REPUBLIC: Icon NULL, FirstFrame UPVP008L -- the picture shown."""
+    gd = tmp_path / "scen" / "gamedata"
+    gd.mkdir(parents=True)
+    (gd / "uniticon.txt").write_text(
+        'ICON_GOV_REPUBLIC { FirstFrame "UPVP008L.TGA" Icon "NULL" }\n'
+        'ICON_GOV_MONARCHY { FirstFrame "A.TGA" Icon "UPVP007L.TGA" }\n', encoding="latin-1")
+    monkeypatch.setattr(D, "SCEN", tmp_path / "scen")
+    monkeypatch.setattr(D, "BASE", tmp_path / "base")
+    got = D.icon_files("uniticon.txt")
+    assert got == {"ICON_GOV_REPUBLIC": "UPVP008L.TGA", "ICON_GOV_MONARCHY": "UPVP007L.TGA"}
+
+
 def test_non_zfs_file_has_no_entries(tmp_path):
     p = tmp_path / "x.zfs"
     p.write_bytes(b"NOPE" + b"\0" * 40)

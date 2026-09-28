@@ -16,14 +16,11 @@ the packed `.zfs` archives). Regenerate with `python tools/dimension_sheets.py`.
 | Advances | 85 | 85 | 0 | 0 | 59 |
 | Buildings | 21 | 21 | 0 | 0 | 0 |
 | Wonders | 23 | 23 | 0 | 0 | 0 |
-| Governments | 4 | 0 | 0 | 4 | 0 |
+| Governments | 4 | 4 | 0 | 0 | 0 |
 | Terrain | 23 | 0 | 23 | 0 | 3 |
 | Tile improvements | 22 | 0 | 22 | 0 | 2 |
 
 Hidden records never appear in the game, so they are counted but not drawn.
-The four government icons (`CC057F`, `CA013F`, `CA016F`, `CA023F`) are named
-by stock Call to Power 2 itself but ship in no release we have (base game,
-Apolyton Edition 2025, Ages of Man), so those icons are blank in the base game too.
 
 ### Units
 ![All 81 unit icons](docs/img/sheets/units.png)
@@ -38,7 +35,7 @@ Apolyton Edition 2025, Ages of Man), so those icons are blank in the base game t
 ![All 23 wonder icons](docs/img/sheets/wonders.png)
 
 ### Governments
-![All 4 government icons, all missing](docs/img/sheets/governments.png)
+![All 4 government icons](docs/img/sheets/governments.png)
 
 ### Terrain
 ![All 23 terrain icons](docs/img/sheets/terrain.png)
