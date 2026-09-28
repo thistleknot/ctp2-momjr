@@ -11,6 +11,13 @@ Commands
   python ctpedit.py patch [units|advances|improvements|wonders|all]
   python ctpedit.py status
   python ctpedit.py show <dimension>
+  python ctpedit.py sheet export [--out PNG]
+  python ctpedit.py sheet import PNG [--apply] [--only UNIT ...]
+
+Unit art is operator-owned: the SPRITE_/ICON_UNIT_ masters in scen0000 are the
+source of truth. Nothing here re-extracts them from Civ2 source art; art enters
+only through `sheet import` (a full-resolution sheet, e.g. one hand-cleaned by
+the operator), which writes the changed cells, rebuilds the SPR files and audits.
 
 Civ2 → CTP2 dimension mapping
 ------------------------------
@@ -550,6 +557,37 @@ def cmd_patch(args: argparse.Namespace):
     sys.exit(final_rc)
 
 
+def cmd_sheet(args: argparse.Namespace):
+    """Unit art in and out as ONE full-resolution spritesheet (spritesheet.py).
+
+    Operator 2026-09-28: "the harness shouldn't try to overwrite the images from
+    source ... we should allow the harness to accept a spritesheet". `import`
+    writes only cells that differ from the current masters; with --apply it then
+    rebuilds the SPR files and runs the audit."""
+    cmd = [sys.executable, str(TOOLS_DIR / "spritesheet.py"), args.action]
+    # spritesheet.py runs with cwd=TOOLS_DIR; resolve against the CALLER's cwd first
+    png = str(Path(args.png).resolve()) if args.png else None
+    if args.action == "export":
+        if png:
+            cmd += ["--out", png]
+    else:
+        if not png:
+            sys.exit("sheet import needs the PNG path")
+        cmd.append(png)
+        if args.apply:
+            cmd.append("--apply")
+        if args.only:
+            cmd += ["--only", *args.only]
+    rc = subprocess.run(cmd, cwd=str(TOOLS_DIR)).returncode
+    if rc != 0 or args.action == "export" or not args.apply:
+        sys.exit(rc)
+    print("\nBuilding unit SPR files from the imported masters...")
+    rc = _run_build_sprites()
+    if rc != 0:
+        sys.exit(rc)
+    sys.exit(_run_audit())
+
+
 # ── CLI entry point ────────────────────────────────────────────────────────────
 
 def main():
@@ -593,9 +631,22 @@ def main():
         help="Force rebuild of SPR files even if they already exist (sprites dimension only).",
     )
 
+    # sheet
+    p_sheet = sub.add_parser(
+        "sheet",
+        help="Unit art as one full-resolution spritesheet: export it, or import a cleaned one.",
+    )
+    p_sheet.add_argument("action", choices=["export", "import"])
+    p_sheet.add_argument("png", nargs="?", help="export: --out path; import: the sheet to take in")
+    p_sheet.add_argument("--apply", action="store_true",
+                         help="import: write the changed cells (default is a dry run)")
+    p_sheet.add_argument("--only", nargs="*", metavar="UNIT", help="import: limit to these units")
+
     args = parser.parse_args()
 
-    if args.command == "status":
+    if args.command == "sheet":
+        cmd_sheet(args)
+    elif args.command == "status":
         cmd_status(args)
     elif args.command == "show":
         cmd_show(args)
