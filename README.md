@@ -3,6 +3,48 @@
 **v7.0.1** — CTP2 port of the Civ2 **MoM Junior** scenario (Master of Magic),
 built on the Apolyton Edition.
 
+## The art the mod ships
+
+Every image the game shows for each part of the mod, one sheet per part.
+Each sheet is built from what the engine actually loads: the record's icon,
+looked up in the scenario first, then in the base game (loose files and
+the packed `.zfs` archives). Regenerate with `python tools/dimension_sheets.py`.
+
+| Part | Records | Mod's own art | Stock game art | No picture (placeholder) | Missing |
+|---|---:|---:|---:|---:|---:|
+| Units | 83 | 82 | 1 | 0 | 0 |
+| Advances | 144 | 87 | 0 | 57 | 0 |
+| Buildings | 21 | 21 | 0 | 0 | 0 |
+| Wonders | 23 | 23 | 0 | 0 | 0 |
+| Governments | 4 | 0 | 0 | 0 | 4 |
+| Terrain | 26 | 0 | 26 | 0 | 0 |
+| Tile improvements | 24 | 0 | 24 | 0 | 0 |
+
+"No picture" is the engine's compass placeholder. The four government icons
+(`CC057F`, `CA013F`, `CA016F`, `CA023F`) exist in no archive or folder, so
+those cells are empty in game too.
+
+### Units
+![All 83 unit icons](docs/img/sheets/units.png)
+
+### Advances
+![All 144 advance icons](docs/img/sheets/advances.png)
+
+### Buildings
+![All 21 building icons](docs/img/sheets/buildings.png)
+
+### Wonders
+![All 23 wonder icons](docs/img/sheets/wonders.png)
+
+### Governments
+![All 4 government icons, all missing](docs/img/sheets/governments.png)
+
+### Terrain
+![All 26 terrain icons](docs/img/sheets/terrain.png)
+
+### Tile improvements
+![All 24 tile improvement icons](docs/img/sheets/tile_improvements.png)
+
 > **What 7.0.1 fixes — sprite wiring and spellbook usability.**
 > 20 faction units now have their own art (extracted from HoMM2 + custom
 > Treant/Drow). Icon TGAs no longer show magenta Civ2 backgrounds. Spellbook
