@@ -11,13 +11,15 @@ Commands
   python ctpedit.py patch [units|advances|improvements|wonders|all]
   python ctpedit.py status
   python ctpedit.py show <dimension>
-  python ctpedit.py sheet export [--out PNG]
-  python ctpedit.py sheet import PNG [--apply] [--only UNIT ...]
+  python ctpedit.py unit-sheet export [PNG]
+  python ctpedit.py unit-sheet import PNG [--apply] [--only UNIT ...]
 
 Unit art is operator-owned: the SPRITE_/ICON_UNIT_ masters in scen0000 are the
 source of truth. Nothing here re-extracts them from Civ2 source art; art enters
-only through `sheet import` (a full-resolution sheet, e.g. one hand-cleaned by
-the operator), which writes the changed cells, rebuilds the SPR files and audits.
+only through `unit-sheet import` (a full-resolution UNIT sheet, e.g. one
+hand-cleaned by the operator), which writes the changed cells, rebuilds the SPR
+files and audits. A sheet whose cells name anything but roster units, or whose
+size is not the unit grid, is refused before any write.
 
 Civ2 → CTP2 dimension mapping
 ------------------------------
@@ -572,7 +574,7 @@ def cmd_sheet(args: argparse.Namespace):
             cmd += ["--out", png]
     else:
         if not png:
-            sys.exit("sheet import needs the PNG path")
+            sys.exit("unit-sheet import needs the PNG path")
         cmd.append(png)
         if args.apply:
             cmd.append("--apply")
@@ -631,10 +633,10 @@ def main():
         help="Force rebuild of SPR files even if they already exist (sprites dimension only).",
     )
 
-    # sheet
+    # unit-sheet
     p_sheet = sub.add_parser(
-        "sheet",
-        help="Unit art as one full-resolution spritesheet: export it, or import a cleaned one.",
+        "unit-sheet",
+        help="UNIT art as one full-resolution spritesheet: export it, or import a cleaned one.",
     )
     p_sheet.add_argument("action", choices=["export", "import"])
     p_sheet.add_argument("png", nargs="?", help="export: --out path; import: the sheet to take in")
@@ -644,7 +646,7 @@ def main():
 
     args = parser.parse_args()
 
-    if args.command == "sheet":
+    if args.command == "unit-sheet":
         cmd_sheet(args)
     elif args.command == "status":
         cmd_status(args)

@@ -6,10 +6,19 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import json
+
+import pytest
 from PIL import Image, ImageDraw
 
 import install_crafted_art as I
 import spritesheet as S
+
+
+@pytest.fixture(autouse=True)
+def _roster(monkeypatch):
+    """The fixtures' units ARE the roster; the real one lives in the caption CSV."""
+    monkeypatch.setattr(S, "roster", lambda: ["A", "B", "C"])
 
 
 def _pics(tmp: Path, units: list[str]) -> Path:
@@ -70,3 +79,29 @@ def test_a_hand_edit_is_imported_into_that_unit_only(tmp_path):
     assert (pics / "ICON_UNIT_B.tga").read_bytes() == (pics / "SPRITE_B.tga").read_bytes()
     assert list(pics.glob("SPRITE_B.tga.bak-*"))
     assert not list(pics.glob("SPRITE_A.tga.bak-*"))
+
+
+def test_a_sheet_naming_non_units_is_refused_before_any_write(tmp_path):
+    """Operator 2026-09-28: 'be sure that the spritesheet is for units'."""
+    pics = _pics(tmp_path, ["A", "B"])
+    out = tmp_path / "sheet.png"
+    sheet = S.export(["A", "B"], pics, out)
+    meta = json.loads(out.with_suffix(".json").read_text(encoding="utf-8"))
+    meta["units"] = ["A", "ADVANCE_ALCHEMY"]            # e.g. an advance-icon sheet
+    out.with_suffix(".json").write_text(json.dumps(meta), encoding="utf-8")
+    x0, y0, _, _ = S.cell_box(0)
+    ImageDraw.Draw(sheet).rectangle((x0 + 40, y0 + 20, x0 + 60, y0 + 40), fill=(0, 0, 0, 0))
+    sheet.save(out)
+    before = (pics / "SPRITE_A.tga").read_bytes()
+    with pytest.raises(ValueError, match="not a unit spritesheet"):
+        S.import_sheet(out, pics, apply=True)
+    assert (pics / "SPRITE_A.tga").read_bytes() == before
+
+
+def test_a_resized_sheet_is_refused(tmp_path):
+    pics = _pics(tmp_path, ["A", "B"])
+    out = tmp_path / "sheet.png"
+    sheet = S.export(["A", "B"], pics, out)
+    sheet.resize((sheet.width // 2, sheet.height // 2)).save(out)   # e.g. a phone export
+    with pytest.raises(ValueError, match="a unit sheet of 2 is 1611x122"):
+        S.import_sheet(out, pics, apply=False)

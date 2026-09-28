@@ -92,7 +92,18 @@ def import_sheet(png: Path, pics: Path, apply: bool, only: set[str] | None = Non
     """Write back ONLY the cells the operator edited (differ from the export baseline)."""
     meta = json.loads(png.with_suffix(".json").read_text(encoding="utf-8"))
     assert meta["cell"] == [W, H] and meta["cols"] == COLS, "sheet layout changed"
+    # Operator 2026-09-28: "be sure that the spritesheet is for units". Every cell
+    # must name a unit in the roster, and the image must be exactly that grid --
+    # an advance/wonder/terrain sheet, or a resized one, is refused before any write.
+    strangers = [u for u in meta["units"] if u not in set(roster())]
+    if strangers:
+        raise ValueError(f"not a unit spritesheet: {strangers[:5]} are not units")
     sheet = Image.open(png).convert("RGBA")
+    rows = (len(meta["units"]) + COLS - 1) // COLS
+    want = (COLS * (W + 1) + 1, rows * (H + 1) + 1)     # 1-px grid, as cell_box
+    if sheet.size != want:
+        raise ValueError(f"sheet is {sheet.size[0]}x{sheet.size[1]}, a unit sheet of "
+                         f"{len(meta['units'])} is {want[0]}x{want[1]}")
     base_path = baseline_of(png)
     assert base_path.exists(), f"no export baseline {base_path.name}; re-export first"
     base = Image.open(base_path).convert("RGBA")
