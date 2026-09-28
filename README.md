@@ -10,25 +10,26 @@ Each sheet is built from what the engine actually loads: the record's icon,
 looked up in the scenario first, then in the base game (loose files and
 the packed `.zfs` archives). Regenerate with `python tools/dimension_sheets.py`.
 
-| Part | Records | Mod's own art | Stock game art | No picture (placeholder) | Missing |
+| Part | Shown to players | Mod's own art | Stock game art | Missing | Hidden (not drawn) |
 |---|---:|---:|---:|---:|---:|
-| Units | 83 | 82 | 1 | 0 | 0 |
-| Advances | 144 | 87 | 0 | 57 | 0 |
+| Units | 81 | 81 | 0 | 0 | 2 |
+| Advances | 85 | 85 | 0 | 0 | 59 |
 | Buildings | 21 | 21 | 0 | 0 | 0 |
 | Wonders | 23 | 23 | 0 | 0 | 0 |
-| Governments | 4 | 0 | 0 | 0 | 4 |
-| Terrain | 26 | 0 | 26 | 0 | 0 |
-| Tile improvements | 24 | 0 | 24 | 0 | 0 |
+| Governments | 4 | 0 | 0 | 4 | 0 |
+| Terrain | 23 | 0 | 23 | 0 | 3 |
+| Tile improvements | 22 | 0 | 22 | 0 | 2 |
 
-"No picture" is the engine's compass placeholder. The four government icons
-(`CC057F`, `CA013F`, `CA016F`, `CA023F`) exist in no archive or folder, so
-those cells are empty in game too.
+Hidden records never appear in the game, so they are counted but not drawn.
+The four government icons (`CC057F`, `CA013F`, `CA016F`, `CA023F`) are named
+by stock Call to Power 2 itself but ship in no release we have (base game,
+Apolyton Edition 2025, Ages of Man), so those icons are blank in the base game too.
 
 ### Units
-![All 83 unit icons](docs/img/sheets/units.png)
+![All 81 unit icons](docs/img/sheets/units.png)
 
 ### Advances
-![All 144 advance icons](docs/img/sheets/advances.png)
+![All 85 advance icons](docs/img/sheets/advances.png)
 
 ### Buildings
 ![All 21 building icons](docs/img/sheets/buildings.png)
@@ -40,10 +41,10 @@ those cells are empty in game too.
 ![All 4 government icons, all missing](docs/img/sheets/governments.png)
 
 ### Terrain
-![All 26 terrain icons](docs/img/sheets/terrain.png)
+![All 23 terrain icons](docs/img/sheets/terrain.png)
 
 ### Tile improvements
-![All 24 tile improvement icons](docs/img/sheets/tile_improvements.png)
+![All 22 tile improvement icons](docs/img/sheets/tile_improvements.png)
 
 > **What 7.0.1 fixes — sprite wiring and spellbook usability.**
 > 20 faction units now have their own art (extracted from HoMM2 + custom

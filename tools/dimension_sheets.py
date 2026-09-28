@@ -48,27 +48,32 @@ CELL_W, CELL_H, LABEL, COLS = 160, 120, 14, 10
 BG, CELL_BG, INK, DIM = (30, 32, 38), (96, 104, 88), (255, 226, 140), (150, 150, 160)
 
 
-def records(text: str, field: str) -> list[tuple[str, str]]:
-    """(record ident, icon key) for every top-level record, in file order.
+def records(text: str, field: str, with_hidden: bool = False) -> list[tuple]:
+    """(record ident, icon key) for every top-level record, in file order; with
+    `with_hidden`, a third element says whether the record is GLHidden (players
+    never see it -- all 57 placeholder-icon advances are hidden, 2026-09-28).
 
     Depth-tracked line scan: records nest sub-blocks, so the first `}` after the
     opener is NOT the record's end (a non-greedy regex runs past it)."""
-    out, depth, ident, icon = [], 0, None, None
+    out, depth, ident, icon, hidden = [], 0, None, None, False
     pat = re.compile(rf"^\s*{field}\s+(ICON_\w+)")
     for line in text.splitlines():
         line = line.split("//", 1)[0]
         if depth == 0:
             m = re.match(r"^\s*([A-Z][A-Z0-9_]*)\s*\{", line)
             if m:
-                ident, icon = m.group(1), None
-        elif depth == 1 and icon is None:
-            m = pat.match(line)
-            if m:
-                icon = m.group(1)
+                ident, icon, hidden = m.group(1), None, False
+        elif depth == 1:
+            if icon is None:
+                m = pat.match(line)
+                if m:
+                    icon = m.group(1)
+            if re.match(r"^\s*GLHidden\b", line):
+                hidden = True
         depth += line.count("{") - line.count("}")
         if depth == 0 and ident:
             if icon:
-                out.append((ident, icon))
+                out.append((ident, icon, hidden) if with_hidden else (ident, icon))
             ident = None
     return out
 
@@ -164,21 +169,25 @@ Source = Path | tuple[Path, int, int] | None      # loose file, packed entry, or
 
 
 def resolve(dim: str, idx: dict[str, Path],
-            packed: dict[str, tuple[Path, int, int]] | None = None) -> list[tuple[str, str, Source]]:
-    """(label, image filename, source) per record of one dimension; loose wins over packed."""
+            packed: dict[str, tuple[Path, int, int]] | None = None) -> tuple[list[tuple[str, str, Source]], int]:
+    """(label, image filename, source) per VISIBLE record of one dimension, and the
+    number of GLHidden records left out; loose art wins over packed."""
     packed = packed or {}
     rec_file, field, db = DIMENSIONS[dim]
     path = SCEN / "gamedata" / rec_file
     if not path.exists():
         path = BASE / "gamedata" / rec_file
     icons = icon_files(db)
-    rows = []
-    for ident, key in records(path.read_text(encoding="latin-1"), field):
+    rows, hidden = [], 0
+    for ident, key, is_hidden in records(path.read_text(encoding="latin-1"), field, True):
+        if is_hidden:
+            hidden += 1
+            continue
         name = icons.get(key, "")
         label = re.sub(r"^(UNIT|ADVANCE|IMPROVE|WONDER|GOVERNMENT|TERRAIN|TILEIMP)_", "", ident)
         src = (idx.get(name.lower()) or packed.get(name.lower())) if name else None
         rows.append((label, name, src))
-    return rows
+    return rows, hidden
 
 
 def load(src: Source) -> Image.Image | None:
@@ -217,17 +226,18 @@ def main() -> int:
     ap.add_argument("--out", type=Path, default=OUT)
     a = ap.parse_args()
     idx, packed = loose_index(), packed_index()
-    print("| Dimension | Records | Mod's own art | Stock game art | No picture (placeholder) | Missing |")
-    print("|---|---:|---:|---:|---:|---:|")
+    print("| Dimension | Shown to players | Mod's own art | Stock game art "
+          "| No picture (placeholder) | Missing | Hidden (not drawn) |")
+    print("|---|---:|---:|---:|---:|---:|---:|")
     for dim in DIMENSIONS:
-        rows = resolve(dim, idx, packed)
+        rows, hidden = resolve(dim, idx, packed)
         draw(rows, a.out / f"{dim}.png")
         ph = sum(1 for _, n, _ in rows if n.lower() == PLACEHOLDER)
         rest = [s for _, n, s in rows if n.lower() != PLACEHOLDER]
         own = sum(1 for s in rest if isinstance(s, Path) and SCEN in s.parents)
         missing = sum(1 for s in rest if s is None)
         stock = len(rest) - own - missing
-        print(f"| {dim} | {len(rows)} | {own} | {stock} | {ph} | {missing} |")
+        print(f"| {dim} | {len(rows)} | {own} | {stock} | {ph} | {missing} | {hidden} |")
     return 0
 
 

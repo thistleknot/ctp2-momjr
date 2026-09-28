@@ -27,6 +27,18 @@ UNIT_C {
     assert D.records(text, "DefaultIcon") == [("UNIT_A", "ICON_UNIT_A"), ("UNIT_B", "ICON_UNIT_B")]
 
 
+def test_records_flag_hidden_ones_players_never_see():
+    text = """ADVANCE_A {
+   Icon ICON_ADVANCE_A
+}
+ADVANCE_B {
+   GLHidden
+   Icon ICON_ADVANCE_B
+}"""
+    assert D.records(text, "Icon", True) == [("ADVANCE_A", "ICON_ADVANCE_A", False),
+                                             ("ADVANCE_B", "ICON_ADVANCE_B", True)]
+
+
 def _rim(w: int, h: int, pixels: list[int]) -> bytes:
     return b"RIMF" + struct.pack("<I3HH", 1, w, h, w * 2, 0) + struct.pack(f"<{w*h}H", *pixels)
 
