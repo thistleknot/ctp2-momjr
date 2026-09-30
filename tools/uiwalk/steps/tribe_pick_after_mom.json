@@ -1,0 +1,33 @@
+[
+  {
+    "_comment": "TRIBE-PICKER PROBE (2026-09-29). HYPOTHESIS: the EMPIRE list is built once against the stock civ DB (70 records, spnewgamescreen.cpp:101) and never rebuilt when picking MoM reloads the DB to 6 records (scenariowindow.cpp:632), so selecting a stock row with civ index >= 6 AVs in spnewgametribescreen_switchPress (Get(civ) -> NULL). PREDICTION: TRUE -> process dies after the select step; FALSE -> tribe_selected screenshot shows the leader name updated."
+  },
+  {"do": "wait", "ms": 6000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait", "ms": 3000},
+  {"do": "key", "keys": "esc"},
+  {"do": "wait_stable", "ms": 30000},
+  {"do": "press", "path": "InitPlayWindow.NewGameButton"},
+  {"do": "wait", "ms": 4000},
+  {"do": "wait_stable", "ms": 20000},
+  {"do": "press", "path": "SPNewGameWindow.ScenarioButton"},
+  {"do": "wait", "ms": 4000},
+  {"do": "wait_stable", "ms": 20000},
+  {"do": "select", "path": "ScenarioWindow.AvailableListBox", "index": 3},
+  {"do": "wait", "ms": 1500},
+  {"do": "press", "path": "ScenarioWindow.LoadButton"},
+  {"do": "wait", "ms": 3000},
+  {"do": "wait_stable", "ms": 20000},
+  {"do": "select", "path": "ScenarioWindow.AvailableListBox", "index": 0},
+  {"do": "wait", "ms": 1800},
+  {"do": "press", "path": "ScenarioWindow.LoadButton"},
+  {"do": "wait", "ms": 3000},
+  {"do": "wait_stable", "ms": 20000},
+  {"do": "shot", "name": "mom_confirmed"},
+  {"do": "press", "path": "SPNewGameWindow.TribeButton"},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "tribe_list_open"},
+  {"do": "select", "path": "SPNewGameTribeScreen.CivBox", "index": 0},
+  {"do": "wait", "ms": 3000},
+  {"do": "shot", "name": "tribe_selected"}
+]

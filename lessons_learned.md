@@ -1,3 +1,57 @@
+## 2026-09-29 — Picking an Empire after loading MoM crashes: the list outlives its DB
+
+Operator crash, release exe, 19:44. The deployed `ctp2.map` (May 1) is stale against
+`ctp2.exe` (Aug 15), so crash.txt's names were fiction (`??_R2DestroyInitialPlayScreenAction`).
+Re-symbolized against `H:\Games\civctp2\ctp2_code\ctp\ctp2.map` (same timestamp as the exe):
+
+```
+0x794783 spnewgametribescreen_switchPress +0x43
+0x6de825 aui_ListBox::MouseLDropInside +0xd5
+```
+
+Disassembly at the fault: `cmp ecx,[CivDB+8]; jge -> xor eax,eax; mov eax,[eax+30h]` —
+the row's civ index failed the DB bounds check, `Get()` returned NULL.
+
+1. **Hypothesis** — the Empire list is filled once by `addAllTribes()` against the stock
+   civ DB (70 records, `spnewgamescreen.cpp:101`). Picking MoM runs
+   `CleanupAppDB/InitializeAppDB` (`scenariowindow.cpp` SetProfileFromScenario), MoM's
+   `civilisation.txt` holds 6 records by design, and the list is never rebuilt.
+2. **Test** — headless `steps/tribe_pick_after_mom.json`: load MoM, open EMPIRE, select a row.
+3. **Prediction** — TRUE: a row with stock index >= 6 kills the process at 0x794783;
+   a row with index <= 5 shows a MoM leader under a stock name. FALSE: no crash.
+4. **Result** — deterministic, both halves observed: list shows stock civs (Aborigine,
+   Americans...); row 20 set leader "Tauron" (MoM) with no crash; row 0 (Aborigine) died,
+   crash.txt 19:55:36 at `0x00794783`. Booting MoM without touching EMPIRE is clean
+   (Peasants on map).
+
+**Fix (engine, not mod):** `SetProfileFromScenario` rebuilds the list after the DB reload
+(`clearTribes` + `addAllTribes` when the tribe screen exists). Built 20:18 on current engine
+source: the Empire list then held `count=5` (MoM's tribes) and selecting row 0 returned OK —
+the list fix WORKS. But that build dies at LAUNCH in `GaiaController::CanStartCountdown`
+(`g_theEndGameObjectDB->Get(-1)`), with or without an Empire pick: current engine source
+(reset to upstream 2026-08-17) lacks 116 files of MoM engine patches that exist only in
+dropped stashes. Not shippable until the MoM engine line is recovered.
+
+**RESOLVED 2026-09-30:** rebuilt the MoM engine from dropped stash `16f6be9c2` in worktree
+`H:\Games\civctp2-mom` (branch `mom-engine-recovered`) + the list rebuild. Worktree build needs
+the ignored prebuilt outputs copied from the main tree: `gs/dbgen/Win32` (ctpdb.exe),
+`libs/anet/**/Win32`, `libs/anet/anet/Win32/Release/anet2.lib`, `msvc/` (FFmpeg libs).
+Headless: Empire list = 5 MoM tribes; rows 0, 2, 2, 4, 4 → LAUNCH → 4000BC Peasants, no crash
+(5/5). Operator confirmed in-game (city Eudoria, Spearmen). Aug-15 exe backed up in
+`.tmp/engine_aug15_backup/`. Missing vs Aug-15: the `query:target` inject verb.
+
+Harness flake seen 3x: a run's first injected steps never reach the hook (no `INJECT` lines),
+run sits on the main menu; an identical retry succeeds. Bracket `H:\mom_hook.log` by line
+count to tell a void run from a real result.
+
+**Game started (workaround, Aug-15 exe):** Empire row 20 (leader Tauron, a MoM tribe under a
+stock name) → LAUNCH → run `20260929-203025`: 4000BC, Peasants. The Enter key did NOT close
+the picker; whether Tauron was applied is unverified.
+
+Harness note: uiwalk's uncommitted change pointed `launch()` at
+`SOURCE_ROOT/run-ctp2-dbg-crashcapture.ps1` (absent) with an `-InstallRoot` flag the
+launcher does not accept; reverted to the install-dir launcher.
+
 ## 2026-09-26 (evening) — One exact key colour replaced every flood and tolerance
 
 Operator: "pick just one color for alpha masking and no magic wand, it's just that
