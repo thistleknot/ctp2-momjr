@@ -196,6 +196,13 @@ Close](docs/img/mom_magic_menu_hub.png)
 bespoke engine patch and the debug build does not carry it, so on that binary
 the menus appear not to exist.
 
+**The MoM JR `j` hub requires a custom CTP2 engine build.** Build from the
+[MoM engine branch](https://github.com/thistleknot/civctp2/tree/mom-engine-recovered)
+and follow the [Windows prerequisites and build commands](https://github.com/thistleknot/civctp2/blob/master/README.md#building-on-windows)
+or [Linux build instructions](https://github.com/thistleknot/civctp2/blob/master/README.md#building-on-linux).
+The modding harness generates and audits scenario data; it does not compile or
+install this engine executable.
+
 **New Game → Scenario → Master of Magic**, then choose your tribe from the
 **EMPIRE** selector. That selector decides your sphere and therefore your entire
 spellbook; the default is Tribes of Nature.
