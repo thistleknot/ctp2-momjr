@@ -194,7 +194,9 @@ Close](docs/img/mom_magic_menu_hub.png)
 
 **Launch `ctp2_program/ctp/ctp2.exe`.** Not `ctp2-dbg.exe` — the `j` key is a
 bespoke engine patch and the debug build does not carry it, so on that binary
-the menus appear not to exist.
+the menus appear not to exist. Developers building that engine patch can follow
+the [Windows build steps](https://github.com/thistleknot/civctp2#building-on-windows)
+or [Linux build steps](https://github.com/thistleknot/civctp2#building-on-linux).
 
 **New Game → Scenario → Master of Magic**, then choose your tribe from the
 **EMPIRE** selector. That selector decides your sphere and therefore your entire

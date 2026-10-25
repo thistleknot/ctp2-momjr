@@ -6,6 +6,11 @@
 - Windows 10/11
 - Display capable of 1024x1280 (portrait) or 1024x768 (landscape)
 
+The MoM JR `j` magic hub requires a custom CTP2 engine executable with the MoM
+engine patch; stock Apolyton Edition binaries do not include it. See the
+[Windows build steps](https://github.com/thistleknot/civctp2#building-on-windows)
+or [Linux build steps](https://github.com/thistleknot/civctp2#building-on-linux).
+
 ## Steps
 
 1. **Install CTP2** to its default location or a folder of your choice.
