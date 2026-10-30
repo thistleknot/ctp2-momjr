@@ -189,16 +189,15 @@ HandleEvent(BeginTurn) 'MomMagicPoolTick' post {
         MomHeroPower[p] = MomSphereRung[p] * 2;
         MomHeroFortitude[p] = MomSphereRung[p] * 5;
 
-        // Spell Hand: draw a rarity tier for this turn.
-        // Higher rung = better draw chance. Rung 1-2: mostly uncommon.
-        // Rung 3-4: chance at rare. Rung 5: chance at very rare.
+        // Spell tier unlocked by the sphere rung, which the sphere's own advances
+        // set (mom_summon.slc): rung 1 Magic/Lore -> uncommon, rung 3 Mage -> rare,
+        // rung 5 Master -> very rare. Deterministic: no per-turn draw.
         MomSpellHandRarity[p] = 0;
-        insRoll = Random(100);
-        if (MomSphereRung[p] >= 5 && insRoll < 30) {
+        if (MomSphereRung[p] >= 5) {
             MomSpellHandRarity[p] = 3;
-        } elseif (MomSphereRung[p] >= 3 && insRoll < 50) {
+        } elseif (MomSphereRung[p] >= 3) {
             MomSpellHandRarity[p] = 2;
-        } elseif (MomSphereRung[p] >= 1 && insRoll < 70) {
+        } elseif (MomSphereRung[p] >= 1) {
             MomSpellHandRarity[p] = 1;
         }
 

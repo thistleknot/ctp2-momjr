@@ -340,6 +340,10 @@ alertbox 'MomSpellConfirm_112' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_CORRUPTION));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 112);
@@ -357,6 +361,10 @@ alertbox 'MomSpellConfirm_113' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_ELDRITCH_WEAPON));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
@@ -376,6 +384,10 @@ alertbox 'MomSpellConfirm_114' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_HELL_HOUNDS));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 114);
@@ -393,6 +405,10 @@ alertbox 'MomSpellConfirm_115' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_WALL_OF_FIRE));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
@@ -412,6 +428,10 @@ alertbox 'MomSpellConfirm_116' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_CHAOS_CHANNELS));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 116);
@@ -429,6 +449,10 @@ alertbox 'MomSpellConfirm_117' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_CHIMERAS));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 35) {
@@ -448,6 +472,10 @@ alertbox 'MomSpellConfirm_118' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_DOOM_BAT));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 118);
@@ -465,6 +493,10 @@ alertbox 'MomSpellConfirm_119' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_FIRE_GIANT));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 15) {
@@ -484,6 +516,10 @@ alertbox 'MomSpellConfirm_120' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_FLAME_BLADE));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 12) {
             MomCastSpell(player[0], 120);
@@ -501,6 +537,10 @@ alertbox 'MomSpellConfirm_121' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_GARGOYLES));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 20) {
@@ -520,6 +560,10 @@ alertbox 'MomSpellConfirm_122' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_IMMOLATION));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 15) {
             MomCastSpell(player[0], 122);
@@ -537,6 +581,10 @@ alertbox 'MomSpellConfirm_123' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_RAISE_VOLCANO));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 20) {
@@ -556,6 +604,10 @@ alertbox 'MomSpellConfirm_124' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_CHAOS_SPAWN));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 75) {
             MomCastSpell(player[0], 124);
@@ -573,6 +625,10 @@ alertbox 'MomSpellConfirm_125' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_EFREET));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 82) {
@@ -592,6 +648,10 @@ alertbox 'MomSpellConfirm_126' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_FIRE_STORM));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 37) {
             MomCastSpell(player[0], 126);
@@ -609,6 +669,10 @@ alertbox 'MomSpellConfirm_127' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_ARMAGEDDON));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
@@ -628,6 +692,10 @@ alertbox 'MomSpellConfirm_128' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_CALL_THE_VOID));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 100) {
             MomCastSpell(player[0], 128);
@@ -645,6 +713,10 @@ alertbox 'MomSpellConfirm_129' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_CHAOS_SURGE));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
@@ -664,6 +736,10 @@ alertbox 'MomSpellConfirm_130' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_DOOM_MASTERY));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 130);
@@ -681,6 +757,10 @@ alertbox 'MomSpellConfirm_131' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_GREAT_DRAKE));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
@@ -700,6 +780,10 @@ alertbox 'MomSpellConfirm_132' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_GREAT_WASTING));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 132);
@@ -718,6 +802,10 @@ alertbox 'MomSpellConfirm_133' {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_HYDRA));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 130) {
             MomCastSpell(player[0], 133);
@@ -735,6 +823,10 @@ alertbox 'MomSpellConfirm_134' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_chaos');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_METEOR_STORM));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {

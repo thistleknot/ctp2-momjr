@@ -451,6 +451,10 @@ alertbox 'MomSpellConfirm_31' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_EARTH_LORE));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 31);
@@ -468,6 +472,10 @@ alertbox 'MomSpellConfirm_32' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_GIANT_STRENGTH));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
@@ -487,6 +495,10 @@ alertbox 'MomSpellConfirm_33' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_RESIST_ELEMENTS));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 33);
@@ -504,6 +516,10 @@ alertbox 'MomSpellConfirm_34' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_SPRITES));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
@@ -523,6 +539,10 @@ alertbox 'MomSpellConfirm_35' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_STONE_SKIN));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 35);
@@ -540,6 +560,10 @@ alertbox 'MomSpellConfirm_36' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_WALL_OF_STONE));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
@@ -559,6 +583,10 @@ alertbox 'MomSpellConfirm_37' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_WAR_BEARS));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 37);
@@ -576,6 +604,10 @@ alertbox 'MomSpellConfirm_38' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_WATER_WALKING));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
@@ -595,6 +627,10 @@ alertbox 'MomSpellConfirm_39' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_BASILISK));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 32) {
             MomCastSpell(player[0], 39);
@@ -612,6 +648,10 @@ alertbox 'MomSpellConfirm_40' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_CHANGE_TERRAIN));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
@@ -631,6 +671,10 @@ alertbox 'MomSpellConfirm_41' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_COCKATRICES));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 27) {
             MomCastSpell(player[0], 41);
@@ -648,6 +692,10 @@ alertbox 'MomSpellConfirm_42' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_GIANT_SPIDERS));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 20) {
@@ -667,6 +715,10 @@ alertbox 'MomSpellConfirm_43' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_NATURES_CURES));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 43);
@@ -684,6 +736,10 @@ alertbox 'MomSpellConfirm_44' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_NATURES_EYE));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
@@ -703,6 +759,10 @@ alertbox 'MomSpellConfirm_45' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_PATH_FINDING));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
             MomCastSpell(player[0], 45);
@@ -720,6 +780,10 @@ alertbox 'MomSpellConfirm_46' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_TRANSMUTE));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 10) {
@@ -739,6 +803,10 @@ alertbox 'MomSpellConfirm_47' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_EARTHQUAKE));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 47);
@@ -756,6 +824,10 @@ alertbox 'MomSpellConfirm_48' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_ELEMENTAL_ARMOR));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 26) {
@@ -775,6 +847,10 @@ alertbox 'MomSpellConfirm_49' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_GAIAS_BLESSING));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 45) {
             MomCastSpell(player[0], 49);
@@ -792,6 +868,10 @@ alertbox 'MomSpellConfirm_50' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_GORGONS));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 90) {
@@ -811,6 +891,10 @@ alertbox 'MomSpellConfirm_51' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_ICE_STORM));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 51);
@@ -828,6 +912,10 @@ alertbox 'MomSpellConfirm_52' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_IRON_SKIN));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
@@ -847,6 +935,10 @@ alertbox 'MomSpellConfirm_53' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_MOVE_FORTRESS));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 30) {
             MomCastSpell(player[0], 53);
@@ -864,6 +956,10 @@ alertbox 'MomSpellConfirm_54' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_STONE_GIANT));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 67) {
@@ -883,6 +979,10 @@ alertbox 'MomSpellConfirm_55' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_BEHEMOTH));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 140) {
             MomCastSpell(player[0], 55);
@@ -900,6 +1000,10 @@ alertbox 'MomSpellConfirm_56' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_COLOSSUS));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 160) {
@@ -919,6 +1023,10 @@ alertbox 'MomSpellConfirm_57' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_EARTH_GATE));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 50) {
             MomCastSpell(player[0], 57);
@@ -936,6 +1044,10 @@ alertbox 'MomSpellConfirm_58' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_GREAT_WYRM));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
@@ -955,6 +1067,10 @@ alertbox 'MomSpellConfirm_59' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_HERB_MASTERY));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 59);
@@ -972,6 +1088,10 @@ alertbox 'MomSpellConfirm_60' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_NATURE_AWARENESS));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 160) {
@@ -991,6 +1111,10 @@ alertbox 'MomSpellConfirm_61' {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
     }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_NATURES_WRATH));
+    }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 180) {
             MomCastSpell(player[0], 61);
@@ -1008,6 +1132,10 @@ alertbox 'MomSpellConfirm_62' {
     Button(ID_MOM_SPELL_CLOSE) {
         Kill();
         Message(player[0], 'MomSpellHub_nature');
+    }
+    Button(ID_MOM_SPELL_INFO) {
+        Kill();
+        LibraryConcept(ConceptDB(CONCEPT_SPELL_REGENERATION));
     }
     Button(ID_MOM_SPELL_BTN_1) {
         if (MomMagicCur[player[0]] >= 60) {

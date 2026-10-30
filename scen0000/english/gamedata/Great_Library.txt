@@ -14,7 +14,7 @@ Age: 1
 Branch: 0
 [END]
 [ADVANCE_CHIVALRY_GAMEPLAY]
-<c:245,240,225><h:0,0,0>Researching Chivalry requires <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>. It costs 2300 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_KNIGHTS>Knights<e>.
+<c:245,240,225><h:0,0,0>Researching Chivalry requires <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e> and <L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>. It costs 2600 science to complete. It enables the unit <L:DATABASE_UNITS,UNIT_KNIGHTS>Knights<e>.
 [END]
 [ADVANCE_CHIVALRY_HISTORICAL]
 <c:245,240,225><h:0,0,0>A code invented to make heavily armed men on expensive horses tolerable to the people who fed them. It worked well enough to outlive its own cavalry.
@@ -22,9 +22,10 @@ Branch: 0
 [ADVANCE_CHIVALRY_PREREQ]
 <c:245,240,225><h:0,0,0>Requires:
 <L:DATABASE_ADVANCES,ADVANCE_FEUDALISM>Feudalism<e>
+<L:DATABASE_ADVANCES,ADVANCE_TRADE>Trade<e>
 [END]
 [ADVANCE_CHIVALRY_STATISTICS]
-<c:245,240,225><h:0,0,0>Cost: 2300
+<c:245,240,225><h:0,0,0>Cost: 2600
 Age: 2
 Branch: 0
 [END]
@@ -7302,4 +7303,1501 @@ Conservation
 [TILEIMP_TRADING_POST_HISTORICAL]
 <c:245,240,225><h:0,0,0>A shed, a scale and an agreed price, at the point where two peoples find it easier to deal than to raid.
 [END]
+[CONCEPT_SPELL_BLESS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Bless: Life spell, Common, 10 mana.
 
+In this mod: Enchants the selected unit: +3 defense against units of Death or Chaos wizards. Lost when the game is reloaded.
+
+Original Master of Magic effect: Enchanted unit receives +3 and +3 against all attacks and spells associated with the Chaos and Death Realms .
+
+Keywords: enchanted unit attacks associated realms
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ENDURANCE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Endurance: Life spell, Common, 10 mana.
+
+In this mod: Enchants the selected unit: +1 move every turn. Lost when the game is reloaded.
+
+Original Master of Magic effect: Target unit's Movement Allowance is increased by 1 both on the overland map and in combat.
+
+Keywords: target movement allowance increased map
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GUARDIAN_SPIRIT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Guardian Spirit: Life spell, Common, 10 mana.
+
+In this mod: Summons Guardian Spirit at your capital.
+
+Original Master of Magic effect: Guardian Spirit Realm Life Spell Properties Spell Rarity Common Casting Cost 80 Upkeep Cost 1 per turn Research Cost 220 Unit Properties # of Figures 1 Moves 1 / 1 Melee Attack per figure 10 Defense per figure 4 Resistance 10 Hit Points per figure 10 Unit Abilities Meld Non-Corporeal Resistance to All +1 The Guardian Spirit is a type of Fantastic Unit featured in Master of Magic . Guardian Spirits belong to the Life Realm , and may be summoned using a Summoning Spell of the same name. The Guardian Spirit is a mediocre combat unit ? its main purpose is to Meld with magical Nodes to redirect their power to the Spirit' s controller. When a Node is Melded with by a Guardian Spirit , other spirits only have a 25% chance to be able to capture that Node. Guardian Spirits also increase the Resistance score of all units in their army during battles.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_HEROISM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Heroism: Life spell, Common, 10 mana.
+
+In this mod: Enchants the selected unit: makes the unit a veteran. Lost when the game is reloaded.
+
+Original Master of Magic effect: Target Normal Unit 's or Hero 's Experience Level is raised to "Elite" (or "Commander", for Heroes), with all the accompanying bonuses applied. The unit remains at this level as long as Heroism is in effect. When the unit gets 120 Experience Points - enough to reach "Elite" (or "Commander") level on its own merits - the spell dissipates. Buggy Feature As of Master of Magic v1.31 , Heroism is known to be malfunctioning in at least one way. Please read the Known Bugs section below.
+
+Keywords: level raised elite' commander' accompanying
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_HOLY_ARMOR_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Holy Armor: Life spell, Common, 10 mana.
+
+In this mod: Enchants the selected unit: +2 defense. Lost when the game is reloaded.
+
+Original Master of Magic effect: Target receives exactly +2 to its Defense score. This spell may only be cast on Normal Units and Heroes . Description Problem This part of the game is working correctly, but has an incorrect or incomplete buff description for at least one game version. Please read the Effects section below for details.
+
+Keywords: section
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_HOLY_WEAPON_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Holy Weapon: Life spell, Common, 10 mana.
+
+In this mod: Enchants the selected unit: +1 attack. Lost when the game is reloaded.
+
+Original Master of Magic effect: Target Normal Unit or Hero receives +10% To Hit with Melee- and non-magical Ranged Attacks , and can ignore the effect of Weapon Immunity . Buggy Feature As of Master of Magic v1.31 , Holy Weapon is known to be malfunctioning in at least one way. Please read the Known Bugs section below.
+
+Keywords: normal non magical ignore feature
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_JUST_CAUSE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Just Cause: Life spell, Common, 10 mana.
+
+In this mod: Gives 100 gold. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: The casting wizard receives -1 to Unrest in all cities and a +10 Fame bonus while the spell is in effect.
+
+Keywords: wizard unrest cities fame bonus
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_HEAVENLY_LIGHT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Heavenly Light: Life spell, Uncommon, 15 mana.
+
+In this mod: Builds Temple in your capital.
+
+Original Master of Magic effect: Every battle taking place at the target town will be under an effect similar to a True Light spell.
+
+Keywords: battle taking place similar true
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_PLANAR_SEAL_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Planar Seal: Life spell, Uncommon, 50 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: While the spell is in effect it is virtually impossible for any Wizard to move any units from one Plane to the other.
+
+Keywords: virtually impossible wizard units plane
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_PLANAR_TRAVEL_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Planar Travel: Life spell, Uncommon, 15 mana.
+
+In this mod: Three versions, each this turn only. Haste: the selected unit's stack doubles the moves it has left. Step: the selected stack jumps to a land tile you click, up to 6 tiles away, not onto a rival's unit or city or past 12 units. Host: every unit you own gets 1 extra move. Haste and Step need a unit selected on the map before casting.
+
+Original Master of Magic effect: Enchanted unit may switch between the two Planes freely, as long as it can legally enter the destination tile on the other plane. Any tile which the unit cannot normally enter by moving into it is illegal, as is any tile containing enemy units or towns (including Encounter zones).
+
+Keywords: stack doubles left jumps tile
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_PLANE_SHIFT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Plane Shift: Life spell, Uncommon, 12 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: This article is about the inherent unit ability called "Plane Shift". For the Life Instant Spell of the same name see Plane Shift (Spell) .
+
+Keywords: inherent unit ability shift'
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_RESURRECTION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Resurrection: Life spell, Uncommon, 25 mana.
+
+In this mod: Summons Archangel at your capital.
+
+Original Master of Magic effect: One dead Hero returns to life with full health. This Hero regains the same Experience Level he had when he died.
+
+Keywords: hero returns health regains died
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_TRUE_SIGHT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>True Sight: Life spell, Uncommon, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: The enchanted unit receives the Illusions Immunity ability, allowing it to see Invisible units, defend normally against Illusion Damage , and make Ranged Attacks into a Wall of Darkness .
+
+Keywords: enchanted illusions invisible defend darkness
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_UNICORNS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Unicorns: Life spell, Uncommon, 25 mana.
+
+In this mod: Summons Unicorn at your capital.
+
+Original Master of Magic effect: Unicorns Realm Life Spell Properties Spell Rarity Uncommon Casting Cost 250 Upkeep Cost 5 per turn Research Cost 560 Unit Properties # of Figures 4 Moves 2 * Melee Attack per figure 5 Defense per figure 3 Resistance 7 Hit Points per figure 6 Unit Abilities +20% To Hit Teleporting Poison Immunity Resistance to All +2 Unicorns are a type of Fantastic Unit featured in Master of Magic . They belong to the Life Realm , and may be summoned using a Summoning Spell of the same name. The Unicorns ' primary combat skill is their ability to Teleport across the battlefield at will, allowing them to make sudden attacks against the weakest points in the enemy lines, and withdraw as necessary. Their attack, while seemingly weak, is actually quite accurate and can be deadly to low- and mid-tier units. Furthermore, the very presence of Unicorns in an army improves all friendly units' Resistance scores by +2 , including that of the Unicorns themselves.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ALTAR_OF_BATTLE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Altar of Battle: Life spell, Rare, 45 mana.
+
+In this mod: Builds Colosseum in your capital.
+
+Original Master of Magic effect: Any Normal Unit produced by the enchanted Town is created with 120 Experience Points , giving it a starting rank of Elite (with all the appropriate bonuses for that level).
+
+Keywords: produced enchanted starting rank elite
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ANGEL_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Angel: Life spell, Rare, 82 mana.
+
+In this mod: Summons Archangel at your capital.
+
+Original Master of Magic effect: Angel Realm Life Spell Properties Spell Rarity Rare Casting Cost 550 Upkeep Cost 15 per turn Research Cost 1,400 Unit Properties # of Figures 1 Moves 3 Melee Attack per figure 13 Defense per figure 7 Resistance 8 Hit Points per figure 15 Unit Abilities +20% To Hit Illusions Immunity Holy Bonus +1 Dispel Evil The Angel is a type of Fantastic Unit featured in Master of Magic . Angels belong to the Life Realm , and may be summoned using a Summoning Spell of the same name. The Angel is not too impressive as a combat unit considering its high costs, but instead acts as a fantastic support unit to augment the performance of its allies ? although its speed often does allow it to outmaneuver the enemy, and strike at their weakest units. The Angel 's attack may do additional damage against Chaos and Death creatures, including Chaos Channeled- and, most notably, Undead units.
+
+Keywords: properties figures moves melee defense
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_INCARNATION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Incarnation: Life spell, Rare, 75 mana.
+
+In this mod: Summons Archangel at your capital.
+
+Original Master of Magic effect: Summons Torin the Chosen to the current location of your Summoning Circle . If Torin dies, casting Incarnation again will revive him, keeping most of his statistics intact.
+
+Keywords: torin chosen current circle revive
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_INVULNERABILITY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Invulnerability: Life spell, Rare, 30 mana.
+
+In this mod: Enchants the selected unit: +5 defense. Lost when the game is reloaded.
+
+Original Master of Magic effect: The first two Points of Damage inflicted on the enchanted unit from any source are blocked automatically. In addition, the unit receives the Weapon Immunity ability.
+
+Keywords: inflicted enchanted source blocked weapon
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_LIONHEART_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Lionheart: Life spell, Rare, 30 mana.
+
+In this mod: Enchants the selected unit: +3 attack, +3 ranged attack, +3 defense. Lost when the game is reloaded.
+
+Original Master of Magic effect: Target unit receives the following bonuses: +3 Melee Strength ; +3 Resistance ; +3 Hits per figure ; +3 , +3 or +3 (if applicable).
+
+Keywords: target following bonuses strength hits
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_PROSPERITY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Prosperity: Life spell, Rare, 37 mana.
+
+In this mod: Gives 200 gold.
+
+Original Master of Magic effect: Enchanted Town 's Gold output is increased by 100%.
+
+Keywords: enchanted gold output increased
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_RIGHTEOUSNESS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Righteousness: Life spell, Rare, 30 mana.
+
+In this mod: Enchants the selected unit: +5 defense against units of Death or Chaos wizards. Lost when the game is reloaded.
+
+Original Master of Magic effect: The enchanted unit becomes invulnerable to the following: Almost all Chaos and Death spells. All Chaos - and Death -related Special Attacks . All Chaos -related Ranged Magical Attacks .
+
+Keywords: enchanted invulnerable following related attacks
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_STREAM_OF_LIFE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Stream of Life: Life spell, Rare, 45 mana.
+
+In this mod: Builds Aqueduct in your capital.
+
+Original Master of Magic effect: Bestows the enchanted Town with the following bonuses: Population Growth is doubled. Unrest is reduced to 0. Any unit starting its turn in this town is fully healed with all figures restored to life.
+
+Keywords: following doubled reduced fully healed
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ARCH_ANGEL_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Arch Angel: Life spell, Very rare, 180 mana.
+
+In this mod: Summons Archangel at your capital.
+
+Original Master of Magic effect: Arch Angel Realm Life Spell Properties Spell Rarity Very Rare Casting Cost 950 Upkeep Cost 20 per turn Research Cost 5,000 Unit Properties # of Figures 1 Moves 4 Melee Attack per figure 15 Defense per figure 10 Resistance 12 Hit Points per figure 18 Unit Abilities +30% To Hit Caster ( 40 ) Illusions Immunity Holy Bonus +2 The Arch Angel (alt. Archangel ) is a type of Fantastic Unit featured in Master of Magic . Arch Angels belong to the Life Realm , and may be summoned using a Summoning Spell of the same name. The Arch Angel has a relatively powerful Melee Attack , and good defensive characteristics, but is more importantly an impressive and versatile support unit. Its very presence in an army raises the Melee Strength , Defense and Resistance scores of all friendly units (including the Arch Angel itself) by +2 during combat. Furthermore, the Arch Angel can cast Life spells in battle, using up to 40 in every engagement.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ASTRAL_GATE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Astral Gate: Life spell, Very rare, 70 mana.
+
+In this mod: Builds Harbor in your capital.
+
+Original Master of Magic effect: Friendly units in the enchanted town may move to the other Plane freely, as long as combat will not result in their arriving in the corresponding tile on the other plane. Friendly units in the other plane, on the same tile corresponding to the enchanted town, may move to the town's plane freely.
+
+Keywords: friendly enchanted plane arriving corresponding
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CHARM_OF_LIFE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Charm of Life: Life spell, Very rare, 180 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Each and every unit receives a +25% Hits Points bonus (or +1 , whichever is greater ). In Multi-Figure units , this bonus applies to each individual figure .
+
+Keywords: hits bonus greater figure individual
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CONSECRATION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Consecration: Life spell, Very rare, 80 mana.
+
+In this mod: Gives 250 gold.
+
+Original Master of Magic effect: All Town Curses are removed from the targeted town. Rivals may not cast any more Town Curses on this town. Some rival Instant Spells and Global Enchantments can no longer have any effect this town either. At the start of each turn, any and all Corrupted tiles within the town's catchment area are automatically Purified .
+
+Keywords: curses removed targeted rivals longer
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CRUSADE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Crusade: Life spell, Very rare, 180 mana.
+
+In this mod: Summons Paladins at your capital. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: All friendly Normal Units and Heroes are 1 Experience Level higher than they otherwise would be. This allows "Elite" Normal Units to reach the otherwise unreachable "Ultra-Elite" level. With the Warlord Retort , Normal Units may now reach "Champion" level.
+
+Keywords: friendly normal level elite' unreachable
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_HOLY_ARMS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Holy Arms: Life spell, Very rare, 180 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Each and every friendly Normal Unit and Hero is under the effect of a Holy Weapon spell, receiving a +10% To Hit bonus. Each of these units may now attack Weapon Immune units without triggering their special Defense bonuses.
+
+Keywords: friendly unit weapon receiving immune
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_INSPIRATIONS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Inspirations: Life spell, Very rare, 70 mana.
+
+In this mod: Gives 150 gold.
+
+Original Master of Magic effect: Each of the enchanted Town 's citizens yields twice as much Production as normal.
+
+Keywords: enchanted yields twice production normal
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_LIFE_FORCE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Life Force: Life spell, Very rare, 180 mana.
+
+In this mod: Drains 20 mana from every rival wizard. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: Whenever any rival completes casting an overland Death spell, that spell is immediately subjected to a 500-strength dispelling attempt.
+
+Keywords: rival immediately subjected dispelling attempt
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_TRANQUILITY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Tranquility: Life spell, Very rare, 180 mana.
+
+In this mod: Drains 15 mana from every rival wizard. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: Whenever any rival completes casting an overland Chaos spell, that spell is immediately subjected to a 500-strength dispelling attempt.
+
+Keywords: rival immediately subjected dispelling attempt
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_EARTH_LORE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Earth Lore: Nature spell, Common, 10 mana.
+
+In this mod: Briefly reveals the land around your capital; kills an enemy unit in the enemy city.
+
+Original Master of Magic effect: Permanently reveals all geographical features in a 10x12 rectangular area of the selected Plane .
+
+Keywords: permanently reveals geographical features rectangular
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GIANT_STRENGTH_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Giant Strength: Nature spell, Common, 10 mana.
+
+In this mod: Enchants the selected unit: +1 attack. Lost when the game is reloaded.
+
+Original Master of Magic effect: Grants a unit +1 per figure . If the unit has a Thrown Attack , its strength is also increased by +1 per figure .
+
+Keywords: unit figure thrown attack increased
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_RESIST_ELEMENTS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Resist Elements: Nature spell, Common, 10 mana.
+
+In this mod: Enchants the selected unit: +3 defense against units of Chaos or Nature wizards. Lost when the game is reloaded.
+
+Original Master of Magic effect: Grants the target unit +3 and +3 against any effect or direct damage from Nature and Chaos sources.
+
+Keywords: target unit direct damage sources
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SPRITES_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Sprites: Nature spell, Common, 10 mana.
+
+In this mod: Summons Guardian Spirit at your capital.
+
+Original Master of Magic effect: Sprites Realm Nature Spell Properties Spell Rarity Common Casting Cost 100 Upkeep Cost 3 per turn Research Cost 220 Unit Properties # of Figures 4 Moves 2 Melee Attack per figure 2 Ranged Attack per figure 3 Defense per figure 2 Resistance 8 Hit Points per figure 1 Unit Abilities Ranged Attack x4 +10% To Hit Forester Sprites are a type of Fantastic Unit featured in Master of Magic . They belong to the Nature Realm , and may be summoned using a Summoning Spell of the same name. Sprites make up good scouts thanks to their Flying ability, and though their combat skills leave something to be desired, they can be very effective in large numbers. They tend to be more useful during the early game.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_STONE_SKIN_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Stone Skin: Nature spell, Common, 10 mana.
+
+In this mod: Enchants the selected unit: +1 defense. Lost when the game is reloaded.
+
+Original Master of Magic effect: Grants a unit +1 per figure .
+
+Keywords: unit figure
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WALL_OF_STONE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Wall of Stone: Nature spell, Common, 10 mana.
+
+In this mod: Builds City Walls in your capital.
+
+Original Master of Magic effect: Builds permanent City Walls in the targeted Town .
+
+Keywords: builds permanent city targeted
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WAR_BEARS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>War Bears: Nature spell, Common, 10 mana.
+
+In this mod: Summons Warbears at your capital.
+
+Original Master of Magic effect: War Bears Realm Nature Spell Properties Spell Rarity Common Casting Cost 70 Upkeep Cost 2 per turn Research Cost 130 Unit Properties # of Figures 2 Moves 2 Melee Attack per figure 7 Defense per figure 3 Resistance 6 Hit Points per figure 8 Unit Abilities Forester War Bears are a type of Fantastic Unit featured in Master of Magic . They belong to the Nature Realm , and may be summoned using a Summoning Spell of the same name. War Bears are a basic Melee combat unit, roughly equivalent to high-quality Normal Units . Their primary advantage is their cheap Casting Cost and Upkeep Cost , though they make good scouts for Forest terrain and can lead other units quickly through such.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WATER_WALKING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Water Walking: Nature spell, Common, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Grants the swimming Movement Type Water Walking is a Common Unit Enchantment of the Nature Realm . For 50 it may be cast on a unit on the overland map to allow that unit to move through water-based terrain ? including Oceans and Shores ? for a Movement Allowance cost of 1 per tile. The spell must then be maintained with a 1 per turn Upkeep Cost .
+
+Keywords: swimming movement unit map allow
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_BASILISK_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Basilisk: Nature spell, Uncommon, 32 mana.
+
+In this mod: Summons Salamander at your capital.
+
+Original Master of Magic effect: Basilisk Realm Nature Spell Properties Spell Rarity Uncommon Casting Cost 325 Upkeep Cost 7 per turn Research Cost 800 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 15 Defense per figure 4 Resistance 7 Hit Points per figure 30 Unit Abilities +10% To Hit Stoning Gaze -1 The Basilisk is a type of Fantastic Unit featured in Master of Magic . Basilisks belong to the Nature Realm , and may be summoned using a Summoning Spell of the same name. The Basilisk is a surprisingly powerful Melee combat unit, and poses a danger to most Normal Units and weaker Heroes , primarily thanks to its ferocious attack, high speed, and tough defense. Its Stoning Gaze can destroy its targets even before they get a chance to exchange physical blows with it. As a result, a single Basilisk can wipe out a large number of weaker enemies without suffering any damage!
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CHANGE_TERRAIN_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Change Terrain: Nature spell, Uncommon, 10 mana.
+
+In this mod: Changes the terrain.
+
+Original Master of Magic effect: Changes a single overland map tile from one type of terrain to another, generally towards Grassland or Forests . Some tile types may not be targeted by this spell. Buggy Feature As of Master of Magic v1.31 , Change Terrain is known to be malfunctioning in at least one way. Please read the Known Bugs section below.
+
+Keywords: tile grassland forests targeted feature
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_COCKATRICES_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Cockatrices: Nature spell, Uncommon, 27 mana.
+
+In this mod: Summons Cockatrice at your capital.
+
+Original Master of Magic effect: Cockatrices Realm Nature Spell Properties Spell Rarity Uncommon Casting Cost 275 Upkeep Cost 8 per turn Research Cost 620 Unit Properties # of Figures 4 Moves 2 Melee Attack per figure 4 Defense per figure 3 Resistance 7 Hit Points per figure 3 Unit Abilities +10% To Hit Stoning Touch -3 Cockatrices are a type of Fantastic Unit featured in Master of Magic . They belong to the Nature Realm , and may be summoned using a Summoning Spell of the same name. Although their attack stats are not impressive on their own, each attack made by this unit stands a very high chance of Petrifying its target, destroying it automatically. This makes Cockatrices very dangerous even to enemies that are much more powerful than themselves.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GIANT_SPIDERS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Giant Spiders: Nature spell, Uncommon, 20 mana.
+
+In this mod: Summons Cockatrice at your capital.
+
+Original Master of Magic effect: Giant Spiders Realm Nature Spell Properties Spell Rarity Uncommon Casting Cost 200 Upkeep Cost 4 per turn Research Cost 450 Unit Properties # of Figures 2 Moves 2 Melee Attack per figure 4 Defense per figure 3 Resistance 7 Hit Points per figure 10 Unit Abilities +10% To Hit Web Spell Poison Touch 4 Giant Spiders are a type of Fantastic Unit featured in Master of Magic . They belong to the Nature Realm , and may be summoned using a Summoning Spell of the same name. Giant Spiders are mediocre Melee combat units, but possess the ability to cast the Web spell once during battle. This helps them control movement on the battlefield, and force Flying units to the ground so that they can be attacked in Melee combat. They can be used as valuable support units in any army.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_NATURES_CURES_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Nature's Cures: Nature spell, Uncommon, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Heals all units in a targeted stack to full health, instantly. Does not affect the Undead or any Fantastic Creatures from the Death Realm .
+
+Keywords: heals stack health instantly affect
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_NATURES_EYE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Nature's Eye: Nature spell, Uncommon, 10 mana.
+
+In this mod: Builds Granary in your capital.
+
+Original Master of Magic effect: Reveals all unexplored map squares up to 5 tiles away from the target Town. The enchanted Town detects any non- Invisible enemy unit approaching to within 5 tiles from any direction.
+
+Keywords: reveals unexplored tiles away approaching
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_PATH_FINDING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Path Finding: Nature spell, Uncommon, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Allows a Walking unit to move on the campaign map using only 1/2 movement point per tile. This article is about the Nature Unit Enchantment called "Path Finding". For the innate unit ability, see Pathfinding .
+
+Keywords: walking unit map movement finding'
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_TRANSMUTE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Transmute: Nature spell, Uncommon, 10 mana.
+
+In this mod: Gives 150 gold.
+
+Original Master of Magic effect: Changes the Terrain Special in a targeted tile: Coal is changed into Gems (and vice versa). Iron Ore is changed into Gold Ore (and vice versa). Silver Ore is changed into Mithril Ore (and vice versa). Other Terrain Specials may not be targeted. This article is about the Nature spell called "Transmute". For the action of transmuting Gold into Mana and vice versa, see Alchemy .
+
+Keywords: targeted changed vice versa ore
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_EARTHQUAKE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Earthquake: Nature spell, Rare, 30 mana.
+
+In this mod: Needs your Behemoth within 1 tile(s) of an enemy city. Puts War Troll beside the enemy city.
+
+Original Master of Magic effect: Strikes the target Town with the following effects: Each Town Building has a 15% chance of being destroyed; Any non- flying , corporeal unit in the garrison has a 25% chance of being destroyed. Buggy Feature As of Master of Magic v1.31 , Earthquake is known to be malfunctioning in at least one way. Please read the Known Bugs section below.
+
+Keywords: following chance destroyed corporeal garrison
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ELEMENTAL_ARMOR_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Elemental Armor: Nature spell, Rare, 26 mana.
+
+In this mod: Enchants the selected unit: +5 defense against units of Chaos or Nature wizards. Lost when the game is reloaded.
+
+Original Master of Magic effect: Grants the target unit +10 and +10 against any effect or direct damage from Nature and Chaos sources.
+
+Keywords: target unit direct damage sources
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GAIAS_BLESSING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Gaia's Blessing: Nature spell, Rare, 45 mana.
+
+In this mod: Builds Fantastic Stable in your capital.
+
+Original Master of Magic effect: Grants the targeted Town the following bonuses: Maximum Population increased by 50%. Unrest level is reduced by 2. +3% Production bonus for every Forest tile in the town's vicinity. Each Desert in the town's vicinity has a 10% chance each turn of turning into Grassland . Each Volcano in the town's vicinity has a 10% chance each turn of turning into a Hill . Each Corrupted land tile in the town's vicinity has a 20% chance each turn of being Purified .
+
+Keywords: following increased reduced forest vicinity
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GORGONS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Gorgons: Nature spell, Rare, 90 mana.
+
+In this mod: Summons Hydra at your capital.
+
+Original Master of Magic effect: Gorgons Realm Nature Spell Properties Spell Rarity Rare Casting Cost 600 Upkeep Cost 15 per turn Research Cost 1,400 Unit Properties # of Figures 4 Moves 2 Melee Attack per figure 8 Defense per figure 7 Resistance 9 Hit Points per figure 9 Unit Abilities +20% To Hit Stoning Gaze -2 Gorgons are a type of Fantastic Unit featured in Master of Magic . Gorgons belong to the Nature Realm , and may be summoned using a Summoning Spell of the same name. These Flying creatures are exceptionally deadly in combat. Although their Melee Attack is on par with mid/high-tier Normal Units , they are particularly adept at Petrifying their enemies, destroying them before any retaliation can occur.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ICE_STORM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Ice Storm: Nature spell, Rare, 30 mana.
+
+In this mod: Needs your Storm Giant within 2 tile(s) of an enemy city. Puts Warbears beside the enemy city.
+
+Original Master of Magic effect: Strikes all enemy units in the targeted stack with a 6 -strength Blizzard Damage attack.
+
+Keywords: strikes targeted stack strength blizzard
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_IRON_SKIN_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Iron Skin: Nature spell, Rare, 30 mana.
+
+In this mod: Enchants the selected unit: +5 defense. Lost when the game is reloaded.
+
+Original Master of Magic effect: Grants a unit +5 per figure .
+
+Keywords: unit figure
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_MOVE_FORTRESS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Move Fortress: Nature spell, Rare, 30 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Moves the casting Wizard's Fortress to the targeted Town . If the Summoning Circle and Fortress were in the same town prior to casting this spell, the Summoning Circle is also moved to the same destination.
+
+Keywords: wizard targeted circle prior moved
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_STONE_GIANT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Stone Giant: Nature spell, Rare, 67 mana.
+
+In this mod: Summons Storm Giant at your capital.
+
+Original Master of Magic effect: Stone Giant Realm Nature Spell Properties Spell Rarity Rare Casting Cost 450 Upkeep Cost 9 per turn Research Cost 1,040 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 15 Ranged Attack per figure 15 Defense per figure 8 Resistance 9 Hit Points per figure 20 Unit Abilities Ranged Attack x2 +20% To Hit Mountaineer Wall Crusher Poison Immunity Stoning Immunity The Stone Giant is a type of Fantastic Unit featured in Master of Magic . It is summoned using the Nature Summoning Spell of the same name. A Stone Giant is a great all-around unit, possessing a strong Melee Attack , a powerful Ranged Boulder Attack , and good defensive properties. It can be a useful support unit for any army, or defeat many weaker monsters on its own.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_BEHEMOTH_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Behemoth: Nature spell, Very rare, 140 mana.
+
+In this mod: Summons Behemoth at your capital.
+
+Original Master of Magic effect: Behemoth Realm Nature Spell Properties Spell Rarity Very Rare Casting Cost 700 Upkeep Cost 15 per turn Research Cost 2,000 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 25 Defense per figure 9 Resistance 10 Hit Points per figure 45 Unit Abilities +20% To Hit The Behemoth is a type of Fantastic Unit featured in Master of Magic . The Behemoth belongs to the Nature Realm , and may be summoned using a Summoning Spell of the same name. The Behemoth is one of the most powerful (and most expensive) Fantastic Creatures in the Nature Magic arsenal, delivering a massively-powerful Melee Attack . It is also exceptionally difficult to kill thanks to its large amount of Hit Points . Behemoths can lay waste to large armies singlehandedly, and even pose a threat to well-trained Champions .
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_COLOSSUS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Colossus: Nature spell, Very rare, 160 mana.
+
+In this mod: Summons War Mammoth at your capital.
+
+Original Master of Magic effect: Colossus Realm Nature Spell Properties Spell Rarity Very Rare Casting Cost 800 Upkeep Cost 17 per turn Research Cost 3,500 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 20 Ranged Attack per figure 20 Defense per figure 10 Resistance 15 Hit Points per figure 30 Unit Abilities Ranged Attack x2 +30% To Hit Wall Crusher Poison Immunity Stoning Immunity First Strike The Colossus is a type of Fantastic Unit featured in Master of Magic . It is summoned using the Nature Summoning Spell of the same name. Packing a powerful punch in both Melee Attacks and Ranged Attacks , the Colossus can trample over large armies with ease. It possesses a wide range of combat abilities, including primarily First Strike and a +30% To Hit bonus, the combination of which enable it to take out the enemy's most powerful units in one-on-one combat.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_EARTH_GATE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Earth Gate: Nature spell, Very rare, 50 mana.
+
+In this mod: Builds Harbor in your capital.
+
+Original Master of Magic effect: Allows units to travel instantaneously between the enchanted Town and any other Town on the same Plane containing an Earth Gate .
+
+Keywords: travel instantaneously enchanted plane containing
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GREAT_WYRM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Great Wyrm: Nature spell, Very rare, 180 mana.
+
+In this mod: Summons Great Wyrm at your capital.
+
+Original Master of Magic effect: Great Wyrm Realm Nature Spell Properties Spell Rarity Very Rare Casting Cost 1,000 Upkeep Cost 20 per turn Research Cost 5,000 Unit Properties # of Figures 1 Moves 3 * Melee Attack per figure 25 Defense per figure 12 Resistance 12 Hit Points per figure 45 Unit Abilities +30% To Hit Merging Poison Touch 15 The Great Wyrm is a type of Fantastic Unit featured in Master of Magic . The Great Wyrm belongs to the Nature Realm , and may be summoned using a Summoning Spell of the same name. The Great Wyrm is easily the strongest Nature unit, and is by far one of the most powerful Fantastic Creatures in the game. Aside from an extremely deadly Poison Touch attack, the Great Wyrm 's primary advantage is its ability to instantly move to any spot on the battlefield .
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_HERB_MASTERY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Herb Mastery: Nature spell, Very rare, 180 mana.
+
+In this mod: Gives 100 gold. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: Fully heals each of the casting Wizard's units each turn.
+
+Keywords: fully heals wizard units
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_NATURE_AWARENESS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Nature Awareness: Nature spell, Very rare, 160 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Permanently reveals all unexplored tiles on the overland map (in both Arcanus and Myrror ). Reveals all enemy Towns and units except Invisible ones.
+
+Keywords: permanently reveals unexplored invisible ones
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_NATURES_WRATH_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Nature's Wrath: Nature spell, Very rare, 180 mana.
+
+In this mod: Drains 20 mana from every rival wizard. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: Each time a rival Wizard casts a spell from the Death or Chaos Realms , the following effects strike each and every one of that wizard's Towns : Each Building in each Town has a 5% chance of being destroyed. Each unit garrisoned in each Town has a 15% chance of being destroyed. Flying and Non-Corporeal units are immune to the destruction caused by this spell.
+
+Keywords: rival wizard casts following strike
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_REGENERATION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Regeneration: Nature spell, Very rare, 60 mana.
+
+In this mod: Enchants the selected unit: heals 3 HP at the start of every turn. Lost when the game is reloaded.
+
+Original Master of Magic effect: Regeneration is one of the many Unit Abilities available in Master of Magic . The Regeneration ability gives a unit several extremely useful advantages, and is often considered one of the best Unit Abilities in the game. During combat, whenever the Regenerating unit is injured, it will regain exactly 1 Hit Point at the end of each turn. Multi-Figure units may even recover lost Figures as a result of this automatic healing. If the Regenerating unit survives a battle, it is then completely healed of all Damage . Multi-Figure units will also regain all lost Figures as a result. In addition, if the Regenerating unit is destroyed during battle, but its army manages to win that battle, the unit is automatically restored to life - with full health as described above! Finally, the unit will completely ignore spells that would cause it direct Conventional Damage on the overland map. Exactly 9 units in the game possess Regeneration by default. 6 of these are Normal Units from the Troll race, while the other 3 are Fantastic Units . However, it is possible to give Regeneration to any unit, by casting the Regeneration Unit Enchantment on it. Furthermore, Heroes may also be equipped with Magical Items possessing a Regeneration Item Power .
+
+Keywords: abilities gives extremely advantages considered
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_FLOATING_ISLAND_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Floating Island: Sorcery spell, Common, 10 mana.
+
+In this mod: Summons Airship at your capital.
+
+Original Master of Magic effect: Floating Island Realm Sorcery Spell Properties Spell Rarity Common Casting Cost 50 Upkeep Cost 5 per turn Research Cost 60 Unit Properties # of Figures 1 Moves 2 Resistance 10 Hit Points per figure 45 Unit Abilities Poison Immunity Stoning Immunity Death Immunity The Floating Island is a type of Fantastic Unit featured in Master of Magic . Floating Islands belong to the Sorcery Realm , and may be summoned using a Summoning Spell of the same name. The Floating Island is a non-combat unit designed entirely for carrying other units across ocean tiles. It may carry up to 8 units at a time, moving at the basic rate of 2 per turn. Unfortunately, the Floating Island never appears during combat, and will automatically lose when engaged by enemies if it is not carrying any other units.
+
+Keywords: properties figures moves resistance hit
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GUARDIAN_WIND_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Guardian Wind: Sorcery spell, Common, 10 mana.
+
+In this mod: Missile and thrown attacks against the unit do nothing. Lost when the game is reloaded.
+
+Original Master of Magic effect: Grants Missile Immunity to a unit, protecting it from Ranged Missile Attacks .
+
+Keywords: missile immunity protecting ranged attacks
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_NAGAS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Nagas: Sorcery spell, Common, 10 mana.
+
+In this mod: Summons Merfolk at your capital.
+
+Original Master of Magic effect: Nagas Realm Sorcery Spell Properties Spell Rarity Common Casting Cost 100 Upkeep Cost 2 per turn Research Cost 220 Unit Properties # of Figures 2 Moves 1 / 1 Melee Attack per figure 4 Defense per figure 3 Resistance 7 Hit Points per figure 6 Unit Abilities +10% To Hit First Strike Poison Touch 4 Nagas are a type of Fantastic Unit featured in Master of Magic . They belong to the Sorcery Realm , and may be summoned using a Summoning Spell of the same name. Nagas are surprisingly good Melee combat units considering their low cost. Their specialty is a Poisonous First Strike attack which can kill or heavily injure their enemies before they get to Counter Attack .
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_RESIST_MAGIC_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Resist Magic: Sorcery spell, Common, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Grants the enchanted unit a +5 bonus when attempting to resist harmful effects associated with any magical Realm .
+
+Keywords: enchanted attempting harmful associated magical
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WORD_OF_RECALL_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Word of Recall: Sorcery spell, Common, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Instantly returns a friendly unit to the Town currently containing the wizard's Summoning Circle .
+
+Keywords: instantly returns friendly currently circle
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_AURA_OF_MAJESTY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Aura of Majesty: Sorcery spell, Uncommon, 40 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: The caster's Diplomatic Relations with every other wizard will change by +10 initially and +1 each turn.
+
+Keywords: caster diplomatic wizard change initially
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DISENCHANT_TRUE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Disenchant True: Sorcery spell, Uncommon, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: No original text available.
+
+Keywords: none
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ENCHANT_ROAD_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Enchant Road: Sorcery spell, Uncommon, 10 mana.
+
+In this mod: Gives 100 gold.
+
+Original Master of Magic effect: Turns all Roads in a 5x5 tile area of the overland map into Enchanted Roads . Note: All roads in the plane of Myrror are already enchanted by default, and do not benefit further from this spell.
+
+Keywords: area map enchanted note plane
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_FLIGHT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Flight: Sorcery spell, Uncommon, 12 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Changes a unit's Movement type to Flying . If the unit previously had a movement allowance of less than 3 or 3 , its movement allowance is increased to 3 . If the unit previously had a scouting range of 1, its scouting range is now 2. This article is about the Unit Enchantment called "Flight". For information about the movement type itself, see Flying .
+
+Keywords: changes movement flying allowance increased
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SPELL_BLAST_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Spell Blast: Sorcery spell, Uncommon, 10 mana.
+
+In this mod: Needs your War Mage (1 tile) or Arch Mage (2 tiles) next to an enemy city. Puts Guardian Spirit beside the enemy city.
+
+Original Master of Magic effect: Counters an enemy overland spell while it is being cast. To successfully counter a spell, Spell Blast 's caster must pay an additional amount of Mana equal to the amount already spent by the target spell's caster.
+
+Keywords: counters overland successfully caster equal
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SPELL_LOCK_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Spell Lock: Sorcery spell, Uncommon, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Protects all other Unit Enchantments cast on the target unit from being dispelled. Protects a Fantastic Unit from Banish , Great Unsummoning , Dispel Evil , and Holy Word .
+
+Keywords: protects unit dispelled banish unsummoning
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WIND_MASTERY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Wind Mastery: Sorcery spell, Uncommon, 40 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: All of the casting Wizard's Ships (see list in article) receive +50% Movement Allowance . All Ships belonging to rival Wizards receive -50% Movement Allowance .
+
+Keywords: wizard ships receive movement allowance
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DISJUNCTION_TRUE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Disjunction True: Sorcery spell, Rare, 30 mana.
+
+In this mod: Needs your War Mage (1 tile) or Arch Mage (2 tiles) next to an enemy city. Drains 50 mana from that city's wizard.
+
+Original Master of Magic effect: No original text available.
+
+Keywords: none
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_INVISIBILITY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Invisibility: Sorcery spell, Rare, 26 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: This article is about the unit ability called "Invisibility". For the Sorcery spells that grant this ability, see Invisibility (Spell) or Mass Invisibility .
+
+Keywords: unit ability invisibility' mass
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_MAGIC_IMMUNITY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Magic Immunity: Sorcery spell, Rare, 37 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Magic Immunity is one of the many Unit Abilities available in Master of Magic . It is arguably the most powerful immunity in the game. A unit with Magic Immunity will shrug off the vast majority of enemy spells cast directly at it - being completely unaffected by them. Many indirect spells will also fail to affect the unit. Furthermore, whenever a unit with Magic Immunity is struck by Magical Damage of any kind, its Defense rating is temporarily raised to 50 for purposes of averting that damage. Almost all Special Attacks will fail to do any harm to the Magic-Immune unit. Only Poison Damage and certain types of Doom Damage can get through.
+
+Keywords: unit master arguably powerful shrug
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_STASIS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Stasis: Sorcery spell, Rare, 37 mana.
+
+In this mod: Needs your Storm Drake within 2 tile(s) of an enemy city. Puts Phantom Warriors beside the enemy city.
+
+Original Master of Magic effect: Each unit in the targeted map tile remains motionless during its controller's next turn. While a unit is affected by Stasis , it must make a Resistance roll at -5 at the start of each subsequent turn: Failure means the unit remains motionless for another turn, and remains under the effect of Stasis . Success means the Stasis effect is immediately dispelled from this unit, and it can move.
+
+Keywords: targeted motionless controller affected start
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_STORM_GIANT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Storm Giant: Sorcery spell, Rare, 75 mana.
+
+In this mod: Summons Storm Giant at your capital.
+
+Original Master of Magic effect: Storm Giant Realm Sorcery Spell Properties Spell Rarity Rare Casting Cost 500 Upkeep Cost 10 per turn Research Cost 1,200 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 12 Ranged Attack per figure 10 Defense per figure 7 Resistance 9 Hit Points per figure 20 Unit Abilities Ranged Attack x4 +20% To Hit Wall Crusher Armor Piercing The Storm Giant is a type of Fantastic Unit featured in Master of Magic . Storm Giants belong to the Sorcery Realm , and may be summoned using a Summoning Spell of the same name. The Storm Giant has a powerful Magical Ranged Attack , and is dead-accurate in both Melee and Ranged Combat. It can also crush through heavy enemy armor almost as easily as it can crash through walls.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WIND_WALKING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Wind Walking: Sorcery spell, Rare, 37 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Buggy Feature As of Master of Magic v1.31 , Wind Walking is known to be malfunctioning in at least one way. Please read the Known Bugs section below. This article is about the inherent unit ability called "Wind Walking". For the Sorcery Unit Enchantment that bestows the same ability, see Wind Walking (Spell) .
+
+Keywords: feature known malfunctioning section inherent
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DJINN_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Djinn: Sorcery spell, Very rare, 130 mana.
+
+In this mod: Summons Air Elemental at your capital.
+
+Original Master of Magic effect: Djinn Realm Sorcery Spell Properties Spell Rarity Very Rare Casting Cost 650 Upkeep Cost 17 per turn Research Cost 1,850 Unit Properties # of Figures 1 Moves 3 Melee Attack per figure 15 Ranged Attack per figure 8 Defense per figure 8 Resistance 10 Hit Points per figure 20 Unit Abilities +30% To Hit Teleporting Wind Walking Caster ( 20 ) The Djinn is a type of Fantastic Unit featured in Master of Magic . Djinns belong to the Sorcery Realm , and may be summoned using a Summoning Spell of the same name. Possessing both a good Melee Attack and reasonable Magical Ranged Attack , the Djinn 's primary advantages are its ability to move freely around the battlefield, cast Sorcery spells with its own Mana , and help its entire army fly across the overland map. It is therefore a powerful support unit.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_FLYING_FORTRESS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Flying Fortress: Sorcery spell, Very rare, 100 mana.
+
+In this mod: Builds Coastal Fortress in your capital.
+
+Original Master of Magic effect: During combat at the affected Town , units without Flying ability may not enter or leave the 4x4 tile area representing the town proper.
+
+Keywords: affected enter leave representing proper
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GREAT_UNSUMMONING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Great Unsummoning: Sorcery spell, Very rare, 180 mana.
+
+In this mod: Needs your Air Elemental within 2 tile(s) of an enemy city. Kills an enemy unit in the enemy city. The target may resist.
+
+Original Master of Magic effect: Each and every Fantastic Unit in the world, whether enemy or friendly (except those guarding Encounter zones), must make a Resistance roll at a penalty of -3 . Any unit that fails this roll is immediately destroyed.
+
+Keywords: friendly guarding zones roll fails
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SKY_DRAKE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Sky Drake: Sorcery spell, Very rare, 180 mana.
+
+In this mod: Summons Storm Drake at your capital.
+
+Original Master of Magic effect: Sky Drake Realm Sorcery Spell Properties Spell Rarity Very Rare Casting Cost 1,000 Upkeep Cost 25 per turn Research Cost 4,500 Unit Properties # of Figures 1 Moves 4 Melee Attack per figure 20 Defense per figure 10 Resistance 14 Hit Points per figure 25 Unit Abilities +30% To Hit Illusions Immunity Magic Immunity Lightning Breath 20 The Sky Drake is a type of Fantastic Unit featured in Master of Magic . Sky Drakes belong to the Sorcery Realm , and may be summoned using a Summoning Spell of the same name. A Sky Drake is one of the strongest units in the game, and easily the most expensive one from the Sorcery realm. The Sky Drake has a powerful Melee Attack that is preceded by a blast of Lightning Breath doubling its overall strength. Possessing both the Illusions Immunity and Magic Immunity abilities, as well as a Resistance score of 14 , it is nearly impervious to magic, including most unit abilities. Furthermore, the Sky Drake is amazingly fast, moving at 4 both on the overland map and the battlefield.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SPELL_BINDING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Spell Binding: Sorcery spell, Very rare, 180 mana.
+
+In this mod: Needs your Warlock within 2 tile(s) of an enemy city. Drains 50 mana from that city's wizard.
+
+Original Master of Magic effect: Transfers the ownership of a Global Enchantment to the caster, who is now in full control of it as though they cast it themselves. They must pay its Upkeep Cost as necessary, and may cancel it from the Magic Screen if they so choose. Buggy Feature As of Master of Magic v1.31 , Spell Binding is known to be malfunctioning in at least one way. Please read the Known Bugs section below.
+
+Keywords: transfers ownership caster control necessary
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SPELL_WARD_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Spell Ward: Sorcery spell, Very rare, 70 mana.
+
+In this mod: Builds City Walls in your capital.
+
+Original Master of Magic effect: Protects a Town from Fantastic Units and overland spells of a single magical Realm . Up to 5 different Spell Wards may be cast simultaneously on the same Town, each protecting it from a different Realm.
+
+Keywords: protects overland magical simultaneously protecting
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SUPPRESS_MAGIC_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Suppress Magic: Sorcery spell, Very rare, 180 mana.
+
+In this mod: Drains 25 mana from every rival wizard. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: While Suppress Magic is in effect, any overland spell cast by a rival wizard must resist a dispelling attempt at strength 500, or fizzle immediately.
+
+Keywords: rival resist dispelling fizzle immediately
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_TIME_STOP_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Time Stop: Sorcery spell, Very rare, 180 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: While Time Stop is in effect, all rival Wizards skip their turns. Time Stop 's caster may cast spells and move units as normal each turn. However, Production in Towns , consumption of Food , as well as generation of Mana and Research Points stops entirely. Time Stop 's caster does not pay any Upkeep Costs for anything - except Time Stop 's own 200 per turn.
+
+Keywords: rival skip caster production consumption
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CLOAK_OF_FEAR_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Cloak of Fear: Death spell, Common, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: When the enchanted unit engages an enemy in melee combat, each figure in the enemy unit must succeed a Resistance roll or be unable to inflict any Melee Damage.
+
+Keywords: engages enemy melee succeed unable
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DARK_RITUALS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Dark Rituals: Death spell, Common, 10 mana.
+
+In this mod: Builds Barracks in your capital.
+
+Original Master of Magic effect: The enchanted town produces an extra amount of Power equal to the amount currently generated by its Shrine , Temple , Parthenon and Cathedral (if any). The town's Unrest level also rises by +1, and its Population Growth is reduced by about 25%.
+
+Keywords: enchanted equal currently generated unrest
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GHOULS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Ghouls: Death spell, Common, 10 mana.
+
+In this mod: Summons Zombies at your capital.
+
+Original Master of Magic effect: Ghouls Realm Death Spell Properties Spell Rarity Common Casting Cost 80 Upkeep Cost 1 per turn Research Cost 130 Unit Properties # of Figures 4 Moves 1 Melee Attack per figure 4 Defense per figure 3 Resistance 6 Hit Points per figure 3 Unit Abilities +10% To Hit Create Undead Poison Immunity Illusions Immunity Cold Immunity Death Immunity Poison Touch 1 Ghouls are a type of Fantastic Unit featured in Master of Magic . Ghouls belong to the Death Realm , and may be summoned using a Summoning Spell of the same name. As far as their statistics go, Ghouls are roughly on par with mid-level Normal Units . Their Melee Attack is rather average, though it is backed-up by a Poison Damage attack which can inflict some extra damage. However, Ghouls that manage to kill an enemy unit in combat, or severely injure one before it is killed by something else, will possibly bring that unit back as Undead under their master's control. Like most other creatures from the Death Realm, Ghouls are also immune to many different Unit Curses and Special Attacks . On the other hand, they do not heal at all .
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SKELETONS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Skeletons: Death spell, Common, 10 mana.
+
+In this mod: Summons Skeletons at your capital.
+
+Original Master of Magic effect: Skeletons Realm Death Spell Properties Spell Rarity Common Casting Cost 25 Upkeep Cost 1 per turn Research Cost 20 Unit Properties # of Figures 6 Moves 1 Melee Attack per figure 3 Defense per figure 4 Resistance 5 Hit Points per figure 1 Unit Abilities +10% To Hit Poison Immunity Missile Immunity Illusions Immunity Cold Immunity Death Immunity Skeletons are a type of Fantastic Unit featured in Master of Magic . Skeletons belong to the Death Realm , and may be summoned using a Summoning Spell of the same name. Skeletons are roughly on par with most mid-level Normal Units , making this one of the most cost-effective Summoning Spells in the game. Skeletons have a weak attack per figure , but as a group can still do serious damage to enemy Normal Units . Like most other creatures from the Death Realm, Skeletons are immune to many different Unit Curses and Special Attacks , and also possess the rare Missile Immunity . Unfortunately, they do not heal at all .
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_BLACK_CHANNELS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Black Channels: Death spell, Uncommon, 10 mana.
+
+In this mod: Enchants the selected unit: +2 attack, +1 ranged attack, +1 defense. Lost when the game is reloaded.
+
+Original Master of Magic effect: Target Normal Unit , Hero or Undead receives the following bonuses: +2 Melee Strength ; +1 Ranged Attack Strength (including short-range, if applicable); +1 Defense ; +1 Resistance ; +1 Hit Points per figure . If a Normal Unit or Hero is targeted by this spell, they become Undead permanently. Buggy Feature As of Master of Magic v1.31 , Black Channels is known to be malfunctioning in at least one way. Please read the Known Bugs section below.
+
+Keywords: undead following bonuses strength short
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DRAIN_POWER_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Drain Power: Death spell, Uncommon, 10 mana.
+
+In this mod: Needs your War Mage (1 tile) or Arch Mage (2 tiles) next to an enemy city. Puts Guardian Spirit beside the enemy city.
+
+Original Master of Magic effect: The targeted rival wizard loses between 50 and 150 , or as much Mana as that wizard has left in his/her Mana pool (whichever is less).
+
+Keywords: rival wizard loses left pool
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_LYCANTHROPY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Lycanthropy: Death spell, Uncommon, 18 mana.
+
+In this mod: Summons Minion at your capital.
+
+Original Master of Magic effect: Target friendly Normal Unit is instantly and permanently transformed into a unit of Werewolves .
+
+Keywords: friendly instantly permanently transformed werewolves
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_NIGHT_STALKER_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Night Stalker: Death spell, Uncommon, 25 mana.
+
+In this mod: Summons Wraith at your capital.
+
+Original Master of Magic effect: Night Stalker Realm Death Spell Properties Spell Rarity Uncommon Casting Cost 250 Upkeep Cost 1 per turn Research Cost 560 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 7 Defense per figure 3 Resistance 8 Hit Points per figure 10 Unit Abilities +10% To Hit Invisibility Poison Immunity Illusions Immunity Cold Immunity Death Immunity Death Gaze -2 The Night Stalker is a type of Fantastic Unit featured in Master of Magic . Night Stalkers belong to the Death Realm , and may be summoned using a Summoning Spell of the same name. The Night Stalker 's combat properties are surprisingly low for its cost, but it makes up for this with two key traits: inherent Invisibility , and a dangerous Death Gaze . Night Stalkers can be used for quickly taking out unsuspecting enemy Ranged Attack units and other weak opponents hiding behind their lines.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SHADOW_DEMONS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Shadow Demons: Death spell, Uncommon, 32 mana.
+
+In this mod: Summons Demon at your capital.
+
+Original Master of Magic effect: Shadow Demons Realm Death Spell Properties Spell Rarity Uncommon Casting Cost 325 Upkeep Cost 7 per turn Research Cost 800 Unit Properties # of Figures 4 Moves 1 Melee Attack per figure 5 Ranged Attack per figure 4 Defense per figure 4 Resistance 8 Hit Points per figure 5 Unit Abilities Ranged Attack x8 +20% To Hit Plane Shift Non-Corporeal Regeneration Poison Immunity Weapon Immunity Illusions Immunity Cold Immunity Death Immunity Buggy Feature As of Master of Magic v1.31 , Shadow Demons is known to be malfunctioning in at least one way. Please read the Known Bugs section below. Shadow Demons are a type of Fantastic Unit featured in Master of Magic . Shadow Demons belong to the Death Realm , and may be summoned using a Summoning Spell of the same name. The Shadow Demons possess both a Melee Attack and Magical Ranged Attack of reasonable quality, but benefit most from their wide array of other abilities, as shown in the box on the right. They also Fly , albeit at an unusually slow pace.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_SUBVERSION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Subversion: Death spell, Uncommon, 10 mana.
+
+In this mod: Needs your War Mage (1 tile) or Arch Mage (2 tiles) next to an enemy city. Takes over an enemy unit in the enemy city.
+
+Original Master of Magic effect: Target wizard's Diplomatic Relations with all other wizards worsen by 25 points. Relations between the targeted wizard and Subversion 's caster are not affected.
+
+Keywords: wizard relations worsen targeted affected
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WALL_OF_DARKNESS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Wall of Darkness: Death spell, Uncommon, 20 mana.
+
+In this mod: Builds City Walls in your capital.
+
+Original Master of Magic effect: During combat at the enchanted town, only units with True Sight may use a Ranged Attack from outside the 4x4 "town-proper" area at targets inside this area.
+
+Keywords: enchanted true proper' area inside
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_BLACK_WIND_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Black Wind: Death spell, Rare, 30 mana.
+
+In this mod: Needs your Wraith within 1 tile(s) of an enemy city. Kills an enemy unit in the enemy city. The target may resist.
+
+Original Master of Magic effect: Each Figure inside each unit in the targeted enemy stack must Resistance at a penalty of -1 or be destroyed instantly.
+
+Keywords: inside stack penalty destroyed instantly
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CLOUD_OF_SHADOW_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Cloud of Shadow: Death spell, Rare, 22 mana.
+
+In this mod: Builds City Walls in your capital.
+
+Original Master of Magic effect: Every battle taking place at the target town will be under an effect similar to a Darkness spell.
+
+Keywords: battle taking place similar darkness
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WARP_NODE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Warp Node: Death spell, Rare, 11 mana.
+
+In this mod: Needs your War Mage (1 tile) or Arch Mage (2 tiles) next to an enemy city. Puts Guardian Spirit beside the enemy city.
+
+Original Master of Magic effect: Target Node controlled by a rival wizard now produces -5 instead of the amount it was originally produced. This node may not change hands until it is Disenchanted .
+
+Keywords: controlled rival produced change disenchanted
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WRAITH_FORM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Wraith Form: Death spell, Rare, 22 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Target unit gains the Non-Corporeal ability, allowing it to move at a rate of 0.5 Movement Point per tile on any Terrain , and protecting it from several spells that only affect Walking units. In addition, the unit gains Weapon Immunity . Buggy Feature As of Master of Magic v1.31 , Wraith Form is known to be malfunctioning in at least one way. Please read the Known Bugs section below.
+
+Keywords: corporeal rate movement protecting affect
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WRAITHS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Wraiths: Death spell, Rare, 75 mana.
+
+In this mod: Summons Wraith at your capital.
+
+Original Master of Magic effect: Wraiths Realm Death Spell Properties Spell Rarity Rare Casting Cost 500 Upkeep Cost 5 per turn Research Cost 1,120 Unit Properties # of Figures 4 Moves 2 Melee Attack per figure 7 Defense per figure 6 Resistance 8 Hit Points per figure 8 Unit Abilities +20% To Hit Non-Corporeal Poison Immunity Weapon Immunity Illusions Immunity Cold Immunity Death Immunity Life Steal -3 Wraiths are a type of Fantastic Unit featured in Master of Magic . Wraiths belong to the Death Realm , and may be summoned using a Summoning Spell of the same name. Wraiths are dark, ethereal creatures possessing strong Melee Attacks , that can drain the life force of their opponents to restore their own. As a result, they are very difficult to annihilate, and may cause slain enemies to rise as Undead to serve the Wraiths ' master after the battle.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ZOMBIE_MASTERY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Zombie Mastery: Death spell, Rare, 120 mana.
+
+In this mod: Summons Zombies at your capital. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: At the end of every battle won by Zombie Mastery 's caster, any Normal Unit (whether friendly or enemy) that died during the battle is brought back as a unit of Zombies .
+
+Keywords: battle won friendly died brought
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CRUEL_UNMINDING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Cruel Unminding: Death spell, Very rare, 50 mana.
+
+In this mod: Needs your Lich within 1 tile(s) of an enemy city. Drains 30 mana from that city's wizard.
+
+Original Master of Magic effect: Target wizard loses 1% to 10% of his current Spell Casting Skill .
+
+Keywords: target wizard loses current skill
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DEATH_KNIGHTS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Death Knights: Death spell, Very rare, 120 mana.
+
+In this mod: Summons Death Knight at your capital.
+
+Original Master of Magic effect: Death Knights Realm Death Spell Properties Spell Rarity Very Rare Casting Cost 600 Upkeep Cost 8 per turn Research Cost 2,250 Unit Properties # of Figures 4 Moves 3 Melee Attack per figure 9 Defense per figure 8 Resistance 10 Hit Points per figure 8 Unit Abilities +30% To Hit Poison Immunity Weapon Immunity Illusions Immunity Cold Immunity Death Immunity Armor Piercing First Strike Life Steal -4 Death Knights are a type of Fantastic Unit featured in Master of Magic . Death Knights belong to the Death Realm , and may be summoned using a Summoning Spell of the same name. Death Knights are one of the most powerful Melee Attack units in the game. They combine high mobility with survivability and deadly close combat prowess. In addition, units slain by Death Knights have a chance of rising again as Undead to serve the master of these dark riders.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DEATH_WISH_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Death Wish: Death spell, Very rare, 100 mana.
+
+In this mod: Needs your Death Knight within 1 tile(s) of an enemy city. Kills an enemy unit in the enemy city. The target may resist.
+
+Original Master of Magic effect: Each and every enemy Normal Unit and Hero on both Planes must succeed a Resistance roll or be destroyed immediately.
+
+Keywords: planes succeed roll destroyed immediately
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DEMON_LORD_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Demon Lord: Death spell, Very rare, 180 mana.
+
+In this mod: Summons Demon at your capital.
+
+Original Master of Magic effect: Demon Lord Realm Death Spell Properties Spell Rarity Very Rare Casting Cost 1,000 Upkeep Cost 15 per turn Research Cost 6,000 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 20 Ranged Attack per figure 10 Defense per figure 10 Resistance 12 Hit Points per figure 20 Unit Abilities Ranged Attack x8 +30% To Hit Summon Demons x3 Poison Immunity Weapon Immunity Illusions Immunity Cold Immunity Death Immunity Cause Fear Life Steal -5 Buggy Feature As of Master of Magic v1.31 , Demon Lord is known to be malfunctioning in at least one way. Please read the Known Bugs section below. The Demon Lord is a type of Fantastic Unit featured in Master of Magic . Demon Lords belong to the Death Realm , and may be summoned using a Summoning Spell of the same name. Demon Lords are powerful and versatile creatures that are adept at both single combat and supporting large armies. They can engage their enemies either at long or close range, and can gate in lesser Demons to aid them in battle.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ETERNAL_NIGHT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Eternal Night: Death spell, Very rare, 180 mana.
+
+In this mod: Drains 20 mana from every rival wizard. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: Every battle is automatically affected by an equivalent of the Darkness spell, which gives a wide array of bonuses to all Death creatures, and a similar array of penalties to Life creatures. Only battles taking place in Towns protected by Heavenly Light are exempt from this effect.
+
+Keywords: affected equivalent darkness array bonuses
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_EVIL_OMENS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Evil Omens: Death spell, Very rare, 180 mana.
+
+In this mod: Drains 15 mana from every rival wizard. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: All Life and Nature spells' Casting Costs are increased by 50%. This applies to all wizards, both on the overland map and during combat.
+
+Keywords: spells' increased wizards overland map
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CORRUPTION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Corruption: Chaos spell, Common, 10 mana.
+
+In this mod: Needs your War Mage (1 tile) or Arch Mage (2 tiles) next to an enemy city. Changes the terrain.
+
+Original Master of Magic effect: This article is about the effect on terrain . For an article about the Chaos spell that causes Corruption, see Corruption (Spell) . Description Corruption renders a targeted tile useless, in terms of benefit to any nearby town. The effect does not expire, though there are ways to purify an affected tile, removing the corruption. The corrupted tile can be seen to have a black haze on top of the underlying terrain tile, perhaps similar to how an oil spill would appear. Sources of Corruption The Chaos spell Corruption causes immediate corruption to one tile. The Chaos spell Call the Void will cause about half the tiles in the city zone to become corrupted. The Chaos spell Great Wasting will corrupt anywhere between 3 to 6 land tiles per turn. The random Great Meteor event will cause the same effect as the Call The Void spell. Purification (Removing Corruption) Purification is the act of removing corruption from a tile. There are several different ways to remove corruption: Units with the Purify ability (like Shamans and Priests ) can remove corruption by standing on the corrupted tile and using their special ability. Gaia's Blessing has a 20% chance per turn of removing corruption from a city's catchment area. Consecration removes all corruption every turn from the city's catchment area.
+
+Keywords: terrain renders targeted tile
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ELDRITCH_WEAPON_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Eldritch Weapon: Chaos spell, Common, 10 mana.
+
+In this mod: Enchants the selected unit: +1 attack. Lost when the game is reloaded.
+
+Original Master of Magic effect: When the enchanted unit attacks a target with a Ranged Missile , Thrown or Melee attack, each of the target's Shields has -10% chance to block a hit. The enchanted unit now has a Magical Melee Attack if it does not already have a better one.
+
+Keywords: enchanted target missile thrown block
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_HELL_HOUNDS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Hell Hounds: Chaos spell, Common, 10 mana.
+
+In this mod: Summons Hell Hounds at your capital.
+
+Original Master of Magic effect: Hell Hounds Realm Chaos Spell Properties Spell Rarity Common Casting Cost 40 Upkeep Cost 1 per turn Research Cost 80 Unit Properties # of Figures 4 Moves 2 Melee Attack per figure 3 Defense per figure 2 Resistance 6 Hit Points per figure 4 Unit Abilities +10% To Hit Fire Breath 3 Hell Hounds are a type of Fantastic Unit featured in Master of Magic . They belong to the Chaos Realm , and may be summoned using a Summoning Spell of the same name. Although their attack stats are not impressive on their own, each Melee Attack made by this unit is preceded by a formidable Breath Attack that can kill its enemies before they even have a chance to retaliate. This also allows the Hell Hounds to attack Flying units.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_WALL_OF_FIRE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Wall of Fire: Chaos spell, Common, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: During combat at the enchanted town, any Ground units outside the wall attempting to move or attack into the 4x4 "town-proper" area are struck by a strength 5 Immolation Damage attack.
+
+Keywords: enchanted ground attempting proper' struck
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CHAOS_CHANNELS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Chaos Channels: Chaos spell, Uncommon, 10 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: Target Normal Unit or Hero is now considered to be a Fantastic Unit from the Chaos Realm . In addition, the unit permanently receives one of the following bonuses: +6 * 2 2 A unit may only be targeted by Chaos Channels once. The effect is permanent and cannot be dispelled.
+
+Keywords: unit considered fantastic permanently following
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CHIMERAS_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Chimeras: Chaos spell, Uncommon, 35 mana.
+
+In this mod: Summons Wyvern at your capital.
+
+Original Master of Magic effect: Chimeras Realm Chaos Spell Properties Spell Rarity Uncommon Casting Cost 350 Upkeep Cost 10 per turn Research Cost 800 Unit Properties # of Figures 4 Moves 2 Melee Attack per figure 7 Defense per figure 5 Resistance 8 Hit Points per figure 8 Unit Abilities +10% To Hit Fire Breath 4 Chimeras are a type of Fantastic Unit featured in Master of Magic . They belong to the Chaos Realm , and may be summoned using a Summoning Spell of the same name. Chimeras are Flying creatures with a strong Melee Attack . Most importantly, when the Chimeras make a voluntary Melee Attack against an enemy unit, they first deliver a Fire Damage Breath Attack with a strength of 4 per Chimera . Enemy figures killed off by this attack do not get to deal any Melee Damage during their Counter Attack .
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DOOM_BAT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Doom Bat: Chaos spell, Uncommon, 30 mana.
+
+In this mod: Summons Gargoyle at your capital.
+
+Original Master of Magic effect: Doom Bat Realm Chaos Spell Properties Spell Rarity Uncommon Casting Cost 300 Upkeep Cost 8 per turn Research Cost 620 Unit Properties # of Figures 1 Moves 4 Melee Attack per figure 10 Defense per figure 5 Resistance 9 Hit Points per figure 20 Unit Abilities +10% To Hit Immolation The Doom Bat is a type of Fantastic Unit featured in Master of Magic . Doom Bats belong to the Chaos Realm , and may be summoned using a Summoning Spell of the same name. The Doom Bat is a good Melee Attacker , but not impressive for its high cost. However, it possesses a unique ability called Immolation : whenever the Doom Bat engages in Melee combat with enemy units, it will execute an Immolation (Touch) Attack against them. It can easily destroy enemy Normal Units with this ability. The Doom Bat is also exceptionally fast, Flying at a rate of 4 - making it one of the fastest-moving units in the game.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_FIRE_GIANT_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Fire Giant: Chaos spell, Uncommon, 15 mana.
+
+In this mod: Summons War Troll at your capital.
+
+Original Master of Magic effect: Fire Giant Realm Chaos Spell Properties Spell Rarity Uncommon Casting Cost 150 Upkeep Cost 3 per turn Research Cost 350 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 10 Ranged Attack per figure 10 Defense per figure 5 Resistance 7 Hit Points per figure 15 Unit Abilities Ranged Attack x2 +10% To Hit Mountaineer Wall Crusher Fire Immunity The Fire Giant is a type of Fantastic Unit featured in Master of Magic . Fire Giants belong to the Chaos Realm , and may be summoned using a Summoning Spell of the same name. Despite being physically weakest among Giants , the Fire Giant still packs both a respectable Melee Attack and Ranged Boulder Attack , and is quite tough for an Uncommon Creature . It can Crush through City Walls , quickly lead other troops through Mountains , and is completely immune to Fire Damage .
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_FLAME_BLADE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Flame Blade: Chaos spell, Uncommon, 12 mana.
+
+In this mod: Enchants the selected unit: +2 attack, +2 ranged attack. Lost when the game is reloaded.
+
+Original Master of Magic effect: The enchanted unit gets the following bonuses: +2 +2 +2 (if the unit possesses a Thrown Attack ) Ignore Weapon Immunity Flame Blade is an Uncommon Unit Enchantment of the Chaos Realm . For 125 , it may be cast on a Normal Unit or Hero on the overland map to ignite its weapons with a magical flame. The unit receives an Attack Strength bonus of +2 to its Melee- , Ranged Missile- , and Thrown Attacks , provided that it possesses such attacks. The unit also gains the ability to bypass the effects of Weapon Immunity if it couldn't before. Alternatively, a cheaper version of the same spell may be cast for 25 during combat, which will temporarily bestow the same bonus on a unit for the duration of a single battle ? with no permanent effects or Upkeep Costs .
+
+Keywords: enchanted following possesses thrown ignore
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GARGOYLES_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Gargoyles: Chaos spell, Uncommon, 20 mana.
+
+In this mod: Summons Gargoyle at your capital.
+
+Original Master of Magic effect: Gargoyles Realm Chaos Spell Properties Spell Rarity Uncommon Casting Cost 200 Upkeep Cost 5 per turn Research Cost 500 Unit Properties # of Figures 4 Moves 2 Melee Attack per figure 4 Defense per figure 8 Resistance 7 Hit Points per figure 4 Unit Abilities +10% To Hit Poison Immunity Stoning Immunity Gargoyles are a type of Fantastic Unit featured in Master of Magic . They belong to the Chaos Realm , and may be summoned using a Summoning Spell of the same name. Gargoyles make excellent defenders, thanks to a comparatively-high Defense rating that allows them to block plenty of damage. They are also immune to Poison Damage and Stoning Damage , and can Fly at a good speed. Though the Gargoyles ' own Melee Attack is rather average, it is still dangerous to lower-tier units.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_IMMOLATION_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Immolation: Chaos spell, Uncommon, 15 mana.
+
+In this mod: Not working yet: casting only spends the mana.
+
+Original Master of Magic effect: This article is about the unit ability called "Immolation". For the Chaos Unit Enchantment of the same name, see Immolation (Spell) .
+
+Keywords: unit ability immolation'
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_RAISE_VOLCANO_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Raise Volcano: Chaos spell, Uncommon, 20 mana.
+
+In this mod: Needs your War Mage (1 tile) or Arch Mage (2 tiles) next to an enemy city. Changes the terrain.
+
+Original Master of Magic effect: Turns a targeted tile into a Volcano , potentially destroying specific assets in that tile, and subsequently providing a permanent +1 Power to the spell's caster. Buggy Feature As of Master of Magic v1.31 , Raise Volcano is known to be malfunctioning in at least one way. Please read the Known Bugs section below.
+
+Keywords: tile subsequently providing permanent feature
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CHAOS_SPAWN_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Chaos Spawn: Chaos spell, Rare, 75 mana.
+
+In this mod: Summons Infernal Device at your capital.
+
+Original Master of Magic effect: Buggy Feature As of Master of Magic v1.31 , Chaos Spawn is known to be malfunctioning in at least one way. Please read the Known Bugs section below. Chaos Spawn Realm Chaos Spell Properties Spell Rarity Rare Casting Cost 500 Upkeep Cost 12 per turn Research Cost 1,040 Unit Properties # of Figures 1 Moves 1 Melee Attack per figure 1 Defense per figure 6 Resistance 10 Hit Points per figure 15 Unit Abilities Cause Fear Poison Touch 4 Doom Gaze 4 Death Gaze -4 Stoning Gaze -4 Chaos Spawn is a type of Fantastic Unit featured in Master of Magic . It belongs to the Chaos Realm , and may be summoned using a Summoning Spell of the same name. The Chaos Spawn 's main method of inflicting damage to its enemies is through a wide array of Special Attacks , each capable of causing a tremendous amount of Damage , especially to units with low Resistance scores. Such units, when attacking or being attacked by a Chaos Spawn , can be wiped out before they ever get to deal any damage!
+
+Keywords: feature known malfunctioning way section
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_EFREET_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Efreet: Chaos spell, Rare, 82 mana.
+
+In this mod: Summons Efreet at your capital.
+
+Original Master of Magic effect: Efreet Realm Chaos Spell Properties Spell Rarity Rare Casting Cost 550 Upkeep Cost 15 per turn Research Cost 1,300 Unit Properties # of Figures 1 Moves 3 Melee Attack per figure 9 Ranged Attack per figure 9 Defense per figure 7 Resistance 10 Hit Points per figure 12 Unit Abilities +20% To Hit Caster ( 20 ) Fire Immunity The Efreet is a type of Fantastic Unit featured in Master of Magic . Efreets belong to the Chaos Realm , and may be summoned using a Summoning Spell of the same name. The Efreet has a reasonable Melee Attack and Ranged Magical Attack , but its primary advantages are its quick Flight and its ability to cast Chaos spells with its own Mana . It is also virtually immune to Fire Damage .
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_FIRE_STORM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Fire Storm: Chaos spell, Rare, 37 mana.
+
+In this mod: Needs your Efreet within 2 tile(s) of an enemy city. Puts Hell Hounds beside the enemy city.
+
+Original Master of Magic effect: Strikes all enemy units in the targeted stack with an 8 -strength Immolation Damage attack.
+
+Keywords: strikes targeted stack strength immolation
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_ARMAGEDDON_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Armageddon: Chaos spell, Very rare, 180 mana.
+
+In this mod: Drains 30 mana from every rival wizard. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: Every turn, a random number of Volcanoes are created somewhere in the world. Volcanoes provide no Food or other bonuses to nearby towns. Each Volcano raised by this spell provides +1 Power to Armageddon 's caster. Tiles in the catchment areas around towns belonging to Armageddon 's caster are unaffected by the spell. The Unrest -quelling effects of buildings in all enemy towns are nullified . Unrest in all enemy towns further rises by 2 . Buggy Feature As of Master of Magic v1.31 , Armageddon is known to be malfunctioning in at least one way. Please read the Known Bugs section below.
+
+Keywords: random volcanoes created bonuses raised
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CALL_THE_VOID_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Call the Void: Chaos spell, Very rare, 100 mana.
+
+In this mod: Needs your Great Wyrm within 2 tile(s) of an enemy city. Kills up to 2 enemy units in the enemy city. The target may resist.
+
+Original Master of Magic effect: The target Town suffers the following effects, unless protected by Consecration or Chaos Ward : Each Town Building has a 50% chance to be destroyed; Every 1000 residents above the first have a 50% chance of being slain; Every tile in a 5×5 area centered on the Town has a 50% chance of becoming Corrupted . Every garrisoned unit is struck with a strength 10 Doom Damage attack; If the target is an Outpost , it is removed from the map.
+
+Keywords: suffers following consecration destroyed residents
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_CHAOS_SURGE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Chaos Surge: Chaos spell, Very rare, 180 mana.
+
+In this mod: Summons Hell Hounds at your capital. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: Every unit (in the entire game) associated with the Chaos Realm receives the following bonuses: +2 +2 / +2 / +2 +2 / +2 / +2 However, each bonus only applies to units already possessing the relevant Attack Type .
+
+Keywords: entire associated following bonuses bonus
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_DOOM_MASTERY_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Doom Mastery: Chaos spell, Very rare, 180 mana.
+
+In this mod: Summons Gargoyle at your capital. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: Every Normal Unit created in the caster's Towns immediately comes under the effect of the Chaos Channels spell, receiving one of the following permanent effects at random: +2 * Fire Breath 2 2 The unit also becomes associated with the Chaos Realm . A unit may only be targeted by Chaos Channels once. The effect is permanent and cannot be dispelled.
+
+Keywords: immediately channels receiving following permanent
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GREAT_DRAKE_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Great Drake: Chaos spell, Very rare, 180 mana.
+
+In this mod: Summons Great Wyrm at your capital.
+
+Original Master of Magic effect: Great Drake Realm Chaos Spell Properties Spell Rarity Very Rare Casting Cost 900 Upkeep Cost 30 per turn Research Cost 4,500 Unit Properties # of Figures 1 Moves 2 Melee Attack per figure 30 Defense per figure 10 Resistance 12 Hit Points per figure 30 Unit Abilities +30% To Hit Fire Breath 30 The Great Drake is a type of Fantastic Unit featured in Master of Magic . Great Drakes belong to the Chaos Realm , and may be summoned using a Summoning Spell of the same name. The Great Drake has by far the strongest Melee Attack in the game, with a Fire Breath so powerful that it will typically inflict some damage even to opponents with Fire Immunity or Magic Immunity .
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_GREAT_WASTING_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Great Wasting: Chaos spell, Very rare, 180 mana.
+
+In this mod: Drains 30 mana from every rival wizard. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: Each turn, anywhere between 3 and 6 random land tiles on the overland map are Corrupted . Tiles within the catchment areas of Towns belonging to Great Wasting 's caster are not affected. The Unrest -quelling effects of buildings in all enemy towns are nullified . Unrest in all enemy towns further rises by 1 .
+
+Keywords: tiles corrupted catchment areas caster
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_HYDRA_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Hydra: Chaos spell, Very rare, 130 mana.
+
+In this mod: Summons Hydra at your capital.
+
+Original Master of Magic effect: Hydra Realm Chaos Spell Properties Spell Rarity Very Rare Casting Cost 650 Upkeep Cost 14 per turn Research Cost 1,850 Unit Properties # of Figures 9 * Moves 1 Melee Attack per figure 6 Defense per figure 4 Resistance 11 Hit Points per figure 10 Unit Abilities +10% To Hit Regeneration Fire Breath 5 Buggy Feature As of Master of Magic v1.31 , Hydra is known to be malfunctioning in at least one way. Please read the Known Bugs section below. The Hydra is a type of Fantastic Unit featured in Master of Magic . Hydras belong to the Chaos Realm , and may be summoned using a Summoning Spell of the same name. The Hydra 's Melee Attack is ferocious, and is also preceded by a powerful Breath Attack that deals Fire Damage . More importantly though, the Hydra is constantly regaining health, and is fully healed after every victorious battle.
+
+Keywords: properties figures moves melee attack
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELL_METEOR_STORM_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Meteor Storm: Chaos spell, Very rare, 180 mana.
+
+In this mod: Drains 20 mana from every rival wizard. Casting it again strengthens it, up to 3 times.
+
+Original Master of Magic effect: The following effects occur each turn: Every unit that is not within a Town is struck by a strength 4 Immolation Damage attack. Units garrisoned inside towns (and Encounter Zone guardians) are unaffected. Every Building in every Town (except for the caster's own) has 1% chance of collapsing. Outposts are completely destroyed by this effect.
+
+Keywords: following occur struck garrisoned inside
+
+See every spell in the <L:DATABASE_CONCEPTS,CONCEPT_SPELLBOOK>Spellbook<e>.
+[END]
+[CONCEPT_SPELLBOOK_GAMEPLAY]
+<c:245,240,225><h:0,0,0>Every spell in the spellbook, by sphere. Open the spellbook with the book button on the control panel. In a spell's cast box, the ? button opens its page here.
+
+Life: <L:DATABASE_CONCEPTS,CONCEPT_SPELL_BLESS>Bless<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ENDURANCE>Endurance<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GUARDIAN_SPIRIT>Guardian Spirit<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_HEROISM>Heroism<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_HOLY_ARMOR>Holy Armor<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_HOLY_WEAPON>Holy Weapon<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_JUST_CAUSE>Just Cause<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_HEAVENLY_LIGHT>Heavenly Light<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_PLANAR_SEAL>Planar Seal<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_PLANAR_TRAVEL>Planar Travel<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_PLANE_SHIFT>Plane Shift<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_RESURRECTION>Resurrection<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_TRUE_SIGHT>True Sight<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_UNICORNS>Unicorns<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ALTAR_OF_BATTLE>Altar of Battle<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ANGEL>Angel<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_INCARNATION>Incarnation<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_INVULNERABILITY>Invulnerability<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_LIONHEART>Lionheart<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_PROSPERITY>Prosperity<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_RIGHTEOUSNESS>Righteousness<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_STREAM_OF_LIFE>Stream of Life<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ARCH_ANGEL>Arch Angel<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ASTRAL_GATE>Astral Gate<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CHARM_OF_LIFE>Charm of Life<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CONSECRATION>Consecration<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CRUSADE>Crusade<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_HOLY_ARMS>Holy Arms<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_INSPIRATIONS>Inspirations<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_LIFE_FORCE>Life Force<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_TRANQUILITY>Tranquility<e>
+
+Nature: <L:DATABASE_CONCEPTS,CONCEPT_SPELL_EARTH_LORE>Earth Lore<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GIANT_STRENGTH>Giant Strength<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_RESIST_ELEMENTS>Resist Elements<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SPRITES>Sprites<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_STONE_SKIN>Stone Skin<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WALL_OF_STONE>Wall of Stone<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WAR_BEARS>War Bears<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WATER_WALKING>Water Walking<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_BASILISK>Basilisk<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CHANGE_TERRAIN>Change Terrain<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_COCKATRICES>Cockatrices<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GIANT_SPIDERS>Giant Spiders<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_NATURES_CURES>Nature's Cures<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_NATURES_EYE>Nature's Eye<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_PATH_FINDING>Path Finding<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_TRANSMUTE>Transmute<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_EARTHQUAKE>Earthquake<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ELEMENTAL_ARMOR>Elemental Armor<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GAIAS_BLESSING>Gaia's Blessing<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GORGONS>Gorgons<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ICE_STORM>Ice Storm<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_IRON_SKIN>Iron Skin<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_MOVE_FORTRESS>Move Fortress<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_STONE_GIANT>Stone Giant<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_BEHEMOTH>Behemoth<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_COLOSSUS>Colossus<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_EARTH_GATE>Earth Gate<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GREAT_WYRM>Great Wyrm<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_HERB_MASTERY>Herb Mastery<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_NATURE_AWARENESS>Nature Awareness<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_NATURES_WRATH>Nature's Wrath<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_REGENERATION>Regeneration<e>
+
+Sorcery: <L:DATABASE_CONCEPTS,CONCEPT_SPELL_FLOATING_ISLAND>Floating Island<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GUARDIAN_WIND>Guardian Wind<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_NAGAS>Nagas<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_RESIST_MAGIC>Resist Magic<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WORD_OF_RECALL>Word of Recall<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_AURA_OF_MAJESTY>Aura of Majesty<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DISENCHANT_TRUE>Disenchant True<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ENCHANT_ROAD>Enchant Road<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_FLIGHT>Flight<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SPELL_BLAST>Spell Blast<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SPELL_LOCK>Spell Lock<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WIND_MASTERY>Wind Mastery<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DISJUNCTION_TRUE>Disjunction True<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_INVISIBILITY>Invisibility<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_MAGIC_IMMUNITY>Magic Immunity<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_STASIS>Stasis<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_STORM_GIANT>Storm Giant<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WIND_WALKING>Wind Walking<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DJINN>Djinn<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_FLYING_FORTRESS>Flying Fortress<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GREAT_UNSUMMONING>Great Unsummoning<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SKY_DRAKE>Sky Drake<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SPELL_BINDING>Spell Binding<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SPELL_WARD>Spell Ward<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SUPPRESS_MAGIC>Suppress Magic<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_TIME_STOP>Time Stop<e>
+
+Death: <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CLOAK_OF_FEAR>Cloak of Fear<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DARK_RITUALS>Dark Rituals<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GHOULS>Ghouls<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SKELETONS>Skeletons<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_BLACK_CHANNELS>Black Channels<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DRAIN_POWER>Drain Power<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_LYCANTHROPY>Lycanthropy<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_NIGHT_STALKER>Night Stalker<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SHADOW_DEMONS>Shadow Demons<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_SUBVERSION>Subversion<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WALL_OF_DARKNESS>Wall of Darkness<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_BLACK_WIND>Black Wind<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CLOUD_OF_SHADOW>Cloud of Shadow<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WARP_NODE>Warp Node<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WRAITH_FORM>Wraith Form<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WRAITHS>Wraiths<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ZOMBIE_MASTERY>Zombie Mastery<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CRUEL_UNMINDING>Cruel Unminding<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DEATH_KNIGHTS>Death Knights<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DEATH_WISH>Death Wish<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DEMON_LORD>Demon Lord<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ETERNAL_NIGHT>Eternal Night<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_EVIL_OMENS>Evil Omens<e>
+
+Chaos: <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CORRUPTION>Corruption<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ELDRITCH_WEAPON>Eldritch Weapon<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_HELL_HOUNDS>Hell Hounds<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_WALL_OF_FIRE>Wall of Fire<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CHAOS_CHANNELS>Chaos Channels<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CHIMERAS>Chimeras<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DOOM_BAT>Doom Bat<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_FIRE_GIANT>Fire Giant<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_FLAME_BLADE>Flame Blade<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GARGOYLES>Gargoyles<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_IMMOLATION>Immolation<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_RAISE_VOLCANO>Raise Volcano<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CHAOS_SPAWN>Chaos Spawn<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_EFREET>Efreet<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_FIRE_STORM>Fire Storm<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_ARMAGEDDON>Armageddon<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CALL_THE_VOID>Call the Void<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_CHAOS_SURGE>Chaos Surge<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_DOOM_MASTERY>Doom Mastery<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GREAT_DRAKE>Great Drake<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_GREAT_WASTING>Great Wasting<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_HYDRA>Hydra<e>, <L:DATABASE_CONCEPTS,CONCEPT_SPELL_METEOR_STORM>Meteor Storm<e>
+[END]

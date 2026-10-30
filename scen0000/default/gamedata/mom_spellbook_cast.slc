@@ -12,6 +12,23 @@
 // MomCastSpell: generated per-spell effect bodies with proximity targeting
 // and unit-spell bindings. DO NOT HAND-EDIT.
 // ---------------------------------------------------------------------------
+// Set by a multi-version spell's confirm button before it calls
+// MomCastSpell (Planar Travel: 1 Haste, 2 Step, 3 Host).
+int_t MomSpellVariant;
+// Counts shown in spell result messages ({scalar} interpolation).
+int_t MomCastCountDisp;
+int_t MomCastMoveDisp;
+// Unit enchantment readout: attack, defense, moves (before/after) and elite.
+int_t MomStatOff0;
+int_t MomStatDef0;
+int_t MomStatMov0;
+int_t MomStatOff1;
+int_t MomStatDef1;
+int_t MomStatMov1;
+int_t MomStatElite;
+int_t MomStatVet;
+int_t MomCastPlayer;
+
 int_f MomCastSpell(int_t p, int_t spellId)
 {
     city_t tmpCity;
@@ -40,6 +57,7 @@ int_f MomCastSpell(int_t p, int_t spellId)
     int_t ai;
     int_t auraCount;
     unit_t auraUnit;
+    army_t tmpArmy;
 
     // --- TARGETING PREAMBLE: find the player's best mage and resolve range ---
     mageRange = 0;
@@ -89,12 +107,72 @@ int_f MomCastSpell(int_t p, int_t spellId)
     // Generated from spells.csv -- DO NOT HAND-EDIT
     if (spellId == 0) {
         // Bless (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 26) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 26);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 1) {
         // Endurance (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 14) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 14);
+            bestAtk = ModifyUnitStat(killUnit, 3, 100);
+            AddMovement(killUnit, 100);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 2) {
         // Guardian Spirit (summon) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
@@ -103,16 +181,104 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 3) {
         // Heroism (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 25) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 25);
+            SetVeteran(killUnit);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 4) {
         // Holy Armor (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 30) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 30);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 5) {
         // Holy Weapon (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 24) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 24);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 6) {
         // Just Cause (global_enchant) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
@@ -138,8 +304,41 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 9) {
         // Planar Travel (unit_enchant) - cost 15
-        MomMagicCur[p] = MomMagicCur[p] - 15;
-        Message(p, 'MomSpellCast');
+        if (MomSpellVariant == 3) {
+            MomMagicCur[p] = MomMagicCur[p] - 45;
+            for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+                GetUnitByIndex(p, uIdx, scanUnit);
+                AddMovement(scanUnit, 100);
+            }
+            MomCastCountDisp = numUnits;
+            Message(p, 'MomPlanarHostDone');
+        } else {
+            boundFound = 0;
+            for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+                GetUnitByIndex(p, uIdx, scanUnit);
+                if (boundFound == 0) {
+                    if (IsUnitSelected(scanUnit)) {
+                        killUnit = scanUnit;
+                        boundFound = 1;
+                    }
+                }
+            }
+            if (boundFound == 0) {
+                Message(p, 'MomPlanarNoUnit');
+            } elseif (MomSpellVariant == 2) {
+                BeginTargetMode("MomPlanarStepTarget");
+            } else {
+                MomMagicCur[p] = MomMagicCur[p] - 15;
+                GetArmyFromUnit(killUnit, tmpArmy);
+                for (ki = 0; ki < tmpArmy.size; ki = ki + 1) {
+                    GetUnitFromArmy(tmpArmy, ki, auraUnit);
+                    AddMovement(auraUnit, UnitMovementLeft(auraUnit));
+                }
+                MomCastCountDisp = tmpArmy.size;
+                MomCastMoveDisp = UnitMovementLeft(killUnit) / 100;
+                Message(p, 'MomPlanarHasteDone');
+            }
+        }
     } elseif (spellId == 10) {
         // Plane Shift (instant_damage) - cost 12
         MomMagicCur[p] = MomMagicCur[p] - 12;
@@ -182,12 +381,70 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 17) {
         // Invulnerability (unit_enchant) - cost 30
-        MomMagicCur[p] = MomMagicCur[p] - 30;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 32) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 30;
+            SetUnitUserFlag(killUnit, 32);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 18) {
         // Lionheart (unit_enchant) - cost 30
-        MomMagicCur[p] = MomMagicCur[p] - 30;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 27) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 30;
+            SetUnitUserFlag(killUnit, 27);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 19) {
         // Prosperity (city_enchant) - cost 37
         MomMagicCur[p] = MomMagicCur[p] - 37;
@@ -196,8 +453,37 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 20) {
         // Righteousness (unit_enchant) - cost 30
-        MomMagicCur[p] = MomMagicCur[p] - 30;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 31) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 30;
+            SetUnitUserFlag(killUnit, 31);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 21) {
         // Stream of Life (city_enchant) - cost 45
         MomMagicCur[p] = MomMagicCur[p] - 45;
@@ -292,12 +578,70 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 32) {
         // Giant Strength (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 28) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 28);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 33) {
         // Resist Elements (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 10) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 10);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 34) {
         // Sprites (summon) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
@@ -306,8 +650,37 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 35) {
         // Stone Skin (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 12) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 12);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 36) {
         // Wall of Stone (instant_damage) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
@@ -396,8 +769,37 @@ int_f MomCastSpell(int_t p, int_t spellId)
         }
     } elseif (spellId == 48) {
         // Elemental Armor (unit_enchant) - cost 26
-        MomMagicCur[p] = MomMagicCur[p] - 26;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 11) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 26;
+            SetUnitUserFlag(killUnit, 11);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 49) {
         // Gaia's Blessing (city_enchant) - cost 45
         MomMagicCur[p] = MomMagicCur[p] - 45;
@@ -438,8 +840,37 @@ int_f MomCastSpell(int_t p, int_t spellId)
         }
     } elseif (spellId == 52) {
         // Iron Skin (unit_enchant) - cost 30
-        MomMagicCur[p] = MomMagicCur[p] - 30;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 13) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 30;
+            SetUnitUserFlag(killUnit, 13);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 53) {
         // Move Fortress (instant_damage) - cost 30
         MomMagicCur[p] = MomMagicCur[p] - 30;
@@ -506,8 +937,37 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 62) {
         // Regeneration (unit_enchant) - cost 60
-        MomMagicCur[p] = MomMagicCur[p] - 60;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 7) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 60;
+            SetUnitUserFlag(killUnit, 7);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 63) {
         // Floating Island (summon) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
@@ -516,8 +976,37 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 64) {
         // Guardian Wind (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 2) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 2);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 65) {
         // Nagas (summon) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
@@ -872,8 +1361,37 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 93) {
         // Black Channels (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 5) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 5);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 94) {
         // Drain Power (instant_damage) - cost 10
         if (tgtFound == 1) {
@@ -1349,8 +1867,37 @@ int_f MomCastSpell(int_t p, int_t spellId)
         }
     } elseif (spellId == 113) {
         // Eldritch Weapon (unit_enchant) - cost 10
-        MomMagicCur[p] = MomMagicCur[p] - 10;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 22) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 10;
+            SetUnitUserFlag(killUnit, 22);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 114) {
         // Hell Hounds (summon) - cost 10
         MomMagicCur[p] = MomMagicCur[p] - 10;
@@ -1386,8 +1933,37 @@ int_f MomCastSpell(int_t p, int_t spellId)
         Message(p, 'MomSpellCast');
     } elseif (spellId == 120) {
         // Flame Blade (unit_enchant) - cost 12
-        MomMagicCur[p] = MomMagicCur[p] - 12;
-        Message(p, 'MomSpellCast');
+        boundFound = 0;
+        for (uIdx = 0; uIdx < numUnits; uIdx = uIdx + 1) {
+            GetUnitByIndex(p, uIdx, scanUnit);
+            if (boundFound == 0) {
+                if (IsUnitSelected(scanUnit)) {
+                    killUnit = scanUnit;
+                    boundFound = 1;
+                }
+            }
+        }
+        if (boundFound == 0) {
+            Message(p, 'MomEnchNoUnit');
+        } elseif (UnitHasUserFlag(killUnit, 21) == 1) {
+            Message(p, 'MomEnchAlready');
+        } else {
+            MomStatOff0 = GetUnitOffense(killUnit);
+            MomStatDef0 = GetUnitDefense(killUnit);
+            MomStatMov0 = UnitMovementLeft(killUnit) / 100;
+            MomCastPlayer = p;
+            MomMagicCur[p] = MomMagicCur[p] - 12;
+            SetUnitUserFlag(killUnit, 21);
+            MomStatOff1 = GetUnitOffense(killUnit);
+            MomStatDef1 = GetUnitDefense(killUnit);
+            MomStatMov1 = UnitMovementLeft(killUnit) / 100;
+            MomStatElite = IsUnitElite(killUnit);
+            MomStatVet = IsVeteran(killUnit);
+            if (IsHumanPlayer(MomCastPlayer)) {
+                MomMagicCurDisp = MomMagicCur[MomCastPlayer];
+            }
+            Message(MomCastPlayer, 'MomEnchDone');
+        }
     } elseif (spellId == 121) {
         // Gargoyles (summon) - cost 20
         MomMagicCur[p] = MomMagicCur[p] - 20;
@@ -1777,6 +2353,9 @@ int_f MomCastSpell(int_t p, int_t spellId)
         }
         Message(p, 'MomSpellCast');
     }
+    if (IsHumanPlayer(p)) {
+        MomMagicCurDisp = MomMagicCur[p];
+    }
     return 1;
 }
 
@@ -1806,6 +2385,194 @@ messagebox 'MomNoTargetInRange' {
 messagebox 'MomNoRequiredUnit' {
     Show();
     Text(ID_MOM_MSG_NO_REQUIRED_UNIT);
+}
+
+messagebox 'MomPlanarNoUnit' {
+    Show();
+    Text(ID_MOM_MSG_PLANAR_NO_UNIT);
+}
+
+messagebox 'MomPlanarHasteDone' {
+    Show();
+    Text(ID_MOM_MSG_PLANAR_HASTE_DONE);
+}
+
+messagebox 'MomPlanarHostDone' {
+    Show();
+    Text(ID_MOM_MSG_PLANAR_HOST_DONE);
+}
+
+messagebox 'MomPlanarStepFar' {
+    Show();
+    Text(ID_MOM_MSG_PLANAR_STEP_FAR);
+}
+
+messagebox 'MomPlanarStepBlocked' {
+    Show();
+    Text(ID_MOM_MSG_PLANAR_STEP_BLOCKED);
+}
+
+messagebox 'MomPlanarStepDone' {
+    Show();
+    Text(ID_MOM_MSG_PLANAR_STEP_DONE);
+}
+
+messagebox 'MomEnchNoUnit' {
+    Show();
+    Text(ID_MOM_MSG_ENCH_NO_UNIT);
+}
+
+messagebox 'MomEnchAlready' {
+    Show();
+    Text(ID_MOM_MSG_ENCH_ALREADY);
+}
+
+messagebox 'MomEnchDone' {
+    Show();
+    Text(ID_MOM_MSG_ENCH_DONE);
+}
+
+// Unit enchantment combat hooks -- engine calls these by name (SlicEngine::AddModFuncs).
+int_f mod_UnitAttack(unit_t atk, unit_t dfd, int_t baseVal)
+{
+    int_t bonus;
+    int_t sph;
+    bonus = 0;
+    if (UnitHasUserFlag(atk, 5) == 1) { bonus = bonus + 2; }  // Black Channels
+    if (UnitHasUserFlag(atk, 21) == 1) { bonus = bonus + 2; }  // Flame Blade
+    if (UnitHasUserFlag(atk, 22) == 1) { bonus = bonus + 1; }  // Eldritch Weapon
+    if (UnitHasUserFlag(atk, 24) == 1) { bonus = bonus + 1; }  // Holy Weapon
+    if (UnitHasUserFlag(atk, 27) == 1) { bonus = bonus + 3; }  // Lionheart
+    if (UnitHasUserFlag(atk, 28) == 1) { bonus = bonus + 1; }  // Giant Strength
+    return baseVal + bonus;
+}
+
+int_f mod_UnitRangedAttack(unit_t atk, unit_t dfd, int_t baseVal)
+{
+    int_t bonus;
+    int_t sph;
+    bonus = 0;
+    // Guardian Wind: missiles and thrown attacks fail
+    if (UnitHasUserFlag(dfd, 2) == 1) { return 0; }
+    if (UnitHasUserFlag(atk, 5) == 1) { bonus = bonus + 1; }  // Black Channels
+    if (UnitHasUserFlag(atk, 21) == 1) { bonus = bonus + 2; }  // Flame Blade
+    if (UnitHasUserFlag(atk, 27) == 1) { bonus = bonus + 3; }  // Lionheart
+    return baseVal + bonus;
+}
+
+int_f mod_UnitDefense(unit_t dfd, unit_t atk, int_t baseVal)
+{
+    int_t bonus;
+    int_t sph;
+    bonus = 0;
+    sph = 0;
+    if (atk.owner >= 0) {
+        if (atk.owner <= 30) { sph = MomSphere[atk.owner]; }
+    }
+    if (UnitHasUserFlag(dfd, 5) == 1) { bonus = bonus + 1; }  // Black Channels
+    if (sph == 5) {
+        if (UnitHasUserFlag(dfd, 10) == 1) { bonus = bonus + 3; }  // Resist Elements
+    }
+    if (sph == 2) {
+        if (UnitHasUserFlag(dfd, 10) == 1) { bonus = bonus + 3; }  // Resist Elements
+    }
+    if (sph == 5) {
+        if (UnitHasUserFlag(dfd, 11) == 1) { bonus = bonus + 5; }  // Elemental Armor
+    }
+    if (sph == 2) {
+        if (UnitHasUserFlag(dfd, 11) == 1) { bonus = bonus + 5; }  // Elemental Armor
+    }
+    if (UnitHasUserFlag(dfd, 12) == 1) { bonus = bonus + 1; }  // Stone Skin
+    if (UnitHasUserFlag(dfd, 13) == 1) { bonus = bonus + 5; }  // Iron Skin
+    if (sph == 4) {
+        if (UnitHasUserFlag(dfd, 26) == 1) { bonus = bonus + 3; }  // Bless
+    }
+    if (sph == 5) {
+        if (UnitHasUserFlag(dfd, 26) == 1) { bonus = bonus + 3; }  // Bless
+    }
+    if (UnitHasUserFlag(dfd, 27) == 1) { bonus = bonus + 3; }  // Lionheart
+    if (UnitHasUserFlag(dfd, 30) == 1) { bonus = bonus + 2; }  // Holy Armor
+    if (sph == 4) {
+        if (UnitHasUserFlag(dfd, 31) == 1) { bonus = bonus + 5; }  // Righteousness
+    }
+    if (sph == 5) {
+        if (UnitHasUserFlag(dfd, 31) == 1) { bonus = bonus + 5; }  // Righteousness
+    }
+    if (UnitHasUserFlag(dfd, 32) == 1) { bonus = bonus + 5; }  // Invulnerability
+    return baseVal + bonus;
+}
+
+// Regeneration: heal flagged units at the start of their owner's turn.
+HandleEvent(BeginTurn) 'MomEnchantTick' post {
+    int_t sp;
+    int_t en;
+    int_t ei;
+    int_t healed;
+    unit_t eu;
+    sp = player[0];
+    if (sp >= 1 && sp <= 30) {
+        en = player[0].units;
+        for (ei = 0; ei < en; ei = ei + 1) {
+            GetUnitByIndex(sp, ei, eu);
+            if (UnitHasUserFlag(eu, 7) == 1) {
+                healed = HealUnit(eu, 3);
+            }
+        }
+    }
+}
+
+// Planar Travel / Step: targeting-cursor callback (GENERATED)
+messagebox 'MomPlanarStepTarget' {
+    int_t sp;
+    int_t sn;
+    int_t si;
+    int_t sFound;
+    int_t sOk;
+    unit_t sScan;
+    unit_t sUnit;
+    unit_t sCell;
+    army_t sArmy;
+    city_t sCity;
+    sp = player[0];
+    sn = player[0].units;
+    sFound = 0;
+    for (si = 0; si < sn; si = si + 1) {
+        GetUnitByIndex(sp, si, sScan);
+        if (sFound == 0) {
+            if (IsUnitSelected(sScan)) {
+                sUnit = sScan;
+                sFound = 1;
+            }
+        }
+    }
+    if (sFound == 0) {
+        Message(sp, 'MomPlanarNoUnit');
+    } elseif (MomMagicCur[sp] < 30) {
+        Message(sp, 'MomNotEnoughMana');
+    } elseif (Distance(sUnit.location, location[0]) > 6) {
+        Message(sp, 'MomPlanarStepFar');
+    } else {
+        sOk = 1;
+        if (IsWater(location[0])) { sOk = 0; }
+        if (IsWater(sUnit.location)) { sOk = 0; }
+        GetArmyFromUnit(sUnit, sArmy);
+        if (GetUnitsAtLocation(location[0]) + sArmy.size > 12) { sOk = 0; }
+        if (GetUnitsAtLocation(location[0]) > 0) {
+            GetUnitFromCell(location[0], 0, sCell);
+            if (sCell.owner != sp) { sOk = 0; }
+        }
+        if (GetCityByLocation(location[0], sCity)) {
+            if (sCity.owner != sp) { sOk = 0; }
+        }
+        if (sOk == 1) {
+            MomMagicCur[sp] = MomMagicCur[sp] - 30;
+            MomMagicCurDisp = MomMagicCur[sp];
+            Event:Teleport(sArmy, location[0]);
+            Message(sp, 'MomPlanarStepDone');
+        } else {
+            Message(sp, 'MomPlanarStepBlocked');
+        }
+    }
 }
 
 // Feedback when a target unit resists or is immune to a kill spell

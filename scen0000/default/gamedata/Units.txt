@@ -720,6 +720,7 @@ UNIT_ALORRA {
       Effect SPECEFFECT_REFORMCITY
    }
    CantBuild
+   MoveBonus 100
 }
 
 UNIT_CENTAURS {
@@ -771,6 +772,7 @@ UNIT_CENTAURS {
       Sound SOUND_ID_REFORM_CITY
       Effect SPECEFFECT_REFORMCITY
    }
+   MoveBonus 100
 }
 
 UNIT_ELVEN_ARCHERS {
@@ -822,6 +824,7 @@ UNIT_ELVEN_ARCHERS {
       Sound SOUND_ID_REFORM_CITY
       Effect SPECEFFECT_REFORMCITY
    }
+   MoveBonus 100
 }
 
 UNIT_MAGE {
@@ -1643,6 +1646,7 @@ UNIT_MINOTAUR_WARRIOR {
       Sound SOUND_ID_REFORM_CITY
       Effect SPECEFFECT_REFORMCITY
    }
+   MoveBonus 100
 }
 
 UNIT_WAR_TROLL {
@@ -3293,6 +3297,7 @@ UNIT_TREANT {
       Sound SOUND_ID_REFORM_CITY
       Effect SPECEFFECT_REFORMCITY
    }
+   MoveBonus 100
 }
 
 UNIT_DRUID {
@@ -3642,6 +3647,7 @@ UNIT_GOBLIN {
       Sound SOUND_ID_REFORM_CITY
       Effect SPECEFFECT_REFORMCITY
    }
+   MoveBonus 100
 }
 
 UNIT_ORC {
@@ -3693,6 +3699,7 @@ UNIT_ORC {
       Sound SOUND_ID_REFORM_CITY
       Effect SPECEFFECT_REFORMCITY
    }
+   MoveBonus 100
 }
 
 UNIT_OGRE {
@@ -3846,6 +3853,7 @@ UNIT_DROW {
       Sound SOUND_ID_REFORM_CITY
       Effect SPECEFFECT_REFORMCITY
    }
+   MoveBonus 100
 }
 
 UNIT_CENTAUR_BOWMAN {
@@ -3897,6 +3905,7 @@ UNIT_CENTAUR_BOWMAN {
       Sound SOUND_ID_REFORM_CITY
       Effect SPECEFFECT_REFORMCITY
    }
+   MoveBonus 100
 }
 
 UNIT_MINOTAUR_CROSSBOW {
@@ -3948,6 +3957,7 @@ UNIT_MINOTAUR_CROSSBOW {
       Sound SOUND_ID_REFORM_CITY
       Effect SPECEFFECT_REFORMCITY
    }
+   MoveBonus 100
 }
 
 UNIT_SETTLER {
@@ -3963,7 +3973,7 @@ UNIT_SETTLER {
    MaxHP 10
    ShieldCost 740
    PowerPoints 400
-   ShieldHunger 0
+   ShieldHunger 1
    FoodHunger 0
    MaxMovePoints 100
    VisionRange 1
@@ -4034,7 +4044,6 @@ UNIT_PEASANTS {
    SettleSize 1
    CanBeExpelled
    CantCaptureCity
-   DeathEffectsHappy
    BuildingRemovesAPop
    OnlyBuildOne
    IsSpecialForces
