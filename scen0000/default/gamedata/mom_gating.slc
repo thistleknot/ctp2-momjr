@@ -8,7 +8,7 @@
 //   * advance hook -> g.player. The thePlayer PARAMETER CANNOT carry identity:
 //     CallMod builds it as SLIC_SYM_PLAYER and SetIntValue only writes when the
 //     type is SLIC_SYM_IVAR, so the index is never stored and reads return 0.
-//   * build hooks -> theCity.owner, proven to resolve (probe B2).
+//   * build hooks -> validate theCity.valid first, then read theCity.owner.
 //
 // CONSTRAINTS honoured here (slic-two-crash-classes):
 //   * bodies are FLAT -- a 2-level user-function chain from an engine callback
@@ -79,6 +79,7 @@ int_f mod_CanPlayerHaveAdvance(int_t thePlayer, int_t theAdvance)
 
 int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
 {
+    if (theCity.valid == 0) { return 1; }
     // VESSELS -- 1, never buildable by anyone
     if (theUnit == UnitDB(UNIT_LAMP)
     ) { return 0; }
@@ -185,6 +186,7 @@ int_f mod_CanCityBuildUnit(city_t theCity, int_t theUnit)
 
 int_f mod_CanCityBuildBuilding(city_t theCity, int_t theBuilding)
 {
+    if (theCity.valid == 0) { return 1; }
     if (theCity.owner < 1 || theCity.owner > 5) { return 1; }
     // NATURE -- 2 block(s)
     if (MomSphere[theCity.owner] != 2) {
@@ -240,6 +242,7 @@ int_f mod_CanCityBuildBuilding(city_t theCity, int_t theBuilding)
 
 int_f mod_CanCityBuildWonder(city_t theCity, int_t theWonder)
 {
+    if (theCity.valid == 0) { return 1; }
     if (theCity.owner < 1 || theCity.owner > 5) { return 1; }
     // LIFE -- 2 block(s)
     if (MomSphere[theCity.owner] != 1) {

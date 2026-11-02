@@ -1,0 +1,18 @@
+{
+  "orphans": [
+    "SPRITE_B3",
+    "SPRITE_B4",
+    "SPRITE_B5",
+    "SPRITE_B6",
+    "SPRITE_B7",
+    "SPRITE_B8",
+    "SPRITE_B9"
+  ],
+  "missing": [
+    [
+      "CITY",
+      "SPRITE_CITY"
+    ]
+  ],
+  "no_sprite": []
+}

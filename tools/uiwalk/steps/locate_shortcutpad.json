@@ -1,4 +1,0 @@
-[
-  {"do": "wait_stable", "ms": 8000},
-  {"do": "shot", "name": "current_state"}
-]

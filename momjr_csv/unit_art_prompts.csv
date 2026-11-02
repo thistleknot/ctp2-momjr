@@ -1,0 +1,90 @@
+ident,prompt,art_matches_name,flip,note
+AIRSHIP,a flying airship with a wooden boat hull slung beneath red yellow and blue striped hot-air balloons,yes,,
+AIR_ELEMENTAL,an air elemental a slender female spirit with raised arms and a flowing translucent pale blue and cyan vortex of wind spiralling around her body and coiling below her waist,yes,,"PROMPT WAS WRONG - said 'no solid body', which told the model to delete the female figure the art actually contains; she is visible as torso, raised arms and waist inside the swirl"
+ALORRA,a female archer in pink and purple riding a galloping white horse drawing a golden longbow,yes,,
+APPRENTICE,a slender silver magic wand lying horizontally with golden four-pointed star sparkles bursting at its tip,no,,art is an ITEM not a creature; very wide aspect
+ARCHANGEL,an archangel in flowing white robes with enormous pale blue feathered wings raising a burning orange sword overhead,yes,,
+ARCH_MAGE,an archmage in a deep blue robe and tall green pointed hat both arms raised casting a small orange spell,yes,,
+ARIEL,a female warrior in a white and silver gown with a golden circlet holding aloft a green and white glowing star,no,,DAMAGED ASSET - a shield outline and green UI bar are baked into the art alongside the figure
+B3,a legionary in a red cloak and segmented armour with a short sword and a decorated round shield,no,,filename carries no subject
+B4,a skeletal angel of ice a pale cyan crystalline warrior with translucent ice wings holding a sword,no,,filename carries no subject
+B5,a hellhound a red and orange flaming quadruped beast with curved horns and a mane of fire,no,,filename carries no subject
+B6,a great brown bear standing upright on its hind legs forelegs spread wide,no,,filename carries no subject
+B7,a sorcerer in a flowing green cloak holding a staff crowned with a radiant green star,no,,filename carries no subject
+B8,a female warrior in a white and silver gown holding aloft a green and white glowing star,no,,filename carries no subject; same figure as ARIEL without the UI chrome
+BEHEMOTH,a behemoth a massive pale grey scaled quadruped dinosaur with a long heavy tail,yes,,
+BONE_GOLEM,an armoured knight in grey and gold plate with a blue plume and a blue and gold kite shield,no,,art is a knight not a bone golem
+CARAVAN,a laden pack camel carrying colourful bundles and trade goods,yes,,
+CATAPULT,a wooden siege catapult on wheels with a stone ball in its cup,yes,,
+CENTAURS,a centaur with a man's torso on a brown horse body rearing and drawing a golden bow,yes,,
+COCKATRICE,a cockatrice a red and green feathered serpent-rooster hybrid low and coiled,yes,,source art is very muddy
+CRUSADER,a crusader knight in white and red on an armoured white horse carrying a golden staff and banner,yes,,
+CRYSTAL_GOLEM,a blazing comet a yellow-white fireball with a long red and orange flame trail,no,,art is a fireball not a golem; identical art to DWARF_RUNESMITH
+DEATH_KNIGHT,a death knight in blue and red barding on an armoured warhorse couching a lance with a red pennant,yes,,
+DEMON,a demon a red and orange bat-winged fiend in flight clawed and horned,yes,,
+DJINN,a centaur archer with a red and white longbow and a pale grey horse body,no,,art is a centaur not a djinn
+DRACOLICH,a dracolich a rotting yellow-green undead dragon with tattered wings and a pale blue streak of ice lightning crossing its body,yes,,ice-lightning streak is misread as a lance without this note
+DROW,a dark elf in black and purple armour with long white hair holding a curved blade,yes,,
+DRUID,a knight in blue and gold plate armour with a blue plume holding a spear,no,,art is an armoured knight not a druid
+DWARF_CROSSBOW,"an iron golem a humanoid construct of riveted silver and grey metal plates with copper rivets standing upright at attention, no face, no weapon",no,,"art is an IRON GOLEM not a dwarf crossbowman (operator 2026-09-05); the real dwarf crossbowman art sits under PRIEST. Distinct from SPRITE_IRON_GOLEM, which is bulkier and holds a hammer"
+DWARF_RUNESMITH,a blazing comet a yellow-white fireball with a long red and orange flame trail,no,,art is a fireball not a dwarf; identical art to CRYSTAL_GOLEM
+DWARF_WARRIOR,a grey stone gargoyle statue with folded wings,no,,art is a gargoyle not a dwarf
+EFREET,an efreet a muscular red and orange fire genie with a bare torso arms raised holding a glowing orb overhead and a lower body of swirling flame instead of legs,yes,,head renders as a featureless balloon without this note
+ELVEN_ARCHERS,an elven archer in green and brown leathers drawing a longbow facing right,yes,,
+FREYA,a blonde woman in a green cloak holding a staff crowned with a radiant green star,yes,,
+GALLEY,a wooden galley with a single square cream sail and a bank of oars on blue water,yes,,
+GARGOYLE,a gargoyle a green and grey winged stone demon with spread bat wings and horns,yes,,
+GOBLIN,a brown wild boar with a bristled grey back,no,,art is a boar not a goblin
+GREAT_WYRM,a great wyrm an enormous pale coiled worm rearing out of churned earth,yes,,
+GRIFFIN,a griffin in flight with a white eagle head and wings and a tawny lion body,yes,,
+GUARDIAN_SPIRIT,a guardian spirit a translucent blue and white ethereal figure kneeling and holding a tall staff,yes,,
+HELL_HOUNDS,a hellhound a red and orange flaming quadruped beast with curved horns and a mane of fire,yes,,
+HYDRA,a hydra a dark blue and teal many-headed serpent with several long necks rising together,yes,,
+INFERNAL_DEVICE,an infernal device a brass and gold torpedo-shaped flying machine with fins and a glowing crystal tip,yes,,
+IRON_GOLEM,an iron golem a bulky grey metal humanoid construct holding a heavy hammer,yes,,
+JAFAR,a sorcerer in blue robes and a red cap holding a golden staff with white sparks streaming from his raised hand,yes,,
+KNIGHTS,a knight in blue and silver plate on a barded warhorse couching a lance with a red pennant,yes,,
+LAMP,a golden genie lamp a brass oil lamp with a rounded body a curved spout pointing up and left a looped handle on the right and a small finial knob on top of the lid lit from above,yes,,source art REPLACED 2026-09-04 - the shipped asset was upside down AND stylistically an odd duck (flat vector gold); regenerated from scratch txt2img with the pixel-art LoRA. art is an ITEM not a creature
+LICH,a sorcerer in a flowing green cloak holding a staff crowned with a radiant green star,no,,art is a green sorcerer not a lich
+MAGE,a mage in a deep blue robe and tall green pointed hat with arms raised casting,yes,,
+MALLEUS,a rider in purple and magenta robes on a dark horse with a streaming golden flame banner,yes,,
+MERFOLK,a merman warrior bare-chested with a blue-green fish tail and fins riding a cresting wave,yes,,
+MINION,a small figure in a blue coat and hat standing alone,yes,,very small in frame
+MINOTAUR,a minotaur a brown-furred bull-headed humanoid with curved horns and a bulls snout muscular and swinging an axe overhead,yes,,head renders as a skull without the bull-snout note
+OGRE,an armoured rider in purple and blue on a white barded horse carrying a golden staff,no,,art is a mounted knight not an ogre
+ORC,a grey and white wolf standing alert,no,,art is a wolf not an orc
+PALADINS,a paladin in golden armour on a barded warhorse with red caparison carrying a flaming golden lance,yes,,
+PEASANTS,a peasant in a brown tunic carrying a scythe and a small bundle,yes,,
+PEGASUS,a pegasus a white winged horse with blue-white feathered wings in flight,yes,,
+PHANTOM_WARRIORS,a phantom warrior a translucent white and cyan ghostly soldier with sword and shield rising from blue mist,yes,,
+PRIEST,"a dwarf crossbowman in blue and gold plate armour with a horned helm, holding a golden crossbow levelled across his body, brown boots",no,,"art is the DWARF CROSSBOWMAN (operator 2026-09-05) - it holds a crossbow. SWAPPED with DWARF_CROSSBOW, which carries iron-golem art"
+RJAK,a dark sorcerer in a purple and black cloak holding a staff topped with a glowing blue-white star,yes,,
+SALAMANDER,a salamander an orange and yellow flaming lizard with four legs and a long tail wreathed in fire,yes,,
+SERENA,a mounted rider carrying a green banner on a horse with colourful heraldry,yes,,
+SETTLER,a hooded figure in a deep blue cloak holding a glowing pale blue sword,no,,PROXY ART BUG - identical to WRAITH; a settler was expected
+SKELETONS,a figure in a green robe with arms raised wide,no,,art is not skeletal
+SPEARMEN,a soldier in bronze and gold armour holding a tall spear upright with a round shield,yes,,
+STEAM_CANNON,a steam cannon a brass cannon on a wooden wheeled carriage with a plume of white smoke rising,yes,,
+STORM_DRAKE,a storm drake a blue scaled dragon with spread bat wings and a coiled tail breathing a small red flame,yes,,
+STORM_GIANT,a storm giant a huge muscular man in a blue tunic and sandals holding a cyan lightning bolt in one hand and a golden club in the other,yes,,
+SWORDSMEN,a legionary in a red cloak and segmented armour with a short sword and a decorated round shield,yes,,
+TAURON,a warrior in a red cloak and grey and gold armour holding a staff with a glowing orange orb beneath a golden arc,yes,,
+TEMPLAR,a templar knight in blue robes on a white barded horse carrying a golden staff,yes,,
+TREANT,a treant a walking tree with a bearded face in its trunk green foliage gnarled bark limbs and a wooden staff,yes,,
+TROLL,a red scaled winged fiend with clawed limbs,no,,art is a red winged demon not a troll
+UNDEAD_DRAGON,an undead dragon a rotting yellow-green dragon with tattered wings and a pale blue streak of ice lightning crossing its body,yes,,ice-lightning streak is misread as a lance without this note
+UNICORN,a unicorn a white and pale blue horse rearing with a golden spiral horn,yes,,
+VAMPIRE,a vampire a pale figure in a long grey cloak with red trim and a high collar,yes,,
+WARBEARS,a great brown bear standing upright on its hind legs forelegs spread wide,yes,,
+WARLOCK,a warlock in a flowing green cloak holding a staff crowned with a radiant green star,yes,,
+WARRAX,a rider in blue and gold on a rearing brown horse with blue lightning arcing from his raised hand,yes,,
+WARSHIP,a warship a tall wooden sailing ship with cream square sails and red pennants on blue water,yes,,
+WAR_MAGE,a war mage in a deep blue robe and green pointed hat with arms raised casting,yes,,
+WAR_MAMMOTH,a war mammoth a brown woolly mammoth in grey armour plating with white tusks and a rider on its back,yes,,
+WAR_TROLL,a war troll a hulking green-skinned brute in scavenged armour carrying a club,yes,,
+WRAITH,a wraith a hooded figure in a deep blue cloak holding a glowing pale blue sword,yes,,
+WYVERN,a wyvern a tan and brown two-legged dragon with broad membranous wings and a long tail,yes,,
+ZOMBIES,a zombie a shambling figure in tattered green and brown rags with arms raised,yes,,
+CENTAUR_BOWMAN,a centaur with a bare muscular human torso and a tan hide kilt on a dark grey horse body drawing a longbow to the right,yes,,grey mask-debris specks around the hooves and bow
+MINOTAUR_CROSSBOW,a muscular red-brown bull-headed minotaur with curved horns and a round shield on its back drawing a longbow,yes,,draws a longbow not a crossbow
+MINOTAUR_WARRIOR,a muscular brown bull-headed minotaur with curved horns in a fur loincloth holding a large double-bladed axe overhead in both hands,yes,

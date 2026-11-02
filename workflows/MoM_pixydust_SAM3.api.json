@@ -1,0 +1,269 @@
+{
+ "loader_unet": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "z_image_turbo_fp8_e4m3fn.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "loader_clip": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen_3_4b.safetensors",
+   "type": "lumina2"
+  }
+ },
+ "loader_vae": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "ae.safetensors"
+  }
+ },
+ "lora": {
+  "class_type": "LoraLoaderModelOnly",
+  "inputs": {
+   "model": [
+    "loader_unet",
+    0
+   ],
+   "lora_name": "elusarca-pixel-art-zimage.safetensors",
+   "strength_model": 0.8
+  }
+ },
+ "src": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "SOURCE.png"
+  }
+ },
+ "encode": {
+  "class_type": "VAEEncode",
+  "inputs": {
+   "pixels": [
+    "src",
+    0
+   ],
+   "vae": [
+    "loader_vae",
+    0
+   ]
+  }
+ },
+ "or_loader": {
+  "class_type": "LLM_api_loader",
+  "inputs": {
+   "model_name": "qwen/qwen3-vl-32b-instruct",
+   "base_url": "https://openrouter.ai/api/v1",
+   "api_key": "",
+   "is_ollama": false
+  }
+ },
+ "or_llm": {
+  "class_type": "LLM",
+  "inputs": {
+   "system_prompt": "You write image-generation prompts for unit art in a fantasy game. You are shown one small hand-drawn unit on a plain background. Reply with ONE line: a comma-separated visual description of exactly what is depicted -- subject, pose, gear, mount, colours, materials. Describe only what is visible. Do not add scenery, lighting or style words. No preamble, no JSON, no quotes.",
+   "user_prompt": "Describe this unit as a generation prompt.",
+   "model": [
+    "or_loader",
+    0
+   ],
+   "images": [
+    "src",
+    0
+   ],
+   "temperature": 0.1,
+   "is_memory": "disable",
+   "is_tools_in_sys_prompt": "disable",
+   "is_locked": "disable",
+   "main_brain": "enable",
+   "max_length": 1920,
+   "conversation_rounds": 1,
+   "is_enable": true,
+   "stream": false
+  }
+ },
+ "pos": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": [
+    "or_llm",
+    0
+   ],
+   "clip": [
+    "loader_clip",
+    0
+   ]
+  }
+ },
+ "neg": {
+  "class_type": "CLIPTextEncode",
+  "inputs": {
+   "text": "text, watermark, border, frame, multiple figures, cropped, blurry",
+   "clip": [
+    "loader_clip",
+    0
+   ]
+  }
+ },
+ "cn_patch": {
+  "class_type": "ModelPatchLoader",
+  "inputs": {
+   "name": "Z-Image-Turbo-Fun-Controlnet-Union-2.1.safetensors"
+  }
+ },
+ "sam_model": {
+  "class_type": "LoadSAM3Model",
+  "inputs": {
+   "precision": "auto",
+   "compile": false
+  }
+ },
+ "sam": {
+  "class_type": "SAM3Grounding",
+  "inputs": {
+   "sam3_model_config": [
+    "sam_model",
+    0
+   ],
+   "image": [
+    "src",
+    0
+   ],
+   "confidence_threshold": 0.34,
+   "text_prompt": "",
+   "max_detections": -1
+  }
+ },
+ "hint": {
+  "class_type": "MaskToImage",
+  "inputs": {
+   "mask": [
+    "sam",
+    0
+   ]
+  }
+ },
+ "cn": {
+  "class_type": "ZImageFunControlnet",
+  "inputs": {
+   "model": [
+    "lora",
+    0
+   ],
+   "model_patch": [
+    "cn_patch",
+    0
+   ],
+   "vae": [
+    "loader_vae",
+    0
+   ],
+   "strength": 0.34,
+   "image": [
+    "hint",
+    0
+   ]
+  }
+ },
+ "ks0": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "cn",
+    0
+   ],
+   "seed": 12345,
+   "steps": 5,
+   "cfg": 1.0,
+   "sampler_name": "lcm",
+   "scheduler": "beta",
+   "positive": [
+    "pos",
+    0
+   ],
+   "negative": [
+    "neg",
+    0
+   ],
+   "latent_image": [
+    "encode",
+    0
+   ],
+   "denoise": 0.87
+  }
+ },
+ "up1": {
+  "class_type": "LatentUpscale",
+  "inputs": {
+   "samples": [
+    "ks0",
+    0
+   ],
+   "upscale_method": "bislerp",
+   "width": 192,
+   "height": 144,
+   "crop": "disabled"
+  }
+ },
+ "ks1": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "cn",
+    0
+   ],
+   "seed": 12346,
+   "steps": 3,
+   "cfg": 1.0,
+   "sampler_name": "euler_ancestral",
+   "scheduler": "karras",
+   "positive": [
+    "pos",
+    0
+   ],
+   "negative": [
+    "neg",
+    0
+   ],
+   "latent_image": [
+    "up1",
+    0
+   ],
+   "denoise": 0.78
+  }
+ },
+ "decode": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "ks1",
+    0
+   ],
+   "vae": [
+    "loader_vae",
+    0
+   ]
+  }
+ },
+ "sharpen": {
+  "class_type": "FastUnsharpSharpen",
+  "inputs": {
+   "images": [
+    "decode",
+    0
+   ],
+   "strength": 1.2,
+   "use_gpu": true
+  }
+ },
+ "save": {
+  "class_type": "SaveImage",
+  "inputs": {
+   "images": [
+    "sharpen",
+    0
+   ],
+   "filename_prefix": "mom_pipe"
+  }
+ }
+}

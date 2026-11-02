@@ -31,6 +31,7 @@ nav:
     - Buildings: reference/buildings.md
     - Spells: reference/spells.md
     - Terrain: reference/terrain.md
+    - Art Catalog (LotR): reference/lotr-catalog.md
   - Factions:
     - Faction Overview: factions/overview.md
     - Life — Holy Order: factions/life.md
@@ -46,3 +47,5 @@ nav:
     - Summoning: systems/summoning.md
     - Mana Economy: systems/mana.md
     - Artifacts: systems/artifacts.md
+  - Development:
+    - Headless Testing Lessons: lessons_learned.md

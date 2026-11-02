@@ -1,0 +1,51 @@
+{
+ "loader": {
+  "class_type": "LLM_api_loader",
+  "inputs": {
+   "model_name": "google/gemini-2.5-flash",
+   "base_url": "https://openrouter.ai/api/v1",
+   "api_key": "",
+   "is_ollama": false
+  }
+ },
+ "image": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "SOURCE.png",
+   "upload": "image"
+  }
+ },
+ "llm": {
+  "class_type": "LLM",
+  "inputs": {
+   "system_prompt": "You are cataloguing unit art for 'Masters of Magic', a fantasy total conversion for Call to Power 2. The image is a small hand-drawn fantasy unit portrait on a plain background. Identify what the art actually DEPICTS. Do not guess at a name you think it should have; describe what is visibly there.\nReply with ONLY a JSON object, no prose, no code fence:\n{\"subject\": \"<2-5 words, the creature or unit type>\", \"description\": \"<one sentence: pose, gear, mount, colours>\", \"parts\": [\"<distinct visible elements: horse, staff, flame, shield, wings>\"], \"confidence\": <0.0-1.0>}",
+   "user_prompt": "What does this unit art depict?",
+   "model": [
+    "loader",
+    0
+   ],
+   "images": [
+    "image",
+    0
+   ],
+   "temperature": 0.1,
+   "is_memory": "disable",
+   "is_tools_in_sys_prompt": "disable",
+   "is_locked": "disable",
+   "main_brain": "enable",
+   "max_length": 1920,
+   "conversation_rounds": 1,
+   "is_enable": true,
+   "stream": false
+  }
+ },
+ "show": {
+  "class_type": "easy showAnything",
+  "inputs": {
+   "anything": [
+    "llm",
+    0
+   ]
+  }
+ }
+}

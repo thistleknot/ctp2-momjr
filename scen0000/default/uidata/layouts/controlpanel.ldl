@@ -773,10 +773,16 @@ ControlPanelWindow:CTP2_WINDOW {
 			# ring into confirmed-clear space. Fired via the native SLIC
 			# UI-component trigger 'MomOpenSpellbook' in mom_spells.slc --
 			# no engine code.
+			# MOVED (2026-10-26, operator: "bottom half of the icon is cut
+			# off"): at (40,155) the 40px icon started at window y 168 and
+			# ControlPanelWindow is only 184 tall, so 16px showed. (12,143)
+			# shows 28px, sits left of GreatLibraryButton (x 55) and just
+			# below TradeButton (pad y 102..142). Fully visible needs
+			# ypix <= 131, which lands on TradeButton.
 			MagicButton:CTP2_BUTTON_ICONIC {
 				# Location.
-				int		xpix		40
-				int		ypix		155
+				int		xpix		12
+				int		ypix		143
 
 				# Background.
 				string	image00	"mom_magicbtn_x.tga"

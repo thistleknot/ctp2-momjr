@@ -1,3 +1,75 @@
+# Headless MoM playtest: menu input and turn-50 confirmation (2026-10-25)
+
+The earlier two-city playtest froze at turn 38 with units logged at 1,717,986,938 HP. After moving MoM runtime modifier initialization ahead of derived-stat calculations and rebuilding Debug-SDL, run `tools/uiwalk/runs/20261025-190353-turnloop/` reached turn 50/50. It had one city, Eudoria, and a Spearman queue; it did not reproduce the two-city queues or summon Crusader. The fixed run logged nine combat HP values, maximum 20, zero SLIC errors, and a verified autosave copy after each turn. It passed the old failure point, but that specific two-city/Crusader setup remains untested.
+
+## Build Manager controls
+
+Coordinate clicks did not select list rows or add production in the Build Manager. The debug executable's UI injection hook worked with these paths from `editqueue.ldl`:
+
+- Unit rows: `BuildEditorWindow.ItemsBox.UnitsList`.
+- Building rows: `BuildEditorWindow.ItemsBox.BuildingList`.
+- Tabs: `BuildEditorWindow.ItemsBox.UnitsButton` and `BuildEditorWindow.ItemsBox.BuildingsButton`.
+- Add: `BuildEditorWindow.ItemsBox.AddButton`.
+- Clear: `BuildEditorWindow.QueueGroup.ClearButton`.
+- Close: `BuildEditorWindow.NormalModeButtons.CloseButton`.
+
+Clear opens a confirmation dialog. The left button confirms; the right button cancels. Verify the queue is empty before rebuilding it. The visible confirmed queue in both cities was Spearman, Spearman, Barracks, Spearman, Peasants.
+
+## Select and verify the debug executable
+
+The integration Debug-SDL executable is `H:\Games\civctp2-gaia-integration\ctp2_code\ctp\ctp2-dbg.exe`, SHA-256 `3CF936863B5BE86F65DB06B292A5F12771469C450F25E49761C90C0F4E3CC4B3`. The crash-capture launcher now defaults to this source directory and checks the selected PE image's actual imported DLLs. This image imports `MSVCP140D.dll`, `VCRUNTIME140D.dll`, and `ucrtbased.dll`, not `MSVCRTD.dll`; requiring the latter caused a false Release fallback. `-NoRun` preflight now reports `ctp2-dbg.exe` in `debug-preferred` mode. Confirm the selected source path and staged SHA in output for every actual run. The 2026-10-25 Release fallback exited with access violation `0xc0000005` in `ntdll.dll`, but the captured crash stack was empty and does not identify the fault.
+
+On 2026-10-26, the corrected crash-capture command selected and staged the integration `ctp2-dbg.exe`, reported x86, and left a Windows-responsive `Call To Power 2` process running with no new crash report. The process is still open, so the runtime overlay remains active until normal exit. This confirms the stale Release fallback is fixed; it does not diagnose the older Release executable's access violation.
+
+The earlier debug rerun reached MoM at 4000 BC (turn 0), founded Eudoria with `b`, and verified its queue as Spearman, Spearman, Barracks, Spearman, Peasants. The first map image was black; a single inert-bar hover (`fx=0.586`, `y=6`) repainted the terrain. `right` and `left` showed no visible change in this client, so do not repeat them without evidence. A map click at `(579,411)` selected the remaining Peasant on the city tile; the status bar showed `(41,59)`. For queue input, explicitly select the unit/building row by LDL path and index, press Add, wait about one second, then inspect the queue. The first Add press looked unchanged until a later list event. Evidence: `tools/uiwalk/runs/20261025-180014/` and `tools/uiwalk/runs/20261025-181351/01_eudoria_queue_complete.png`.
+
+## Turn checking
+
+Capture the frame, issue one End Turn action, wait for the screen to settle, then require the date to change. If it does not, stop and inspect the process and logs; do not repeat the same action. The 50-turn run used one action per turn and recorded 50/50 date changes with zero SLIC errors.
+
+## Autosave checkpoints and restore limits
+
+`AutoSave=Yes` caused `save/games/Alexan/AUTOSAVE-Alexan` to change after each confirmed turn. The harness hashes save files before each turn, waits for a changed archive after the date advances, and copies it to `tools/uiwalk/runs/20261025-190353-turnloop/checkpoints/turn_NNN_AUTOSAVE-Alexan`. All 50 copies were verified against the source file when copied; the installed turn-50 file matches checkpoint hash `d670288b27f7edd39c1903b4c7f90b2670754bb75dd4a9ddaaeddd712af1e056`.
+
+Loading the turn-1 autosave crashed in `UnitRecord::HasNuclearAttack` while restoring AI state: `CTPDatabase::Access` requested index 81 from a 74-record database. The checkpoint files preserve turn state, but this restore path is not yet proven usable. In `ctp2_data/default/uidata/keymap.txt`, `^s` is `SAVE_WORLD`, while `S` is `SAVE_GAME`; injected Ctrl+S and Shift+S produced no visible save dialog. Native autosave is the only save path verified in this run.
+
+## Summon chooser: Crusader selection still unverified
+
+`j` opens Magic Status. In this run the recorded click `(290,385)` opened Life Summons, where Crusader is option 2. The `2` key and guessed clicks `(512,420)` / `(640,525)` did not select it; one click moved the map. Do not reuse guessed coordinates or count a summon until the chooser closes and the selected unit is visible. `summon_variety2.json` is an entry-path reference, not proof of coordinates for every window geometry.
+
+## Runaway combat: stop instead of waiting on the menu
+
+At in-game turn 38 in the earlier run, AI army `0xd000002c` attacked army `0xd0000021` at `(0,73)`. The initial log records both units at `1717986938 HP`; after combat round 745502, a unit still had `1716197930 HP`. The game stopped responding without a date change. `UnitData::Create` had calculated HP and movement before zeroing `m_hpMaxMod` and `m_moveMod`; the calculators add those fields to database stats. After moving all four MoM overlays before derived-stat calculations, the rebuilt Debug-SDL run reached turn 50. Its combat logs showed nine HP values, maximum 20, with no billion-HP values. This supports the fix for the tested one-city game. Direct movement values and the two-city/Crusader setup were not checked. Keep unit CSV/database data unchanged. `CTP2Combat.cpp` copies `u->GetHP()` into combat state and resolves rounds while both sides live. Captured baseline artifacts: `H:\Temp\mom_turn50_stall.dmp`, `H:\Temp\mom_turn50_civ3log006.txt`, and `H:\Temp\mom_turn50_civ3log229.txt`.
+
+---
+
+# Headless MoM playtest: input lessons (2026-10-25)
+
+The earlier two-city playtest stopped at in-game turn 38/50 during the runaway combat recorded above. The evidence images and action captures are in `tools/uiwalk/runs/20261025-160839/`. A later one-city run passed turn 50; it did not summon Crusader.
+
+## Drive the right surface
+
+The Build Manager's list rows and buttons ignored posted coordinate clicks in this session. Use the debug build's UI injection hook with the LDL paths from `editqueue.ldl`:
+
+- Unit rows: `BuildEditorWindow.ItemsBox.UnitsList`.
+- Building rows: `BuildEditorWindow.ItemsBox.BuildingList`.
+- Unit/building tabs: `BuildEditorWindow.ItemsBox.UnitsButton` and `BuildEditorWindow.ItemsBox.BuildingsButton`.
+- Add: `BuildEditorWindow.ItemsBox.AddButton`.
+- Clear: `BuildEditorWindow.QueueGroup.ClearButton`.
+- Close: `BuildEditorWindow.NormalModeButtons.CloseButton`.
+
+Clear opens a confirmation dialog. The left button confirms; `MessageBoxDialog.DialogBackground.RightButton` cancels. Verify the queue is empty before rebuilding it. Both city queues were then visibly confirmed as Spearman, Spearman, Barracks, Spearman, Peasants.
+
+## Treat each turn as a checked action
+
+Capture the current frame, send one End Turn action, wait for stability, and compare the date. If the date does not change, stop and inspect; do not repeat the same action. The later fixed-build run advanced through turn 50; the earlier build stopped at turn 38.
+
+## Summon choice still needs a verified input
+
+`j` opens Magic Status. In this run `(290,385)` opened the Life Summons page, which lists Crusader as choice 2. Sending the `2` key and guessed clicks `(512,420)` and `(640,525)` did not select it. One click moved the map, so those coordinates are wrong for this page. The Crusader summon is **not confirmed**; use a fresh screenshot and verify the alert box closes and the selected summon appears before counting it as done. The prior `summon_variety2.json` sequence is a reference for entering the chooser, not a verified coordinate map for this screen.
+
+---
+
 ## The turn-loop ping had to lose its button (2026-07-27)
 
 **Symptom.** Three consecutive runs died `0xC0000005` at scenario start,

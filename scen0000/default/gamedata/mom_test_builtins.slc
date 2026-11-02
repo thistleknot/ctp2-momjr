@@ -1,0 +1,61 @@
+messagebox 'MomProbeBeginTargetMode' {
+    BeginTargetMode("MomTestTargetHit");
+}
+
+messagebox 'MomProbeModifyUnitStat' {
+    int_t result;
+    unit_t u;
+    GetUnitByIndex(1, 0, u);
+    result = ModifyUnitStat(u, 0, 5);
+    if (result == 1) { BeginTargetMode("MomTestTargetHit"); }
+}
+
+messagebox 'MomProbeClearUnitBuffs' {
+    int_t result;
+    unit_t u;
+    GetUnitByIndex(1, 0, u);
+    result = ClearUnitBuffs(u);
+    if (result == 1) { BeginTargetMode("MomTestTargetHit"); }
+}
+
+messagebox 'MomProbeHealUnit' {
+    int_t result;
+    unit_t u;
+    GetUnitByIndex(1, 0, u);
+    result = HealUnit(u, 5);
+    if (result == 1) { BeginTargetMode("MomTestTargetHit"); }
+}
+
+messagebox 'MomProbeGetUnitHP' {
+    int_t value;
+    unit_t u;
+    GetUnitByIndex(1, 0, u);
+    value = GetUnitHP(u);
+    if (value > 0) { BeginTargetMode("MomTestTargetHit"); }
+}
+
+messagebox 'MomProbeGetUnitMaxHP' {
+    int_t value;
+    unit_t u;
+    GetUnitByIndex(1, 0, u);
+    value = GetUnitMaxHP(u);
+    if (value > 0) { BeginTargetMode("MomTestTargetHit"); }
+}
+
+messagebox 'MomProbeIsTargetModeActive' {
+    int_t value;
+    BeginTargetMode("MomTestTargetSilent");
+    value = IsTargetModeActive();
+    if (value == 1) { BeginTargetMode("MomTestTargetHit"); }
+}
+
+messagebox 'MomProbeCancelArm' {
+    BeginTargetMode("MomTestTargetHit");
+}
+
+messagebox 'MomTestTargetHit' {
+    AddGold(player[0], 1000);
+}
+
+messagebox 'MomTestTargetSilent' {
+}

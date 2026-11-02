@@ -1,0 +1,170 @@
+{
+  "loader_unet": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "z_image_turbo_fp8_e4m3fn.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "loader_clip": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "lumina2"
+    }
+  },
+  "loader_vae": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    }
+  },
+  "lora": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "loader_unet",
+        0
+      ],
+      "lora_name": "elusarca-pixel-art-zimage.safetensors",
+      "strength_model": 1.0
+    }
+  },
+  "src": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "SPRITE_UNIT.tga"
+    }
+  },
+  "encode": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "src",
+        0
+      ],
+      "vae": [
+        "loader_vae",
+        0
+      ]
+    }
+  },
+  "pos": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "pixel art, <unit name>, <description if art matches name>, solid flat white background",
+      "clip": [
+        "loader_clip",
+        0
+      ]
+    }
+  },
+  "neg": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "text, watermark, border, frame, multiple figures, cropped, blurry",
+      "clip": [
+        "loader_clip",
+        0
+      ]
+    }
+  },
+  "ks0": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "lora",
+        0
+      ],
+      "seed": 4242,
+      "steps": 6,
+      "cfg": 1.13,
+      "sampler_name": "lcm",
+      "scheduler": "beta",
+      "positive": [
+        "pos",
+        0
+      ],
+      "negative": [
+        "neg",
+        0
+      ],
+      "latent_image": [
+        "encode",
+        0
+      ],
+      "denoise": 0.87
+    }
+  },
+  "ks1": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "lora",
+        0
+      ],
+      "seed": 4243,
+      "steps": 12,
+      "cfg": 1.13,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "beta",
+      "positive": [
+        "pos",
+        0
+      ],
+      "negative": [
+        "neg",
+        0
+      ],
+      "latent_image": [
+        "ks0",
+        0
+      ],
+      "denoise": 0.21
+    }
+  },
+  "decode": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "ks1",
+        0
+      ],
+      "vae": [
+        "loader_vae",
+        0
+      ]
+    }
+  },
+  "save": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "sharp",
+        0
+      ],
+      "filename_prefix": "mom_pipe"
+    }
+  },
+  "oidn": {
+    "class_type": "OIDNDenoiser",
+    "inputs": {
+      "image": [
+        "decode",
+        0
+      ],
+      "denoise_strength": 0.7
+    }
+  },
+  "sharp": {
+    "class_type": "FastUnsharpSharpen",
+    "inputs": {
+      "images": [
+        "oidn",
+        0
+      ],
+      "strength": 0.6,
+      "use_gpu": true
+    }
+  }
+}

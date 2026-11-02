@@ -1,0 +1,220 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux-2-klein-9b-kv-fp8.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_8b_fp8mixed.safetensors",
+      "type": "flux2",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "7": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "6",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "18",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "7",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "12": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "11",
+        0
+      ]
+    }
+  },
+  "14": {
+    "class_type": "OIDNDenoiser",
+    "inputs": {
+      "denoise_strength": 0.7,
+      "image": [
+        "8",
+        0
+      ]
+    }
+  },
+  "16": {
+    "class_type": "FastUnsharpSharpen",
+    "inputs": {
+      "strength": 0.6,
+      "use_gpu": true,
+      "images": [
+        "14",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "16",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "mom_pipe",
+      "images": [
+        "16",
+        0
+      ]
+    }
+  },
+  "10000": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "6",
+        0
+      ]
+    }
+  },
+  "15": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "14",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "8",
+        0
+      ]
+    }
+  },
+  "4": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "text, watermark, border, frame, multiple figures, cropped, blurry, cartoon",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "5": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": [
+        "10001",
+        0
+      ],
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "19": {
+    "class_type": "Latent Upscale by Factor (WAS)",
+    "inputs": {
+      "mode": "nearest",
+      "factor": 1.5,
+      "align": "true",
+      "samples": [
+        "7",
+        0
+      ]
+    }
+  },
+  "18": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 4242,
+      "steps": 4,
+      "cfg": 0.9,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "beta",
+      "denoise": 0.45,
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "5",
+        0
+      ],
+      "negative": [
+        "4",
+        0
+      ],
+      "latent_image": [
+        "19",
+        0
+      ]
+    }
+  },
+  "6": {
+    "class_type": "LoadAndResizeImage",
+    "inputs": {
+      "image": "minotaur.png",
+      "resize": true,
+      "width": 192,
+      "height": 160,
+      "repeat": 1,
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "mask_channel": "alpha",
+      "background_color": ""
+    }
+  },
+  "10001": {
+    "class_type": "Text Multiline",
+    "inputs": {
+      "text": "Minotaur"
+    }
+  }
+}

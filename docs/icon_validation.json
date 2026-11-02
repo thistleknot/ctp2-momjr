@@ -1,56 +1,86 @@
 [
   {
+    "slug": "hydra",
+    "name": "Hydra",
+    "score": 100,
+    "reason": "pixelated multi-headed serpent monster figure"
+  },
+  {
+    "slug": "minotaur",
+    "name": "Minotaur",
+    "score": 100,
+    "reason": "Humanoid with bull head"
+  },
+  {
+    "slug": "gargoyle",
+    "name": "Gargoyle",
+    "score": 100,
+    "reason": "Grey winged humanoid sprite"
+  },
+  {
     "slug": "infernal_device",
     "name": "Infernal Device",
+    "score": 85,
+    "reason": "Fiery meteor projectile"
+  },
+  {
+    "slug": "skeletons",
+    "name": "Skeletons",
     "score": 100,
-    "reason": "Text label matches perfectly"
+    "reason": "Skeleton holding sword and shield"
+  },
+  {
+    "slug": "dracolich",
+    "name": "Dracolich",
+    "score": 100,
+    "reason": "Skeletal dragon-like creature"
+  },
+  {
+    "slug": "lich",
+    "name": "Lich",
+    "score": 100,
+    "reason": "pixel art lich with crown"
   },
   {
     "slug": "dwarf_warrior",
     "name": "Dwarf Warrior",
     "score": 100,
-    "reason": "Stout armored dwarf warrior figure"
-  },
-  {
-    "slug": "dwarf_crossbow",
-    "name": "Dwarf Crossbow",
-    "score": 100,
-    "reason": "Dwarf with crossbow fantasy figure"
-  },
-  {
-    "slug": "dwarf_runesmith",
-    "name": "Dwarf Runesmith",
-    "score": 100,
-    "reason": "Pixel art fantasy game character"
+    "reason": "Bearded dwarf warrior holding axe"
   },
   {
     "slug": "druid",
     "name": "Druid",
-    "score": 100,
-    "reason": "Druid in orange robes with staff"
+    "score": 50,
+    "reason": "Pixel art figure in purple robe"
   },
   {
     "slug": "djinn",
     "name": "Djinn",
+    "score": 95,
+    "reason": "Blue pixel art humanoid fantasy creature"
+  },
+  {
+    "slug": "vampire",
+    "name": "Vampire",
     "score": 100,
-    "reason": "blue genie figure fantasy setting"
+    "reason": "Dark robed vampire pixel art"
   },
   {
     "slug": "goblin",
     "name": "Goblin",
-    "score": 85,
-    "reason": "Fantasy archer with bow and quiver"
+    "score": 100,
+    "reason": "Green pixel art goblin figure"
   },
   {
-    "slug": "orc",
-    "name": "Orc",
-    "score": 100,
-    "reason": "Large muscular warrior holding weapon"
+    "slug": "ogre",
+    "name": "Ogre",
+    "score": 50,
+    "reason": "Fantasy archer unit"
   },
   {
     "slug": "troll",
     "name": "Troll",
-    "score": 100,
-    "reason": "Perfect match for fantasy troll unit"
+    "score": 95,
+    "reason": "Green skin, humanoid fantasy unit"
   }
 ]

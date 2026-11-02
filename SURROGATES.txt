@@ -1,6 +1,6 @@
 mom surrogate register
 
-Primary structured source: H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\momjr_csv
+Primary structured source: H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\momjr_csv
 
 Hidden surrogate-backed tile improvements retained only for compatibility:
 - TILEIMP_ADVANCED_UNDERSEA_MINES: Stock deep-ocean production surrogate retained for compatibility only; hidden because MoMJR has no direct tile-improvement counterpart for this CTP2 lane.
@@ -21,4 +21,4 @@ Visible remaps:
 - TILEIMP_RAILROAD: remapped to Enchanted Road and ADVANCE_GREATER_ENCHANTMENTS.
 
 Dynamic logic donor references live under:
-- H:\Program Files(x86)\Activision\Call To Power 2\Scenarios\mom\tools\slic_translation_artifacts
+- H:\Program Files(x86)\Activision\Call To Power 2\tools\slic_translation_artifacts

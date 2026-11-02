@@ -1,3 +1,10 @@
+# 2026-11-01 — Debug launcher renderer selection (RESOLVED for startup)
+
+**Hypothesis.** The debug launcher's default SDL renderer enters the installed D3D9 path, which faulted in `D3D9.DLL` during `aui_SDLUI::CreateNativeScreen`; setting `SDL_RENDER_DRIVER=software` avoids that failure. Evidence: the default launch ended with the D3D9 access violation, while the current software-rendered launch has a responsive `Call To Power 2` window and has parsed the UI resources and SLIC scripts.
+**Test.** Set `SDL_RENDER_DRIVER=software` in `run-ctp2-dbg-crashcapture.cmd` before invoking its PowerShell runner, then launch from the install root without setting the variable in the caller.
+**Prediction.** If true, the unmodified caller command reaches the responsive game window without a D3D9 fault. If false, the launcher still faults or stops before displaying the game window.
+**Result.** The exact command ran from a clean shell with no caller-provided `SDL_RENDER_DRIVER`; the launcher selected the custom x86 `ctp2-dbg.exe`, parsed the UI assets and SLIC scripts, and produced a responsive `Call To Power 2` window. No new game crash dump or `ctp2-dbg` Application Error/Hang event appeared. The software-renderer setting is confirmed for reaching the game window; later gameplay remains untested.
+
 ## Comparison Criteria Clarification Needed
 
 **Hypothesis**: The comparison should be:

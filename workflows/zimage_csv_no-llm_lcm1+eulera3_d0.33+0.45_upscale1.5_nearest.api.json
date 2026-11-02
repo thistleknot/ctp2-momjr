@@ -1,0 +1,229 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "z_image_turbo_fp8_e4m3fn.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "lumina2",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    }
+  },
+  "8": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "text, watermark, border, frame, multiple figures, cropped, blurry",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "dwarf warrior\nA winged demon standing and facing right, with black, white, grey, yellow, and peach colours.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "10000": {
+    "class_type": "LoadAndResizeImage",
+    "inputs": {
+      "image": "dwarf.png",
+      "resize": false,
+      "width": 72,
+      "height": 96,
+      "repeat": 1,
+      "keep_proportion": false,
+      "divisible_by": 2,
+      "mask_channel": "alpha",
+      "background_color": ""
+    }
+  },
+  "6": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "10000",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "10",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "12": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "filename_prefix": "mom_pipe",
+      "images": [
+        "14",
+        0
+      ]
+    }
+  },
+  "10010": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "11",
+        0
+      ]
+    }
+  },
+  "10012": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "9",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "10013": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "10012",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 4242,
+      "steps": 1,
+      "cfg": 1.13,
+      "sampler_name": "lcm",
+      "scheduler": "beta",
+      "denoise": 0.33,
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "7",
+        0
+      ],
+      "negative": [
+        "8",
+        0
+      ],
+      "latent_image": [
+        "6",
+        0
+      ]
+    }
+  },
+  "13": {
+    "class_type": "OIDNDenoiser",
+    "inputs": {
+      "denoise_strength": 0.7,
+      "image": [
+        "11",
+        0
+      ]
+    }
+  },
+  "10014": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "13",
+        0
+      ]
+    }
+  },
+  "14": {
+    "class_type": "FastUnsharpSharpen",
+    "inputs": {
+      "strength": 0.6,
+      "use_gpu": true,
+      "images": [
+        "13",
+        0
+      ]
+    }
+  },
+  "10015": {
+    "class_type": "PreviewImage",
+    "inputs": {
+      "images": [
+        "14",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "KSampler",
+    "inputs": {
+      "seed": 4243,
+      "steps": 3,
+      "cfg": 0.9,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "beta",
+      "denoise": 0.45,
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "7",
+        0
+      ],
+      "negative": [
+        "8",
+        0
+      ],
+      "latent_image": [
+        "10006",
+        0
+      ]
+    }
+  },
+  "10006": {
+    "class_type": "Latent Upscale by Factor (WAS)",
+    "inputs": {
+      "mode": "nearest",
+      "factor": 1.5,
+      "align": "true",
+      "samples": [
+        "9",
+        0
+      ]
+    }
+  }
+}

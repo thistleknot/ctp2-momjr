@@ -1,0 +1,491 @@
+{
+ "id": "MoM_regenerate_txt2img",
+ "revision": 0,
+ "last_node_id": 9999,
+ "last_link_id": 12,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UNETLoader",
+   "title": "loader_unet",
+   "pos": [
+    80,
+    230
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    "z_image_turbo_fp8_e4m3fn.safetensors",
+    "default"
+   ]
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoader",
+   "title": "loader_clip",
+   "pos": [
+    80,
+    380
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    "qwen_3_4b.safetensors",
+    "lumina2"
+   ]
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "title": "loader_vae",
+   "pos": [
+    80,
+    530
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    "ae.safetensors"
+   ]
+  },
+  {
+   "id": 4,
+   "type": "LoraLoaderModelOnly",
+   "title": "lora",
+   "pos": [
+    410,
+    680
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "*",
+     "link": 1
+    }
+   ],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    "elusarca-pixel-art-zimage.safetensors",
+    0.8
+   ]
+  },
+  {
+   "id": 5,
+   "type": "EmptySD3LatentImage",
+   "title": "empty",
+   "pos": [
+    80,
+    830
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    512,
+    384,
+    1
+   ]
+  },
+  {
+   "id": 6,
+   "type": "CLIPTextEncode",
+   "title": "pos",
+   "pos": [
+    410,
+    980
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "*",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    ""
+   ]
+  },
+  {
+   "id": 7,
+   "type": "CLIPTextEncode",
+   "title": "neg",
+   "pos": [
+    410,
+    80
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "*",
+     "link": 3
+    }
+   ],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    "text, watermark, border, frame, multiple figures, cropped, blurry"
+   ]
+  },
+  {
+   "id": 8,
+   "type": "KSampler",
+   "title": "ks0",
+   "pos": [
+    740,
+    230
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "*",
+     "link": 4
+    },
+    {
+     "name": "positive",
+     "type": "*",
+     "link": 5
+    },
+    {
+     "name": "negative",
+     "type": "*",
+     "link": 6
+    },
+    {
+     "name": "latent_image",
+     "type": "*",
+     "link": 7
+    }
+   ],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    12345,
+    12,
+    1.0,
+    "lcm",
+    "simple",
+    1.0
+   ]
+  },
+  {
+   "id": 9,
+   "type": "VAEDecode",
+   "title": "decode",
+   "pos": [
+    1070,
+    380
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "*",
+     "link": 8
+    },
+    {
+     "name": "vae",
+     "type": "*",
+     "link": 9
+    }
+   ],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": []
+  },
+  {
+   "id": 10,
+   "type": "FastUnsharpSharpen",
+   "title": "sharpen",
+   "pos": [
+    1400,
+    530
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "*",
+     "link": 10
+    }
+   ],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    1.2,
+    true
+   ]
+  },
+  {
+   "id": 11,
+   "type": "SaveImage",
+   "title": "save",
+   "pos": [
+    1730,
+    680
+   ],
+   "size": [
+    300,
+    90
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "*",
+     "link": 11
+    }
+   ],
+   "outputs": [
+    {
+     "name": "out",
+     "type": "*",
+     "links": []
+    }
+   ],
+   "widgets_values": [
+    "mom_pipe"
+   ]
+  },
+  {
+   "id": 9999,
+   "type": "MarkdownNote",
+   "title": "READ ME - measured, not guessed",
+   "pos": [
+    80,
+    20
+   ],
+   "size": [
+    640,
+    300
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "widgets_values": [
+    "## MoM unit-sprite pipeline\n\nGenerated by `Scenarios/mom/tools/zimage_graph.py` -- the batch client runs this\nexact graph, so what you see here is what actually executed.\n\n**Measured on this art (2026-09-03/04), do not re-derive:**\n- Two-stage (0.50 then 0.28 after a latent upscale) beats one pass. A single\n  high-denoise pass invents semantics: an ice-lightning streak became a lance.\n- Higher resolution is WORSE. At 1024 Z-Image returns near-identity; at 640 it\n  fully repaints. 512 -> 1.5x is the working ladder.\n- Steps are inert: 8 vs 20 indistinguishable, 2.5x the cost.\n- ControlNet measured FLAT here (sharpness 53.0 -> 52.3 at both 0.5 and 0.85).\n  Switchable, off by default.\n- Downsampling the result with LANCZOS undoes the ESRGAN. Use BOX or NEAREST.\n- The denoiser DARKENS everything (-16.5 mean luminance). Matching the output's\n  histogram back to the source fixes it and is done client-side.\n\n**The VLM captioner proposes, it does not decide.** It is better than hand notes\non legible units but confidently wrong on ambiguous ones.\nAsked about the Air Elemental it answered \"a stylized pixel-art question mark\"\nand listed \"Humanoid figure\" as a NEGATIVE, when the art contains a woman.\n\n**Sampling resolution is sized for the TARGET, not the model.** Measured on\nCRUSADER, single stage, against the geometry-only baseline:\n    192x144  0.14x px  34s  sharpness 0.90\n    256x192  0.25x px  40s  sharpness 1.05   <- default\n    320x240  0.39x px  52s  sharpness 1.09\n    512x384  1.00x px  96s  sharpness 0.98\n512 was the slowest AND among the worst. Pick a resolution the model works at,\ndivide by 16/32/64, multiply by an int to land just above the master size.\n"
+   ],
+   "inputs": [],
+   "outputs": []
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   4,
+   0,
+   "*"
+  ],
+  [
+   2,
+   2,
+   0,
+   6,
+   0,
+   "*"
+  ],
+  [
+   3,
+   2,
+   0,
+   7,
+   0,
+   "*"
+  ],
+  [
+   4,
+   4,
+   0,
+   8,
+   0,
+   "*"
+  ],
+  [
+   5,
+   6,
+   0,
+   8,
+   1,
+   "*"
+  ],
+  [
+   6,
+   7,
+   0,
+   8,
+   2,
+   "*"
+  ],
+  [
+   7,
+   5,
+   0,
+   8,
+   3,
+   "*"
+  ],
+  [
+   8,
+   8,
+   0,
+   9,
+   0,
+   "*"
+  ],
+  [
+   9,
+   3,
+   0,
+   9,
+   1,
+   "*"
+  ],
+  [
+   10,
+   9,
+   0,
+   10,
+   0,
+   "*"
+  ],
+  [
+   11,
+   10,
+   0,
+   11,
+   0,
+   "*"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {},
+ "version": 0.4
+}
